@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Number Type Quiz</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--success:#22c55e;--danger:#ef4444}
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071033 0%, #081126 100%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .wrap{width:100%;max-width:900px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    h1{font-size:20px;margin:0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .question{font-size:18px;margin-bottom:12px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+    label.option{background:#071330;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;align-items:center;gap:10px;cursor:pointer}
+    input[type=checkbox]{width:18px;height:18px}
+    .controls{display:flex;gap:8px;align-items:center}
+    button{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;color:#04243a;cursor:pointer;font-weight:600}
+    button:disabled{background:var(--muted);cursor:not-allowed}
+    button.secondary{background:transparent;color:var(--accent);border:1px solid rgba(96,165,250,0.15)}
+    .result{padding:10px;margin-top:8px;border-radius:8px;font-weight:700}
+    .result.ok{background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.12)}
+    .result.bad{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.06)}
+    .correct-list{margin-top:10px;padding:10px;background:rgba(255,255,255,0.02);border-radius:8px;color:var(--muted)}
+    footer{margin-top:12px;color:var(--muted);font-size:13px}
+    @media(max-width:520px){.options{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Number Type Quiz</h1>
+      <div class="meta">20 random questions · multiple-correct (select all that apply)</div>
+    </header>
+
+    <div class="card" id="card">
+      </div>
+
+    <footer>
+      Tip: you must select exactly all correct options (no missing, no extras). After a wrong answer the correct option(s) are shown below.
+    </footer>
+  </div>
+
+  <script>
+    // Allowed types
+    const TYPES = ["Natural", "Whole", "Integer", "Rational", "Irrational", "Real", "Imaginary", "Prime", "Composite"];
+    const card = document.getElementById('card');
+
+    let QUESTIONS = [];
+    let idx = 0;
+    let score = 0;
+    const totalQuestions = 20;
+
+    // Helpers to generate numbers and derive their true type-set
+    function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+
+    function makeQuestion(){
+      const kind = randInt(0,6); // 0:int,1:positive int maybe prime/composite,2:zero,3:fraction,4:irrational,5:imaginary,6:negative int
+      let value, label, trueTypes = new Set();
+
+      if(kind===0){ value = randInt(-50,50); label = value.toString(); }
+      else if(kind===1){ const val = randInt(2,97); value = val; label = val.toString(); }
+      else if(kind===2){ value = 0; label = '0'; }
+      else if(kind===3){
+        const den = randInt(2,12); const num = randInt(-20,20);
+        value = `${num}/${den}`; label = value;
+      } else if(kind===4){
+        const pool = ['√2','π','e','√3']; const pick = pool[randInt(0,pool.length-1)];
+        value = pick; label = pick;
+      } else if(kind===5){
+        const a = randInt(-9,9) || 1; value = `${a}i`; label = value;
+      } else {
+        const val = randInt(-50,-1); value = val; label = val.toString();
+      }
+
+      // Determine true types based on label/value
+      if(typeof value === 'string' && /i$/.test(value)){
+        trueTypes.add('Imaginary');
+      } else if(typeof value === 'string' && /^-?\d+\/\d+$/.test(value)){
+        const parts = value.split('/').map(Number);
+        if (parts[1] !== 0 && parts[0] % parts[1] === 0) { // It's a whole number
+          const n = parts[0] / parts[1];
+          trueTypes.add('Integer').add('Rational').add('Real');
+          if(n>=1) trueTypes.add('Natural');
+          if(n>=0) trueTypes.add('Whole');
+          if(n>1){ if(isPrime(n)) trueTypes.add('Prime'); else trueTypes.add('Composite'); }
+        } else {
+          trueTypes.add('Rational').add('Real');
+        }
+      } else if(['√2','π','e','√3'].includes(value)){
+        trueTypes.add('Irrational').add('Real');
+      } else { // It's an integer number
+        const n = Number(value);
+        trueTypes.add('Integer').add('Rational').add('Real');
+        if(n>=1) trueTypes.add('Natural');
+        if(n>=0) trueTypes.add('Whole');
+        if(n>1){ if(isPrime(n)) trueTypes.add('Prime'); else trueTypes.add('Composite'); }
+      }
+
+      return {label, value, correct: Array.from(trueTypes)};
+    }
+
+    function isPrime(n){
+      if(n<=1) return false; if(n<=3) return true;
+      if(n%2===0 || n%3===0) return false;
+      for(let i=5; i*i<=n; i=i+6) if(n%i===0||n%(i+2)===0) return false;
+      return true;
+    }
+
+    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+    function startQuiz() {
+      idx = 0;
+      score = 0;
+      QUESTIONS = Array.from({length:totalQuestions},()=>makeQuestion());
+      render();
+    }
+
+    function render(){
+      const q = QUESTIONS[idx];
+      const opts = shuffle(TYPES.slice());
+      // Ensure all correct options are included in shown options
+      q.correct.forEach(c => { if(!opts.includes(c)) { opts.pop(); opts.unshift(c); } });
+      shuffle(opts);
+
+      card.innerHTML = `
+        <div class="question">Q${idx+1}: What type(s) of number is <strong>${q.label}</strong> </div>
+        <div class="meta">Choose all correct variants</div>
+        <div class="options">${opts.map(o=>`<label class="option"><input type="checkbox" value="${o}"> ${o}</label>`).join('')}</div>
+        <div class="controls">
+          <button id="check">Check</button>
+          <button class="secondary" id="nextBtn">Skip</button>
+          <div style="flex:1"></div>
+          <div class="meta">${idx+1}/${totalQuestions}</div>
+        </div>
+        <div id="feedback"></div>
+      `;
+
+      document.getElementById('check').addEventListener('click',()=>check(q));
+      document.getElementById('nextBtn').addEventListener('click',()=>next());
+    }
+
+    function check(q){
+      const checkBtn = document.getElementById('check');
+      const nextBtn = document.getElementById('nextBtn');
+      const selected = Array.from(card.querySelectorAll('input[type=checkbox]:checked')).map(i=>i.value);
+
+      const correctSet = q.correct.slice().sort();
+      const selectedSorted = selected.slice().sort();
+      const ok = arraysEqual(correctSet, selectedSorted);
+
+      const fb = document.getElementById('feedback');
+      checkBtn.disabled = true;
+      nextBtn.textContent = 'Next question';
+
+      if(ok){
+        score++;
+        fb.innerHTML = `<div class="result ok">✅ Correct!</div>`;
+        setTimeout(next, 1000); // Auto-next on correct answer
+      } else {
+        fb.innerHTML = `<div class="result bad">❌ Incorrect — correct answer(s):</div>
+                        <div class="correct-list">${q.correct.join(', ')}</div>`;
+      }
+    }
+
+    function arraysEqual(a,b){ if(a.length!==b.length) return false; for(let i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true }
+
+    function next(){
+      if(idx < totalQuestions - 1){
+        idx++;
+        render();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const percentage = Math.round((score / totalQuestions) * 100);
+      let message = '';
+      if (percentage >= 80) message = "Nice! 👍";
+      else if (percentage >= 50) message = "Good result! 😊";
+      else message = "You should practice more. 📚";
+
+      card.innerHTML = `
+        <div class="question">Test completed!</div>
+        <div class="result ok" style="text-align:center; font-size: 18px; margin-bottom: 12px;">
+          Your result: ${score} / ${totalQuestions} (${percentage}%)
+        </div>
+        <div style="text-align:center; font-size: 16px; margin-bottom: 20px;">${message}</div>
+        <div class="controls" style="justify-content:center;">
+          <button id="restart">Retry</button>
+          <button><a style="text-decoration: none; color:black;" href="types_of_numbers">Exit</a></button>
+        </div>
+      `;
+      document.getElementById('restart').addEventListener('click', startQuiz);
+    }
+
+    startQuiz(); // Start the quiz on page load
+  </script>
+</body>
+</html>

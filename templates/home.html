@@ -1,0 +1,1445 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home Page</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <!--
+
+    TemplateMo 590 topic listing
+
+    https://templatemo.com/tm-590-topic-listing
+
+    -->
+</head>
+
+<body id="top">
+<main>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main_view' %}">
+                <i class="bi-back"></i>
+                <span>Home</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_1">Introduction</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_2">Algebra Topics</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_3">Geometry Topics</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_4">How it works</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_5">FAQs</a>
+                    </li>
+                </ul>
+
+                <div class="d-none d-lg-block">
+                    <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 col-12 mx-auto">
+                    <h1 class="text-white text-center">Learn. Use. Solve</h1>
+
+                    <h6 class="text-center">platform for new math learners around the world</h6>
+
+                    <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
+                        <div class="input-group input-group-lg">
+                                    <span class="input-group-text bi-search" id="basic-addon1">
+
+                                    </span>
+
+                            <input name="keyword" type="search" class="form-control" id="keyword"
+                                   placeholder="Function, Logarithm, Trigonometry, ...." aria-label="Search">
+
+                            <button type="submit" class="form-control">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="featured-section">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block bg-white shadow-lg">
+                        <a href="{% url 'fundamental' %}">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="mb-2">Basics of mathematics</h5>
+
+                                    <p class="mb-0">All the essential fundamental mathematical knowledge you will ever
+                                        need.</p>
+                                </div>
+
+                                <span class="badge bg-design rounded-pill ms-auto">14</span>
+                            </div>
+
+                            <img src="{% static 'images/myimages/math.png' %}"
+                                 class="custom-block-image img-fluid" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="custom-block custom-block-overlay">
+                        <div class="d-flex flex-column h-100">
+                            <img src="{% static 'images/myimages/equation.jpg' %}"
+                                 class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block-overlay-text d-flex">
+                                <div>
+                                    <h5 class="text-white mb-2">Equations and Inequalities</h5>
+
+                                    <p class="text-white">All the essential knowledge, fundamental concepts, and
+                                        effective strategies required to understand, manipulate, and solve various types
+                                        of equations, including linear and quadratic.</p>
+
+                                    <a href="{% url 'equalities_inequalities' %}" class="btn custom-btn mt-2 mt-lg-3">Start
+                                        Learning</a>
+                                </div>
+
+                                <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                            </div>
+                            <div class="section-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="explore-section section-padding" id="section_2">
+        <div class="container">Math
+
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Algebra Topics</h2>
+            </div>
+
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                                data-bs-target="#design-tab-pane" type="button" role="tab"
+                                aria-controls="design-tab-pane" aria-selected="true">Basic
+                        </button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
+                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
+                                aria-controls="marketing-tab-pane" aria-selected="false">Equations and Inequalities
+                        </button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
+                                data-bs-target="#finance-tab-pane" type="button" role="tab"
+                                aria-controls="finance-tab-pane" aria-selected="false">Functions
+                        </button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane"
+                                type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Logarithm
+                        </button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="education-tab" data-bs-toggle="tab"
+                                data-bs-target="#education-tab-pane" type="button" role="tab"
+                                aria-controls="education-tab-pane" aria-selected="false">Trigonometry
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
+                             aria-labelledby="design-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'types_of_numbers' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Types of Numbers</h5>
+
+                                                    <p class="mb-0">The first step to learn math</p>
+                                                </div>
+
+                                                <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/numbers.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'working_with_signs' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Working with Signs</h5>
+                                                    <p class="mb-0">This topic is crucial to learn</p>
+                                                </div>
+
+                                                <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/signs.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'fractions' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Fraction</h5>
+
+                                                    <p class="mb-0">Common mathematical example</p>
+                                                </div>
+
+                                                <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/fraction.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
+                             aria-labelledby="marketing-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'linear_equalities' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Linear Equations</h5>
+
+                                                    <p class="mb-0">Basic properties of linear equations</p>
+                                                </div>
+
+                                                <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/chiziqli.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'quadratic_equations' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Quadratic Equations</h5>
+
+                                                    <p class="mb-0">Basic concepts about quadratic equations</p>
+                                                </div>
+
+                                                <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/kvadrat.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'inequalities' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Inequalities</h5>
+
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+
+                                                <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/inequality.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'linear_functions' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Linear Functions</h5>
+
+                                                    <p class="mb-0">Basic knowledge</p>
+                                                </div>
+
+                                                <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/linearfunction.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-block custom-block-overlay">
+
+                                        <div class="d-flex flex-column h-100">
+                                            <img src="{% static 'images/myimages/functions.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+
+                                            <div class="custom-block-overlay-text d-flex">
+                                                <div>
+                                                    <h5 class="text-white mb-2">Other Kinds of Functions</h5>
+
+                                                    <p class="text-white">Good explanation with examples</p>
+
+                                                    <a href="{% url 'other_kind_of_functions' %}"
+                                                       class="btn custom-btn mt-2 mt-lg-3">Learn
+                                                        More</a>
+                                                </div>
+
+                                                <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                            </div>
+
+                                            <div class="social-share d-flex">
+                                                <p class="text-white me-4">Share:</p>
+
+                                                <ul class="social-icon">
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-twitter"></a>
+                                                    </li>
+
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-facebook"></a>
+                                                    </li>
+
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-pinterest"></a>
+                                                    </li>
+                                                </ul>
+
+                                                <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
+                                            </div>
+
+                                            <div class="section-overlay"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'logarithm' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Logarithm</h5>
+
+                                                    <p class="mb-0">Basic knowledge</p>
+                                                </div>
+
+                                                <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/logarithm.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'logarithmic_functions' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Logarithmic Functions</h5>
+
+                                                    <p class="mb-0">More about logarithmic functions</p>
+                                                </div>
+
+                                                <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/logarithmfunction.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'operation_on_logarithm' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Logarithmic Examples</h5>
+
+                                                    <p class="mb-0">Operations on Logarithms</p>
+                                                </div>
+
+                                                <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/operations_on_logarithm.png' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="education-tab-pane" role="tabpanel"
+                             aria-labelledby="education-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'trigonometry' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Introduction to Trigonometry</h5>
+
+                                                    <p class="mb-0">Good examples to understand</p>
+                                                </div>
+
+                                                <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/trigonometry.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'operations_in_trigonometry' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Algebraic Operations in Trigonometry</h5>
+
+                                                    <p class="mb-0">Adding, Subtracting, Multiplying, and Dividing</p>
+                                                </div>
+
+                                                <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/trigonometric_operations.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="{% url 'inverse_trigonometric_functions' %}">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Inverse Trigonometric Functions</h5>
+
+                                                    <p class="mb-0">Deep knowledge you must learn</p>
+                                                </div>
+
+                                                <span class="badge bg-education rounded-pill ms-auto">75</span>
+                                            </div>
+
+                                            <img src="{% static 'images/myimages/arc.jpg' %}"
+                                                 class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin-bottom:100px" class="section-padding" id="section_3">
+        <div class="container">
+            <div class="col-12 text-center mt-5">
+                <h2 class="mb-4">Geometry Topics</h2>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <button class="nav-link active"
+                                id="btn-planimetry_new"
+                                type="button"
+                                onclick="showPlanimetry()">
+                            Planimetry
+                        </button>
+                    </li>
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <button class="nav-link"-->
+                    <!--                                id="btn-stereometry_new"-->
+                    <!--                                type="button"-->
+                    <!--                                onclick="showStereometry()">-->
+                    <!--                            Stereometry-->
+                    <!--                        </button>-->
+                    <!--                    </li>-->
+                </ul>
+            </div>
+        </div>
+        <div id="planimetry-container_new">
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav nav-tabs" id="myTab_new" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="design-tab_new" data-bs-toggle="tab"
+                                    data-bs-target="#design-tab-pane2_new" type="button" role="tab"
+                                    aria-controls="design-tab-pane_new" aria-selected="true">Module 1
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="marketing-tab_new" data-bs-toggle="tab"
+                                    data-bs-target="#marketing-tab-pane2_new" type="button" role="tab"
+                                    aria-controls="marketing-tab-pane_new" aria-selected="false">Module 2
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="finance-tab_new" data-bs-toggle="tab"
+                                    data-bs-target="#finance-tab-pane2_new" type="button" role="tab"
+                                    aria-controls="finance-tab-pane_new" aria-selected="false">Module 3
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="music-tab_new" data-bs-toggle="tab"
+                                    data-bs-target="#music-tab-pane2_new"
+                                    type="button" role="tab" aria-controls="music-tab-pane_new" aria-selected="false">
+                                Module 4
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="education-tab_new" data-bs-toggle="tab"
+                                    data-bs-target="#education-tab-pane2_new" type="button" role="tab"
+                                    aria-controls="education-tab-pane_new" aria-selected="false">Module 5
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="education-tab_new1" data-bs-toggle="tab"
+                                    data-bs-target="#education-tab-pane2_new1" type="button" role="tab"
+                                    aria-controls="education-tab-pane_new1" aria-selected="false">Module 6
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tab-content" id="myTabContent_new">
+                            <div class="tab-pane fade show active" id="design-tab-pane2_new" role="tabpanel"
+                                 aria-labelledby="design-tab_new" tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'introduction_to_geometry' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Introduction to Geometry</h5>
+                                                        <p class="mb-0">The first step to learn geometry</p>
+                                                    </div>
+                                                    <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/introduction_to_geometry.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'measurement_and_distance' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Measurement and Distance in The Plane</h5>
+                                                        <p class="mb-0">This topic is crucial to learn</p>
+                                                    </div>
+                                                    <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/measurement_and_distance.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'angles' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Angles</h5>
+                                                        <p class="mb-0">Everything you should know about angles</p>
+                                                    </div>
+                                                    <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/angles_topic.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="marketing-tab-pane2_new" role="tabpanel"
+                                 aria-labelledby="marketing-tab_new" tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'triangle_types' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Triangles</h5>
+                                                        <p class="mb-0">Types of Triangles</p>
+                                                    </div>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/triangle_types.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% static 'files/result.pdf' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Similar Triangles</h5>
+                                                        <p class="mb-0">Basic concepts about similar triangles</p>
+                                                    </div>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/similar_triangles.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'properties_of_triangles' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Triangle Inequality, Perimeter & Area</h5>
+                                                        <p class="mb-0">Main properties of triangles</p>
+                                                    </div>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/properties_of_triangles.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="finance-tab-pane2_new" role="tabpanel"
+                                 aria-labelledby="finance-tab_new"
+                                 tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'quadrilaterals_and_squares' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Quadrilaterals</h5>
+                                                        <p class="mb-0">Basic concepts and fundamental formulas</p>
+                                                    </div>
+                                                    <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/quadrilaterals_and_squares.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="custom-block custom-block-overlay">
+                                            <div class="d-flex flex-column h-100">
+                                                <img src="{% static 'images/myimages/types_of_quadrilaterals.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                                <div class="custom-block-overlay-text d-flex">
+                                                    <div>
+                                                        <h5 class="text-white mb-2">Types of Quadrilaterals</h5>
+                                                        <p class="text-white">Good explanation with examples</p>
+                                                        <a href="{% url 'types_of_quadrilateral' %}"
+                                                           class="btn custom-btn mt-2 mt-lg-3">Learn
+                                                            More</a>
+                                                    </div>
+                                                    <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                                </div>
+                                                <div class="social-share d-flex">
+                                                    <p class="text-white me-4">Share:</p>
+                                                    <ul class="social-icon">
+                                                        <li class="social-icon-item">
+                                                            <a href="#" class="social-icon-link bi-twitter"></a>
+                                                        </li>
+                                                        <li class="social-icon-item">
+                                                            <a href="#" class="social-icon-link bi-facebook"></a>
+                                                        </li>
+                                                        <li class="social-icon-item">
+                                                            <a href="#" class="social-icon-link bi-pinterest"></a>
+                                                        </li>
+                                                    </ul>
+                                                    <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
+                                                </div>
+                                                <div class="section-overlay"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="music-tab-pane2_new" role="tabpanel"
+                                 aria-labelledby="music-tab_new"
+                                 tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'circle_basic' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Circles</h5>
+                                                        <p class="mb-0">Main Properties</p>
+                                                    </div>
+                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/circle.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'other_properties_of_circle' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Other Properties of Circles</h5>
+                                                        <p class="mb-0">More about circles</p>
+                                                    </div>
+                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/circle_other_properties.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'equation_of_circle' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Equation of Circle</h5>
+                                                        <p class="mb-0">Equation of Circle</p>
+                                                    </div>
+                                                    <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/equation_of_circle.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="education-tab-pane2_new" role="tabpanel"
+                                 aria-labelledby="education-tab_new" tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'plane' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">The Coordinate Plane & Points</h5>
+                                                        <p class="mb-0">Learn more about Geometry</p>
+                                                    </div>
+                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/plane.png' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'distance_midpoint_slope' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Distance, Midpoint & Slope</h5>
+                                                        <p class="mb-0">Important thing to learn</p>
+                                                    </div>
+                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/distance_midpoint_slope.png' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="education-tab-pane2_new1" role="tabpanel"
+                                 aria-labelledby="education-tab_new1" tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'the_laws_of_sines' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">The Law of Sines</h5>
+                                                        <p class="mb-0">Learn more about Geometry</p>
+                                                    </div>
+                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/law_of_sine.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'the_laws_of_cosines' %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">The Law of Cosines</h5>
+                                                        <p class="mb-0">Important thing to learn</p>
+                                                    </div>
+                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                </div>
+                                                <img src="{% static 'images/myimages/law_of_cosine.jpg' %}"
+                                                     class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="stereometry-container_new" style="display:none;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <ul class="nav nav-tabs" id="myTab_a_new" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="design-tab_a_new" data-bs-toggle="tab"
+                                        data-bs-target="#design-tab-pane2_a_new" type="button" role="tab"
+                                        aria-controls="design-tab-pane_a_new" aria-selected="true">Module 1
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="marketing-tab_a_new" data-bs-toggle="tab"
+                                        data-bs-target="#marketing-tab-pane2_a_new" type="button" role="tab"
+                                        aria-controls="marketing-tab-pane_a_new" aria-selected="false">Module 2
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="finance-tab_a_new" data-bs-toggle="tab"
+                                        data-bs-target="#finance-tab-pane2_a_new" type="button" role="tab"
+                                        aria-controls="finance-tab-pane_a_new" aria-selected="false">Module 3
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="music-tab_a_new" data-bs-toggle="tab"
+                                        data-bs-target="#music-tab-pane2_a_new"
+                                        type="button" role="tab" aria-controls="music-tab-pane_a_new"
+                                        aria-selected="false">
+                                    Module 4
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="education-tab_a_new" data-bs-toggle="tab"
+                                        data-bs-target="#education-tab-pane2_a_new" type="button" role="tab"
+                                        aria-controls="education-tab-pane_a_new" aria-selected="false">Module 5
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tab-content" id="myTabContent_a_new">
+                                <div class="tab-pane fade show active" id="design-tab-pane2_a_new" role="tabpanel"
+                                     aria-labelledby="design-tab_a_new" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'types_of_numbers' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Types of Numbers</h5>
+                                                            <p class="mb-0">The first step to learn math</p>
+                                                        </div>
+                                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/numbers.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'working_with_signs' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Working with Signs</h5>
+                                                            <p class="mb-0">This topic is crucial to learn</p>
+                                                        </div>
+                                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/signs.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'fractions' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Fraction</h5>
+                                                            <p class="mb-0">Common mathematical example</p>
+                                                        </div>
+                                                        <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/fraction.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="marketing-tab-pane2_a_new" role="tabpanel"
+                                     aria-labelledby="marketing-tab_a_new" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'linear_equalities' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Linear Equations</h5>
+                                                            <p class="mb-0">Basic properties of linear equations</p>
+                                                        </div>
+                                                        <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/chiziqli.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'quadratic_equations' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Quadratic Equations</h5>
+                                                            <p class="mb-0">Basic concepts about quadratic equations</p>
+                                                        </div>
+                                                        <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/kvadrat.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'inequalities' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Inequalities</h5>
+                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                        </div>
+                                                        <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/inequality.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="finance-tab-pane2_a_new" role="tabpanel"
+                                     aria-labelledby="finance-tab_a_new"
+                                     tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'linear_functions' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Linear Functions</h5>
+                                                            <p class="mb-0">Basic knowledge</p>
+                                                        </div>
+                                                        <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/linearfunction.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="custom-block custom-block-overlay">
+                                                <div class="d-flex flex-column h-100">
+                                                    <img src="{% static 'images/myimages/functions.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                    <div class="custom-block-overlay-text d-flex">
+                                                        <div>
+                                                            <h5 class="text-white mb-2">Other Kinds of Functions</h5>
+                                                            <p class="text-white">Good explanation with examples</p>
+                                                            <a href="{% url 'other_kind_of_functions' %}"
+                                                               class="btn custom-btn mt-2 mt-lg-3">Learn
+                                                                More</a>
+                                                        </div>
+                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                                    </div>
+                                                    <div class="social-share d-flex">
+                                                        <p class="text-white me-4">Share:</p>
+                                                        <ul class="social-icon">
+                                                            <li class="social-icon-item">
+                                                                <a href="#" class="social-icon-link bi-twitter"></a>
+                                                            </li>
+                                                            <li class="social-icon-item">
+                                                                <a href="#" class="social-icon-link bi-facebook"></a>
+                                                            </li>
+                                                            <li class="social-icon-item">
+                                                                <a href="#" class="social-icon-link bi-pinterest"></a>
+                                                            </li>
+                                                        </ul>
+                                                        <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
+                                                    </div>
+                                                    <div class="section-overlay"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="music-tab-pane2_a_new" role="tabpanel"
+                                     aria-labelledby="music-tab_a_new"
+                                     tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'logarithm' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Logarithm</h5>
+                                                            <p class="mb-0">Basic knowledge</p>
+                                                        </div>
+                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/logarithm.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'logarithmic_functions' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Logarithmic Functions</h5>
+                                                            <p class="mb-0">More about logarithmic functions</p>
+                                                        </div>
+                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/logarithmfunction.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'operation_on_logarithm' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Logarithmic Examples</h5>
+                                                            <p class="mb-0">Operations on Logarithms</p>
+                                                        </div>
+                                                        <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/operations_on_logarithm.png' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="education-tab-pane2_a_new" role="tabpanel"
+                                     aria-labelledby="education-tab_a_new" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'trigonometry' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Introduction to Trigonometry</h5>
+                                                            <p class="mb-0">Good examples to understand</p>
+                                                        </div>
+                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/trigonometry.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'operations_in_trigonometry' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Algebraic Operations in Trigonometry</h5>
+                                                            <p class="mb-0">Adding, Subtracting, Multiplying, and
+                                                                Dividing</p>
+                                                        </div>
+                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/trigonometric_operations.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                <a href="{% url 'inverse_trigonometric_functions' %}">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Inverse Trigonometric Functions</h5>
+                                                            <p class="mb-0">Deep knowledge you must learn</p>
+                                                        </div>
+                                                        <span class="badge bg-education rounded-pill ms-auto">75</span>
+                                                    </div>
+                                                    <img src="{% static 'images/myimages/arc.jpg' %}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section section-padding" id="section_4">
+        <div class="section-overlay"></div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 text-center">
+                    <h2 class="text-white mb-4">How does it work?</h2>
+                </div>
+
+                <div class="col-lg-10 col-12 mx-auto">
+                    <div class="timeline-container">
+                        <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                            <div class="list-progress">
+                                <div class="inner"></div>
+                            </div>
+
+                            <li>
+                                <h4 class="text-white mb-3">Search your favourite topic</h4>
+
+                                <p class="text-white">First and foremost, start by searching for a mathematics topic
+                                    that truly interests you. We sincerely hope that our website includes the topic you
+                                    are looking for and provides it to you in the best possible way.</p>
+
+                                <div class="icon-holder">
+                                    <i class="bi-search"></i>
+                                </div>
+                            </li>
+
+                            <li>
+                                <h4 class="text-white mb-3">Learn as hard as you can</h4>
+
+                                <p class="text-white">Work with sincerity and dedication on the subject you have chosen,
+                                    and this will undoubtedly enhance your mathematical knowledge and strengthen your
+                                    ability to comprehend</p>
+
+                                <div class="icon-holder">
+                                    <i class="bi-book"></i>
+                                </div>
+                            </li>
+
+                            <li>
+                                <h4 class="text-white mb-3">Utilize what you learned</h4>
+
+                                <p class="text-white">If you do not apply what you have learned in real life, then what
+                                    is the point of learning it? Therefore, make sure to utilize your knowledge as much
+                                    as possible in your daily life to reinforce and strengthen your understanding</p>
+                                <div class="icon-holder">
+                                    <i class="bi-pen"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center mt-5">
+                    <p class="text-white">
+                        Want to learn more?
+                        <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="faq-section section-padding" id="section_5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12">
+                    <h2 class="mb-4">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-lg-5 col-12">
+                    <img src="{% static 'images/faq_graphic.jpg' %}" class="img-fluid" alt="FAQs">
+                </div>
+
+                <div class="col-lg-6 col-12 m-auto">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Why most people chose us
+                                </button>
+                            </h2>
+
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <b>The main reason for that, we provide users with a high-quality education system
+                                        and materials to practice. Moreover, we have lessons for every topic in
+                                        math.</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How can you maximize your efficiency
+                                </button>
+                            </h2>
+
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <b>First and foremost, you need to allocate sufficient time for studying, as it is
+                                        crucial for effective learning. Regularly memorizing formulas is also essential
+                                        to strengthen your understanding. Most importantly, you must maintain
+                                        discipline, even when the lessons seem boring, to ensure consistent progress in
+                                        your studies.</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    Does it need to paid?
+                                </button>
+                            </h2>
+
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <b>In general, you are not required to pay, but if you appreciate our project, you
+                                        can support us by making a voluntary contribution. We will continue to keep our
+                                        lessons completely free for everyone.</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>Topic</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Resources</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Home</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">How it works</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">FAQs</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Information</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 305-240-9671" class="site-footer-link">
+                        305-240-9671
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:info@company.com" class="site-footer-link">
+                        info@company.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        {{ language }}
+                    </button>
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/click-scroll.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    function showPlanimetry() {
+        document.getElementById('planimetry-container_new').style.display = 'block';
+        document.getElementById('stereometry-container_new').style.display = 'none';
+
+        document.getElementById('btn-planimetry_new').classList.add('active');
+        document.getElementById('btn-stereometry_new').classList.remove('active');
+    }
+
+    function showStereometry() {
+        document.getElementById('planimetry-container_new').style.display = 'none';
+        document.getElementById('stereometry-container_new').style.display = 'block';
+
+        document.getElementById('btn-stereometry_new').classList.add('active');
+        document.getElementById('btn-planimetry_new').classList.remove('active');
+    }
+</script>
+</body>
+</html>

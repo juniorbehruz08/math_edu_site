@@ -1,0 +1,801 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Equalities and Inequalities</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <!--
+
+    TemplateMo 590 topic listing
+
+    https://templatemo.com/tm-590-topic-listing
+
+    -->
+</head>
+
+<body id="top">
+
+<main>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main_view' %}">
+                <i class="bi-back"></i>
+                <span>Home</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="d-none d-lg-block">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-lg-5 col-12 mb-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Linear Equalities</li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="text-white">Introduction to <br>Linear Equalities</h2>
+
+                    <div class="d-flex align-items-center mt-5">
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
+                            More</a>
+
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                    <div class="topics-detail-block bg-white shadow-lg">
+                        <img src="{% static 'images/myimages/fundament.jpg' %}"
+                             class="topics-detail-block-image img-fluid">
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <a style="width:300px" href="{% url 'practice_linear' 'linear_equalities' %}"
+                   class="btn custom-btn custom-border-btn">Practice with Linear Equalities</a>
+            </div>
+        </div>
+    </header>
+    <section class="topics-detail-section section-padding" id="topics-detail">
+        <div class="container p-5" style="">
+            <div class="markdown prose w-full break-words dark:prose-invert light"><h3 data-start="0" data-end="43">
+                <strong
+                        data-start="4" data-end="41">Linear Equation with One Variable</strong></h3>
+                <p data-start="45" data-end="100">A <strong data-start="47" data-end="84">linear equation with one
+                    variable</strong> has the form:</p>
+                <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>c</mn></mrow><annotation
+                        encoding="application/x-tex">ax + b = 0</annotation></semantics></math></span><span
+                        class="katex-html"
+                        aria-hidden="true"><span
+                        class="base"><span class="strut"
+                                           style="height: 0.6667em; vertical-align: -0.0833em;"></span><span
+                        class="mord mathnormal"></span><span class="mord mathnormal"></span><span class="mspace"
+                                                                                                  style="margin-right: 0.2222em;"></span><span
+                        class="mbin"></span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span
+                        class="base"><span class="strut" style="height: 0.6944em;"></span><span
+                        class="mord mathnormal"></span><span
+                        class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel"></span><span
+                        class="mspace"
+                        style="margin-right: 0.2778em;"></span></span><span
+                        class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                        class="mord"></span></span></span></span></span>
+                <p data-start="120" data-end="128">where:</p>
+                <ul data-start="129" data-end="220">
+                    <li data-start="129" data-end="183"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation
+                            encoding="application/x-tex">a</annotation></semantics></math></span><span
+                            class="katex-html"
+                            aria-hidden="true"><span
+                            class="base"><span class="strut" style="height: 0.4306em;"></span><span
+                            class="mord mathnormal"></span></span></span></span>, b <span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi> and c</mi></mrow><annotation
+                            encoding="application/x-tex">b</annotation></semantics></math></span><span
+                            class="katex-html"
+                            aria-hidden="true"><span
+                            class="base"><span class="strut" style="height: 0.6944em;"></span><span
+                            class="mord mathnormal"></span></span></span></span> are given numbers (constants),
+                    </li>
+                    <li data-start="184" data-end="220"><span class="katex"><span class="katex-mathml"><math
+                            xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation
+                            encoding="application/x-tex">x</annotation></semantics></math></span><span
+                            class="katex-html"
+                            aria-hidden="true"><span
+                            class="base"><span class="strut" style="height: 0.4306em;"></span><span
+                            class="mord mathnormal"></span></span></span></span> is the unknown variable.
+                    </li>
+                    <li>When solving a linear equation, known terms are moved to one side, and unknown terms are moved
+                        to the other side.
+                    </li>
+                    <li>
+                        <div class="markdown prose w-full break-words dark:prose-invert light">
+                            <p data-start="0" data-end="122">If we want to find <span class="katex"><span
+                                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation
+                                    encoding="application/x-tex">x</annotation></semantics></math></span><span
+                                    class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                                                                                   style="height: 0.4306em;"></span><span
+                                    class="mord mathnormal"></span></span></span></span> in the equation <span
+                                    class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn><mo>=</mo><mn>3</mn><mi>y</mi><mo>−</mo><mn>5</mn></mrow><annotation
+                                    encoding="application/x-tex">2x + 5 = 3y - 5</annotation></semantics></math></span>
+                                </span>, we consider <span class="katex"><span
+                                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation
+                                    encoding="application/x-tex"></annotation></semantics></math></span><span
+                                    class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                                                                                   style="height: 0.625em; vertical-align: -0.1944em;"></span><span
+                                    class="mord mathnormal"
+                                    style="margin-right: 0.03588em;"></span></span></span></span> as a known value. The
+                                solution is:
+                            </p>
+                            <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>3</mn><mi>y</mi><mo>−</mo><mn>10</mn></mrow><mn>2</mn></mfrac></mrow><annotation
+                                    encoding="application/x-tex">x = \frac{3y - 10}{2}</annotation></semantics></math></span><span
+                                    class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                                                                                                   style="height: 0.4306em;"></span><span
+                                    class="mord mathnormal"></span><span class="mspace"
+                                                                         style="margin-right: 0.2778em;"></span><span
+                                    class="mrel"></span><span class="mspace"
+                                                              style="margin-right: 0.2778em;"></span></span><span
+                                    class="base"><span class="strut"
+                                                       style="height: 2.0074em; vertical-align: -0.686em;"></span><span
+                                    class="mord" style=""><span class="mopen nulldelimiter" style=""></span><span
+                                    class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                    class="vlist" style="height: 1.3214em;"><span style="top: -2.314em;"><span
+                                    class="pstrut" style="height: 3em;"></span><span class="mord"><span
+                                    class="mord"></span></span></span><span style="top: -3.23em;"><span class="pstrut"
+                                                                                                        style="height: 3em;"></span><span
+                                    class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span
+                                    style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span
+                                    class="mord"><span class="mord"></span><span class="mord mathnormal"
+                                                                                 style="margin-right: 0.03588em;"></span><span
+                                    class="mspace" style="margin-right: 0.2222em;"></span><span
+                                    class="mbin"></span><span class="mspace"
+                                                              style="margin-right: 0.2222em;"></span><span
+                                    class="mord"></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                                                               style="height: 0.686em;"><span></span></span></span></span></span><span
+                                    class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+                    </li>
+                </ul>
+                <hr data-start="222" data-end="225">
+                <div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn @xs/thread:px-0 @sm/thread:px-1.5 @md/thread:px-4">
+                    <div class="flex-col gap-1 md:gap-3">
+                        <div class="flex max-w-full flex-col flex-grow">
+                            <div data-message-author-role="assistant"
+                                 data-message-id="4f4f3bfa-b5a3-4574-906d-8d6f79344146"
+                                 dir="auto"
+                                 class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 whitespace-normal break-words text-start [.text-message+&amp;]:mt-5"
+                                 data-message-model-slug="gpt-4o">
+                                <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
+                                    <div class="markdown prose w-full break-words dark:prose-invert light"><h3
+                                            data-start="0" data-end="78"><strong data-start="4" data-end="76">Moving
+                                        Terms
+                                        Across the Equation (Transposition) with All Operations</strong></h3>
+                                        <p data-start="80" data-end="256">When solving linear equations, we <strong
+                                                data-start="114" data-end="146">move terms to the other side</strong> by
+                                            changing their operation. Here’s how it works for <strong data-start="200"
+                                                                                                      data-end="255">addition,
+                                                subtraction, multiplication, and division</strong>:</p>
+                                        <hr data-start="258" data-end="261">
+                                        <h3 data-start="263" data-end="299"><strong data-start="267" data-end="297">1.
+                                            Addition to Subtraction</strong></h3>
+                                        <p data-start="300" data-end="353">If a term is <strong data-start="313"
+                                                                                                data-end="322">added</strong>,
+                                            move it by <strong data-start="335" data-end="350">subtracting</strong>.</p>
+                                        <h4 data-start="355" data-end="374"><strong data-start="360"
+                                                                                    data-end="372">Example:</strong>
+                                        </h4>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>+</mo><mn>7</mn><mo>=</mo><mn>12</mn></mrow><annotation
+                                                encoding="application/x-tex">x + 7 = 12</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.6667em; vertical-align: -0.0833em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="394" data-end="432"><strong data-start="394" data-end="430">Move
+                                            <span class="katex">
+                                            <span class="katex-mathml"><semantics><mrow><mo></mo></mrow><annotation
+                                                    encoding="application/x-tex"></annotation></semantics>
+                                                </math></span><span
+                                                    class="katex-html" aria-hidden="true"><span class="base"><span
+                                                    class="strut"
+                                                    style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                    class="mord">+</span><span
+                                                    class="mord">7</span></span></span></span> to
+                                            the other side:</strong></p>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>12</mn><mo>−</mo><mn>7</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 12 - 7</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>5</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 5</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <hr data-start="467" data-end="470">
+                                        <h3 data-start="472" data-end="508"><strong data-start="476" data-end="506">2.
+                                            Subtraction to Addition</strong></h3>
+                                        <p data-start="509" data-end="562">If a term is <strong data-start="522"
+                                                                                                data-end="536">subtracted</strong>,
+                                            move it by <strong data-start="549" data-end="559">adding</strong>.</p>
+                                        <h4 data-start="564" data-end="583"><strong data-start="569"
+                                                                                    data-end="581">Example:</strong>
+                                        </h4>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>−</mo><mn>4</mn><mo>=</mo><mn>9</mn></mrow><annotation
+                                                encoding="application/x-tex">x - 4 = 9</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.6667em; vertical-align: -0.0833em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="602" data-end="640"><strong data-start="602"
+                                                                                   data-end="638">Move<span
+                                                class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo></mo><mn></mn></mrow><annotation
+                                                encoding="application/x-tex"></annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord">−</span><span class="mord">4</span></span></span></span> to
+                                            the other side:</strong></p>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>9</mn><mo>+</mo><mn>4</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 9 + 4</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>13</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 13</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <hr data-start="675" data-end="678">
+                                        <h3 data-start="680" data-end="719"><strong data-start="684" data-end="717">3.
+                                            Multiplication to Division</strong></h3>
+                                        <p data-start="720" data-end="787">If a variable is <strong data-start="737"
+                                                                                                    data-end="751">multiplied</strong>,
+                                            move the number by <strong data-start="772" data-end="784">dividing</strong>.
+                                        </p>
+                                        <h4 data-start="789" data-end="808"><strong data-start="794"
+                                                                                    data-end="806">Example:</strong>
+                                        </h4>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>5</mn><mi>x</mi><mo>=</mo><mn>20</mn></mrow><annotation
+                                                encoding="application/x-tex">5x = 20</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="825" data-end="881"><strong data-start="825" data-end="879">Move
+                                            <span class="katex"><span class="katex-mathml"><math
+                                                    xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow></mrow><annotation
+                                                    encoding="application/x-tex">\times 5</annotation></semantics></math></span><span
+                                                    class="katex-html" aria-hidden="true"><span class="base"><span
+                                                    class="strut"
+                                                    style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                    class="mord">×</span><span
+                                                    class="mord">5</span></span></span></span> to
+                                            the other side by dividing:</strong></p>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mn>20</mn><mn>5</mn></mfrac></mrow><annotation
+                                                encoding="application/x-tex">x = \frac{20}{5}</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 2.0074em; vertical-align: -0.686em;"></span><span
+                                                class="mord"><span class="mopen nulldelimiter"></span><span
+                                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 1.3214em;"><span
+                                                style="top: -2.314em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="mord"><span
+                                                class="mord"></span></span></span><span style="top: -3.23em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="frac-line"
+                                                                                                 style="border-bottom-width: 0.04em;"></span></span><span
+                                                style="top: -3.677em;"><span class="pstrut"
+                                                                             style="height: 3em;"></span><span
+                                                class="mord"><span
+                                                class="mord"></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                                                                           style="height: 0.686em;"><span></span></span></span></span></span><span
+                                                class="mclose nulldelimiter"></span></span></span></span></span></span>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>4</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 4</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <hr data-start="922" data-end="925">
+                                        <h3 data-start="927" data-end="966"><strong data-start="931" data-end="964">4.
+                                            Division to Multiplication</strong></h3>
+                                        <p data-start="967" data-end="1034">If a variable is <strong data-start="984"
+                                                                                                     data-end="995">divided</strong>,
+                                            move the number by <strong data-start="1016"
+                                                                       data-end="1031">multiplying</strong>.</p>
+                                        <h4 data-start="1036" data-end="1055"><strong data-start="1041" data-end="1053">Example:</strong>
+                                        </h4>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mi>x</mi><mn>3</mn></mfrac><mo>=</mo><mn>7</mn></mrow><annotation
+                                                encoding="application/x-tex">\frac{x}{3} = 7</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 1.7936em; vertical-align: -0.686em;"></span><span
+                                                class="mord"><span class="mopen nulldelimiter"></span><span
+                                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 1.1076em;"><span
+                                                style="top: -2.314em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="mord"><span
+                                                class="mord"></span></span></span><span style="top: -3.23em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="frac-line"
+                                                                                                 style="border-bottom-width: 0.04em;"></span></span><span
+                                                style="top: -3.677em;"><span class="pstrut"
+                                                                             style="height: 3em;"></span><span
+                                                class="mord"><span
+                                                class="mord mathnormal"></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                                                                           style="height: 0.686em;"><span></span></span></span></span></span><span
+                                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                                                                                                 style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="1080" data-end="1137"><strong data-start="1080" data-end="1135">Move
+                                            <span class="katex"><span class="katex-mathml"><math
+                                                    xmlns="http://www.w3.org/1998/Math/MathML"><semantics><annotation
+                                                    encoding="application/x-tex">\div 3</annotation></semantics></math></span><span
+                                                    class="katex-html" aria-hidden="true"><span class="base"><span
+                                                    class="strut"
+                                                    style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                    class="mord">÷</span><span
+                                                    class="mord">3</span></span></span></span> to
+                                            the other side by multiplying:</strong></p>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>7</mn><mo>×</mo><mn>3</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 7 \times 3</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>21</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 21</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <hr data-start="1177" data-end="1180">
+                                        <h3 data-start="1182" data-end="1219"><strong data-start="1186" data-end="1217">Example
+                                            with All Operations</strong></h3>
+                                        <p data-start="1220" data-end="1228">Solve:</p>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn></mrow><mn>3</mn></mfrac><mo>=</mo><mn>7</mn></mrow><annotation
+                                                encoding="application/x-tex">\frac{2x + 5}{3} = 7</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 2.0074em; vertical-align: -0.686em;"></span><span
+                                                class="mord"><span class="mopen nulldelimiter"></span><span
+                                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 1.3214em;"><span
+                                                style="top: -2.314em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="mord"><span
+                                                class="mord"></span></span></span><span style="top: -3.23em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="frac-line"
+                                                                                                 style="border-bottom-width: 0.04em;"></span></span><span
+                                                style="top: -3.677em;"><span class="pstrut"
+                                                                             style="height: 3em;"></span><span
+                                                class="mord"><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mord"></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                                                                           style="height: 0.686em;"><span></span></span></span></span></span><span
+                                                class="mclose nulldelimiter"></span></span><span class="mspace"
+                                                                                                 style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="1259" data-end="1324"><strong data-start="1259" data-end="1270">Step
+                                            1:</strong> Move <span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML"><semantics><annotation
+                                                encoding="application/x-tex">\div 3</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord">÷</span><span class="mord">3</span></span></span></span> to
+                                            the
+                                            other side by multiplying:
+                                        </p>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn><mo>=</mo><mn>7</mn><mo>×</mo><mn>3</mn></mrow><annotation
+                                                encoding="application/x-tex">2x + 5 = 7 \times 3</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn><mo>=</mo><mn>21</mn></mrow><annotation
+                                                encoding="application/x-tex">2x + 5 = 21</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="1374" data-end="1417"><strong data-start="1374" data-end="1385">Step
+                                            2:</strong> Move <span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML"><semantics><annotation
+                                                encoding="application/x-tex">+5</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord">+</span><span class="mord">5</span></span></span></span> by
+                                            subtracting:
+                                        </p>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><mi>x</mi><mo>=</mo><mn>21</mn><mo>−</mo><mn>5</mn></mrow><annotation
+                                                encoding="application/x-tex">2x = 21 - 5</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span><span
+                                                class="mbin"></span><span class="mspace"
+                                                                          style="margin-right: 0.2222em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><mi>x</mi><mo>=</mo><mn>16</mn></mrow><annotation
+                                                encoding="application/x-tex">2x = 16</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.6444em;"></span><span
+                                                class="mord"></span><span class="mord mathnormal"></span><span
+                                                class="mspace" style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <p data-start="1455" data-end="1501"><strong data-start="1455" data-end="1466">Step
+                                            3:</strong> Move <span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML"><semantics><annotation
+                                                encoding="application/x-tex">\times 2</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.7278em; vertical-align: -0.0833em;"></span><span
+                                                class="mord">×</span><span class="mord">2</span></span></span></span> by
+                                            dividing:
+                                        </p>
+                                        <span class="katex-display" style=""><span class="katex"><span
+                                                class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mn>16</mn><mn>2</mn></mfrac></mrow><annotation
+                                                encoding="application/x-tex">x = \frac{16}{2}</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut"
+                                                                   style="height: 2.0074em; vertical-align: -0.686em;"></span><span
+                                                class="mord"><span class="mopen nulldelimiter"></span><span
+                                                class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                class="vlist" style="height: 1.3214em;"><span
+                                                style="top: -2.314em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="mord"><span
+                                                class="mord"></span></span></span><span style="top: -3.23em;"><span
+                                                class="pstrut" style="height: 3em;"></span><span class="frac-line"
+                                                                                                 style="border-bottom-width: 0.04em;"></span></span><span
+                                                style="top: -3.677em;"><span class="pstrut"
+                                                                             style="height: 3em;"></span><span
+                                                class="mord"><span
+                                                class="mord"></span></span></span></span><span
+                                                class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                                                                                           style="height: 0.686em;"><span></span></span></span></span></span><span
+                                                class="mclose nulldelimiter"></span></span></span></span></span></span>
+                                        <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
+                                                xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo>=</mo><mn>8</mn></mrow><annotation
+                                                encoding="application/x-tex">x = 8</annotation></semantics></math></span><span
+                                                class="katex-html" aria-hidden="true"><span class="base"><span
+                                                class="strut"
+                                                style="height: 0.4306em;"></span><span
+                                                class="mord mathnormal"></span><span class="mspace"
+                                                                                     style="margin-right: 0.2778em;"></span><span
+                                                class="mrel"></span><span class="mspace"
+                                                                          style="margin-right: 0.2778em;"></span></span><span
+                                                class="base"><span class="strut" style="height: 0.6444em;"></span><span
+                                                class="mord"></span></span></span></span></span>
+                                        <hr data-start="1542" data-end="1545">
+                                        <h3 data-start="1547" data-end="1573"><strong data-start="1551" data-end="1571">Key
+                                            Rules Recap:</strong></h3>
+                                        <ul data-start="1574" data-end="1735">
+                                            <li data-start="1574" data-end="1613"><strong data-start="1576"
+                                                                                          data-end="1611">Addition
+                                                → Subtract when moving</strong></li>
+                                            <li data-start="1614" data-end="1651"><strong data-start="1616"
+                                                                                          data-end="1649">Subtraction
+                                                → Add when moving</strong></li>
+                                            <li data-start="1652" data-end="1695"><strong data-start="1654"
+                                                                                          data-end="1693">Multiplication
+                                                → Divide when moving</strong></li>
+                                            <li data-start="1696" data-end="1735"><strong data-start="1698"
+                                                                                          data-end="1733">Division
+                                                → Multiply when moving</strong></li>
+                                            <li><strong>If a linear equation simplifies to the form x=x, then x has
+                                                infinitely many solutions.</strong></li>
+                                            <li><strong>If, when simplifying the equation, a false equality remains (for
+                                                example, 8=3), then the equation has no solution.</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 w-full empty:hidden">
+                                <div class="text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+    </section>
+</main>
+
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>Topic</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Resources</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Home</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">How it works</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">FAQs</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Information</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 305-240-9671" class="site-footer-link">
+                        305-240-9671
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:info@company.com" class="site-footer-link">
+                        info@company.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <div class="dropdown">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            {{ language }}
+                        </button>
+                    </div>
+
+
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

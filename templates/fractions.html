@@ -1,0 +1,615 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fundamental Knowledge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+
+    <style>
+
+    :root{--bg:#f7fbff;--card:#ffffff;--muted:#4b5563;--accent:#1d4ed8}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,#eef6ff,#f7fbff); color:#0b1a2b}
+    .wrap{max-width:900px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:baseline;gap:16px}
+    h1{margin:0;font-size:1.8rem}
+    p.lead{color:var(--muted);margin:6px 0 18px;font-size:1.05rem}
+    .grid{display:grid;grid-template-columns:1fr;gap:20px}
+    .card{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    h2{margin-top:0;color:var(--accent)}
+    .small{font-size:1rem;color:#1f2937;line-height:1.6}
+    .example{margin-top:10px;padding:12px;background:#f1f7ff;border-radius:8px;font-weight:500;color:#0b1a2b}
+    footer{margin-top:22px;color:var(--muted);font-size:0.9rem;line-height:1.5}
+    @media (max-width:600px){.wrap{padding:12px}}
+        :root {
+        --accent-color: #3b82f6; /* Ko'k rang, shablon bilan mos */
+        --border-color: #e2e8f0;   /* Och kulrang chegara */
+        --card-bg: #ffffff;       /* Kartochka foni */
+        --success-color: #10b981;  /* Muvaffaqiyat uchun yashil rang */
+        --error-color: #ef4444;    /* Xatolik uchun qizil rang */
+        --muted-text: #6c757d;    /* O'chirilgan matn rangi */
+    }
+
+    /* Interaktiv kartochkalar uchun umumiy stillar */
+    .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 2rem; /* Kartochkalar orasidagi masofa */
+    }
+
+    .card h3 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* Pie Chart (Doiraviy diagramma) stillari */
+    .pie-container {
+      text-align: center;
+    }
+    .pie {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+      margin: 0 auto; /* Markazga joylash */
+    }
+    .pie .label {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      color: #333;
+    }
+    .caption {
+      margin-top: 0.75rem;
+      color: var(--muted-text);
+      font-size: 0.9rem;
+    }
+
+    /* Kiritish maydonlari (Inputs) uchun guruh */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      width: 150px;
+    }
+    .input-group label {
+        font-weight: 500;
+        color: var(--muted-text);
+    }
+    .input-group input {
+        text-align: center;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 8px;
+        width: 100px;
+    }
+
+    /* Yordamchi klass (elementlarni markazga to'g'rilash uchun) */
+    .flex-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Sonlar o'qi (Number Line) */
+    .number-line-container {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+    .number-line {
+      position: relative;
+      height: 40px;
+    }
+    .line-track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 4px;
+      background-color: var(--border-color);
+      border-radius: 2px;
+    }
+    .line-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+    .pointer {
+      position: absolute;
+      top: -15px;
+      transform: translateX(-50%);
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: left 0.3s ease;
+    }
+    .pointer::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--accent-color);
+    }
+
+    /* Taqqoslash bo'limi */
+    .comparison-section {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr; /* Ikki diagramma va o'rtada natija */
+      align-items: center;
+      gap: 1rem;
+    }
+    #comparisonResult {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0 1rem;
+    }
+    /* Xabar uchun */
+    .info-message {
+      text-align: center;
+      padding: 1rem;
+      background-color: #fffbeb;
+      color: #b45309;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    /* Responsive dizayn uchun kichik tuzatish */
+    @media (max-width: 768px) {
+        .comparison-section {
+            grid-template-columns: 1fr; /* Kichik ekranlarda ustma-ust */
+        }
+    }
+    </style>
+    <!--
+
+    TemplateMo 590 topic listing
+
+    https://templatemo.com/tm-590-topic-listing
+
+    -->
+</head>
+
+<body id="top">
+
+<main>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main_view' %}">
+                <i class="bi-back"></i>
+                <span>Home</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="d-none d-lg-block">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-lg-5 col-12 mb-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Working with Fractions</li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="text-white">Introduction to <br>Working with Fractions</h2>
+
+                    <div class="d-flex align-items-center mt-5">
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
+                            More</a>
+
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                    <div class="topics-detail-block bg-white shadow-lg">
+                        <img src="{% static 'images/myimages/fraction.jpg' %}"
+                             class="topics-detail-block-image img-fluid">
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <a style="width:300px" href="{% url 'fractions_practice' %}"
+                   class="btn custom-btn custom-border-btn">Practice with Fractions</a>
+            </div>
+        </div>
+    </header>
+
+
+    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+        <div class="container">
+
+            <h1 style="text-align:center; margin-top: 15px; margin-bottom:15px">General Information Relating to Fractions</h1>
+            <img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/fraction_basic.jpg' %}" alt="">
+            <img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/fraction_basic2.jpg' %}" alt="">
+            <h1 style="text-align:center; margin-top: 15px; margin-bottom:15px">Adding Fractions</h1>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/addition1.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/addition2.jpg' %}" alt=""></div>
+            <h1 style="text-align:center; margin-top: 15px; margin-bottom:15px">Subtracting Fractions</h1>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/subtraction1.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/subtraction2.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/subtraction3.jpg' %}" alt=""></div>
+            <h1 style="text-align:center; margin-top: 15px; margin-bottom:15px">Dividing Fractions</h1>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/division1.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/division2.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px" src="{% static 'images/myimages/division3.jpg' %}" alt=""></div>
+            <h1 style="text-align:center; margin-top: 15px; margin-bottom:15px">Multiplying Fractions</h1>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px;" src="{% static 'images/myimages/multiplication1.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px;" src="{% static 'images/myimages/multiplication2.jpg' %}" alt=""></div>
+            <div class="container"><img style="width:800px; margin:10px; border-radius:10px;" src="{% static 'images/myimages/multiplication3.jpg' %}" alt=""></div>
+
+            <section class="card intro-card">
+                <p>A fraction represents a part of a whole. It is written as <strong>numerator/denominator</strong>. The
+                    numerator (top number) shows how many parts we have, and the denominator (bottom number) shows how
+                    many equal parts the whole is divided into.</p>
+            </section>
+
+            <main>
+                <section class="card">
+                    <h3>What are Equivalent Fractions?</h3>
+                    <p class="caption" style="text-align: center; margin-bottom: 1.5rem;">Some fractions look different
+                        but have the same value. For example, 1/2 and 2/4. Both cover the same half of the circle.</p>
+                    <div class="flex-center">
+                        <div class="pie-container">
+                            <div id="pieHalf" class="pie"></div>
+                            <div class="caption"><strong>1/2</strong> (1 of 2 parts)</div>
+                        </div>
+                        <div class="pie-container">
+                            <div id="pieTwoFourths" class="pie"></div>
+                            <div class="caption"><strong>2/4</strong> (2 of 4 parts)</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h3>Interactive Fraction Visualizer</h3>
+                    <p class="caption" style="text-align: center; margin-bottom: 1.5rem;">Enter a proper fraction (where
+                        the numerator is smaller than the denominator) to see it visualized. The diagram and number line
+                        will update automatically.</p>
+                    <div class="flex-center">
+                        <div class="input-group">
+                            <label for="liveNum">Numerator</label>
+                            <input id="liveNum" type="number" min="0" value="1"/>
+                        </div>
+                        <div class="input-group">
+                            <label for="liveDen">Denominator</label>
+                            <input id="liveDen" type="number" min="1" value="3"/>
+                        </div>
+                    </div>
+
+                    <div id="visualContainer">
+                        <div class="flex-center" style="margin-top: 2rem;">
+                            <div id="livePie" class="pie"></div>
+                        </div>
+                        <div class="number-line-container">
+                            <div class="number-line">
+                                <div class="line-track"></div>
+                                <div id="livePointer" class="pointer">1/3</div>
+                            </div>
+                            <div class="line-labels">
+                                <span>0</span>
+                                <span id="decimalValue">Value: 0.333</span>
+                                <span>1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="errorMessage" class="info-message" style="display: none;"></div>
+                </section>
+
+                <section class="card">
+                    <h3>Compare Fractions</h3>
+                    <p class="caption" style="text-align: center; margin-bottom: 1.5rem;">Enter the values for two
+                        fractions to compare them.</p>
+                    <div class="comparison-section">
+                        <div class="pie-container">
+                            <div class="flex-center">
+                                <div class="input-group">
+                                    <label for="compareNum1">Numerator 1</label>
+                                    <input id="compareNum1" type="number" value="1" min="0">
+                                </div>
+                                <div class="input-group">
+                                    <label for="compareDen1">Denominator 1</label>
+                                    <input id="compareDen1" type="number" value="2" min="1">
+                                </div>
+                            </div>
+                            <div class="flex-center" style="margin-top: 1rem;">
+                                <div id="comparePie1" class="pie"></div>
+                            </div>
+                        </div>
+                        <div class="pie-container">
+                            <div class="flex-center">
+                                <div class="input-group">
+                                    <label for="compareNum2">Numerator 2</label>
+                                    <input id="compareNum2" type="number" value="3" min="0">
+                                </div>
+                                <div class="input-group">
+                                    <label for="compareDen2">Denominator 2</label>
+                                    <input id="compareDen2" type="number" value="6" min="1">
+                                </div>
+                            </div>
+                            <div class="flex-center" style="margin-top: 1rem;">
+                                <div id="comparePie2" class="pie"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="comparisonResult" style="margin-top: 1.5rem;"></div>
+                </section>
+            </main>
+        </div>
+    </main>
+</main>
+
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>Topic</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Resources</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Home</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">How it works</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">FAQs</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Information</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 305-240-9671" class="site-footer-link">
+                        305-240-9671
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:info@company.com" class="site-footer-link">
+                        info@company.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <div class="dropdown">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            {{ language }}
+                        </button>
+                    </div>
+
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    // --- HELPER FUNCTIONS ---
+    function gcd(a, b) {
+      a = Math.abs(a);
+      b = Math.abs(b);
+      while (b) {
+        let t = a % b;
+        a = b;
+        b = t;
+      }
+      return a;
+    }
+
+    function simplify(n, d) {
+      if (d === 0) return [n, d];
+      const commonDivisor = gcd(n, d);
+      return [n / commonDivisor, d / commonDivisor];
+    }
+
+    function drawPie(element, n, d) {
+      if (!element || d <= 0) {
+        if(element) element.style.background = 'var(--error-color)';
+        return;
+      }
+      n = Math.max(0, n);
+      const percent = (n / d) * 100;
+      element.style.background = `conic-gradient(var(--accent-color) 0% ${percent}%, var(--border-color) ${percent}% 100%)`;
+      element.innerHTML = `<div class="label">${n}/${d}</div>`;
+    }
+
+    // --- SCRIPT EXECUTION ON PAGE LOAD ---
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Element references
+      const liveNumInput = document.getElementById('liveNum');
+      const liveDenInput = document.getElementById('liveDen');
+      const livePie = document.getElementById('livePie');
+      const livePointer = document.getElementById('livePointer');
+      const decimalValue = document.getElementById('decimalValue');
+      const visualContainer = document.getElementById('visualContainer');
+      const errorMessage = document.getElementById('errorMessage');
+
+      const compareNum1Input = document.getElementById('compareNum1');
+      const compareDen1Input = document.getElementById('compareDen1');
+      const comparePie1 = document.getElementById('comparePie1');
+      const compareNum2Input = document.getElementById('compareNum2');
+      const compareDen2Input = document.getElementById('compareDen2');
+      const comparePie2 = document.getElementById('comparePie2');
+      const comparisonResult = document.getElementById('comparisonResult');
+
+      // 1. Static equivalent fractions example
+      drawPie(document.getElementById('pieHalf'), 1, 2);
+      drawPie(document.getElementById('pieTwoFourths'), 2, 4);
+
+      // 2. Interactive visualizer function
+      function updateLiveVisual() {
+        let n = parseInt(liveNumInput.value) || 0;
+        let d = parseInt(liveDenInput.value) || 1;
+        if (d <= 0) d = 1; // Denominator cannot be zero
+
+        liveNumInput.value = n;
+        liveDenInput.value = d;
+
+        // Only show proper fractions
+        if (n >= d) {
+          visualContainer.style.display = 'none';
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = "Please enter a proper fraction (numerator must be smaller than the denominator).";
+        } else {
+          visualContainer.style.display = 'block';
+          errorMessage.style.display = 'none';
+
+          drawPie(livePie, n, d);
+
+          const value = n / d;
+          livePointer.style.left = `${value * 100}%`;
+          livePointer.textContent = `${n}/${d}`;
+          decimalValue.textContent = `Value: ${value.toFixed(3)}`;
+        }
+      }
+
+      // 3. Comparison section function
+      function updateComparison() {
+          let n1 = parseInt(compareNum1Input.value) || 0;
+          let d1 = parseInt(compareDen1Input.value) || 1;
+          if (d1 <= 0) d1 = 1;
+
+          let n2 = parseInt(compareNum2Input.value) || 0;
+          let d2 = parseInt(compareDen2Input.value) || 1;
+          if (d2 <= 0) d2 = 1;
+
+          compareNum1Input.value = n1;
+          compareDen1Input.value = d1;
+          compareNum2Input.value = n2;
+          compareDen2Input.value = d2;
+
+          drawPie(comparePie1, n1, d1);
+          drawPie(comparePie2, n2, d2);
+
+          const [s_n1, s_d1] = simplify(n1, d1);
+          const [s_n2, s_d2] = simplify(n2, d2);
+
+          if (s_n1 === s_n2 && s_d1 === s_d2) {
+              comparisonResult.textContent = 'Equal';
+              comparisonResult.style.color = 'var(--success-color)';
+              comparisonResult.style.backgroundColor = '#f0fdf4';
+          } else {
+              comparisonResult.textContent = 'Not Equal';
+              comparisonResult.style.color = 'var(--error-color)';
+              comparisonResult.style.backgroundColor = '#fef2f2';
+          }
+      }
+
+      // Event Listeners
+      liveNumInput.addEventListener('input', updateLiveVisual);
+      liveDenInput.addEventListener('input', updateLiveVisual);
+
+      const comparisonInputs = [compareNum1Input, compareDen1Input, compareNum2Input, compareDen2Input];
+      comparisonInputs.forEach(input => input.addEventListener('input', updateComparison));
+
+      // Initial draw on page load
+      updateLiveVisual();
+      updateComparison();
+    });
+</script>
+
+</body>
+</html>

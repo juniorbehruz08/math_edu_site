@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Signs Expressions Quiz — Backend JSON</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--success:#22c55e;--danger:#ef4444}
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071033 0%, #081126 100%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .wrap{width:100%;max-width:900px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    h1{font-size:20px;margin:0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .question{font-size:18px;margin-bottom:12px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+    label.option{background:#071330;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;align-items:center;gap:10px;cursor:pointer}
+    input[type=radio]{width:18px;height:18px}
+    .controls{display:flex;gap:8px;align-items:center}
+    button{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;color:#04243a;cursor:pointer;font-weight:600}
+    button:disabled{background:var(--muted);cursor:not-allowed}
+    button.secondary{background:transparent;color:var(--accent);border:1px solid rgba(96,165,250,0.15)}
+    .result{padding:10px;margin-top:8px;border-radius:8px;font-weight:700}
+    .result.ok{background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.12)}
+    .result.bad{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.06)}
+    footer{margin-top:12px;color:var(--muted);font-size:13px}
+    @media(max-width:520px){.options{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Signs Expressions Quiz</h1>
+      <div class="meta">Backend JSON quiz — randomly ordered options</div>
+    </header>
+
+    <div class="card" id="card"></div>
+
+    <footer>
+      Tip: Pay attention to parentheses and exponent precedence (exponent has higher priority than unary minus).
+    </footer>
+  </div>
+
+  <script>
+    const QUESTIONS = {{ data|safe }};
+    const totalQuestions = QUESTIONS.length;
+    let idx = 0, score = 0;
+    const card = document.getElementById('card');
+
+    function shuffle(a){
+      for(let i=a.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [a[i],a[j]]=[a[j],a[i]]
+      }
+      return a;
+    }
+
+    function render(){
+      const q = QUESTIONS[idx];
+      const options = shuffle([q.answer, ...q.wrong_answers]);
+      card.innerHTML = `
+        <div class="question">Q${idx+1}: <strong>${q.question}</strong></div>
+        <div class="options">
+          ${options.map(o=>`
+            <label class="option">
+              <input type="radio" name="opt" value="${o}"> ${o}
+            </label>
+          `).join("")}
+        </div>
+        <div class="controls">
+          <button id="check">Check</button>
+          <button class="secondary" id="skipBtn">Skip</button>
+          <button class="secondary"><a style="text-decoration:none; color: #60a5fa" href="{% url 'other_kind_of_functions' %}">Exit</a></button>
+          <div style="flex:1"></div>
+          <div class="meta">${idx+1}/${totalQuestions}</div>
+        </div>
+        <div id="feedback"></div>
+      `;
+      document.getElementById("check").addEventListener("click", ()=>check(q));
+      document.getElementById("skipBtn").addEventListener("click", next);
+    }
+
+    function check(q){
+      const sel = document.querySelector("input[name=opt]:checked");
+      const fb = document.getElementById("feedback");
+      document.getElementById("check").disabled = true;
+      if(!sel){
+        fb.innerHTML = `<div class="result bad">⚠️ Please select an option.</div>`;
+        return;
+      }
+      if(sel.value == q.answer){
+        score++;
+        fb.innerHTML = `<div class="result ok">✅ Correct!</div>`;
+        document.getElementById("skipBtn").disabled = true;
+        setTimeout(next, 800);
+      } else {
+        fb.innerHTML = `<div class="result bad">❌ Incorrect. Correct: ${q.answer}</div>`;
+        document.getElementById("skipBtn").textContent = "Next";
+        document.getElementById("skipBtn").id = "nextBtn";
+        document.getElementById("nextBtn").addEventListener("click", next);
+      }
+    }
+
+    function next(){
+      if(idx < totalQuestions - 1){
+        idx++;
+        render();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults(){
+      const perc = Math.round((score/totalQuestions)*100);
+      card.innerHTML = `
+        <div class="question">Test completed!</div>
+        <div class="result ok" style="text-align:center;font-size:18px;margin-bottom:12px;">
+          Your result: ${score}/${totalQuestions} (${perc}%)
+        </div>
+        <div style="text-align:center;">
+          ${perc >= 80 ? "Excellent! 👍" : perc >= 50 ? "Good, keep practising! 😊" : "Keep practicing — you got this! 📚"}
+        </div>
+        <div class="controls" style="justify-content:center;margin-top:12px;">
+          <button id="restart">Retry</button>
+          <button><a style="text-decoration: none; color:black;" href="{% url 'other_kind_of_functions' %}">Exit</a></button>
+        </div>
+      `;
+      document.getElementById("restart").addEventListener("click", startQuiz);
+    }
+
+    function startQuiz(){
+      idx=0; score=0;
+      render();
+    }
+
+    startQuiz();
+  </script>
+</body>
+</html>

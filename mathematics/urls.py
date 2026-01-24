@@ -1,0 +1,71 @@
+from django.urls import path
+
+from .views import main_view, login_view, log_out, fundamental_knowledge, profile, equalities_inequalities, \
+    practice_linear, linear_equalities, \
+    types_of_numbers, types_of_numbers_quiz, working_with_signs, working_with_signs_practice, fractions, \
+    fractions_practice, quadratic_equations, quadratic_practice, inequalities, inequalities_practice, linear_functions, \
+    practice_linear_functions, other_kind_of_functions, practice_with_quadratic, practice_with_cubic, \
+    practice_with_rational, practice_with_exponential, logarithm, logarithm_practice, operations_on_logarithm_practice, \
+    operation_on_logarithm, logarithmic_functions, trigonometry, operations_in_trigonometry, \
+    inverse_trigonometric_functions, test, introduction_to_geometry, measurement_and_distance, angles, triangle_types, \
+    properties_of_triangles, quadrilaterals_and_squares, types_of_quadrilateral, circle_basic, \
+    other_properties_of_circle, equation_of_circle, plane, distance_midpoint_slope, the_laws_of_sines, \
+    the_laws_of_cosines, practice_in_trigonometry, practice_in_inverse_trigonometry, \
+    practice_with_distance_and_midpoint, practice_right_triangle, practice_equilateral_triangle
+
+urlpatterns = [
+    path('', main_view, name='main_view'),
+    path('login_register/', login_view, name='login'),
+    path('logout/', log_out, name='logout'),
+    path('fundamental_knowledge/', fundamental_knowledge, name='fundamental'),
+    path('profile/', profile, name='profile'),
+    path('equalities_inequalities/', equalities_inequalities, name='equalities_inequalities'),
+    path('practice_linear/<str:back_url>', practice_linear, name='practice_linear'),
+    path('linear_equalities/', linear_equalities, name='linear_equalities'),
+    path('types_of_numbers/', types_of_numbers, name='types_of_numbers'),
+    path('types_of_numbers_quiz/', types_of_numbers_quiz, name='types_of_numbers_quiz'),
+    path('working_with_signs/', working_with_signs, name='working_with_signs'),
+    path('working_with_signs_practice/', working_with_signs_practice, name='working_with_signs_practice'),
+    path('fractions/', fractions, name='fractions'),
+    path('fractions_practice/', fractions_practice, name='fractions_practice'),
+    path('quadratic_equations/', quadratic_equations, name='quadratic_equations'),
+    path('quadratic_practice/<str:back_url>/', quadratic_practice, name='quadratic_practice'),
+    path('inequalities/', inequalities, name='inequalities'),
+    path('inequalities_practice/<str:back_url>/', inequalities_practice, name='inequalities_practice'),
+    path('linear_functions/', linear_functions, name='linear_functions'),
+    path('practice_linear_functions/', practice_linear_functions, name='practice_linear_functions'),
+    path('other_kind_of_functions/', other_kind_of_functions, name='other_kind_of_functions'),
+    path('practice_with_quadratic/', practice_with_quadratic, name='practice_with_quadratic'),
+    path('practice_with_cubic/', practice_with_cubic, name='practice_with_cubic'),
+    path('practice_with_rational/', practice_with_rational, name='practice_with_rational'),
+    path('practice_with_exponential/', practice_with_exponential, name='practice_with_exponential'),
+    path('logarithm/', logarithm, name='logarithm'),
+    path('logarithm_practice/', logarithm_practice, name='logarithm_practice'),
+    path('operations_on_logarithm_practice/', operations_on_logarithm_practice,
+         name='operations_on_logarithm_practice'),
+    path('operation_on_logarithm/', operation_on_logarithm, name='operation_on_logarithm'),
+    path('logarithmic_functions', logarithmic_functions, name='logarithmic_functions'),
+    path('trigonometry/', trigonometry, name='trigonometry'),
+    path('operations_in_trigonometry/', operations_in_trigonometry, name='operations_in_trigonometry'),
+    path('inverse_trigonometric_functions/', inverse_trigonometric_functions, name='inverse_trigonometric_functions'),
+    path('test/', test, name='test'),
+    path('introduction_to_geometry/', introduction_to_geometry, name='introduction_to_geometry'),
+    path('measurement_and_distance/', measurement_and_distance, name='measurement_and_distance'),
+    path('angles/', angles, name='angles'),
+    path('triangle_types/', triangle_types, name='triangle_types'),
+    path('properties_of_triangles/', properties_of_triangles, name='properties_of_triangles'),
+    path('quadrilaterals_and_squares/', quadrilaterals_and_squares, name='quadrilaterals_and_squares'),
+    path('types_of_quadrilateral/', types_of_quadrilateral, name='types_of_quadrilateral'),
+    path('circle_basic/', circle_basic, name='circle_basic'),
+    path('other_properties_of_circle/', other_properties_of_circle, name='other_properties_of_circle'),
+    path('equation_of_circle/', equation_of_circle, name='equation_of_circle'),
+    path('plane/', plane, name='plane'),
+    path('distance_midpoint_slope/', distance_midpoint_slope, name='distance_midpoint_slope'),
+    path('the_laws_of_sines/', the_laws_of_sines, name='the_laws_of_sines'),
+    path('the_laws_of_cosines/', the_laws_of_cosines, name='the_laws_of_cosines'),
+    path('practice_in_trigonometry/', practice_in_trigonometry, name='practice_in_trigonometry'),
+    path('practice_in_inverse_trigonometry/', practice_in_inverse_trigonometry, name='practice_in_inverse_trigonometry'),
+    path('practice_with_distance_and_midpoint/', practice_with_distance_and_midpoint, name='practice_with_distance_and_midpoint'),
+    path('practice_right_triangle/', practice_right_triangle, name='practice_right_triangle'),
+    path('practice_equilateral_triangle/', practice_equilateral_triangle, name='practice_equilateral_triangle'),
+]

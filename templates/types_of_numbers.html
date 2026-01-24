@@ -1,0 +1,354 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fundamental Knowledge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+          rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <!--
+
+    TemplateMo 590 topic listing
+
+    https://templatemo.com/tm-590-topic-listing
+
+    -->
+</head>
+
+<body id="top">
+
+<main>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main_view' %}">
+                <i class="bi-back"></i>
+                <span>Home</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="d-none d-lg-block">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-lg-5 col-12 mb-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="text-white">Introduction to <br>Types of Numbers</h2>
+
+                    <div class="d-flex align-items-center mt-5">
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
+                            More</a>
+
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                    <div class="topics-detail-block bg-white shadow-lg">
+                        <img src="{% static 'images/myimages/numbers.jpg' %}"
+                             class="topics-detail-block-image img-fluid">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-5">
+                    <a style="width:300px" href="{% url 'types_of_numbers_quiz' %}" class="btn custom-btn custom-border-btn">Practice with Types of Numbers</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+
+
+        <!-- Dynamic Accordion -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Main Types of Numbers</h2>
+            <div class="space-y-4" x-data="{open:null}">
+
+                <!-- Arithmetic -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 1 ? open = null : open = 1">
+                        Natural Numbers (ℕ)
+                        <span x-show="open !== 1">➕</span>
+                        <span x-show="open === 1">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 1" x-transition>
+                        <p>Naturals numbers are that we use to count</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: 1,2,3,4, ....</li>
+                            <li>0 is not a natural number.</li>
+                            <li>Since we do not use negative numbers to count, negative numbers are not natural.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Algebra -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 2 ? open = null : open = 2">
+                        Whole Numbers
+                        <span x-show="open !== 2">➕</span>
+                        <span x-show="open === 2">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 2" x-transition>
+                        <p>Whole numbers include all positive numbers and 0</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: 0,1,2,3,4, ...</li>
+                            <li>Negative numbers are not included</li>
+                            <li>The difference between whole numbers and natural numbers is that whole numbers include 0.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Geometry -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 3 ? open = null : open = 3">
+                        Integers (ℤ)
+                        <span x-show="open !== 3">➕</span>
+                        <span x-show="open === 3">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 3" x-transition>
+                        <p>Integers are all whole numbers, including positive numbers, negative numbers, and zero.</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: -2, -1, 0, 1, 2, ...</li>
+                            <li>-7 is a negative integer, while 7 is a positive integer</li>
+                            <li>0 is neutral</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trigonometry -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 4 ? open = null : open = 4">
+                        Rational Numbers (ℚ)
+                        <span x-show="open !== 4">➕</span>
+                        <span x-show="open === 4">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 4" x-transition>
+                        <p>Numbers that can be expressed as a fraction of two integers, where the denominator is not zero.</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example, 5 is a rational number since it can be written as 5/1 or 10/2.</li>
+                            <li>Some numbers cannot be a rational numbers: π, √2, √3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Analysis -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 5 ? open = null : open = 5">
+                        Irrational numbers
+                        <span x-show="open !== 5">➕</span>
+                        <span x-show="open === 5">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 5" x-transition>
+                        <p>Numbers that cannot be expressed as a fraction of two integers</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: √2, √3, π</li>
+                            <li>Their decimal expansions are non-terminating and non-repeating</li>
+                            <li>Irrational numbers are used when quantities cannot be measured exactly as a simple fraction.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Probability & Statistics -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 6 ? open = null : open = 6">
+                        Real Numbers (ℝ)
+                        <span x-show="open !== 6">➕</span>
+                        <span x-show="open === 6">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 6" x-transition>
+                        <p>All rational and irrational numbers.</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: 3/4, 5, -3, π</li>
+                            <li>They can be represented on the number line and are used to measure continuous quantities.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Discrete Mathematics -->
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 7 ? open = null : open = 7">
+                        Imaginary Numbers
+                        <span x-show="open !== 7">➕</span>
+                        <span x-show="open === 7">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 7" x-transition>
+                        <p>Numbers that are multiples of i, where i² = -1</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: i, 3i, -5i</li>
+                            <li>i⁴ = 1</li>
+                            <li>i = √(-1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 8 ? open = null : open = 8">
+                        Prime Numbers
+                        <span x-show="open !== 8">➕</span>
+                        <span x-show="open === 8">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 8" x-transition>
+                        <p>A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: 2,3,5,7,11</li>
+                            <li>1 is not considered prime</li>
+                            <li>Smallest prime number is 2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow">
+                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
+                            @click="open === 9 ? open = null : open = 9">
+                        Composite Numbers
+                        <span x-show="open !== 9">➕</span>
+                        <span x-show="open === 9">➖</span>
+                    </button>
+                    <div class="px-6 pb-4 text-gray-700" x-show="open === 9" x-transition>
+                        <p>A composite number is a natural number greater than 1 that has at least one positive divisor other than 1 and itself.</p>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>For example: 6, 8, 9, 12</li>
+                            <li>They can be expressed as a product of prime numbers</li>
+                            <li>Numbers 0 and 1 are neither prime nor composite</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</main>
+
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>Topic</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Resources</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Home</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">How it works</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">FAQs</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Information</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 305-240-9671" class="site-footer-link">
+                        305-240-9671
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:info@company.com" class="site-footer-link">
+                        info@company.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <div class="dropdown">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            {{ language }}
+                        </button>
+                    </div>
+
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
