@@ -154,11 +154,11 @@ def practice_linear_functions(request):
             b_str = str(b).replace("-", "- ")
 
             if a == 1:
-                q = f"Find the value of x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
+                q = f"Find the value of f(x) = x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
             elif a == -1:
-                q = f"Find the value of -x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
+                q = f"Find the value of f(x) = -x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
             else:
-                q = f"Find the value of {a}x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
+                q = f"Find the value of f(x) = {a}x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
 
             wrongs = set()
             while len(wrongs) < 3:

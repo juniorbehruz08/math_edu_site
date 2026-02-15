@@ -56,10 +56,10 @@ def generate_math_problems():
 
         question = f'Find the x-intercepts of the function f(x) = {func_str}.'
         # Sort for consistent output
-        answer = f'{min(r1, r2)} and {max(r1, r2)}'
+        answer = f'({min(r1, r2)}, 0) and ({max(r1, r2)}, 0)'
         fake_answers = []
         while True:
-            fake_answer = f'{random.randint(min(r1, r2) - 10, max(r1, r2) + 10)} and {random.randint(min(r1, r2), max(r1, r2))}'
+            fake_answer = f'({random.randint(min(r1, r2) - 10, max(r1, r2) + 10)}, 0) and ({random.randint(min(r1, r2), max(r1, r2))}, 0)'
             if fake_answer != answer and fake_answer not in fake_answers:
                 fake_answers.append(fake_answer)
             if len(fake_answers) == 3:
@@ -228,7 +228,7 @@ def generate_cubic_math_problems_en():
 
         # Answer
         roots = sorted([r1, r2, r3])
-        answer = f'{roots[0]}, {roots[1]}, and {roots[2]}'
+        answer = f'({roots[0]}, 0), ({roots[1]}, 0), ({roots[2]}, 0)'
 
         # Wrong answers
         fake_answers = []
@@ -241,7 +241,7 @@ def generate_cubic_math_problems_en():
                 fake_roots[idx] += change
 
             fake_roots.sort()
-            fake_answer_str = f'{fake_roots[0]}, {fake_roots[1]}, and {fake_roots[2]}'
+            fake_answer_str = f'({fake_roots[0]}, 0), ({fake_roots[1]}, 0), ({fake_roots[2]}, 0)'
 
             if fake_answer_str != answer and fake_answer_str not in fake_answers:
                 fake_answers.append(fake_answer_str)
@@ -602,7 +602,7 @@ def generate_exponential_problems():
         b = random.randint(2, 5)
         x_val = random.randint(0, 5)
 
-        question = f'If f(x) = {a}·{b}<sup>{x_val}</sup>, find the value of f({x_val}).'
+        question = f'If f(x) = {a}·{b}<sup>x</sup>, find the value of f({x_val}).'
         answer = a * (b ** x_val)
 
         fake_answers_set = set()
@@ -639,7 +639,7 @@ def generate_exponential_problems():
         x_val = random.randint(1, 4)
         y_val = a * (b ** x_val)
 
-        question = f'If f(x) = {a}·b<sup>{x_val}</sup> and f({x_val}) = {y_val}, find the value of b.'
+        question = f'If f(x) = {a}·b<sup>x</sup> and f({x_val}) = {y_val}, find the value of b.'
         answer = str(b)
 
         fake_answers_set = set()
@@ -657,7 +657,7 @@ def generate_exponential_problems():
         x_val = random.randint(0, 5)
         y_val = a * (b ** x_val)
 
-        question = f'If f(x) = a·{b}<sup>{x_val}</sup> and f({x_val}) = {y_val}, find the value of a.'
+        question = f'If f(x) = a·{b}<sup>x</sup> and f({x_val}) = {y_val}, find the value of a.'
         answer = str(a)
 
         fake_answers_set = set()
