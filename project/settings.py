@@ -61,6 +61,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 # 'mathematics.extrafunctions.return_user_language',
+                'mathematics.context_processors.return_total_views',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -132,3 +133,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
+
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "botbexruz640@gmail.com"
+EMAIL_HOST_PASSWORD = "l e i f n b d b x n c q c e f a"

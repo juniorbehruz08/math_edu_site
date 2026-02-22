@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logarithmic Functions Practice</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+          --bg: #0d0f1a;
+          --surface: #161829;
+          --card: #1e2138;
+          --card-hover: #252844;
+          --accent: #f0c040;
+          --accent2: #5b8cf5;
+          --accent3: #e06b8c;
+          --correct: #3ecf8e;
+          --wrong: #e06b8c;
+          --text: #e8eaf5;
+          --muted: #8a8faa;
+          --border: rgba(255,255,255,0.07);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+          background: var(--bg);
+          color: var(--text);
+          font-family: 'DM Sans', sans-serif;
+          min-height: 100vh;
+          overflow-x: hidden;
+        }
+
+        /* Background grid */
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(240,192,64,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(240,192,64,0.03) 1px, transparent 1px);
+          background-size: 60px 60px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .hero {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          padding: 60px 20px 40px;
+        }
+
+        .hero-tag {
+          display: inline-block;
+          background: rgba(240,192,64,0.12);
+          border: 1px solid rgba(240,192,64,0.3);
+          color: var(--accent);
+          font-family: 'DM Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          padding: 6px 16px;
+          border-radius: 2px;
+          margin-bottom: 24px;
+        }
+
+        .hero h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(2.5rem, 6vw, 4.5rem);
+          font-weight: 900;
+          line-height: 1.05;
+          letter-spacing: -1px;
+          background: linear-gradient(135deg, #f0c040, #f5a623, #e06b8c);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 16px;
+        }
+
+        .hero p {
+          color: var(--muted);
+          font-size: 16px;
+          max-width: 500px;
+          margin: 0 auto 36px;
+          line-height: 1.6;
+        }
+
+        /* Score bar */
+        .score-bar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 32px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 16px 32px;
+          max-width: 560px;
+          margin: 0 auto 16px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .score-item {
+          text-align: center;
+        }
+
+        .score-item .val {
+          font-family: 'Playfair Display', serif;
+          font-size: 2rem;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .score-item .label {
+          font-family: 'DM Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--muted);
+          margin-top: 4px;
+        }
+
+        .score-item.correct .val { color: var(--correct); }
+        .score-item.wrong .val { color: var(--wrong); }
+        .score-item.total .val { color: var(--accent); }
+
+        .divider { width: 1px; height: 40px; background: var(--border); }
+
+        /* Progress bar */
+        .progress-wrap {
+          max-width: 560px;
+          margin: 0 auto 50px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .progress-track {
+          background: var(--surface);
+          border-radius: 100px;
+          height: 6px;
+          overflow: hidden;
+        }
+
+        .progress-fill {
+          height: 100%;
+          border-radius: 100px;
+          background: linear-gradient(90deg, var(--accent2), var(--accent));
+          transition: width 0.5s ease;
+          width: 0%;
+        }
+
+        /* Category legend */
+        .legend {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+          max-width: 800px;
+          margin: 0 auto 48px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .legend-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          padding: 6px 14px;
+          font-size: 12px;
+          color: var(--muted);
+          font-family: 'DM Mono', monospace;
+        }
+
+        .legend-dot {
+          width: 8px; height: 8px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+
+        /* Questions grid */
+        .questions-container {
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 0 20px 80px;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .q-card {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          padding: 28px 32px;
+          transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s;
+          animation: fadeUp 0.5s both;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .q-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0;
+          width: 4px;
+          height: 100%;
+          border-radius: 2px 0 0 2px;
+        }
+
+        .q-card:hover:not(.answered) {
+          transform: translateY(-2px);
+          border-color: rgba(255,255,255,0.12);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .q-card.answered.correct-answer {
+          border-color: rgba(62,207,142,0.25);
+          background: rgba(62,207,142,0.05);
+        }
+
+        .q-card.answered.wrong-answer {
+          border-color: rgba(224,107,140,0.25);
+          background: rgba(224,107,140,0.05);
+        }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .q-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          margin-bottom: 18px;
+          gap: 16px;
+        }
+
+        .q-meta {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .q-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: var(--muted);
+          line-height: 1;
+          min-width: 28px;
+        }
+
+        .q-type-badge {
+          font-family: 'DM Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          padding: 4px 10px;
+          border-radius: 4px;
+          border: 1px solid;
+        }
+
+        .q-status {
+          font-size: 1.3rem;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .q-card.answered .q-status { opacity: 1; }
+
+        .q-text {
+          font-size: 16px;
+          line-height: 1.6;
+          margin-bottom: 22px;
+          color: var(--text);
+        }
+
+        .q-math {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 16px 24px;
+          text-align: center;
+          font-size: 1.1rem;
+          margin-bottom: 22px;
+        }
+
+        /* Options */
+        .options {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        @media (max-width: 520px) {
+          .options { grid-template-columns: 1fr; }
+          .q-card { padding: 20px; }
+        }
+
+        .opt-btn {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          color: var(--text);
+          border-radius: 10px;
+          padding: 13px 18px;
+          text-align: left;
+          cursor: pointer;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          line-height: 1.4;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+          background: var(--card-hover);
+          border-color: rgba(255,255,255,0.15);
+          transform: translateY(-1px);
+        }
+
+        .opt-btn:disabled { cursor: default; transform: none; }
+
+        .opt-btn.correct {
+          background: rgba(62,207,142,0.12);
+          border-color: var(--correct);
+          color: var(--correct);
+        }
+
+        .opt-btn.wrong {
+          background: rgba(224,107,140,0.12);
+          border-color: var(--wrong);
+          color: var(--wrong);
+        }
+
+        .opt-btn.reveal {
+          background: rgba(62,207,142,0.06);
+          border-color: rgba(62,207,142,0.4);
+          color: rgba(62,207,142,0.8);
+        }
+
+        .opt-letter {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px;
+          background: rgba(255,255,255,0.07);
+          border-radius: 4px;
+          padding: 2px 7px;
+          min-width: 24px;
+          text-align: center;
+          font-weight: 500;
+          flex-shrink: 0;
+        }
+
+        .opt-btn.correct .opt-letter { background: rgba(62,207,142,0.2); }
+        .opt-btn.wrong .opt-letter { background: rgba(224,107,140,0.2); }
+
+        /* Explanation */
+        .explanation {
+          margin-top: 16px;
+          padding: 14px 18px;
+          border-radius: 10px;
+          font-size: 13.5px;
+          line-height: 1.6;
+          color: var(--muted);
+          background: rgba(255,255,255,0.03);
+          border: 1px solid var(--border);
+          display: none;
+        }
+
+        .explanation.visible { display: block; animation: fadeUp 0.3s; }
+        .explanation strong { color: var(--text); }
+
+        /* Category colors */
+        .cat-0 { --cat: #5b8cf5; }
+        .cat-1 { --cat: #f0c040; }
+        .cat-2 { --cat: #3ecf8e; }
+        .cat-3 { --cat: #e06b8c; }
+        .cat-4 { --cat: #a78bfa; }
+
+        .q-card.cat-0::before { background: #5b8cf5; }
+        .q-card.cat-1::before { background: #f0c040; }
+        .q-card.cat-2::before { background: #3ecf8e; }
+        .q-card.cat-3::before { background: #e06b8c; }
+        .q-card.cat-4::before { background: #a78bfa; }
+
+        .q-type-badge.cat-0 { color: #5b8cf5; border-color: rgba(91,140,245,0.4); background: rgba(91,140,245,0.1); }
+        .q-type-badge.cat-1 { color: #f0c040; border-color: rgba(240,192,64,0.4); background: rgba(240,192,64,0.1); }
+        .q-type-badge.cat-2 { color: #3ecf8e; border-color: rgba(62,207,142,0.4); background: rgba(62,207,142,0.1); }
+        .q-type-badge.cat-3 { color: #e06b8c; border-color: rgba(224,107,140,0.4); background: rgba(224,107,140,0.1); }
+        .q-type-badge.cat-4 { color: #a78bfa; border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.1); }
+
+        .legend-dot.cat-0 { background: #5b8cf5; }
+        .legend-dot.cat-1 { background: #f0c040; }
+        .legend-dot.cat-2 { background: #3ecf8e; }
+        .legend-dot.cat-3 { background: #e06b8c; }
+        .legend-dot.cat-4 { background: #a78bfa; }
+
+        /* Reset btn */
+        .reset-btn {
+          display: block;
+          margin: 0 auto 60px;
+          background: transparent;
+          border: 1px solid var(--border);
+          color: var(--muted);
+          border-radius: 8px;
+          padding: 12px 28px;
+          font-family: 'DM Mono', monospace;
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.2s;
+          position: relative;
+          z-index: 1;
+        }
+
+        .reset-btn:hover {
+          border-color: var(--accent);
+          color: var(--accent);
+        }
+
+        /* Final banner */
+        .finish-banner {
+          display: none;
+          text-align: center;
+          padding: 40px 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .finish-banner.visible { display: block; animation: fadeUp 0.5s; }
+
+        .finish-banner h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+          background: linear-gradient(135deg, var(--correct), var(--accent));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+    </style>
+</head>
+<body>
+{% csrf_token %}
+
+<div class="hero">
+    <div class="hero-tag">Mathematics · Precalculus</div>
+    <h1>Logarithmic Functions</h1>
+    <p>20 practice problems across 5 essential topics. Select an answer to check your understanding instantly.</p>
+
+    <div class="score-bar">
+        <div class="score-item correct">
+            <div class="val" id="scoreCorrect">0</div>
+            <div class="label">Correct</div>
+        </div>
+        <div class="divider"></div>
+        <div class="score-item wrong">
+            <div class="val" id="scoreWrong">0</div>
+            <div class="label">Wrong</div>
+        </div>
+        <div class="divider"></div>
+        <div class="score-item total">
+            <div class="val" id="scoreTotal">0/20</div>
+            <div class="label">Progress</div>
+        </div>
+    </div>
+
+    <div class="progress-wrap">
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+</div>
+
+<div class="legend">
+    <div class="legend-item"><span class="legend-dot cat-0"></span>Increasing / Decreasing</div>
+    <div class="legend-item"><span class="legend-dot cat-1"></span>Domain & Range</div>
+    <div class="legend-item"><span class="legend-dot cat-2"></span>Graph Shifts</div>
+    <div class="legend-item"><span class="legend-dot cat-3"></span>Intercepts</div>
+    <div class="legend-item"><span class="legend-dot cat-4"></span>Vertical Asymptotes</div>
+</div>
+
+<div class="questions-container" id="questionsContainer"></div>
+
+<div class="finish-banner" id="finishBanner">
+    <h2 id="finishTitle">Practice Complete!</h2>
+    <p id="finishMsg" style="color:var(--muted);font-size:16px;margin-bottom:24px;"></p>
+</div>
+
+<button class="reset-btn" onclick="resetAll()">↺ &nbsp; Regenerate Questions</button>
+
+<script>
+    // ─── Question bank ────────────────────────────────────────────────────────────
+
+    const categories = [
+      { name: "Increasing / Decreasing", id: 0 },
+      { name: "Domain & Range", id: 1 },
+      { name: "Graph Shifts", id: 2 },
+      { name: "Intercepts", id: 3 },
+      { name: "Vertical Asymptotes", id: 4 },
+    ];
+
+    // Each entry: { cat, math, question, options: [{text, correct}], explanation }
+
+    const questionPool = [
+
+      // ══ CAT 0: INCREASING / DECREASING ══════════════════════════════════════════
+      {
+        cat: 0,
+        math: `f(x) = \\log_3(x)`,
+        question: "Is the function increasing or decreasing on its domain?",
+        options: [
+          { text: "Increasing, because the base 3 > 1", correct: true },
+          { text: "Decreasing, because 3 is odd", correct: false },
+          { text: "Neither — it is constant", correct: false },
+          { text: "Decreasing, because log functions always decrease", correct: false },
+        ],
+        explanation: "When the base <strong>b > 1</strong>, the logarithm is <strong>strictly increasing</strong>. Since 3 > 1, f(x) = log₃(x) increases across its entire domain."
+      },
+      {
+        cat: 0,
+        math: `g(x) = \\log_{0.5}(x)`,
+        question: "Is the function increasing or decreasing on its domain?",
+        options: [
+          { text: "Increasing, because 0.5 is positive", correct: false },
+          { text: "Decreasing, because the base 0 < 0.5 < 1", correct: true },
+          { text: "Neither — it oscillates", correct: false },
+          { text: "Increasing, because logs are always increasing", correct: false },
+        ],
+        explanation: "When the base <strong>0 &lt; b &lt; 1</strong>, the logarithm is <strong>strictly decreasing</strong>. Since 0.5 &lt; 1, g(x) = log₀.₅(x) decreases on its domain."
+      },
+      {
+        cat: 0,
+        math: `h(x) = -\\ln(x)`,
+        question: "What is the behavior of this function on its domain?",
+        options: [
+          { text: "Increasing (the negative flips a decreasing function)", correct: false },
+          { text: "Decreasing (reflecting ln(x) over the x-axis)", correct: true },
+          { text: "Increasing (ln(x) is decreasing, so its negative is increasing)", correct: false },
+          { text: "Constant on (0, ∞)", correct: false },
+        ],
+        explanation: "ln(x) is increasing, so –ln(x) is <strong>strictly decreasing</strong>. Multiplying by –1 reflects the graph over the x-axis, reversing monotonicity."
+      },
+      {
+        cat: 0,
+        math: `p(x) = \\log_7(x - 4)`,
+        question: "On what interval is this function increasing?",
+        options: [
+          { text: "(4, ∞)", correct: true },
+          { text: "(0, ∞)", correct: false },
+          { text: "(-∞, 4)", correct: false },
+          { text: "(-4, ∞)", correct: false },
+        ],
+        explanation: "The base 7 > 1 so p(x) is increasing. It is only <em>defined</em> when x – 4 > 0, i.e., <strong>x > 4</strong>, so the function increases on <strong>(4, ∞)</strong>."
+      },
+
+      // ══ CAT 1: DOMAIN & RANGE ════════════════════════════════════════════════════
+      {
+        cat: 1,
+        math: `f(x) = \\log_2(x - 3)`,
+        question: "What is the domain of f(x)?",
+        options: [
+          { text: "(3, ∞)", correct: true },
+          { text: "(-∞, 3)", correct: false },
+          { text: "(0, ∞)", correct: false },
+          { text: "All real numbers", correct: false },
+        ],
+        explanation: "The argument of any logarithm must be <strong>strictly positive</strong>: x – 3 > 0 → <strong>x > 3</strong>. Domain: (3, ∞)."
+      },
+      {
+        cat: 1,
+        math: `g(x) = \\ln(5 - x)`,
+        question: "What is the domain of g(x)?",
+        options: [
+          { text: "(5, ∞)", correct: false },
+          { text: "(-∞, 5)", correct: true },
+          { text: "(-5, ∞)", correct: false },
+          { text: "(0, 5)", correct: false },
+        ],
+        explanation: "Need 5 – x > 0 → x &lt; 5. Domain: <strong>(-∞, 5)</strong>."
+      },
+      {
+        cat: 1,
+        math: `h(x) = \\log_4(x^2 - 9)`,
+        question: "What is the domain of h(x)?",
+        options: [
+          { text: "(-3, 3)", correct: false },
+          { text: "(-∞, -3) ∪ (3, ∞)", correct: true },
+          { text: "(9, ∞)", correct: false },
+          { text: "(3, ∞)", correct: false },
+        ],
+        explanation: "Need x² – 9 > 0 → (x – 3)(x + 3) > 0 → <strong>x &lt; -3 or x > 3</strong>. Domain: (-∞, -3) ∪ (3, ∞)."
+      },
+      {
+        cat: 1,
+        math: `f(x) = \\log_5(2x + 6)`,
+        question: "What is the domain of f(x)?",
+        options: [
+          { text: "(-3, ∞)", correct: true },
+          { text: "(-6, ∞)", correct: false },
+          { text: "(3, ∞)", correct: false },
+          { text: "(-∞, -3)", correct: false },
+        ],
+        explanation: "Need 2x + 6 > 0 → 2x > –6 → <strong>x > –3</strong>. Domain: (–3, ∞)."
+      },
+
+      // ══ CAT 2: GRAPH SHIFTS ───────────────────────────────────────────────────────
+      {
+        cat: 2,
+        math: `g(x) = \\log_2(x + 4)`,
+        question: "How is the graph of g(x) related to the graph of y = log₂(x)?",
+        options: [
+          { text: "Shifted 4 units to the right", correct: false },
+          { text: "Shifted 4 units to the left", correct: true },
+          { text: "Shifted 4 units upward", correct: false },
+          { text: "Shifted 4 units downward", correct: false },
+        ],
+        explanation: "Replacing x with (x + 4) shifts the graph <strong>4 units to the left</strong>. The vertical asymptote moves from x = 0 to x = –4."
+      },
+      {
+        cat: 2,
+        math: `h(x) = \\log_3(x) - 5`,
+        question: "Describe the transformation applied to y = log₃(x).",
+        options: [
+          { text: "Vertical shift down 5 units", correct: true },
+          { text: "Vertical shift up 5 units", correct: false },
+          { text: "Horizontal shift right 5 units", correct: false },
+          { text: "Reflection over the x-axis and shift up 5", correct: false },
+        ],
+        explanation: "Subtracting 5 outside the log causes a <strong>vertical shift downward by 5 units</strong>. Every point (x, y) on the original becomes (x, y – 5)."
+      },
+      {
+        cat: 2,
+        math: `f(x) = \\log(x - 2) + 3`,
+        question: "What transformations are applied to y = log(x)?",
+        options: [
+          { text: "Right 2, up 3", correct: true },
+          { text: "Left 2, up 3", correct: false },
+          { text: "Right 2, down 3", correct: false },
+          { text: "Left 3, up 2", correct: false },
+        ],
+        explanation: "(x – 2) shifts the graph <strong>right 2</strong>; adding 3 outside shifts it <strong>up 3</strong>. New asymptote: x = 2."
+      },
+      {
+        cat: 2,
+        math: `k(x) = -\\log_2(x) + 1`,
+        question: "Which combination of transformations describes k(x)?",
+        options: [
+          { text: "Reflection over x-axis, shift up 1", correct: true },
+          { text: "Reflection over y-axis, shift up 1", correct: false },
+          { text: "Reflection over x-axis, shift right 1", correct: false },
+          { text: "Vertical stretch by 1, shift up 1", correct: false },
+        ],
+        explanation: "The negative sign <strong>reflects over the x-axis</strong>; the +1 shifts the graph <strong>up 1 unit</strong>. The function is now decreasing."
+      },
+
+      // ══ CAT 3: INTERCEPTS ─────────────────────────────────────────────────────────
+      {
+        cat: 3,
+        math: `f(x) = \\log_2(x - 1)`,
+        question: "What is the x-intercept of f(x)?",
+        options: [
+          { text: "(2, 0)", correct: true },
+          { text: "(1, 0)", correct: false },
+          { text: "(0, 0)", correct: false },
+          { text: "(3, 0)", correct: false },
+        ],
+        explanation: "Set f(x) = 0: log₂(x – 1) = 0 → x – 1 = 2⁰ = 1 → <strong>x = 2</strong>. x-intercept: (2, 0)."
+      },
+      {
+        cat: 3,
+        math: `g(x) = \\log_3(x) + 1`,
+        question: "Find the x-intercept of g(x).",
+        options: [
+          { text: "(1/3, 0)", correct: true },
+          { text: "(3, 0)", correct: false },
+          { text: "(0, 1)", correct: false },
+          { text: "(1, 0)", correct: false },
+        ],
+        explanation: "Set g(x) = 0: log₃(x) + 1 = 0 → log₃(x) = –1 → x = 3⁻¹ = <strong>1/3</strong>. x-intercept: (1/3, 0)."
+      },
+      {
+        cat: 3,
+        math: `h(x) = \\ln(x + e)`,
+        question: "What is the y-intercept of h(x)?",
+        options: [
+          { text: "(0, 1)", correct: true },
+          { text: "(0, e)", correct: false },
+          { text: "(0, 0)", correct: false },
+          { text: "(0, ln e²)", correct: false },
+        ],
+        explanation: "Set x = 0: h(0) = ln(0 + e) = ln(e) = <strong>1</strong>. y-intercept: (0, 1)."
+      },
+      {
+        cat: 3,
+        math: `p(x) = \\log_5(x + 125)`,
+        question: "Find the x-intercept of p(x).",
+        options: [
+          { text: "(-124, 0)", correct: true },
+          { text: "(124, 0)", correct: false },
+          { text: "(-126, 0)", correct: false },
+          { text: "(0, 3)", correct: false },
+        ],
+        explanation: "Set p(x) = 0: log₅(x + 125) = 0 → x + 125 = 5⁰ = 1 → <strong>x = –124</strong>. x-intercept: (–124, 0)."
+      },
+
+      // ══ CAT 4: VERTICAL ASYMPTOTES ───────────────────────────────────────────────
+      {
+        cat: 4,
+        math: `f(x) = \\log_3(x - 7)`,
+        question: "What is the vertical asymptote of f(x)?",
+        options: [
+          { text: "x = 7", correct: true },
+          { text: "x = -7", correct: false },
+          { text: "y = 7", correct: false },
+          { text: "x = 0", correct: false },
+        ],
+        explanation: "The argument x – 7 → 0⁺ as x → 7⁺. The <strong>vertical asymptote</strong> is at <strong>x = 7</strong>."
+      },
+      {
+        cat: 4,
+        math: `g(x) = \\ln(2x + 8)`,
+        question: "Find the equation of the vertical asymptote.",
+        options: [
+          { text: "x = -4", correct: true },
+          { text: "x = 4", correct: false },
+          { text: "x = -8", correct: false },
+          { text: "x = 8", correct: false },
+        ],
+        explanation: "Set 2x + 8 = 0 → x = –4. As x → –4⁺, the argument → 0⁺, so the vertical asymptote is <strong>x = –4</strong>."
+      },
+      {
+        cat: 4,
+        math: `h(x) = \\log\\left(\\frac{1}{x-5}\\right)`,
+        question: "What is the vertical asymptote of h(x)?",
+        options: [
+          { text: "x = 5", correct: true },
+          { text: "x = -5", correct: false },
+          { text: "x = 1/5", correct: false },
+          { text: "y = 5", correct: false },
+        ],
+        explanation: "The fraction 1/(x – 5) is defined and positive only when x > 5, approaching ∞ as x → 5⁺. Vertical asymptote: <strong>x = 5</strong>."
+      },
+      {
+        cat: 4,
+        math: `k(x) = \\log_4(x^2 - 16)`,
+        question: "How many vertical asymptotes does k(x) have, and where are they?",
+        options: [
+          { text: "Two: x = 4 and x = -4", correct: true },
+          { text: "One: x = 4", correct: false },
+          { text: "One: x = 16", correct: false },
+          { text: "Two: x = 0 and x = 4", correct: false },
+        ],
+        explanation: "x² – 16 = 0 → x = ±4. The domain is |x| > 4, so there are <strong>two vertical asymptotes</strong>: x = –4 and x = 4."
+      },
+    ];
+
+    // ─── State ─────────────────────────────────────────────────────────────────────
+    let correct = 0, wrong = 0, answered = 0;
+    let resultsSent = false; // ← tracks whether we already POSTed this session
+    let selected = [];
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function pickQuestions() {
+      selected = shuffle([...questionPool]);
+    }
+
+    const letters = ['A', 'B', 'C', 'D'];
+    const catNames = ["Incr / Decr", "Domain & Range", "Graph Shifts", "Intercepts", "Asymptotes"];
+
+    function buildCards() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      selected.forEach((q, idx) => {
+        const opts = shuffle([...q.options]);
+        const delay = idx * 0.04;
+
+        const card = document.createElement('div');
+        card.className = `q-card cat-${q.cat}`;
+        card.id = `card-${idx}`;
+        card.style.animationDelay = `${delay}s`;
+
+        card.innerHTML = `
+          <div class="q-header">
+            <div class="q-meta">
+              <div class="q-num">${String(idx + 1).padStart(2, '0')}</div>
+              <div class="q-type-badge cat-${q.cat}">${catNames[q.cat]}</div>
+            </div>
+            <div class="q-status" id="status-${idx}"></div>
+          </div>
+          <div class="q-text">${q.question}</div>
+          <div class="q-math">\\(${q.math}\\)</div>
+          <div class="options" id="opts-${idx}">
+            ${opts.map((opt, i) => `
+              <button class="opt-btn" onclick="selectOption(${idx}, ${opt.correct}, this, ${JSON.stringify(opts.map(o => o.correct))}, ${i})">
+                <span class="opt-letter">${letters[i]}</span>
+                <span>${opt.text.replace(/'/g, "&#39;")}</span>
+              </button>`).join('')}
+          </div>
+          <div class="explanation" id="exp-${idx}">
+            <strong>Explanation:</strong> ${q.explanation}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([container]);
+      }
+    }
+
+    function selectOption(idx, isCorrect, btn, correctMap, chosenIdx) {
+      const card = document.getElementById(`card-${idx}`);
+      if (card.classList.contains('answered')) return;
+
+      card.classList.add('answered');
+
+      const allBtns = document.querySelectorAll(`#opts-${idx} .opt-btn`);
+      allBtns.forEach((b, i) => {
+        b.disabled = true;
+        if (correctMap[i]) {
+          b.classList.add(i === chosenIdx ? 'correct' : 'reveal');
+        }
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        card.classList.add('correct-answer');
+        document.getElementById(`status-${idx}`).textContent = '✓';
+        correct++;
+        document.getElementById('scoreCorrect').textContent = correct;
+      } else {
+        btn.classList.add('wrong');
+        card.classList.add('wrong-answer');
+        document.getElementById(`status-${idx}`).textContent = '✗';
+        wrong++;
+        document.getElementById('scoreWrong').textContent = wrong;
+      }
+
+      answered++;
+      document.getElementById('scoreTotal').textContent = `${answered}/20`;
+      document.getElementById('progressFill').style.width = `${(answered / 20) * 100}%`;
+      document.getElementById(`exp-${idx}`).classList.add('visible');
+
+      if (window.MathJax) {
+        MathJax.typesetPromise([document.getElementById(`exp-${idx}`)]);
+      }
+
+      if (answered === 20) {
+        const banner = document.getElementById('finishBanner');
+        banner.classList.add('visible');
+        const pct = Math.round((correct / 20) * 100);
+        document.getElementById('finishTitle').textContent =
+          pct >= 80 ? '🎉 Excellent Work!' : pct >= 60 ? '👍 Good Effort!' : '📚 Keep Practicing!';
+        document.getElementById('finishMsg').textContent =
+          `You scored ${correct} out of 20 (${pct}%). ${pct >= 80 ? "You have a strong grasp of logarithmic functions!" : "Review the explanations and try again to strengthen your understanding."}`;
+        sendResults(); // all 20 done → save, and mark as sent
+      }
+    }
+
+    function sendResults() {
+      if (answered === 0) return;    // nothing answered yet, skip
+      if (resultsSent) return;       // already sent this session, skip
+
+      resultsSent = true; // mark immediately so no double-fire
+
+      fetch('/logarithmic_function_practice/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]')?.value
+        },
+        body: JSON.stringify({
+          correct: correct,
+          wrong: wrong,
+          answered: answered,
+          percentage: Math.round((correct / 20) * 100)
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log("Saved:", data))
+      .catch(err => console.log("Error:", err));
+    }
+
+    function resetAll() {
+      sendResults(); // saves partial progress only if not already sent
+
+      // reset state for new session
+      correct = 0; wrong = 0; answered = 0;
+      resultsSent = false; // ← reset flag so new session can save again
+      document.getElementById('scoreCorrect').textContent = 0;
+      document.getElementById('scoreWrong').textContent = 0;
+      document.getElementById('scoreTotal').textContent = '0/20';
+      document.getElementById('progressFill').style.width = '0%';
+      document.getElementById('finishBanner').classList.remove('visible');
+      pickQuestions();
+      buildCards();
+    }
+
+    // Init
+    pickQuestions();
+    buildCards();
+</script>
+</body>
+</html>

@@ -1,206 +1,1674 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Signs Expressions Quiz — Fixed</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Working with Signs Practice</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0f172a;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa;--success:#22c55e;--danger:#ef4444}
-    *{box-sizing:border-box}
-    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071033 0%, #081126 100%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .wrap{width:100%;max-width:900px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    h1{font-size:20px;margin:0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    .question{font-size:18px;margin-bottom:12px}
-    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
-    .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px}
-    label.option{background:#071330;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;display:flex;align-items:center;gap:10px;cursor:pointer}
-    input[type=radio]{width:18px;height:18px}
-    .controls{display:flex;gap:8px;align-items:center}
-    button{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;color:#04243a;cursor:pointer;font-weight:600}
-    button:disabled{background:var(--muted);cursor:not-allowed}
-    button.secondary{background:transparent;color:var(--accent);border:1px solid rgba(96,165,250,0.15)}
-    .result{padding:10px;margin-top:8px;border-radius:8px;font-weight:700}
-    .result.ok{background:rgba(34,197,94,0.12);color:var(--success);border:1px solid rgba(34,197,94,0.12)}
-    .result.bad{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.06)}
-    footer{margin-top:12px;color:var(--muted);font-size:13px}
-    sup{font-size: 0.6em; vertical-align: super;}
-    @media(max-width:520px){.options{grid-template-columns:1fr}}
+    :root {
+      --bg: #0d0f1a;
+      --surface: #161829;
+      --card: #1e2138;
+      --card-hover: #252844;
+      --accent: #f0c040;
+      --accent2: #5b8cf5;
+      --correct: #3ecf8e;
+      --wrong: #e06b8c;
+      --text: #e8eaf5;
+      --muted: #8a8faa;
+      --border: rgba(255,255,255,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(240,192,64,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,192,64,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(240,192,64,0.12);
+      border: 1px solid rgba(240,192,64,0.3);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 2px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -1px;
+      background: linear-gradient(135deg, #f0c040, #f5a623, #e06b8c);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 16px;
+    }
+    .hero p {
+      color: var(--muted); font-size: 16px;
+      max-width: 500px; margin: 0 auto 36px; line-height: 1.6;
+    }
+    .score-bar {
+      display: flex; justify-content: center; align-items: center;
+      gap: 32px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 32px;
+      max-width: 560px; margin: 0 auto 16px;
+      position: relative; z-index: 1;
+    }
+    .score-item { text-align: center; }
+    .score-item .val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; line-height: 1;
+    }
+    .score-item .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-top: 4px;
+    }
+    .score-item.correct .val { color: var(--correct); }
+    .score-item.wrong .val   { color: var(--wrong); }
+    .score-item.total .val   { color: var(--accent); }
+    .divider { width: 1px; height: 40px; background: var(--border); }
+    .progress-wrap {
+      max-width: 560px; margin: 0 auto 50px;
+      position: relative; z-index: 1;
+    }
+    .progress-track {
+      background: var(--surface); border-radius: 100px;
+      height: 6px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transition: width 0.5s ease; width: 0%;
+    }
+    .legend {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 10px; max-width: 860px;
+      margin: 0 auto 48px; position: relative; z-index: 1;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 6px 14px;
+      font-size: 12px; color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .questions-container {
+      max-width: 900px; margin: 0 auto;
+      padding: 0 20px 80px;
+      display: grid; grid-template-columns: 1fr;
+      gap: 20px; position: relative; z-index: 1;
+    }
+    .q-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px;
+      transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.5s both;
+      position: relative; overflow: hidden;
+    }
+    .q-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      border-radius: 2px 0 0 2px;
+    }
+    .q-card:hover:not(.answered) {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .q-card.answered.correct-answer { border-color: rgba(62,207,142,0.25); background: rgba(62,207,142,0.05); }
+    .q-card.answered.wrong-answer   { border-color: rgba(224,107,140,0.25); background: rgba(224,107,140,0.05); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .q-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 18px; gap: 16px;
+    }
+    .q-meta { display: flex; align-items: center; gap: 12px; }
+    .q-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--muted); line-height: 1; min-width: 28px;
+    }
+    .q-type-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px; border: 1px solid;
+    }
+    .q-status { font-size: 1.3rem; opacity: 0; transition: opacity 0.3s; }
+    .q-card.answered .q-status { opacity: 1; }
+    .q-text { font-size: 16px; line-height: 1.6; margin-bottom: 22px; color: var(--text); }
+    .q-math {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 24px;
+      text-align: center; font-size: 1.2rem; margin-bottom: 22px;
+      font-family: 'DM Mono', monospace; letter-spacing: 0.05em;
+    }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 520px) {
+      .options { grid-template-columns: 1fr; }
+      .q-card { padding: 20px; }
+    }
+    .opt-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); border-radius: 10px; padding: 13px 18px;
+      text-align: left; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      transition: all 0.2s; display: flex; align-items: center;
+      gap: 10px; line-height: 1.4;
+    }
+    .opt-btn:hover:not(:disabled) {
+      background: var(--card-hover);
+      border-color: rgba(255,255,255,0.15); transform: translateY(-1px);
+    }
+    .opt-btn:disabled { cursor: default; transform: none; }
+    .opt-btn.correct  { background: rgba(62,207,142,0.12); border-color: var(--correct); color: var(--correct); }
+    .opt-btn.wrong    { background: rgba(224,107,140,0.12); border-color: var(--wrong); color: var(--wrong); }
+    .opt-btn.reveal   { background: rgba(62,207,142,0.06); border-color: rgba(62,207,142,0.4); color: rgba(62,207,142,0.8); }
+    .opt-letter {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      background: rgba(255,255,255,0.07); border-radius: 4px;
+      padding: 2px 7px; min-width: 24px; text-align: center;
+      font-weight: 500; flex-shrink: 0;
+    }
+    .opt-btn.correct .opt-letter { background: rgba(62,207,142,0.2); }
+    .opt-btn.wrong .opt-letter   { background: rgba(224,107,140,0.2); }
+    .explanation {
+      margin-top: 16px; padding: 14px 18px; border-radius: 10px;
+      font-size: 13.5px; line-height: 1.6; color: var(--muted);
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      display: none;
+    }
+    .explanation.visible { display: block; animation: fadeUp 0.3s; }
+    .explanation strong { color: var(--text); }
+
+    /* Category colours */
+    .q-card.cat-0::before { background: #5b8cf5; }
+    .q-card.cat-1::before { background: #f0c040; }
+    .q-card.cat-2::before { background: #3ecf8e; }
+    .q-card.cat-3::before { background: #e06b8c; }
+    .q-card.cat-4::before { background: #a78bfa; }
+
+    .q-type-badge.cat-0 { color: #5b8cf5; border-color: rgba(91,140,245,0.4); background: rgba(91,140,245,0.1); }
+    .q-type-badge.cat-1 { color: #f0c040; border-color: rgba(240,192,64,0.4); background: rgba(240,192,64,0.1); }
+    .q-type-badge.cat-2 { color: #3ecf8e; border-color: rgba(62,207,142,0.4); background: rgba(62,207,142,0.1); }
+    .q-type-badge.cat-3 { color: #e06b8c; border-color: rgba(224,107,140,0.4); background: rgba(224,107,140,0.1); }
+    .q-type-badge.cat-4 { color: #a78bfa; border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.1); }
+
+    .legend-dot.cat-0 { background: #5b8cf5; }
+    .legend-dot.cat-1 { background: #f0c040; }
+    .legend-dot.cat-2 { background: #3ecf8e; }
+    .legend-dot.cat-3 { background: #e06b8c; }
+    .legend-dot.cat-4 { background: #a78bfa; }
+
+    .reset-btn {
+      display: block; margin: 0 auto 60px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); border-radius: 8px; padding: 12px 28px;
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s;
+      position: relative; z-index: 1;
+    }
+    .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .finish-banner {
+      display: none; text-align: center;
+      padding: 40px 20px; position: relative; z-index: 1;
+    }
+    .finish-banner.visible { display: block; animation: fadeUp 0.5s; }
+    .finish-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--correct), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Signs Expressions Quiz</h1>
-      <div class="meta">20 random expression questions (many formats)</div>
-    </header>
+{% csrf_token %}
 
-    <div class="card" id="card"></div>
-
-    <footer>
-      Tip: Pay attention to parentheses and exponent precedence (exponent has higher priority than unary minus).
-    </footer>
+<div class="hero">
+  <div class="hero-tag">Mathematics · Arithmetic</div>
+  <h1>Working with Signs</h1>
+  <p>30 randomly selected problems from a pool of 100. Master negative numbers, sign rules, and tricky expressions.</p>
+  <div class="score-bar">
+    <div class="score-item correct"><div class="val" id="scoreCorrect">0</div><div class="label">Correct</div></div>
+    <div class="divider"></div>
+    <div class="score-item wrong"><div class="val" id="scoreWrong">0</div><div class="label">Wrong</div></div>
+    <div class="divider"></div>
+    <div class="score-item total"><div class="val" id="scoreTotal">0/30</div><div class="label">Progress</div></div>
   </div>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
 
-  <script>
-    const card = document.getElementById('card');
-    let QUESTIONS = [], idx = 0, score = 0;
-    const totalQuestions = 20;
+<div class="legend">
+  <div class="legend-item"><span class="legend-dot cat-0"></span>Negative Exponents</div>
+  <div class="legend-item"><span class="legend-dot cat-1"></span>Addition &amp; Subtraction</div>
+  <div class="legend-item"><span class="legend-dot cat-2"></span>Multiplication &amp; Division</div>
+  <div class="legend-item"><span class="legend-dot cat-3"></span>Order of Operations</div>
+  <div class="legend-item"><span class="legend-dot cat-4"></span>Mixed Expressions</div>
+</div>
 
-    function randInt(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
-    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
-    function fmt(n){ // format integer or float nicely
-      if (Number.isFinite(n) && Math.abs(n - Math.round(n)) < 1e-9) return String(Math.round(n));
-      return String(Number.parseFloat(n.toFixed(6)).toString());
-    }
+<div class="questions-container" id="questionsContainer"></div>
 
-    function exp(base, exponent) {
-        return `${base}<sup>${exponent}</sup>`;
-    }
+<div class="finish-banner" id="finishBanner">
+  <h2 id="finishTitle">Practice Complete!</h2>
+  <p id="finishMsg" style="color:var(--muted);font-size:16px;margin-bottom:24px;"></p>
+</div>
+<button class="reset-btn" onclick="resetAll()">↺ &nbsp; New Random 30 Questions</button>
 
-    function formatNumber(n, isFirst) {
-        if (n < 0 && !isFirst) {
-            return `(${n})`;
-        }
-        return n;
-    }
+<script>
+const TOTAL = 30;
 
-    function makeQuestion(){
-      const type = randInt(1,20);
-      let expr = "", val = 0;
-      let a, b, c, e;
+const catNames = ["Neg. Exponents", "Add & Subtract", "Multiply & Divide", "Order of Ops", "Mixed"];
 
-      switch(type){
-        case 1: { a=randInt(-20,20), b=randInt(-20,20); expr=`${formatNumber(a, true)} + ${formatNumber(b, false)}`; val = a + b; break; }
-        case 2: { a=randInt(-20,20), b=randInt(-20,20); expr=`${formatNumber(a, true)} - ${formatNumber(b, false)}`; val = a - b; break; }
-        case 3: { a=randInt(-12,12), b=randInt(-12,12); expr=`${formatNumber(a, true)} * ${formatNumber(b, false)}`; val = a * b; break; }
-        case 4: { // division
-          let denom = randInt(1,10), k = randInt(-6,6);
-          if(k === 0) k = 1;
-          const numer = denom * k;
-          expr = `${formatNumber(numer, true)} / ${formatNumber(denom, false)}`; val = numer / denom; break;
-        }
-        case 5: { a=randInt(-15,15); expr=`-(${a})`; val = -(a); break; }
-        case 6: { a=randInt(-15,15); expr=`-(${a})`; val = -(a); break; }
-        case 7: { a=randInt(-5,5), e=2; expr=`(${a})<sup>${e}</sup>`; val = Math.pow(a,e); break; }
-        case 8: { b=randInt(2,5), e=2; expr = `-${b}<sup>${e}</sup>`; val = -(Math.pow(b,e)); break; }
-        case 9: { b=randInt(2,5), e=2; expr = `(-${b})<sup>${e}</sup>`; val = Math.pow(-b,e); break; }
-        case 10: { b=randInt(2,5), e=2; expr = `-(-${b}<sup>${e}</sup>)`; val = Math.pow(b,e); break; }
-        case 11: { a=randInt(-6,6), b=randInt(-6,6), c=randInt(-6,6); expr=`(${formatNumber(a, true)} + ${formatNumber(b, false)}) * ${formatNumber(c, false)}`; val = (a+b)*c; break; }
-        case 12: { a=randInt(-6,6), b=randInt(-6,6), c=randInt(-6,6); expr=`${formatNumber(a, true)} * (${formatNumber(b, true)} - ${formatNumber(c, false)})`; val = a*(b-c); break; }
-        case 13: {
-          a=randInt(-8,8), b=randInt(-8,8);
-          let diff = a - b;
-          let divisors = [];
-          for(let d=1; d<=Math.abs(diff)||d<=1; d++){
-            if(d===0) continue;
-            if(diff % d === 0) divisors.push(d);
-            if(diff % -d === 0) divisors.push(-d);
-          }
-          c = 1;
-          if(divisors.length) c = divisors[Math.floor(Math.random()*divisors.length)];
-          expr = `(${formatNumber(a, true)} - ${formatNumber(b, false)}) / ${formatNumber(c, false)}`; val = (a - b) / c; break;
-        }
-        case 14: { a=randInt(-5,5), e=randInt(2,3), b=randInt(-5,5); expr=`(${a})<sup>${e}</sup> + ${formatNumber(b, false)}`; val = Math.pow(a,e) + b; break; }
-        case 15: { a=randInt(-6,6), b=randInt(-4,4), e=randInt(2,3); expr=`${formatNumber(a, true)} * (${formatNumber(b, true)})<sup>${e}</sup>`; val = a * Math.pow(b,e); break; }
-        case 16: { a=randInt(-4,4), b=randInt(-4,4), c=randInt(-6,6); expr=`(${formatNumber(a, true)} + ${formatNumber(b, false)})<sup>2</sup> - ${formatNumber(c, false)}`; val = Math.pow(a+b,2) - c; break; }
-        case 17: { a=randInt(-5,5), b=randInt(-5,5), c=randInt(-5,5); expr=`-(${formatNumber(a, true)} + ${formatNumber(b, false)} + ${formatNumber(c, false)})`; val = -(a+b+c); break; }
-        case 18: { a=randInt(-6,6), b=randInt(-4,4); expr=`${formatNumber(a, true)} * (${formatNumber(b, false)})<sup>2</sup>`; val = a * Math.pow(b,2); break; }
-        case 19: { a=randInt(-8,8), b=randInt(-8,8); expr=`${formatNumber(a, true)} * ${formatNumber(b, false)}`; val = a * b; break; }
-        case 20: { a=randInt(-6,6), b=randInt(-6,6); expr=`${formatNumber(a, true)} - ${formatNumber(b, false)}`; val = a - b; break; }
-        default: { expr = "0"; val = 0; break; }
-      }
+// ─── 100-question pool ────────────────────────────────────────────────────────
+// cat 0 = Negative Exponents  (25 q)
+// cat 1 = Addition/Subtraction with negatives  (20 q)
+// cat 2 = Multiplication/Division signs  (20 q)
+// cat 3 = Order of Operations with signs  (20 q)
+// cat 4 = Mixed / tricky expressions  (15 q)
 
-      const valStr = fmt(val);
+const questionPool = [
 
-      const correct = valStr;
-      const opts = new Set([correct]);
-      while(opts.size < 3){
-        let delta = randInt(1,5);
-        if(Math.random() < 0.3) {
-          let fake = (Number(correct) || 0) + delta;
-          opts.add(fmt(fake));
-        } else if(Math.random() < 0.6) {
-          let fake = (Number(correct) || 0) - delta;
-          opts.add(fmt(fake));
-        } else {
-          let fake = (Number(correct) || 0) * -1;
-          opts.add(fmt(fake));
-        }
-      }
+  // ══ CAT 0: NEGATIVE EXPONENTS ═══════════════════════════════════════════════
+  {
+    cat: 0,
+    math: `-4^2`,
+    question: "Evaluate the expression. Remember: the exponent applies only to 4, not to the negative sign.",
+    options: [
+      { text: "-16", correct: true },
+      { text: "16", correct: false },
+      { text: "-8", correct: false },
+      { text: "8", correct: false },
+    ],
+    explanation: "<strong>-4²  =  -(4²)  =  -16.</strong> The negative sign is NOT inside the exponent here, so it is applied after squaring."
+  },
+  {
+    cat: 0,
+    math: `(-4)^2`,
+    question: "Evaluate the expression. Here the negative IS part of the base.",
+    options: [
+      { text: "16", correct: true },
+      { text: "-16", correct: false },
+      { text: "-8", correct: false },
+      { text: "8", correct: false },
+    ],
+    explanation: "<strong>(-4)²  =  (-4) × (-4)  =  16.</strong> Negative × negative = positive."
+  },
+  {
+    cat: 0,
+    math: `-3^2`,
+    question: "What is the value?",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-6", correct: false },
+      { text: "6", correct: false },
+    ],
+    explanation: "<strong>-3² = -(3²) = -9.</strong> The exponent binds tighter than the unary minus."
+  },
+  {
+    cat: 0,
+    math: `(-3)^2`,
+    question: "What is the value?",
+    options: [
+      { text: "9", correct: true },
+      { text: "-9", correct: false },
+      { text: "-6", correct: false },
+      { text: "6", correct: false },
+    ],
+    explanation: "<strong>(-3)² = (-3)×(-3) = 9.</strong> Both factors are negative, so the product is positive."
+  },
+  {
+    cat: 0,
+    math: `-2^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-8", correct: true },
+      { text: "8", correct: false },
+      { text: "-6", correct: false },
+      { text: "-5", correct: false },
+    ],
+    explanation: "<strong>-2³ = -(2³) = -8.</strong>"
+  },
+  {
+    cat: 0,
+    math: `(-2)^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-8", correct: true },
+      { text: "8", correct: false },
+      { text: "-6", correct: false },
+      { text: "6", correct: false },
+    ],
+    explanation: "<strong>(-2)³ = (-2)×(-2)×(-2) = 4×(-2) = -8.</strong> Odd power of a negative → negative."
+  },
+  {
+    cat: 0,
+    math: `(-1)^{100}`,
+    question: "What is the value?",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "100", correct: false },
+      { text: "-100", correct: false },
+    ],
+    explanation: "<strong>(-1)^{even} = 1.</strong> 100 is even, so the result is <strong>1</strong>."
+  },
+  {
+    cat: 0,
+    math: `(-1)^{99}`,
+    question: "What is the value?",
+    options: [
+      { text: "-1", correct: true },
+      { text: "1", correct: false },
+      { text: "99", correct: false },
+      { text: "-99", correct: false },
+    ],
+    explanation: "<strong>(-1)^{odd} = -1.</strong> 99 is odd, so the result is <strong>-1</strong>."
+  },
+  {
+    cat: 0,
+    math: `-5^2 + 25`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "50", correct: false },
+      { text: "-50", correct: false },
+      { text: "25", correct: false },
+    ],
+    explanation: "<strong>-5² + 25 = -25 + 25 = 0.</strong> Remember -5² means -(5²) = -25."
+  },
+  {
+    cat: 0,
+    math: `(-5)^2 + 25`,
+    question: "Evaluate.",
+    options: [
+      { text: "50", correct: true },
+      { text: "0", correct: false },
+      { text: "-50", correct: false },
+      { text: "25", correct: false },
+    ],
+    explanation: "<strong>(-5)² + 25 = 25 + 25 = 50.</strong>"
+  },
+  {
+    cat: 0,
+    math: `-2^4`,
+    question: "What is the value?",
+    options: [
+      { text: "-16", correct: true },
+      { text: "16", correct: false },
+      { text: "-8", correct: false },
+      { text: "8", correct: false },
+    ],
+    explanation: "<strong>-2⁴ = -(2⁴) = -16.</strong>"
+  },
+  {
+    cat: 0,
+    math: `(-2)^4`,
+    question: "What is the value?",
+    options: [
+      { text: "16", correct: true },
+      { text: "-16", correct: false },
+      { text: "8", correct: false },
+      { text: "-8", correct: false },
+    ],
+    explanation: "<strong>(-2)⁴ = 16.</strong> Even power → positive."
+  },
+  {
+    cat: 0,
+    math: `(-10)^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-1000", correct: true },
+      { text: "1000", correct: false },
+      { text: "-30", correct: false },
+      { text: "30", correct: false },
+    ],
+    explanation: "<strong>(-10)³ = -1000.</strong> Odd power of a negative is negative."
+  },
+  {
+    cat: 0,
+    math: `-10^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-1000", correct: true },
+      { text: "1000", correct: false },
+      { text: "-30", correct: false },
+      { text: "-100", correct: false },
+    ],
+    explanation: "<strong>-10³ = -(10³) = -1000.</strong> Same result as (-10)³ here, but only because it's an odd power."
+  },
+  {
+    cat: 0,
+    math: `-3^4`,
+    question: "What is the value?",
+    options: [
+      { text: "-81", correct: true },
+      { text: "81", correct: false },
+      { text: "-12", correct: false },
+      { text: "12", correct: false },
+    ],
+    explanation: "<strong>-3⁴ = -(81) = -81.</strong>"
+  },
+  {
+    cat: 0,
+    math: `(-3)^4`,
+    question: "What is the value?",
+    options: [
+      { text: "81", correct: true },
+      { text: "-81", correct: false },
+      { text: "-12", correct: false },
+      { text: "12", correct: false },
+    ],
+    explanation: "<strong>(-3)⁴ = 81.</strong> Even exponent → positive."
+  },
+  {
+    cat: 0,
+    math: `(-6)^2 \\div (-6)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "36", correct: false },
+      { text: "-36", correct: false },
+    ],
+    explanation: "<strong>(-6)²  ÷  (-6)²  =  36 ÷ 36  =  1.</strong>"
+  },
+  {
+    cat: 0,
+    math: `-6^2 \\div (-6)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-1", correct: true },
+      { text: "1", correct: false },
+      { text: "36", correct: false },
+      { text: "-36", correct: false },
+    ],
+    explanation: "<strong>-6² ÷ (-6)² = -36 ÷ 36 = -1.</strong>"
+  },
+  {
+    cat: 0,
+    math: `(-4)^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-64", correct: true },
+      { text: "64", correct: false },
+      { text: "-12", correct: false },
+      { text: "12", correct: false },
+    ],
+    explanation: "<strong>(-4)³ = -64.</strong> Odd power → negative."
+  },
+  {
+    cat: 0,
+    math: `(-4)^4`,
+    question: "What is the value?",
+    options: [
+      { text: "256", correct: true },
+      { text: "-256", correct: false },
+      { text: "64", correct: false },
+      { text: "-64", correct: false },
+    ],
+    explanation: "<strong>(-4)⁴ = 256.</strong> Even power → positive."
+  },
+  {
+    cat: 0,
+    math: `-(-3)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-6", correct: false },
+      { text: "6", correct: false },
+    ],
+    explanation: "<strong>-(-3)² = -(9) = -9.</strong> First square (-3) → 9, then apply the outer minus."
+  },
+  {
+    cat: 0,
+    math: `-(-2)^3`,
+    question: "Evaluate.",
+    options: [
+      { text: "8", correct: true },
+      { text: "-8", correct: false },
+      { text: "6", correct: false },
+      { text: "-6", correct: false },
+    ],
+    explanation: "<strong>-(-2)³ = -(-8) = 8.</strong>"
+  },
+  {
+    cat: 0,
+    math: `(-7)^0`,
+    question: "Evaluate.",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "0", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>Any non-zero number raised to the power 0 equals 1.</strong> (-7)⁰ = 1."
+  },
+  {
+    cat: 0,
+    math: `-7^0`,
+    question: "Evaluate.",
+    options: [
+      { text: "-1", correct: true },
+      { text: "1", correct: false },
+      { text: "0", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>-7⁰ = -(7⁰) = -(1) = -1.</strong> The outer minus is applied after the exponent."
+  },
+  {
+    cat: 0,
+    math: `(-5)^3`,
+    question: "What is the value?",
+    options: [
+      { text: "-125", correct: true },
+      { text: "125", correct: false },
+      { text: "-15", correct: false },
+      { text: "15", correct: false },
+    ],
+    explanation: "<strong>(-5)³ = -125.</strong> Odd power of negative → negative."
+  },
+  {
+    cat: 0,
+    math: `-(-4)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-16", correct: true },
+      { text: "16", correct: false },
+      { text: "-8", correct: false },
+      { text: "8", correct: false },
+    ],
+    explanation: "<strong>-(-4)² = -(16) = -16.</strong>"
+  },
 
-      const options = shuffle(Array.from(opts));
+  // ══ CAT 1: ADDITION & SUBTRACTION ══════════════════════════════════════════
+  {
+    cat: 1,
+    math: `-8 + (-3)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-11", correct: true },
+      { text: "11", correct: false },
+      { text: "-5", correct: false },
+      { text: "5", correct: false },
+    ],
+    explanation: "<strong>Adding two negatives: -8 + (-3) = -11.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-8 - (-3)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-5", correct: true },
+      { text: "-11", correct: false },
+      { text: "5", correct: false },
+      { text: "11", correct: false },
+    ],
+    explanation: "<strong>Subtracting a negative = adding a positive: -8 - (-3) = -8 + 3 = -5.</strong>"
+  },
+  {
+    cat: 1,
+    math: `15 + (-20)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-5", correct: true },
+      { text: "5", correct: false },
+      { text: "35", correct: false },
+      { text: "-35", correct: false },
+    ],
+    explanation: "<strong>15 + (-20) = 15 - 20 = -5.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-15 - 20`,
+    question: "Evaluate.",
+    options: [
+      { text: "-35", correct: true },
+      { text: "35", correct: false },
+      { text: "-5", correct: false },
+      { text: "5", correct: false },
+    ],
+    explanation: "<strong>-15 - 20 = -35.</strong> Both go further negative."
+  },
+  {
+    cat: 1,
+    math: `-100 + 64`,
+    question: "Evaluate.",
+    options: [
+      { text: "-36", correct: true },
+      { text: "36", correct: false },
+      { text: "-164", correct: false },
+      { text: "164", correct: false },
+    ],
+    explanation: "<strong>-100 + 64 = -36.</strong>"
+  },
+  {
+    cat: 1,
+    math: `0 - (-7)`,
+    question: "Evaluate.",
+    options: [
+      { text: "7", correct: true },
+      { text: "-7", correct: false },
+      { text: "0", correct: false },
+      { text: "-14", correct: false },
+    ],
+    explanation: "<strong>0 - (-7) = 0 + 7 = 7.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-3 + (-3) + (-3)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-6", correct: false },
+      { text: "0", correct: false },
+    ],
+    explanation: "<strong>-3 + (-3) + (-3) = -9.</strong>"
+  },
+  {
+    cat: 1,
+    math: `|-5| + (-3)`,
+    question: "Evaluate. (|·| means absolute value)",
+    options: [
+      { text: "2", correct: true },
+      { text: "-2", correct: false },
+      { text: "8", correct: false },
+      { text: "-8", correct: false },
+    ],
+    explanation: "<strong>|-5| = 5, then 5 + (-3) = 2.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-|-5| + (-3)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-8", correct: true },
+      { text: "8", correct: false },
+      { text: "-2", correct: false },
+      { text: "2", correct: false },
+    ],
+    explanation: "<strong>-|-5| = -5, then -5 + (-3) = -8.</strong>"
+  },
+  {
+    cat: 1,
+    math: `(-4) - (-4) + (-4)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-4", correct: true },
+      { text: "4", correct: false },
+      { text: "-12", correct: false },
+      { text: "0", correct: false },
+    ],
+    explanation: "<strong>(-4) - (-4) + (-4) = -4 + 4 + (-4) = -4.</strong>"
+  },
+  {
+    cat: 1,
+    math: `7 - (+9)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "16", correct: false },
+      { text: "-16", correct: false },
+    ],
+    explanation: "<strong>7 - (+9) = 7 - 9 = -2.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-13 - (-6) + (-2)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-21", correct: false },
+      { text: "21", correct: false },
+    ],
+    explanation: "<strong>-13 - (-6) + (-2) = -13 + 6 - 2 = -9.</strong>"
+  },
+  {
+    cat: 1,
+    math: `50 - (-50)`,
+    question: "Evaluate.",
+    options: [
+      { text: "100", correct: true },
+      { text: "-100", correct: false },
+      { text: "0", correct: false },
+      { text: "50", correct: false },
+    ],
+    explanation: "<strong>50 - (-50) = 50 + 50 = 100.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-1 - 1 - 1 - 1`,
+    question: "Evaluate.",
+    options: [
+      { text: "-4", correct: true },
+      { text: "4", correct: false },
+      { text: "-2", correct: false },
+      { text: "0", correct: false },
+    ],
+    explanation: "<strong>-1 - 1 - 1 - 1 = -4.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-200 - (-150) + (-50)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-100", correct: true },
+      { text: "100", correct: false },
+      { text: "-400", correct: false },
+      { text: "0", correct: false },
+    ],
+    explanation: "<strong>-200 + 150 - 50 = -100.</strong>"
+  },
+  {
+    cat: 1,
+    math: `8 - (-2) - (+10)`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "20", correct: false },
+      { text: "-4", correct: false },
+      { text: "4", correct: false },
+    ],
+    explanation: "<strong>8 + 2 - 10 = 0.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-\\frac{1}{2} + (-\\frac{1}{2})`,
+    question: "Evaluate.",
+    options: [
+      { text: "-1", correct: true },
+      { text: "1", correct: false },
+      { text: "0", correct: false },
+      { text: "-\\frac{1}{4}", correct: false },
+    ],
+    explanation: "<strong>-½ + (-½) = -1.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-\\frac{3}{4} - (-\\frac{1}{4})`,
+    question: "Evaluate.",
+    options: [
+      { text: "-\\frac{1}{2}", correct: true },
+      { text: "\\frac{1}{2}", correct: false },
+      { text: "-1", correct: false },
+      { text: "1", correct: false },
+    ],
+    explanation: "<strong>-¾ + ¼ = -½.</strong>"
+  },
+  {
+    cat: 1,
+    math: `(-20) + 35 + (-5)`,
+    question: "Evaluate.",
+    options: [
+      { text: "10", correct: true },
+      { text: "-10", correct: false },
+      { text: "60", correct: false },
+      { text: "-60", correct: false },
+    ],
+    explanation: "<strong>-20 + 35 - 5 = 10.</strong>"
+  },
+  {
+    cat: 1,
+    math: `-(-(- 6))`,
+    question: "Simplify.",
+    options: [
+      { text: "-6", correct: true },
+      { text: "6", correct: false },
+      { text: "18", correct: false },
+      { text: "-18", correct: false },
+    ],
+    explanation: "<strong>-(-(-6)) = -(6) = -6.</strong> Three negatives → negative."
+  },
+  {
+    cat: 1,
+    math: `-(-(6))`,
+    question: "Simplify.",
+    options: [
+      { text: "6", correct: true },
+      { text: "-6", correct: false },
+      { text: "12", correct: false },
+      { text: "-12", correct: false },
+    ],
+    explanation: "<strong>-(-6) = 6.</strong> Two negatives cancel."
+  },
 
-      return { expr, answer: correct, options };
-    }
+  // ══ CAT 2: MULTIPLICATION & DIVISION ═══════════════════════════════════════
+  {
+    cat: 2,
+    math: `(-3) \\times (-4)`,
+    question: "Evaluate.",
+    options: [
+      { text: "12", correct: true },
+      { text: "-12", correct: false },
+      { text: "-7", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>Negative × Negative = Positive. (-3)×(-4) = 12.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-3) \\times 4`,
+    question: "Evaluate.",
+    options: [
+      { text: "-12", correct: true },
+      { text: "12", correct: false },
+      { text: "-7", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>Negative × Positive = Negative. (-3)×4 = -12.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-2) \\times (-3) \\times (-4)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-24", correct: true },
+      { text: "24", correct: false },
+      { text: "-9", correct: false },
+      { text: "9", correct: false },
+    ],
+    explanation: "<strong>Three negatives multiplied → negative. (-2)×(-3) = 6, then 6×(-4) = -24.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-2) \\times (-3) \\times (-4) \\times (-1)`,
+    question: "Evaluate.",
+    options: [
+      { text: "24", correct: true },
+      { text: "-24", correct: false },
+      { text: "-10", correct: false },
+      { text: "10", correct: false },
+    ],
+    explanation: "<strong>Four negatives → positive. (-2)×(-3)×(-4)×(-1) = 24.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{-36}{-6}`,
+    question: "Evaluate.",
+    options: [
+      { text: "6", correct: true },
+      { text: "-6", correct: false },
+      { text: "-30", correct: false },
+      { text: "30", correct: false },
+    ],
+    explanation: "<strong>Negative ÷ Negative = Positive. -36 ÷ -6 = 6.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{-36}{6}`,
+    question: "Evaluate.",
+    options: [
+      { text: "-6", correct: true },
+      { text: "6", correct: false },
+      { text: "-30", correct: false },
+      { text: "30", correct: false },
+    ],
+    explanation: "<strong>Negative ÷ Positive = Negative. -36 ÷ 6 = -6.</strong>"
+  },
+  {
+    cat: 2,
+    math: `5 \\times (-2) \\times 3`,
+    question: "Evaluate.",
+    options: [
+      { text: "-30", correct: true },
+      { text: "30", correct: false },
+      { text: "-10", correct: false },
+      { text: "10", correct: false },
+    ],
+    explanation: "<strong>One negative factor → result is negative. 5×(-2)×3 = -30.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-1)^{50} \\times (-8)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-8", correct: true },
+      { text: "8", correct: false },
+      { text: "-50", correct: false },
+      { text: "50", correct: false },
+    ],
+    explanation: "<strong>(-1)^{50} = 1 (even power), so 1 × (-8) = -8.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{(-5) \\times 4}{-10}`,
+    question: "Evaluate.",
+    options: [
+      { text: "2", correct: true },
+      { text: "-2", correct: false },
+      { text: "20", correct: false },
+      { text: "-20", correct: false },
+    ],
+    explanation: "<strong>(-5×4) / -10 = -20 / -10 = 2.</strong> Two negatives cancel."
+  },
+  {
+    cat: 2,
+    math: `(-7) \\times 0 \\times (-100)`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "700", correct: false },
+      { text: "-700", correct: false },
+      { text: "-107", correct: false },
+    ],
+    explanation: "<strong>Any number multiplied by 0 equals 0.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{0}{-5}`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "-5", correct: false },
+      { text: "5", correct: false },
+      { text: "Undefined", correct: false },
+    ],
+    explanation: "<strong>0 divided by any non-zero number = 0.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{-5}{0}`,
+    question: "Evaluate.",
+    options: [
+      { text: "Undefined", correct: true },
+      { text: "0", correct: false },
+      { text: "-5", correct: false },
+      { text: "5", correct: false },
+    ],
+    explanation: "<strong>Division by zero is undefined.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-9) \\div 3 \\div (-3)`,
+    question: "Evaluate left to right.",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "9", correct: false },
+      { text: "-9", correct: false },
+    ],
+    explanation: "<strong>(-9)÷3 = -3, then -3÷(-3) = 1.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-4) \\times (-4) \\div (-8)`,
+    question: "Evaluate left to right.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "-8", correct: false },
+      { text: "8", correct: false },
+    ],
+    explanation: "<strong>(-4)×(-4) = 16, then 16÷(-8) = -2.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-3)^2 \\times (-2)^3`,
+    question: "Evaluate.",
+    options: [
+      { text: "-72", correct: true },
+      { text: "72", correct: false },
+      { text: "-36", correct: false },
+      { text: "36", correct: false },
+    ],
+    explanation: "<strong>(-3)² = 9, (-2)³ = -8, then 9×(-8) = -72.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-12) \\div (-4) \\times (-3)`,
+    question: "Evaluate left to right.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-1", correct: false },
+      { text: "1", correct: false },
+    ],
+    explanation: "<strong>(-12)÷(-4) = 3, then 3×(-3) = -9.</strong>"
+  },
+  {
+    cat: 2,
+    math: `\\frac{(-2)^5}{(-2)^3}`,
+    question: "Evaluate.",
+    options: [
+      { text: "4", correct: true },
+      { text: "-4", correct: false },
+      { text: "8", correct: false },
+      { text: "-8", correct: false },
+    ],
+    explanation: "<strong>(-2)^5 = -32, (-2)^3 = -8, then -32 ÷ -8 = 4.</strong>"
+  },
+  {
+    cat: 2,
+    math: `3 \\times (-5) \\times (-2) \\times (-1)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-30", correct: true },
+      { text: "30", correct: false },
+      { text: "-10", correct: false },
+      { text: "10", correct: false },
+    ],
+    explanation: "<strong>Three negative factors (odd count) → result is negative. 3×5×2×1 = 30, so -30.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-8) \\times (-8)`,
+    question: "Evaluate.",
+    options: [
+      { text: "64", correct: true },
+      { text: "-64", correct: false },
+      { text: "-16", correct: false },
+      { text: "16", correct: false },
+    ],
+    explanation: "<strong>(-8)×(-8) = 64.</strong> Negative × Negative = Positive."
+  },
+  {
+    cat: 2,
+    math: `\\frac{(-3)^4}{-9}`,
+    question: "Evaluate.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-81", correct: false },
+      { text: "81", correct: false },
+    ],
+    explanation: "<strong>(-3)⁴ = 81, then 81 ÷ (-9) = -9.</strong>"
+  },
+  {
+    cat: 2,
+    math: `(-0.5) \\times (-0.5)`,
+    question: "Evaluate.",
+    options: [
+      { text: "0.25", correct: true },
+      { text: "-0.25", correct: false },
+      { text: "-1", correct: false },
+      { text: "1", correct: false },
+    ],
+    explanation: "<strong>(-0.5)×(-0.5) = 0.25.</strong>"
+  },
 
-    function startQuiz(){
-      idx=0; score=0;
-      QUESTIONS = Array.from({length: totalQuestions}, ()=> makeQuestion());
-      render();
-    }
+  // ══ CAT 3: ORDER OF OPERATIONS ═════════════════════════════════════════════
+  {
+    cat: 3,
+    math: `-3 + 4 \\times (-2)`,
+    question: "Evaluate using correct order of operations.",
+    options: [
+      { text: "-11", correct: true },
+      { text: "-2", correct: false },
+      { text: "2", correct: false },
+      { text: "-14", correct: false },
+    ],
+    explanation: "<strong>Multiply first: 4×(-2) = -8, then -3 + (-8) = -11.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(-3 + 4) \\times (-2)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "-11", correct: false },
+      { text: "11", correct: false },
+    ],
+    explanation: "<strong>Brackets first: (-3 + 4) = 1, then 1×(-2) = -2.</strong>"
+  },
+  {
+    cat: 3,
+    math: `10 - 2^3 + (-1)`,
+    question: "Evaluate using PEMDAS/BODMAS.",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "17", correct: false },
+      { text: "-17", correct: false },
+    ],
+    explanation: "<strong>Exponent first: 2³ = 8, then 10 - 8 + (-1) = 1.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(10 - 2)^3 + (-1)`,
+    question: "Evaluate.",
+    options: [
+      { text: "511", correct: true },
+      { text: "-511", correct: false },
+      { text: "513", correct: false },
+      { text: "-1", correct: false },
+    ],
+    explanation: "<strong>Brackets first: (10-2) = 8, then 8³ = 512, then 512 + (-1) = 511.</strong>"
+  },
+  {
+    cat: 3,
+    math: `-2^2 + 4 \\div (-2)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-6", correct: true },
+      { text: "6", correct: false },
+      { text: "-2", correct: false },
+      { text: "2", correct: false },
+    ],
+    explanation: "<strong>-2² = -4, 4÷(-2) = -2, then -4 + (-2) = -6.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(-2)^2 + 4 \\div (-2)`,
+    question: "Evaluate.",
+    options: [
+      { text: "2", correct: true },
+      { text: "-2", correct: false },
+      { text: "6", correct: false },
+      { text: "-6", correct: false },
+    ],
+    explanation: "<strong>(-2)² = 4, 4÷(-2) = -2, then 4 + (-2) = 2.</strong>"
+  },
+  {
+    cat: 3,
+    math: `3 - 4^2 \\div 8 \\times (-2)`,
+    question: "Evaluate (left to right for × and ÷).",
+    options: [
+      { text: "7", correct: true },
+      { text: "-7", correct: false },
+      { text: "3", correct: false },
+      { text: "-3", correct: false },
+    ],
+    explanation: "<strong>4² = 16, then 16÷8 = 2, then 2×(-2) = -4, then 3-(-4) = 3+4 = 7.</strong>"
+  },
+  {
+    cat: 3,
+    math: `-5 \\times (3 - 8)`,
+    question: "Evaluate.",
+    options: [
+      { text: "25", correct: true },
+      { text: "-25", correct: false },
+      { text: "-7", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>(3-8) = -5, then -5×(-5) = 25.</strong>"
+  },
+  {
+    cat: 3,
+    math: `-5 \\times 3 - 8`,
+    question: "Evaluate.",
+    options: [
+      { text: "-23", correct: true },
+      { text: "23", correct: false },
+      { text: "-7", correct: false },
+      { text: "7", correct: false },
+    ],
+    explanation: "<strong>Multiply first: -5×3 = -15, then -15 - 8 = -23.</strong>"
+  },
+  {
+    cat: 3,
+    math: `\\frac{-6 + 2}{-2^2}`,
+    question: "Evaluate.",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "4", correct: false },
+      { text: "-4", correct: false },
+    ],
+    explanation: "<strong>Numerator: -6+2 = -4. Denominator: -2² = -(4) = -4. Result: -4 ÷ -4 = 1.</strong>"
+  },
+  {
+    cat: 3,
+    math: `2 - (3 - 5)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "6", correct: false },
+      { text: "-6", correct: false },
+    ],
+    explanation: "<strong>(3-5) = -2, (-2)² = 4, then 2-4 = -2.</strong>"
+  },
+  {
+    cat: 3,
+    math: `-|3 - 7| + 2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "6", correct: false },
+      { text: "-6", correct: false },
+    ],
+    explanation: "<strong>|3-7| = |-4| = 4, then -4 + 2 = -2.</strong>"
+  },
+  {
+    cat: 3,
+    math: `4 + (-3)^2 \\times (-1)`,
+    question: "Evaluate.",
+    options: [
+      { text: "-5", correct: true },
+      { text: "5", correct: false },
+      { text: "13", correct: false },
+      { text: "-13", correct: false },
+    ],
+    explanation: "<strong>(-3)² = 9, then 9×(-1) = -9, then 4+(-9) = -5.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(-2)^3 - 3^2 + 1`,
+    question: "Evaluate.",
+    options: [
+      { text: "-16", correct: true },
+      { text: "16", correct: false },
+      { text: "-2", correct: false },
+      { text: "2", correct: false },
+    ],
+    explanation: "<strong>(-2)³ = -8, 3² = 9, then -8 - 9 + 1 = -16.</strong>"
+  },
+  {
+    cat: 3,
+    math: `6 \\div (-2) + (-4) \\times 2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-11", correct: true },
+      { text: "11", correct: false },
+      { text: "-5", correct: false },
+      { text: "5", correct: false },
+    ],
+    explanation: "<strong>6÷(-2) = -3, (-4)×2 = -8, then -3 + (-8) = -11.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(-5)^2 - 5^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "50", correct: false },
+      { text: "-50", correct: false },
+      { text: "-10", correct: false },
+    ],
+    explanation: "<strong>(-5)² = 25 and 5² = 25, so 25 - 25 = 0.</strong>"
+  },
+  {
+    cat: 3,
+    math: `2 \\times (-3) + 4 \\times (-1)^3`,
+    question: "Evaluate.",
+    options: [
+      { text: "-10", correct: true },
+      { text: "10", correct: false },
+      { text: "-2", correct: false },
+      { text: "2", correct: false },
+    ],
+    explanation: "<strong>2×(-3) = -6, (-1)³ = -1, 4×(-1) = -4, then -6+(-4) = -10.</strong>"
+  },
+  {
+    cat: 3,
+    math: `10 \\div (-2) \\times (-5)`,
+    question: "Evaluate left to right.",
+    options: [
+      { text: "25", correct: true },
+      { text: "-25", correct: false },
+      { text: "1", correct: false },
+      { text: "-1", correct: false },
+    ],
+    explanation: "<strong>10÷(-2) = -5, then (-5)×(-5) = 25.</strong>"
+  },
+  {
+    cat: 3,
+    math: `-3^2 \\times (-1)^3`,
+    question: "Evaluate.",
+    options: [
+      { text: "9", correct: true },
+      { text: "-9", correct: false },
+      { text: "27", correct: false },
+      { text: "-27", correct: false },
+    ],
+    explanation: "<strong>-3² = -9, (-1)³ = -1, then (-9)×(-1) = 9.</strong>"
+  },
+  {
+    cat: 3,
+    math: `(-3)^2 \\times (-1)^3`,
+    question: "Evaluate.",
+    options: [
+      { text: "-9", correct: true },
+      { text: "9", correct: false },
+      { text: "-27", correct: false },
+      { text: "27", correct: false },
+    ],
+    explanation: "<strong>(-3)² = 9, (-1)³ = -1, then 9×(-1) = -9.</strong>"
+  },
 
-    function render(){
-      const q = QUESTIONS[idx];
-      card.innerHTML = `
-        <div class="question">Q${idx+1}: Calculate <strong>${q.expr}</strong></div>
-        <div class="options">${q.options.map(o=>`<label class="option"><input type="radio" name="opt" value="${o}"> ${o}</label>`).join('')}</div>
-        <div class="controls">
-          <button id="check">Check</button>
-          <button class="secondary" id="skipBtn">Skip</button>
-          <button class="secondary"><a style="text-decoration:none; color: #60a5fa" href="{% url 'working_with_signs' %}">Exit</a></button>
-          <div style="flex:1"></div>
-          <div class="meta">${idx+1}/${totalQuestions}</div>
+  // ══ CAT 4: MIXED / TRICKY ═══════════════════════════════════════════════════
+  {
+    cat: 4,
+    math: `\\frac{-(-4)^2}{-2}`,
+    question: "Evaluate.",
+    options: [
+      { text: "8", correct: true },
+      { text: "-8", correct: false },
+      { text: "16", correct: false },
+      { text: "-16", correct: false },
+    ],
+    explanation: "<strong>-(-4)² = -(16) = -16. Then -16 ÷ -2 = 8.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-2 + 5)^2 - (-2 + 5)`,
+    question: "Evaluate.",
+    options: [
+      { text: "6", correct: true },
+      { text: "-6", correct: false },
+      { text: "12", correct: false },
+      { text: "3", correct: false },
+    ],
+    explanation: "<strong>(-2+5) = 3, then 3² - 3 = 9 - 3 = 6.</strong>"
+  },
+  {
+    cat: 4,
+    math: `-(-(-(-2)))`,
+    question: "Simplify.",
+    options: [
+      { text: "2", correct: true },
+      { text: "-2", correct: false },
+      { text: "8", correct: false },
+      { text: "-8", correct: false },
+    ],
+    explanation: "<strong>Work from inside out: -(-2)=2, -(2)=-2, -(-2)=2. Four negatives → positive.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-1+1)^{999}`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "-1", correct: false },
+      { text: "1", correct: false },
+      { text: "999", correct: false },
+    ],
+    explanation: "<strong>(-1+1) = 0, and 0^{999} = 0.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-3)^2 + (-3) \\times 2 - 1`,
+    question: "Evaluate.",
+    options: [
+      { text: "2", correct: true },
+      { text: "-2", correct: false },
+      { text: "16", correct: false },
+      { text: "-16", correct: false },
+    ],
+    explanation: "<strong>(-3)² = 9, (-3)×2 = -6, then 9 + (-6) - 1 = 2.</strong>"
+  },
+  {
+    cat: 4,
+    math: `\\frac{(-4)^3 + 4^3}{4}`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "32", correct: false },
+      { text: "-32", correct: false },
+      { text: "16", correct: false },
+    ],
+    explanation: "<strong>(-4)³ = -64, 4³ = 64, then (-64+64)/4 = 0/4 = 0.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-2)^2 - (-2)^3 - (-2)^4`,
+    question: "Evaluate.",
+    options: [
+      { text: "-4", correct: true },
+      { text: "4", correct: false },
+      { text: "-12", correct: false },
+      { text: "12", correct: false },
+    ],
+    explanation: "<strong>(-2)² = 4, (-2)³ = -8, (-2)⁴ = 16. Then 4 - (-8) - 16 = 4 + 8 - 16 = -4.</strong>"
+  },
+  {
+    cat: 4,
+    math: `\\sqrt{(-3)^2}`,
+    question: "Evaluate.",
+    options: [
+      { text: "3", correct: true },
+      { text: "-3", correct: false },
+      { text: "9", correct: false },
+      { text: "-9", correct: false },
+    ],
+    explanation: "<strong>√((-3)²) = √9 = 3.</strong> The square root always returns the non-negative value."
+  },
+  {
+    cat: 4,
+    math: `(-1)^{2n}  \\text{ where } n \\in \\mathbb{Z}`,
+    question: "What is the value for any integer n?",
+    options: [
+      { text: "1", correct: true },
+      { text: "-1", correct: false },
+      { text: "Depends on n", correct: false },
+      { text: "0", correct: false },
+    ],
+    explanation: "<strong>2n is always even, so (-1)^{2n} = 1 for all integers n.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-a)^2 \\text{ vs } -a^2`,
+    question: "Which statement is always true?",
+    options: [
+      { text: "(-a)² = a² and -a² = -(a²)", correct: true },
+      { text: "They are always equal", correct: false },
+      { text: "(-a)² is always negative", correct: false },
+      { text: "-a² is always positive", correct: false },
+    ],
+    explanation: "<strong>(-a)² = a²</strong> (squaring removes the sign), while <strong>-a²= -(a²)</strong> is always ≤ 0 for real a."
+  },
+  {
+    cat: 4,
+    math: `\\frac{(-5)^2 \\times (-2)^3}{(-10)^2}`,
+    question: "Evaluate.",
+    options: [
+      { text: "-2", correct: true },
+      { text: "2", correct: false },
+      { text: "-200", correct: false },
+      { text: "200", correct: false },
+    ],
+    explanation: "<strong>(-5)² = 25, (-2)³ = -8, (-10)² = 100. Then (25×-8)/100 = -200/100 = -2.</strong>"
+  },
+  {
+    cat: 4,
+    math: `-3 \\times (-2 - 4)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "-108", correct: true },
+      { text: "108", correct: false },
+      { text: "-36", correct: false },
+      { text: "36", correct: false },
+    ],
+    explanation: "<strong>(-2-4) = -6, (-6)² = 36, then -3×36 = -108.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(-3 \\times -2 - 4)^2`,
+    question: "Evaluate.",
+    options: [
+      { text: "4", correct: true },
+      { text: "-4", correct: false },
+      { text: "100", correct: false },
+      { text: "-100", correct: false },
+    ],
+    explanation: "<strong>(-3×-2) = 6, then (6-4)² = 2² = 4.</strong>"
+  },
+  {
+    cat: 4,
+    math: `|{-3}| \\times |{-4}| - |{-20}|`,
+    question: "Evaluate.",
+    options: [
+      { text: "-8", correct: true },
+      { text: "8", correct: false },
+      { text: "32", correct: false },
+      { text: "-32", correct: false },
+    ],
+    explanation: "<strong>|-3|=3, |-4|=4, |-20|=20. Then 3×4 - 20 = 12 - 20 = -8.</strong>"
+  },
+  {
+    cat: 4,
+    math: `(−2)^{10} − 2^{10}`,
+    question: "Evaluate.",
+    options: [
+      { text: "0", correct: true },
+      { text: "2048", correct: false },
+      { text: "-2048", correct: false },
+      { text: "1024", correct: false },
+    ],
+    explanation: "<strong>(-2)^{10} = 1024 (even power) and 2^{10} = 1024, so 1024 - 1024 = 0.</strong>"
+  },
+];
+
+// ─── State ────────────────────────────────────────────────────────────────────
+let correct = 0, wrong = 0, answered = 0;
+let resultsSent = false;
+let selected = [];
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function pickQuestions() {
+  selected = shuffle([...questionPool]).slice(0, TOTAL);
+}
+
+const letters = ['A', 'B', 'C', 'D'];
+
+function buildCards() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+
+  selected.forEach((q, idx) => {
+    const opts = shuffle([...q.options]);
+    const card = document.createElement('div');
+    card.className = `q-card cat-${q.cat}`;
+    card.id = `card-${idx}`;
+    card.style.animationDelay = `${idx * 0.04}s`;
+
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-meta">
+          <div class="q-num">${String(idx + 1).padStart(2, '0')}</div>
+          <div class="q-type-badge cat-${q.cat}">${catNames[q.cat]}</div>
         </div>
-        <div id="feedback"></div>
-      `;
-      document.getElementById('check').addEventListener('click', ()=> check(q));
-      document.getElementById('skipBtn').addEventListener('click', next);
-    }
+        <div class="q-status" id="status-${idx}"></div>
+      </div>
+      <div class="q-text">${q.question}</div>
+      <div class="q-math">\\(${q.math}\\)</div>
+      <div class="options" id="opts-${idx}">
+        ${opts.map((opt, i) => `
+          <button class="opt-btn" onclick="selectOption(${idx}, ${opt.correct}, this, ${JSON.stringify(opts.map(o => o.correct))}, ${i})">
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${opt.text.replace(/'/g, "&#39;")}</span>
+          </button>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${idx}">
+        <strong>Explanation:</strong> ${q.explanation}
+      </div>`;
+    container.appendChild(card);
+  });
 
-    function check(q){
-      const sel = document.querySelector('input[name=opt]:checked');
-      const fb = document.getElementById('feedback');
-      document.getElementById('check').disabled = true;
-      if(!sel){ fb.innerHTML = `<div class="result bad">⚠️ Please select an option.</div>`; return; }
-      const val = sel.value;
-      if(val === q.answer){
-        score++;
-        fb.innerHTML = `<div class="result ok">✅ Correct!</div>`;
-        document.getElementById('skipBtn').removeEventListener('click', next);
-        document.getElementById('skipBtn').disabled = true;
-        setTimeout(next, 800);
-      } else {
-        fb.innerHTML = `<div class="result bad">❌ Incorrect. Correct: ${q.answer}</div>`;
-        document.getElementById('skipBtn').textContent = 'Next';
-        document.getElementById('skipBtn').id = 'nextBtn';
-        document.getElementById('nextBtn').addEventListener('click', next);
-      }
-    }
+  if (window.MathJax) MathJax.typesetPromise([container]);
+}
 
-    function next(){
-      if(idx < totalQuestions - 1){ idx++; render(); }
-      else showResults();
-    }
+function selectOption(idx, isCorrect, btn, correctMap, chosenIdx) {
+  const card = document.getElementById(`card-${idx}`);
+  if (card.classList.contains('answered')) return;
+  card.classList.add('answered');
 
-    function showResults(){
-      const perc = Math.round((score/totalQuestions)*100);
-      card.innerHTML = `
-        <div class="question">Test completed!</div>
-        <div class="result ok" style="text-align:center;font-size:18px;margin-bottom:12px;">
-          Your result: ${score}/${totalQuestions} (${perc}%)
-        </div>
-        <div style="text-align:center;">${perc >= 80 ? "Excellent! 👍" : perc >= 50 ? "Good, keep practising! 😊" : "Keep practicing — you got this! 📚"}</div>
-        <div class="controls" style="justify-content:center;margin-top:12px;">
-          <button id="restart">Retry</button>
-          <button><a style="text-decoration: none; color:black;" href="{% url 'working_with_signs' %}">Exit</a></button>
-        </div>
-      `;
-      document.getElementById('restart').addEventListener('click', startQuiz);
-    }
+  const allBtns = document.querySelectorAll(`#opts-${idx} .opt-btn`);
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (correctMap[i]) b.classList.add(i === chosenIdx ? 'correct' : 'reveal');
+  });
 
-    startQuiz();
-  </script>
+  if (isCorrect) {
+    btn.classList.add('correct');
+    card.classList.add('correct-answer');
+    document.getElementById(`status-${idx}`).textContent = '✓';
+    correct++;
+    document.getElementById('scoreCorrect').textContent = correct;
+  } else {
+    btn.classList.add('wrong');
+    card.classList.add('wrong-answer');
+    document.getElementById(`status-${idx}`).textContent = '✗';
+    wrong++;
+    document.getElementById('scoreWrong').textContent = wrong;
+  }
+
+  answered++;
+  document.getElementById('scoreTotal').textContent = `${answered}/${TOTAL}`;
+  document.getElementById('progressFill').style.width = `${(answered / TOTAL) * 100}%`;
+  document.getElementById(`exp-${idx}`).classList.add('visible');
+  if (window.MathJax) MathJax.typesetPromise([document.getElementById(`exp-${idx}`)]);
+
+  if (answered === TOTAL) {
+    const banner = document.getElementById('finishBanner');
+    banner.classList.add('visible');
+    const pct = Math.round((correct / TOTAL) * 100);
+    document.getElementById('finishTitle').textContent =
+      pct >= 80 ? '🎉 Excellent Work!' : pct >= 60 ? '👍 Good Effort!' : '📚 Keep Practicing!';
+    document.getElementById('finishMsg').textContent =
+      `You scored ${correct} out of ${TOTAL} (${pct}%). ${pct >= 80 ? 'You have a strong command of sign rules!' : 'Review the explanations and regenerate for another round!'}`;
+    sendResults(pct);
+  }
+}
+
+function sendResults(pct) {
+  if (answered === 0 || resultsSent) return;
+  resultsSent = true;
+  fetch('/working_with_signs_practice/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]')?.value
+    },
+    body: JSON.stringify({ correct, wrong, answered, percentage: pct ?? Math.round((correct / TOTAL) * 100) })
+  }).then(r => r.json()).then(d => console.log('Saved:', d)).catch(e => console.log('Error:', e));
+}
+
+function resetAll() {
+  sendResults();
+  correct = 0; wrong = 0; answered = 0; resultsSent = false;
+  document.getElementById('scoreCorrect').textContent = 0;
+  document.getElementById('scoreWrong').textContent = 0;
+  document.getElementById('scoreTotal').textContent = `0/${TOTAL}`;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('finishBanner').classList.remove('visible');
+  pickQuestions();
+  buildCards();
+}
+
+pickQuestions();
+buildCards();
+</script>
 </body>
 </html>

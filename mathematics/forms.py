@@ -58,13 +58,3 @@ class RegistrationForm(UserCreationForm):
             'password1',
             'password2'
         )
-
-
-class ProfileCreation(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = [
-            'profile_picture',
-            'user',
-            'language'
-        ]

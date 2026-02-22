@@ -6,281 +6,1446 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Google Web Fonts -->
-
     <link rel="icon" href="{% static 'blog/logo.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+          rel="stylesheet">
+    <title>Login</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        /* ─── Variables ─────────────────────────────── */
+        :root {
+            --ink:    #0d0d0d;
+            --cream:  #f7f3ec;
+            --sage:   #2d4a3e;
+            --sage-light: #3d6b59;
+            --gold:   #c9a84c;
+            --muted:  #8a8a7a;
+            --border: rgba(13,13,13,0.12);
+            --input-bg: rgba(13,13,13,0.05);
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background-color: #c9d6ff;
-            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            background-color: var(--ink);
+            font-family: 'Space Mono', monospace;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
+            align-items: stretch;
+            overflow-x: hidden;
         }
 
-        .container {
-            background-color: #fff;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-            position: relative;
-            overflow: hidden;
-            width: 768px;
-            max-width: 100%;
-            min-height: 480px;
-        }
-
-        .container p {
-            font-size: 14px;
-            line-height: 20px;
-            letter-spacing: 0.3px;
-            margin: 20px 0;
-        }
-
-        .container span {
-            font-size: 12px;
-        }
-
-        .container a {
-            color: #333;
-            font-size: 13px;
-            text-decoration: none;
-            margin: 15px 0 10px;
-        }
-
-        .container button {
-            background-color: #512da8;
-            color: #fff;
-            font-size: 12px;
-            padding: 10px 45px;
-            border: 1px solid transparent;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        .container button.hidden {
-            background-color: transparent;
-            border-color: #fff;
-        }
-
-        .container form {
-            background-color: #fff;
+        /* ─── Page wrapper ──────────────────────────── */
+        .page {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 40px;
-            height: 100%;
-        }
-
-        .container input {
-            background-color: #eee;
-            border: none;
-            margin: 8px 0;
-            padding: 10px 15px;
-            font-size: 13px;
-            border-radius: 8px;
             width: 100%;
-            outline: none;
+            min-height: 100vh;
         }
 
-        .form-container {
+        /* ═══════════════════════════════════════════════
+           LEFT PANEL — visual / brand side
+        ═══════════════════════════════════════════════ */
+        .left-panel {
+            flex: 0 0 42%;
+            background-color: var(--sage);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 52px 48px;
+            overflow: hidden;
+            clip-path: polygon(0 0, 92% 0, 100% 100%, 0 100%);
+        }
+
+        .left-panel::before {
+            content: '';
             position: absolute;
-            top: 0;
-            height: 100%;
-            transition: all 0.6s ease-in-out;
+            top: -120px;
+            right: -80px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,168,76,0.2);
+            pointer-events: none;
         }
 
-        .sign-in {
-            left: 0;
-            width: 50%;
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,168,76,0.15);
+            pointer-events: none;
+        }
+
+        .brand {
+            position: relative;
             z-index: 2;
         }
 
-        .container.active .sign-in {
-            transform: translateX(100%);
-        }
-
-        .sign-up {
-            left: 0;
-            width: 50%;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .container.active .sign-up {
-            transform: translateX(100%);
-            opacity: 1;
-            z-index: 5;
-            animation: move 0.6s;
-        }
-
-        @keyframes move {
-            0%, 49.99% {
-                opacity: 0;
-                z-index: 1;
-            }
-            50%, 100% {
-                opacity: 1;
-                z-index: 5;
-            }
-        }
-
-        .social-icons {
-            margin: 20px 0;
-        }
-
-        .social-icons a {
-            border: 1px solid #ccc;
-            border-radius: 20%;
+        .brand-mark {
             display: inline-flex;
-            justify-content: center;
             align-items: center;
-            margin: 0 3px;
-            width: 40px;
-            height: 40px;
+            gap: 10px;
         }
 
-        .toggle-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: all 0.6s ease-in-out;
-            border-radius: 150px 0 0 100px;
-            z-index: 1000;
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
         }
 
-        .container.active .toggle-container {
-            transform: translateX(-100%);
-            border-radius: 0 150px 100px 0;
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 3px;
         }
 
-        .toggle {
-            background-color: #512da8;
-            height: 100%;
-            background: linear-gradient(to right, #5c6bc0, #512da8);
-            color: #fff;
+        .left-body {
             position: relative;
-            left: -100%;
-            height: 100%;
-            width: 200%;
-            transform: translateX(0);
-            transition: all 0.6s ease-in-out;
+            z-index: 2;
         }
 
-        .container.active .toggle {
-            transform: translateX(50%);
+        .left-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 28px;
         }
 
-        .toggle-panel {
-            position: absolute;
-            width: 50%;
-            height: 100%;
+        .left-tagline em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .left-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: rgba(247,243,236,0.5);
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            max-width: 240px;
+        }
+
+        .left-footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        .left-switch-label {
+            font-size: 10px;
+            color: rgba(247,243,236,0.4);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .left-switch-btn {
+            background: transparent;
+            border: 1px solid rgba(201,168,76,0.5);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px 28px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .left-switch-btn:hover {
+            background: var(--gold);
+            color: var(--ink);
+            border-color: var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════
+           RIGHT PANEL — form side
+        ═══════════════════════════════════════════════ */
+        .right-panel {
+            flex: 1;
+            background: var(--cream);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .right-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 380px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Form panels ── */
+        .form-panel {
+            display: none;
             flex-direction: column;
-            padding: 0 30px;
+            animation: fadeSlideIn 0.45s ease both;
+        }
+
+        .form-panel.active {
+            display: flex;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-eyebrow {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 36px;
+        }
+
+        /* ── Inputs ── */
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 13px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.25s, background 0.25s;
+            width: 100%;
+        }
+
+        .input-group input:focus {
+            border-color: var(--sage);
+            background: #fff;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(13,13,13,0.25);
+        }
+
+        /* ── Submit button ── */
+        .submit-btn {
+            margin-top: 10px;
+            background: var(--sage);
+            color: var(--cream);
+            border: none;
+            border-radius: 4px;
+            padding: 16px;
+            width: 100%;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.15s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .submit-btn:hover::after {
+            transform: scaleX(1);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-btn:hover {
+            color: var(--ink);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .submit-btn:disabled,
+        .submit-btn.disabled {
+            background: #c0bdb8;
+            color: rgba(255,255,255,0.5);
+            cursor: not-allowed;
+            transform: none;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .submit-btn:disabled::after,
+        .submit-btn.disabled::after {
+            display: none;
+        }
+
+        /* ── Loading state ── */
+        .submit-btn.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* ── Divider line ── */
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0 0;
+        }
+
+        .form-divider hr {
+            flex: 1;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .form-divider span {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .switch-link {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .switch-link:hover {
+            color: var(--sage);
+        }
+
+        /* ── Password requirements indicator ── */
+        .pw-requirements {
+            margin-top: 10px;
+            background: rgba(13,13,13,0.04);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            display: none;
+        }
+
+        .pw-requirements.visible {
+            display: block;
+            animation: fadeSlideIn 0.2s ease both;
+        }
+
+        .pw-req-title {
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .pw-requirements ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .req {
+            font-size: 11px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.25s;
+        }
+
+        .req-icon {
+            font-size: 13px;
+            line-height: 1;
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+
+        .req.passed { color: #2d6a4f; }
+        .req.passed .req-icon { color: #2d6a4f; }
+        .req.failed { color: #b5312c; }
+        .req.failed .req-icon { color: #b5312c; }
+
+        /* ── Password eye toggle ── */
+        .pw-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .pw-wrap input {
+            padding-right: 42px;
+        }
+
+        .eye-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            color: var(--muted);
+            transition: color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .eye-btn:hover { color: var(--sage); }
+
+        .eye-btn svg {
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+
+        /* ── Confirm password match hint ── */
+        .confirm-hint {
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+            min-height: 14px;
+            transition: color 0.25s;
+        }
+
+        .confirm-hint.match   { color: #2d6a4f; }
+        .confirm-hint.no-match { color: #b5312c; }
+
+        /* ── Error / success message ── */
+        .form-msg {
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            display: none;
+        }
+
+        .form-msg.error {
+            display: block;
+            background: rgba(181,49,44,0.08);
+            border: 1px solid rgba(181,49,44,0.25);
+            color: #b5312c;
+        }
+
+        .form-msg.success {
+            display: block;
+            background: rgba(45,106,79,0.08);
+            border: 1px solid rgba(45,106,79,0.25);
+            color: #2d6a4f;
+        }
+
+        /* ── Verify code input ── */
+        .code-input-wrap {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .code-digit {
+            flex: 1;
             text-align: center;
-            top: 0;
-            transform: translateX(0);
-            transition: all 0.6s ease-in-out;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 16px 4px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.25s, background 0.25s;
+            width: 100%;
+            caret-color: transparent;
         }
 
-        .toggle-left {
-            transform: translateX(-200%);
+        .code-digit:focus {
+            border-color: var(--sage);
+            background: #fff;
         }
 
-        .container.active .toggle-left {
-            transform: translateX(0);
+        .code-digit.filled {
+            border-color: var(--gold);
+            color: var(--sage);
         }
 
-        .toggle-right {
-            right: 0;
-            transform: translateX(0);
+        /* ── Resend row ── */
+        .resend-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+            margin-bottom: 6px;
         }
 
-        .container.active .toggle-right {
-            transform: translateX(200%);
+        .resend-hint {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
         }
 
-        a {
-            font-size: 18px !important;
+        .resend-btn {
+            background: none;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--sage);
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            padding: 0;
         }
+
+        .resend-btn:disabled {
+            color: var(--muted);
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+
+        /* ── Timer ── */
+        .timer-text {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           MOBILE (≤768px)
+        ═══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            body { background: var(--cream); }
+
+            .page {
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            .left-panel {
+                flex: none;
+                clip-path: none;
+                padding: 28px 24px 0;
+                background: var(--sage);
+                overflow: visible;
+            }
+
+            .left-panel::before,
+            .left-panel::after { display: none; }
+
+            .left-body,
+            .left-footer,
+            .left-desc { display: none; }
+
+            .brand { margin-bottom: 0; }
+
+            .mobile-tabs {
+                display: flex;
+                gap: 0;
+                margin-top: 20px;
+            }
+
+            .mobile-tab {
+                flex: 1;
+                background: transparent;
+                border: none;
+                border-bottom: 3px solid transparent;
+                color: rgba(247,243,236,0.45);
+                font-family: 'Space Mono', monospace;
+                font-size: 10px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                padding: 14px 10px;
+                cursor: pointer;
+                transition: all 0.25s;
+            }
+
+            .mobile-tab.active-tab {
+                color: var(--gold);
+                border-bottom-color: var(--gold);
+            }
+
+            .right-panel {
+                flex: 1;
+                padding: 36px 24px 48px;
+                align-items: flex-start;
+            }
+
+            .form-wrapper { max-width: 100%; }
+            .form-title { margin-bottom: 24px; }
+
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .left-footer { display: none; }
+
+            .code-digit {
+                font-size: 20px;
+                padding: 12px 2px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-tabs { display: none; }
+        }
+
     </style>
-    <title>Login</title>
 </head>
 <body>
-<div class="container" id="container">
-    <div class="form-container sign-up">
-        <form method="post">
-            {% csrf_token %}
-            <h1>Create Account</h1>
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="First Name" name="first_name">
-            <input type="text" placeholder="Last Name" name="last_name">
-            <input type="email" placeholder="Email" name="email">
-            <input type="password" placeholder="Password" name="password1">
-            <input type="password" placeholder="Again" name="password2">
-            <input type="text" style="display: none" value="register" name="type">
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
-    <div class="form-container sign-in">
-        <form method="post">
-            {% csrf_token %}
-            <h1>Sign In</h1>
-            <input type="text" placeholder="Username" name="username">
-            <input type="password" placeholder="Password" name="password">
-            <input type="text" style="display: none" value="login" name="type">
-            <button type="submit">Sign In</button>
-        </form>
-    </div>
-    <div class="toggle-container">
-        <div class="toggle">
-            <div class="toggle-panel toggle-left">
-                <h1>Welcome Back!</h1>
-                <p>Enter your personal details to use all of site features</p>
-                <button class="hidden" id="login">Sign In</button>
+
+<div class="page">
+
+    <!-- ══ LEFT — brand panel ══════════════════════════════ -->
+    <div class="left-panel">
+
+        <div class="brand">
+            <div class="brand-mark">
+                <div class="brand-dot"></div>
+                <span class="brand-name">Math Academy</span>
             </div>
-            <div class="toggle-panel toggle-right">
-                <h1>Hello, Friend!</h1>
-                <p>Register with your personal details to use all of site features</p>
-                <button class="hidden" id="register">Sign Up</button>
+        </div>
+
+        <div class="mobile-tabs">
+            <button class="mobile-tab active-tab" onclick="switchPanel('login')">Sign In</button>
+            <button class="mobile-tab" id="mobileRegTab" onclick="switchPanel('register')">Sign Up</button>
+        </div>
+
+        <div class="left-body">
+            <h2 class="left-tagline">Learn<br><em>without</em><br>limits.</h2>
+            <p class="left-desc">Your gateway to knowledge, progress and a community of curious minds.</p>
+        </div>
+
+        <div class="left-footer" id="desktopFooter">
+            <p class="left-switch-label" id="switchLabel">Don't have an account?</p>
+            <button class="left-switch-btn" id="desktopSwitchBtn" onclick="desktopSwitch()">Create account</button>
+        </div>
+
+    </div>
+
+    <!-- ══ RIGHT — form panel ══════════════════════════════ -->
+    <div class="right-panel">
+        <div class="form-wrapper">
+
+            <!-- ── Sign In ── -->
+            <div class="form-panel active" id="loginPanel">
+                <p class="form-eyebrow">Welcome back</p>
+                <h1 class="form-title">Sign In</h1>
+                <form autocomplete="off" method="post">
+                    {% csrf_token %}
+                    <div class="form-msg" id="loginMsg"></div>
+                    <div class="input-group">
+                        <label for="li-username">Username</label>
+                        <input type="text" id="li-username"  name="username" autocomplete="new-password" placeholder="your_username">
+                    </div>
+                    <div class="input-group">
+                        <label for="li-password">Password</label>
+                        <div class="pw-wrap">
+                            <input type="password" id="li-password" autocomplete="new-password" name="password" placeholder="••••••••">
+                            <button type="button" class="eye-btn" onclick="toggleEye('li-password', this)"
+                                    tabindex="-1">
+                                <svg id="li-password-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="type" value="login">
+                    <button type="submit" class="submit-btn"><span>Sign In →</span></button>
+                </form>
+                <div class="form-divider">
+                    <hr>
+                    <span class="switch-link" onclick="switchPanel('register')">no account yet? <u>Sign up</u></span>
+                    <hr>
+                </div>
             </div>
+
+            <!-- ── Sign Up ── -->
+            <div class="form-panel" id="registerPanel">
+                <p class="form-eyebrow">Join us today</p>
+                <h1 class="form-title">Create Account</h1>
+
+                <div class="form-msg" id="registerMsg"></div>
+
+                <div class="input-group">
+                    <label for="ru-username">Username</label>
+                    <input type="text" id="ru-username" autocomplete="new-password" placeholder="your_username"
+                           oninput="checkPassword(document.getElementById('ru-pw1'))">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="ru-fname">First Name</label>
+                        <input type="text" id="ru-fname" placeholder="First">
+                    </div>
+                    <div class="input-group">
+                        <label for="ru-lname">Last Name</label>
+                        <input type="text" id="ru-lname" placeholder="Last">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="ru-email">Email</label>
+                    <input type="email" id="ru-email" placeholder="you@example.com"
+                           oninput="checkPassword(document.getElementById('ru-pw1'))">
+                </div>
+                <div class="input-group">
+                    <label for="ru-country">Country</label>
+                    <select id="ru-country" oninput="updateSendCodeBtn()" style="
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 13px 16px;
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: var(--ink);
+        outline: none;
+        width: 100%;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;">
+                    <option value="">Select your country</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Albania">Albania</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="Andorra">Andorra</option>
+                    <option value="Angola">Angola</option>
+                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Armenia">Armenia</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Azerbaijan">Azerbaijan</option>
+                    <option value="Bahamas">Bahamas</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Barbados">Barbados</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Belize">Belize</option>
+                    <option value="Benin">Benin</option>
+                    <option value="Bhutan">Bhutan</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                    <option value="Botswana">Botswana</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Brunei">Brunei</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
+                    <option value="Burundi">Burundi</option>
+                    <option value="Cabo Verde">Cabo Verde</option>
+                    <option value="Cambodia">Cambodia</option>
+                    <option value="Cameroon">Cameroon</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Central African Republic">Central African Republic</option>
+                    <option value="Chad">Chad</option>
+                    <option value="Chile">Chile</option>
+                    <option value="China">China</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Comoros">Comoros</option>
+                    <option value="Congo">Congo</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="Cyprus">Cyprus</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Djibouti">Djibouti</option>
+                    <option value="Dominica">Dominica</option>
+                    <option value="Dominican Republic">Dominican Republic</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="El Salvador">El Salvador</option>
+                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                    <option value="Eritrea">Eritrea</option>
+                    <option value="Estonia">Estonia</option>
+                    <option value="Eswatini">Eswatini</option>
+                    <option value="Ethiopia">Ethiopia</option>
+                    <option value="Fiji">Fiji</option>
+                    <option value="Finland">Finland</option>
+                    <option value="France">France</option>
+                    <option value="Gabon">Gabon</option>
+                    <option value="Gambia">Gambia</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Grenada">Grenada</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Guinea">Guinea</option>
+                    <option value="Guinea-Bissau">Guinea-Bissau</option>
+                    <option value="Guyana">Guyana</option>
+                    <option value="Haiti">Haiti</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Iceland">Iceland</option>
+                    <option value="India">India</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Iran">Iran</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="Israel">Israel</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Kazakhstan">Kazakhstan</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Kiribati">Kiribati</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                    <option value="Laos">Laos</option>
+                    <option value="Latvia">Latvia</option>
+                    <option value="Lebanon">Lebanon</option>
+                    <option value="Lesotho">Lesotho</option>
+                    <option value="Liberia">Liberia</option>
+                    <option value="Libya">Libya</option>
+                    <option value="Liechtenstein">Liechtenstein</option>
+                    <option value="Lithuania">Lithuania</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Madagascar">Madagascar</option>
+                    <option value="Malawi">Malawi</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Maldives">Maldives</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Malta">Malta</option>
+                    <option value="Marshall Islands">Marshall Islands</option>
+                    <option value="Mauritania">Mauritania</option>
+                    <option value="Mauritius">Mauritius</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Micronesia">Micronesia</option>
+                    <option value="Moldova">Moldova</option>
+                    <option value="Monaco">Monaco</option>
+                    <option value="Mongolia">Mongolia</option>
+                    <option value="Montenegro">Montenegro</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Mozambique">Mozambique</option>
+                    <option value="Myanmar">Myanmar</option>
+                    <option value="Namibia">Namibia</option>
+                    <option value="Nauru">Nauru</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Nicaragua">Nicaragua</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="North Korea">North Korea</option>
+                    <option value="North Macedonia">North Macedonia</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Palau">Palau</option>
+                    <option value="Palestine">Palestine</option>
+                    <option value="Panama">Panama</option>
+                    <option value="Papua New Guinea">Papua New Guinea</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Rwanda">Rwanda</option>
+                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                    <option value="Saint Lucia">Saint Lucia</option>
+                    <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                    <option value="Samoa">Samoa</option>
+                    <option value="San Marino">San Marino</option>
+                    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Senegal">Senegal</option>
+                    <option value="Serbia">Serbia</option>
+                    <option value="Seychelles">Seychelles</option>
+                    <option value="Sierra Leone">Sierra Leone</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Slovakia">Slovakia</option>
+                    <option value="Slovenia">Slovenia</option>
+                    <option value="Solomon Islands">Solomon Islands</option>
+                    <option value="Somalia">Somalia</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="South Sudan">South Sudan</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Sudan">Sudan</option>
+                    <option value="Suriname">Suriname</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Syria">Syria</option>
+                    <option value="Tajikistan">Tajikistan</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Timor-Leste">Timor-Leste</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Tonga">Tonga</option>
+                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Turkmenistan">Turkmenistan</option>
+                    <option value="Tuvalu">Tuvalu</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Uzbekistan">Uzbekistan</option>
+                    <option value="Vanuatu">Vanuatu</option>
+                    <option value="Vatican City">Vatican City</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Yemen">Yemen</option>
+                    <option value="Zambia">Zambia</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="ru-pw1">Password</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="ru-pw1" autocomplete="new-password" placeholder="••••••••" oninput="checkPassword(this)">
+                        <button type="button" class="eye-btn" onclick="toggleEye('ru-pw1', this)" tabindex="-1">
+                            <svg id="ru-pw1-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="pw-requirements" id="pwRequirements">
+                        <p class="pw-req-title">Password requirements:</p>
+                        <ul>
+                            <li class="req" id="req-length"><span class="req-icon">○</span> At least 8 characters</li>
+                            <li class="req" id="req-numeric"><span class="req-icon">○</span> Not entirely numeric</li>
+                            <li class="req" id="req-common"><span class="req-icon">○</span> Not a commonly used password
+                            </li>
+                            <li class="req" id="req-similar"><span class="req-icon">○</span> Not too similar to username
+                                or email
+                            </li>
+                            <li class="req" id="req-upper"><span class="req-icon">○</span> At least one uppercase letter
+                            </li>
+                            <li class="req" id="req-special"><span class="req-icon">○</span> At least one special
+                                character
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="ru-pw2">Confirm Password</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="ru-pw2" placeholder="••••••••" oninput="checkConfirm(this)">
+                        <button type="button" class="eye-btn" onclick="toggleEye('ru-pw2', this)" tabindex="-1">
+                            <svg id="ru-pw2-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="confirm-hint" id="confirmHint"></p>
+                </div>
+
+                <!-- Send Code button (not a form submit) -->
+                <button type="button" class="submit-btn disabled" id="sendCodeBtn" disabled onclick="sendCode()">
+                    <span>Send Code →</span>
+                </button>
+
+                <div class="form-divider">
+                    <hr>
+                    <span class="switch-link"
+                          onclick="switchPanel('login')">already have an account? <u>Sign in</u></span>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- ── Verify Email ── -->
+            <div class="form-panel" id="verifyPanel">
+                <p class="form-eyebrow">Almost there</p>
+                <h1 class="form-title">Verify Email</h1>
+
+                <div class="form-msg success" id="verifyInfoMsg">
+                    A 6-digit code was sent to <strong id="verifyEmailDisplay"></strong>
+                </div>
+                <div class="form-msg" id="verifyMsg"></div>
+
+                <div class="input-group">
+                    <label>Enter the 6-digit code</label>
+                    <div class="code-input-wrap" id="codeInputWrap">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                        <input class="code-digit" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]">
+                    </div>
+                </div>
+
+                <div class="resend-row">
+                    <span class="resend-hint">Didn't receive it?</span>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <span class="timer-text" id="timerText"></span>
+                        <button class="resend-btn" id="resendBtn" onclick="resendCode()" disabled>Resend</button>
+                    </div>
+                </div>
+
+                <button type="button" class="submit-btn disabled" id="verifyBtn" disabled onclick="verifyCode()">
+                    <span>Verify →</span>
+                </button>
+
+                <div class="form-divider">
+                    <hr>
+                    <span class="switch-link" onclick="switchPanel('register')">← Back to Sign Up</span>
+                    <hr>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-</body>
+
 <script>
-    const container = document.getElementById('container');
-    const registerBtn = document.getElementById('register');
-    const loginBtn = document.getElementById('login');
+    let current = 'login';
+    let pendingEmail = '';
+    let timerInterval = null;
 
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
+    // ── Panel switching ─────────────────────────────────────────────────────
+    function switchPanel(target) {
+        if (target === current) return;
+        current = target;
 
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
+        document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById(target + 'Panel').classList.add('active');
+
+        const switchBtn   = document.getElementById('desktopSwitchBtn');
+        const switchLabel = document.getElementById('switchLabel');
+        const mobileTabs  = document.querySelectorAll('.mobile-tab');
+
+        if (target === 'register') {
+            switchBtn.textContent   = 'Back to Sign In';
+            switchLabel.textContent = 'Already have an account?';
+            mobileTabs[1].classList.add('active-tab');
+            mobileTabs[0].classList.remove('active-tab');
+        } else if (target === 'login') {
+            switchBtn.textContent   = 'Create account';
+            switchLabel.textContent = "Don't have an account?";
+            mobileTabs[0].classList.add('active-tab');
+            mobileTabs[1].classList.remove('active-tab');
+        } else {
+            // verify panel — hide desktop switch btn
+            switchBtn.textContent   = 'Create account';
+            switchLabel.textContent = "Don't have an account?";
+        }
+    }
+
+    function desktopSwitch() {
+        switchPanel(current === 'login' ? 'register' : 'login');
+    }
+
+    // ── CSRF helper ─────────────────────────────────────────────────────────
+    function getCsrf() {
+        const el = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken='));
+        return el ? el.split('=')[1] : '';
+    }
+
+    // ── Show message ────────────────────────────────────────────────────────
+    function showMsg(elId, type, text) {
+        const el = document.getElementById(elId);
+        el.className = 'form-msg ' + type;
+        el.textContent = text;
+    }
+
+    function hideMsg(elId) {
+        const el = document.getElementById(elId);
+        el.className = 'form-msg';
+        el.textContent = '';
+    }
+
+    // ── Send Code ───────────────────────────────────────────────────────────
+    async function sendCode() {
+        const username   = document.getElementById('ru-username').value.trim();
+        const first_name = document.getElementById('ru-fname').value.trim();
+        const last_name  = document.getElementById('ru-lname').value.trim();
+        const country    = document.getElementById('ru-country').value.trim();
+        const email      = document.getElementById('ru-email').value.trim();
+        const password   = document.getElementById('ru-pw1').value;
+
+        if (!username || !email || !password) {
+            showMsg('registerMsg', 'error', 'Please fill in all required fields.');
+            return;
+        }
+
+        const btn = document.getElementById('sendCodeBtn');
+        btn.classList.add('loading');
+        btn.querySelector('span').textContent = 'Sending…';
+        hideMsg('registerMsg');
+
+        try {
+            const res = await fetch('/send_code/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrf(),
+                },
+                body: JSON.stringify({ username, first_name, last_name, email, password, country }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+                pendingEmail = email;
+                document.getElementById('verifyEmailDisplay').textContent = email;
+                switchPanel('verify');
+                startTimer(120); // 2 daqiqa
+                initCodeInputs();
+            } else {
+                showMsg('registerMsg', 'error', data.error || 'Something went wrong. Try again.');
+            }
+        } catch (err) {
+            showMsg('registerMsg', 'error', 'Network error. Please try again.');
+        } finally {
+            btn.classList.remove('loading');
+            btn.querySelector('span').textContent = 'Send Code →';
+        }
+    }
+
+    // ── Verify Code ─────────────────────────────────────────────────────────
+    async function verifyCode() {
+        const digits = document.querySelectorAll('.code-digit');
+        const code   = Array.from(digits).map(d => d.value).join('');
+
+        if (code.length !== 6) {
+            showMsg('verifyMsg', 'error', 'Please enter the full 6-digit code.');
+            return;
+        }
+
+        const btn = document.getElementById('verifyBtn');
+        btn.classList.add('loading');
+        btn.querySelector('span').textContent = 'Verifying…';
+        hideMsg('verifyMsg');
+
+        try {
+            const res = await fetch('/verify_email/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrf(),
+                },
+                body: JSON.stringify({ email: pendingEmail, code }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+                btn.querySelector('span').textContent = '✓ Success!';
+                // redirect
+                window.location.href = data.redirect || '/';
+            } else {
+                showMsg('verifyMsg', 'error', data.error || 'Invalid code. Please try again.');
+                // shake effect
+                document.getElementById('codeInputWrap').style.animation = 'none';
+                setTimeout(() => {
+                    document.getElementById('codeInputWrap').style.animation = '';
+                }, 10);
+            }
+        } catch (err) {
+            showMsg('verifyMsg', 'error', 'Network error. Please try again.');
+        } finally {
+            btn.classList.remove('loading');
+            if (btn.querySelector('span').textContent !== '✓ Success!') {
+                btn.querySelector('span').textContent = 'Verify →';
+            }
+        }
+    }
+
+    // ── Resend Code ─────────────────────────────────────────────────────────
+    async function resendCode() {
+        const resendBtn = document.getElementById('resendBtn');
+        resendBtn.disabled = true;
+        hideMsg('verifyMsg');
+
+        // re-use sendCode data from inputs (still in DOM)
+        const username   = document.getElementById('ru-username').value.trim();
+        const first_name = document.getElementById('ru-fname').value.trim();
+        const last_name  = document.getElementById('ru-lname').value.trim();
+        const country    = document.getElementById('ru-country').value.trim();
+        const email      = pendingEmail;
+        const password   = document.getElementById('ru-pw1').value;
+
+        try {
+            const res = await fetch('/send_code/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrf(),
+                },
+                body: JSON.stringify({ username, first_name, last_name, email, password, country }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+                showMsg('verifyMsg', 'success', 'New code sent!');
+                startTimer(120);
+                // clear code inputs
+                document.querySelectorAll('.code-digit').forEach(d => {
+                    d.value = '';
+                    d.classList.remove('filled');
+                });
+                document.querySelectorAll('.code-digit')[0].focus();
+                updateVerifyBtn();
+            } else {
+                showMsg('verifyMsg', 'error', data.error || 'Could not resend. Try again.');
+                resendBtn.disabled = false;
+            }
+        } catch (err) {
+            showMsg('verifyMsg', 'error', 'Network error.');
+            resendBtn.disabled = false;
+        }
+    }
+
+    // ── Timer ────────────────────────────────────────────────────────────────
+    function startTimer(seconds) {
+        clearInterval(timerInterval);
+        const timerEl  = document.getElementById('timerText');
+        const resendBtn = document.getElementById('resendBtn');
+        resendBtn.disabled = true;
+
+        let remaining = seconds;
+
+        function tick() {
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            timerEl.textContent = m + ':' + String(s).padStart(2, '0');
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                timerEl.textContent = '';
+                resendBtn.disabled  = false;
+            }
+            remaining--;
+        }
+        tick();
+        timerInterval = setInterval(tick, 1000);
+    }
+
+    // ── Code digit inputs ───────────────────────────────────────────────────
+    function initCodeInputs() {
+        const digits = document.querySelectorAll('.code-digit');
+
+        digits.forEach((input, i) => {
+            // Reset
+            input.value = '';
+            input.classList.remove('filled');
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace') {
+                    if (this.value === '' && i > 0) {
+                        digits[i - 1].focus();
+                        digits[i - 1].value = '';
+                        digits[i - 1].classList.remove('filled');
+                        updateVerifyBtn();
+                    }
+                }
+            });
+
+            input.addEventListener('input', function(e) {
+                // Keep only last char and ensure numeric
+                const val = this.value.replace(/\D/g, '').slice(-1);
+                this.value = val;
+
+                if (val) {
+                    this.classList.add('filled');
+                    if (i < digits.length - 1) digits[i + 1].focus();
+                } else {
+                    this.classList.remove('filled');
+                }
+                updateVerifyBtn();
+            });
+
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+                pasted.split('').forEach((ch, j) => {
+                    if (i + j < digits.length) {
+                        digits[i + j].value = ch;
+                        digits[i + j].classList.add('filled');
+                    }
+                });
+                const next = Math.min(i + pasted.length, digits.length - 1);
+                digits[next].focus();
+                updateVerifyBtn();
+            });
+        });
+
+        // Auto-focus first
+        digits[0].focus();
+    }
+
+    function updateVerifyBtn() {
+        const digits = document.querySelectorAll('.code-digit');
+        const full   = Array.from(digits).every(d => d.value.length === 1);
+        const btn    = document.getElementById('verifyBtn');
+        btn.disabled = !full;
+        btn.classList.toggle('disabled', !full);
+    }
+
+    // ── Password requirements ────────────────────────────────────────────────
+    const commonPasswords = [
+        'password','password1','12345678','123456789','qwerty123','iloveyou',
+        'admin123','letmein','welcome1','monkey','dragon','master','sunshine',
+        'princess','football','abc12345','pass1234','superman','batman','qwerty',
+        'passw0rd','welcome','trustno1','shadow','password!','hello123'
+    ];
+
+    function setReq(el, passed) {
+        el.classList.remove('passed', 'failed');
+        el.querySelector('.req-icon').textContent = passed ? '●' : '○';
+        if (passed) el.classList.add('passed');
+        else        el.classList.add('failed');
+    }
+
+    function checkPassword(input) {
+        const val      = input.value;
+        const username = (document.getElementById('ru-username').value || '').toLowerCase();
+        const email    = (document.getElementById('ru-email').value    || '').toLowerCase();
+        const pwReqBox = document.getElementById('pwRequirements');
+
+        if (val.length > 0) pwReqBox.classList.add('visible');
+        else                 pwReqBox.classList.remove('visible');
+
+        setReq(document.getElementById('req-length'),  val.length >= 8);
+        setReq(document.getElementById('req-numeric'), val.length > 0 && !/^\d+$/.test(val));
+        setReq(document.getElementById('req-common'),  !commonPasswords.includes(val.toLowerCase()));
+
+        const lval        = val.toLowerCase();
+        const emailPrefix = email.split('@')[0];
+        const notSimilar  =
+            val.length > 0 &&
+            (username.length < 3 || (!lval.includes(username) && !username.includes(lval))) &&
+            (emailPrefix.length < 3 || !lval.includes(emailPrefix));
+        setReq(document.getElementById('req-similar'), notSimilar);
+        setReq(document.getElementById('req-upper'),   /[A-Z]/.test(val));
+        setReq(document.getElementById('req-special'), /[^a-zA-Z0-9]/.test(val));
+
+        const pw2 = document.getElementById('ru-pw2');
+        if (pw2 && pw2.value.length > 0) checkConfirm(pw2);
+
+        updateSendCodeBtn();
+    }
+
+    function checkConfirm(input) {
+        const hint = document.getElementById('confirmHint');
+        const pw1  = (document.getElementById('ru-pw1') || {}).value || '';
+
+        if (input.value.length === 0) {
+            hint.textContent = '';
+            hint.className   = 'confirm-hint';
+            return;
+        }
+
+        if (input.value === pw1) {
+            hint.textContent = '● Passwords match';
+            hint.className   = 'confirm-hint match';
+        } else {
+            hint.textContent = '○ Passwords do not match';
+            hint.className   = 'confirm-hint no-match';
+        }
+
+        updateSendCodeBtn();
+    }
+
+    function updateSendCodeBtn() {
+    const allPassed = ['req-length','req-numeric','req-common','req-similar','req-upper','req-special']
+        .every(id => document.getElementById(id).classList.contains('passed'));
+
+    const pw1val    = (document.getElementById('ru-pw1') || {}).value || '';
+    const pw2val    = (document.getElementById('ru-pw2') || {}).value || '';
+    const confirmed = pw1val.length > 0 && pw1val === pw2val;
+
+    const emailVal   = document.getElementById('ru-email').value.trim();
+    const userVal    = document.getElementById('ru-username').value.trim();
+    const countryVal = document.getElementById('ru-country').value.trim();
+
+    const btn = document.getElementById('sendCodeBtn');
+    const ok  = allPassed && confirmed && emailVal.length > 0 && userVal.length > 0 && countryVal.length > 0;
+
+    btn.disabled = !ok;
+    btn.classList.toggle('disabled', !ok);
+}
+
+    // ── Eye toggle ───────────────────────────────────────────────────────────
+    const eyeOpen   = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+    const eyeClosed = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+
+    function toggleEye(inputId, btn) {
+        const input  = document.getElementById(inputId);
+        const svg    = btn.querySelector('svg');
+        const hidden = input.type === 'password';
+        input.type    = hidden ? 'text' : 'password';
+        svg.innerHTML = hidden ? eyeClosed : eyeOpen;
+        btn.style.color = hidden ? 'var(--sage)' : '';
+    }
 </script>
+
+</body>
 </html>

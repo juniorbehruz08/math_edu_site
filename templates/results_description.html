@@ -1,0 +1,1029 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--<title>Test Review — Mathematics</title>-->
+<!--<script>-->
+<!--window.MathJax = {-->
+<!--  tex: { inlineMath:[['\\(','\\)'],['$','$']], displayMath:[['\\[','\\]'],['$$','$$']] },-->
+<!--  options: { skipHtmlTags:['script','noscript','style','textarea','pre'] },-->
+<!--  startup: { typeset: false }-->
+<!--};-->
+<!--</script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>-->
+<!--<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">-->
+<!--<style>-->
+<!--:root{-->
+<!--  &#45;&#45;bg:#080b12; &#45;&#45;bg2:#0e1220; &#45;&#45;panel:#111827;-->
+<!--  &#45;&#45;card:#161d2e; &#45;&#45;card2:#1c2440;-->
+<!--  &#45;&#45;border:rgba(255,255,255,.06); &#45;&#45;border2:rgba(255,255,255,.11);-->
+<!--  &#45;&#45;gold:#e8c96d; &#45;&#45;gold-dim:rgba(232,201,109,.12);-->
+<!--  &#45;&#45;blue:#4f8ef7; &#45;&#45;blue-dim:rgba(79,142,247,.12);-->
+<!--  &#45;&#45;green:#34d399; &#45;&#45;green-dim:rgba(52,211,153,.12);-->
+<!--  &#45;&#45;red:#f87171;  &#45;&#45;red-dim:rgba(248,113,113,.12);-->
+<!--  &#45;&#45;amber:#fbbf24; &#45;&#45;amber-dim:rgba(251,191,36,.12);-->
+<!--  &#45;&#45;text:#dde3f0; &#45;&#45;text2:#8892a8; &#45;&#45;text3:#4f5870;-->
+<!--  &#45;&#45;r:14px; &#45;&#45;r2:8px;-->
+<!--}-->
+<!--*{box-sizing:border-box;margin:0;padding:0;}-->
+<!--html{scroll-behavior:smooth;}-->
+<!--body{-->
+<!--  background:var(&#45;&#45;bg);color:var(&#45;&#45;text);-->
+<!--  font-family:'Outfit',sans-serif;font-weight:400;-->
+<!--  min-height:100vh;overflow-x:hidden;-->
+<!--}-->
+<!--body::before{-->
+<!--  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;-->
+<!--  background:-->
+<!--    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(79,142,247,.05) 0%, transparent 70%),-->
+<!--    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(232,201,109,.04) 0%, transparent 70%);-->
+<!--}-->
+<!--::-webkit-scrollbar{width:5px;}-->
+<!--::-webkit-scrollbar-track{background:transparent;}-->
+<!--::-webkit-scrollbar-thumb{background:var(&#45;&#45;border2);border-radius:3px;}-->
+
+<!--/* ══ MathJax: NEVER clip, NEVER scroll ══════════════ */-->
+<!--mjx-container{overflow:visible !important;max-width:100% !important;display:inline !important;}-->
+<!--mjx-container svg{max-width:100%;height:auto !important;}-->
+
+<!--/* ════════ TOPBAR ════════════════════════════════════ */-->
+<!--.topbar{-->
+<!--  position:sticky;top:0;z-index:100;-->
+<!--  background:rgba(8,11,18,.92);backdrop-filter:blur(20px);-->
+<!--  border-bottom:1px solid var(&#45;&#45;border);-->
+<!--  height:58px;display:flex;align-items:center;gap:16px;padding:0 32px;-->
+<!--}-->
+<!--.tb-back{-->
+<!--  background:transparent;border:1px solid var(&#45;&#45;border2);color:var(&#45;&#45;text2);-->
+<!--  border-radius:var(&#45;&#45;r2);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:12px;-->
+<!--  cursor:pointer;transition:all .2s;white-space:nowrap;-->
+<!--}-->
+<!--.tb-back:hover{border-color:var(&#45;&#45;gold);color:var(&#45;&#45;gold);}-->
+<!--.tb-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;}-->
+<!--.tb-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(&#45;&#45;text3);}-->
+<!--.tb-spacer{flex:1;}-->
+<!--.tb-score{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(&#45;&#45;gold);font-weight:500;}-->
+
+<!--/* ════════ HERO ══════════════════════════════════════ */-->
+<!--.hero{position:relative;z-index:1;padding:48px 32px 32px;max-width:880px;margin:0 auto;}-->
+<!--.hero-top{display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:40px;}-->
+
+<!--.ring-wrap{flex-shrink:0;position:relative;width:140px;height:140px;}-->
+<!--.ring-svg{width:100%;height:100%;}-->
+<!--.ring-bg{fill:none;stroke:var(&#45;&#45;panel);stroke-width:10;}-->
+<!--.ring-fill{fill:none;stroke-width:10;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);}-->
+<!--.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}-->
+<!--.ring-pct{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;line-height:1;}-->
+<!--.ring-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(&#45;&#45;text3);margin-top:3px;}-->
+
+<!--.hero-stats{display:flex;flex-wrap:wrap;gap:14px;flex:1;}-->
+<!--.h-stat{background:var(&#45;&#45;panel);border:1px solid var(&#45;&#45;border);border-radius:var(&#45;&#45;r2);padding:16px 22px;min-width:110px;text-align:center;}-->
+<!--.h-stat .hv{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1;margin-bottom:5px;}-->
+<!--.h-stat .hl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(&#45;&#45;text3);}-->
+<!--.hv-c{color:var(&#45;&#45;green);}  .hv-w{color:var(&#45;&#45;red);}-->
+<!--.hv-t{color:var(&#45;&#45;blue);}   .hv-a{color:var(&#45;&#45;text2);}-->
+<!--.hv-d{color:var(&#45;&#45;amber);font-size:1.1rem !important;}-->
+
+<!--.grade-banner{display:flex;align-items:center;gap:20px;border:1px solid var(&#45;&#45;border2);border-radius:var(&#45;&#45;r);padding:18px 24px;margin-bottom:32px;}-->
+<!--.grade-letter{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;line-height:1;}-->
+<!--.grade-info .g-title{font-size:16px;font-weight:500;margin-bottom:3px;}-->
+<!--.grade-info .g-sub{font-size:13px;color:var(&#45;&#45;text2);}-->
+<!--.gA{color:var(&#45;&#45;green);} .gB{color:var(&#45;&#45;blue);} .gC{color:var(&#45;&#45;gold);} .gD{color:var(&#45;&#45;amber);} .gF{color:var(&#45;&#45;red);}-->
+<!--.barA{background:var(&#45;&#45;green-dim);border-color:rgba(52,211,153,.3);}-->
+<!--.barB{background:var(&#45;&#45;blue-dim); border-color:rgba(79,142,247,.3);}-->
+<!--.barC{background:var(&#45;&#45;gold-dim); border-color:rgba(232,201,109,.3);}-->
+<!--.barD{background:var(&#45;&#45;amber-dim);border-color:rgba(251,191,36,.3);}-->
+<!--.barF{background:var(&#45;&#45;red-dim);  border-color:rgba(248,113,113,.3);}-->
+
+<!--/* ════════ FILTER BAR ════════════════════════════════ */-->
+<!--.filter-bar{-->
+<!--  position:sticky;top:58px;z-index:90;-->
+<!--  background:rgba(8,11,18,.94);backdrop-filter:blur(20px);-->
+<!--  border-bottom:1px solid var(&#45;&#45;border);-->
+<!--  padding:0 32px;display:flex;align-items:center;gap:12px;height:52px;-->
+<!--}-->
+<!--.filter-btn{-->
+<!--  background:transparent;border:1px solid transparent;color:var(&#45;&#45;text3);-->
+<!--  border-radius:var(&#45;&#45;r2);padding:6px 16px;-->
+<!--  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;-->
+<!--  cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:7px;-->
+<!--}-->
+<!--.filter-btn:hover{color:var(&#45;&#45;text2);border-color:var(&#45;&#45;border2);}-->
+<!--.filter-btn.active{background:var(&#45;&#45;card2);border-color:var(&#45;&#45;border2);color:var(&#45;&#45;text);}-->
+<!--.filter-btn.active.fa{border-color:rgba(79,142,247,.4);color:var(&#45;&#45;blue);}-->
+<!--.filter-btn.active.fc{border-color:rgba(52,211,153,.4);color:var(&#45;&#45;green);}-->
+<!--.filter-btn.active.fw{border-color:rgba(248,113,113,.4);color:var(&#45;&#45;red);}-->
+<!--.filter-btn.active.fs{border-color:rgba(251,191,36,.4);color:var(&#45;&#45;amber);}-->
+<!--.fb-dot{width:7px;height:7px;border-radius:50%;}-->
+<!--.fb-count{background:rgba(255,255,255,.08);border-radius:100px;padding:0 7px;font-size:10px;}-->
+<!--.filter-sep{flex:1;}-->
+<!--.search-wrap{position:relative;}-->
+<!--.search-input{-->
+<!--  background:var(&#45;&#45;panel);border:1px solid var(&#45;&#45;border2);color:var(&#45;&#45;text);-->
+<!--  border-radius:var(&#45;&#45;r2);padding:7px 12px 7px 34px;-->
+<!--  font-family:'Outfit',sans-serif;font-size:13px;width:200px;outline:none;transition:border-color .2s;-->
+<!--}-->
+<!--.search-input::placeholder{color:var(&#45;&#45;text3);}-->
+<!--.search-input:focus{border-color:var(&#45;&#45;blue);}-->
+<!--.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(&#45;&#45;text3);pointer-events:none;}-->
+
+<!--/* ════════ REVIEW LIST ═══════════════════════════════ */-->
+<!--.review-list{max-width:880px;margin:0 auto;padding:24px 32px 80px;position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;}-->
+
+<!--.rev-card{-->
+<!--  background:var(&#45;&#45;card);border:1px solid var(&#45;&#45;border);-->
+<!--  border-radius:var(&#45;&#45;r);overflow:hidden;-->
+<!--  transition:box-shadow .25s;animation:fadeUp .4s both;-->
+<!--}-->
+<!--.rev-card:hover{box-shadow:0 6px 30px rgba(0,0,0,.4);}-->
+<!--@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}-->
+<!--.rev-card[data-status="correct"]{border-left:3px solid var(&#45;&#45;green);}-->
+<!--.rev-card[data-status="wrong"]  {border-left:3px solid var(&#45;&#45;red);}-->
+<!--.rev-card[data-status="skipped"]{border-left:3px solid var(&#45;&#45;amber);}-->
+
+<!--/* ── HEADER: plain-text only, safe to truncate ── */-->
+<!--.rc-header{-->
+<!--  display:flex;align-items:center;gap:14px;-->
+<!--  padding:18px 24px;cursor:pointer;user-select:none;-->
+<!--  transition:background .2s;min-height:64px;-->
+<!--}-->
+<!--.rc-header:hover{background:rgba(255,255,255,.015);}-->
+<!--.rc-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(&#45;&#45;text3);min-width:28px;flex-shrink:0;}-->
+<!--.rc-badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 12px;border-radius:100px;white-space:nowrap;flex-shrink:0;}-->
+<!--.rc-badge.correct{background:var(&#45;&#45;green-dim);color:var(&#45;&#45;green);}-->
+<!--.rc-badge.wrong  {background:var(&#45;&#45;red-dim);  color:var(&#45;&#45;red);}-->
+<!--.rc-badge.skipped{background:var(&#45;&#45;amber-dim);color:var(&#45;&#45;amber);}-->
+<!--/* FIX: plain-text preview — no LaTeX, safe to clip */-->
+<!--.rc-preview{-->
+<!--  font-family:'Cormorant Garamond',serif;-->
+<!--  font-size:1.0rem;line-height:1.4;color:var(&#45;&#45;text2);-->
+<!--  flex:1;min-width:0;-->
+<!--  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;-->
+<!--}-->
+<!--.rc-arrow{color:var(&#45;&#45;text3);font-size:12px;transition:transform .3s;flex-shrink:0;margin-left:auto;}-->
+<!--.rev-card.open .rc-arrow{transform:rotate(180deg);}-->
+
+<!--/* ── BODY: max-height collapse (NOT display:none) ──-->
+<!--   This is the KEY FIX — MathJax can always see the-->
+<!--   content and render it, even when visually hidden.  */-->
+<!--.rc-body{-->
+<!--  max-height:0;overflow:hidden;-->
+<!--  transition:max-height .4s cubic-bezier(.4,0,.2,1);-->
+<!--}-->
+<!--.rev-card.open .rc-body{-->
+<!--  max-height:9999px;-->
+<!--  border-top:1px solid var(&#45;&#45;border);-->
+<!--}-->
+<!--.rc-body-inner{padding:24px;display:flex;flex-direction:column;gap:16px;}-->
+
+<!--/* Question text in body */-->
+<!--.rc-q-full{-->
+<!--  font-family:'Cormorant Garamond',serif;-->
+<!--  font-size:1.15rem;line-height:1.7;color:var(&#45;&#45;text);-->
+<!--  padding-bottom:16px;border-bottom:1px solid var(&#45;&#45;border);-->
+<!--}-->
+
+<!--/* Answer rows */-->
+<!--.rc-answers{display:flex;flex-direction:column;gap:8px;}-->
+<!--.rc-ans-row{-->
+<!--  display:flex;align-items:flex-start;gap:12px;-->
+<!--  padding:11px 16px;border-radius:var(&#45;&#45;r2);-->
+<!--  font-size:14px;font-family:'Outfit',sans-serif;-->
+<!--  flex-wrap:wrap;border:1px solid transparent;-->
+<!--}-->
+<!--.rc-ans-row .ar-tag{-->
+<!--  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;-->
+<!--  white-space:nowrap;padding-top:3px;min-width:90px;opacity:.65;flex-shrink:0;-->
+<!--}-->
+<!--.rc-ans-row .ar-val{flex:1;min-width:0;}-->
+<!--.ans-your-correct{background:var(&#45;&#45;green-dim);border-color:rgba(52,211,153,.2);color:var(&#45;&#45;green);}-->
+<!--.ans-your-wrong  {background:var(&#45;&#45;red-dim);  border-color:rgba(248,113,113,.2);color:var(&#45;&#45;red);}-->
+<!--.ans-correct-reveal{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.2);color:rgba(52,211,153,.85);}-->
+<!--.ans-skipped{background:var(&#45;&#45;amber-dim);border-color:rgba(251,191,36,.2);color:var(&#45;&#45;amber);}-->
+
+<!--/* All 4 options */-->
+<!--.rc-all-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}-->
+<!--@media(max-width:560px){.rc-all-opts{grid-template-columns:1fr;}}-->
+<!--.rc-opt{-->
+<!--  display:flex;align-items:flex-start;gap:10px;-->
+<!--  padding:10px 14px;border-radius:var(&#45;&#45;r2);-->
+<!--  border:1px solid var(&#45;&#45;border);background:var(&#45;&#45;bg2);-->
+<!--  font-size:13px;font-family:'Outfit',sans-serif;color:var(&#45;&#45;text2);-->
+<!--}-->
+<!--.rc-opt.opt-correct{border-color:rgba(52,211,153,.3);background:var(&#45;&#45;green-dim);color:var(&#45;&#45;green);}-->
+<!--.rc-opt.opt-chosen-wrong{border-color:rgba(248,113,113,.3);background:var(&#45;&#45;red-dim);color:var(&#45;&#45;red);}-->
+<!--.rc-opt .opt-key{-->
+<!--  flex-shrink:0;width:22px;height:22px;border-radius:5px;-->
+<!--  background:rgba(255,255,255,.06);-->
+<!--  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;-->
+<!--  display:flex;align-items:center;justify-content:center;color:var(&#45;&#45;text3);margin-top:1px;-->
+<!--}-->
+<!--.rc-opt.opt-correct .opt-key{background:rgba(52,211,153,.2);color:var(&#45;&#45;green);}-->
+<!--.rc-opt.opt-chosen-wrong .opt-key{background:rgba(248,113,113,.2);color:var(&#45;&#45;red);}-->
+
+<!--/* Explanation */-->
+<!--.rc-exp-wrap{background:var(&#45;&#45;bg2);border:1px solid var(&#45;&#45;border2);border-radius:var(&#45;&#45;r2);overflow:hidden;}-->
+<!--.rc-exp-label{-->
+<!--  display:flex;align-items:center;gap:8px;padding:10px 16px;-->
+<!--  background:rgba(255,255,255,.025);border-bottom:1px solid var(&#45;&#45;border);-->
+<!--  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(&#45;&#45;gold);-->
+<!--}-->
+<!--.rc-exp-body{padding:14px 18px;font-size:14px;font-family:'Outfit',sans-serif;color:var(&#45;&#45;text2);line-height:1.8;}-->
+
+<!--/* Empty */-->
+<!--.empty-state{text-align:center;padding:80px 20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(&#45;&#45;text3);}-->
+
+<!--@media(max-width:640px){-->
+<!--  .topbar,.filter-bar,.hero,.review-list{padding-left:16px;padding-right:16px;}-->
+<!--  .hero-top{gap:20px;}-->
+<!--  .filter-bar{gap:6px;overflow-x:auto;}-->
+<!--  .filter-btn{padding:5px 10px;font-size:10px;}-->
+<!--  .search-input{width:130px;}-->
+<!--}-->
+<!--</style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="topbar">-->
+<!--  <button class="tb-back" onclick="goBack()">← Back</button>-->
+<!--  <div>-->
+<!--    <div class="tb-title">Test Review</div>-->
+<!--    <div class="tb-sub">Mathematics Examination</div>-->
+<!--  </div>-->
+<!--  <div class="tb-spacer"></div>-->
+<!--  <div class="tb-score" id="tbScore"></div>-->
+<!--</div>-->
+
+<!--<div class="hero" id="heroSection"></div>-->
+
+<!--<div class="filter-bar">-->
+<!--  <button class="filter-btn fa active" data-filter="all"     onclick="setFilter('all')">-->
+<!--    <span class="fb-dot" style="background:var(&#45;&#45;blue)"></span>All <span class="fb-count" id="cAll">0</span>-->
+<!--  </button>-->
+<!--  <button class="filter-btn fc" data-filter="correct"  onclick="setFilter('correct')">-->
+<!--    <span class="fb-dot" style="background:var(&#45;&#45;green)"></span>Correct <span class="fb-count" id="cCorrect">0</span>-->
+<!--  </button>-->
+<!--  <button class="filter-btn fw" data-filter="wrong"    onclick="setFilter('wrong')">-->
+<!--    <span class="fb-dot" style="background:var(&#45;&#45;red)"></span>Wrong <span class="fb-count" id="cWrong">0</span>-->
+<!--  </button>-->
+<!--  <button class="filter-btn fs" data-filter="skipped"  onclick="setFilter('skipped')">-->
+<!--    <span class="fb-dot" style="background:var(&#45;&#45;amber)"></span>Skipped <span class="fb-count" id="cSkipped">0</span>-->
+<!--  </button>-->
+<!--  <div class="filter-sep"></div>-->
+<!--  <div class="search-wrap">-->
+<!--    <span class="search-icon">⌕</span>-->
+<!--    <input class="search-input" type="text" placeholder="Search questions…" id="searchInput" oninput="applyFilters()">-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="review-list" id="reviewList"></div>-->
+
+<!--<script>-->
+<!--/* ══ DATA ══════════════════════════════════════════ */-->
+<!--const DEMO_DATA={-->
+<!--  correct:3,wrong:5,skipped:2,pct:30,-->
+<!--  totalSecs:610,avgSecs:"61.0",-->
+<!--  takenAt:new Date().toLocaleString(),-->
+<!--  questions:[-->
+<!--    {question:"Evaluate \\( \\log_2 128 \\)",chosenText:"\\( 7 \\)",chosenCorrect:true,correctText:"\\( 7 \\)",allOpts:["\\( 7 \\)","\\( 6 \\)","\\( 8 \\)","\\( 5 \\)"],correctIdx:0,chosenIdx:0,explanation:"\\( 2^7 = 128 \\), so \\( \\log_2 128 = 7 \\)."},-->
+<!--    {question:"Simplify \\( \\log_b b^5 \\)",chosenText:"\\( b^5 \\)",chosenCorrect:false,correctText:"\\( 5 \\)",allOpts:["\\( 5 \\)","\\( b^5 \\)","\\( 5b \\)","\\( \\log_b 5 \\)"],correctIdx:0,chosenIdx:1,explanation:"Power rule: \\( \\log_b b^x = x \\), so the answer is \\( 5 \\)."},-->
+<!--    {question:"Find \\( f'(x) \\) if \\( f(x) = x^5 - 3x^2 + 7 \\).",chosenText:"\\( 5x^4 - 6x \\)",chosenCorrect:true,correctText:"\\( 5x^4 - 6x \\)",allOpts:["\\( 5x^4 - 6x \\)","\\( 5x^4 + 6x \\)","\\( x^4 - 6x \\)","\\( 5x^4 - 6 \\)"],correctIdx:0,chosenIdx:0,explanation:"Power rule term by term: \\( \\frac{d}{dx}x^5 = 5x^4 \\), \\( \\frac{d}{dx}3x^2 = 6x \\)."},-->
+<!--    {question:"Compute \\( \\displaystyle\\int_0^2 (3x^2+2)\\,dx \\).",chosenText:null,chosenCorrect:false,correctText:"\\( 12 \\)",allOpts:["\\( 12 \\)","\\( 10 \\)","\\( 14 \\)","\\( 8 \\)"],correctIdx:0,chosenIdx:-1,explanation:"Anti-derivative: \\(x^3+2x\\). At bounds: \\((8+4)-0=12\\)."},-->
+<!--    {question:"What is \\( \\displaystyle\\lim_{x\\to 0}\\frac{\\sin x}{x} \\)?",chosenText:"\\( 0 \\)",chosenCorrect:false,correctText:"\\( 1 \\)",allOpts:["\\( 1 \\)","\\( 0 \\)","\\( \\infty \\)","\\( \\pi \\)"],correctIdx:0,chosenIdx:1,explanation:"Squeeze theorem: \\( \\lim_{x\\to 0}\\dfrac{\\sin x}{x}=1 \\)."},-->
+<!--    {question:"Differentiate \\( g(x)=\\ln(x^2+1) \\).",chosenText:null,chosenCorrect:false,correctText:"\\( \\dfrac{2x}{x^2+1} \\)",allOpts:["\\( \\dfrac{2x}{x^2+1} \\)","\\( \\dfrac{1}{x^2+1} \\)","\\( \\ln(2x) \\)","\\( \\dfrac{2x}{x^2} \\)"],correctIdx:0,chosenIdx:-1,explanation:"Chain rule: \\( g'(x)=\\dfrac{2x}{x^2+1} \\)."},-->
+<!--    {question:"Solve: \\( 2\\ln x=6 \\)",chosenText:"\\( x=e^3 \\)",chosenCorrect:true,correctText:"\\( x=e^3 \\)",allOpts:["\\( x=e^3 \\)","\\( x=3 \\)","\\( x=e^6 \\)","\\( x=6e \\)"],correctIdx:0,chosenIdx:0,explanation:"\\(\\ln x=3\\Rightarrow x=e^3\\)."},-->
+<!--    {question:"Evaluate \\( \\displaystyle\\lim_{x\\to\\infty}\\frac{4x^2-x}{2x^2+5} \\).",chosenText:"\\( \\infty \\)",chosenCorrect:false,correctText:"\\( 2 \\)",allOpts:["\\( 2 \\)","\\( \\infty \\)","\\( 0 \\)","\\( \\tfrac{1}{2} \\)"],correctIdx:0,chosenIdx:1,explanation:"Divide by \\(x^2\\): \\(\\dfrac{4}{2}=2\\)."},-->
+<!--    {question:"Expand \\( (a+b)^3 \\) using the binomial theorem.",chosenText:"\\( a^3+3ab+b^3 \\)",chosenCorrect:false,correctText:"\\( a^3+3a^2b+3ab^2+b^3 \\)",allOpts:["\\( a^3+3a^2b+3ab^2+b^3 \\)","\\( a^3+b^3 \\)","\\( a^3+2a^2b+2ab^2+b^3 \\)","\\( a^3+3ab+b^3 \\)"],correctIdx:0,chosenIdx:3,explanation:"\\((a+b)^3=a^3+3a^2b+3ab^2+b^3\\)."},-->
+<!--    {question:"What is the period of \\( f(x)=\\sin(4x) \\)?",chosenText:"\\( \\dfrac{\\pi}{2} \\)",chosenCorrect:true,correctText:"\\( \\dfrac{\\pi}{2} \\)",allOpts:["\\( \\dfrac{\\pi}{2} \\)","\\( 2\\pi \\)","\\( 4\\pi \\)","\\( \\pi \\)"],correctIdx:0,chosenIdx:0,explanation:"Period \\(=\\dfrac{2\\pi}{4}=\\dfrac{\\pi}{2}\\)."},-->
+<!--  ]-->
+<!--};-->
+
+<!--let DATA=null;-->
+<!--try{const r=sessionStorage.getItem('mathTestResults');if(r)DATA=JSON.parse(r);}catch(e){}-->
+<!--if(!DATA)DATA=DEMO_DATA;-->
+
+<!--/* ── Helpers ── */-->
+<!--function fmtTime(s){if(s==null)return'—';const m=Math.floor(s/60),sec=s%60;return m>0?`${m}m ${String(sec).padStart(2,'0')}s`:`${sec}s`;}-->
+<!--function getStatus(q){if(q.chosenIdx===-1||q.chosenText===null)return'skipped';return q.chosenCorrect?'correct':'wrong';}-->
+
+<!--/* Strip LaTeX → plain text for header preview (never rendered by MathJax) */-->
+<!--function plainText(s){-->
+<!--  return (s||'')-->
+<!--    .replace(/\\\(|\\\)|\\\[|\\\]|\$\$/g,' ')-->
+<!--    .replace(/\$/g,' ')-->
+<!--    .replace(/\\displaystyle|\\dfrac|\\frac|\\lim|\\ln|\\log|\\sin|\\cos|\\tan|\\infty|\\cdot|\\cdots|\\int|\\sum|\\prod/g,' ')-->
+<!--    .replace(/\\[a-zA-Z]+/g,'')-->
+<!--    .replace(/[{}^_]/g,' ')-->
+<!--    .replace(/\s+/g,' ')-->
+<!--    .trim();-->
+<!--}-->
+
+<!--const LETTERS=['A','B','C','D','E'];-->
+
+<!--/* ══ BUILD HERO ════════════════════════════════════ */-->
+<!--function buildHero(){-->
+<!--  const {correct,wrong,pct,totalSecs,avgSecs,takenAt}=DATA;-->
+<!--  const skipped=DATA.skipped??DATA.questions.filter(q=>q.chosenIdx===-1||q.chosenText===null).length;-->
+<!--  const total=DATA.questions.length;-->
+
+<!--  let grade='F',glabel='Unsatisfactory',gcls='gF',bcls='barF';-->
+<!--  if(pct>=90){grade='A';glabel='Excellent';gcls='gA';bcls='barA';}-->
+<!--  else if(pct>=80){grade='B';glabel='Good';gcls='gB';bcls='barB';}-->
+<!--  else if(pct>=70){grade='C';glabel='Satisfactory';gcls='gC';bcls='barC';}-->
+<!--  else if(pct>=60){grade='D';glabel='Needs Work';gcls='gD';bcls='barD';}-->
+
+<!--  const R=55,circ=2*Math.PI*R;-->
+<!--  const ringCol=pct>=80?'#34d399':pct>=60?'#e8c96d':'#f87171';-->
+
+<!--  document.getElementById('heroSection').innerHTML=`-->
+<!--    <div class="hero-top">-->
+<!--      <div class="ring-wrap">-->
+<!--        <svg class="ring-svg" viewBox="0 0 130 130">-->
+<!--          <circle class="ring-bg" cx="65" cy="65" r="${R}"/>-->
+<!--          <circle class="ring-fill" id="ringFill" cx="65" cy="65" r="${R}"-->
+<!--            stroke="${ringCol}"-->
+<!--            stroke-dasharray="${circ.toFixed(2)}"-->
+<!--            stroke-dashoffset="${circ.toFixed(2)}"/>-->
+<!--        </svg>-->
+<!--        <div class="ring-center">-->
+<!--          <div class="ring-pct" style="color:${ringCol}">${pct}%</div>-->
+<!--          <div class="ring-lbl">Score</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="hero-stats">-->
+<!--        <div class="h-stat"><div class="hv hv-c">${correct}</div><div class="hl">Correct</div></div>-->
+<!--        <div class="h-stat"><div class="hv hv-w">${wrong}</div><div class="hl">Wrong</div></div>-->
+<!--        <div class="h-stat"><div class="hv hv-t">${fmtTime(totalSecs)}</div><div class="hl">Total Time</div></div>-->
+<!--        <div class="h-stat"><div class="hv hv-a">${avgSecs}s</div><div class="hl">Avg / Question</div></div>-->
+<!--        <div class="h-stat"><div class="hv hv-d">${takenAt||'—'}</div><div class="hl">Taken At</div></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="grade-banner ${bcls}">-->
+<!--      <div class="grade-letter ${gcls}">${grade}</div>-->
+<!--      <div class="grade-info">-->
+<!--        <div class="g-title">${glabel}</div>-->
+<!--        <div class="g-sub">You answered ${correct} of ${total} correctly (${pct}%)${skipped>0?`. ${skipped} question${skipped>1?'s were':' was'} skipped.`:'.'}</div>-->
+<!--      </div>-->
+<!--    </div>`;-->
+
+<!--  document.getElementById('tbScore').textContent=`${correct}/${total} · ${pct}%`;-->
+<!--  requestAnimationFrame(()=>requestAnimationFrame(()=>{-->
+<!--    const f=document.getElementById('ringFill');-->
+<!--    if(f) f.style.strokeDashoffset=(circ*(1-pct/100)).toFixed(2);-->
+<!--  }));-->
+<!--}-->
+
+<!--/* ══ BUILD CARDS ═══════════════════════════════════-->
+<!--   KEY FIXES applied here:-->
+<!--   1. Header shows plainText() — no LaTeX, safe to clip-->
+<!--   2. Body uses max-height:0 collapse, NOT display:none-->
+<!--      → MathJax can ALWAYS render the content in one pass-->
+<!--   3. Single typesetPromise([list]) call renders everything-->
+<!--══════════════════════════════════════════════════ */-->
+<!--function buildCards(){-->
+<!--  const list=document.getElementById('reviewList');-->
+<!--  list.innerHTML='';-->
+<!--  let nC=0,nW=0,nS=0;-->
+
+<!--  DATA.questions.forEach((q,i)=>{-->
+<!--    const status=getStatus(q);-->
+<!--    if(status==='correct')nC++;else if(status==='wrong')nW++;else nS++;-->
+
+<!--    const preview=plainText(q.question);-->
+
+<!--    const optsHTML=(q.allOpts||[]).map((opt,oi)=>{-->
+<!--      let cls='';-->
+<!--      if(oi===q.correctIdx) cls='opt-correct';-->
+<!--      else if(oi===q.chosenIdx&&!q.chosenCorrect) cls='opt-chosen-wrong';-->
+<!--      return `<div class="rc-opt ${cls}"><span class="opt-key">${LETTERS[oi]}</span><span>${opt}</span></div>`;-->
+<!--    }).join('');-->
+
+<!--    let ansHTML='';-->
+<!--    if(status==='skipped'){-->
+<!--      ansHTML=`<div class="rc-ans-row ans-skipped"><span class="ar-tag">Not Answered</span><span class="ar-val">—</span></div>-->
+<!--               <div class="rc-ans-row ans-correct-reveal"><span class="ar-tag">✓ Correct</span><span class="ar-val">${q.correctText}</span></div>`;-->
+<!--    }else if(status==='correct'){-->
+<!--      ansHTML=`<div class="rc-ans-row ans-your-correct"><span class="ar-tag">✓ Your Answer</span><span class="ar-val">${q.chosenText}</span></div>`;-->
+<!--    }else{-->
+<!--      ansHTML=`<div class="rc-ans-row ans-your-wrong"><span class="ar-tag">✗ Your Answer</span><span class="ar-val">${q.chosenText}</span></div>-->
+<!--               <div class="rc-ans-row ans-correct-reveal"><span class="ar-tag">✓ Correct</span><span class="ar-val">${q.correctText}</span></div>`;-->
+<!--    }-->
+
+<!--    const icon=status==='correct'?'✓':status==='skipped'?'—':'✗';-->
+<!--    const card=document.createElement('div');-->
+<!--    card.className='rev-card';-->
+<!--    card.dataset.status=status;-->
+<!--    card.dataset.index=i;-->
+<!--    card.dataset.preview=preview.toLowerCase();-->
+<!--    card.style.animationDelay=`${i*0.025}s`;-->
+
+<!--    card.innerHTML=`-->
+<!--      <div class="rc-header" onclick="toggleCard(${i})">-->
+<!--        <span class="rc-num">Q${i+1}</span>-->
+<!--        <span class="rc-badge ${status}">${icon} ${status.charAt(0).toUpperCase()+status.slice(1)}</span>-->
+<!--        <div class="rc-preview">${preview}</div>-->
+<!--        <span class="rc-arrow">▾</span>-->
+<!--      </div>-->
+<!--      <div class="rc-body" id="body-${i}">-->
+<!--        <div class="rc-body-inner">-->
+<!--          <div class="rc-q-full">${q.question}</div>-->
+<!--          <div class="rc-answers">${ansHTML}</div>-->
+<!--          ${q.allOpts?`<div class="rc-all-opts">${optsHTML}</div>`:''}-->
+<!--          <div class="rc-exp-wrap">-->
+<!--            <div class="rc-exp-label">💡 Explanation</div>-->
+<!--            <div class="rc-exp-body">${q.explanation}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>`;-->
+<!--    list.appendChild(card);-->
+<!--  });-->
+
+<!--  document.getElementById('cAll').textContent    =DATA.questions.length;-->
+<!--  document.getElementById('cCorrect').textContent=nC;-->
+<!--  document.getElementById('cWrong').textContent  =nW;-->
+<!--  document.getElementById('cSkipped').textContent=nS;-->
+
+<!--  /* Single typeset pass — works because bodies are in DOM (max-height:0, not display:none) */-->
+<!--  function doTypeset(){-->
+<!--    MathJax.typesetPromise([list]).catch(e=>console.warn('MathJax err:',e));-->
+<!--  }-->
+<!--  if(window.MathJax&&MathJax.typesetPromise){-->
+<!--    MathJax.startup.promise.then(doTypeset);-->
+<!--  }else{-->
+<!--    window.addEventListener('load',()=>{-->
+<!--      if(window.MathJax) MathJax.startup.promise.then(doTypeset);-->
+<!--    });-->
+<!--  }-->
+<!--}-->
+
+<!--/* ══ TOGGLE: only CSS class change, no display manipulation ══ */-->
+<!--function toggleCard(i){-->
+<!--  document.querySelector(`.rev-card[data-index="${i}"]`).classList.toggle('open');-->
+<!--}-->
+
+<!--/* ══ FILTERS ══════════════════════════════════════ */-->
+<!--let currentFilter='all';-->
+<!--function setFilter(f){-->
+<!--  currentFilter=f;-->
+<!--  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));-->
+<!--  applyFilters();-->
+<!--}-->
+<!--function applyFilters(){-->
+<!--  const q=document.getElementById('searchInput').value.toLowerCase().trim();-->
+<!--  let visible=0;-->
+<!--  document.querySelectorAll('.rev-card').forEach(card=>{-->
+<!--    const show=(currentFilter==='all'||card.dataset.status===currentFilter)&&(!q||card.dataset.preview.includes(q));-->
+<!--    card.style.display=show?'':'none';-->
+<!--    if(show)visible++;-->
+<!--  });-->
+<!--  let empty=document.getElementById('emptyState');-->
+<!--  if(visible===0){-->
+<!--    if(!empty){empty=document.createElement('div');empty.id='emptyState';empty.className='empty-state';empty.textContent='No questions match your filter.';document.getElementById('reviewList').appendChild(empty);}-->
+<!--    empty.style.display='';-->
+<!--  }else if(empty){empty.style.display='none';}-->
+<!--}-->
+
+<!--function goBack(){if(document.referrer)history.back();else window.location.href='math-test.html';}-->
+
+<!--/* ══ INIT ══ */-->
+<!--buildHero();-->
+<!--buildCards();-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Review — Mathematics</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath:[['\\(','\\)'],['$','$']], displayMath:[['\\[','\\]'],['$$','$$']] },
+  options: { skipHtmlTags:['script','noscript','style','textarea','pre'] },
+  startup: { typeset: false }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080b12; --bg2:#0e1220; --panel:#111827;
+  --card:#161d2e; --card2:#1c2440;
+  --border:rgba(255,255,255,.06); --border2:rgba(255,255,255,.11);
+  --gold:#e8c96d; --gold-dim:rgba(232,201,109,.12);
+  --blue:#4f8ef7; --blue-dim:rgba(79,142,247,.12);
+  --green:#34d399; --green-dim:rgba(52,211,153,.12);
+  --red:#f87171;  --red-dim:rgba(248,113,113,.12);
+  --amber:#fbbf24; --amber-dim:rgba(251,191,36,.12);
+  --text:#dde3f0; --text2:#8892a8; --text3:#4f5870;
+  --r:14px; --r2:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-weight:400;
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(79,142,247,.05) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(232,201,109,.04) 0%, transparent 70%);
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ══ MathJax: NEVER clip, NEVER scroll ══════════════ */
+mjx-container{overflow:visible !important;max-width:100% !important;display:inline !important;}
+mjx-container svg{max-width:100%;height:auto !important;}
+
+/* ════════ TOPBAR ════════════════════════════════════ */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,11,18,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:58px;display:flex;align-items:center;gap:16px;padding:0 32px;
+}
+.tb-back{
+  background:transparent;border:1px solid var(--border2);color:var(--text2);
+  border-radius:var(--r2);padding:6px 14px;font-family:'Outfit',sans-serif;font-size:12px;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.tb-back:hover{border-color:var(--gold);color:var(--gold);}
+.tb-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;}
+.tb-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.tb-spacer{flex:1;}
+.tb-score{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);font-weight:500;}
+
+/* ════════ HERO ══════════════════════════════════════ */
+.hero{position:relative;z-index:1;padding:48px 32px 32px;max-width:880px;margin:0 auto;}
+.hero-top{display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+
+.ring-wrap{flex-shrink:0;position:relative;width:140px;height:140px;}
+.ring-svg{width:100%;height:100%;}
+.ring-bg{fill:none;stroke:var(--panel);stroke-width:10;}
+.ring-fill{fill:none;stroke-width:10;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-pct{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;line-height:1;}
+.ring-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-top:3px;}
+
+.hero-stats{display:flex;flex-wrap:wrap;gap:14px;flex:1;}
+.h-stat{background:var(--panel);border:1px solid var(--border);border-radius:var(--r2);padding:16px 22px;min-width:110px;text-align:center;}
+.h-stat .hv{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1;margin-bottom:5px;}
+.h-stat .hl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.hv-c{color:var(--green);}  .hv-w{color:var(--red);}
+.hv-t{color:var(--blue);}   .hv-a{color:var(--text2);}
+.hv-d{color:var(--amber);font-size:1.1rem !important;}
+
+.grade-banner{display:flex;align-items:center;gap:20px;border:1px solid var(--border2);border-radius:var(--r);padding:18px 24px;margin-bottom:32px;}
+.grade-letter{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;line-height:1;}
+.grade-info .g-title{font-size:16px;font-weight:500;margin-bottom:3px;}
+.grade-info .g-sub{font-size:13px;color:var(--text2);}
+.gA{color:var(--green);} .gB{color:var(--blue);} .gC{color:var(--gold);} .gD{color:var(--amber);} .gF{color:var(--red);}
+.barA{background:var(--green-dim);border-color:rgba(52,211,153,.3);}
+.barB{background:var(--blue-dim); border-color:rgba(79,142,247,.3);}
+.barC{background:var(--gold-dim); border-color:rgba(232,201,109,.3);}
+.barD{background:var(--amber-dim);border-color:rgba(251,191,36,.3);}
+.barF{background:var(--red-dim);  border-color:rgba(248,113,113,.3);}
+
+/* ════════ FILTER BAR ════════════════════════════════ */
+.filter-bar{
+  position:sticky;top:58px;z-index:90;
+  background:rgba(8,11,18,.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;display:flex;align-items:center;gap:12px;height:52px;
+}
+.filter-btn{
+  background:transparent;border:1px solid transparent;color:var(--text3);
+  border-radius:var(--r2);padding:6px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:7px;
+}
+.filter-btn:hover{color:var(--text2);border-color:var(--border2);}
+.filter-btn.active{background:var(--card2);border-color:var(--border2);color:var(--text);}
+.filter-btn.active.fa{border-color:rgba(79,142,247,.4);color:var(--blue);}
+.filter-btn.active.fc{border-color:rgba(52,211,153,.4);color:var(--green);}
+.filter-btn.active.fw{border-color:rgba(248,113,113,.4);color:var(--red);}
+.filter-btn.active.fs{border-color:rgba(251,191,36,.4);color:var(--amber);}
+.fb-dot{width:7px;height:7px;border-radius:50%;}
+.fb-count{background:rgba(255,255,255,.08);border-radius:100px;padding:0 7px;font-size:10px;}
+.filter-sep{flex:1;}
+.search-wrap{position:relative;}
+.search-input{
+  background:var(--panel);border:1px solid var(--border2);color:var(--text);
+  border-radius:var(--r2);padding:7px 12px 7px 34px;
+  font-family:'Outfit',sans-serif;font-size:13px;width:200px;outline:none;transition:border-color .2s;
+}
+.search-input::placeholder{color:var(--text3);}
+.search-input:focus{border-color:var(--blue);}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text3);pointer-events:none;}
+
+/* ════════ REVIEW LIST ═══════════════════════════════ */
+.review-list{max-width:880px;margin:0 auto;padding:24px 32px 80px;position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;}
+
+.rev-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  transition:box-shadow .25s;animation:fadeUp .4s both;
+}
+.rev-card:hover{box-shadow:0 6px 30px rgba(0,0,0,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.rev-card[data-status="correct"]{border-left:3px solid var(--green);}
+.rev-card[data-status="wrong"]  {border-left:3px solid var(--red);}
+.rev-card[data-status="skipped"]{border-left:3px solid var(--amber);}
+
+.rc-header{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 24px;cursor:pointer;user-select:none;
+  transition:background .2s;min-height:64px;
+}
+.rc-header:hover{background:rgba(255,255,255,.015);}
+.rc-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);min-width:28px;flex-shrink:0;}
+.rc-badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 12px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.rc-badge.correct{background:var(--green-dim);color:var(--green);}
+.rc-badge.wrong  {background:var(--red-dim);  color:var(--red);}
+.rc-badge.skipped{background:var(--amber-dim);color:var(--amber);}
+.rc-preview{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;line-height:1.65;color:var(--text2);
+  flex:1;min-width:0;
+}
+.rc-arrow{color:var(--text3);font-size:12px;transition:transform .3s;flex-shrink:0;margin-left:auto;}
+.rev-card.open .rc-arrow{transform:rotate(180deg);}
+
+.rc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.4,0,.2,1);
+}
+.rev-card.open .rc-body{
+  max-height:9999px;
+  border-top:1px solid var(--border);
+}
+.rc-body-inner{padding:24px;display:flex;flex-direction:column;gap:16px;}
+
+.rc-q-full{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;line-height:1.7;color:var(--text);
+  padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+
+.rc-answers{display:flex;flex-direction:column;gap:8px;}
+.rc-ans-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:11px 16px;border-radius:var(--r2);
+  font-size:14px;font-family:'Outfit',sans-serif;
+  flex-wrap:wrap;border:1px solid transparent;
+}
+.rc-ans-row .ar-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  white-space:nowrap;padding-top:3px;min-width:90px;opacity:.65;flex-shrink:0;
+}
+.rc-ans-row .ar-val{flex:1;min-width:0;}
+.ans-your-correct{background:var(--green-dim);border-color:rgba(52,211,153,.2);color:var(--green);}
+.ans-your-wrong  {background:var(--red-dim);  border-color:rgba(248,113,113,.2);color:var(--red);}
+.ans-correct-reveal{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.2);color:rgba(52,211,153,.85);}
+.ans-skipped{background:var(--amber-dim);border-color:rgba(251,191,36,.2);color:var(--amber);}
+
+.rc-all-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:560px){.rc-all-opts{grid-template-columns:1fr;}}
+.rc-opt{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 14px;border-radius:var(--r2);
+  border:1px solid var(--border);background:var(--bg2);
+  font-size:13px;font-family:'Outfit',sans-serif;color:var(--text2);
+}
+.rc-opt.opt-correct{border-color:rgba(52,211,153,.3);background:var(--green-dim);color:var(--green);}
+.rc-opt.opt-chosen-wrong{border-color:rgba(248,113,113,.3);background:var(--red-dim);color:var(--red);}
+.rc-opt .opt-key{
+  flex-shrink:0;width:22px;height:22px;border-radius:5px;
+  background:rgba(255,255,255,.06);
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;color:var(--text3);margin-top:1px;
+}
+.rc-opt.opt-correct .opt-key{background:rgba(52,211,153,.2);color:var(--green);}
+.rc-opt.opt-chosen-wrong .opt-key{background:rgba(248,113,113,.2);color:var(--red);}
+
+.rc-exp-wrap{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);overflow:hidden;}
+.rc-exp-label{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;
+  background:rgba(255,255,255,.025);border-bottom:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+}
+.rc-exp-body{padding:14px 18px;font-size:14px;font-family:'Outfit',sans-serif;color:var(--text2);line-height:1.8;}
+
+.empty-state{text-align:center;padding:80px 20px;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text3);}
+
+@media(max-width:640px){
+  .topbar,.filter-bar,.hero,.review-list{padding-left:16px;padding-right:16px;}
+  .hero-top{gap:20px;}
+  .filter-bar{gap:6px;overflow-x:auto;}
+  .filter-btn{padding:5px 10px;font-size:10px;}
+  .search-input{width:130px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="tb-back" onclick="goBack()">← Back</button>
+  <div>
+    <div class="tb-title">Test Review</div>
+    <div class="tb-sub">Mathematics Examination</div>
+  </div>
+  <div class="tb-spacer"></div>
+  <div class="tb-score" id="tbScore"></div>
+</div>
+
+<div class="hero" id="heroSection"></div>
+
+<div class="filter-bar">
+  <button class="filter-btn fa active" data-filter="all"     onclick="setFilter('all')">
+    <span class="fb-dot" style="background:var(--blue)"></span>All <span class="fb-count" id="cAll">0</span>
+  </button>
+  <button class="filter-btn fc" data-filter="correct"  onclick="setFilter('correct')">
+    <span class="fb-dot" style="background:var(--green)"></span>Correct <span class="fb-count" id="cCorrect">0</span>
+  </button>
+  <button class="filter-btn fw" data-filter="wrong"    onclick="setFilter('wrong')">
+    <span class="fb-dot" style="background:var(--red)"></span>Wrong <span class="fb-count" id="cWrong">0</span>
+  </button>
+  <button class="filter-btn fs" data-filter="skipped"  onclick="setFilter('skipped')">
+    <span class="fb-dot" style="background:var(--amber)"></span>Skipped <span class="fb-count" id="cSkipped">0</span>
+  </button>
+  <div class="filter-sep"></div>
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input class="search-input" type="text" placeholder="Search questions…" id="searchInput" oninput="applyFilters()">
+  </div>
+</div>
+
+<div class="review-list" id="reviewList"></div>
+
+<script>
+/* ══ DATA NORMALIZATION ═════════════════════════════
+   Converts backend format → internal rendering format.
+   Backend fields:
+     correct_percentage, time_spent_seconds,
+     avg_time_per_question_seconds, test_taken_at,
+     questions[].status, .chosen_answer, .correct_answer,
+     .all_options, .question, .explanation, .number
+═══════════════════════════════════════════════════ */
+function normalizeBackendData(raw) {
+  const questions = raw.questions.map(q => {
+    const opts   = q.all_options || [];
+    // Find correctIdx by matching correct_answer string
+    const correctIdx = opts.findIndex(o => o === q.correct_answer);
+    // Find chosenIdx by matching chosen_answer string (null → -1 for skipped)
+    const chosenIdx  = q.chosen_answer == null
+      ? -1
+      : opts.findIndex(o => o === q.chosen_answer);
+
+    return {
+      question      : q.question,
+      chosenText    : q.chosen_answer,          // null when skipped
+      chosenCorrect : q.status === 'correct',
+      correctText   : q.correct_answer,
+      allOpts       : opts,
+      correctIdx    : correctIdx,
+      chosenIdx     : chosenIdx,
+      explanation   : q.explanation,
+    };
+  });
+
+  // Derive skipped count from question statuses
+  const skipped = raw.questions.filter(q => q.status === 'skipped').length;
+
+  return {
+    correct   : raw.correct,
+    wrong     : raw.wrong,
+    skipped   : skipped,
+    pct       : raw.correct_percentage,
+    totalSecs : raw.time_spent_seconds,
+    avgSecs   : raw.avg_time_per_question_seconds,
+    takenAt   : raw.test_taken_at,
+    questions : questions,
+  };
+}
+
+/* ── Load data: try sessionStorage (backend-injected), fall back to demo ── */
+const DEMO_DATA = {
+  correct:3, wrong:5, skipped:2, pct:30,
+  totalSecs:610, avgSecs:'61.0',
+  takenAt: new Date().toLocaleString(),
+  questions:[
+    {question:"Evaluate \\( \\log_2 128 \\)",chosenText:"\\( 7 \\)",chosenCorrect:true,correctText:"\\( 7 \\)",allOpts:["\\( 7 \\)","\\( 6 \\)","\\( 8 \\)","\\( 5 \\)"],correctIdx:0,chosenIdx:0,explanation:"\\( 2^7 = 128 \\), so \\( \\log_2 128 = 7 \\)."},
+    {question:"Simplify \\( \\log_b b^5 \\)",chosenText:"\\( b^5 \\)",chosenCorrect:false,correctText:"\\( 5 \\)",allOpts:["\\( 5 \\)","\\( b^5 \\)","\\( 5b \\)","\\( \\log_b 5 \\)"],correctIdx:0,chosenIdx:1,explanation:"Power rule: \\( \\log_b b^x = x \\), so the answer is \\( 5 \\)."},
+    {question:"Find \\( f'(x) \\) if \\( f(x) = x^5 - 3x^2 + 7 \\).",chosenText:"\\( 5x^4 - 6x \\)",chosenCorrect:true,correctText:"\\( 5x^4 - 6x \\)",allOpts:["\\( 5x^4 - 6x \\)","\\( 5x^4 + 6x \\)","\\( x^4 - 6x \\)","\\( 5x^4 - 6 \\)"],correctIdx:0,chosenIdx:0,explanation:"Power rule term by term: \\( \\frac{d}{dx}x^5 = 5x^4 \\), \\( \\frac{d}{dx}3x^2 = 6x \\)."},
+    {question:"Compute \\( \\displaystyle\\int_0^2 (3x^2+2)\\,dx \\).",chosenText:null,chosenCorrect:false,correctText:"\\( 12 \\)",allOpts:["\\( 12 \\)","\\( 10 \\)","\\( 14 \\)","\\( 8 \\)"],correctIdx:0,chosenIdx:-1,explanation:"Anti-derivative: \\(x^3+2x\\). At bounds: \\((8+4)-0=12\\)."},
+    {question:"What is \\( \\displaystyle\\lim_{x\\to 0}\\frac{\\sin x}{x} \\)?",chosenText:"\\( 0 \\)",chosenCorrect:false,correctText:"\\( 1 \\)",allOpts:["\\( 1 \\)","\\( 0 \\)","\\( \\infty \\)","\\( \\pi \\)"],correctIdx:0,chosenIdx:1,explanation:"Squeeze theorem: \\( \\lim_{x\\to 0}\\dfrac{\\sin x}{x}=1 \\)."},
+    {question:"Differentiate \\( g(x)=\\ln(x^2+1) \\).",chosenText:null,chosenCorrect:false,correctText:"\\( \\dfrac{2x}{x^2+1} \\)",allOpts:["\\( \\dfrac{2x}{x^2+1} \\)","\\( \\dfrac{1}{x^2+1} \\)","\\( \\ln(2x) \\)","\\( \\dfrac{2x}{x^2} \\)"],correctIdx:0,chosenIdx:-1,explanation:"Chain rule: \\( g'(x)=\\dfrac{2x}{x^2+1} \\)."},
+    {question:"Solve: \\( 2\\ln x=6 \\)",chosenText:"\\( x=e^3 \\)",chosenCorrect:true,correctText:"\\( x=e^3 \\)",allOpts:["\\( x=e^3 \\)","\\( x=3 \\)","\\( x=e^6 \\)","\\( x=6e \\)"],correctIdx:0,chosenIdx:0,explanation:"\\(\\ln x=3\\Rightarrow x=e^3\\)."},
+    {question:"Evaluate \\( \\displaystyle\\lim_{x\\to\\infty}\\frac{4x^2-x}{2x^2+5} \\).",chosenText:"\\( \\infty \\)",chosenCorrect:false,correctText:"\\( 2 \\)",allOpts:["\\( 2 \\)","\\( \\infty \\)","\\( 0 \\)","\\( \\tfrac{1}{2} \\)"],correctIdx:0,chosenIdx:1,explanation:"Divide by \\(x^2\\): \\(\\dfrac{4}{2}=2\\)."},
+    {question:"Expand \\( (a+b)^3 \\) using the binomial theorem.",chosenText:"\\( a^3+3ab+b^3 \\)",chosenCorrect:false,correctText:"\\( a^3+3a^2b+3ab^2+b^3 \\)",allOpts:["\\( a^3+3a^2b+3ab^2+b^3 \\)","\\( a^3+b^3 \\)","\\( a^3+2a^2b+2ab^2+b^3 \\)","\\( a^3+3ab+b^3 \\)"],correctIdx:0,chosenIdx:3,explanation:"\\((a+b)^3=a^3+3a^2b+3ab^2+b^3\\)."},
+    {question:"What is the period of \\( f(x)=\\sin(4x) \\)?",chosenText:"\\( \\dfrac{\\pi}{2} \\)",chosenCorrect:true,correctText:"\\( \\dfrac{\\pi}{2} \\)",allOpts:["\\( \\dfrac{\\pi}{2} \\)","\\( 2\\pi \\)","\\( 4\\pi \\)","\\( \\pi \\)"],correctIdx:0,chosenIdx:0,explanation:"Period \\(=\\dfrac{2\\pi}{4}=\\dfrac{\\pi}{2}\\)."},
+  ]
+};
+
+let DATA = null;
+try {
+  const raw = sessionStorage.getItem('mathTestResults');
+  if (raw) {
+    const parsed = JSON.parse(raw);
+    // Detect backend format by checking for backend-specific field names
+    DATA = ('correct_percentage' in parsed) ? normalizeBackendData(parsed) : parsed;
+  }
+} catch(e) {}
+if (!DATA) DATA = DEMO_DATA;
+
+/* ── Helpers ── */
+function fmtTime(s){if(s==null)return'—';const m=Math.floor(s/60),sec=s%60;return m>0?`${m}m ${String(sec).padStart(2,'0')}s`:`${sec}s`;}
+function getStatus(q){if(q.chosenIdx===-1||q.chosenText===null)return'skipped';return q.chosenCorrect?'correct':'wrong';}
+
+function plainText(s){
+  // Take only the text before the first math block
+  const beforeMath = (s||'').split(/\\\(|\\\[|\$\$|\$/)[0].trim();
+  // If there's meaningful text before math, use it; otherwise strip everything
+  if(beforeMath.length > 3) return beforeMath;
+  // Fallback: remove all LaTeX and return whatever words remain
+  return (s||'')
+    .replace(/\\\([\s\S]*?\\\)/g,'')
+    .replace(/\\\[[\s\S]*?\\\]/g,'')
+    .replace(/\$\$[\s\S]*?\$\$/g,'')
+    .replace(/\$[^$]*?\$/g,'')
+    .replace(/\s+/g,' ').trim();
+}
+
+const LETTERS=['A','B','C','D','E'];
+
+/* ══ BUILD HERO ════════════════════════════════════ */
+function buildHero(){
+  const {correct,wrong,pct,totalSecs,avgSecs,takenAt}=DATA;
+  const skipped=DATA.skipped??DATA.questions.filter(q=>q.chosenIdx===-1||q.chosenText===null).length;
+  const total=DATA.questions.length;
+
+  let grade='F',glabel='Unsatisfactory',gcls='gF',bcls='barF';
+  if(pct>=90){grade='A';glabel='Excellent';gcls='gA';bcls='barA';}
+  else if(pct>=80){grade='B';glabel='Good';gcls='gB';bcls='barB';}
+  else if(pct>=70){grade='C';glabel='Satisfactory';gcls='gC';bcls='barC';}
+  else if(pct>=60){grade='D';glabel='Needs Work';gcls='gD';bcls='barD';}
+
+  const R=55,circ=2*Math.PI*R;
+  const ringCol=pct>=80?'#34d399':pct>=60?'#e8c96d':'#f87171';
+
+  document.getElementById('heroSection').innerHTML=`
+    <div class="hero-top">
+      <div class="ring-wrap">
+        <svg class="ring-svg" viewBox="0 0 130 130">
+          <circle class="ring-bg" cx="65" cy="65" r="${R}"/>
+          <circle class="ring-fill" id="ringFill" cx="65" cy="65" r="${R}"
+            stroke="${ringCol}"
+            stroke-dasharray="${circ.toFixed(2)}"
+            stroke-dashoffset="${circ.toFixed(2)}"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct" style="color:${ringCol}">${pct}%</div>
+          <div class="ring-lbl">Score</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="hv hv-c">${correct}</div><div class="hl">Correct</div></div>
+        <div class="h-stat"><div class="hv hv-w">${wrong}</div><div class="hl">Wrong</div></div>
+        <div class="h-stat"><div class="hv hv-t">${fmtTime(totalSecs)}</div><div class="hl">Total Time</div></div>
+        <div class="h-stat"><div class="hv hv-a">${avgSecs}s</div><div class="hl">Avg / Question</div></div>
+        <div class="h-stat"><div class="hv hv-d">${takenAt||'—'}</div><div class="hl">Taken At</div></div>
+      </div>
+    </div>
+    <div class="grade-banner ${bcls}">
+      <div class="grade-letter ${gcls}">${grade}</div>
+      <div class="grade-info">
+        <div class="g-title">${glabel}</div>
+        <div class="g-sub">You answered ${correct} of ${total} correctly (${pct}%)${skipped>0?`. ${skipped} question${skipped>1?'s were':' was'} skipped.`:'.'}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('tbScore').textContent=`${correct}/${total} · ${pct}%`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const f=document.getElementById('ringFill');
+    if(f) f.style.strokeDashoffset=(circ*(1-pct/100)).toFixed(2);
+  }));
+}
+
+/* ══ BUILD CARDS ═══════════════════════════════════ */
+function buildCards(){
+  const list=document.getElementById('reviewList');
+  list.innerHTML='';
+  let nC=0,nW=0,nS=0;
+
+  DATA.questions.forEach((q,i)=>{
+    const status=getStatus(q);
+    if(status==='correct')nC++;else if(status==='wrong')nW++;else nS++;
+
+    const preview=q.question;
+
+    const optsHTML=(q.allOpts||[]).map((opt,oi)=>{
+      let cls='';
+      if(oi===q.correctIdx) cls='opt-correct';
+      else if(oi===q.chosenIdx&&!q.chosenCorrect) cls='opt-chosen-wrong';
+      return `<div class="rc-opt ${cls}"><span class="opt-key">${LETTERS[oi]}</span><span>${opt}</span></div>`;
+    }).join('');
+
+    let ansHTML='';
+    if(status==='skipped'){
+      ansHTML=`<div class="rc-ans-row ans-skipped"><span class="ar-tag">Not Answered</span><span class="ar-val">—</span></div>
+               <div class="rc-ans-row ans-correct-reveal"><span class="ar-tag">✓ Correct</span><span class="ar-val">${q.correctText}</span></div>`;
+    }else if(status==='correct'){
+      ansHTML=`<div class="rc-ans-row ans-your-correct"><span class="ar-tag">✓ Your Answer</span><span class="ar-val">${q.chosenText}</span></div>`;
+    }else{
+      ansHTML=`<div class="rc-ans-row ans-your-wrong"><span class="ar-tag">✗ Your Answer</span><span class="ar-val">${q.chosenText}</span></div>
+               <div class="rc-ans-row ans-correct-reveal"><span class="ar-tag">✓ Correct</span><span class="ar-val">${q.correctText}</span></div>`;
+    }
+
+    const icon=status==='correct'?'✓':status==='skipped'?'—':'✗';
+    const card=document.createElement('div');
+    card.className='rev-card';
+    card.dataset.status=status;
+    card.dataset.index=i;
+    card.dataset.preview=plainText(q.question).toLowerCase();
+    card.style.animationDelay=`${i*0.025}s`;
+
+    card.innerHTML=`
+      <div class="rc-header" onclick="toggleCard(${i})">
+        <span class="rc-num">Q${i+1}</span>
+        <span class="rc-badge ${status}">${icon} ${status.charAt(0).toUpperCase()+status.slice(1)}</span>
+        <div class="rc-preview">${preview}</div>
+        <span class="rc-arrow">▾</span>
+      </div>
+      <div class="rc-body" id="body-${i}">
+        <div class="rc-body-inner">
+          <div class="rc-q-full">${q.question}</div>
+          <div class="rc-answers">${ansHTML}</div>
+          ${q.allOpts?`<div class="rc-all-opts">${optsHTML}</div>`:''}
+          <div class="rc-exp-wrap">
+            <div class="rc-exp-label">💡 Explanation</div>
+            <div class="rc-exp-body">${q.explanation}</div>
+          </div>
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+
+  document.getElementById('cAll').textContent    =DATA.questions.length;
+  document.getElementById('cCorrect').textContent=nC;
+  document.getElementById('cWrong').textContent  =nW;
+  document.getElementById('cSkipped').textContent=nS;
+
+  function doTypeset(){
+    MathJax.typesetPromise([list]).catch(e=>console.warn('MathJax err:',e));
+  }
+  if(window.MathJax&&MathJax.typesetPromise){
+    MathJax.startup.promise.then(doTypeset);
+  }else{
+    window.addEventListener('load',()=>{
+      if(window.MathJax) MathJax.startup.promise.then(doTypeset);
+    });
+  }
+}
+
+function toggleCard(i){
+  const card = document.querySelector(`.rev-card[data-index="${i}"]`);
+  const wasOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+  // Re-typeset only when opening, after the transition begins
+  if (!wasOpen && window.MathJax && MathJax.typesetPromise) {
+    const body = card.querySelector('.rc-body-inner');
+    // Small delay so max-height transition has started and overflow is visible
+    setTimeout(() => MathJax.typesetPromise([body]).catch(e => console.warn('MathJax:', e)), 50);
+  }
+}
+
+let currentFilter='all';
+function setFilter(f){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
+  applyFilters();
+}
+function applyFilters(){
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  let visible=0;
+  document.querySelectorAll('.rev-card').forEach(card=>{
+    const show=(currentFilter==='all'||card.dataset.status===currentFilter)&&(!q||card.dataset.preview.includes(q));
+    card.style.display=show?'':'none';
+    if(show)visible++;
+  });
+  let empty=document.getElementById('emptyState');
+  if(visible===0){
+    if(!empty){empty=document.createElement('div');empty.id='emptyState';empty.className='empty-state';empty.textContent='No questions match your filter.';document.getElementById('reviewList').appendChild(empty);}
+    empty.style.display='';
+  }else if(empty){empty.style.display='none';}
+}
+
+function goBack(){if(document.referrer)history.back();else window.location.href='math-test.html';}
+
+buildHero();
+buildCards();
+</script>
+</body>
+</html>

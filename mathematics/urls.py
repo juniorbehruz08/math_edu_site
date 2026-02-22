@@ -1,18 +1,6 @@
 from django.urls import path
 
-from .views import main_view, login_view, log_out, fundamental_knowledge, profile, equalities_inequalities, \
-    practice_linear, linear_equalities, \
-    types_of_numbers, types_of_numbers_quiz, working_with_signs, working_with_signs_practice, fractions, \
-    fractions_practice, quadratic_equations, quadratic_practice, inequalities, inequalities_practice, linear_functions, \
-    practice_linear_functions, other_kind_of_functions, practice_with_quadratic, practice_with_cubic, \
-    practice_with_rational, practice_with_exponential, logarithm, logarithm_practice, operations_on_logarithm_practice, \
-    operation_on_logarithm, logarithmic_functions, trigonometry, operations_in_trigonometry, \
-    inverse_trigonometric_functions, test, introduction_to_geometry, measurement_and_distance, angles, triangle_types, \
-    properties_of_triangles, quadrilaterals_and_squares, types_of_quadrilateral, circle_basic, \
-    other_properties_of_circle, equation_of_circle, plane, distance_midpoint_slope, the_laws_of_sines, \
-    the_laws_of_cosines, practice_in_trigonometry, practice_in_inverse_trigonometry, \
-    practice_with_distance_and_midpoint, practice_right_triangle, practice_equilateral_triangle
-
+from .views import *
 urlpatterns = [
     path('', main_view, name='main_view'),
     path('login_register/', login_view, name='login'),
@@ -23,7 +11,6 @@ urlpatterns = [
     path('practice_linear/<str:back_url>', practice_linear, name='practice_linear'),
     path('linear_equalities/', linear_equalities, name='linear_equalities'),
     path('types_of_numbers/', types_of_numbers, name='types_of_numbers'),
-    path('types_of_numbers_quiz/', types_of_numbers_quiz, name='types_of_numbers_quiz'),
     path('working_with_signs/', working_with_signs, name='working_with_signs'),
     path('working_with_signs_practice/', working_with_signs_practice, name='working_with_signs_practice'),
     path('fractions/', fractions, name='fractions'),
@@ -64,8 +51,21 @@ urlpatterns = [
     path('the_laws_of_sines/', the_laws_of_sines, name='the_laws_of_sines'),
     path('the_laws_of_cosines/', the_laws_of_cosines, name='the_laws_of_cosines'),
     path('practice_in_trigonometry/', practice_in_trigonometry, name='practice_in_trigonometry'),
-    path('practice_in_inverse_trigonometry/', practice_in_inverse_trigonometry, name='practice_in_inverse_trigonometry'),
-    path('practice_with_distance_and_midpoint/', practice_with_distance_and_midpoint, name='practice_with_distance_and_midpoint'),
+    path('practice_in_inverse_trigonometry/', practice_in_inverse_trigonometry,
+         name='practice_in_inverse_trigonometry'),
+    path('practice_with_distance_and_midpoint/', practice_with_distance_and_midpoint,
+         name='practice_with_distance_and_midpoint'),
     path('practice_right_triangle/', practice_right_triangle, name='practice_right_triangle'),
     path('practice_equilateral_triangle/', practice_equilateral_triangle, name='practice_equilateral_triangle'),
+    path('similar_triangles/', similar_triangles, name='similar_triangles'),
+    path('logarithmic_function_practice/', logarithmic_function_practice, name='logarithmic_function_practice'),
+    path('trigonometric_formulas/', trigonometric_formulas, name='trigonometric_formulas'),
+    path('trigonometric_formulas/', trigonometric_formulas, name='trigonometric_formulas'),
+    path('inverse_trigonometric_practice/', inverse_trigonometric_practice, name='inverse_trigonometric_practice'),
+    path('practice/', practice, name='practice'),
+    path('save_results/<str:url>/', save_results, name='save_results'),
+    path('review_past_test_results/<int:pk>', review_past_test_results, name='review_past_test_results'),
+    path("send_code/", send_code, name='send_code'),
+    path('verify_email/', verify_email, name='verify_email'),
+    # path('adding_values/', adding_values, name='adding_values'),
 ]

@@ -71,11 +71,20 @@
                     <li class="nav-item">
                         <a class="nav-link click-scroll" href="#section_5">FAQs</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> LOG OUT</a>
+                    </li>
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="/admin/">Admin Panel</a>
+                    </li>
+                    {% endif %}
                 </ul>
-
+                {% if request.user.is_authenticated %}
                 <div class="d-none d-lg-block">
                     <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -89,19 +98,6 @@
                     <h1 class="text-white text-center">Learn. Use. Solve</h1>
 
                     <h6 class="text-center">platform for new math learners around the world</h6>
-
-                    <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
-                        <div class="input-group input-group-lg">
-                                    <span class="input-group-text bi-search" id="basic-addon1">
-
-                                    </span>
-
-                            <input name="keyword" type="search" class="form-control" id="keyword"
-                                   placeholder="Function, Logarithm, Trigonometry, ...." aria-label="Search">
-
-                            <button type="submit" class="form-control">Search</button>
-                        </div>
-                    </form>
                 </div>
 
             </div>
@@ -124,7 +120,7 @@
                                         need.</p>
                                 </div>
 
-                                <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                <span class="badge bg-design rounded-pill ms-auto">{{ all_data.fundamental|default:0 }}</span>
                             </div>
 
                             <img src="{% static 'images/myimages/fundament.jpg' %}"
@@ -151,7 +147,7 @@
                                         Learning</a>
                                 </div>
 
-                                <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                <span class="badge bg-finance rounded-pill ms-auto">{{ all_data.equalities_inequalities|default:0 }}</span>
                             </div>
                             <div class="section-overlay"></div>
                         </div>
@@ -231,7 +227,7 @@
                                                     <p class="mb-0">The first step to learn math</p>
                                                 </div>
 
-                                                <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                <span class="badge bg-design rounded-pill ms-auto">{{ all_data.types_of_numbers|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/numbers.jpg' %}"
@@ -249,7 +245,7 @@
                                                     <p class="mb-0">This topic is crucial to learn</p>
                                                 </div>
 
-                                                <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                <span class="badge bg-design rounded-pill ms-auto">{{ all_data.working_with_signs|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/signs.jpg' %}"
@@ -268,7 +264,7 @@
                                                     <p class="mb-0">Common mathematical example</p>
                                                 </div>
 
-                                                <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                <span class="badge bg-design rounded-pill ms-auto"> {{ all_data.fractions|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/fraction.jpg' %}"
@@ -292,7 +288,7 @@
                                                     <p class="mb-0">Basic properties of linear equations</p>
                                                 </div>
 
-                                                <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                                <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.linear_equalities|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/chiziqli.jpg' %}"
@@ -311,7 +307,7 @@
                                                     <p class="mb-0">Basic concepts about quadratic equations</p>
                                                 </div>
 
-                                                <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                                <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.quadratic_equations|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/kvadrat.jpg' %}"
@@ -330,7 +326,7 @@
                                                     <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
                                                 </div>
 
-                                                <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                                <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.inequalities|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/inequality.jpg' %}"
@@ -354,7 +350,7 @@
                                                     <p class="mb-0">Basic knowledge</p>
                                                 </div>
 
-                                                <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                <span class="badge bg-finance rounded-pill ms-auto">{{ all_data.linear_functions|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/linearfunction.jpg' %}"
@@ -381,7 +377,7 @@
                                                         More</a>
                                                 </div>
 
-                                                <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                                <span class="badge bg-finance rounded-pill ms-auto">{{ all_data.other_kind_of_functions|default:0 }}</span>
                                             </div>
 
                                             <div class="social-share d-flex">
@@ -424,7 +420,7 @@
                                                     <p class="mb-0">Basic knowledge</p>
                                                 </div>
 
-                                                <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                <span class="badge bg-music rounded-pill ms-auto">{{ all_data.logarithm|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/logarithm.jpg' %}"
@@ -443,7 +439,7 @@
                                                     <p class="mb-0">More about logarithmic functions</p>
                                                 </div>
 
-                                                <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                <span class="badge bg-music rounded-pill ms-auto">{{ all_data.logarithmic_functions|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/logarithmfunction.jpg' %}"
@@ -462,7 +458,7 @@
                                                     <p class="mb-0">Operations on Logarithms</p>
                                                 </div>
 
-                                                <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                                <span class="badge bg-music rounded-pill ms-auto">{{ all_data.operation_on_logarithm|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/operations_on_logarithm.png' %}"
@@ -486,7 +482,7 @@
                                                     <p class="mb-0">Good examples to understand</p>
                                                 </div>
 
-                                                <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                <span class="badge bg-education rounded-pill ms-auto">{{ all_data.trigonometry|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/trigonometry.jpg' %}"
@@ -504,7 +500,7 @@
                                                     <p class="mb-0">Adding, Subtracting, Multiplying, and Dividing</p>
                                                 </div>
 
-                                                <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                <span class="badge bg-education rounded-pill ms-auto">{{ all_data.operations_in_trigonometry|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/trigonometric_operations.jpg' %}"
@@ -523,7 +519,7 @@
                                                     <p class="mb-0">Deep knowledge you must learn</p>
                                                 </div>
 
-                                                <span class="badge bg-education rounded-pill ms-auto">75</span>
+                                                <span class="badge bg-education rounded-pill ms-auto">{{ all_data.inverse_trigonometric_functions|default:0 }}</span>
                                             </div>
 
                                             <img src="{% static 'images/myimages/arc.jpg' %}"
@@ -627,7 +623,7 @@
                                                         <h5 class="mb-2">Introduction to Geometry</h5>
                                                         <p class="mb-0">The first step to learn geometry</p>
                                                     </div>
-                                                    <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                    <span class="badge bg-design rounded-pill ms-auto">{{ all_data.introduction_to_geometry|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/introduction_to_geometry.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -642,7 +638,7 @@
                                                         <h5 class="mb-2">Measurement and Distance in The Plane</h5>
                                                         <p class="mb-0">This topic is crucial to learn</p>
                                                     </div>
-                                                    <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                    <span class="badge bg-design rounded-pill ms-auto">{{ all_data.measurement_and_distance|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/measurement_and_distance.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -657,7 +653,7 @@
                                                         <h5 class="mb-2">Angles</h5>
                                                         <p class="mb-0">Everything you should know about angles</p>
                                                     </div>
-                                                    <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                    <span class="badge bg-design rounded-pill ms-auto">{{ all_data.angles|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/angles_topic.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -677,7 +673,7 @@
                                                         <h5 class="mb-2">Triangles</h5>
                                                         <p class="mb-0">Types of Triangles</p>
                                                     </div>
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.triangle_types|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/triangle_types.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -686,13 +682,13 @@
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                         <div class="custom-block bg-white shadow-lg">
-                                            <a href="{% static 'files/result.pdf' %}">
+                                            <a href="{% url 'similar_triangles' %}">
                                                 <div class="d-flex">
                                                     <div>
                                                         <h5 class="mb-2">Similar Triangles</h5>
                                                         <p class="mb-0">Basic concepts about similar triangles</p>
                                                     </div>
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.similar_triangles|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/similar_triangles.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -707,7 +703,7 @@
                                                         <h5 class="mb-2">Triangle Inequality, Perimeter & Area</h5>
                                                         <p class="mb-0">Main properties of triangles</p>
                                                     </div>
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">{{ all_data.properties_of_triangles|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/properties_of_triangles.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -728,7 +724,7 @@
                                                         <h5 class="mb-2">Quadrilaterals</h5>
                                                         <p class="mb-0">Basic concepts and fundamental formulas</p>
                                                     </div>
-                                                    <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                    <span class="badge bg-finance rounded-pill ms-auto">{{ all_data.quadrilaterals_and_squares|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/quadrilaterals_and_squares.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -748,7 +744,7 @@
                                                            class="btn custom-btn mt-2 mt-lg-3">Learn
                                                             More</a>
                                                     </div>
-                                                    <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                                    <span class="badge bg-finance rounded-pill ms-auto">{{ all_data.types_of_quadrilateral|default:0 }}</span>
                                                 </div>
                                                 <div class="social-share d-flex">
                                                     <p class="text-white me-4">Share:</p>
@@ -783,7 +779,7 @@
                                                         <h5 class="mb-2">Circles</h5>
                                                         <p class="mb-0">Main Properties</p>
                                                     </div>
-                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                    <span class="badge bg-music rounded-pill ms-auto">{{ all_data.circle_basic|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/circle.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -798,7 +794,7 @@
                                                         <h5 class="mb-2">Other Properties of Circles</h5>
                                                         <p class="mb-0">More about circles</p>
                                                     </div>
-                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                    <span class="badge bg-music rounded-pill ms-auto">{{ all_data.other_properties_of_circle|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/circle_other_properties.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -813,7 +809,7 @@
                                                         <h5 class="mb-2">Equation of Circle</h5>
                                                         <p class="mb-0">Equation of Circle</p>
                                                     </div>
-                                                    <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                                    <span class="badge bg-music rounded-pill ms-auto">{{ all_data.equation_of_circle|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/equation_of_circle.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -833,7 +829,7 @@
                                                         <h5 class="mb-2">The Coordinate Plane & Points</h5>
                                                         <p class="mb-0">Learn more about Geometry</p>
                                                     </div>
-                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    <span class="badge bg-education rounded-pill ms-auto">{{ all_data.plane|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/plane.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -848,7 +844,7 @@
                                                         <h5 class="mb-2">Distance, Midpoint & Slope</h5>
                                                         <p class="mb-0">Important thing to learn</p>
                                                     </div>
-                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    <span class="badge bg-education rounded-pill ms-auto">{{ all_data.distance_midpoint_slope|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/distance_midpoint_slope.png' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -868,7 +864,7 @@
                                                         <h5 class="mb-2">The Law of Sines</h5>
                                                         <p class="mb-0">Learn more about Geometry</p>
                                                     </div>
-                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    <span class="badge bg-education rounded-pill ms-auto">{{ all_data.the_laws_of_sines|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/law_of_sine.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -883,7 +879,7 @@
                                                         <h5 class="mb-2">The Law of Cosines</h5>
                                                         <p class="mb-0">Important thing to learn</p>
                                                     </div>
-                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                    <span class="badge bg-education rounded-pill ms-auto">{{ all_data.the_laws_of_cosines|default:0 }}</span>
                                                 </div>
                                                 <img src="{% static 'images/myimages/law_of_cosine.jpg' %}"
                                                      class="custom-block-image img-fluid" alt="">
@@ -1257,13 +1253,6 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-
-                <div class="col-12 text-center mt-5">
-                    <p class="text-white">
-                        Want to learn more?
-                        <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
-                    </p>
                 </div>
             </div>
         </div>
