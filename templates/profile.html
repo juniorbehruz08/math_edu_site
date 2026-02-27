@@ -1,559 +1,1668 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--    <title>User Profile</title>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"-->
+<!--          rel="stylesheet"/>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">-->
+
+<!--    <style>-->
+<!--        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }-->
+
+<!--        :root {-->
+<!--          &#45;&#45;bg: #0b0c10;-->
+<!--          &#45;&#45;surface: #12141a;-->
+<!--          &#45;&#45;card: #191c26;-->
+<!--          &#45;&#45;border: #252936;-->
+<!--          &#45;&#45;accent: #e8ff5a;-->
+<!--          &#45;&#45;accent2: #5affb8;-->
+<!--          &#45;&#45;text: #e8eaf2;-->
+<!--          &#45;&#45;muted: #6b7091;-->
+<!--          &#45;&#45;danger: #ff5a7a;-->
+<!--        }-->
+
+<!--        body {-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          background: var(&#45;&#45;bg);-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          min-height: 100vh;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          justify-content: center;-->
+<!--          padding: 2rem;-->
+<!--          overflow-x: hidden;-->
+<!--        }-->
+
+<!--        body::before {-->
+<!--          content: '';-->
+<!--          position: fixed;-->
+<!--          inset: 0;-->
+<!--          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");-->
+<!--          pointer-events: none;-->
+<!--          z-index: 0;-->
+<!--        }-->
+
+<!--        .wrapper {-->
+<!--          width: 100%;-->
+<!--          max-width: 760px;-->
+<!--          position: relative;-->
+<!--          z-index: 1;-->
+<!--        }-->
+
+<!--        .eyebrow {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.65rem;-->
+<!--          font-weight: 600;-->
+<!--          letter-spacing: 0.25em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          margin-bottom: 2rem;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.75rem;-->
+<!--        }-->
+<!--        .eyebrow::after {-->
+<!--          content: '';-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        /* ── BACK BUTTON ── */-->
+<!--        .back-btn {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--          background: transparent;-->
+<!--          border: 1px solid rgba(90,255,184,0.35);-->
+<!--          border-radius: 8px;-->
+<!--          padding: 0.45rem 1rem;-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          font-size: 0.72rem;-->
+<!--          color: var(&#45;&#45;accent2);-->
+<!--          cursor: pointer;-->
+<!--          text-decoration: none;-->
+<!--          transition: background 0.2s, border-color 0.2s, transform 0.15s;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .back-btn:hover {-->
+<!--          background: rgba(90,255,184,0.1);-->
+<!--          border-color: var(&#45;&#45;accent2);-->
+<!--          transform: translateY(-1px);-->
+<!--        }-->
+<!--        .back-btn svg {-->
+<!--          width: 13px;-->
+<!--          height: 13px;-->
+<!--          stroke: var(&#45;&#45;accent2);-->
+<!--          fill: none;-->
+<!--          stroke-width: 2;-->
+<!--          stroke-linecap: round;-->
+<!--          stroke-linejoin: round;-->
+<!--        }-->
+
+<!--        /* ── EXIT BUTTON ── */-->
+<!--        .exit-btn {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--          background: transparent;-->
+<!--          border: 1px solid rgba(255,90,122,0.35);-->
+<!--          border-radius: 8px;-->
+<!--          padding: 0.45rem 1rem;-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          font-size: 0.72rem;-->
+<!--          color: var(&#45;&#45;danger);-->
+<!--          cursor: pointer;-->
+<!--          text-decoration: none;-->
+<!--          transition: background 0.2s, border-color 0.2s, transform 0.15s;-->
+<!--          margin-left: auto;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .exit-btn:hover {-->
+<!--          background: rgba(255,90,122,0.1);-->
+<!--          border-color: var(&#45;&#45;danger);-->
+<!--          transform: translateY(-1px);-->
+<!--        }-->
+<!--        .exit-btn svg {-->
+<!--          width: 13px;-->
+<!--          height: 13px;-->
+<!--          stroke: var(&#45;&#45;danger);-->
+<!--          fill: none;-->
+<!--          stroke-width: 2;-->
+<!--          stroke-linecap: round;-->
+<!--          stroke-linejoin: round;-->
+<!--        }-->
+
+<!--        .eyebrow-row {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.75rem;-->
+<!--          margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .eyebrow-row .label {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.65rem;-->
+<!--          font-weight: 600;-->
+<!--          letter-spacing: 0.25em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .eyebrow-row .line {-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        /* Profile Card */-->
+<!--        .profile-card {-->
+<!--          background: var(&#45;&#45;surface);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 20px;-->
+<!--          padding: 2.5rem;-->
+<!--          margin-bottom: 1.25rem;-->
+<!--          position: relative;-->
+<!--          overflow: hidden;-->
+<!--          animation: fadeUp 0.5s ease both;-->
+<!--        }-->
+
+<!--        .profile-card::before {-->
+<!--          content: '';-->
+<!--          position: absolute;-->
+<!--          top: -60px;-->
+<!--          right: -60px;-->
+<!--          width: 200px;-->
+<!--          height: 200px;-->
+<!--          background: radial-gradient(circle, rgba(232,255,90,0.08) 0%, transparent 70%);-->
+<!--          pointer-events: none;-->
+<!--        }-->
+
+<!--        .profile-header {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 1.75rem;-->
+<!--        }-->
+
+<!--        .avatar {-->
+<!--          width: 78px;-->
+<!--          height: 78px;-->
+<!--          border-radius: 50%;-->
+<!--          background: linear-gradient(135deg, #e8ff5a 0%, #5affb8 100%);-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          justify-content: center;-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 1.8rem;-->
+<!--          font-weight: 800;-->
+<!--          color: #0b0c10;-->
+<!--          flex-shrink: 0;-->
+<!--          box-shadow: 0 0 0 4px rgba(232,255,90,0.12);-->
+<!--        }-->
+
+<!--        .profile-meta { flex: 1; }-->
+
+<!--        .profile-name {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 1.6rem;-->
+<!--          font-weight: 800;-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          line-height: 1.1;-->
+<!--          margin-bottom: 0.25rem;-->
+<!--        }-->
+
+<!--        .username-badge {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.4rem;-->
+<!--          background: rgba(232,255,90,0.08);-->
+<!--          border: 1px solid rgba(232,255,90,0.2);-->
+<!--          border-radius: 6px;-->
+<!--          padding: 0.2rem 0.6rem;-->
+<!--          font-size: 0.75rem;-->
+<!--          color: var(&#45;&#45;accent);-->
+<!--          margin-bottom: 0.6rem;-->
+<!--        }-->
+<!--        .username-badge::before { content: '@'; opacity: 0.6; }-->
+
+<!--        .profile-email { font-size: 0.78rem; color: var(&#45;&#45;muted); }-->
+
+<!--        .status-dot {-->
+<!--          display: inline-block;-->
+<!--          width: 7px;-->
+<!--          height: 7px;-->
+<!--          border-radius: 50%;-->
+<!--          background: var(&#45;&#45;accent2);-->
+<!--          margin-right: 0.4rem;-->
+<!--          box-shadow: 0 0 6px var(&#45;&#45;accent2);-->
+<!--          animation: pulse 2s infinite;-->
+<!--        }-->
+
+<!--        .info-grid {-->
+<!--          display: grid;-->
+<!--          grid-template-columns: 1fr 1fr;-->
+<!--          gap: 1rem;-->
+<!--          margin-top: 2rem;-->
+<!--        }-->
+
+<!--        .info-item {-->
+<!--          background: var(&#45;&#45;card);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 12px;-->
+<!--          padding: 1rem 1.25rem;-->
+<!--        }-->
+
+<!--        .info-label {-->
+<!--          font-size: 0.62rem;-->
+<!--          letter-spacing: 0.15em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          margin-bottom: 0.35rem;-->
+<!--        }-->
+
+<!--        .info-value {-->
+<!--          font-size: 0.9rem;-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          font-weight: 500;-->
+<!--        }-->
+
+<!--        .section-title {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.65rem;-->
+<!--          font-weight: 600;-->
+<!--          letter-spacing: 0.25em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          margin-bottom: 1rem;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.75rem;-->
+<!--        }-->
+<!--        .section-title::after {-->
+<!--          content: '';-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        .tests-container {-->
+<!--          display: flex;-->
+<!--          flex-direction: column;-->
+<!--          gap: 0.75rem;-->
+<!--        }-->
+
+<!--        /* ── TEST LINK — styled, no default underline ── */-->
+<!--        a.test-link {-->
+<!--          display: block;-->
+<!--          text-decoration: none;-->
+<!--          color: inherit;-->
+<!--          border-radius: 14px;-->
+<!--          outline-offset: 3px;-->
+<!--        }-->
+<!--        a.test-link:focus-visible {-->
+<!--          outline: 2px solid var(&#45;&#45;accent);-->
+<!--        }-->
+
+<!--        .test-row {-->
+<!--          background: var(&#45;&#45;surface);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 14px;-->
+<!--          padding: 1.1rem 1.5rem;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 1.25rem;-->
+<!--          animation: fadeUp 0.5s ease both;-->
+<!--          transition: border-color 0.2s, transform 0.2s, background 0.2s;-->
+<!--          cursor: pointer;-->
+<!--        }-->
+
+<!--        a.test-link:hover .test-row {-->
+<!--          border-color: rgba(232,255,90,0.3);-->
+<!--          transform: translateX(4px);-->
+<!--          background: #14172050;-->
+<!--        }-->
+
+<!--        /* Non-linked rows (lessons) keep original hover */-->
+<!--        .test-row:not(.no-hover):hover {-->
+<!--          border-color: rgba(232,255,90,0.25);-->
+<!--          transform: translateX(4px);-->
+<!--        }-->
+
+<!--        .test-row:nth-child(1) { animation-delay: 0.1s; }-->
+<!--        .test-row:nth-child(2) { animation-delay: 0.18s; }-->
+<!--        .test-row:nth-child(3) { animation-delay: 0.26s; }-->
+<!--        .test-row:nth-child(4) { animation-delay: 0.34s; }-->
+<!--        .test-row:nth-child(5) { animation-delay: 0.42s; }-->
+
+<!--        .test-index {-->
+<!--          font-size: 0.65rem;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          width: 1.5rem;-->
+<!--          text-align: center;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+
+<!--        .test-info { flex: 1; }-->
+
+<!--        .test-name {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.88rem;-->
+<!--          font-weight: 600;-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          margin-bottom: 0.2rem;-->
+<!--        }-->
+
+<!--        .test-date { font-size: 0.68rem; color: var(&#45;&#45;muted); }-->
+
+<!--        .score-pill {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--        }-->
+
+<!--        .score-bar-wrap {-->
+<!--          width: 80px;-->
+<!--          height: 4px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--          border-radius: 99px;-->
+<!--          overflow: hidden;-->
+<!--        }-->
+
+<!--        .score-bar {-->
+<!--          height: 100%;-->
+<!--          border-radius: 99px;-->
+<!--          transition: width 0.8s ease;-->
+<!--        }-->
+
+<!--        .score-value {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.88rem;-->
+<!--          font-weight: 700;-->
+<!--          min-width: 40px;-->
+<!--          text-align: right;-->
+<!--        }-->
+
+<!--        /* Arrow icon on linked rows */-->
+<!--        .row-arrow {-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          font-size: 0.75rem;-->
+<!--          opacity: 0;-->
+<!--          transition: opacity 0.2s, transform 0.2s;-->
+<!--          margin-left: 0.25rem;-->
+<!--        }-->
+<!--        a.test-link:hover .row-arrow {-->
+<!--          opacity: 1;-->
+<!--          transform: translateX(3px);-->
+<!--        }-->
+
+<!--        .score-high   { background: var(&#45;&#45;accent2); }-->
+<!--        .score-mid    { background: var(&#45;&#45;accent); }-->
+<!--        .score-low    { background: var(&#45;&#45;danger); }-->
+
+<!--        .text-high  { color: var(&#45;&#45;accent2); }-->
+<!--        .text-mid   { color: var(&#45;&#45;accent); }-->
+<!--        .text-low   { color: var(&#45;&#45;danger); }-->
+
+<!--        @keyframes fadeUp {-->
+<!--          from { opacity: 0; transform: translateY(14px); }-->
+<!--          to   { opacity: 1; transform: translateY(0); }-->
+<!--        }-->
+
+<!--        @keyframes pulse {-->
+<!--          0%, 100% { opacity: 1; }-->
+<!--          50% { opacity: 0.4; }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="wrapper">-->
+
+<!--    &lt;!&ndash; Header row with eyebrow + exit button &ndash;&gt;-->
+<!--    <div class="eyebrow-row">-->
+<!--      <span class="label">User Profile</span>-->
+<!--      <span class="line"></span>-->
+<!--      <div style="display:flex;gap:0.5rem;flex-shrink:0">-->
+<!--      <a href="/" class="back-btn">-->
+<!--        <svg viewBox="0 0 24 24">-->
+<!--          <path d="M15 21H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H15"/>-->
+<!--          <polyline points="8 17 3 12 8 7"/>-->
+<!--          <line x1="3" y1="12" x2="15" y2="12"/>-->
+<!--        </svg>-->
+<!--        Back-->
+<!--      </a>-->
+<!--      <a href="/logout" class="exit-btn">-->
+<!--        <svg viewBox="0 0 24 24">-->
+<!--          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>-->
+<!--          <polyline points="16 17 21 12 16 7"/>-->
+<!--          <line x1="21" y1="12" x2="9" y2="12"/>-->
+<!--        </svg>-->
+<!--        Exit-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Profile Card &ndash;&gt;-->
+<!--    <div class="profile-card">-->
+<!--        <div class="profile-header">-->
+<!--            <div class="avatar" id="avatar-initials">JD</div>-->
+<!--            <div class="profile-meta">-->
+<!--                <div class="profile-name" id="display-name">Jane Doe</div>-->
+<!--                <div class="username-badge" id="username">janedoe92</div>-->
+<!--                <div class="profile-email">-->
+<!--                    <span class="status-dot"></span>-->
+<!--                    <span id="email">jane.doe@example.com</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="info-grid">-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">First Name</div>-->
+<!--                <div class="info-value" id="first-name">Jane</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Last Name</div>-->
+<!--                <div class="info-value" id="last-name">Doe</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Username</div>-->
+<!--                <div class="info-value" id="username-info">@janedoe92</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Member Since</div>-->
+<!--                <div class="info-value">{{ request.user.date_joined|date:'M d, Y' }}</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Country</div>-->
+<!--                <div class="info-value"><i class="{{ country_flag_code }}"></i> {{ country }}</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Practice Tests &ndash;&gt;-->
+<!--    <div class="section-title">Recent Practice Tests</div>-->
+<!--    <div class="tests-container" id="tests-list"></div>-->
+
+<!--    &lt;!&ndash; Taken Lessons &ndash;&gt;-->
+<!--    <div class="section-title" style="margin-top:20px">Taken Lessons</div>-->
+<!--    <div class="tests-container">-->
+<!--        {% for lesson in lessons %}-->
+<!--        <a href="/{{ lesson.url }}" class="test-link">-->
+<!--        <div class="test-row no-hover">-->
+<!--            <span class="test-index">{{ forloop.counter|stringformat:"02d" }}</span>-->
+<!--            <div class="test-info">-->
+<!--                <div class="test-name">{{ lesson.lesson|capfirst }}</div>-->
+<!--                <div class="test-date">{{ lesson.date_taken }}</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </a>-->
+<!--        {% empty %}-->
+<!--        <p style="color: var(&#45;&#45;muted); font-size: 0.8rem;">No lessons taken yet.</p>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<script>-->
+<!--    const user = {-->
+<!--      firstName: "{{ user.first_name|capfirst }}",-->
+<!--      lastName:  "{{ user.last_name|capfirst }}",-->
+<!--      username:  "{{ user.username }}",-->
+<!--      email:     "{{ user.email }}",-->
+<!--    };-->
+
+<!--    const tests = [-->
+<!--  {% for i in scores %}-->
+<!--    { name: "{{ i.lesson.lesson_name }}", date: "{{ i.created_at }}", score: {{ i.correct_percentage }}, pk: {{ i.pk }} },-->
+<!--  {% endfor %}-->
+<!--];-->
+
+<!--    const initials = user.firstName[0] + user.lastName[0];-->
+<!--    document.getElementById('avatar-initials').textContent = initials;-->
+<!--    document.getElementById('display-name').textContent    = `${user.firstName} ${user.lastName}`;-->
+<!--    document.getElementById('username').textContent        = user.username;-->
+<!--    document.getElementById('email').textContent           = user.email;-->
+<!--    document.getElementById('first-name').textContent      = user.firstName;-->
+<!--    document.getElementById('last-name').textContent       = user.lastName;-->
+<!--    document.getElementById('username-info').textContent   = `@${user.username}`;-->
+
+<!--    function scoreClass(s) {-->
+<!--      if (s >= 85) return 'high';-->
+<!--      if (s >= 65) return 'mid';-->
+<!--      return 'low';-->
+<!--    }-->
+
+<!--    const list = document.getElementById('tests-list');-->
+<!--    tests.forEach((t, i) => {-->
+<!--      const cls = scoreClass(t.score);-->
+<!--      list.innerHTML += `-->
+<!--      <a href="/review_past_test_results/${t.pk}" class="test-link">-->
+<!--        <div class="test-row">-->
+<!--          <span class="test-index">${String(i+1).padStart(2,'0')}</span>-->
+<!--          <div class="test-info">-->
+<!--            <div class="test-name">${t.name}</div>-->
+<!--            <div class="test-date">${t.date}</div>-->
+<!--          </div>-->
+<!--          <div class="score-pill">-->
+<!--            <div class="score-bar-wrap">-->
+<!--              <div class="score-bar score-${cls}" style="width:${t.score}%"></div>-->
+<!--            </div>-->
+<!--            <span class="score-value text-${cls}">${t.score}%</span>-->
+<!--          </div>-->
+<!--          <span class="row-arrow">→</span>-->
+<!--        </div>-->
+<!--      </a>`;-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--    <title>User Profile</title>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"-->
+<!--          rel="stylesheet"/>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">-->
+
+<!--    <style>-->
+<!--        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }-->
+
+<!--        :root {-->
+<!--          &#45;&#45;bg: #0b0c10;-->
+<!--          &#45;&#45;surface: #12141a;-->
+<!--          &#45;&#45;card: #191c26;-->
+<!--          &#45;&#45;border: #252936;-->
+<!--          &#45;&#45;accent: #e8ff5a;-->
+<!--          &#45;&#45;accent2: #5affb8;-->
+<!--          &#45;&#45;text: #e8eaf2;-->
+<!--          &#45;&#45;muted: #6b7091;-->
+<!--          &#45;&#45;danger: #ff5a7a;-->
+<!--        }-->
+
+<!--        body {-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          background: var(&#45;&#45;bg);-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          min-height: 100vh;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          justify-content: center;-->
+<!--          padding: 2rem;-->
+<!--          overflow-x: hidden;-->
+<!--        }-->
+
+<!--        body::before {-->
+<!--          content: '';-->
+<!--          position: fixed;-->
+<!--          inset: 0;-->
+<!--          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");-->
+<!--          pointer-events: none;-->
+<!--          z-index: 0;-->
+<!--        }-->
+
+<!--        .wrapper {-->
+<!--          width: 100%;-->
+<!--          max-width: 760px;-->
+<!--          position: relative;-->
+<!--          z-index: 1;-->
+<!--        }-->
+
+<!--        /* ── BACK BUTTON ── */-->
+<!--        .back-btn {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--          background: transparent;-->
+<!--          border: 1px solid rgba(90,255,184,0.35);-->
+<!--          border-radius: 8px;-->
+<!--          padding: 0.45rem 1rem;-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          font-size: 0.72rem;-->
+<!--          color: var(&#45;&#45;accent2);-->
+<!--          cursor: pointer;-->
+<!--          text-decoration: none;-->
+<!--          transition: background 0.2s, border-color 0.2s, transform 0.15s;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .back-btn:hover {-->
+<!--          background: rgba(90,255,184,0.1);-->
+<!--          border-color: var(&#45;&#45;accent2);-->
+<!--          transform: translateY(-1px);-->
+<!--        }-->
+<!--        .back-btn svg {-->
+<!--          width: 13px; height: 13px;-->
+<!--          stroke: var(&#45;&#45;accent2); fill: none;-->
+<!--          stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;-->
+<!--        }-->
+
+<!--        /* ── EXIT BUTTON ── */-->
+<!--        .exit-btn {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--          background: transparent;-->
+<!--          border: 1px solid rgba(255,90,122,0.35);-->
+<!--          border-radius: 8px;-->
+<!--          padding: 0.45rem 1rem;-->
+<!--          font-family: 'DM Mono', monospace;-->
+<!--          font-size: 0.72rem;-->
+<!--          color: var(&#45;&#45;danger);-->
+<!--          cursor: pointer;-->
+<!--          text-decoration: none;-->
+<!--          transition: background 0.2s, border-color 0.2s, transform 0.15s;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .exit-btn:hover {-->
+<!--          background: rgba(255,90,122,0.1);-->
+<!--          border-color: var(&#45;&#45;danger);-->
+<!--          transform: translateY(-1px);-->
+<!--        }-->
+<!--        .exit-btn svg {-->
+<!--          width: 13px; height: 13px;-->
+<!--          stroke: var(&#45;&#45;danger); fill: none;-->
+<!--          stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;-->
+<!--        }-->
+
+<!--        .eyebrow-row {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.75rem;-->
+<!--          margin-bottom: 2rem;-->
+<!--        }-->
+<!--        .eyebrow-row .label {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.65rem;-->
+<!--          font-weight: 600;-->
+<!--          letter-spacing: 0.25em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .eyebrow-row .line {-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        /* Profile Card */-->
+<!--        .profile-card {-->
+<!--          background: var(&#45;&#45;surface);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 20px;-->
+<!--          padding: 2.5rem;-->
+<!--          margin-bottom: 1.25rem;-->
+<!--          position: relative;-->
+<!--          overflow: hidden;-->
+<!--          animation: fadeUp 0.5s ease both;-->
+<!--        }-->
+
+<!--        .profile-card::before {-->
+<!--          content: '';-->
+<!--          position: absolute;-->
+<!--          top: -60px; right: -60px;-->
+<!--          width: 200px; height: 200px;-->
+<!--          background: radial-gradient(circle, rgba(232,255,90,0.08) 0%, transparent 70%);-->
+<!--          pointer-events: none;-->
+<!--        }-->
+
+<!--        .profile-header {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 1.75rem;-->
+<!--        }-->
+
+<!--        .avatar {-->
+<!--          width: 78px; height: 78px;-->
+<!--          border-radius: 50%;-->
+<!--          background: linear-gradient(135deg, #e8ff5a 0%, #5affb8 100%);-->
+<!--          display: flex; align-items: center; justify-content: center;-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 1.8rem; font-weight: 800;-->
+<!--          color: #0b0c10;-->
+<!--          flex-shrink: 0;-->
+<!--          box-shadow: 0 0 0 4px rgba(232,255,90,0.12);-->
+<!--        }-->
+
+<!--        .profile-meta { flex: 1; }-->
+
+<!--        .profile-name {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 1.6rem; font-weight: 800;-->
+<!--          color: var(&#45;&#45;text); line-height: 1.1;-->
+<!--          margin-bottom: 0.25rem;-->
+<!--        }-->
+
+<!--        .username-badge {-->
+<!--          display: inline-flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.4rem;-->
+<!--          background: rgba(232,255,90,0.08);-->
+<!--          border: 1px solid rgba(232,255,90,0.2);-->
+<!--          border-radius: 6px;-->
+<!--          padding: 0.2rem 0.6rem;-->
+<!--          font-size: 0.75rem;-->
+<!--          color: var(&#45;&#45;accent);-->
+<!--          margin-bottom: 0.6rem;-->
+<!--        }-->
+<!--        .username-badge::before { content: '@'; opacity: 0.6; }-->
+
+<!--        .profile-email { font-size: 0.78rem; color: var(&#45;&#45;muted); }-->
+
+<!--        .status-dot {-->
+<!--          display: inline-block;-->
+<!--          width: 7px; height: 7px;-->
+<!--          border-radius: 50%;-->
+<!--          background: var(&#45;&#45;accent2);-->
+<!--          margin-right: 0.4rem;-->
+<!--          box-shadow: 0 0 6px var(&#45;&#45;accent2);-->
+<!--          animation: pulse 2s infinite;-->
+<!--        }-->
+
+<!--        .info-grid {-->
+<!--          display: grid;-->
+<!--          grid-template-columns: 1fr 1fr;-->
+<!--          gap: 1rem;-->
+<!--          margin-top: 2rem;-->
+<!--        }-->
+
+<!--        .info-item {-->
+<!--          background: var(&#45;&#45;card);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 12px;-->
+<!--          padding: 1rem 1.25rem;-->
+<!--        }-->
+
+<!--        .info-label {-->
+<!--          font-size: 0.62rem;-->
+<!--          letter-spacing: 0.15em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          margin-bottom: 0.35rem;-->
+<!--        }-->
+
+<!--        .info-value {-->
+<!--          font-size: 0.9rem;-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          font-weight: 500;-->
+<!--        }-->
+
+<!--        /* ── SECTION TITLE ── */-->
+<!--        .section-title {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.65rem;-->
+<!--          font-weight: 600;-->
+<!--          letter-spacing: 0.25em;-->
+<!--          text-transform: uppercase;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          margin-bottom: 1rem;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.75rem;-->
+<!--        }-->
+<!--        .section-title::after {-->
+<!--          content: '';-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        /* ── CAROUSEL ── */-->
+<!--        .carousel-wrapper {-->
+<!--          position: relative;-->
+<!--        }-->
+
+<!--        /* fade edges */-->
+<!--        .carousel-wrapper::before,-->
+<!--        .carousel-wrapper::after {-->
+<!--          content: '';-->
+<!--          position: absolute;-->
+<!--          top: 0; bottom: 0;-->
+<!--          width: 32px;-->
+<!--          z-index: 2;-->
+<!--          pointer-events: none;-->
+<!--        }-->
+<!--        .carousel-wrapper::before {-->
+<!--          left: 0;-->
+<!--          background: linear-gradient(to right, var(&#45;&#45;bg), transparent);-->
+<!--        }-->
+<!--        .carousel-wrapper::after {-->
+<!--          right: 0;-->
+<!--          background: linear-gradient(to left, var(&#45;&#45;bg), transparent);-->
+<!--        }-->
+
+<!--        .carousel-track {-->
+<!--          display: flex;-->
+<!--          gap: 0.75rem;-->
+<!--          overflow-x: auto;-->
+<!--          scroll-behavior: smooth;-->
+<!--          scroll-snap-type: x mandatory;-->
+<!--          -webkit-overflow-scrolling: touch;-->
+<!--          padding: 4px 4px 10px;-->
+<!--          /* hide scrollbar */-->
+<!--          scrollbar-width: none;-->
+<!--        }-->
+<!--        .carousel-track::-webkit-scrollbar { display: none; }-->
+
+<!--        /* Each card in carousel */-->
+<!--        .carousel-card {-->
+<!--          flex: 0 0 320px;-->
+<!--          scroll-snap-align: start;-->
+<!--          text-decoration: none;-->
+<!--          color: inherit;-->
+<!--          border-radius: 14px;-->
+<!--          display: block;-->
+<!--        }-->
+
+<!--        @media (max-width: 500px) {-->
+<!--          .carousel-card { flex: 0 0 85vw; }-->
+<!--        }-->
+
+<!--        .test-row {-->
+<!--          background: var(&#45;&#45;surface);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 14px;-->
+<!--          padding: 1.1rem 1.5rem;-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 1.25rem;-->
+<!--          transition: border-color 0.2s, transform 0.2s, background 0.2s;-->
+<!--          cursor: pointer;-->
+<!--          height: 100%;-->
+<!--        }-->
+
+<!--        .carousel-card:hover .test-row {-->
+<!--          border-color: rgba(232,255,90,0.3);-->
+<!--          transform: translateY(-2px);-->
+<!--          background: #14172080;-->
+<!--          box-shadow: 0 8px 24px rgba(0,0,0,0.3);-->
+<!--        }-->
+
+<!--        .test-index {-->
+<!--          font-size: 0.65rem;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          width: 1.5rem;-->
+<!--          text-align: center;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+
+<!--        .test-info { flex: 1; min-width: 0; }-->
+
+<!--        .test-name {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.88rem;-->
+<!--          font-weight: 600;-->
+<!--          color: var(&#45;&#45;text);-->
+<!--          margin-bottom: 0.2rem;-->
+<!--          white-space: nowrap;-->
+<!--          overflow: hidden;-->
+<!--          text-overflow: ellipsis;-->
+<!--        }-->
+
+<!--        .test-date { font-size: 0.68rem; color: var(&#45;&#45;muted); }-->
+
+<!--        .score-pill {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.5rem;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+
+<!--        .score-bar-wrap {-->
+<!--          width: 60px;-->
+<!--          height: 4px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--          border-radius: 99px;-->
+<!--          overflow: hidden;-->
+<!--        }-->
+
+<!--        .score-bar {-->
+<!--          height: 100%;-->
+<!--          border-radius: 99px;-->
+<!--          transition: width 0.8s ease;-->
+<!--        }-->
+
+<!--        .score-value {-->
+<!--          font-family: 'Syne', sans-serif;-->
+<!--          font-size: 0.88rem;-->
+<!--          font-weight: 700;-->
+<!--          min-width: 38px;-->
+<!--          text-align: right;-->
+<!--        }-->
+
+<!--        .row-arrow {-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          font-size: 0.75rem;-->
+<!--          opacity: 0;-->
+<!--          transition: opacity 0.2s, transform 0.2s;-->
+<!--          margin-left: 0.25rem;-->
+<!--          flex-shrink: 0;-->
+<!--        }-->
+<!--        .carousel-card:hover .row-arrow { opacity: 1; transform: translateX(3px); }-->
+
+<!--        .score-high { background: var(&#45;&#45;accent2); }-->
+<!--        .score-mid  { background: var(&#45;&#45;accent); }-->
+<!--        .score-low  { background: var(&#45;&#45;danger); }-->
+<!--        .text-high  { color: var(&#45;&#45;accent2); }-->
+<!--        .text-mid   { color: var(&#45;&#45;accent); }-->
+<!--        .text-low   { color: var(&#45;&#45;danger); }-->
+
+<!--        /* ── CAROUSEL NAV BUTTONS ── */-->
+<!--        .carousel-nav {-->
+<!--          display: flex;-->
+<!--          align-items: center;-->
+<!--          gap: 0.4rem;-->
+<!--          margin-left: auto;-->
+<!--          /* push after the ::after pseudo, sits inside section-title flex */-->
+<!--          position: relative;-->
+<!--          z-index: 1;-->
+<!--        }-->
+<!--        /* Override section-title::after so it doesn't eat full space when nav present */-->
+<!--        .section-title.has-nav::after { display: none; }-->
+<!--        .section-title.has-nav .nav-line {-->
+<!--          flex: 1;-->
+<!--          height: 1px;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--        }-->
+
+<!--        .carousel-btn {-->
+<!--          background: var(&#45;&#45;card);-->
+<!--          border: 1px solid var(&#45;&#45;border);-->
+<!--          border-radius: 8px;-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          width: 28px; height: 28px;-->
+<!--          font-size: 1rem;-->
+<!--          cursor: pointer;-->
+<!--          display: flex; align-items: center; justify-content: center;-->
+<!--          transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;-->
+<!--          flex-shrink: 0;-->
+<!--          line-height: 1;-->
+<!--        }-->
+<!--        .carousel-btn:hover {-->
+<!--          background: var(&#45;&#45;surface);-->
+<!--          border-color: var(&#45;&#45;accent);-->
+<!--          color: var(&#45;&#45;accent);-->
+<!--          transform: scale(1.1);-->
+<!--        }-->
+<!--        .carousel-btn:disabled {-->
+<!--          opacity: 0.3;-->
+<!--          cursor: default;-->
+<!--          transform: none;-->
+<!--        }-->
+
+<!--        .carousel-dots {-->
+<!--          display: flex;-->
+<!--          gap: 4px;-->
+<!--          align-items: center;-->
+<!--        }-->
+<!--        .carousel-dot {-->
+<!--          width: 5px; height: 5px;-->
+<!--          border-radius: 50%;-->
+<!--          background: var(&#45;&#45;border);-->
+<!--          transition: background 0.2s, transform 0.2s;-->
+<!--          cursor: pointer;-->
+<!--        }-->
+<!--        .carousel-dot.active {-->
+<!--          background: var(&#45;&#45;accent);-->
+<!--          transform: scale(1.4);-->
+<!--        }-->
+
+<!--        .empty-msg {-->
+<!--          color: var(&#45;&#45;muted);-->
+<!--          font-size: 0.8rem;-->
+<!--          padding: 1rem 0;-->
+<!--        }-->
+
+<!--        @keyframes fadeUp {-->
+<!--          from { opacity: 0; transform: translateY(14px); }-->
+<!--          to   { opacity: 1; transform: translateY(0); }-->
+<!--        }-->
+
+<!--        @keyframes pulse {-->
+<!--          0%, 100% { opacity: 1; }-->
+<!--          50% { opacity: 0.4; }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="wrapper">-->
+
+<!--    &lt;!&ndash; Header row &ndash;&gt;-->
+<!--    <div class="eyebrow-row">-->
+<!--      <span class="label">User Profile</span>-->
+<!--      <span class="line"></span>-->
+<!--      <div style="display:flex;gap:0.5rem;flex-shrink:0">-->
+<!--        <a href="/" class="back-btn">-->
+<!--          <svg viewBox="0 0 24 24">-->
+<!--            <path d="M15 21H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H15"/>-->
+<!--            <polyline points="8 17 3 12 8 7"/>-->
+<!--            <line x1="3" y1="12" x2="15" y2="12"/>-->
+<!--          </svg>-->
+<!--          Back-->
+<!--        </a>-->
+<!--        <a href="/logout" class="exit-btn">-->
+<!--          <svg viewBox="0 0 24 24">-->
+<!--            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>-->
+<!--            <polyline points="16 17 21 12 16 7"/>-->
+<!--            <line x1="21" y1="12" x2="9" y2="12"/>-->
+<!--          </svg>-->
+<!--          Exit-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Profile Card &ndash;&gt;-->
+<!--    <div class="profile-card">-->
+<!--        <div class="profile-header">-->
+<!--            <div class="avatar" id="avatar-initials">JD</div>-->
+<!--            <div class="profile-meta">-->
+<!--                <div class="profile-name" id="display-name">Jane Doe</div>-->
+<!--                <div class="username-badge" id="username">janedoe92</div>-->
+<!--                <div class="profile-email">-->
+<!--                    <span class="status-dot"></span>-->
+<!--                    <span id="email">jane.doe@example.com</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="info-grid">-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">First Name</div>-->
+<!--                <div class="info-value" id="first-name">Jane</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Last Name</div>-->
+<!--                <div class="info-value" id="last-name">Doe</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Username</div>-->
+<!--                <div class="info-value" id="username-info">@janedoe92</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Member Since</div>-->
+<!--                <div class="info-value">{{ request.user.date_joined|date:'M d, Y' }}</div>-->
+<!--            </div>-->
+<!--            <div class="info-item">-->
+<!--                <div class="info-label">Country</div>-->
+<!--                <div class="info-value"><i class="{{ country_flag_code }}"></i> {{ country }}</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; ── Practice Tests Carousel ── &ndash;&gt;-->
+<!--    <div class="section-title has-nav" id="tests-section-title">-->
+<!--      Recent Practice Tests-->
+<!--      <span class="nav-line"></span>-->
+<!--      <div class="carousel-nav" id="tests-nav" style="display:none">-->
+<!--        <button class="carousel-btn" id="tests-prev">‹</button>-->
+<!--        <div class="carousel-dots" id="tests-dots"></div>-->
+<!--        <button class="carousel-btn" id="tests-next">›</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="carousel-wrapper">-->
+<!--      <div class="carousel-track" id="tests-track"></div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; ── Taken Lessons Carousel ── &ndash;&gt;-->
+<!--    <div class="section-title has-nav" style="margin-top:28px">-->
+<!--      Taken Lessons-->
+<!--      <span class="nav-line"></span>-->
+<!--      <div class="carousel-nav" id="lessons-nav" style="display:none">-->
+<!--        <button class="carousel-btn" id="lessons-prev">‹</button>-->
+<!--        <div class="carousel-dots" id="lessons-dots"></div>-->
+<!--        <button class="carousel-btn" id="lessons-next">›</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="carousel-wrapper">-->
+<!--      <div class="carousel-track" id="lessons-track">-->
+<!--        {% for lesson in lessons %}-->
+<!--        <a href="/{{ lesson.url }}" class="carousel-card">-->
+<!--          <div class="test-row">-->
+<!--            <span class="test-index">{{ forloop.counter|stringformat:"02d" }}</span>-->
+<!--            <div class="test-info">-->
+<!--              <div class="test-name">{{ lesson.lesson|capfirst }}</div>-->
+<!--              <div class="test-date">{{ lesson.date_taken }}</div>-->
+<!--            </div>-->
+<!--            <span class="row-arrow">→</span>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--        {% empty %}-->
+<!--        <p class="empty-msg">No lessons taken yet.</p>-->
+<!--        {% endfor %}-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<script>-->
+<!--    /* ── User info ── */-->
+<!--    const user = {-->
+<!--      firstName: "{{ user.first_name|capfirst }}",-->
+<!--      lastName:  "{{ user.last_name|capfirst }}",-->
+<!--      username:  "{{ user.username }}",-->
+<!--      email:     "{{ user.email }}",-->
+<!--    };-->
+
+<!--    const tests = [-->
+<!--      {% for i in scores %}-->
+<!--        { name: "{{ i.lesson.lesson_name }}", date: "{{ i.created_at }}", score: {{ i.correct_percentage }}, pk: {{ i.pk }} },-->
+<!--      {% endfor %}-->
+<!--    ];-->
+
+<!--    const initials = (user.firstName[0] || '?') + (user.lastName[0] || '?');-->
+<!--    document.getElementById('avatar-initials').textContent = initials;-->
+<!--    document.getElementById('display-name').textContent    = `${user.firstName} ${user.lastName}`;-->
+<!--    document.getElementById('username').textContent        = user.username;-->
+<!--    document.getElementById('email').textContent           = user.email;-->
+<!--    document.getElementById('first-name').textContent      = user.firstName;-->
+<!--    document.getElementById('last-name').textContent       = user.lastName;-->
+<!--    document.getElementById('username-info').textContent   = `@${user.username}`;-->
+
+<!--    function scoreClass(s) {-->
+<!--      if (s >= 85) return 'high';-->
+<!--      if (s >= 65) return 'mid';-->
+<!--      return 'low';-->
+<!--    }-->
+
+<!--    /* ── Build tests cards ── */-->
+<!--    const testsTrack = document.getElementById('tests-track');-->
+<!--    if (tests.length === 0) {-->
+<!--      testsTrack.innerHTML = '<p class="empty-msg">No practice tests yet.</p>';-->
+<!--    } else {-->
+<!--      tests.forEach((t, i) => {-->
+<!--        const cls = scoreClass(t.score);-->
+<!--        const card = document.createElement('a');-->
+<!--        card.href = `/review_past_test_results/${t.pk}`;-->
+<!--        card.className = 'carousel-card';-->
+<!--        card.innerHTML = `-->
+<!--          <div class="test-row">-->
+<!--            <span class="test-index">${String(i+1).padStart(2,'0')}</span>-->
+<!--            <div class="test-info">-->
+<!--              <div class="test-name">${t.name}</div>-->
+<!--              <div class="test-date">${t.date}</div>-->
+<!--            </div>-->
+<!--            <div class="score-pill">-->
+<!--              <div class="score-bar-wrap">-->
+<!--                <div class="score-bar score-${cls}" style="width:${t.score}%"></div>-->
+<!--              </div>-->
+<!--              <span class="score-value text-${cls}">${t.score}%</span>-->
+<!--            </div>-->
+<!--            <span class="row-arrow">→</span>-->
+<!--          </div>`;-->
+<!--        testsTrack.appendChild(card);-->
+<!--      });-->
+<!--    }-->
+
+<!--    /* ── Generic carousel setup ── */-->
+<!--    function setupCarousel(trackId, prevId, nextId, dotsId, navId) {-->
+<!--      const track = document.getElementById(trackId);-->
+<!--      const prev  = document.getElementById(prevId);-->
+<!--      const next  = document.getElementById(nextId);-->
+<!--      const dotsEl = document.getElementById(dotsId);-->
+<!--      const nav   = document.getElementById(navId);-->
+
+<!--      const cards = track.querySelectorAll('.carousel-card');-->
+<!--      if (cards.length <= 1) return; // no nav needed for 0-1 cards-->
+
+<!--      // Show nav-->
+<!--      nav.style.display = 'flex';-->
+
+<!--      // Build dots-->
+<!--      cards.forEach((_, i) => {-->
+<!--        const dot = document.createElement('div');-->
+<!--        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');-->
+<!--        dot.onclick = () => scrollToCard(i);-->
+<!--        dotsEl.appendChild(dot);-->
+<!--      });-->
+
+<!--      let current = 0;-->
+
+<!--      function scrollToCard(idx) {-->
+<!--        current = Math.max(0, Math.min(idx, cards.length - 1));-->
+<!--        cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });-->
+<!--        updateState();-->
+<!--      }-->
+
+<!--      function updateState() {-->
+<!--        prev.disabled = current === 0;-->
+<!--        next.disabled = current === cards.length - 1;-->
+<!--        dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {-->
+<!--          d.classList.toggle('active', i === current);-->
+<!--        });-->
+<!--      }-->
+
+<!--      prev.onclick = () => scrollToCard(current - 1);-->
+<!--      next.onclick = () => scrollToCard(current + 1);-->
+
+<!--      // Update current dot on scroll-->
+<!--      track.addEventListener('scroll', () => {-->
+<!--        let closest = 0;-->
+<!--        let minDist = Infinity;-->
+<!--        cards.forEach((card, i) => {-->
+<!--          const dist = Math.abs(card.getBoundingClientRect().left - track.getBoundingClientRect().left);-->
+<!--          if (dist < minDist) { minDist = dist; closest = i; }-->
+<!--        });-->
+<!--        current = closest;-->
+<!--        updateState();-->
+<!--      }, { passive: true });-->
+
+<!--      updateState();-->
+<!--    }-->
+
+<!--    // Init both carousels-->
+<!--    setupCarousel('tests-track',   'tests-prev',   'tests-next',   'tests-dots',   'tests-nav');-->
+<!--    setupCarousel('lessons-track', 'lessons-prev', 'lessons-next', 'lessons-dots', 'lessons-nav');-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>User Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"
-          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
-
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-          --bg: #0b0c10;
-          --surface: #12141a;
-          --card: #191c26;
-          --border: #252936;
-          --accent: #e8ff5a;
-          --accent2: #5affb8;
-          --text: #e8eaf2;
-          --muted: #6b7091;
-          --danger: #ff5a7a;
+          --bg: #0b0c10; --surface: #12141a; --card: #191c26;
+          --border: #252936; --accent: #e8ff5a; --accent2: #5affb8;
+          --text: #e8eaf2; --muted: #6b7091; --danger: #ff5a7a;
+          --ih: 68px;
         }
-
         body {
-          font-family: 'DM Mono', monospace;
-          background: var(--bg);
-          color: var(--text);
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 2rem;
-          overflow-x: hidden;
+          font-family: 'DM Mono', monospace; background: var(--bg); color: var(--text);
+          min-height: 100vh; display: flex; align-items: center; justify-content: center;
+          padding: 2rem; overflow-x: hidden;
         }
-
         body::before {
-          content: '';
-          position: fixed;
-          inset: 0;
+          content: ''; position: fixed; inset: 0;
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-          pointer-events: none;
-          z-index: 0;
+          pointer-events: none; z-index: 0;
         }
+        .wrapper { width: 100%; max-width: 760px; position: relative; z-index: 1; }
 
-        .wrapper {
-          width: 100%;
-          max-width: 760px;
-          position: relative;
-          z-index: 1;
-        }
-
-        .eyebrow {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 600;
-          letter-spacing: 0.25em;
-          text-transform: uppercase;
-          color: var(--muted);
-          margin-bottom: 2rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-        .eyebrow::after {
-          content: '';
-          flex: 1;
-          height: 1px;
-          background: var(--border);
-        }
-
-        /* ── BACK BUTTON ── */
         .back-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: transparent;
-          border: 1px solid rgba(90,255,184,0.35);
-          border-radius: 8px;
-          padding: 0.45rem 1rem;
-          font-family: 'DM Mono', monospace;
-          font-size: 0.72rem;
-          color: var(--accent2);
-          cursor: pointer;
-          text-decoration: none;
-          transition: background 0.2s, border-color 0.2s, transform 0.15s;
-          flex-shrink: 0;
+          display: inline-flex; align-items: center; gap: .5rem;
+          background: transparent; border: 1px solid rgba(90,255,184,.35);
+          border-radius: 8px; padding: .45rem 1rem; font-family: 'DM Mono',monospace;
+          font-size: .72rem; color: var(--accent2); cursor: pointer; text-decoration: none;
+          transition: background .2s, border-color .2s, transform .15s; flex-shrink: 0;
         }
-        .back-btn:hover {
-          background: rgba(90,255,184,0.1);
-          border-color: var(--accent2);
-          transform: translateY(-1px);
-        }
-        .back-btn svg {
-          width: 13px;
-          height: 13px;
-          stroke: var(--accent2);
-          fill: none;
-          stroke-width: 2;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
-
-        /* ── EXIT BUTTON ── */
+        .back-btn:hover { background: rgba(90,255,184,.1); border-color: var(--accent2); transform: translateY(-1px); }
+        .back-btn svg { width:13px;height:13px;stroke:var(--accent2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round; }
         .exit-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: transparent;
-          border: 1px solid rgba(255,90,122,0.35);
-          border-radius: 8px;
-          padding: 0.45rem 1rem;
-          font-family: 'DM Mono', monospace;
-          font-size: 0.72rem;
-          color: var(--danger);
-          cursor: pointer;
-          text-decoration: none;
-          transition: background 0.2s, border-color 0.2s, transform 0.15s;
-          margin-left: auto;
-          flex-shrink: 0;
+          display: inline-flex; align-items: center; gap: .5rem;
+          background: transparent; border: 1px solid rgba(255,90,122,.35);
+          border-radius: 8px; padding: .45rem 1rem; font-family: 'DM Mono',monospace;
+          font-size: .72rem; color: var(--danger); cursor: pointer; text-decoration: none;
+          transition: background .2s, border-color .2s, transform .15s; flex-shrink: 0;
         }
-        .exit-btn:hover {
-          background: rgba(255,90,122,0.1);
-          border-color: var(--danger);
-          transform: translateY(-1px);
-        }
-        .exit-btn svg {
-          width: 13px;
-          height: 13px;
-          stroke: var(--danger);
-          fill: none;
-          stroke-width: 2;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
+        .exit-btn:hover { background: rgba(255,90,122,.1); border-color: var(--danger); transform: translateY(-1px); }
+        .exit-btn svg { width:13px;height:13px;stroke:var(--danger);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round; }
 
-        .eyebrow-row {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 2rem;
-        }
-        .eyebrow-row .label {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 600;
-          letter-spacing: 0.25em;
-          text-transform: uppercase;
-          color: var(--muted);
-          flex-shrink: 0;
-        }
-        .eyebrow-row .line {
-          flex: 1;
-          height: 1px;
-          background: var(--border);
-        }
+        .eyebrow-row { display:flex;align-items:center;gap:.75rem;margin-bottom:2rem; }
+        .eyebrow-row .label { font-family:'Syne',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);flex-shrink:0; }
+        .eyebrow-row .line { flex:1;height:1px;background:var(--border); }
 
-        /* Profile Card */
-        .profile-card {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 20px;
-          padding: 2.5rem;
-          margin-bottom: 1.25rem;
+        .profile-card { background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden;animation:fadeUp .5s ease both; }
+        .profile-card::before { content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,255,90,.08) 0%,transparent 70%);pointer-events:none; }
+        .profile-header { display:flex;align-items:center;gap:1.75rem; }
+        .avatar { width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#e8ff5a 0%,#5affb8 100%);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#0b0c10;flex-shrink:0;box-shadow:0 0 0 4px rgba(232,255,90,.12); }
+        .profile-meta { flex:1; }
+        .profile-name { font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);line-height:1.1;margin-bottom:.25rem; }
+        .username-badge { display:inline-flex;align-items:center;gap:.4rem;background:rgba(232,255,90,.08);border:1px solid rgba(232,255,90,.2);border-radius:6px;padding:.2rem .6rem;font-size:.75rem;color:var(--accent);margin-bottom:.6rem; }
+        .username-badge::before { content:'@';opacity:.6; }
+        .profile-email { font-size:.78rem;color:var(--muted); }
+        .status-dot { display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent2);margin-right:.4rem;box-shadow:0 0 6px var(--accent2);animation:pulse 2s infinite; }
+        .info-grid { display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem; }
+        .info-item { background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem; }
+        .info-label { font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem; }
+        .info-value { font-size:.9rem;color:var(--text);font-weight:500; }
+
+        .section-title { font-family:'Syne',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem; }
+        .section-title::after { content:'';flex:1;height:1px;background:var(--border); }
+
+        /* ═══════════════════════ DRUM WHEEL ═══════════════════════ */
+        .drum-shell {
           position: relative;
+          /* height set by JS */
           overflow: hidden;
-          animation: fadeUp 0.5s ease both;
+          border-radius: 16px;
+          /* perspective on the shell itself so it works consistently on all devices */
+          perspective: 800px;
+          perspective-origin: 50% 50%;
+          cursor: ns-resize;
+          user-select: none;
+          touch-action: none;
         }
 
-        .profile-card::before {
-          content: '';
+        /* very subtle edge fade only */
+        .drum-shell::before,
+        .drum-shell::after {
+          content: ''; position: absolute; left: 0; right: 0;
+          height: 15%; z-index: 4; pointer-events: none;
+        }
+        .drum-shell::before { top: 0; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); }
+        .drum-shell::after  { bottom: 0; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); }
+
+        .drum-stage {
           position: absolute;
-          top: -60px;
-          right: -60px;
-          width: 200px;
-          height: 200px;
-          background: radial-gradient(circle, rgba(232,255,90,0.08) 0%, transparent 70%);
-          pointer-events: none;
+          left: 0; right: 0;
+          /* JS sets top to exactly 50% of shell height */
+          transform-style: preserve-3d;
         }
 
-        .profile-header {
-          display: flex;
-          align-items: center;
-          gap: 1.75rem;
+        .drum-item {
+          position: absolute;
+          left: 0; right: 0;
+          height: var(--ih);
+          /* JS handles all transforms — no initial transform here */
+          display: flex; align-items: center;
+          padding: 0 8px;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
 
-        .avatar {
-          width: 78px;
-          height: 78px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #e8ff5a 0%, #5affb8 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: 'Syne', sans-serif;
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: #0b0c10;
-          flex-shrink: 0;
-          box-shadow: 0 0 0 4px rgba(232,255,90,0.12);
+        .drum-card {
+          width: 100%; height: calc(var(--ih) - 10px);
+          background: var(--surface); border: 1px solid var(--border);
+          border-radius: 12px; padding: .75rem 1.1rem;
+          display: flex; align-items: center; gap: 1rem;
+          text-decoration: none; color: var(--text);
+          transition: border-color .25s, background .25s;
         }
-
-        .profile-meta { flex: 1; }
-
-        .profile-name {
-          font-family: 'Syne', sans-serif;
-          font-size: 1.6rem;
-          font-weight: 800;
-          color: var(--text);
-          line-height: 1.1;
-          margin-bottom: 0.25rem;
-        }
-
-        .username-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          background: rgba(232,255,90,0.08);
-          border: 1px solid rgba(232,255,90,0.2);
-          border-radius: 6px;
-          padding: 0.2rem 0.6rem;
-          font-size: 0.75rem;
-          color: var(--accent);
-          margin-bottom: 0.6rem;
-        }
-        .username-badge::before { content: '@'; opacity: 0.6; }
-
-        .profile-email { font-size: 0.78rem; color: var(--muted); }
-
-        .status-dot {
-          display: inline-block;
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: var(--accent2);
-          margin-right: 0.4rem;
-          box-shadow: 0 0 6px var(--accent2);
-          animation: pulse 2s infinite;
-        }
-
-        .info-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1rem;
-          margin-top: 2rem;
-        }
-
-        .info-item {
+        .drum-item.is-active .drum-card {
+          border-color: rgba(232,255,90,.28);
           background: var(--card);
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 1rem 1.25rem;
         }
 
-        .info-label {
-          font-size: 0.62rem;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--muted);
-          margin-bottom: 0.35rem;
+        .di-idx  { font-size:.6rem; color:var(--muted); width:1.4rem; text-align:center; flex-shrink:0; }
+        .di-body { flex:1; min-width:0; }
+        .di-name { font-family:'Syne',sans-serif; font-size:.85rem; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:.15rem; }
+        .di-date { font-size:.63rem; color:var(--muted); }
+        .di-score { display:flex; align-items:center; gap:.4rem; flex-shrink:0; }
+        .di-bar-wrap { width:48px; height:3px; background:var(--border); border-radius:99px; overflow:hidden; }
+        .di-bar  { height:100%; border-radius:99px; }
+        .di-pct  { font-family:'Syne',sans-serif; font-size:.8rem; font-weight:700; min-width:34px; text-align:right; }
+        .di-arr  { font-size:.68rem; color:var(--muted); flex-shrink:0; opacity:0; transition:opacity .2s; }
+        .drum-item.is-active .di-arr { opacity:.55; }
+
+        .score-high { background:var(--accent2); } .text-high { color:var(--accent2); }
+        .score-mid  { background:var(--accent); }  .text-mid  { color:var(--accent); }
+        .score-low  { background:var(--danger); }  .text-low  { color:var(--danger); }
+
+        .drum-nav { display:flex; justify-content:center; align-items:center; gap:.9rem; margin-top:.65rem; }
+        .drum-btn {
+          background:var(--card); border:1px solid var(--border); border-radius:8px;
+          color:var(--muted); width:30px; height:30px; font-size:.95rem; cursor:pointer;
+          display:flex; align-items:center; justify-content:center;
+          transition:background .15s, color .15s, border-color .15s, transform .1s;
         }
+        .drum-btn:hover { background:var(--surface); border-color:var(--accent); color:var(--accent); transform:scale(1.1); }
+        .drum-btn:disabled { opacity:.22; cursor:default; transform:none; }
+        .drum-ctr { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--muted); min-width:54px; text-align:center; }
+        .drum-empty { color:var(--muted); font-size:.8rem; padding:1rem 0; }
 
-        .info-value {
-          font-size: 0.9rem;
-          color: var(--text);
-          font-weight: 500;
-        }
-
-        .section-title {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 600;
-          letter-spacing: 0.25em;
-          text-transform: uppercase;
-          color: var(--muted);
-          margin-bottom: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-        .section-title::after {
-          content: '';
-          flex: 1;
-          height: 1px;
-          background: var(--border);
-        }
-
-        .tests-container {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        /* ── TEST LINK — styled, no default underline ── */
-        a.test-link {
-          display: block;
-          text-decoration: none;
-          color: inherit;
-          border-radius: 14px;
-          outline-offset: 3px;
-        }
-        a.test-link:focus-visible {
-          outline: 2px solid var(--accent);
-        }
-
-        .test-row {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          padding: 1.1rem 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          animation: fadeUp 0.5s ease both;
-          transition: border-color 0.2s, transform 0.2s, background 0.2s;
-          cursor: pointer;
-        }
-
-        a.test-link:hover .test-row {
-          border-color: rgba(232,255,90,0.3);
-          transform: translateX(4px);
-          background: #14172050;
-        }
-
-        /* Non-linked rows (lessons) keep original hover */
-        .test-row:not(.no-hover):hover {
-          border-color: rgba(232,255,90,0.25);
-          transform: translateX(4px);
-        }
-
-        .test-row:nth-child(1) { animation-delay: 0.1s; }
-        .test-row:nth-child(2) { animation-delay: 0.18s; }
-        .test-row:nth-child(3) { animation-delay: 0.26s; }
-        .test-row:nth-child(4) { animation-delay: 0.34s; }
-        .test-row:nth-child(5) { animation-delay: 0.42s; }
-
-        .test-index {
-          font-size: 0.65rem;
-          color: var(--muted);
-          width: 1.5rem;
-          text-align: center;
-          flex-shrink: 0;
-        }
-
-        .test-info { flex: 1; }
-
-        .test-name {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.88rem;
-          font-weight: 600;
-          color: var(--text);
-          margin-bottom: 0.2rem;
-        }
-
-        .test-date { font-size: 0.68rem; color: var(--muted); }
-
-        .score-pill {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .score-bar-wrap {
-          width: 80px;
-          height: 4px;
-          background: var(--border);
-          border-radius: 99px;
-          overflow: hidden;
-        }
-
-        .score-bar {
-          height: 100%;
-          border-radius: 99px;
-          transition: width 0.8s ease;
-        }
-
-        .score-value {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.88rem;
-          font-weight: 700;
-          min-width: 40px;
-          text-align: right;
-        }
-
-        /* Arrow icon on linked rows */
-        .row-arrow {
-          color: var(--muted);
-          font-size: 0.75rem;
-          opacity: 0;
-          transition: opacity 0.2s, transform 0.2s;
-          margin-left: 0.25rem;
-        }
-        a.test-link:hover .row-arrow {
-          opacity: 1;
-          transform: translateX(3px);
-        }
-
-        .score-high   { background: var(--accent2); }
-        .score-mid    { background: var(--accent); }
-        .score-low    { background: var(--danger); }
-
-        .text-high  { color: var(--accent2); }
-        .text-mid   { color: var(--accent); }
-        .text-low   { color: var(--danger); }
-
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
+        @keyframes fadeUp  { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes pulse   { 0%,100%{opacity:1} 50%{opacity:.4} }
     </style>
 </head>
 <body>
 <div class="wrapper">
 
-    <!-- Header row with eyebrow + exit button -->
-    <div class="eyebrow-row">
-      <span class="label">User Profile</span>
-      <span class="line"></span>
-      <div style="display:flex;gap:0.5rem;flex-shrink:0">
+  <div class="eyebrow-row">
+    <span class="label">User Profile</span>
+    <span class="line"></span>
+    <div style="display:flex;gap:.5rem;flex-shrink:0">
       <a href="/" class="back-btn">
-        <svg viewBox="0 0 24 24">
-          <path d="M15 21H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H15"/>
-          <polyline points="8 17 3 12 8 7"/>
-          <line x1="3" y1="12" x2="15" y2="12"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M15 21H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H15"/><polyline points="8 17 3 12 8 7"/><line x1="3" y1="12" x2="15" y2="12"/></svg>
         Back
       </a>
       <a href="/logout" class="exit-btn">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-          <polyline points="16 17 21 12 16 7"/>
-          <line x1="21" y1="12" x2="9" y2="12"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         Exit
       </a>
     </div>
+  </div>
+
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="avatar" id="avatar-initials">JD</div>
+      <div class="profile-meta">
+        <div class="profile-name" id="display-name">Jane Doe</div>
+        <div class="username-badge" id="username">janedoe92</div>
+        <div class="profile-email"><span class="status-dot"></span><span id="email">jane@example.com</span></div>
+      </div>
     </div>
-
-    <!-- Profile Card -->
-    <div class="profile-card">
-        <div class="profile-header">
-            <div class="avatar" id="avatar-initials">JD</div>
-            <div class="profile-meta">
-                <div class="profile-name" id="display-name">Jane Doe</div>
-                <div class="username-badge" id="username">janedoe92</div>
-                <div class="profile-email">
-                    <span class="status-dot"></span>
-                    <span id="email">jane.doe@example.com</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="info-label">First Name</div>
-                <div class="info-value" id="first-name">Jane</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Last Name</div>
-                <div class="info-value" id="last-name">Doe</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Username</div>
-                <div class="info-value" id="username-info">@janedoe92</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Member Since</div>
-                <div class="info-value">{{ request.user.date_joined|date:'M d, Y' }}</div>
-            </div>
-            <div class="info-item">
-                <div class="info-label">Country</div>
-                <div class="info-value"><i class="{{ country_flag_code }}"></i> {{ country }}</div>
-            </div>
-        </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">First Name</div><div class="info-value" id="first-name">Jane</div></div>
+      <div class="info-item"><div class="info-label">Last Name</div><div class="info-value" id="last-name">Doe</div></div>
+      <div class="info-item"><div class="info-label">Username</div><div class="info-value" id="username-info">@janedoe92</div></div>
+      <div class="info-item"><div class="info-label">Member Since</div><div class="info-value">{{ request.user.date_joined|date:'M d, Y' }}</div></div>
+      <div class="info-item"><div class="info-label">Country</div><div class="info-value"><i class="{{ country_flag_code }}"></i> {{ country }}</div></div>
     </div>
+  </div>
 
-    <!-- Practice Tests -->
-    <div class="section-title">Recent Practice Tests</div>
-    <div class="tests-container" id="tests-list"></div>
+  <div class="section-title">Recent Practice Tests</div>
+  <div class="drum-shell" id="tests-shell">
+    <div class="drum-stage" id="tests-stage"></div>
+  </div>
+  <div class="drum-nav" id="tests-nav" style="display:none">
+    <button class="drum-btn" id="tests-up">▲</button>
+    <span class="drum-ctr" id="tests-ctr">1 / 1</span>
+    <button class="drum-btn" id="tests-down">▼</button>
+  </div>
 
-    <!-- Taken Lessons -->
-    <div class="section-title" style="margin-top:20px">Taken Lessons</div>
-    <div class="tests-container">
-        {% for lesson in lessons %}
-        <a href="" class="test-link">
-        <div class="test-row no-hover">
-            <span class="test-index">{{ forloop.counter|stringformat:"02d" }}</span>
-            <div class="test-info">
-                <div class="test-name">{{ lesson.lesson|capfirst }}</div>
-                <div class="test-date">{{ lesson.date_taken }}</div>
-            </div>
-        </div>
-        </a>
-        {% empty %}
-        <p style="color: var(--muted); font-size: 0.8rem;">No lessons taken yet.</p>
-        {% endfor %}
-    </div>
+  <div class="section-title" style="margin-top:28px">Taken Lessons</div>
+  <div class="drum-shell" id="lessons-shell">
+    <div class="drum-stage" id="lessons-stage"></div>
+  </div>
+  <div class="drum-nav" id="lessons-nav" style="display:none">
+    <button class="drum-btn" id="lessons-up">▲</button>
+    <span class="drum-ctr" id="lessons-ctr">1 / 1</span>
+    <button class="drum-btn" id="lessons-down">▼</button>
+  </div>
 
 </div>
-
 <script>
-    const user = {
-      firstName: "{{ user.first_name|capfirst }}",
-      lastName:  "{{ user.last_name|capfirst }}",
-      username:  "{{ user.username }}",
-      email:     "{{ user.email }}",
-    };
+  const u = {
+    firstName: "{{ user.first_name|capfirst }}",
+    lastName:  "{{ user.last_name|capfirst }}",
+    username:  "{{ user.username }}",
+    email:     "{{ user.email }}",
+  };
+  const ini = (u.firstName[0]||'?')+(u.lastName[0]||'?');
+  document.getElementById('avatar-initials').textContent = ini;
+  document.getElementById('display-name').textContent    = `${u.firstName} ${u.lastName}`;
+  document.getElementById('username').textContent        = u.username;
+  document.getElementById('email').textContent           = u.email;
+  document.getElementById('first-name').textContent      = u.firstName;
+  document.getElementById('last-name').textContent       = u.lastName;
+  document.getElementById('username-info').textContent   = `@${u.username}`;
 
-    const tests = [
-  {% for i in scores %}
-    { name: "{{ i.lesson.math_test_results.lesson_name }}", date: "{{ i.created_at }}", score: {{ i.correct_percentage }}, pk: {{ i.pk }} },
-  {% endfor %}
-];
+  const scoresData = [
+    {% for i in scores %}
+      { name:"{{ i.lesson.lesson_name }}", date:"{{ i.created_at|date:'M d, Y' }}", score:{{ i.correct_percentage }}, url:"/review_past_test_results/{{ i.pk }}" },
+    {% endfor %}
+  ];
+  const lessonsData = [
+    {% for lesson in lessons %}
+      { name:"{{ lesson.lesson|capfirst }}", date:"{{ lesson.date_taken|date:'M d, Y' }}", url:"/{{ lesson.url }}" },
+    {% endfor %}
+  ];
 
-    const initials = user.firstName[0] + user.lastName[0];
-    document.getElementById('avatar-initials').textContent = initials;
-    document.getElementById('display-name').textContent    = `${user.firstName} ${user.lastName}`;
-    document.getElementById('username').textContent        = user.username;
-    document.getElementById('email').textContent           = user.email;
-    document.getElementById('first-name').textContent      = user.firstName;
-    document.getElementById('last-name').textContent       = user.lastName;
-    document.getElementById('username-info').textContent   = `@${user.username}`;
+  function sc(s){ return s>=85?'high':s>=65?'mid':'low'; }
 
-    function scoreClass(s) {
-      if (s >= 85) return 'high';
-      if (s >= 65) return 'mid';
-      return 'low';
+  function makeDrum(shellId, stageId, navId, upId, downId, ctrId, items, renderCard) {
+    const shell = document.getElementById(shellId);
+    const stage = document.getElementById(stageId);
+    const nav   = document.getElementById(navId);
+    const upBtn = document.getElementById(upId);
+    const dnBtn = document.getElementById(downId);
+    const ctr   = document.getElementById(ctrId);
+
+    if (!items.length) {
+      shell.style.height = '80px';
+      stage.innerHTML = '<div class="drum-empty" style="padding:1.2rem 1rem">Nothing here yet.</div>';
+      return;
     }
 
-    const list = document.getElementById('tests-list');
-    tests.forEach((t, i) => {
-      const cls = scoreClass(t.score);
-      list.innerHTML += `
-      <a href="/review_past_test_results/${t.pk}" class="test-link">
-        <div class="test-row">
-          <span class="test-index">${String(i+1).padStart(2,'0')}</span>
-          <div class="test-info">
-            <div class="test-name">${t.name}</div>
-            <div class="test-date">${t.date}</div>
-          </div>
-          <div class="score-pill">
-            <div class="score-bar-wrap">
-              <div class="score-bar score-${cls}" style="width:${t.score}%"></div>
-            </div>
-            <span class="score-value text-${cls}">${t.score}%</span>
-          </div>
-          <span class="row-arrow">→</span>
-        </div>
-      </a>`;
+    const IH   = 68;   // must match --ih
+    const n    = items.length;
+    let cur    = 0;
+    let animId = null;
+    let targetAngle = 0;
+    let curAngle    = 0;
+
+    // Shell height = all items flat (no drum clipping), we rely on 3D to show depth
+    const VISIBLE_ROWS = Math.min(n, 5);
+    const shellH = VISIBLE_ROWS * IH;
+    shell.style.height = shellH + 'px';
+
+    // The drum radius: controls how curved the drum feels.
+    // Larger R = flatter/less curved. We use shellH so it scales with size.
+    const R = shellH * 1.5;
+    const step = IH / R; // radians per item
+
+    // Place the stage pivot exactly at the vertical center of the shell
+    stage.style.top = (shellH / 2) + 'px';
+
+    const els = items.map((d, i) => {
+      const el = document.createElement('div');
+      el.className = 'drum-item';
+      el.innerHTML = renderCard(d, i);
+      stage.appendChild(el);
+      return el;
     });
+
+    if (n > 1) nav.style.display = 'flex';
+
+    function applyAngle(angle) {
+      els.forEach((el, i) => {
+        const a    = (i * step) - angle; // radians from center
+        const adeg = a * 180 / Math.PI;
+
+        // Hide items that have rotated past 90deg (back of drum)
+        if (Math.abs(adeg) >= 90) {
+          el.style.opacity = '0';
+          el.style.pointerEvents = 'none';
+          return;
+        }
+
+        const y  = Math.sin(a) * R;   // vertical position on drum surface
+        const z  = Math.cos(a) * R - R; // depth (negative = behind center)
+        const rx = -adeg;              // tilt angle
+
+        // Fade: only starts fading after 60deg, fully gone at 90deg
+        const fade = Math.max(0, 1 - Math.max(0, Math.abs(adeg) - 60) / 30);
+
+        el.style.opacity       = fade;
+        el.style.pointerEvents = 'none';
+        // translateY centers the item: -IH/2 offsets the item's own height
+        el.style.transform     = `translateY(calc(${y}px - 50%)) translateZ(${z}px) rotateX(${rx}deg)`;
+
+        const isActive = i === Math.round(angle / step);
+        el.classList.toggle('is-active', isActive);
+        if (isActive) el.style.pointerEvents = 'all';
+      });
+
+      const activei = Math.round(angle / step);
+      const cl      = Math.max(0, Math.min(n - 1, activei));
+      ctr.textContent = `${cl + 1} / ${n}`;
+      upBtn.disabled  = cl === 0;
+      dnBtn.disabled  = cl === n - 1;
+    }
+
+    function animateTo(target) {
+      if (animId) cancelAnimationFrame(animId);
+      targetAngle = target;
+      function tick() {
+        curAngle += (targetAngle - curAngle) * 0.18;
+        applyAngle(curAngle);
+        if (Math.abs(targetAngle - curAngle) > 0.0005) {
+          animId = requestAnimationFrame(tick);
+        } else {
+          curAngle = targetAngle;
+          applyAngle(curAngle);
+        }
+      }
+      animId = requestAnimationFrame(tick);
+    }
+
+    function goTo(idx) {
+      cur = Math.max(0, Math.min(n - 1, idx));
+      animateTo(cur * step);
+    }
+
+    upBtn.onclick = () => goTo(cur - 1);
+    dnBtn.onclick = () => goTo(cur + 1);
+
+    // Drag & touch
+    let dragY = null, dragBase = 0;
+    function onDragStart(y) { dragY = y; dragBase = curAngle; }
+    function onDragMove(y) {
+      if (dragY === null) return;
+      const delta   = (dragY - y) / IH * step;
+      const raw     = dragBase + delta;
+      curAngle = Math.max(0, Math.min((n - 1) * step, raw));
+      applyAngle(curAngle);
+    }
+    function onDragEnd() {
+      if (dragY === null) return;
+      dragY = null;
+      cur = Math.max(0, Math.min(n - 1, Math.round(curAngle / step)));
+      animateTo(cur * step);
+    }
+
+    shell.addEventListener('mousedown',  e => { e.preventDefault(); onDragStart(e.clientY); });
+    window.addEventListener('mousemove', e => onDragMove(e.clientY));
+    window.addEventListener('mouseup',   () => onDragEnd());
+
+    shell.addEventListener('touchstart', e => onDragStart(e.touches[0].clientY), { passive: true });
+    shell.addEventListener('touchmove',  e => { e.preventDefault(); onDragMove(e.touches[0].clientY); }, { passive: false });
+    shell.addEventListener('touchend',   () => onDragEnd());
+
+    shell.addEventListener('wheel', e => {
+      e.preventDefault();
+      goTo(cur + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+
+    goTo(0);
+  }
+
+  function testCard(d, i) {
+    const c = sc(d.score);
+    return `<a href="${d.url}" class="drum-card">
+      <span class="di-idx">${String(i+1).padStart(2,'0')}</span>
+      <div class="di-body">
+        <div class="di-name">${d.name}</div>
+        <div class="di-date">${d.date}</div>
+      </div>
+      <div class="di-score">
+        <div class="di-bar-wrap"><div class="di-bar score-${c}" style="width:${d.score}%"></div></div>
+        <span class="di-pct text-${c}">${d.score}%</span>
+      </div>
+      <span class="di-arr">→</span>
+    </a>`;
+  }
+
+  function lessonCard(d, i) {
+    return `<a href="${d.url}" class="drum-card">
+      <span class="di-idx">${String(i+1).padStart(2,'0')}</span>
+      <div class="di-body">
+        <div class="di-name">${d.name}</div>
+        <div class="di-date">${d.date}</div>
+      </div>
+      <span class="di-arr">→</span>
+    </a>`;
+  }
+
+  makeDrum('tests-shell',   'tests-stage',   'tests-nav',   'tests-up',   'tests-down',   'tests-ctr',   scoresData,  testCard);
+  makeDrum('lessons-shell', 'lessons-stage', 'lessons-nav', 'lessons-up', 'lessons-down', 'lessons-ctr', lessonsData, lessonCard);
 </script>
 </body>
 </html>

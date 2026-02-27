@@ -106,6 +106,33 @@ def profile(request):
     from .extrafunctions import countries_flags
     scores = MathTestResult.objects.filter(user=request.user).order_by('-created_at')[:20]
     lessons = TakenLessons.objects.filter(user=request.user).order_by('-date_taken')[:20]
+    lessons2 = []
+
+    lesson_urls = {'Fundamental Concepts of Mathematics': 'fundamental',
+            'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
+            'Types of Numbers': 'types_of_numbers',
+            'Operations with Positive and Negative Numbers': 'working_with_signs',
+            'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
+            'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
+            'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
+            'Operations on Logarithms': 'operation_on_logarithm', 'Logarithmic Functions': 'logarithmic_functions',
+            'Introduction to Trigonometry': 'trigonometry',
+            'Trigonometric Identities and Operations': 'operations_in_trigonometry',
+            'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
+            'Introduction to Geometry': 'introduction_to_geometry',
+            'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
+            'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
+            'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
+            'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
+            'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
+            'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
+            'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
+            'Similar Triangles': 'similar_triangles'}
+    for i in lessons:
+        lessons2.append(
+            {'url': lesson_urls[i.lesson],
+             'lesson': i}
+        )
     try:
         country = Country.objects.get(user=request.user)
         country_name = country.country
@@ -117,9 +144,10 @@ def profile(request):
         'profile': profile,
         'user': request.user,
         'scores': scores,
-        'lessons': lessons,
+        'lessons': lessons2,
         'country': country_name,
-        'country_flag_code': country_flag_code
+        'country_flag_code': country_flag_code,
+        'urls': lesson_urls
     }
 
 
@@ -507,11 +535,11 @@ def the_laws_of_cosines(request):
 
 @login_required
 def practice_in_trigonometry(request):
-    from .models import PracticeScore
+    from .models import MathTestResult
     if request.method == "POST":
         data = json.loads(request.body)
 
-        score = PracticeScore.objects.create(
+        score = MathTestResult.objects.create(
             user=request.user,
             correct=data.get("correct"),
             wrong=data.get("wrong"),
@@ -640,15 +668,18 @@ def practice(request):
     url = request.GET.get('url')
 
 
+
     data = math_problems_json[url]
     print(len(data))
 
-    return render(request, 'practice.html', {'data': data})
+    return render(request, 'practice.html', {'data': data, 'url': url})
 
 
 @login_required  # agar login kerak bo'lsa
 def save_results(request, url):
+
     if request.method == 'POST':
+        print(url)
         data = json.loads(request.body)
         lesson = Lessons.objects.get(url=url)
         data1 = MathTestResult.objects.create(
@@ -664,8 +695,9 @@ def save_results(request, url):
             total_questions=data['total_questions'],
             questions_json_formatted=data['questions']
         )
+        pk = data1.pk
         data1.save()
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'ok', 'pk': pk})
     return JsonResponse({'error': 'Only POST'}, status=405)
 
 

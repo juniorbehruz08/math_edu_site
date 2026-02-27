@@ -44,7 +44,7 @@
             </a>
 
             <div class="d-lg-none ms-auto me-4">
-                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -95,17 +95,17 @@
         </div>
         <div class="container d-flex flex-wrap justify-content-center mt-5 gap-3">
             <a style="flex: 1 1 250px; max-width: 300px;"
-               href="{% url 'practice_linear' 'equalities_inequalities' %}"
+               href="{% url 'practice' %}?url=linear_equalities"
                class="btn custom-btn custom-border-btn">
                 Practice With <br> Linear Equations
             </a>
             <a style="flex: 1 1 250px; max-width: 300px;"
-               href="{% url 'quadratic_practice' 'equalities_inequalities' %}"
+               href="{% url 'practice' %}?url=quadratic_equations"
                class="btn custom-btn custom-border-btn">
                 Practice With Quadratic Equations
             </a>
             <a style="flex: 1 1 250px; max-width: 300px;"
-               href="{% url 'inequalities_practice' 'equalities_inequalities' %}"
+               href="{% url 'practice' %}?url=inequalities"
                class="btn custom-btn custom-border-btn">
                 Practice with Inequalities
             </a>

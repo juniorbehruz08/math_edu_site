@@ -902,6 +902,8 @@ def logarithm_generator_ops_v2():
 
     random.shuffle(questions)
     return questions
+
+
 countries_flags = {
     "Afghanistan": "fi fi-af",
     "Albania": "fi fi-al",
@@ -1097,6 +1099,7 @@ countries_flags = {
     "Zambia": "fi fi-zm",
     "Zimbabwe": "fi fi-zw",
 }
+
 
 def angle_test_in_trigonometry():
     import random
@@ -1823,4 +1826,25 @@ def generate_equilateral_triangle_questions():
     return questions
 
 
-
+def return_lesson_name(word):
+    data = {'Fundamental Concepts of Mathematics': 'fundamental',
+            'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
+            'Types of Numbers': 'types_of_numbers',
+            'Operations with Positive and Negative Numbers': 'working_with_signs',
+            'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
+            'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
+            'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
+            'Operations on Logarithms': 'operation_on_logarithm', 'Logarithmic Functions': 'logarithmic_functions',
+            'Introduction to Trigonometry': 'trigonometry',
+            'Trigonometric Identities and Operations': 'operations_in_trigonometry',
+            'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
+            'Introduction to Geometry': 'introduction_to_geometry',
+            'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
+            'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
+            'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
+            'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
+            'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
+            'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
+            'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
+            'Similar Triangles': 'similar_triangles'}
+    return data[word]

@@ -3,9 +3,9 @@ from django.urls import path
 from .views import *
 urlpatterns = [
     path('', main_view, name='main_view'),
-    path('login_register/', login_view, name='login'),
+    path('login/', login_view, name='login'),
     path('logout/', log_out, name='logout'),
-    path('fundamental_knowledge/', fundamental_knowledge, name='fundamental'),
+    path('fundamental/', fundamental_knowledge, name='fundamental'),
     path('profile/', profile, name='profile'),
     path('equalities_inequalities/', equalities_inequalities, name='equalities_inequalities'),
     path('practice_linear/<str:back_url>', practice_linear, name='practice_linear'),
@@ -67,5 +67,5 @@ urlpatterns = [
     path('review_past_test_results/<int:pk>', review_past_test_results, name='review_past_test_results'),
     path("send_code/", send_code, name='send_code'),
     path('verify_email/', verify_email, name='verify_email'),
-    # path('adding_values/', adding_values, name='adding_values'),
+    path('adding_values/', adding_values, name='adding_values'),
 ]

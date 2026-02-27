@@ -46,7 +46,7 @@
             </a>
 
             <div class="d-lg-none ms-auto me-4">
-                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -94,14 +94,8 @@
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-center mt-5 gap-3">
-                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice_with_quadratic' %}"
-                       class="btn custom-btn custom-border-btn">Practice with Quadratic Functions</a>
-                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice_with_cubic' %}"
-                       class="btn custom-btn custom-border-btn">Practice with Cubic Functions</a>
-                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice_with_rational' %}"
-                       class="btn custom-btn custom-border-btn">Practice with Rational Functions</a>
-                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice_with_exponential' %}"
-                       class="btn custom-btn custom-border-btn">Practice with Exponential Functions</a>
+                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice' %}?url=other_kind_of_functions"
+                       class="btn custom-btn custom-border-btn">Practice with Functions</a>
                 </div>
 
 
