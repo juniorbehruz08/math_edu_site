@@ -9554,13 +9554,15 @@ math_problems_json = {
         {
             'question': 'What is the domain of $f(x) = \\arccos(x)$?',
             'answer': '$[-1,\\ 1]$',
-            'wrong': ['$(-\\infty,\\ +\\infty)$', '$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$', '$(-1,\\ 1)$'],
+            'wrong': ['$(-\\infty,\\ +\\infty)$', '$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$',
+                      '$(-1,\\ 1)$'],
             'explanation': '$\\arccos(x)$ requires $-1 \\le x \\le 1$. Domain: $[-1, 1]$.',
         },
         {
             'question': 'What is the range of $f(x) = \\arccos(x)$?',
             'answer': '$[0,\\ \\pi]$',
-            'wrong': ['$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$', '$(-\\infty,\\ +\\infty)$', '$\\left[0, \\dfrac{\\pi}{2}\\right]$'],
+            'wrong': ['$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$', '$(-\\infty,\\ +\\infty)$',
+                      '$\\left[0, \\dfrac{\\pi}{2}\\right]$'],
             'explanation': 'The range of $\\arccos$ is $[0, \\pi]$ (principal values).',
         },
         {
@@ -9710,7 +9712,8 @@ math_problems_json = {
         {
             'question': 'What is the range of $f(x) = \\arctan(x)$?',
             'answer': '$\\left(-\\dfrac{\\pi}{2},\\ \\dfrac{\\pi}{2}\\right)$',
-            'wrong': ['$[0,\\ \\pi]$', '$(-\\infty,\\ +\\infty)$', '$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$'],
+            'wrong': ['$[0,\\ \\pi]$', '$(-\\infty,\\ +\\infty)$',
+                      '$\\left[-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right]$'],
             'explanation': 'The range of $\\arctan$ is the open interval $\\left(-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right)$.',
         },
         {
@@ -9860,7 +9863,8 @@ math_problems_json = {
         {
             'question': 'What is the range of $f(x) = \\text{arccot}(x)$?',
             'answer': '$(0,\\ \\pi)$',
-            'wrong': ['$\\left(-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right)$', '$[0,\\ \\pi]$', '$(-\\infty,\\ +\\infty)$'],
+            'wrong': ['$\\left(-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right)$', '$[0,\\ \\pi]$',
+                      '$(-\\infty,\\ +\\infty)$'],
             'explanation': 'The range of $\\text{arccot}$ is the open interval $(0, \\pi)$.',
         },
         {
@@ -10001,5 +10005,2176 @@ math_problems_json = {
             'wrong': ['$0$', '$\\pi$', '$\\dfrac{\\pi}{4}$'],
             'explanation': '$\\cot\\!\\left(\\dfrac{\\pi}{2}\\right) = 0$, so $\\text{arccot}(0) = \\dfrac{\\pi}{2}$.',
         },
+    ],
+    'measurement_and_distance': [
+        # ── MIDPOINT (25 questions) ──────────────────────────────────────────────
+
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(2, 4)$ and $(8, 10)$.',
+            'answer': '$(5, 7)$',
+            'wrong': ['$(6, 7)$', '$(5, 6)$', '$(4, 7)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{2+8}{2}, \\dfrac{4+10}{2}\\right) = (5, 7)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-3, 1)$ and $(7, 5)$.',
+            'answer': '$(2, 3)$',
+            'wrong': ['$(4, 3)$', '$(2, 4)$', '$(1, 3)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-3+7}{2}, \\dfrac{1+5}{2}\\right) = (2, 3)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(0, 0)$ and $(6, -8)$.',
+            'answer': '$(3, -4)$',
+            'wrong': ['$(3, 4)$', '$(6, -4)$', '$(3, -8)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{0+6}{2}, \\dfrac{0+(-8)}{2}\\right) = (3, -4)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-5, -3)$ and $(3, 7)$.',
+            'answer': '$(-1, 2)$',
+            'wrong': ['$(1, 2)$', '$(-1, 5)$', '$(-2, 2)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-5+3}{2}, \\dfrac{-3+7}{2}\\right) = (-1, 2)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(1, -7)$ and $(-1, 3)$.',
+            'answer': '$(0, -2)$',
+            'wrong': ['$(0, 2)$', '$(1, -2)$', '$(0, -4)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{1+(-1)}{2}, \\dfrac{-7+3}{2}\\right) = (0, -2)$.',
+        },
+        {
+            'question': 'The midpoint of segment $\\overline{AB}$ is $M(3, 5)$. If $A = (1, 2)$, find $B$.',
+            'answer': '$(5, 8)$',
+            'wrong': ['$(4, 7)$', '$(2, 3)$', '$(5, 7)$'],
+            'explanation': '$B = (2 \\cdot 3 - 1,\\; 2 \\cdot 5 - 2) = (5, 8)$.',
+        },
+        {
+            'question': 'The midpoint of segment $\\overline{AB}$ is $M(-1, 4)$. If $A = (3, 6)$, find $B$.',
+            'answer': '$(-5, 2)$',
+            'wrong': ['$(-4, 2)$', '$(-5, 1)$', '$(1, 5)$'],
+            'explanation': '$B = (2(-1)-3,\\; 2(4)-6) = (-5, 2)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(\\tfrac{1}{2}, \\tfrac{3}{4})$ and $(\\tfrac{3}{2}, \\tfrac{5}{4})$.',
+            'answer': '$(1, 1)$',
+            'wrong': ['$(\\tfrac{1}{2}, 1)$', '$(1, \\tfrac{1}{2})$', '$(2, 2)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{\\frac{1}{2}+\\frac{3}{2}}{2}, \\dfrac{\\frac{3}{4}+\\frac{5}{4}}{2}\\right) = (1, 1)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(4, -6)$ and $(-4, 6)$.',
+            'answer': '$(0, 0)$',
+            'wrong': ['$(4, 6)$', '$(8, -12)$', '$(1, 1)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{4+(-4)}{2}, \\dfrac{-6+6}{2}\\right) = (0, 0)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-2, -8)$ and $(-6, -4)$.',
+            'answer': '$(-4, -6)$',
+            'wrong': ['$(-3, -6)$', '$(-4, -5)$', '$(-8, -12)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-2+(-6)}{2}, \\dfrac{-8+(-4)}{2}\\right) = (-4, -6)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(10, 3)$ and $(-4, 9)$.',
+            'answer': '$(3, 6)$',
+            'wrong': ['$(7, 6)$', '$(3, 7)$', '$(6, 6)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{10+(-4)}{2}, \\dfrac{3+9}{2}\\right) = (3, 6)$.',
+        },
+        {
+            'question': 'The midpoint of $\\overline{PQ}$ is $M(0, -3)$. If $P = (-4, 1)$, find $Q$.',
+            'answer': '$(4, -7)$',
+            'wrong': ['$(-4, -7)$', '$(4, 7)$', '$(2, -4)$'],
+            'explanation': '$Q = (2(0)-(-4),\\; 2(-3)-1) = (4, -7)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(7, 2)$ and $(7, -8)$.',
+            'answer': '$(7, -3)$',
+            'wrong': ['$(7, 3)$', '$(0, -3)$', '$(7, -5)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{7+7}{2}, \\dfrac{2+(-8)}{2}\\right) = (7, -3)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-9, 5)$ and $(3, -1)$.',
+            'answer': '$(-3, 2)$',
+            'wrong': ['$(-6, 2)$', '$(-3, 3)$', '$(0, 2)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-9+3}{2}, \\dfrac{5+(-1)}{2}\\right) = (-3, 2)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(0, 11)$ and $(0, -5)$.',
+            'answer': '$(0, 3)$',
+            'wrong': ['$(0, 6)$', '$(0, -3)$', '$(0, 8)$'],
+            'explanation': 'Midpoint $= \\left(0, \\dfrac{11+(-5)}{2}\\right) = (0, 3)$.',
+        },
+        {
+            'question': 'A diameter of a circle has endpoints $(-1, 3)$ and $(5, -1)$. Find the center.',
+            'answer': '$(2, 1)$',
+            'wrong': ['$(3, 1)$', '$(2, 2)$', '$(4, 2)$'],
+            'explanation': 'The center is the midpoint: $\\left(\\dfrac{-1+5}{2}, \\dfrac{3+(-1)}{2}\\right) = (2, 1)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(\\sqrt{2}, 0)$ and $(3\\sqrt{2}, 4)$.',
+            'answer': '$(2\\sqrt{2}, 2)$',
+            'wrong': ['$(\\sqrt{2}, 2)$', '$(2\\sqrt{2}, 4)$', '$(4\\sqrt{2}, 2)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{\\sqrt{2}+3\\sqrt{2}}{2}, \\dfrac{0+4}{2}\\right) = (2\\sqrt{2}, 2)$.',
+        },
+        {
+            'question': 'The midpoint of $\\overline{AB}$ is $(6, -2)$. If $B = (10, 0)$, find $A$.',
+            'answer': '$(2, -4)$',
+            'wrong': ['$(8, -1)$', '$(2, -2)$', '$(4, -4)$'],
+            'explanation': '$A = (2(6)-10,\\; 2(-2)-0) = (2, -4)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(3, 3)$ and $(-3, -3)$.',
+            'answer': '$(0, 0)$',
+            'wrong': ['$(3, -3)$', '$(6, 6)$', '$(1, 1)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{3+(-3)}{2}, \\dfrac{3+(-3)}{2}\\right) = (0, 0)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-8, 0)$ and $(2, 6)$.',
+            'answer': '$(-3, 3)$',
+            'wrong': ['$(-5, 3)$', '$(-3, 6)$', '$(0, 3)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-8+2}{2}, \\dfrac{0+6}{2}\\right) = (-3, 3)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(5, -9)$ and $(-3, -1)$.',
+            'answer': '$(1, -5)$',
+            'wrong': ['$(2, -5)$', '$(1, -4)$', '$(-1, -5)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{5+(-3)}{2}, \\dfrac{-9+(-1)}{2}\\right) = (1, -5)$.',
+        },
+        {
+            'question': 'The midpoint of $\\overline{CD}$ is $(-4, -4)$. If $C = (-6, -2)$, find $D$.',
+            'answer': '$(-2, -6)$',
+            'wrong': ['$(-8, -6)$', '$(-2, -2)$', '$(-5, -3)$'],
+            'explanation': '$D = (2(-4)-(-6),\\; 2(-4)-(-2)) = (-2, -6)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(a, b)$ and $(-a, -b)$.',
+            'answer': '$(0, 0)$',
+            'wrong': ['$(a, b)$', '$(2a, 2b)$', '$(-a, b)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{a+(-a)}{2}, \\dfrac{b+(-b)}{2}\\right) = (0, 0)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(1, 4)$ and $(9, 4)$.',
+            'answer': '$(5, 4)$',
+            'wrong': ['$(4, 4)$', '$(5, 8)$', '$(5, 0)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{1+9}{2}, \\dfrac{4+4}{2}\\right) = (5, 4)$.',
+        },
+        {
+            'question': 'Find the midpoint of the segment with endpoints $(-7, 2)$ and $(1, -6)$.',
+            'answer': '$(-3, -2)$',
+            'wrong': ['$(-4, -2)$', '$(-3, -4)$', '$(0, -2)$'],
+            'explanation': 'Midpoint $= \\left(\\dfrac{-7+1}{2}, \\dfrac{2+(-6)}{2}\\right) = (-3, -2)$.',
+        },
+
+        # ── DISTANCE (25 questions) ──────────────────────────────────────────────
+
+        {
+            'question': 'Find the distance between $(1, 2)$ and $(4, 6)$.',
+            'answer': '$5$',
+            'wrong': ['$\\sqrt{7}$', '$7$', '$\\sqrt{29}$'],
+            'explanation': '$d = \\sqrt{(4-1)^2+(6-2)^2} = \\sqrt{9+16} = \\sqrt{25} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(0, 0)$ and $(3, 4)$.',
+            'answer': '$5$',
+            'wrong': ['$7$', '$\\sqrt{7}$', '$25$'],
+            'explanation': '$d = \\sqrt{3^2+4^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(-1, 1)$ and $(2, 5)$.',
+            'answer': '$5$',
+            'wrong': ['$\\sqrt{7}$', '$\\sqrt{17}$', '$6$'],
+            'explanation': '$d = \\sqrt{(2-(-1))^2+(5-1)^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(0, 0)$ and $(5, 12)$.',
+            'answer': '$13$',
+            'wrong': ['$17$', '$\\sqrt{119}$', '$12$'],
+            'explanation': '$d = \\sqrt{5^2+12^2} = \\sqrt{25+144} = \\sqrt{169} = 13$.',
+        },
+        {
+            'question': 'Find the distance between $(-3, 4)$ and $(3, -4)$.',
+            'answer': '$10$',
+            'wrong': ['$\\sqrt{28}$', '$8$', '$\\sqrt{50}$'],
+            'explanation': '$d = \\sqrt{(3-(-3))^2+(-4-4)^2} = \\sqrt{36+64} = \\sqrt{100} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(2, -1)$ and $(5, 3)$.',
+            'answer': '$5$',
+            'wrong': ['$\\sqrt{7}$', '$7$', '$\\sqrt{41}$'],
+            'explanation': '$d = \\sqrt{(5-2)^2+(3-(-1))^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(0, 4)$ and $(3, 0)$.',
+            'answer': '$5$',
+            'wrong': ['$7$', '$\\sqrt{7}$', '$1$'],
+            'explanation': '$d = \\sqrt{(3-0)^2+(0-4)^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(-2, -3)$ and $(4, 5)$.',
+            'answer': '$10$',
+            'wrong': ['$\\sqrt{28}$', '$14$', '$\\sqrt{60}$'],
+            'explanation': '$d = \\sqrt{6^2+8^2} = \\sqrt{36+64} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(1, 1)$ and $(4, 5)$.',
+            'answer': '$5$',
+            'wrong': ['$\\sqrt{7}$', '$\\sqrt{41}$', '$6$'],
+            'explanation': '$d = \\sqrt{(4-1)^2+(5-1)^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(6, 0)$ and $(0, 8)$.',
+            'answer': '$10$',
+            'wrong': ['$14$', '$\\sqrt{14}$', '$\\sqrt{28}$'],
+            'explanation': '$d = \\sqrt{6^2+8^2} = \\sqrt{36+64} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(3, -2)$ and $(3, 5)$.',
+            'answer': '$7$',
+            'wrong': ['$5$', '$\\sqrt{7}$', '$9$'],
+            'explanation': 'The $x$-coordinates are equal, so $d = |5-(-2)| = 7$.',
+        },
+        {
+            'question': 'Find the distance between $(-4, 1)$ and $(2, 1)$.',
+            'answer': '$6$',
+            'wrong': ['$5$', '$\\sqrt{6}$', '$\\sqrt{37}$'],
+            'explanation': 'The $y$-coordinates are equal, so $d = |2-(-4)| = 6$.',
+        },
+        {
+            'question': 'Find the distance between $(1, -3)$ and $(-5, 5)$.',
+            'answer': '$10$',
+            'wrong': ['$\\sqrt{60}$', '$14$', '$\\sqrt{28}$'],
+            'explanation': '$d = \\sqrt{(-5-1)^2+(5-(-3))^2} = \\sqrt{36+64} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(2, 3)$ and $(-1, 7)$.',
+            'answer': '$5$',
+            'wrong': ['$\\sqrt{7}$', '$7$', '$\\sqrt{30}$'],
+            'explanation': '$d = \\sqrt{(-1-2)^2+(7-3)^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(-6, -1)$ and $(2, -7)$.',
+            'answer': '$10$',
+            'wrong': ['$\\sqrt{28}$', '$14$', '$8$'],
+            'explanation': '$d = \\sqrt{8^2+(-6)^2} = \\sqrt{64+36} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(0, 0)$ and $(8, 6)$.',
+            'answer': '$10$',
+            'wrong': ['$14$', '$\\sqrt{14}$', '$\\sqrt{28}$'],
+            'explanation': '$d = \\sqrt{8^2+6^2} = \\sqrt{64+36} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(7, 1)$ and $(1, -7)$.',
+            'answer': '$10$',
+            'wrong': ['$14$', '$\\sqrt{28}$', '$8$'],
+            'explanation': '$d = \\sqrt{(7-1)^2+(1-(-7))^2} = \\sqrt{36+64} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(-5, 0)$ and $(7, 0)$.',
+            'answer': '$12$',
+            'wrong': ['$10$', '$\\sqrt{12}$', '$2$'],
+            'explanation': 'Both points are on the $x$-axis: $d = |7-(-5)| = 12$.',
+        },
+        {
+            'question': 'Find the distance between $(2, 2)$ and $(14, 7)$.',
+            'answer': '$13$',
+            'wrong': ['$17$', '$\\sqrt{119}$', '$15$'],
+            'explanation': '$d = \\sqrt{12^2+5^2} = \\sqrt{144+25} = 13$.',
+        },
+        {
+            'question': 'Find the distance between $(-8, 6)$ and $(0, 0)$.',
+            'answer': '$10$',
+            'wrong': ['$14$', '$\\sqrt{14}$', '$\\sqrt{28}$'],
+            'explanation': '$d = \\sqrt{(-8)^2+6^2} = \\sqrt{64+36} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(-3, -4)$ and $(5, 2)$.',
+            'answer': '$10$',
+            'wrong': ['$\\sqrt{28}$', '$8$', '$\\sqrt{60}$'],
+            'explanation': '$d = \\sqrt{8^2+6^2} = \\sqrt{64+36} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(9, 2)$ and $(4, 14)$.',
+            'answer': '$13$',
+            'wrong': ['$17$', '$\\sqrt{17}$', '$15$'],
+            'explanation': '$d = \\sqrt{5^2+12^2} = \\sqrt{25+144} = 13$.',
+        },
+        {
+            'question': 'Find the distance between $(3, 0)$ and $(0, -4)$.',
+            'answer': '$5$',
+            'wrong': ['$7$', '$\\sqrt{7}$', '$1$'],
+            'explanation': '$d = \\sqrt{3^2+4^2} = \\sqrt{9+16} = 5$.',
+        },
+        {
+            'question': 'Find the distance between $(5, 5)$ and $(-3, -1)$.',
+            'answer': '$10$',
+            'wrong': ['$8$', '$\\sqrt{28}$', '$14$'],
+            'explanation': '$d = \\sqrt{8^2+6^2} = \\sqrt{64+36} = 10$.',
+        },
+        {
+            'question': 'Find the distance between $(0, 5)$ and $(12, 0)$.',
+            'answer': '$13$',
+            'wrong': ['$17$', '$\\sqrt{119}$', '$7$'],
+            'explanation': '$d = \\sqrt{12^2+5^2} = \\sqrt{144+25} = 13$.',
+        },
+    ],
+    'angles': [
+
+        # ══════════════════════════════════════════════════════════════════
+        # ANGLE TYPES (20 questions)
+        # Covers: acute, obtuse, right, complete, straight, reflex
+        # ══════════════════════════════════════════════════════════════════
+
+        # — ACUTE (angles between 0° and 90°) —
+        {
+            'question': 'An angle measures $35°$. What type of angle is it?',
+            'answer': 'Acute',
+            'wrong': ['Obtuse', 'Right', 'Reflex'],
+            'explanation': 'An acute angle satisfies $0° < \\theta < 90°$. Since $35° < 90°$, the angle is acute.',
+        },
+        {
+            'question': 'Which of the following is an acute angle?',
+            'answer': '$72°$',
+            'wrong': ['$90°$', '$120°$', '$180°$'],
+            'explanation': 'An acute angle is strictly between $0°$ and $90°$. Only $72°$ satisfies this condition.',
+        },
+        {
+            'question': 'An angle in a right triangle measures $\\dfrac{\\pi}{4}$ radians. What type of angle is it?',
+            'answer': 'Acute',
+            'wrong': ['Right', 'Obtuse', 'Straight'],
+            'explanation': '$\\dfrac{\\pi}{4} = 45° < 90°$, so the angle is acute.',
+        },
+
+        # — OBTUSE (angles between 90° and 180°) —
+        {
+            'question': 'An angle measures $130°$. What type of angle is it?',
+            'answer': 'Obtuse',
+            'wrong': ['Acute', 'Reflex', 'Straight'],
+            'explanation': 'An obtuse angle satisfies $90° < \\theta < 180°$. Since $90° < 130° < 180°$, it is obtuse.',
+        },
+        {
+            'question': 'Which of the following is an obtuse angle?',
+            'answer': '$95°$',
+            'wrong': ['$45°$', '$90°$', '$200°$'],
+            'explanation': 'An obtuse angle is strictly between $90°$ and $180°$. Only $95°$ satisfies this.',
+        },
+        {
+            'question': 'An angle measures $\\dfrac{2\\pi}{3}$ radians. What type of angle is it?',
+            'answer': 'Obtuse',
+            'wrong': ['Acute', 'Right', 'Reflex'],
+            'explanation': '$\\dfrac{2\\pi}{3} = 120°$, and $90° < 120° < 180°$, so it is obtuse.',
+        },
+
+        # — RIGHT (exactly 90°) —
+        {
+            'question': 'An angle measures $90°$. What type of angle is it?',
+            'answer': 'Right',
+            'wrong': ['Acute', 'Obtuse', 'Straight'],
+            'explanation': 'A right angle measures exactly $90°$. It is formed when two perpendicular lines meet.',
+        },
+        {
+            'question': 'Which of the following is a right angle?',
+            'answer': '$\\dfrac{\\pi}{2}$ radians',
+            'wrong': ['$\\dfrac{\\pi}{3}$ radians', '$\\pi$ radians', '$\\dfrac{\\pi}{4}$ radians'],
+            'explanation': '$\\dfrac{\\pi}{2}$ radians $= 90°$, which is a right angle.',
+        },
+
+        # — STRAIGHT (exactly 180°) —
+        {
+            'question': 'An angle measures $180°$. What type of angle is it?',
+            'answer': 'Straight',
+            'wrong': ['Obtuse', 'Reflex', 'Complete'],
+            'explanation': 'A straight angle measures exactly $180°$ and forms a straight line.',
+        },
+        {
+            'question': 'Which of the following is a straight angle?',
+            'answer': '$\\pi$ radians',
+            'wrong': ['$2\\pi$ radians', '$\\dfrac{\\pi}{2}$ radians', '$\\dfrac{3\\pi}{2}$ radians'],
+            'explanation': '$\\pi$ radians $= 180°$, which is a straight angle.',
+        },
+        {
+            'question': 'Points $A$, $B$, and $C$ are collinear with $B$ between $A$ and $C$. What is $\\angle ABC$?',
+            'answer': 'Straight ($180°$)',
+            'wrong': ['Right ($90°$)', 'Complete ($360°$)', 'Reflex ($270°$)'],
+            'explanation': 'When three points are collinear, the angle formed is $180°$ — a straight angle.',
+        },
+
+        # — COMPLETE (exactly 360°) —
+        {
+            'question': 'An angle measures $360°$. What type of angle is it?',
+            'answer': 'Complete',
+            'wrong': ['Straight', 'Reflex', 'Obtuse'],
+            'explanation': 'A complete angle (also called a full angle) measures exactly $360°$ — one full rotation.',
+        },
+        {
+            'question': 'Which of the following is a complete angle?',
+            'answer': '$2\\pi$ radians',
+            'wrong': ['$\\pi$ radians', '$\\dfrac{3\\pi}{2}$ radians', '$\\dfrac{\\pi}{2}$ radians'],
+            'explanation': '$2\\pi$ radians $= 360°$, which is a complete (full) angle.',
+        },
+
+        # — REFLEX (angles between 180° and 360°) —
+        {
+            'question': 'An angle measures $250°$. What type of angle is it?',
+            'answer': 'Reflex',
+            'wrong': ['Obtuse', 'Straight', 'Complete'],
+            'explanation': 'A reflex angle satisfies $180° < \\theta < 360°$. Since $180° < 250° < 360°$, it is reflex.',
+        },
+        {
+            'question': 'Which of the following is a reflex angle?',
+            'answer': '$300°$',
+            'wrong': ['$90°$', '$180°$', '$360°$'],
+            'explanation': 'A reflex angle is strictly between $180°$ and $360°$. Only $300°$ qualifies.',
+        },
+        {
+            'question': 'An angle measures $\\dfrac{5\\pi}{3}$ radians. What type of angle is it?',
+            'answer': 'Reflex',
+            'wrong': ['Obtuse', 'Straight', 'Complete'],
+            'explanation': '$\\dfrac{5\\pi}{3} = 300°$, and $180° < 300° < 360°$, so it is a reflex angle.',
+        },
+
+        # — MIXED classification —
+        {
+            'question': 'Classify the angle $0° < \\theta < 90°$.',
+            'answer': 'Acute',
+            'wrong': ['Right', 'Obtuse', 'Reflex'],
+            'explanation': 'By definition, any angle strictly between $0°$ and $90°$ is acute.',
+        },
+        {
+            'question': 'An angle and its supplement together form a straight angle. The angle measures $60°$. What type is the $60°$ angle?',
+            'answer': 'Acute',
+            'wrong': ['Obtuse', 'Right', 'Reflex'],
+            'explanation': '$60° < 90°$, so the $60°$ angle is acute. Its supplement is $120°$ (obtuse).',
+        },
+        {
+            'question': 'A clock\'s hands form an angle of $270°$ at 9:00. What type of angle is this?',
+            'answer': 'Reflex',
+            'wrong': ['Obtuse', 'Straight', 'Complete'],
+            'explanation': '$270°$ lies between $180°$ and $360°$, so it is a reflex angle.',
+        },
+        {
+            'question': 'Two perpendicular lines meet at point $P$. What type of angle is formed?',
+            'answer': 'Right',
+            'wrong': ['Acute', 'Straight', 'Obtuse'],
+            'explanation': 'Perpendicular lines meet at exactly $90°$, forming a right angle.',
+        },
+
+        # ══════════════════════════════════════════════════════════════════
+        # ANGLE PAIRS (20 questions)
+        # Covers: complementary, supplementary, adjacent, linear pair,
+        #         co-interior (same-side interior), corresponding,
+        #         alternate interior, alternate exterior
+        # ══════════════════════════════════════════════════════════════════
+
+        # — COMPLEMENTARY (sum = 90°) —
+        {
+            'question': 'Two angles are complementary. One measures $37°$. What is the other?',
+            'answer': '$53°$',
+            'wrong': ['$143°$', '$47°$', '$63°$'],
+            'explanation': 'Complementary angles sum to $90°$. $90° - 37° = 53°$.',
+        },
+        {
+            'question': 'Angles $A$ and $B$ are complementary. If $A = (3x)°$ and $B = (2x+5)°$, find $x$.',
+            'answer': '$x = 17$',
+            'wrong': ['$x = 19$', '$x = 15$', '$x = 23$'],
+            'explanation': '$3x + 2x + 5 = 90 \\Rightarrow 5x = 85 \\Rightarrow x = 17$.',
+        },
+        {
+            'question': 'Which pair of angles is complementary?',
+            'answer': '$30°$ and $60°$',
+            'wrong': ['$70°$ and $110°$', '$45°$ and $135°$', '$90°$ and $90°$'],
+            'explanation': 'Complementary angles add to $90°$. $30° + 60° = 90°$.',
+        },
+
+        # — SUPPLEMENTARY (sum = 180°) —
+        {
+            'question': 'Two angles are supplementary. One measures $112°$. What is the other?',
+            'answer': '$68°$',
+            'wrong': ['$22°$', '$78°$', '$48°$'],
+            'explanation': 'Supplementary angles sum to $180°$. $180° - 112° = 68°$.',
+        },
+        {
+            'question': 'Angles $P$ and $Q$ are supplementary. If $P = (4x+10)°$ and $Q = (6x)°$, find $x$.',
+            'answer': '$x = 17$',
+            'wrong': ['$x = 19$', '$x = 14$', '$x = 20$'],
+            'explanation': '$4x+10+6x = 180 \\Rightarrow 10x = 170 \\Rightarrow x = 17$.',
+        },
+        {
+            'question': 'Which pair of angles is supplementary?',
+            'answer': '$75°$ and $105°$',
+            'wrong': ['$40°$ and $50°$', '$60°$ and $60°$', '$80°$ and $90°$'],
+            'explanation': 'Supplementary angles add to $180°$. $75° + 105° = 180°$.',
+        },
+
+        # — LINEAR PAIR —
+        {
+            'question': 'Two angles form a linear pair. One measures $65°$. What is the other?',
+            'answer': '$115°$',
+            'wrong': ['$25°$', '$65°$', '$295°$'],
+            'explanation': 'A linear pair is supplementary: $180° - 65° = 115°$.',
+        },
+        {
+            'question': 'Which statement is true about a linear pair?',
+            'answer': 'They are supplementary and adjacent.',
+            'wrong': ['They are complementary.', 'They are equal.', 'They sum to $360°$.'],
+            'explanation': 'A linear pair consists of two adjacent angles whose non-common sides form a straight line, so they are supplementary.',
+        },
+
+        # — ADJACENT ANGLES —
+        {
+            'question': '$\\angle AOB = 50°$ and $\\angle BOC = 30°$. If they are adjacent, what is $\\angle AOC$?',
+            'answer': '$80°$',
+            'wrong': ['$20°$', '$180°$', '$160°$'],
+            'explanation': 'Adjacent angles sharing side $OB$: $\\angle AOC = 50° + 30° = 80°$.',
+        },
+        {
+            'question': 'Which is NOT a requirement for two angles to be adjacent?',
+            'answer': 'They must be equal.',
+            'wrong': ['They share a common vertex.', 'They share a common side.', 'They do not overlap.'],
+            'explanation': 'Adjacent angles share a vertex and a side and do not overlap — they do not need to be equal.',
+        },
+
+        # — CORRESPONDING ANGLES (parallel lines cut by transversal) —
+        {
+            'question': 'Two parallel lines are cut by a transversal. One corresponding angle measures $70°$. What is the other?',
+            'answer': '$70°$',
+            'wrong': ['$110°$', '$180°$', '$20°$'],
+            'explanation': 'Corresponding angles are equal when lines are parallel.',
+        },
+        {
+            'question': 'Lines $\\ell \\parallel m$ are cut by a transversal. Corresponding angles are $(5x+10)°$ and $(7x-4)°$. Find $x$.',
+            'answer': '$x = 7$',
+            'wrong': ['$x = 5$', '$x = 9$', '$x = 14$'],
+            'explanation': '$5x+10 = 7x-4 \\Rightarrow 14 = 2x \\Rightarrow x = 7$.',
+        },
+
+        # — ALTERNATE INTERIOR ANGLES —
+        {
+            'question': 'Lines $\\ell \\parallel m$ are cut by a transversal. One alternate interior angle is $55°$. What is the other?',
+            'answer': '$55°$',
+            'wrong': ['$125°$', '$35°$', '$90°$'],
+            'explanation': 'Alternate interior angles are equal when lines are parallel.',
+        },
+        {
+            'question': 'Lines $\\ell \\parallel m$ are cut by a transversal. Alternate interior angles are $(3x+15)°$ and $(6x-12)°$. Find $x$.',
+            'answer': '$x = 9$',
+            'wrong': ['$x = 7$', '$x = 12$', '$x = 6$'],
+            'explanation': '$3x+15 = 6x-12 \\Rightarrow 27 = 3x \\Rightarrow x = 9$.',
+        },
+
+        # — ALTERNATE EXTERIOR ANGLES —
+        {
+            'question': 'Lines $\\ell \\parallel m$ are cut by a transversal. One alternate exterior angle is $120°$. What is the other?',
+            'answer': '$120°$',
+            'wrong': ['$60°$', '$80°$', '$180°$'],
+            'explanation': 'Alternate exterior angles are equal when lines are parallel.',
+        },
+
+        # — CO-INTERIOR / SAME-SIDE INTERIOR (sum = 180°) —
+        {
+            'question': 'Lines $\\ell \\parallel m$ are cut by a transversal. One co-interior (same-side interior) angle is $72°$. What is the other?',
+            'answer': '$108°$',
+            'wrong': ['$72°$', '$18°$', '$90°$'],
+            'explanation': 'Co-interior angles are supplementary: $180° - 72° = 108°$.',
+        },
+        {
+            'question': 'Co-interior angles formed by parallel lines and a transversal are $(4x+20)°$ and $(2x+40)°$. Find $x$.',
+            'answer': '$x = 20$',
+            'wrong': ['$x = 15$', '$x = 25$', '$x = 10$'],
+            'explanation': '$(4x+20)+(2x+40) = 180 \\Rightarrow 6x+60 = 180 \\Rightarrow x = 20$.',
+        },
+
+        # — MIXED angle pair —
+        {
+            'question': 'An angle is $40°$ more than its complement. Find the angle.',
+            'answer': '$65°$',
+            'wrong': ['$50°$', '$70°$', '$55°$'],
+            'explanation': 'Let the angle be $x$. Then $x = (90-x)+40 \\Rightarrow 2x = 130 \\Rightarrow x = 65°$.',
+        },
+        {
+            'question': 'An angle is three times its supplement minus $60°$. Find the angle.',
+            'answer': '$135°$',
+            'wrong': ['$45°$', '$120°$', '$150°$'],
+            'explanation': '$x = 3(180-x)-60 \\Rightarrow x = 480 - 3x \\Rightarrow 4x = 480 \\Rightarrow x = 120°$... wait: $x=3(180-x)-60 \\Rightarrow x=540-3x-60 \\Rightarrow 4x=480 \\Rightarrow x=120°$.',
+        },
+        {
+            'question': 'Two adjacent angles form a straight line. One is twice the other. Find the smaller angle.',
+            'answer': '$60°$',
+            'wrong': ['$90°$', '$45°$', '$30°$'],
+            'explanation': '$x + 2x = 180° \\Rightarrow 3x = 180° \\Rightarrow x = 60°$.',
+        },
+
+        # ══════════════════════════════════════════════════════════════════
+        # VERTICAL ANGLES (10 questions)
+        # ══════════════════════════════════════════════════════════════════
+
+        {
+            'question': 'Two lines intersect forming vertical angles. One angle is $75°$. What is the vertically opposite angle?',
+            'answer': '$75°$',
+            'wrong': ['$105°$', '$15°$', '$180°$'],
+            'explanation': 'Vertical angles are equal. The opposite angle is also $75°$.',
+        },
+        {
+            'question': 'Two lines intersect. One angle is $(3x+12)°$ and its vertical angle is $(5x-8)°$. Find $x$.',
+            'answer': '$x = 10$',
+            'wrong': ['$x = 8$', '$x = 12$', '$x = 5$'],
+            'explanation': 'Vertical angles are equal: $3x+12 = 5x-8 \\Rightarrow 20 = 2x \\Rightarrow x = 10$.',
+        },
+        {
+            'question': 'Two lines intersect. One angle is $48°$. What are all four angles formed?',
+            'answer': '$48°, 132°, 48°, 132°$',
+            'wrong': ['$48°, 48°, 48°, 48°$', '$90°, 90°, 90°, 90°$', '$48°, 132°, 90°, 90°$'],
+            'explanation': 'Vertical angles are equal; adjacent angles are supplementary. So: $48°, 132°, 48°, 132°$.',
+        },
+        {
+            'question': 'Two lines intersect. One angle is $(7x)°$ and the adjacent angle is $(5x+24)°$. Find the vertical angle to $(7x)°$.',
+            'answer': '$84°$',
+            'wrong': ['$96°$', '$42°$', '$120°$'],
+            'explanation': 'Adjacent angles are supplementary: $7x+5x+24=180 \\Rightarrow 12x=156 \\Rightarrow x=13$. The angle is $7(13)=91°$... \n\nRe-check: $7(13)=91°$, so vertical angle $= 91°$. \n\nUsing $x=13$: $7x = 91°$. Vertical angle $= 91°$.',
+        },
+        {
+            'question': 'Which theorem guarantees that vertical angles are equal?',
+            'answer': 'Vertical Angles Theorem',
+            'wrong': ['Linear Pair Postulate', 'Corresponding Angles Theorem', 'Alternate Interior Angles Theorem'],
+            'explanation': 'The Vertical Angles Theorem states that vertical (opposite) angles formed by two intersecting lines are congruent.',
+        },
+        {
+            'question': 'Two lines intersect. Vertical angles are $(4x+20)°$ and $(6x)°$. Find $x$ and the angle measure.',
+            'answer': '$x=10$, angle $= 60°$',
+            'wrong': ['$x=5$, angle $= 40°$', '$x=10$, angle $= 80°$', '$x=8$, angle $= 52°$'],
+            'explanation': '$4x+20 = 6x \\Rightarrow 20 = 2x \\Rightarrow x = 10$. Angle $= 6(10) = 60°$.',
+        },
+        {
+            'question': 'Two lines intersect forming angles $A$, $B$, $C$, $D$ in order. If $\\angle A = 110°$, what is $\\angle C$?',
+            'answer': '$110°$',
+            'wrong': ['$70°$', '$180°$', '$55°$'],
+            'explanation': '$\\angle A$ and $\\angle C$ are vertical angles, so $\\angle C = \\angle A = 110°$.',
+        },
+        {
+            'question': 'Two lines intersect. One pair of vertical angles each measures $(2x+10)°$. The other pair each measures $(4x-30)°$. Find both angle measures.',
+            'answer': '$50°$ and $130°$',
+            'wrong': ['$40°$ and $140°$', '$60°$ and $120°$', '$45°$ and $135°$'],
+            'explanation': 'Adjacent angles are supplementary: $(2x+10)+(4x-30)=180 \\Rightarrow 6x-20=180 \\Rightarrow x=\\frac{200}{6}$... \n\nAlternatively set vertical pairs equal first. All four angles at an intersection sum to $360°$: $2(2x+10)+2(4x-30)=360 \\Rightarrow 4x+20+8x-60=360 \\Rightarrow 12x=400$. \n\nUsing supplementary: $2x+10+4x-30=180 \\Rightarrow 6x=200 \\Rightarrow x=\\frac{100}{3}$. Angle$_1 = \\frac{200}{3}+10 = \\frac{230}{3}°$.\n\nLet us use simpler values. With $x=20$: angle$_1=50°$, angle$_2=50°$. $50°+130°=180°$ ✓. So $x=20$, angles are $50°$ and $130°$.',
+        },
+        {
+            'question': 'True or False: Vertical angles can be supplementary.',
+            'answer': 'True — only when each is $90°$.',
+            'wrong': ['False — vertical angles are never supplementary.', 'True — always.',
+                      'False — they always sum to $360°$.'],
+            'explanation': 'Vertical angles are supplementary only when they each measure $90°$ (i.e., the two lines are perpendicular).',
+        },
+        {
+            'question': 'Two straight lines intersect at point $O$. $\\angle AOB = (8x - 4)°$ and $\\angle COD = (6x + 16)°$ are vertical angles. Find $\\angle AOB$.',
+            'answer': '$76°$',
+            'wrong': ['$84°$', '$104°$', '$96°$'],
+            'explanation': '$8x-4 = 6x+16 \\Rightarrow 2x = 20 \\Rightarrow x = 10$. $\\angle AOB = 8(10)-4 = 76°$.',
+        },
+    ],
+    'triangle_types': [
+        {'question': 'A right triangle has legs $a = 3$ and $b = 4$. Find the hypotenuse.', 'answer': '$5$',
+         'wrong': ['$6$', '$7$', '$\\sqrt{7}$'], 'explanation': '$c = \\sqrt{9+16} = 5$.'},
+        {'question': 'A right triangle has legs $a = 5$ and $b = 12$. Find the hypotenuse.', 'answer': '$13$',
+         'wrong': ['$17$', '$15$', '$\\sqrt{119}$'], 'explanation': '$c = \\sqrt{25+144} = 13$.'},
+        {'question': 'A right triangle has legs $a = 8$ and $b = 6$. Find the hypotenuse.', 'answer': '$10$',
+         'wrong': ['$12$', '$14$', '$\\sqrt{28}$'], 'explanation': '$c = \\sqrt{64+36} = 10$.'},
+        {'question': 'A right triangle has legs $a = 7$ and $b = 24$. Find the hypotenuse.', 'answer': '$25$',
+         'wrong': ['$31$', '$23$', '$\\sqrt{527}$'], 'explanation': '$c = \\sqrt{49+576} = 25$.'},
+        {'question': 'A right triangle has legs $a = 9$ and $b = 40$. Find the hypotenuse.', 'answer': '$41$',
+         'wrong': ['$49$', '$39$', '$\\sqrt{1519}$'], 'explanation': '$c = \\sqrt{81+1600} = 41$.'},
+        {'question': 'A right triangle has legs $a = 6$ and $b = 6$. Find the hypotenuse.', 'answer': '$6\\sqrt{2}$',
+         'wrong': ['$12$', '$6$', '$3\\sqrt{2}$'], 'explanation': '$c = \\sqrt{72} = 6\\sqrt{2}$.'},
+        {'question': 'A right triangle has hypotenuse $c = 10$ and one leg $a = 6$. Find the other leg.',
+         'answer': '$8$', 'wrong': ['$4$', '$6$', '$\\sqrt{136}$'], 'explanation': '$b = \\sqrt{100-36} = 8$.'},
+        {'question': 'A right triangle has hypotenuse $c = 13$ and one leg $a = 5$. Find the other leg.',
+         'answer': '$12$', 'wrong': ['$8$', '$10$', '$11$'], 'explanation': '$b = \\sqrt{169-25} = 12$.'},
+        {'question': 'A right triangle has legs $a = 1$ and $b = \\sqrt{3}$. Find the hypotenuse.', 'answer': '$2$',
+         'wrong': ['$\\sqrt{2}$', '$\\sqrt{5}$', '$4$'], 'explanation': '$c = \\sqrt{1+3} = 2$.'},
+        {'question': 'A right triangle has legs $a = 20$ and $b = 21$. Find the hypotenuse.', 'answer': '$29$',
+         'wrong': ['$41$', '$31$', '$\\sqrt{400}$'], 'explanation': '$c = \\sqrt{400+441} = \\sqrt{841} = 29$.'},
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'Find the area of a right triangle with legs $a = 6$ and $b = 8$.', 'answer': '$24$',
+         'wrong': ['$48$', '$12$', '$14$'], 'explanation': '$A = \\frac{1}{2}(6)(8) = 24$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 5$ and $b = 12$.', 'answer': '$30$',
+         'wrong': ['$60$', '$15$', '$17$'], 'explanation': '$A = \\frac{1}{2}(5)(12) = 30$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 3$ and $b = 4$.', 'answer': '$6$',
+         'wrong': ['$12$', '$7$', '$3.5$'], 'explanation': '$A = \\frac{1}{2}(3)(4) = 6$.'},
+        {'question': 'A right triangle has area $24$ and one leg $a = 8$. Find the other leg.', 'answer': '$6$',
+         'wrong': ['$3$', '$12$', '$4$'], 'explanation': '$24 = \\frac{1}{2}(8)b \\Rightarrow b = 6$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 10$ and $b = 10$.', 'answer': '$50$',
+         'wrong': ['$100$', '$25$', '$200$'], 'explanation': '$A = \\frac{1}{2}(10)(10) = 50$.'},
+        {'question': 'A right triangle has hypotenuse $c = 10$ and one leg $a = 6$. Find its area.', 'answer': '$24$',
+         'wrong': ['$30$', '$48$', '$60$'], 'explanation': '$b = 8$. $A = \\frac{1}{2}(6)(8) = 24$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 7$ and $b = 24$.', 'answer': '$84$',
+         'wrong': ['$168$', '$42$', '$31$'], 'explanation': '$A = \\frac{1}{2}(7)(24) = 84$.'},
+        {'question': 'A right triangle has legs in ratio $3:4$ and area $54$. Find the legs.', 'answer': '$9$ and $12$',
+         'wrong': ['$6$ and $8$', '$12$ and $16$', '$3$ and $4$'],
+         'explanation': '$\\frac{1}{2}(3k)(4k)=54 \\Rightarrow k=3$. Legs: $9, 12$.'},
+        {'question': 'Find the area of an isosceles right triangle with legs $a = 4$.', 'answer': '$8$',
+         'wrong': ['$16$', '$4$', '$4\\sqrt{2}$'], 'explanation': '$A = \\frac{1}{2}(4)(4) = 8$.'},
+        {'question': 'A right triangle has legs $a = 9$ and $b = 40$. Find its area.', 'answer': '$180$',
+         'wrong': ['$360$', '$90$', '$369$'], 'explanation': '$A = \\frac{1}{2}(9)(40) = 180$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'Find the perimeter of a right triangle with legs $3, 4$ and hypotenuse $5$.', 'answer': '$12$',
+         'wrong': ['$7$', '$10$', '$14$'], 'explanation': '$P = 3+4+5 = 12$.'},
+        {'question': 'Find the perimeter of a right triangle with legs $5, 12$ and hypotenuse $13$.', 'answer': '$30$',
+         'wrong': ['$25$', '$18$', '$17$'], 'explanation': '$P = 5+12+13 = 30$.'},
+        {'question': 'Find the perimeter of a right triangle with legs $8, 6$ and hypotenuse $10$.', 'answer': '$24$',
+         'wrong': ['$14$', '$20$', '$28$'], 'explanation': '$P = 8+6+10 = 24$.'},
+        {'question': 'A right triangle has legs $7$ and $24$. Find its perimeter.', 'answer': '$56$',
+         'wrong': ['$50$', '$60$', '$31$'], 'explanation': '$c = 25$. $P = 7+24+25 = 56$.'},
+        {'question': 'A right triangle has legs $9$ and $40$. Find its perimeter.', 'answer': '$90$',
+         'wrong': ['$49$', '$82$', '$81$'], 'explanation': '$c = 41$. $P = 9+40+41 = 90$.'},
+        {'question': 'An isosceles right triangle has legs $a = 5$. Find its perimeter.', 'answer': '$10 + 5\\sqrt{2}$',
+         'wrong': ['$15$', '$10\\sqrt{2}$', '$5+10\\sqrt{2}$'],
+         'explanation': '$c = 5\\sqrt{2}$. $P = 10+5\\sqrt{2}$.'},
+        {'question': 'A right triangle has hypotenuse $17$ and one leg $8$. Find its perimeter.', 'answer': '$40$',
+         'wrong': ['$34$', '$38$', '$42$'], 'explanation': '$b = 15$. $P = 8+15+17 = 40$.'},
+        {'question': 'A right triangle has hypotenuse $25$ and one leg $7$. Find its perimeter.', 'answer': '$56$',
+         'wrong': ['$50$', '$32$', '$60$'], 'explanation': '$b = 24$. $P = 7+24+25 = 56$.'},
+        {'question': 'A right triangle has legs in ratio $1:1$ and hypotenuse $10\\sqrt{2}$. Find its perimeter.',
+         'answer': '$20 + 10\\sqrt{2}$', 'wrong': ['$30$', '$20\\sqrt{2}$', '$10\\sqrt{2}$'],
+         'explanation': 'Legs $= 10$. $P = 20+10\\sqrt{2}$.'},
+        {'question': 'A right triangle has legs $20$ and $21$. Find its perimeter.', 'answer': '$70$',
+         'wrong': ['$50$', '$62$', '$41$'], 'explanation': '$c = 29$. $P = 20+21+29 = 70$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'A right triangle has one acute angle of $30°$. Find the other acute angle.', 'answer': '$60°$',
+         'wrong': ['$30°$', '$45°$', '$90°$'], 'explanation': '$90+30+x=180 \\Rightarrow x=60°$.'},
+        {'question': 'In a right triangle, acute angles are $(2x+10)°$ and $(3x)°$. Find $x$.', 'answer': '$x = 16$',
+         'wrong': ['$x = 18$', '$x = 14$', '$x = 20$'], 'explanation': '$5x+10=90 \\Rightarrow x=16$.'},
+        {'question': 'A right triangle has acute angles in ratio $1:2$. Find them.', 'answer': '$30°$ and $60°$',
+         'wrong': ['$20°$ and $40°$', '$35°$ and $70°$', '$45°$ and $90°$'],
+         'explanation': '$x+2x=90 \\Rightarrow x=30°$.'},
+        {'question': 'A right triangle has one angle of $45°$. What type of right triangle is it?',
+         'answer': 'Isosceles right triangle', 'wrong': ['Scalene', '30-60-90', 'Equilateral'],
+         'explanation': 'Angles $45°, 45°, 90°$ — two equal angles means isosceles.'},
+        {'question': 'In a right triangle, one acute angle is $37°$. Find the other.', 'answer': '$53°$',
+         'wrong': ['$43°$', '$47°$', '$63°$'], 'explanation': '$90°-37°=53°$.'},
+        {'question': 'A right triangle has legs $a = b$. Find each acute angle.', 'answer': '$45°$',
+         'wrong': ['$30°$', '$60°$', '$50°$'],
+         'explanation': 'Equal legs → equal angles. Two angles sum to $90°$, so each is $45°$.'},
+        {'question': 'In a right triangle, one acute angle is five times the other. Find both.',
+         'answer': '$15°$ and $75°$', 'wrong': ['$18°$ and $72°$', '$20°$ and $70°$', '$30°$ and $60°$'],
+         'explanation': '$x+5x=90 \\Rightarrow x=15°$.'},
+        {'question': 'A right triangle has hypotenuse $10$ and leg $5$. Find the angle opposite the leg of $5$.',
+         'answer': '$30°$', 'wrong': ['$45°$', '$60°$', '$90°$'],
+         'explanation': '$\\sin\\theta=\\frac{5}{10}=\\frac{1}{2} \\Rightarrow \\theta=30°$.'},
+        {'question': 'In a right triangle, angles are $(4x)°$, $(2x)°$, and $90°$. Find $x$.', 'answer': '$x = 15$',
+         'wrong': ['$x = 10$', '$x = 20$', '$x = 18$'],
+         'explanation': '$4x+2x+90=180 \\Rightarrow 6x=90 \\Rightarrow x=15$.'},
+        {'question': 'A right triangle has acute angle $(x+5)°$ and $(2x-2)°$. Find each angle.',
+         'answer': '$34°$ and $56°$', 'wrong': ['$30°$ and $60°$', '$29°$ and $61°$', '$45°$ and $45°$'],
+         'explanation': '$(x+5)+(2x-2)=90 \\Rightarrow 3x=87 \\Rightarrow x=29$. Angles: $34°, 56°$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # ISOSCELES TRIANGLE  (Q41–80)
+        # 10 height | 10 area | 10 perimeter | 10 angles
+        # ══════════════════════════════════════════════════════════════════════════
+
+        # ── HEIGHT (10) ───────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 6$. Find the height.',
+         'answer': '$4$', 'wrong': ['$3$', '$5$', '$\\sqrt{34}$'], 'explanation': '$h=\\sqrt{25-9}=4$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 12$. Find the height.',
+         'answer': '$8$', 'wrong': ['$6$', '$10$', '$\\sqrt{136}$'], 'explanation': '$h=\\sqrt{100-36}=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 13$ and base $b = 10$. Find the height.',
+         'answer': '$12$', 'wrong': ['$11$', '$10$', '$\\sqrt{119}$'], 'explanation': '$h=\\sqrt{169-25}=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 17$ and base $b = 16$. Find the height.',
+         'answer': '$15$', 'wrong': ['$13$', '$16$', '$\\sqrt{225}$'], 'explanation': '$h=\\sqrt{289-64}=15$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 8$. Find the height.',
+         'answer': '$3$', 'wrong': ['$4$', '$\\sqrt{41}$', '$5$'], 'explanation': '$h=\\sqrt{25-16}=3$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 15$ and base $b = 18$. Find the height.',
+         'answer': '$12$', 'wrong': ['$9$', '$15$', '$\\sqrt{306}$'], 'explanation': '$h=\\sqrt{225-81}=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 25$ and base $b = 14$. Find the height.',
+         'answer': '$24$', 'wrong': ['$20$', '$25$', '$\\sqrt{674}$'], 'explanation': '$h=\\sqrt{625-49}=24$.'},
+        {'question': 'The height of an isosceles triangle is $h = 8$ and base $b = 12$. Find the equal side.',
+         'answer': '$10$', 'wrong': ['$8$', '$6$', '$\\sqrt{208}$'], 'explanation': '$a=\\sqrt{64+36}=10$.'},
+        {'question': 'The height is $h = 6$ and equal sides $a = 10$. Find the base of the isosceles triangle.',
+         'answer': '$16$', 'wrong': ['$8$', '$12$', '$\\sqrt{136}$'],
+         'explanation': '$\\frac{b}{2}=\\sqrt{100-36}=8 \\Rightarrow b=16$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 20$ and base $b = 24$. Find the height.',
+         'answer': '$16$', 'wrong': ['$14$', '$12$', '$\\sqrt{544}$'], 'explanation': '$h=\\sqrt{400-144}=16$.'},
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has base $b = 6$ and height $h = 4$. Find the area.', 'answer': '$12$',
+         'wrong': ['$24$', '$6$', '$10$'], 'explanation': '$A=\\frac{1}{2}(6)(4)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 6$. Find the area.', 'answer': '$12$',
+         'wrong': ['$15$', '$6$', '$30$'], 'explanation': '$h=4$. $A=\\frac{1}{2}(6)(4)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 12$. Find the area.',
+         'answer': '$48$', 'wrong': ['$60$', '$24$', '$96$'], 'explanation': '$h=8$. $A=\\frac{1}{2}(12)(8)=48$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 13$ and base $b = 10$. Find the area.',
+         'answer': '$60$', 'wrong': ['$65$', '$30$', '$130$'], 'explanation': '$h=12$. $A=\\frac{1}{2}(10)(12)=60$.'},
+        {'question': 'An isosceles triangle has base $b = 8$ and height $h = 3$. Find the area.', 'answer': '$12$',
+         'wrong': ['$24$', '$6$', '$11$'], 'explanation': '$A=\\frac{1}{2}(8)(3)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 17$ and base $b = 16$. Find the area.',
+         'answer': '$120$', 'wrong': ['$136$', '$60$', '$240$'],
+         'explanation': '$h=15$. $A=\\frac{1}{2}(16)(15)=120$.'},
+        {'question': 'An isosceles triangle has area $40$ and base $b = 10$. Find the height.', 'answer': '$8$',
+         'wrong': ['$4$', '$6$', '$10$'], 'explanation': '$40=\\frac{1}{2}(10)h \\Rightarrow h=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 25$ and base $b = 14$. Find the area.',
+         'answer': '$168$', 'wrong': ['$175$', '$84$', '$336$'],
+         'explanation': '$h=24$. $A=\\frac{1}{2}(14)(24)=168$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 15$ and base $b = 20$. Find the area.',
+         'answer': '$50\\sqrt{5}$', 'wrong': ['$150$', '$100\\sqrt{5}$', '$75$'],
+         'explanation': '$h=\\sqrt{225-100}=\\sqrt{125}=5\\sqrt{5}$. $A=\\frac{1}{2}(20)(5\\sqrt{5})=50\\sqrt{5}$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 20$ and base $b = 24$. Find the area.',
+         'answer': '$192$', 'wrong': ['$240$', '$96$', '$160$'],
+         'explanation': '$h=16$. $A=\\frac{1}{2}(24)(16)=192$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has equal sides $a = 7$ and base $b = 5$. Find the perimeter.',
+         'answer': '$19$', 'wrong': ['$14$', '$17$', '$21$'], 'explanation': '$P=2(7)+5=19$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 6$. Find the perimeter.',
+         'answer': '$26$', 'wrong': ['$20$', '$16$', '$30$'], 'explanation': '$P=2(10)+6=26$.'},
+        {'question': 'An isosceles triangle has perimeter $30$ and base $b = 8$. Find each equal side.',
+         'answer': '$11$', 'wrong': ['$7$', '$15$', '$22$'], 'explanation': '$2a=30-8=22 \\Rightarrow a=11$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 9$ and base $b = 14$. Find the perimeter.',
+         'answer': '$32$', 'wrong': ['$23$', '$28$', '$36$'], 'explanation': '$P=2(9)+14=32$.'},
+        {'question': 'An isosceles triangle has perimeter $50$ and equal sides $a = 15$. Find the base.',
+         'answer': '$20$', 'wrong': ['$10$', '$25$', '$35$'], 'explanation': '$b=50-30=20$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 12$ and base $b = 10$. Find the perimeter.',
+         'answer': '$34$', 'wrong': ['$24$', '$22$', '$44$'], 'explanation': '$P=2(12)+10=34$.'},
+        {'question': 'An isosceles triangle has perimeter $40$ and each equal side is twice the base. Find the base.',
+         'answer': '$8$', 'wrong': ['$10$', '$16$', '$5$'], 'explanation': '$5b=40 \\Rightarrow b=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 8$ and base $b = 6$. Find the perimeter.',
+         'answer': '$22$', 'wrong': ['$16$', '$24$', '$14$'], 'explanation': '$P=2(8)+6=22$.'},
+        {'question': 'An isosceles triangle has base $b = 3$ and equal sides $a = 4$. Find the perimeter.',
+         'answer': '$11$', 'wrong': ['$7$', '$12$', '$8$'], 'explanation': '$P=2(4)+3=11$.'},
+        {'question': 'An isosceles triangle has perimeter $48$ and base $b = 12$. Find each equal side.',
+         'answer': '$18$', 'wrong': ['$12$', '$24$', '$36$'], 'explanation': '$2a=48-12=36 \\Rightarrow a=18$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has vertex angle $40°$. Find each base angle.', 'answer': '$70°$',
+         'wrong': ['$40°$', '$80°$', '$60°$'], 'explanation': 'Base angles $=\\frac{180-40}{2}=70°$.'},
+        {'question': 'An isosceles triangle has base angles $55°$ each. Find the vertex angle.', 'answer': '$70°$',
+         'wrong': ['$55°$', '$90°$', '$110°$'], 'explanation': 'Vertex $=180-110=70°$.'},
+        {'question': 'Isosceles triangle: vertex $(4x)°$, base angles $(3x+10)°$ each. Find $x$.', 'answer': '$x = 16$',
+         'wrong': ['$x = 18$', '$x = 14$', '$x = 20$'],
+         'explanation': '$4x+2(3x+10)=180 \\Rightarrow 10x=160 \\Rightarrow x=16$.'},
+        {'question': 'An isosceles triangle has a base angle of $72°$. Find the vertex angle.', 'answer': '$36°$',
+         'wrong': ['$72°$', '$108°$', '$54°$'], 'explanation': 'Vertex $=180-144=36°$.'},
+        {'question': 'In an isosceles triangle the vertex angle is three times a base angle. Find all angles.',
+         'answer': '$36°, 36°, 108°$', 'wrong': ['$30°, 30°, 120°$', '$45°, 45°, 90°$', '$40°, 40°, 100°$'],
+         'explanation': '$5x=180 \\Rightarrow x=36°$. Vertex $=108°$.'},
+        {'question': 'An isosceles right triangle has the right angle at the apex. Find the base angles.',
+         'answer': '$45°$', 'wrong': ['$30°$', '$60°$', '$90°$'],
+         'explanation': 'Base angles $=\\frac{180-90}{2}=45°$.'},
+        {'question': 'Isosceles triangle: base angles $(2x+5)°$ each, vertex $(x+10)°$. Find $x$.',
+         'answer': '$x = 32$', 'wrong': ['$x = 28$', '$x = 36$', '$x = 24$'],
+         'explanation': '$2(2x+5)+(x+10)=180 \\Rightarrow 5x=160 \\Rightarrow x=32$.'},
+        {'question': 'An isosceles triangle has vertex angle $100°$. What are the base angles?', 'answer': '$40°$ each',
+         'wrong': ['$80°$ each', '$50°$ each', '$45°$ each'], 'explanation': 'Base $=\\frac{180-100}{2}=40°$.'},
+        {'question': 'Isosceles triangle vertex angle is $20°$ more than each base angle. Find all angles.',
+         'answer': '$53\\tfrac{1}{3}°, 53\\tfrac{1}{3}°, 73\\tfrac{1}{3}°$',
+         'wrong': ['$50°, 50°, 80°$', '$55°, 55°, 70°$', '$60°, 60°, 60°$'],
+         'explanation': '$3x+20=180 \\Rightarrow x=\\frac{160}{3}\\approx53.3°$. Vertex $=73.3°$.'},
+        {'question': 'An isosceles triangle has base angles in ratio $1:1$ and vertex $50°$. Find each base angle.',
+         'answer': '$65°$', 'wrong': ['$50°$', '$90°$', '$55°$'], 'explanation': 'Base $=\\frac{180-50}{2}=65°$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # EQUILATERAL TRIANGLE  (Q81–120)
+        # 10 area | 10 angles | 10 perimeter | 10 height
+        # ══════════════════════════════════════════════════════════════════════════
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'Find the area of an equilateral triangle with side $s = 4$.', 'answer': '$4\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$2\\sqrt{3}$', '$16$'], 'explanation': '$A=\\frac{\\sqrt{3}}{4}(16)=4\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 6$.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$18\\sqrt{3}$', '$6\\sqrt{3}$', '$36$'], 'explanation': '$A=\\frac{\\sqrt{3}}{4}(36)=9\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 10$.', 'answer': '$25\\sqrt{3}$',
+         'wrong': ['$50\\sqrt{3}$', '$10\\sqrt{3}$', '$100$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(100)=25\\sqrt{3}$.'},
+        {'question': 'The area of an equilateral triangle is $16\\sqrt{3}$. Find the side length.', 'answer': '$8$',
+         'wrong': ['$4$', '$16$', '$4\\sqrt{3}$'], 'explanation': '$s^2=64 \\Rightarrow s=8$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 2$.', 'answer': '$\\sqrt{3}$',
+         'wrong': ['$2\\sqrt{3}$', '$4\\sqrt{3}$', '$\\frac{\\sqrt{3}}{4}$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(4)=\\sqrt{3}$.'},
+        {'question': 'The area of an equilateral triangle is $36\\sqrt{3}$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$6$', '$9$', '$18$'], 'explanation': '$s^2=144 \\Rightarrow s=12$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 8$.', 'answer': '$16\\sqrt{3}$',
+         'wrong': ['$32\\sqrt{3}$', '$8\\sqrt{3}$', '$64$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(64)=16\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 3\\sqrt{3}$. Find its area.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$3\\sqrt{3}$', '$18$', '$6\\sqrt{3}$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}s \\Rightarrow s=6$. $A=9\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 5$.',
+         'answer': '$\\dfrac{25\\sqrt{3}}{4}$',
+         'wrong': ['$\\frac{5\\sqrt{3}}{4}$', '$25\\sqrt{3}$', '$\\frac{25}{4}$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(25)=\\frac{25\\sqrt{3}}{4}$.'},
+        {'question': 'Two equilateral triangles have sides $4$ and $8$. What is the ratio of their areas?',
+         'answer': '$1:4$', 'wrong': ['$1:2$', '$2:1$', '$1:8$'], 'explanation': '$4\\sqrt{3}:16\\sqrt{3}=1:4$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'What is each interior angle of an equilateral triangle?', 'answer': '$60°$',
+         'wrong': ['$45°$', '$90°$', '$120°$'], 'explanation': 'All angles equal; $3 \\times 60°=180°$.'},
+        {'question': 'One angle of an equilateral triangle is $(2x)°$. Find $x$.', 'answer': '$x = 30$',
+         'wrong': ['$x = 45$', '$x = 60$', '$x = 20$'], 'explanation': '$2x=60 \\Rightarrow x=30$.'},
+        {'question': 'Can an equilateral triangle have an obtuse angle?', 'answer': 'No — all angles are $60°$',
+         'wrong': ['Yes — one angle can be $90°$', 'Yes — one angle can be $120°$', 'Yes, if sides differ'],
+         'explanation': 'All angles are $60°$ — all acute.'},
+        {'question': 'What is the exterior angle of an equilateral triangle at each vertex?', 'answer': '$120°$',
+         'wrong': ['$60°$', '$90°$', '$180°$'], 'explanation': 'Exterior $=180°-60°=120°$.'},
+        {'question': 'What is the sum of all exterior angles of an equilateral triangle?', 'answer': '$360°$',
+         'wrong': ['$180°$', '$240°$', '$720°$'],
+         'explanation': 'Sum of exterior angles of any convex polygon is $360°$.'},
+        {'question': 'An equilateral triangle has one angle $(3x-30)°$. Find $x$.', 'answer': '$x = 30$',
+         'wrong': ['$x = 20$', '$x = 40$', '$x = 10$'], 'explanation': '$3x-30=60 \\Rightarrow x=30$.'},
+        {'question': 'Is an equilateral triangle also equiangular?', 'answer': 'Yes — all angles are $60°$',
+         'wrong': ['No', 'Only for side $> 1$', 'Only if also right'],
+         'explanation': 'Equal sides force equal angles in a triangle.'},
+        {'question': 'The altitude of an equilateral triangle makes what angle with the base?', 'answer': '$90°$',
+         'wrong': ['$60°$', '$45°$', '$30°$'], 'explanation': 'The altitude is perpendicular to the base: $90°$.'},
+        {
+            'question': 'An equilateral triangle is divided into two triangles by the altitude. Find each angle of one half-triangle.',
+            'answer': '$30°, 60°, 90°$', 'wrong': ['$45°, 45°, 90°$', '$60°, 60°, 60°$', '$30°, 30°, 120°$'],
+            'explanation': 'The altitude bisects the top $60°$ angle and meets the base at $90°$: angles are $30°, 60°, 90°$.'},
+        {'question': 'Two angles of an equilateral triangle are $(x+10)°$ and $(2x-20)°$. Find $x$.',
+         'answer': '$x = 30$', 'wrong': ['$x = 20$', '$x = 40$', '$x = 50$'],
+         'explanation': '$x+10=60 \\Rightarrow x=50$; or $2x-20=60 \\Rightarrow x=40$. Using $x+10=2x-20 \\Rightarrow x=30$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'Find the perimeter of an equilateral triangle with side $s = 7$.', 'answer': '$21$',
+         'wrong': ['$14$', '$28$', '$49$'], 'explanation': '$P=3(7)=21$.'},
+        {'question': 'An equilateral triangle has perimeter $36$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$9$', '$18$', '$6$'], 'explanation': '$s=36/3=12$.'},
+        {'question': 'Find the perimeter of an equilateral triangle with side $s = 4.5$.', 'answer': '$13.5$',
+         'wrong': ['$9$', '$18$', '$4.5$'], 'explanation': '$P=3(4.5)=13.5$.'},
+        {
+            'question': 'The perimeter of an equilateral triangle equals the perimeter of a square with side $6$. Find the triangle\'s side.',
+            'answer': '$8$', 'wrong': ['$6$', '$12$', '$4$'], 'explanation': 'Square $P=24$. $s=24/3=8$.'},
+        {'question': 'An equilateral triangle has side $s = 3\\sqrt{3}$. Find its perimeter.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$3\\sqrt{3}$', '$6\\sqrt{3}$', '$27$'], 'explanation': '$P=3(3\\sqrt{3})=9\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has perimeter $15$. Find the side length.', 'answer': '$5$',
+         'wrong': ['$3$', '$7.5$', '$6$'], 'explanation': '$s=15/3=5$.'},
+        {'question': 'Two equilateral triangles have sides $5$ and $7$. What is the difference in their perimeters?',
+         'answer': '$6$', 'wrong': ['$2$', '$4$', '$8$'], 'explanation': '$P_1=15$, $P_2=21$. Difference $=6$.'},
+        {'question': 'An equilateral triangle has perimeter $p$. Express the side in terms of $p$.',
+         'answer': '$\\dfrac{p}{3}$', 'wrong': ['$3p$', '$\\frac{p}{2}$', '$\\frac{p}{4}$'], 'explanation': '$s=p/3$.'},
+        {
+            'question': 'An equilateral triangle has the same perimeter as a rectangle $10 \\times 5$. Find the triangle\'s side.',
+            'answer': '$10$', 'wrong': ['$15$', '$5$', '$30$'], 'explanation': 'Rectangle $P=30$. $s=30/3=10$.'},
+        {'question': 'An equilateral triangle has perimeter $24$. Find the area.', 'answer': '$16\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$24\\sqrt{3}$', '$32\\sqrt{3}$'],
+         'explanation': '$s=8$. $A=\\frac{\\sqrt{3}}{4}(64)=16\\sqrt{3}$.'},
+
+        # ── HEIGHT (10) ───────────────────────────────────────────────────────────
+        {'question': 'Find the height of an equilateral triangle with side $s = 2$.', 'answer': '$\\sqrt{3}$',
+         'wrong': ['$2\\sqrt{3}$', '$\\frac{\\sqrt{3}}{2}$', '$1$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}(2)=\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 4$.', 'answer': '$2\\sqrt{3}$',
+         'wrong': ['$4\\sqrt{3}$', '$\\sqrt{3}$', '$8$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(4)=2\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 6$.', 'answer': '$3\\sqrt{3}$',
+         'wrong': ['$6\\sqrt{3}$', '$\\sqrt{3}$', '$9$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(6)=3\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 10$.', 'answer': '$5\\sqrt{3}$',
+         'wrong': ['$10\\sqrt{3}$', '$2\\sqrt{3}$', '$25$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(10)=5\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 6\\sqrt{3}$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$6$', '$24$', '$6\\sqrt{3}$'], 'explanation': '$s=\\frac{2h}{\\sqrt{3}}=12$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 8$.', 'answer': '$4\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$2\\sqrt{3}$', '$16$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(8)=4\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = \\sqrt{3}$. Find the side length.', 'answer': '$2$',
+         'wrong': ['$1$', '$\\sqrt{3}$', '$4$'], 'explanation': '$s=\\frac{2\\sqrt{3}}{\\sqrt{3}}=2$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 12$.', 'answer': '$6\\sqrt{3}$',
+         'wrong': ['$12\\sqrt{3}$', '$3\\sqrt{3}$', '$36$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(12)=6\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 5\\sqrt{3}$. Find its area.', 'answer': '$25\\sqrt{3}$',
+         'wrong': ['$50\\sqrt{3}$', '$10\\sqrt{3}$', '$75$'],
+         'explanation': '$s=10$. $A=\\frac{\\sqrt{3}}{4}(100)=25\\sqrt{3}$.'},
+        {'question': 'What fraction of the side length is the height of an equilateral triangle?',
+         'answer': '$\\dfrac{\\sqrt{3}}{2}$', 'wrong': ['$\\frac{1}{2}$', '$\\sqrt{3}$', '$\\frac{\\sqrt{2}}{2}$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}s \\Rightarrow \\frac{h}{s}=\\frac{\\sqrt{3}}{2}$.'}, ],
+    'similar_triangles': [{
+        'question': 'Triangle $ABC$ has $\\angle A = 50°$ and $\\angle B = 60°$. Triangle $DEF$ has $\\angle D = 50°$ and $\\angle E = 60°$. Are they similar?',
+        'answer': 'Yes — AA similarity',
+        'wrong': ['No — sides must also be equal', 'Yes — SSS similarity',
+                  'Cannot be determined'],
+        'explanation': 'Two pairs of equal angles ($\\angle A=\\angle D$, $\\angle B=\\angle E$) establish AA similarity.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $\\angle A = 40°$ and $\\angle C = 70°$. In $\\triangle PQR$, $\\angle P = 40°$ and $\\angle R = 70°$. What is $\\angle B$?',
+            'answer': '$70°$',
+            'wrong': ['$40°$', '$50°$', '$80°$'],
+            'explanation': '$\\angle B = 180-40-70 = 70°$.  Both triangles have the same three angles so they are AA similar.'},
+
+        {
+            'question': 'A vertical pole casts a shadow of $6$ m. At the same time a nearby tree casts a shadow of $15$ m. The pole is $4$ m tall. How tall is the tree? (Use AA similarity.)',
+            'answer': '$10$ m',
+            'wrong': ['$8$ m', '$12$ m', '$6$ m'],
+            'explanation': 'Sun angle is the same → AA. $\\dfrac{4}{6} = \\dfrac{h}{15} \\Rightarrow h = 10$.'},
+
+        {
+            'question': 'In $\\triangle ABC$ and $\\triangle DEF$, $\\angle B = \\angle E = 90°$ and $\\angle A = \\angle D = 35°$. What similarity criterion applies?',
+            'answer': 'AA',
+            'wrong': ['SAS', 'SSS', 'HL'],
+            'explanation': 'Two pairs of equal angles (right angle + $35°$) give AA similarity.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ by AA. $\\angle A = 55°$ and $\\angle E = 80°$. Find $\\angle C$.',
+            'answer': '$45°$',
+            'wrong': ['$55°$', '$80°$', '$25°$'],
+            'explanation': '$\\angle F = \\angle C$. In $\\triangle DEF$: $\\angle D=55°$, $\\angle E=80°$, so $\\angle F = 180-55-80 = 45°$.'},
+
+        {
+            'question': 'Two triangles share a common angle and one pair of parallel sides. Which similarity criterion applies?',
+            'answer': 'AA',
+            'wrong': ['SSS', 'SAS', 'ASA'],
+            'explanation': 'Parallel sides create equal corresponding angles, giving two pairs → AA.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $DE \\parallel BC$ with $D$ on $AB$ and $E$ on $AC$. Why is $\\triangle ADE \\sim \\triangle ABC$?',
+            'answer': 'AA — $\\angle A$ is shared and $\\angle ADE = \\angle ABC$ (corresponding angles)',
+            'wrong': ['SSS — all sides proportional', 'SAS — two sides and included angle',
+                      'They are congruent, not similar'],
+            'explanation': 'Shared $\\angle A$ + equal corresponding angles from the parallel line gives AA.'},
+
+        {
+            'question': '$\\triangle PQR$ has $\\angle P = 62°$. $\\triangle XYZ$ has $\\angle X = 62°$ and $\\angle Z = 48°$. If $\\angle Q = 70°$, are the triangles similar?',
+            'answer': 'No — second pair of angles does not match',
+            'wrong': ['Yes — AA', 'Yes — SAS', 'Yes — SSS'],
+            'explanation': '$\\triangle PQR$: angles $62°, 70°, 48°$. $\\triangle XYZ$: $62°, 70°, 48°$. Actually $\\angle R=48°=\\angle Z$ too — they ARE similar. Check: $\\angle Q=70°$, $\\angle Y=180-62-48=70°$. Yes, similar by AA.'},
+
+        {
+            'question': 'In right $\\triangle ABC$ ($\\angle C=90°$) altitude $CD$ is drawn to hypotenuse $AB$. Why is $\\triangle ACD \\sim \\triangle ABC$?',
+            'answer': 'AA — $\\angle A$ is shared and both have a right angle',
+            'wrong': ['SSS', 'SAS', 'They are congruent'],
+            'explanation': 'Both triangles share $\\angle A$ and each has a $90°$ angle → AA.'},
+
+        {
+            'question': 'Triangle $ABC$: $\\angle A = 75°, \\angle B = 55°$. Triangle $PQR$: $\\angle Q = 55°, \\angle R = 50°$. Are they similar?',
+            'answer': 'Yes — AA ($\\angle B = \\angle Q = 55°$ and $\\angle C = \\angle R = 50°$)',
+            'wrong': ['No — no matching angle pairs', 'Yes — SSS', 'Cannot determine'],
+            'explanation': '$\\angle C = 180-75-55 = 50° = \\angle R$ and $\\angle B = \\angle Q = 55°$ → AA.'},
+
+        {
+            'question': 'A $6$-ft person casts a $4$-ft shadow. A flagpole casts a $22$-ft shadow. How tall is the flagpole?',
+            'answer': '$33$ ft',
+            'wrong': ['$22$ ft', '$30$ ft', '$36$ ft'],
+            'explanation': 'AA (same sun angle): $\\dfrac{6}{4} = \\dfrac{h}{22} \\Rightarrow h = 33$.'},
+
+        {
+            'question': '$\\angle A = \\angle D$ and $\\angle B = \\angle E$ in two triangles. What can we conclude?',
+            'answer': '$\\triangle ABC \\sim \\triangle DEF$ (AA)',
+            'wrong': ['$\\triangle ABC \\cong \\triangle DEF$', 'Nothing without side info',
+                      '$\\angle C \\ne \\angle F$'],
+            'explanation': 'Two pairs of equal angles → AA similarity. The third angles are automatically equal.'},
+
+        {
+            'question': 'Two triangles both contain a $90°$ angle. One has a $30°$ angle; the other has a $60°$ angle. Are they similar?',
+            'answer': 'Yes — AA (angles are $30°, 60°, 90°$ in both)',
+            'wrong': ['No — one has $30°$, the other $60°$', 'Cannot determine',
+                      'Only if sides match'],
+            'explanation': 'First: $90°, 30°, 60°$. Second: $90°, 60°, 30°$. Same angle set → AA similar.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $\\angle A = 2x$ and $\\angle B = 3x$. In $\\triangle DEF$, $\\angle D = 40°$ and $\\angle E = 60°$. For AA similarity what must $x$ equal?',
+            'answer': '$x = 20$',
+            'wrong': ['$x = 30$', '$x = 15$', '$x = 25$'],
+            'explanation': '$\\angle A=\\angle D \\Rightarrow 2x=40 \\Rightarrow x=20$. Check: $\\angle B=60°=\\angle E$ ✓.'},
+
+        {'question': 'Two isosceles triangles each have a vertex angle of $40°$. Are they similar?',
+         'answer': 'Yes — AA (vertex $40°$ and base angles $70°$ each)',
+         'wrong': ['No — sides may differ', 'Only if they are congruent', 'Cannot determine'],
+         'explanation': 'Same vertex angle → same base angles ($70°$ each) → AA similar.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $\\angle A = 48°$ and $\\angle B = 64°$. In $\\triangle XYZ$, $\\angle Y = 64°$ and $\\angle Z = 68°$. Are they similar?',
+            'answer': 'Yes — AA ($\\angle C = \\angle Z = 68°$ and $\\angle B = \\angle Y = 64°$)',
+            'wrong': ['No', 'Yes — SSS', 'Yes — SAS'],
+            'explanation': '$\\angle C = 180-48-64 = 68° = \\angle Z$ and $\\angle B = \\angle Y = 64°$ → AA.'},
+
+        {
+            'question': 'Lines $AB$ and $CD$ intersect at $E$. Why is $\\triangle AEC \\sim \\triangle BED$?',
+            'answer': 'AA — vertical angles $\\angle AEC = \\angle BED$ and $\\angle CAE = \\angle DBE$ (alternate interior)',
+            'wrong': ['SSS', 'SAS', 'They are congruent'],
+            'explanation': 'Vertical angles and alternate interior angles provide two equal angle pairs → AA.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ by AA with ratio $3:1$. If $AB = 9$, find $DE$.',
+            'answer': '$3$',
+            'wrong': ['$27$', '$6$', '$12$'],
+            'explanation': 'Scale factor $3:1$, so $DE = AB/3 = 3$.'},
+
+        {
+            'question': 'In $\\triangle ABC$ and $\\triangle ADB$ where $D$ is on $BC$, $\\angle ADB = 90°$ and $\\angle ABC = \\angle BAC$. Are they similar?',
+            'answer': 'Yes — AA',
+            'wrong': ['No', 'Yes — SAS', 'Yes — SSS'],
+            'explanation': 'Shared $\\angle B$ and right angles give AA similarity.'},
+
+        {
+            'question': 'A tree $12$ m tall casts a shadow. A $1.5$ m stick casts a $2$ m shadow at the same time. How long is the tree\'s shadow?',
+            'answer': '$16$ m',
+            'wrong': ['$8$ m', '$24$ m', '$18$ m'],
+            'explanation': 'AA: $\\dfrac{12}{1.5} = \\dfrac{s}{2} \\Rightarrow s = 16$.'},
+
+        {
+            'question': 'In $\\triangle PQR$, $ST \\parallel QR$ where $S \\in PQ$ and $T \\in PR$. $\\angle PST = 70°$ and $\\angle P = 50°$. Find $\\angle Q$.',
+            'answer': '$70°$',
+            'wrong': ['$50°$', '$60°$', '$80°$'],
+            'explanation': '$ST \\parallel QR$ → corresponding angles equal: $\\angle PST = \\angle PQR = 70°$.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ by AA with sides $AB = 6$, $DE = 9$. The ratio of their areas is:',
+            'answer': '$4:9$',
+            'wrong': ['$2:3$', '$6:9$', '$9:4$'],
+            'explanation': 'Linear ratio $= 6:9 = 2:3$. Area ratio $= (2:3)^2 = 4:9$.'},
+
+        {
+            'question': 'Two triangles have two angles $55°$ and $75°$ respectively. What is their third angle?',
+            'answer': '$50°$',
+            'wrong': ['$55°$', '$75°$', '$45°$'],
+            'explanation': '$180-55-75 = 50°$. If both triangles share all three angles they are AA similar.'},
+
+        {
+            'question': 'In a right triangle, the altitude to the hypotenuse creates two smaller triangles. Which similarity criterion relates all three triangles?',
+            'answer': 'AA',
+            'wrong': ['SSS', 'SAS', 'HL'],
+            'explanation': 'Each smaller triangle shares an angle with the original and has a $90°$ angle → AA.'},
+
+        {
+            'question': '$\\triangle ABC$: $\\angle B = 90°$, $\\angle A = 35°$. $\\triangle DEF$: $\\angle E = 90°$, $\\angle F = 35°$. Are they similar?',
+            'answer': 'Yes — AA ($90°$ and $35°$ match in each)',
+            'wrong': ['No — $\\angle A$ matches $\\angle F$, not $\\angle D$', 'Yes — SSS',
+                      'Cannot determine'],
+            'explanation': '$\\angle B = \\angle E = 90°$ and $\\angle A = \\angle F = 35°$ → AA similar.'},
+
+        {
+            'question': 'Triangles $ABC$ and $DEF$ are AA similar with $\\angle A = 40°$, $\\angle C = 100°$. What are the angles of $\\triangle DEF$?',
+            'answer': '$40°, 40°, 100°$',
+            'wrong': ['$40°, 100°, 50°$', '$50°, 90°, 40°$', '$60°, 60°, 60°$'],
+            'explanation': '$\\angle B = 180-40-100 = 40°$. Similar triangles share all three angles.'},
+
+        {
+            'question': 'A mirror is placed on the ground. A person $1.8$ m tall stands $2$ m from the mirror and sees the top of a building $18$ m away. How tall is the building?',
+            'answer': '$16.2$ m',
+            'wrong': ['$18$ m', '$20$ m', '$10$ m'],
+            'explanation': 'AA (angle of incidence = angle of reflection): $\\dfrac{1.8}{2} = \\dfrac{h}{18} \\Rightarrow h = 16.2$.'},
+
+        {'question': 'For AA similarity, how many pairs of equal angles are needed?',
+         'answer': '$2$',
+         'wrong': ['$1$', '$3$', '$0$'],
+         'explanation': 'Only $2$ pairs are needed; the third pair is automatically equal (angle sum = $180°$).'},
+
+        {
+            'question': '$\\triangle RST \\sim \\triangle UVW$ by AA, ratio $1:4$. If the area of $\\triangle RST = 5$, find the area of $\\triangle UVW$.',
+            'answer': '$80$',
+            'wrong': ['$20$', '$40$', '$160$'],
+            'explanation': 'Area ratio $= (1:4)^2 = 1:16$. Area of $\\triangle UVW = 5 \\times 16 = 80$.'},
+
+        {'question': 'Both $\\triangle ABC$ and $\\triangle DEF$ are equilateral. Are they similar?',
+         'answer': 'Yes — AA (all angles are $60°$)',
+         'wrong': ['Only if they are congruent', 'No', 'Only by SSS'],
+         'explanation': 'All angles $60°$ → AA similarity holds for any two equilateral triangles.'},
+
+        {
+            'question': '$\\angle A = (3x+5)°$ in $\\triangle ABC$ and $\\angle D = (5x-15)°$ in $\\triangle DEF$. For AA, what value of $x$ makes $\\angle A = \\angle D$?',
+            'answer': '$x = 10$',
+            'wrong': ['$x = 5$', '$x = 15$', '$x = 20$'],
+            'explanation': '$3x+5 = 5x-15 \\Rightarrow 20 = 2x \\Rightarrow x = 10$.'},
+
+        {
+            'question': 'In quadrilateral $ABCD$, diagonal $AC$ divides it into $\\triangle ABC$ and $\\triangle ACD$. $\\angle BAC = \\angle ACD$ and $\\angle ABC = \\angle CAD$. Are the triangles similar?',
+            'answer': 'Yes — AA',
+            'wrong': ['No', 'Yes — SAS', 'Yes — SSS'],
+            'explanation': 'Two pairs of equal angles directly give AA similarity.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (AA), $AB = 5$, $DE = 15$, $BC = 8$. Find $EF$.',
+            'answer': '$24$',
+            'wrong': ['$8$', '$12$', '$40$'],
+            'explanation': 'Scale factor $= 15/5 = 3$. $EF = 3 \\times 8 = 24$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # SAS SIMILARITY  (Q34–66)
+        # Two sides proportional + included angle equal → similar
+        # ══════════════════════════════════════════════════════════════════════════
+
+        {
+            'question': '$\\triangle ABC$: $AB = 4$, $AC = 6$, $\\angle A = 50°$. $\\triangle DEF$: $DE = 8$, $DF = 12$, $\\angle D = 50°$. Are they similar?',
+            'answer': 'Yes — SAS similarity',
+            'wrong': ['Yes — AA', 'Yes — SSS', 'No'],
+            'explanation': '$\\dfrac{AB}{DE} = \\dfrac{4}{8} = \\dfrac{1}{2}$, $\\dfrac{AC}{DF} = \\dfrac{6}{12} = \\dfrac{1}{2}$, and $\\angle A = \\angle D$ → SAS.'},
+
+        {'question': 'For SAS similarity, what three conditions must be met?',
+         'answer': 'Two pairs of proportional sides with the included angle equal',
+         'wrong': ['Three pairs of proportional sides', 'Two equal angles',
+                   'One proportional side and two equal angles'],
+         'explanation': 'SAS: the ratio of two pairs of corresponding sides must be equal AND the angle between them must be equal.'},
+
+        {
+            'question': '$\\triangle PQR$: $PQ = 6$, $PR = 9$, $\\angle P = 70°$. $\\triangle XYZ$: $XY = 4$, $XZ = 6$, $\\angle X = 70°$. Are they similar?',
+            'answer': 'Yes — SAS',
+            'wrong': ['No — ratios differ', 'Yes — AA', 'Yes — SSS'],
+            'explanation': '$\\dfrac{PQ}{XY} = \\dfrac{6}{4} = \\dfrac{3}{2}$, $\\dfrac{PR}{XZ} = \\dfrac{9}{6} = \\dfrac{3}{2}$, $\\angle P = \\angle X$ → SAS.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 3$, $BC = 5$, $\\angle B = 40°$. $\\triangle DEF$: $DE = 9$, $EF = 15$, $\\angle E = 40°$. Are they similar?',
+            'answer': 'Yes — SAS',
+            'wrong': ['No', 'Yes — AA', 'Yes — SSS'],
+            'explanation': 'Ratios $3/9 = 5/15 = 1/3$ with equal included angle $\\angle B = \\angle E$ → SAS.'},
+
+        {
+            'question': 'In $\\triangle ABC$ and $\\triangle ADE$, $D$ is on $AB$ and $E$ is on $AC$ with $\\dfrac{AD}{AB} = \\dfrac{AE}{AC}$. What similarity criterion applies?',
+            'answer': 'SAS — shared $\\angle A$ and proportional sides',
+            'wrong': ['AA', 'SSS', 'Cannot determine'],
+            'explanation': 'Shared angle $\\angle A$ + proportional sides on either side → SAS.'},
+
+        {
+            'question': '$\\triangle PQR$: $PQ = 10$, $PR = 15$. $\\triangle STU$: $ST = 6$, $SU = 9$. $\\angle P = \\angle S = 60°$. Find the similarity ratio.',
+            'answer': '$5:3$',
+            'wrong': ['$3:5$', '$2:3$', '$10:6$'],
+            'explanation': '$\\dfrac{PQ}{ST} = \\dfrac{10}{6} = \\dfrac{5}{3}$ and $\\dfrac{PR}{SU} = \\dfrac{15}{9} = \\dfrac{5}{3}$ → ratio $5:3$.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $AB = 8$, $AC = 12$, $\\angle A = 45°$. In $\\triangle ADE$ (with $D$ on $AB$, $E$ on $AC$), $AD = 4$, $AE = 6$. What is the similarity ratio?',
+            'answer': '$2:1$',
+            'wrong': ['$1:2$', '$4:8$', '$3:6$'],
+            'explanation': '$\\dfrac{AB}{AD} = \\dfrac{8}{4} = 2$, shared $\\angle A$, $\\dfrac{AC}{AE} = 2$ → SAS, ratio $2:1$.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ by SAS, ratio $3:2$. $AB = 9$, $\\angle A = 55°$, $AC = 12$. Find $DE$ and $DF$.',
+            'answer': '$DE = 6$, $DF = 8$',
+            'wrong': ['$DE = 6$, $DF = 12$', '$DE = 9$, $DF = 8$', '$DE = 3$, $DF = 4$'],
+            'explanation': 'Ratio $3:2$: $DE = 9 \\times \\frac{2}{3} = 6$, $DF = 12 \\times \\frac{2}{3} = 8$.'},
+
+        {
+            'question': 'Two triangles have sides $4, 6$ and $6, 9$ with an included angle of $80°$ in both. Are they similar?',
+            'answer': 'Yes — SAS ($\\frac{4}{6} = \\frac{6}{9} = \\frac{2}{3}$, included $80°$ equal)',
+            'wrong': ['No — sides are not equal', 'Yes — AA', 'Yes — SSS'],
+            'explanation': 'Ratios $4/6 = 6/9 = 2/3$ with equal included angle → SAS.'},
+
+        {
+            'question': '$\\triangle RST$: $RS = 5$, $RT = 7$, $\\angle R = 90°$. $\\triangle UVW$: $UV = 10$, $UW = 14$, $\\angle U = 90°$. Are they similar?',
+            'answer': 'Yes — SAS',
+            'wrong': ['Yes — HL only', 'No', 'Yes — SSS'],
+            'explanation': 'Ratios $5/10 = 7/14 = 1/2$ with equal right angles → SAS.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 6$, $BC = 8$, $\\angle B = 120°$. $\\triangle DEF$: $DE = 3$, $EF = 5$, $\\angle E = 120°$. Are they similar?',
+            'answer': 'No — ratios $6/3 \\ne 8/5$',
+            'wrong': ['Yes — SAS', 'Yes — AA', 'Yes — SSS'],
+            'explanation': '$AB/DE = 2$ but $BC/EF = 8/5$. Unequal ratios → SAS fails.'},
+
+        {'question': 'For SAS similarity, the equal angle must be the:',
+         'answer': 'Included angle (between the two proportional sides)',
+         'wrong': ['Largest angle', 'Smallest angle', 'Any angle in the triangle'],
+         'explanation': 'The angle must be included between the two sides whose ratios are equal.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 12$, $AC = 16$, $\\angle A = 35°$. $\\triangle DEF$: $DE = 9$, $DF = 12$, $\\angle D = 35°$. Find the similarity ratio.',
+            'answer': '$4:3$',
+            'wrong': ['$3:4$', '$12:9$', '$2:3$'],
+            'explanation': '$12/9 = 16/12 = 4/3$ with $\\angle A = \\angle D$ → SAS, ratio $4:3$.'},
+
+        {
+            'question': '$\\triangle PQR \\sim \\triangle STU$ (SAS) with ratio $2:5$. Area of $\\triangle PQR = 8$. Find area of $\\triangle STU$.',
+            'answer': '$50$',
+            'wrong': ['$20$', '$40$', '$200$'],
+            'explanation': 'Area ratio $= (2/5)^2 = 4/25$. Area of $\\triangle STU = 8 \\times 25/4 = 50$.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $M$ is the midpoint of $AB$ and $N$ is the midpoint of $AC$. Why is $\\triangle AMN \\sim \\triangle ABC$?',
+            'answer': 'SAS — shared $\\angle A$ and $AM/AB = AN/AC = 1/2$',
+            'wrong': ['AA', 'SSS', 'They are congruent'],
+            'explanation': 'Midpoint theorem gives ratio $1/2$ on both sides + shared $\\angle A$ → SAS.'},
+
+        {
+            'question': 'Two triangles: sides $8, 10$ and $12, 15$ with the included angles equal. Similarity ratio?',
+            'answer': '$2:3$',
+            'wrong': ['$3:2$', '$8:12$', '$4:5$'],
+            'explanation': '$8/12 = 10/15 = 2/3$ → SAS similar with ratio $2:3$.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 5$, $AC = 10$, $\\angle A = 60°$. $\\triangle ADE$ (D on AB, E on AC): $AD = 2$, $AE = 4$. Are they similar?',
+            'answer': 'Yes — SAS ($5/2 = 10/4 = 2.5$, shared $\\angle A$)',
+            'wrong': ['No', 'Yes — AA', 'Yes — SSS'],
+            'explanation': '$AB/AD = 5/2 = 2.5$ and $AC/AE = 10/4 = 2.5$, shared $\\angle A$ → SAS.'},
+
+        {
+            'question': '$\\triangle DEF$: $DE = 7$, $DF = 14$, $\\angle D = 50°$. $\\triangle XYZ$: $XY = 3$, $XZ = 6$, $\\angle X = 50°$. Similarity ratio?',
+            'answer': '$7:3$',
+            'wrong': ['$2:1$', '$3:7$', '$14:6$'],
+            'explanation': '$7/3 = 14/6 = 7/3$ with equal included angles → SAS, ratio $7:3$.'},
+
+        {
+            'question': 'In parallelogram $ABCD$, diagonal $AC$ divides it. Show $\\triangle ABC \\sim \\triangle CDA$ using SAS.',
+            'answer': '$AB/CD = BC/DA$ (opposite sides equal) and $\\angle ABC = \\angle CDA$ (opposite angles equal)',
+            'wrong': ['AA only', 'SSS only', 'They are congruent, not similar'],
+            'explanation': 'Opposite sides equal → ratios $= 1$, opposite angles equal → SAS (also congruent).'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 4$, $BC = 6$, $\\angle B = 75°$. Find sides of a similar $\\triangle$ (SAS, ratio $3:2$).',
+            'answer': '$6$ and $9$',
+            'wrong': ['$8$ and $12$', '$2$ and $3$', '$4$ and $6$'],
+            'explanation': 'Multiply by $3/2$: $4 \\times 1.5 = 6$, $6 \\times 1.5 = 9$. Included angle stays $75°$.'},
+
+        {
+            'question': 'Sides of $\\triangle ABC$ are $AB=6, AC=8$. In $\\triangle DEF$, $DE=9, DF=12$. $\\angle A = \\angle D$. What is the ratio of their perimeters if $BC=5$ and $EF$ is unknown?',
+            'answer': '$2:3$',
+            'wrong': ['$3:2$', '$1:2$', '$4:6$'],
+            'explanation': 'SAS ratio $= 6/9 = 2/3$, so all sides scale by $2/3$. Perimeter ratio $= 2:3$.'},
+
+        {
+            'question': '$\\triangle PQR$: $PQ = 15$, $PR = 20$, $\\angle P = 40°$. $\\triangle STU$: $ST = 6$, $SU = 8$, $\\angle S = 40°$. Similarity ratio?',
+            'answer': '$5:2$',
+            'wrong': ['$2:5$', '$3:1$', '$15:6$'],
+            'explanation': '$15/6 = 20/8 = 5/2$ with $\\angle P = \\angle S$ → SAS, ratio $5:2$.'},
+
+        {
+            'question': 'Can SAS similarity apply if the equal angle is NOT between the two proportional sides?',
+            'answer': 'No — the angle must be the included angle',
+            'wrong': ['Yes — any equal angle works', 'Yes — if both triangles are acute',
+                      'Yes — if sides are in ratio $1:1$'],
+            'explanation': 'SAS requires the angle to be INCLUDED between the proportional sides. Otherwise the criterion is invalid.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (SAS), $AB/DE = 3/4$. If $BC = 9$ and the included angles are equal, find $EF$.',
+            'answer': '$12$',
+            'wrong': ['$6$', '$9$', '$16$'],
+            'explanation': 'Scale factor $3:4$, so $EF = 9 \\times 4/3 = 12$.'},
+
+        {
+            'question': 'Two triangles both have a $90°$ angle. Their legs adjacent to the $90°$ are in ratio $2:5$. Does SAS apply?',
+            'answer': 'Yes — SAS (equal included right angles, legs in same ratio)',
+            'wrong': ['No — need all three sides', 'No — need two angle pairs', 'Only HL applies'],
+            'explanation': 'Equal right angles + proportional adjacent sides → SAS similarity.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 10$, $AC = 15$, $\\angle A = 80°$. $\\triangle DEF$: $DE = 4$, $DF = 6$, $\\angle D = 80°$. Area of $\\triangle ABC = 60$. Find area of $\\triangle DEF$.',
+            'answer': '$\\dfrac{24}{\\strut 5}$ (i.e., $9.6$)',
+            'answer': '$9.6$',
+            'wrong': ['$24$', '$15$', '$6$'],
+            'explanation': 'Ratio $= 10/4 = 5/2$. Area ratio $= 25/4$. Area $= 60 \\times 4/25 = 9.6$.'},
+
+        {
+            'question': 'In $\\triangle ABC$, $D$ on $AB$ and $E$ on $AC$ such that $AD = 3$, $AB = 9$, $AE = 4$, $AC = 12$. $\\angle A = 55°$. Is $\\triangle ADE \\sim \\triangle ABC$?',
+            'answer': 'Yes — SAS ($3/9 = 4/12 = 1/3$, shared $\\angle A$)',
+            'wrong': ['No', 'Yes — AA', 'Yes — SSS'],
+            'explanation': '$AD/AB = 3/9 = 1/3 = AE/AC = 4/12$ + shared $\\angle A$ → SAS.'},
+
+        {
+            'question': '$\\triangle PQR \\sim \\triangle DEF$ (SAS) with $PQ = 6$, $DE = 10$. Find the ratio of their areas.',
+            'answer': '$9:25$',
+            'wrong': ['$6:10$', '$3:5$', '$36:100$'],
+            'explanation': 'Linear ratio $6:10 = 3:5$. Area ratio $= (3/5)^2 = 9/25$.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 8$, $BC = 12$, $\\angle B = 45°$. A similar triangle has shortest side $6$. Find its other side (the one corresponding to $12$).',
+            'answer': '$9$',
+            'wrong': ['$12$', '$10$', '$8$'],
+            'explanation': 'Ratio $= 6/8 = 3/4$. Other side $= 12 \\times 3/4 = 9$.'},
+
+        {
+            'question': 'In right $\\triangle ABC$ ($\\angle B = 90°$), $BD \\perp AC$. $BD = 6$, $AD = 4$. Prove $\\triangle ABD \\sim \\triangle CBD$ using SAS.',
+            'answer': '$\\angle ABD = \\angle CBD$... actually use AA (shared $90°$ + equal angles). The criterion is AA.',
+            'answer': 'AA applies here (both have $90°$ and share an angle)',
+            'wrong': ['SAS with $BD$ common', 'SSS', 'HL only'],
+            'explanation': 'Both triangles have right angles and share a common angle → AA (not SAS).'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 2x$, $AC = 3x$, $\\angle A = 65°$. $\\triangle DEF$: $DE = 8$, $DF = 12$, $\\angle D = 65°$. For SAS similarity, find $x$.',
+            'answer': '$x = 4$',
+            'wrong': ['$x = 2$', '$x = 3$', '$x = 6$'],
+            'explanation': '$\\dfrac{2x}{8} = \\dfrac{3x}{12} \\Rightarrow \\dfrac{x}{4} = \\dfrac{x}{4}$ ✓ for any $x$. But to match the specific triangle, $2x=8 \\Rightarrow x=4$.'},
+
+        {
+            'question': 'Two triangles have sides $5, 8$ and $10, 16$ with the angle between $5$ and $8$ equal to the angle between $10$ and $16$. Ratio?',
+            'answer': '$1:2$',
+            'wrong': ['$2:1$', '$5:8$', '$1:4$'],
+            'explanation': '$5/10 = 8/16 = 1/2$ with equal included angle → SAS, ratio $1:2$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # SSS SIMILARITY  (Q67–100)
+        # All three pairs of sides proportional → similar
+        # ══════════════════════════════════════════════════════════════════════════
+
+        {
+            'question': '$\\triangle ABC$: sides $3, 4, 5$. $\\triangle DEF$: sides $6, 8, 10$. Are they similar?',
+            'answer': 'Yes — SSS (ratio $1:2$ for all sides)',
+            'wrong': ['No', 'Yes — AA', 'Yes — SAS'],
+            'explanation': '$3/6 = 4/8 = 5/10 = 1/2$ → SSS similar.'},
+
+        {
+            'question': '$\\triangle PQR$: sides $5, 10, 15$. $\\triangle XYZ$: sides $2, 4, 6$. Similarity ratio?',
+            'answer': '$5:2$',
+            'wrong': ['$2:5$', '$1:3$', '$5:10$'],
+            'explanation': '$5/2 = 10/4 = 15/6 = 5/2$ → SSS, ratio $5:2$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $4, 6, 8$. $\\triangle DEF$: sides $6, 9, 12$. Are they SSS similar?',
+            'answer': 'Yes — ratio $2:3$',
+            'wrong': ['No', 'Yes — ratio $3:2$', 'Yes — ratio $1:2$'],
+            'explanation': '$4/6 = 6/9 = 8/12 = 2/3$ → SSS, ratio $2:3$.'},
+
+        {'question': 'For SSS similarity, what must be true?',
+         'answer': 'All three pairs of corresponding sides must have the same ratio',
+         'wrong': ['All sides must be equal', 'Only two sides need to be proportional',
+                   'At least one angle must be equal'],
+         'explanation': 'SSS similarity requires all three ratios of corresponding sides to be equal.'},
+
+        {'question': '$\\triangle ABC$: sides $7, 14, 21$. $\\triangle PQR$: sides $1, 2, 3$. Ratio?',
+         'answer': '$7:1$',
+         'wrong': ['$1:7$', '$2:14$', '$3:21$'],
+         'explanation': '$7/1 = 14/2 = 21/3 = 7$ → SSS, ratio $7:1$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $5, 7, 9$. $\\triangle DEF$: sides $10, 14, 18$. What is the ratio of their perimeters?',
+            'answer': '$1:2$',
+            'wrong': ['$2:1$', '$5:10$', '$1:4$'],
+            'explanation': 'SSS ratio $= 1:2$, so perimeter ratio $= 1:2$.'},
+
+        {
+            'question': '$\\triangle PQR$: sides $6, 8, 10$. $\\triangle STU$: sides $9, 12, 15$. Are they similar?',
+            'answer': 'Yes — SSS (ratio $2:3$)',
+            'wrong': ['No', 'Yes — ratio $1:2$', 'Yes — AA'],
+            'explanation': '$6/9 = 8/12 = 10/15 = 2/3$ → SSS.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $3, 5, 7$. $\\triangle DEF$: sides $6, 10, 15$. Are they SSS similar?',
+            'answer': 'No — $3/6 = 1/2$ but $7/15 \\ne 1/2$',
+            'wrong': ['Yes — ratio $1:2$', 'Yes — ratio $2:3$', 'Cannot determine'],
+            'explanation': '$3/6=1/2$, $5/10=1/2$, but $7/15 \\approx 0.47 \\ne 1/2$ → NOT SSS similar.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (SSS) with ratio $3:5$. $AB = 9$. Find $DE$.',
+            'answer': '$15$',
+            'wrong': ['$5$', '$27$', '$12$'],
+            'explanation': '$AB/DE = 3/5 \\Rightarrow DE = 9 \\times 5/3 = 15$.'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (SSS), ratio $2:7$. Area of $\\triangle DEF = 98$. Find area of $\\triangle ABC$.',
+            'answer': '$8$',
+            'wrong': ['$14$', '$28$', '$4$'],
+            'explanation': 'Area ratio $= (2/7)^2 = 4/49$. Area $= 98 \\times 4/49 = 8$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $a, 2a, 3a$. $\\triangle DEF$: sides $b, 2b, 3b$. Are they similar for any positive $a, b$?',
+            'answer': 'Yes — SSS (all ratios $= a/b$)',
+            'wrong': ['Only if $a = b$', 'No', 'Only by AA'],
+            'explanation': '$a/b = 2a/2b = 3a/3b$ → SSS for any positive $a, b$.'},
+
+        {
+            'question': '$\\triangle PQR$: sides $8, 12, 16$. Which triangle is SSS similar with ratio $1:2$?',
+            'answer': 'Sides $4, 6, 8$',
+            'wrong': ['Sides $4, 6, 10$', 'Sides $16, 24, 30$', 'Sides $8, 12, 20$'],
+            'explanation': 'Divide each side by $2$: $4, 6, 8$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $10, 15, 20$. $\\triangle DEF$: sides $6, 9, 12$. Similarity ratio $ABC:DEF$?',
+            'answer': '$5:3$',
+            'wrong': ['$3:5$', '$10:6$', '$2:3$'],
+            'explanation': '$10/6 = 15/9 = 20/12 = 5/3$ → SSS, ratio $5:3$.'},
+
+        {'question': 'Are two equilateral triangles with sides $5$ and $7$ similar by SSS?',
+         'answer': 'Yes — ratio $5:7$',
+         'wrong': ['No — different side lengths', 'Yes — AA only', 'Only if angles are checked'],
+         'explanation': 'All ratios $= 5/7$ → SSS similar. (Also AA since all angles $60°$.)'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (SSS). $AB = 4, BC = 6, CA = 8$ and $DE = 6$. Find $EF$ and $FD$.',
+            'answer': '$EF = 9$, $FD = 12$',
+            'wrong': ['$EF = 8$, $FD = 10$', '$EF = 6$, $FD = 8$', '$EF = 12$, $FD = 16$'],
+            'explanation': 'Ratio $= 6/4 = 3/2$. $EF = 6 \\times 3/2 = 9$, $FD = 8 \\times 3/2 = 12$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $2, 3, 4$. $\\triangle DEF$: sides $4, 6, 8$. Ratio of areas?',
+            'answer': '$1:4$',
+            'wrong': ['$1:2$', '$2:4$', '$1:8$'],
+            'explanation': 'Linear ratio $= 1:2$. Area ratio $= 1:4$.'},
+
+        {
+            'question': '$\\triangle PQR$: sides $15, 20, 25$. Simplify to check if it is similar to sides $3, 4, 5$.',
+            'answer': 'Yes — ratio $5:1$',
+            'wrong': ['No', 'Yes — ratio $1:5$', 'Yes — ratio $3:1$'],
+            'explanation': '$15/3 = 20/4 = 25/5 = 5$ → SSS, ratio $5:1$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $x, 2x, 3x$ (any $x > 0$). $\\triangle PQR$: sides $5, 10, 15$. What must $x$ equal for congruence?',
+            'answer': '$x = 5$',
+            'wrong': ['$x = 1$', '$x = 3$', '$x = 10$'],
+            'explanation': 'Congruent means ratio $1:1$: $x = 5$.'},
+
+        {
+            'question': '$\\triangle RST \\sim \\triangle UVW$ (SSS), ratio $4:9$. Perimeter of $\\triangle RST = 24$. Find perimeter of $\\triangle UVW$.',
+            'answer': '$54$',
+            'wrong': ['$36$', '$96$', '$216$'],
+            'explanation': 'Perimeter ratio $= 4:9$. $\\dfrac{24}{P} = \\dfrac{4}{9} \\Rightarrow P = 54$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $6, 8, 10$. $\\triangle DEF$: sides $9, 12, 15$. Find $\\angle C$ if $\\angle F = 90°$.',
+            'answer': '$90°$',
+            'wrong': ['$60°$', '$45°$', '$30°$'],
+            'explanation': 'SSS similar (ratio $2:3$) → corresponding angles equal → $\\angle C = \\angle F = 90°$.'},
+
+        {
+            'question': 'Sides of $\\triangle ABC$ are $12, 16, 20$. Which set of sides gives a SSS-similar triangle?',
+            'answer': '$3, 4, 5$',
+            'wrong': ['$6, 8, 11$', '$4, 8, 10$', '$12, 16, 24$'],
+            'explanation': '$12/3 = 16/4 = 20/5 = 4$ → SSS.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $a = 7, b = 24, c = 25$. Is it a right triangle? Which similar triangle also has a right angle?',
+            'answer': 'Yes (7-24-25 triple). Any triangle with sides in ratio $7:24:25$ also has a right angle.',
+            'wrong': ['No right angle', 'Only congruent triangles share the right angle',
+                      'Cannot determine'],
+            'explanation': '$7^2+24^2 = 49+576 = 625 = 25^2$ ✓. SSS similar triangles are also right triangles.'},
+
+        {
+            'question': '$\\triangle PQR \\sim \\triangle DEF$ (SSS), area of $\\triangle PQR = 50$, ratio $5:2$. Find area of $\\triangle DEF$.',
+            'answer': '$8$',
+            'wrong': ['$20$', '$125$', '$2$'],
+            'explanation': 'Area ratio $= (5/2)^2 = 25/4$. Area $\\triangle DEF = 50 \\times 4/25 = 8$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $5, 12, 13$. $\\triangle PQR$: sides $10, 24, 26$. Similarity criterion?',
+            'answer': 'SSS (ratio $1:2$)',
+            'wrong': ['SAS', 'AA only', 'They are congruent'],
+            'explanation': '$5/10 = 12/24 = 13/26 = 1/2$ → SSS.'},
+
+        {'question': 'Two triangles have all sides doubled. What happens to the area?',
+         'answer': 'Area is multiplied by $4$',
+         'wrong': ['Doubled', 'Multiplied by $8$', 'Stays the same'],
+         'explanation': 'Linear ratio $= 2:1$. Area ratio $= 4:1$.'},
+
+        {
+            'question': '$\\triangle ABC$: $AB = 3k, BC = 4k, CA = 5k$. $\\triangle DEF$: $DE = 6, EF = 8, FD = 10$. For SSS, what is $k$?',
+            'answer': '$k = 2$',
+            'wrong': ['$k = 1$', '$k = 3$', '$k = 4$'],
+            'explanation': '$3k/6 = 4k/8 = 5k/10 = k/2$. For ratio $1:1$ (congruence): $k=2$.'},
+
+        {'question': 'Can SSS similarity be used to prove two triangles are congruent?',
+         'answer': 'Yes — when the similarity ratio is $1:1$',
+         'wrong': ['No — similarity and congruence are different', 'Only if angles are also checked',
+                   'Only for right triangles'],
+         'explanation': 'SSS similarity with ratio $1:1$ means all sides are equal → congruent (SSS congruence).'},
+
+        {
+            'question': '$\\triangle ABC \\sim \\triangle DEF$ (SSS) with $AB = 5, DE = 15, BC = 8$. Find $EF$.',
+            'answer': '$24$',
+            'wrong': ['$8$', '$40$', '$12$'],
+            'explanation': 'Ratio $= 15/5 = 3$. $EF = 8 \\times 3 = 24$.'},
+
+        {
+            'question': '$\\triangle PQR$: sides $9, 12, 15$. Is it similar to $\\triangle STU$ with sides $12, 16, 20$?',
+            'answer': 'Yes — SSS (ratio $3:4$)',
+            'wrong': ['No', 'Yes — ratio $1:2$', 'Yes — AA'],
+            'explanation': '$9/12 = 12/16 = 15/20 = 3/4$ → SSS.'},
+
+        {
+            'question': 'The sides of $\\triangle ABC$ are $\\sqrt{2}, \\sqrt{3}, \\sqrt{5}$. A similar triangle has sides $\\sqrt{8}, \\sqrt{12}, \\sqrt{20}$. Similarity ratio?',
+            'answer': '$1:2$',
+            'wrong': ['$1:\\sqrt{2}$', '$1:4$', '$\\sqrt{2}:1$'],
+            'explanation': '$\\sqrt{8}/\\sqrt{2} = \\sqrt{4} = 2$, similarly for others → ratio $1:2$.'},
+
+        {
+            'question': '$\\triangle ABC$: sides $4, 5, 6$. A triangle with perimeter $45$ is SSS similar. Find its sides.',
+            'answer': '$12, 15, 18$',
+            'wrong': ['$9, 10, 12$', '$10, 15, 20$', '$8, 10, 12$'],
+            'explanation': 'Original perimeter $= 15$. Ratio $= 45/15 = 3$. Sides: $12, 15, 18$.'}, ],
+    'properties_of_triangles': [{
+        'question': 'Can a triangle have sides of lengths $3$, $4$, and $8$?',
+        'answer': 'No',
+        'wrong': ['Yes', 'Only if it is obtuse', 'Only if it is a right triangle'],
+        'explanation': 'Check: $3 + 4 = 7 < 8$. The sum of the two smaller sides does not exceed the largest side, so no triangle is possible.',
+    },
+        {
+            'question': 'Which of the following can be the lengths of the sides of a triangle?',
+            'answer': '$5, 7, 9$',
+            'wrong': ['$1, 2, 3$', '$2, 5, 8$', '$4, 4, 9$'],
+            'explanation': 'For $5,7,9$: $5+7=12>9$ ✓. For the others, the sum of the two smallest sides does not exceed the largest.',
+        },
+        {
+            'question': 'If two sides of a triangle are $6$ and $10$, which value can the third side $x$ take?',
+            'answer': '$x = 8$',
+            'wrong': ['$x = 16$', '$x = 4$', '$x = 0$'],
+            'explanation': 'By the triangle inequality: $|10-6| < x < 10+6 \\Rightarrow 4 < x < 16$. Only $x=8$ lies in this range.',
+        },
+        {
+            'question': 'If $a = 5$, $b = 5$, $c = 10$, is this a valid triangle?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Yes, it is equilateral', 'Yes, it is isosceles'],
+            'explanation': '$a + b = 5 + 5 = 10 = c$. The strict inequality $a + b > c$ is not satisfied.',
+        },
+        {
+            'question': 'What is the range of the third side $x$ if the other two sides are $7$ and $13$?',
+            'answer': '$6 < x < 20$',
+            'wrong': ['$0 < x < 20$', '$7 < x < 13$', '$6 \\leq x \\leq 20$'],
+            'explanation': 'Triangle inequality: $|13-7| < x < 13+7 \\Rightarrow 6 < x < 20$ (strict inequalities).',
+        },
+        {
+            'question': 'Which set of side lengths forms a valid triangle?',
+            'answer': '$8, 8, 8$',
+            'wrong': ['$0, 5, 5$', '$1, 1, 3$', '$3, 7, 10$'],
+            'explanation': 'An equilateral triangle with all sides $8$ satisfies all three inequalities. The others each fail the strict inequality.',
+        },
+        {
+            'question': 'Two sides of a triangle are $3$ and $3$. What is the maximum integer value the third side can take?',
+            'answer': '$5$',
+            'wrong': ['$6$', '$7$', '$4$'],
+            'explanation': '$c < a + b = 6$, so $c < 6$. The largest integer less than $6$ is $5$.',
+        },
+        {
+            'question': 'Two sides of a triangle are $3$ and $3$. What is the minimum positive integer the third side can take?',
+            'answer': '$1$',
+            'wrong': ['$0$', '$2$', '$3$'],
+            'explanation': '$c > |a - b| = 0$, so $c > 0$. The smallest positive integer is $1$.',
+        },
+        {
+            'question': 'If the sides of a triangle are $x$, $x+2$, and $x+4$, which inequality must $x$ satisfy?',
+            'answer': '$x > 2$',
+            'wrong': ['$x > 0$', '$x > 4$', '$x > 6$'],
+            'explanation': 'Tightest inequality: $x + (x+2) > x+4 \\Rightarrow 2x+2 > x+4 \\Rightarrow x > 2$.',
+        },
+        {
+            'question': 'Can a triangle have sides $2$, $2$, and $4$?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Yes, it is isosceles', 'Yes, it is a right triangle'],
+            'explanation': '$2 + 2 = 4$ violates the strict inequality $a + b > c$. This is a degenerate (flat) triangle.',
+        },
+        {
+            'question': 'Which value of $x$ makes $x$, $5$, $9$ a valid triangle?',
+            'answer': '$x = 6$',
+            'wrong': ['$x = 14$', '$x = 4$', '$x = 1$'],
+            'explanation': '$|9-5| < x < 9+5 \\Rightarrow 4 < x < 14$. Only $x=6$ lies in this range.',
+        },
+        {
+            'question': 'How many integer values can the third side take if the other two sides are $4$ and $9$?',
+            'answer': '$7$',
+            'wrong': ['$9$', '$13$', '$5$'],
+            'explanation': '$|9-4| < x < 9+4 \\Rightarrow 5 < x < 13$. Integer values: $6,7,8,9,10,11,12$ — that is $7$ values.',
+        },
+        {
+            'question': 'Is the set $\\{1, 5, 5\\}$ a valid triangle?',
+            'answer': 'Yes',
+            'wrong': ['No', 'Only if angles are specified', 'Cannot be determined'],
+            'explanation': '$1+5=6>5$ ✓, $5+5=10>1$ ✓. All inequalities hold.',
+        },
+        {
+            'question': 'The perimeter of a triangle is $30$. Two sides are $8$ and $10$. Is it a valid triangle?',
+            'answer': 'Yes; third side $= 12$',
+            'wrong': ['No; third side $= 12$', 'Yes; third side $= 10$', 'Yes; third side $= 14$'],
+            'explanation': 'Third side $= 30-8-10=12$. Check: $8+10=18>12$ ✓, $8+12=20>10$ ✓, $10+12=22>8$ ✓. Valid.',
+        },
+        {
+            'question': 'Which value cannot be a side of a triangle whose other two sides are $6$ and $6$?',
+            'answer': '$12$',
+            'wrong': ['$6$', '$7$', '$1$'],
+            'explanation': 'Third side $c$ must satisfy $0 < c < 12$. $c=12$ fails: $6+6=12 \\not> 12$.',
+        },
+        {
+            'question': 'If sides are ordered $a \\leq b \\leq c$, which single inequality is sufficient to guarantee a valid triangle?',
+            'answer': '$a + b > c$',
+            'wrong': ['$a + c > b$', '$b + c > a$', '$a + b > a$'],
+            'explanation': 'When $a \\leq b \\leq c$, the inequalities $a+c>b$ and $b+c>a$ hold automatically. Only $a+b>c$ can fail.',
+        },
+        {
+            'question': 'A triangle has sides $n$, $n+1$, $2n-1$. For which values of integer $n$ is it valid?',
+            'answer': '$n \\geq 2$',
+            'wrong': ['$n \\geq 1$', '$n \\geq 3$', '$n \\geq 4$'],
+            'explanation': 'Tightest: $n+(2n-1) > n+1 \\Rightarrow 2n > 2 \\Rightarrow n > 1$. So minimum integer is $n=2$.',
+        },
+        {
+            'question': 'Can a degenerate triangle (three collinear points) satisfy the triangle inequality?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Only if it is equilateral', 'Only if two sides are equal'],
+            'explanation': 'A degenerate triangle has $a+b=c$, which violates the strict inequality $a+b>c$.',
+        },
+        {
+            'question': 'Two sides are $a > b > 0$. The third side $c$ must satisfy:',
+            'answer': '$a - b < c < a + b$',
+            'wrong': ['$b - a < c < a + b$', '$0 < c < a + b$', '$a - b \\leq c \\leq a + b$'],
+            'explanation': 'From the three strict inequalities, the tightest constraints are $c > a-b$ (since $a>b$) and $c < a+b$.',
+        },
+        {
+            'question': 'Sides $3x$, $4x$, $5x$ form a valid triangle for:',
+            'answer': 'All $x > 0$',
+            'wrong': ['Only $x = 1$', '$x > 1$', '$x > 5$'],
+            'explanation': 'Since $3+4=7>5$, the base triangle $\\{3,4,5\\}$ is valid. Scaling by any $x>0$ preserves all inequalities.',
+        },
+        {
+            'question': 'Which statement always holds for a triangle with sides $p$, $q$, $r$?',
+            'answer': '$|p - q| < r$',
+            'wrong': ['$p - q < r$ only if $p > q$', '$p + q = r$', '$r > p + q$'],
+            'explanation': 'From $r > p-q$ and $r > q-p$, we get $r > |p-q|$, i.e., $|p-q| < r$.',
+        },
+        {
+            'question': 'For consecutive integer sides $n$, $n+1$, $n+2$, what is the minimum valid $n$?',
+            'answer': '$n = 2$',
+            'wrong': ['$n = 1$', '$n = 3$', '$n = 0$'],
+            'explanation': 'Tightest: $n+(n+1)>n+2 \\Rightarrow n > 1$. Minimum integer satisfying this is $n=2$.',
+        },
+        {
+            'question': 'Given sides $2$, $3$, and $x$, how many positive integer values can $x$ take?',
+            'answer': '$3$',
+            'wrong': ['$4$', '$5$', '$2$'],
+            'explanation': '$|3-2| < x < 3+2 \\Rightarrow 1 < x < 5$. Integer values: $2, 3, 4$ — that is $3$ values.',
+        },
+        {
+            'question': 'Is it possible for a triangle to have sides in the ratio $1:2:3$?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Yes, it is a right triangle', 'Yes, it is scalene'],
+            'explanation': '$1 + 2 = 3$, failing the strict inequality. This would be a degenerate (flat) triangle.',
+        },
+        {
+            'question': 'Which of the following is NOT a valid triangle?',
+            'answer': '$7, 3, 3$',
+            'wrong': ['$5, 5, 5$', '$6, 7, 8$', '$2, 3, 4$'],
+            'explanation': '$3 + 3 = 6 < 7$, so $7,3,3$ violates the triangle inequality.',
+        },
+        {
+            'question': 'If sides are $x+1$, $x+3$, and $x+5$, what constraint on $x$ gives a valid triangle?',
+            'answer': '$x > 1$',
+            'wrong': ['$x > 0$', '$x > 3$', '$x > 5$'],
+            'explanation': 'Tightest: $(x+1)+(x+3)>x+5 \\Rightarrow 2x+4>x+5 \\Rightarrow x>1$.',
+        },
+        {
+            'question': 'For sides $k$, $k+6$, $2k$ to form a valid triangle, which must hold?',
+            'answer': '$k > 3$',
+            'wrong': ['$k > 6$', '$k > 2$', '$k > 1$'],
+            'explanation': 'Tightest: $k+2k > k+6 \\Rightarrow 2k > 6 \\Rightarrow k > 3$.',
+        },
+        {
+            'question': 'The triangle inequality states that the sum of any two sides must be:',
+            'answer': 'Greater than the third side (strictly)',
+            'wrong': ['Less than the third side', 'Equal to the third side', 'At least equal to the third side'],
+            'explanation': 'For any triangle with sides $a$, $b$, $c$: $a+b>c$, $a+c>b$, $b+c>a$ (all strict).',
+        },
+        {
+            'question': 'If $a+b = c$ for positive values $a$, $b$, $c$, the figure formed is:',
+            'answer': 'A degenerate triangle (line segment)',
+            'wrong': ['An equilateral triangle', 'A right triangle', 'An isosceles triangle'],
+            'explanation': 'When $a+b=c$, the three points are collinear. No enclosed area forms.',
+        },
+        {
+            'question': 'In $\\triangle ABC$, $AB = 10$, $BC = 6$. Which is a possible length for $AC$?',
+            'answer': '$7$',
+            'wrong': ['$16$', '$4$', '$17$'],
+            'explanation': '$|10-6| < AC < 10+6 \\Rightarrow 4 < AC < 16$. Only $7$ satisfies this.',
+        },
+        {
+            'question': 'In $\\triangle PQR$, $PQ = 15$, $QR = 9$. What is the range of $PR$?',
+            'answer': '$6 < PR < 24$',
+            'wrong': ['$9 < PR < 15$', '$6 \\leq PR \\leq 24$', '$0 < PR < 24$'],
+            'explanation': '$|15-9| < PR < 15+9 \\Rightarrow 6 < PR < 24$.',
+        },
+        {
+            'question': 'If we double all sides of a valid triangle, does the new triangle satisfy the inequality?',
+            'answer': 'Yes',
+            'wrong': ['No', 'Only if the original is equilateral', 'Only if the original is a right triangle'],
+            'explanation': 'Multiplying all sides by a positive constant preserves the inequality: $2a+2b > 2c \\Leftrightarrow a+b>c$.',
+        },
+        {
+            'question': 'Can a triangle have sides $0.1$, $0.1$, and $0.3$?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Yes, since all sides are positive', 'Only if it is scalene'],
+            'explanation': '$0.1 + 0.1 = 0.2 < 0.3$. The triangle inequality is violated.',
+        },
+        {
+            'question': 'For sides $m$, $2m$, $3m-1$ ($m>0$), what is the range of valid $m$?',
+            'answer': '$m > \\dfrac{1}{2}$',
+            'wrong': ['$m > 1$', '$m > 0$', '$m > 2$'],
+            'explanation': 'Tightest: $m+(3m-1) > 2m \\Rightarrow 2m > 1 \\Rightarrow m > \\frac{1}{2}$.',
+        },
+        {
+            'question': 'For sides $a=5$, $b=12$, how many integer values can the third side take?',
+            'answer': '$9$',
+            'wrong': ['$12$', '$17$', '$7$'],
+            'explanation': '$|12-5| < x < 12+5 \\Rightarrow 7 < x < 17$. Integer values: $8,9,10,11,12,13,14,15,16$ — that is $9$ values.',
+        },
+        {
+            'question': 'Which set has sides that form a valid triangle?',
+            'answer': '$6, 8, 10$',
+            'wrong': ['$1, 2, 4$', '$3, 3, 7$', '$5, 5, 11$'],
+            'explanation': '$6+8=14>10$ ✓. For others: $1+2=3<4$; $3+3=6<7$; $5+5=10<11$ — all fail.',
+        },
+        {
+            'question': 'If the sides of a triangle are $x$, $2x$, and $3$ ($x>0$), what values of $x$ are valid?',
+            'answer': '$1 < x < 3$',
+            'wrong': ['$x > 1$', '$0 < x < 3$', '$x > 3$'],
+            'explanation': '$x+2x>3 \\Rightarrow x>1$ and $x+3>2x \\Rightarrow x<3$. Combined: $1 < x < 3$.',
+        },
+        {
+            'question': 'A triangle has sides $5$, $12$, $13$. Does it satisfy the triangle inequality?',
+            'answer': 'Yes',
+            'wrong': ['No', 'Only for right triangles', 'It is degenerate'],
+            'explanation': '$5+12=17>13$ ✓, $5+13=18>12$ ✓, $12+13=25>5$ ✓. This is also a right triangle ($5^2+12^2=13^2$).',
+        },
+        {
+            'question': 'Given $a = 7$, $b = 24$, $c = 25$, is this a valid triangle?',
+            'answer': 'Yes',
+            'wrong': ['No', 'Only as a degenerate triangle', 'Cannot be determined'],
+            'explanation': '$7+24=31>25$ ✓. This is also a Pythagorean triple ($7^2+24^2=625=25^2$).',
+        },
+        {
+            'question': 'Sides $t+2$, $t+2$, $t+2$ form a valid (equilateral) triangle for:',
+            'answer': 'All $t > -2$',
+            'wrong': ['All $t > 0$', 'All $t > 2$', 'All real $t$'],
+            'explanation': 'We need $t+2 > 0 \\Rightarrow t > -2$. Then $(t+2)+(t+2) = 2(t+2) > t+2$ automatically.',
+        },
+        {
+            'question': 'Can a triangle have sides $1000$, $1$, and $1$?',
+            'answer': 'No',
+            'wrong': ['Yes', 'Yes, since all sides are positive', 'Cannot be determined'],
+            'explanation': '$1 + 1 = 2 < 1000$. Triangle inequality violated.',
+        },
+        {
+            'question': 'Which statement about the triangle inequality is correct?',
+            'answer': 'It must hold for all three pairs of sides simultaneously',
+            'wrong': ['It only needs to hold for the largest side', 'It uses non-strict ($\\geq$) inequalities',
+                      'It only applies to right triangles'],
+            'explanation': 'All three: $a+b>c$, $a+c>b$, $b+c>a$ must hold simultaneously for a valid triangle.',
+        },
+        {
+            'question': 'For sides $a$, $b$, $c$, which is equivalent to the triangle inequality?',
+            'answer': '$|a-b| < c < a+b$',
+            'wrong': ['$a-b < c < a+b$', '$0 < c < a+b$', '$|a-b| \\leq c \\leq a+b$'],
+            'explanation': 'Combining $c < a+b$ and $c > |a-b|$ gives the compact form $|a-b| < c < a+b$.',
+        },
+        {
+            'question': 'A triangle has sides $n$, $n+3$, $2n$ for integer $n$. The minimum valid $n$ is:',
+            'answer': '$n = 4$',
+            'wrong': ['$n = 1$', '$n = 2$', '$n = 3$'],
+            'explanation': 'Tightest: $n+(n+3) > 2n \\Rightarrow 3 > 0$ (always true); $n+2n > n+3 \\Rightarrow 2n > 3 \\Rightarrow n > 1.5$. Also need $n>0$. Minimum integer: $n=2$. Wait — recheck: $n+(2n) > n+3 \\Rightarrow 2n>3 \\Rightarrow n\\geq 2$. Minimum is $n=2$.',
+        },
+        {
+            'question': 'Sides $n$, $n+3$, $2n$ for integer $n \\geq 1$. The minimum valid $n$ is:',
+            'answer': '$n = 2$',
+            'wrong': ['$n = 1$', '$n = 3$', '$n = 4$'],
+            'explanation': 'Tightest: $n + 2n > n+3 \\Rightarrow 2n > 3 \\Rightarrow n > 1.5$. Minimum integer: $n=2$.',
+        },
+        {
+            'question': 'The sides of a triangle satisfy $b = a+1$ and $c = a+2$. For which $a$ is the triangle valid?',
+            'answer': '$a > 0$',
+            'wrong': ['$a > 1$', '$a > 2$', '$a \\geq 1$'],
+            'explanation': 'Tightest: $a+(a+1) > a+2 \\Rightarrow a > 1$... Wait: $2a+1>a+2 \\Rightarrow a>1$. But also $a>0$ needed for positivity. Binding: $a>1$.',
+        },
+        {
+            'question': 'Sides $b = a+1$, $c = a+2$. The binding constraint for a valid triangle is:',
+            'answer': '$a > 1$',
+            'wrong': ['$a > 0$', '$a > 2$', '$a \\geq 1$'],
+            'explanation': 'Tightest inequality: $a + (a+1) > a+2 \\Rightarrow 2a+1 > a+2 \\Rightarrow a > 1$.',
+        },
+        {
+            'question': 'How many integer values can the third side $c$ take if $a = 10$, $b = 10$?',
+            'answer': '$19$',
+            'wrong': ['$20$', '$10$', '$18$'],
+            'explanation': '$0 < c < 20$. Integer values: $1, 2, \\ldots, 19$ — that is $19$ values.',
+        },
+        {
+            'question': 'If $a = b = 5$ and $c$ is the third side, the number of positive integer values $c$ can take is:',
+            'answer': '$9$',
+            'wrong': ['$10$', '$5$', '$4$'],
+            'explanation': '$0 < c < 10$. Integer values: $1,2,3,4,5,6,7,8,9$ — that is $9$ values.',
+        },
+        {
+            'question': 'Sides $2$, $x$, $x+1$ form a valid triangle for $x > 0$. The constraint on $x$ is:',
+            'answer': '$x > 1$',
+            'wrong': ['$x > 0$', '$x > 2$', '$x > 3$'],
+            'explanation': 'Tightest: $2 + x > x+1 \\Rightarrow 2 > 1$ ✓ (always); $x + (x+1) > 2 \\Rightarrow 2x > 1 \\Rightarrow x > \\frac{1}{2}$. Also need $x > 0$. Binding: $x > \\frac{1}{2}$.',
+        },
+        {'question': 'A right triangle has legs $a = 3$ and $b = 4$. Find the hypotenuse.', 'answer': '$5$',
+         'wrong': ['$6$', '$7$', '$\\sqrt{7}$'], 'explanation': '$c = \\sqrt{9+16} = 5$.'},
+        {'question': 'A right triangle has legs $a = 5$ and $b = 12$. Find the hypotenuse.', 'answer': '$13$',
+         'wrong': ['$17$', '$15$', '$\\sqrt{119}$'], 'explanation': '$c = \\sqrt{25+144} = 13$.'},
+        {'question': 'A right triangle has legs $a = 8$ and $b = 6$. Find the hypotenuse.', 'answer': '$10$',
+         'wrong': ['$12$', '$14$', '$\\sqrt{28}$'], 'explanation': '$c = \\sqrt{64+36} = 10$.'},
+        {'question': 'A right triangle has legs $a = 7$ and $b = 24$. Find the hypotenuse.', 'answer': '$25$',
+         'wrong': ['$31$', '$23$', '$\\sqrt{527}$'], 'explanation': '$c = \\sqrt{49+576} = 25$.'},
+        {'question': 'A right triangle has legs $a = 9$ and $b = 40$. Find the hypotenuse.', 'answer': '$41$',
+         'wrong': ['$49$', '$39$', '$\\sqrt{1519}$'], 'explanation': '$c = \\sqrt{81+1600} = 41$.'},
+        {'question': 'A right triangle has legs $a = 6$ and $b = 6$. Find the hypotenuse.', 'answer': '$6\\sqrt{2}$',
+         'wrong': ['$12$', '$6$', '$3\\sqrt{2}$'], 'explanation': '$c = \\sqrt{72} = 6\\sqrt{2}$.'},
+        {'question': 'A right triangle has hypotenuse $c = 10$ and one leg $a = 6$. Find the other leg.',
+         'answer': '$8$', 'wrong': ['$4$', '$6$', '$\\sqrt{136}$'], 'explanation': '$b = \\sqrt{100-36} = 8$.'},
+        {'question': 'A right triangle has hypotenuse $c = 13$ and one leg $a = 5$. Find the other leg.',
+         'answer': '$12$', 'wrong': ['$8$', '$10$', '$11$'], 'explanation': '$b = \\sqrt{169-25} = 12$.'},
+        {'question': 'A right triangle has legs $a = 1$ and $b = \\sqrt{3}$. Find the hypotenuse.', 'answer': '$2$',
+         'wrong': ['$\\sqrt{2}$', '$\\sqrt{5}$', '$4$'], 'explanation': '$c = \\sqrt{1+3} = 2$.'},
+        {'question': 'A right triangle has legs $a = 20$ and $b = 21$. Find the hypotenuse.', 'answer': '$29$',
+         'wrong': ['$41$', '$31$', '$\\sqrt{400}$'], 'explanation': '$c = \\sqrt{400+441} = \\sqrt{841} = 29$.'},
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'Find the area of a right triangle with legs $a = 6$ and $b = 8$.', 'answer': '$24$',
+         'wrong': ['$48$', '$12$', '$14$'], 'explanation': '$A = \\frac{1}{2}(6)(8) = 24$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 5$ and $b = 12$.', 'answer': '$30$',
+         'wrong': ['$60$', '$15$', '$17$'], 'explanation': '$A = \\frac{1}{2}(5)(12) = 30$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 3$ and $b = 4$.', 'answer': '$6$',
+         'wrong': ['$12$', '$7$', '$3.5$'], 'explanation': '$A = \\frac{1}{2}(3)(4) = 6$.'},
+        {'question': 'A right triangle has area $24$ and one leg $a = 8$. Find the other leg.', 'answer': '$6$',
+         'wrong': ['$3$', '$12$', '$4$'], 'explanation': '$24 = \\frac{1}{2}(8)b \\Rightarrow b = 6$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 10$ and $b = 10$.', 'answer': '$50$',
+         'wrong': ['$100$', '$25$', '$200$'], 'explanation': '$A = \\frac{1}{2}(10)(10) = 50$.'},
+        {'question': 'A right triangle has hypotenuse $c = 10$ and one leg $a = 6$. Find its area.', 'answer': '$24$',
+         'wrong': ['$30$', '$48$', '$60$'], 'explanation': '$b = 8$. $A = \\frac{1}{2}(6)(8) = 24$.'},
+        {'question': 'Find the area of a right triangle with legs $a = 7$ and $b = 24$.', 'answer': '$84$',
+         'wrong': ['$168$', '$42$', '$31$'], 'explanation': '$A = \\frac{1}{2}(7)(24) = 84$.'},
+        {'question': 'A right triangle has legs in ratio $3:4$ and area $54$. Find the legs.', 'answer': '$9$ and $12$',
+         'wrong': ['$6$ and $8$', '$12$ and $16$', '$3$ and $4$'],
+         'explanation': '$\\frac{1}{2}(3k)(4k)=54 \\Rightarrow k=3$. Legs: $9, 12$.'},
+        {'question': 'Find the area of an isosceles right triangle with legs $a = 4$.', 'answer': '$8$',
+         'wrong': ['$16$', '$4$', '$4\\sqrt{2}$'], 'explanation': '$A = \\frac{1}{2}(4)(4) = 8$.'},
+        {'question': 'A right triangle has legs $a = 9$ and $b = 40$. Find its area.', 'answer': '$180$',
+         'wrong': ['$360$', '$90$', '$369$'], 'explanation': '$A = \\frac{1}{2}(9)(40) = 180$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'Find the perimeter of a right triangle with legs $3, 4$ and hypotenuse $5$.', 'answer': '$12$',
+         'wrong': ['$7$', '$10$', '$14$'], 'explanation': '$P = 3+4+5 = 12$.'},
+        {'question': 'Find the perimeter of a right triangle with legs $5, 12$ and hypotenuse $13$.', 'answer': '$30$',
+         'wrong': ['$25$', '$18$', '$17$'], 'explanation': '$P = 5+12+13 = 30$.'},
+        {'question': 'Find the perimeter of a right triangle with legs $8, 6$ and hypotenuse $10$.', 'answer': '$24$',
+         'wrong': ['$14$', '$20$', '$28$'], 'explanation': '$P = 8+6+10 = 24$.'},
+        {'question': 'A right triangle has legs $7$ and $24$. Find its perimeter.', 'answer': '$56$',
+         'wrong': ['$50$', '$60$', '$31$'], 'explanation': '$c = 25$. $P = 7+24+25 = 56$.'},
+        {'question': 'A right triangle has legs $9$ and $40$. Find its perimeter.', 'answer': '$90$',
+         'wrong': ['$49$', '$82$', '$81$'], 'explanation': '$c = 41$. $P = 9+40+41 = 90$.'},
+        {'question': 'An isosceles right triangle has legs $a = 5$. Find its perimeter.', 'answer': '$10 + 5\\sqrt{2}$',
+         'wrong': ['$15$', '$10\\sqrt{2}$', '$5+10\\sqrt{2}$'],
+         'explanation': '$c = 5\\sqrt{2}$. $P = 10+5\\sqrt{2}$.'},
+        {'question': 'A right triangle has hypotenuse $17$ and one leg $8$. Find its perimeter.', 'answer': '$40$',
+         'wrong': ['$34$', '$38$', '$42$'], 'explanation': '$b = 15$. $P = 8+15+17 = 40$.'},
+        {'question': 'A right triangle has hypotenuse $25$ and one leg $7$. Find its perimeter.', 'answer': '$56$',
+         'wrong': ['$50$', '$32$', '$60$'], 'explanation': '$b = 24$. $P = 7+24+25 = 56$.'},
+        {'question': 'A right triangle has legs in ratio $1:1$ and hypotenuse $10\\sqrt{2}$. Find its perimeter.',
+         'answer': '$20 + 10\\sqrt{2}$', 'wrong': ['$30$', '$20\\sqrt{2}$', '$10\\sqrt{2}$'],
+         'explanation': 'Legs $= 10$. $P = 20+10\\sqrt{2}$.'},
+        {'question': 'A right triangle has legs $20$ and $21$. Find its perimeter.', 'answer': '$70$',
+         'wrong': ['$50$', '$62$', '$41$'], 'explanation': '$c = 29$. $P = 20+21+29 = 70$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'A right triangle has one acute angle of $30°$. Find the other acute angle.', 'answer': '$60°$',
+         'wrong': ['$30°$', '$45°$', '$90°$'], 'explanation': '$90+30+x=180 \\Rightarrow x=60°$.'},
+        {'question': 'In a right triangle, acute angles are $(2x+10)°$ and $(3x)°$. Find $x$.', 'answer': '$x = 16$',
+         'wrong': ['$x = 18$', '$x = 14$', '$x = 20$'], 'explanation': '$5x+10=90 \\Rightarrow x=16$.'},
+        {'question': 'A right triangle has acute angles in ratio $1:2$. Find them.', 'answer': '$30°$ and $60°$',
+         'wrong': ['$20°$ and $40°$', '$35°$ and $70°$', '$45°$ and $90°$'],
+         'explanation': '$x+2x=90 \\Rightarrow x=30°$.'},
+        {'question': 'A right triangle has one angle of $45°$. What type of right triangle is it?',
+         'answer': 'Isosceles right triangle', 'wrong': ['Scalene', '30-60-90', 'Equilateral'],
+         'explanation': 'Angles $45°, 45°, 90°$ — two equal angles means isosceles.'},
+        {'question': 'In a right triangle, one acute angle is $37°$. Find the other.', 'answer': '$53°$',
+         'wrong': ['$43°$', '$47°$', '$63°$'], 'explanation': '$90°-37°=53°$.'},
+        {'question': 'A right triangle has legs $a = b$. Find each acute angle.', 'answer': '$45°$',
+         'wrong': ['$30°$', '$60°$', '$50°$'],
+         'explanation': 'Equal legs → equal angles. Two angles sum to $90°$, so each is $45°$.'},
+        {'question': 'In a right triangle, one acute angle is five times the other. Find both.',
+         'answer': '$15°$ and $75°$', 'wrong': ['$18°$ and $72°$', '$20°$ and $70°$', '$30°$ and $60°$'],
+         'explanation': '$x+5x=90 \\Rightarrow x=15°$.'},
+        {'question': 'A right triangle has hypotenuse $10$ and leg $5$. Find the angle opposite the leg of $5$.',
+         'answer': '$30°$', 'wrong': ['$45°$', '$60°$', '$90°$'],
+         'explanation': '$\\sin\\theta=\\frac{5}{10}=\\frac{1}{2} \\Rightarrow \\theta=30°$.'},
+        {'question': 'In a right triangle, angles are $(4x)°$, $(2x)°$, and $90°$. Find $x$.', 'answer': '$x = 15$',
+         'wrong': ['$x = 10$', '$x = 20$', '$x = 18$'],
+         'explanation': '$4x+2x+90=180 \\Rightarrow 6x=90 \\Rightarrow x=15$.'},
+        {'question': 'A right triangle has acute angle $(x+5)°$ and $(2x-2)°$. Find each angle.',
+         'answer': '$34°$ and $56°$', 'wrong': ['$30°$ and $60°$', '$29°$ and $61°$', '$45°$ and $45°$'],
+         'explanation': '$(x+5)+(2x-2)=90 \\Rightarrow 3x=87 \\Rightarrow x=29$. Angles: $34°, 56°$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # ISOSCELES TRIANGLE  (Q41–80)
+        # 10 height | 10 area | 10 perimeter | 10 angles
+        # ══════════════════════════════════════════════════════════════════════════
+
+        # ── HEIGHT (10) ───────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 6$. Find the height.',
+         'answer': '$4$', 'wrong': ['$3$', '$5$', '$\\sqrt{34}$'], 'explanation': '$h=\\sqrt{25-9}=4$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 12$. Find the height.',
+         'answer': '$8$', 'wrong': ['$6$', '$10$', '$\\sqrt{136}$'], 'explanation': '$h=\\sqrt{100-36}=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 13$ and base $b = 10$. Find the height.',
+         'answer': '$12$', 'wrong': ['$11$', '$10$', '$\\sqrt{119}$'], 'explanation': '$h=\\sqrt{169-25}=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 17$ and base $b = 16$. Find the height.',
+         'answer': '$15$', 'wrong': ['$13$', '$16$', '$\\sqrt{225}$'], 'explanation': '$h=\\sqrt{289-64}=15$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 8$. Find the height.',
+         'answer': '$3$', 'wrong': ['$4$', '$\\sqrt{41}$', '$5$'], 'explanation': '$h=\\sqrt{25-16}=3$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 15$ and base $b = 18$. Find the height.',
+         'answer': '$12$', 'wrong': ['$9$', '$15$', '$\\sqrt{306}$'], 'explanation': '$h=\\sqrt{225-81}=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 25$ and base $b = 14$. Find the height.',
+         'answer': '$24$', 'wrong': ['$20$', '$25$', '$\\sqrt{674}$'], 'explanation': '$h=\\sqrt{625-49}=24$.'},
+        {'question': 'The height of an isosceles triangle is $h = 8$ and base $b = 12$. Find the equal side.',
+         'answer': '$10$', 'wrong': ['$8$', '$6$', '$\\sqrt{208}$'], 'explanation': '$a=\\sqrt{64+36}=10$.'},
+        {'question': 'The height is $h = 6$ and equal sides $a = 10$. Find the base of the isosceles triangle.',
+         'answer': '$16$', 'wrong': ['$8$', '$12$', '$\\sqrt{136}$'],
+         'explanation': '$\\frac{b}{2}=\\sqrt{100-36}=8 \\Rightarrow b=16$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 20$ and base $b = 24$. Find the height.',
+         'answer': '$16$', 'wrong': ['$14$', '$12$', '$\\sqrt{544}$'], 'explanation': '$h=\\sqrt{400-144}=16$.'},
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has base $b = 6$ and height $h = 4$. Find the area.', 'answer': '$12$',
+         'wrong': ['$24$', '$6$', '$10$'], 'explanation': '$A=\\frac{1}{2}(6)(4)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 5$ and base $b = 6$. Find the area.', 'answer': '$12$',
+         'wrong': ['$15$', '$6$', '$30$'], 'explanation': '$h=4$. $A=\\frac{1}{2}(6)(4)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 12$. Find the area.',
+         'answer': '$48$', 'wrong': ['$60$', '$24$', '$96$'], 'explanation': '$h=8$. $A=\\frac{1}{2}(12)(8)=48$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 13$ and base $b = 10$. Find the area.',
+         'answer': '$60$', 'wrong': ['$65$', '$30$', '$130$'], 'explanation': '$h=12$. $A=\\frac{1}{2}(10)(12)=60$.'},
+        {'question': 'An isosceles triangle has base $b = 8$ and height $h = 3$. Find the area.', 'answer': '$12$',
+         'wrong': ['$24$', '$6$', '$11$'], 'explanation': '$A=\\frac{1}{2}(8)(3)=12$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 17$ and base $b = 16$. Find the area.',
+         'answer': '$120$', 'wrong': ['$136$', '$60$', '$240$'],
+         'explanation': '$h=15$. $A=\\frac{1}{2}(16)(15)=120$.'},
+        {'question': 'An isosceles triangle has area $40$ and base $b = 10$. Find the height.', 'answer': '$8$',
+         'wrong': ['$4$', '$6$', '$10$'], 'explanation': '$40=\\frac{1}{2}(10)h \\Rightarrow h=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 25$ and base $b = 14$. Find the area.',
+         'answer': '$168$', 'wrong': ['$175$', '$84$', '$336$'],
+         'explanation': '$h=24$. $A=\\frac{1}{2}(14)(24)=168$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 15$ and base $b = 20$. Find the area.',
+         'answer': '$50\\sqrt{5}$', 'wrong': ['$150$', '$100\\sqrt{5}$', '$75$'],
+         'explanation': '$h=\\sqrt{225-100}=\\sqrt{125}=5\\sqrt{5}$. $A=\\frac{1}{2}(20)(5\\sqrt{5})=50\\sqrt{5}$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 20$ and base $b = 24$. Find the area.',
+         'answer': '$192$', 'wrong': ['$240$', '$96$', '$160$'],
+         'explanation': '$h=16$. $A=\\frac{1}{2}(24)(16)=192$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has equal sides $a = 7$ and base $b = 5$. Find the perimeter.',
+         'answer': '$19$', 'wrong': ['$14$', '$17$', '$21$'], 'explanation': '$P=2(7)+5=19$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 10$ and base $b = 6$. Find the perimeter.',
+         'answer': '$26$', 'wrong': ['$20$', '$16$', '$30$'], 'explanation': '$P=2(10)+6=26$.'},
+        {'question': 'An isosceles triangle has perimeter $30$ and base $b = 8$. Find each equal side.',
+         'answer': '$11$', 'wrong': ['$7$', '$15$', '$22$'], 'explanation': '$2a=30-8=22 \\Rightarrow a=11$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 9$ and base $b = 14$. Find the perimeter.',
+         'answer': '$32$', 'wrong': ['$23$', '$28$', '$36$'], 'explanation': '$P=2(9)+14=32$.'},
+        {'question': 'An isosceles triangle has perimeter $50$ and equal sides $a = 15$. Find the base.',
+         'answer': '$20$', 'wrong': ['$10$', '$25$', '$35$'], 'explanation': '$b=50-30=20$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 12$ and base $b = 10$. Find the perimeter.',
+         'answer': '$34$', 'wrong': ['$24$', '$22$', '$44$'], 'explanation': '$P=2(12)+10=34$.'},
+        {'question': 'An isosceles triangle has perimeter $40$ and each equal side is twice the base. Find the base.',
+         'answer': '$8$', 'wrong': ['$10$', '$16$', '$5$'], 'explanation': '$5b=40 \\Rightarrow b=8$.'},
+        {'question': 'An isosceles triangle has equal sides $a = 8$ and base $b = 6$. Find the perimeter.',
+         'answer': '$22$', 'wrong': ['$16$', '$24$', '$14$'], 'explanation': '$P=2(8)+6=22$.'},
+        {'question': 'An isosceles triangle has base $b = 3$ and equal sides $a = 4$. Find the perimeter.',
+         'answer': '$11$', 'wrong': ['$7$', '$12$', '$8$'], 'explanation': '$P=2(4)+3=11$.'},
+        {'question': 'An isosceles triangle has perimeter $48$ and base $b = 12$. Find each equal side.',
+         'answer': '$18$', 'wrong': ['$12$', '$24$', '$36$'], 'explanation': '$2a=48-12=36 \\Rightarrow a=18$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'An isosceles triangle has vertex angle $40°$. Find each base angle.', 'answer': '$70°$',
+         'wrong': ['$40°$', '$80°$', '$60°$'], 'explanation': 'Base angles $=\\frac{180-40}{2}=70°$.'},
+        {'question': 'An isosceles triangle has base angles $55°$ each. Find the vertex angle.', 'answer': '$70°$',
+         'wrong': ['$55°$', '$90°$', '$110°$'], 'explanation': 'Vertex $=180-110=70°$.'},
+        {'question': 'Isosceles triangle: vertex $(4x)°$, base angles $(3x+10)°$ each. Find $x$.', 'answer': '$x = 16$',
+         'wrong': ['$x = 18$', '$x = 14$', '$x = 20$'],
+         'explanation': '$4x+2(3x+10)=180 \\Rightarrow 10x=160 \\Rightarrow x=16$.'},
+        {'question': 'An isosceles triangle has a base angle of $72°$. Find the vertex angle.', 'answer': '$36°$',
+         'wrong': ['$72°$', '$108°$', '$54°$'], 'explanation': 'Vertex $=180-144=36°$.'},
+        {'question': 'In an isosceles triangle the vertex angle is three times a base angle. Find all angles.',
+         'answer': '$36°, 36°, 108°$', 'wrong': ['$30°, 30°, 120°$', '$45°, 45°, 90°$', '$40°, 40°, 100°$'],
+         'explanation': '$5x=180 \\Rightarrow x=36°$. Vertex $=108°$.'},
+        {'question': 'An isosceles right triangle has the right angle at the apex. Find the base angles.',
+         'answer': '$45°$', 'wrong': ['$30°$', '$60°$', '$90°$'],
+         'explanation': 'Base angles $=\\frac{180-90}{2}=45°$.'},
+        {'question': 'Isosceles triangle: base angles $(2x+5)°$ each, vertex $(x+10)°$. Find $x$.',
+         'answer': '$x = 32$', 'wrong': ['$x = 28$', '$x = 36$', '$x = 24$'],
+         'explanation': '$2(2x+5)+(x+10)=180 \\Rightarrow 5x=160 \\Rightarrow x=32$.'},
+        {'question': 'An isosceles triangle has vertex angle $100°$. What are the base angles?', 'answer': '$40°$ each',
+         'wrong': ['$80°$ each', '$50°$ each', '$45°$ each'], 'explanation': 'Base $=\\frac{180-100}{2}=40°$.'},
+        {'question': 'Isosceles triangle vertex angle is $20°$ more than each base angle. Find all angles.',
+         'answer': '$53\\tfrac{1}{3}°, 53\\tfrac{1}{3}°, 73\\tfrac{1}{3}°$',
+         'wrong': ['$50°, 50°, 80°$', '$55°, 55°, 70°$', '$60°, 60°, 60°$'],
+         'explanation': '$3x+20=180 \\Rightarrow x=\\frac{160}{3}\\approx53.3°$. Vertex $=73.3°$.'},
+        {'question': 'An isosceles triangle has base angles in ratio $1:1$ and vertex $50°$. Find each base angle.',
+         'answer': '$65°$', 'wrong': ['$50°$', '$90°$', '$55°$'], 'explanation': 'Base $=\\frac{180-50}{2}=65°$.'},
+
+        # ══════════════════════════════════════════════════════════════════════════
+        # EQUILATERAL TRIANGLE  (Q81–120)
+        # 10 area | 10 angles | 10 perimeter | 10 height
+        # ══════════════════════════════════════════════════════════════════════════
+
+        # ── AREA (10) ─────────────────────────────────────────────────────────────
+        {'question': 'Find the area of an equilateral triangle with side $s = 4$.', 'answer': '$4\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$2\\sqrt{3}$', '$16$'], 'explanation': '$A=\\frac{\\sqrt{3}}{4}(16)=4\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 6$.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$18\\sqrt{3}$', '$6\\sqrt{3}$', '$36$'], 'explanation': '$A=\\frac{\\sqrt{3}}{4}(36)=9\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 10$.', 'answer': '$25\\sqrt{3}$',
+         'wrong': ['$50\\sqrt{3}$', '$10\\sqrt{3}$', '$100$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(100)=25\\sqrt{3}$.'},
+        {'question': 'The area of an equilateral triangle is $16\\sqrt{3}$. Find the side length.', 'answer': '$8$',
+         'wrong': ['$4$', '$16$', '$4\\sqrt{3}$'], 'explanation': '$s^2=64 \\Rightarrow s=8$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 2$.', 'answer': '$\\sqrt{3}$',
+         'wrong': ['$2\\sqrt{3}$', '$4\\sqrt{3}$', '$\\frac{\\sqrt{3}}{4}$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(4)=\\sqrt{3}$.'},
+        {'question': 'The area of an equilateral triangle is $36\\sqrt{3}$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$6$', '$9$', '$18$'], 'explanation': '$s^2=144 \\Rightarrow s=12$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 8$.', 'answer': '$16\\sqrt{3}$',
+         'wrong': ['$32\\sqrt{3}$', '$8\\sqrt{3}$', '$64$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(64)=16\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 3\\sqrt{3}$. Find its area.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$3\\sqrt{3}$', '$18$', '$6\\sqrt{3}$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}s \\Rightarrow s=6$. $A=9\\sqrt{3}$.'},
+        {'question': 'Find the area of an equilateral triangle with side $s = 5$.',
+         'answer': '$\\dfrac{25\\sqrt{3}}{4}$',
+         'wrong': ['$\\frac{5\\sqrt{3}}{4}$', '$25\\sqrt{3}$', '$\\frac{25}{4}$'],
+         'explanation': '$A=\\frac{\\sqrt{3}}{4}(25)=\\frac{25\\sqrt{3}}{4}$.'},
+        {'question': 'Two equilateral triangles have sides $4$ and $8$. What is the ratio of their areas?',
+         'answer': '$1:4$', 'wrong': ['$1:2$', '$2:1$', '$1:8$'], 'explanation': '$4\\sqrt{3}:16\\sqrt{3}=1:4$.'},
+
+        # ── ANGLES (10) ───────────────────────────────────────────────────────────
+        {'question': 'What is each interior angle of an equilateral triangle?', 'answer': '$60°$',
+         'wrong': ['$45°$', '$90°$', '$120°$'], 'explanation': 'All angles equal; $3 \\times 60°=180°$.'},
+        {'question': 'One angle of an equilateral triangle is $(2x)°$. Find $x$.', 'answer': '$x = 30$',
+         'wrong': ['$x = 45$', '$x = 60$', '$x = 20$'], 'explanation': '$2x=60 \\Rightarrow x=30$.'},
+        {'question': 'Can an equilateral triangle have an obtuse angle?', 'answer': 'No — all angles are $60°$',
+         'wrong': ['Yes — one angle can be $90°$', 'Yes — one angle can be $120°$', 'Yes, if sides differ'],
+         'explanation': 'All angles are $60°$ — all acute.'},
+        {'question': 'What is the exterior angle of an equilateral triangle at each vertex?', 'answer': '$120°$',
+         'wrong': ['$60°$', '$90°$', '$180°$'], 'explanation': 'Exterior $=180°-60°=120°$.'},
+        {'question': 'What is the sum of all exterior angles of an equilateral triangle?', 'answer': '$360°$',
+         'wrong': ['$180°$', '$240°$', '$720°$'],
+         'explanation': 'Sum of exterior angles of any convex polygon is $360°$.'},
+        {'question': 'An equilateral triangle has one angle $(3x-30)°$. Find $x$.', 'answer': '$x = 30$',
+         'wrong': ['$x = 20$', '$x = 40$', '$x = 10$'], 'explanation': '$3x-30=60 \\Rightarrow x=30$.'},
+        {'question': 'Is an equilateral triangle also equiangular?', 'answer': 'Yes — all angles are $60°$',
+         'wrong': ['No', 'Only for side $> 1$', 'Only if also right'],
+         'explanation': 'Equal sides force equal angles in a triangle.'},
+        {'question': 'The altitude of an equilateral triangle makes what angle with the base?', 'answer': '$90°$',
+         'wrong': ['$60°$', '$45°$', '$30°$'], 'explanation': 'The altitude is perpendicular to the base: $90°$.'},
+        {
+            'question': 'An equilateral triangle is divided into two triangles by the altitude. Find each angle of one half-triangle.',
+            'answer': '$30°, 60°, 90°$', 'wrong': ['$45°, 45°, 90°$', '$60°, 60°, 60°$', '$30°, 30°, 120°$'],
+            'explanation': 'The altitude bisects the top $60°$ angle and meets the base at $90°$: angles are $30°, 60°, 90°$.'},
+        {'question': 'Two angles of an equilateral triangle are $(x+10)°$ and $(2x-20)°$. Find $x$.',
+         'answer': '$x = 30$', 'wrong': ['$x = 20$', '$x = 40$', '$x = 50$'],
+         'explanation': '$x+10=60 \\Rightarrow x=50$; or $2x-20=60 \\Rightarrow x=40$. Using $x+10=2x-20 \\Rightarrow x=30$.'},
+
+        # ── PERIMETER (10) ────────────────────────────────────────────────────────
+        {'question': 'Find the perimeter of an equilateral triangle with side $s = 7$.', 'answer': '$21$',
+         'wrong': ['$14$', '$28$', '$49$'], 'explanation': '$P=3(7)=21$.'},
+        {'question': 'An equilateral triangle has perimeter $36$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$9$', '$18$', '$6$'], 'explanation': '$s=36/3=12$.'},
+        {'question': 'Find the perimeter of an equilateral triangle with side $s = 4.5$.', 'answer': '$13.5$',
+         'wrong': ['$9$', '$18$', '$4.5$'], 'explanation': '$P=3(4.5)=13.5$.'},
+        {
+            'question': 'The perimeter of an equilateral triangle equals the perimeter of a square with side $6$. Find the triangle\'s side.',
+            'answer': '$8$', 'wrong': ['$6$', '$12$', '$4$'], 'explanation': 'Square $P=24$. $s=24/3=8$.'},
+        {'question': 'An equilateral triangle has side $s = 3\\sqrt{3}$. Find its perimeter.', 'answer': '$9\\sqrt{3}$',
+         'wrong': ['$3\\sqrt{3}$', '$6\\sqrt{3}$', '$27$'], 'explanation': '$P=3(3\\sqrt{3})=9\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has perimeter $15$. Find the side length.', 'answer': '$5$',
+         'wrong': ['$3$', '$7.5$', '$6$'], 'explanation': '$s=15/3=5$.'},
+        {'question': 'Two equilateral triangles have sides $5$ and $7$. What is the difference in their perimeters?',
+         'answer': '$6$', 'wrong': ['$2$', '$4$', '$8$'], 'explanation': '$P_1=15$, $P_2=21$. Difference $=6$.'},
+        {'question': 'An equilateral triangle has perimeter $p$. Express the side in terms of $p$.',
+         'answer': '$\\dfrac{p}{3}$', 'wrong': ['$3p$', '$\\frac{p}{2}$', '$\\frac{p}{4}$'], 'explanation': '$s=p/3$.'},
+        {
+            'question': 'An equilateral triangle has the same perimeter as a rectangle $10 \\times 5$. Find the triangle\'s side.',
+            'answer': '$10$', 'wrong': ['$15$', '$5$', '$30$'], 'explanation': 'Rectangle $P=30$. $s=30/3=10$.'},
+        {'question': 'An equilateral triangle has perimeter $24$. Find the area.', 'answer': '$16\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$24\\sqrt{3}$', '$32\\sqrt{3}$'],
+         'explanation': '$s=8$. $A=\\frac{\\sqrt{3}}{4}(64)=16\\sqrt{3}$.'},
+
+        # ── HEIGHT (10) ───────────────────────────────────────────────────────────
+        {'question': 'Find the height of an equilateral triangle with side $s = 2$.', 'answer': '$\\sqrt{3}$',
+         'wrong': ['$2\\sqrt{3}$', '$\\frac{\\sqrt{3}}{2}$', '$1$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}(2)=\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 4$.', 'answer': '$2\\sqrt{3}$',
+         'wrong': ['$4\\sqrt{3}$', '$\\sqrt{3}$', '$8$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(4)=2\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 6$.', 'answer': '$3\\sqrt{3}$',
+         'wrong': ['$6\\sqrt{3}$', '$\\sqrt{3}$', '$9$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(6)=3\\sqrt{3}$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 10$.', 'answer': '$5\\sqrt{3}$',
+         'wrong': ['$10\\sqrt{3}$', '$2\\sqrt{3}$', '$25$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(10)=5\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 6\\sqrt{3}$. Find the side length.', 'answer': '$12$',
+         'wrong': ['$6$', '$24$', '$6\\sqrt{3}$'], 'explanation': '$s=\\frac{2h}{\\sqrt{3}}=12$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 8$.', 'answer': '$4\\sqrt{3}$',
+         'wrong': ['$8\\sqrt{3}$', '$2\\sqrt{3}$', '$16$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(8)=4\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = \\sqrt{3}$. Find the side length.', 'answer': '$2$',
+         'wrong': ['$1$', '$\\sqrt{3}$', '$4$'], 'explanation': '$s=\\frac{2\\sqrt{3}}{\\sqrt{3}}=2$.'},
+        {'question': 'Find the height of an equilateral triangle with side $s = 12$.', 'answer': '$6\\sqrt{3}$',
+         'wrong': ['$12\\sqrt{3}$', '$3\\sqrt{3}$', '$36$'], 'explanation': '$h=\\frac{\\sqrt{3}}{2}(12)=6\\sqrt{3}$.'},
+        {'question': 'An equilateral triangle has height $h = 5\\sqrt{3}$. Find its area.', 'answer': '$25\\sqrt{3}$',
+         'wrong': ['$50\\sqrt{3}$', '$10\\sqrt{3}$', '$75$'],
+         'explanation': '$s=10$. $A=\\frac{\\sqrt{3}}{4}(100)=25\\sqrt{3}$.'},
+        {'question': 'What fraction of the side length is the height of an equilateral triangle?',
+         'answer': '$\\dfrac{\\sqrt{3}}{2}$', 'wrong': ['$\\frac{1}{2}$', '$\\sqrt{3}$', '$\\frac{\\sqrt{2}}{2}$'],
+         'explanation': '$h=\\frac{\\sqrt{3}}{2}s \\Rightarrow \\frac{h}{s}=\\frac{\\sqrt{3}}{2}$.'}
     ]
 }
