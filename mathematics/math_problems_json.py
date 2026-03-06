@@ -11333,11 +11333,11 @@ math_problems_json = {
             'explanation': 'Equal right angles + proportional adjacent sides → SAS similarity.'},
 
         {
-            'question': '$\\triangle ABC$: $AB = 10$, $AC = 15$, $\\angle A = 80°$. $\\triangle DEF$: $DE = 4$, $DF = 6$, $\\angle D = 80°$. Area of $\\triangle ABC = 60$. Find area of $\\triangle DEF$.',
-            'answer': '$\\dfrac{24}{\\strut 5}$ (i.e., $9.6$)',
-            'answer': '$9.6$',
-            'wrong': ['$24$', '$15$', '$6$'],
-            'explanation': 'Ratio $= 10/4 = 5/2$. Area ratio $= 25/4$. Area $= 60 \\times 4/25 = 9.6$.'},
+            "question": "$\\triangle ABC$: $AB = 10$, $AC = 15$, $\\angle A = 80^\\circ$. $\\triangle DEF$: $DE = 4$, $DF = 6$, $\\angle D = 80^\\circ$. Area of $\\triangle ABC = 60$. Find area of $\\triangle DEF$.",
+            "answer": "$9.6$",
+            "wrong": ["$24$", "$15$", "$6$"],
+            "explanation": "Since $\\angle A = \\angle D$, the triangles are similar. The side ratio is $10/4 = 15/6 = 5/2$. Area scales with the square of the ratio: $(5/2)^2 = 25/4$. Thus area$(ABC)$/area$(DEF) = 25/4$. So area$(DEF) = 60 \\times \\frac{4}{25} = 9.6$."
+        },
 
         {
             'question': 'In $\\triangle ABC$, $D$ on $AB$ and $E$ on $AC$ such that $AD = 3$, $AB = 9$, $AE = 4$, $AC = 12$. $\\angle A = 55°$. Is $\\triangle ADE \\sim \\triangle ABC$?',
@@ -11358,11 +11358,11 @@ math_problems_json = {
             'explanation': 'Ratio $= 6/8 = 3/4$. Other side $= 12 \\times 3/4 = 9$.'},
 
         {
-            'question': 'In right $\\triangle ABC$ ($\\angle B = 90°$), $BD \\perp AC$. $BD = 6$, $AD = 4$. Prove $\\triangle ABD \\sim \\triangle CBD$ using SAS.',
-            'answer': '$\\angle ABD = \\angle CBD$... actually use AA (shared $90°$ + equal angles). The criterion is AA.',
-            'answer': 'AA applies here (both have $90°$ and share an angle)',
-            'wrong': ['SAS with $BD$ common', 'SSS', 'HL only'],
-            'explanation': 'Both triangles have right angles and share a common angle → AA (not SAS).'},
+            "question": "In right $\\triangle ABC$ ($\\angle B = 90°$), $BD \\perp AC$. $BD = 6$, $AD = 4$. Prove $\\triangle ABD \\sim \\triangle CBD$ using SAS.",
+            "answer": "AA applies here (both have $90°$ and share an angle).",
+            "wrong": ["SAS with $BD$ common", "SSS", "HL only"],
+            "explanation": "Both triangles have right angles and share a common angle → AA (not SAS)."
+        },
 
         {
             'question': '$\\triangle ABC$: $AB = 2x$, $AC = 3x$, $\\angle A = 65°$. $\\triangle DEF$: $DE = 8$, $DF = 12$, $\\angle D = 65°$. For SAS similarity, find $x$.',

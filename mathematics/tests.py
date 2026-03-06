@@ -49,4 +49,7 @@ def return_lesson_name(word):
 #         all_data[x] = new_data
 #     return all_data
 
-
+from .math_problems_json import math_problems_json
+data = math_problems_json
+total = sum(len(v) for v in data.values())
+print(total)
