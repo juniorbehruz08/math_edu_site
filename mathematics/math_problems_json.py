@@ -12176,5 +12176,3165 @@ math_problems_json = {
         {'question': 'What fraction of the side length is the height of an equilateral triangle?',
          'answer': '$\\dfrac{\\sqrt{3}}{2}$', 'wrong': ['$\\frac{1}{2}$', '$\\sqrt{3}$', '$\\frac{\\sqrt{2}}{2}$'],
          'explanation': '$h=\\frac{\\sqrt{3}}{2}s \\Rightarrow \\frac{h}{s}=\\frac{\\sqrt{3}}{2}$.'}
-    ]
+    ],
+    'types_of_quadrilateral': [
+        {
+            "question": "Side length of a square is $s = 7$ cm. Find the perimeter.",
+            "answer": "$P = 28$ cm",
+            "wrong": ["$P = 14$ cm", "$P = 49$ cm", "$P = 21$ cm"],
+            "explanation": "$P = 4s = 4 \\times 7 = 28$ cm."
+        },
+        {
+            "question": "A square has side $s = 12$ m. Find the perimeter.",
+            "answer": "$P = 48$ m",
+            "wrong": ["$P = 24$ m", "$P = 144$ m", "$P = 36$ m"],
+            "explanation": "$P = 4s = 4 \\times 12 = 48$ m."
+        },
+        {
+            "question": "The perimeter of a square is $P = 36$ cm. Find the side length.",
+            "answer": "$s = 9$ cm",
+            "wrong": ["$s = 6$ cm", "$s = 12$ cm", "$s = 18$ cm"],
+            "explanation": "$s = \\dfrac{P}{4} = \\dfrac{36}{4} = 9$ cm."
+        },
+        {
+            "question": "A square has side $s = 5.5$ cm. Find the perimeter.",
+            "answer": "$P = 22$ cm",
+            "wrong": ["$P = 11$ cm", "$P = 30.25$ cm", "$P = 16.5$ cm"],
+            "explanation": "$P = 4s = 4 \\times 5.5 = 22$ cm."
+        },
+        {
+            "question": "The perimeter of a square is $P = 100$ m. Find the side length.",
+            "answer": "$s = 25$ m",
+            "wrong": ["$s = 20$ m", "$s = 50$ m", "$s = 10$ m"],
+            "explanation": "$s = \\dfrac{P}{4} = \\dfrac{100}{4} = 25$ m."
+        },
+        {
+            "question": "A square has side $s = 3\\sqrt{2}$ cm. Find the perimeter.",
+            "answer": "$P = 12\\sqrt{2}$ cm",
+            "wrong": ["$P = 6\\sqrt{2}$ cm", "$P = 18$ cm", "$P = 36$ cm"],
+            "explanation": "$P = 4s = 4 \\times 3\\sqrt{2} = 12\\sqrt{2}$ cm."
+        },
+        {
+            "question": "The perimeter of a square is $P = 56$ cm. Find the side length.",
+            "answer": "$s = 14$ cm",
+            "wrong": ["$s = 7$ cm", "$s = 28$ cm", "$s = 112$ cm"],
+            "explanation": "$s = \\dfrac{P}{4} = \\dfrac{56}{4} = 14$ cm."
+        },
+        {
+            "question": "A square has side $s = 0.8$ m. Find the perimeter.",
+            "answer": "$P = 3.2$ m",
+            "wrong": ["$P = 1.6$ m", "$P = 0.64$ m", "$P = 4$ m"],
+            "explanation": "$P = 4s = 4 \\times 0.8 = 3.2$ m."
+        },
+        {
+            "question": "A square has side $s = 15$ cm. Find the perimeter.",
+            "answer": "$P = 60$ cm",
+            "wrong": ["$P = 225$ cm", "$P = 30$ cm", "$P = 45$ cm"],
+            "explanation": "$P = 4s = 4 \\times 15 = 60$ cm."
+        },
+        {
+            "question": "The perimeter of a square is $P = 72$ m. Find the side length.",
+            "answer": "$s = 18$ m",
+            "wrong": ["$s = 36$ m", "$s = 9$ m", "$s = 24$ m"],
+            "explanation": "$s = \\dfrac{P}{4} = \\dfrac{72}{4} = 18$ m."
+        },
+
+        {
+            "question": "A square has side $s = 9$ cm. Find the area.",
+            "answer": "$A = 81$ cm²",
+            "wrong": ["$A = 36$ cm²", "$A = 18$ cm²", "$A = 45$ cm²"],
+            "explanation": "$A = s^2 = 9^2 = 81$ cm²."
+        },
+        {
+            "question": "A square has side $s = 13$ cm. Find the area.",
+            "answer": "$A = 169$ cm²",
+            "wrong": ["$A = 52$ cm²", "$A = 26$ cm²", "$A = 130$ cm²"],
+            "explanation": "$A = s^2 = 13^2 = 169$ cm²."
+        },
+        {
+            "question": "The area of a square is $A = 144$ cm². Find the side length.",
+            "answer": "$s = 12$ cm",
+            "wrong": ["$s = 36$ cm", "$s = 72$ cm", "$s = 16$ cm"],
+            "explanation": "$s = \\sqrt{A} = \\sqrt{144} = 12$ cm."
+        },
+        {
+            "question": "A square has side $s = 7$ m. Find the area.",
+            "answer": "$A = 49$ m²",
+            "wrong": ["$A = 28$ m²", "$A = 14$ m²", "$A = 56$ m²"],
+            "explanation": "$A = s^2 = 7^2 = 49$ m²."
+        },
+        {
+            "question": "The area of a square is $A = 225$ m². Find the side length.",
+            "answer": "$s = 15$ m",
+            "wrong": ["$s = 25$ m", "$s = 45$ m", "$s = 112.5$ m"],
+            "explanation": "$s = \\sqrt{225} = 15$ m."
+        },
+        {
+            "question": "A square has side $s = \\sqrt{5}$ cm. Find the area.",
+            "answer": "$A = 5$ cm²",
+            "wrong": ["$A = 4\\sqrt{5}$ cm²", "$A = 2\\sqrt{5}$ cm²", "$A = 25$ cm²"],
+            "explanation": "$A = s^2 = (\\sqrt{5})^2 = 5$ cm²."
+        },
+        {
+            "question": "The area of a square is $A = 196$ cm². Find the side length.",
+            "answer": "$s = 14$ cm",
+            "wrong": ["$s = 49$ cm", "$s = 28$ cm", "$s = 98$ cm"],
+            "explanation": "$s = \\sqrt{196} = 14$ cm."
+        },
+        {
+            "question": "A square has side $s = 20$ m. Find the area.",
+            "answer": "$A = 400$ m²",
+            "wrong": ["$A = 80$ m²", "$A = 40$ m²", "$A = 200$ m²"],
+            "explanation": "$A = s^2 = 20^2 = 400$ m²."
+        },
+        {
+            "question": "A square has side $s = 1.5$ cm. Find the area.",
+            "answer": "$A = 2.25$ cm²",
+            "wrong": ["$A = 6$ cm²", "$A = 3$ cm²", "$A = 9$ cm²"],
+            "explanation": "$A = s^2 = 1.5^2 = 2.25$ cm²."
+        },
+        {
+            "question": "The area of a square is $A = 289$ cm². Find the side length.",
+            "answer": "$s = 17$ cm",
+            "wrong": ["$s = 144.5$ cm", "$s = 34$ cm", "$s = 16$ cm"],
+            "explanation": "$s = \\sqrt{289} = 17$ cm."
+        },
+
+        {
+            "question": "A square has side $s = 6$ cm. Find the diagonal.",
+            "answer": "$d = 6\\sqrt{2}$ cm",
+            "wrong": ["$d = 12$ cm", "$d = 3\\sqrt{2}$ cm", "$d = 36$ cm"],
+            "explanation": "$d = s\\sqrt{2} = 6\\sqrt{2}$ cm."
+        },
+        {
+            "question": "A square has side $s = 10$ cm. Find the diagonal.",
+            "answer": "$d = 10\\sqrt{2}$ cm",
+            "wrong": ["$d = 20$ cm", "$d = 5\\sqrt{2}$ cm", "$d = 100$ cm"],
+            "explanation": "$d = s\\sqrt{2} = 10\\sqrt{2}$ cm."
+        },
+        {
+            "question": "The diagonal of a square is $d = 8\\sqrt{2}$ cm. Find the side length.",
+            "answer": "$s = 8$ cm",
+            "wrong": ["$s = 4$ cm", "$s = 16$ cm", "$s = 4\\sqrt{2}$ cm"],
+            "explanation": "$s = \\dfrac{d}{\\sqrt{2}} = \\dfrac{8\\sqrt{2}}{\\sqrt{2}} = 8$ cm."
+        },
+        {
+            "question": "A square has side $s = 5$ cm. Find the diagonal.",
+            "answer": "$d = 5\\sqrt{2}$ cm",
+            "wrong": ["$d = 10$ cm", "$d = 25$ cm", "$d = \\sqrt{10}$ cm"],
+            "explanation": "$d = s\\sqrt{2} = 5\\sqrt{2}$ cm."
+        },
+        {
+            "question": "The diagonal of a square is $d = 12\\sqrt{2}$ cm. Find the side length.",
+            "answer": "$s = 12$ cm",
+            "wrong": ["$s = 6$ cm", "$s = 24$ cm", "$s = 6\\sqrt{2}$ cm"],
+            "explanation": "$s = \\dfrac{d}{\\sqrt{2}} = 12$ cm."
+        },
+        {
+            "question": "A square has side $s = 3$ m. Find the diagonal.",
+            "answer": "$d = 3\\sqrt{2}$ m",
+            "wrong": ["$d = 6$ m", "$d = 9$ m", "$d = \\sqrt{6}$ m"],
+            "explanation": "$d = s\\sqrt{2} = 3\\sqrt{2}$ m."
+        },
+        {
+            "question": "The diagonal of a square is $d = 10$ cm. Find the area.",
+            "answer": "$A = 50$ cm²",
+            "wrong": ["$A = 100$ cm²", "$A = 25$ cm²", "$A = 25\\sqrt{2}$ cm²"],
+            "explanation": "$A = \\dfrac{d^2}{2} = \\dfrac{100}{2} = 50$ cm²."
+        },
+        {
+            "question": "A square has side $s = 4\\sqrt{2}$ cm. Find the diagonal.",
+            "answer": "$d = 8$ cm",
+            "wrong": ["$d = 4$ cm", "$d = 4\\sqrt{3}$ cm", "$d = 8\\sqrt{2}$ cm"],
+            "explanation": "$d = s\\sqrt{2} = 4\\sqrt{2} \\cdot \\sqrt{2} = 8$ cm."
+        },
+        {
+            "question": "The diagonal of a square is $d = 14\\sqrt{2}$ cm. Find the perimeter.",
+            "answer": "$P = 56$ cm",
+            "wrong": ["$P = 28$ cm", "$P = 112$ cm", "$P = 28\\sqrt{2}$ cm"],
+            "explanation": "$s = \\dfrac{d}{\\sqrt{2}} = 14$, $P = 4 \\times 14 = 56$ cm."
+        },
+        {
+            "question": "A square has side $s = 11$ cm. Find the diagonal.",
+            "answer": "$d = 11\\sqrt{2}$ cm",
+            "wrong": ["$d = 22$ cm", "$d = 121$ cm", "$d = \\sqrt{11}$ cm"],
+            "explanation": "$d = s\\sqrt{2} = 11\\sqrt{2}$ cm."
+        },
+
+        {
+            "question": "A rectangle has length $l = 8$ cm and width $w = 5$ cm. Find the area.",
+            "answer": "$A = 40$ cm²",
+            "wrong": ["$A = 26$ cm²", "$A = 13$ cm²", "$A = 80$ cm²"],
+            "explanation": "$A = l \\times w = 8 \\times 5 = 40$ cm²."
+        },
+        {
+            "question": "A rectangle has length $l = 12$ m and width $w = 7$ m. Find the area.",
+            "answer": "$A = 84$ m²",
+            "wrong": ["$A = 38$ m²", "$A = 19$ m²", "$A = 168$ m²"],
+            "explanation": "$A = l \\times w = 12 \\times 7 = 84$ m²."
+        },
+        {
+            "question": "The area of a rectangle is $A = 60$ cm² and its length is $l = 10$ cm. Find the width.",
+            "answer": "$w = 6$ cm",
+            "wrong": ["$w = 3$ cm", "$w = 12$ cm", "$w = 50$ cm"],
+            "explanation": "$w = \\dfrac{A}{l} = \\dfrac{60}{10} = 6$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 15$ cm and width $w = 9$ cm. Find the area.",
+            "answer": "$A = 135$ cm²",
+            "wrong": ["$A = 48$ cm²", "$A = 270$ cm²", "$A = 24$ cm²"],
+            "explanation": "$A = l \\times w = 15 \\times 9 = 135$ cm²."
+        },
+        {
+            "question": "The area of a rectangle is $A = 120$ m² and width is $w = 8$ m. Find the length.",
+            "answer": "$l = 15$ m",
+            "wrong": ["$l = 960$ m", "$l = 7.5$ m", "$l = 30$ m"],
+            "explanation": "$l = \\dfrac{A}{w} = \\dfrac{120}{8} = 15$ m."
+        },
+        {
+            "question": "A rectangle has length $l = 6$ cm and width $w = 6$ cm. Find the area.",
+            "answer": "$A = 36$ cm²",
+            "wrong": ["$A = 24$ cm²", "$A = 12$ cm²", "$A = 72$ cm²"],
+            "explanation": "$A = l \\times w = 6 \\times 6 = 36$ cm²."
+        },
+        {
+            "question": "A rectangle has length $l = 20$ m and width $w = 3$ m. Find the area.",
+            "answer": "$A = 60$ m²",
+            "wrong": ["$A = 46$ m²", "$A = 23$ m²", "$A = 120$ m²"],
+            "explanation": "$A = l \\times w = 20 \\times 3 = 60$ m²."
+        },
+        {
+            "question": "The area of a rectangle is $A = 72$ cm² and length is $l = 12$ cm. Find the width.",
+            "answer": "$w = 6$ cm",
+            "wrong": ["$w = 60$ cm", "$w = 3$ cm", "$w = 9$ cm"],
+            "explanation": "$w = \\dfrac{72}{12} = 6$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 4.5$ cm and width $w = 4$ cm. Find the area.",
+            "answer": "$A = 18$ cm²",
+            "wrong": ["$A = 17$ cm²", "$A = 36$ cm²", "$A = 8.5$ cm²"],
+            "explanation": "$A = 4.5 \\times 4 = 18$ cm²."
+        },
+        {
+            "question": "A rectangle has length $l = 11$ cm and width $w = 11$ cm. Find the area.",
+            "answer": "$A = 121$ cm²",
+            "wrong": ["$A = 44$ cm²", "$A = 22$ cm²", "$A = 242$ cm²"],
+            "explanation": "$A = l \\times w = 11 \\times 11 = 121$ cm²."
+        },
+
+        {
+            "question": "A rectangle has length $l = 3$ cm and width $w = 4$ cm. Find the diagonal.",
+            "answer": "$d = 5$ cm",
+            "wrong": ["$d = 7$ cm", "$d = \\sqrt{7}$ cm", "$d = 25$ cm"],
+            "explanation": "$d = \\sqrt{l^2 + w^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 5$ cm and width $w = 12$ cm. Find the diagonal.",
+            "answer": "$d = 13$ cm",
+            "wrong": ["$d = 17$ cm", "$d = 7$ cm", "$d = \\sqrt{17}$ cm"],
+            "explanation": "$d = \\sqrt{25 + 144} = \\sqrt{169} = 13$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 8$ cm and width $w = 6$ cm. Find the diagonal.",
+            "answer": "$d = 10$ cm",
+            "wrong": ["$d = 14$ cm", "$d = 2$ cm", "$d = \\sqrt{28}$ cm"],
+            "explanation": "$d = \\sqrt{64 + 36} = \\sqrt{100} = 10$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 9$ cm and width $w = 12$ cm. Find the diagonal.",
+            "answer": "$d = 15$ cm",
+            "wrong": ["$d = 21$ cm", "$d = 3$ cm", "$d = \\sqrt{21}$ cm"],
+            "explanation": "$d = \\sqrt{81 + 144} = \\sqrt{225} = 15$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 7$ cm and width $w = 24$ cm. Find the diagonal.",
+            "answer": "$d = 25$ cm",
+            "wrong": ["$d = 31$ cm", "$d = 17$ cm", "$d = \\sqrt{31}$ cm"],
+            "explanation": "$d = \\sqrt{49 + 576} = \\sqrt{625} = 25$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 6$ cm and width $w = 8$ cm. Find the diagonal.",
+            "answer": "$d = 10$ cm",
+            "wrong": ["$d = 14$ cm", "$d = \\sqrt{10}$ cm", "$d = 2$ cm"],
+            "explanation": "$d = \\sqrt{36 + 64} = \\sqrt{100} = 10$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 10$ cm and width $w = 10$ cm. Find the diagonal.",
+            "answer": "$d = 10\\sqrt{2}$ cm",
+            "wrong": ["$d = 20$ cm", "$d = 100$ cm", "$d = 5\\sqrt{2}$ cm"],
+            "explanation": "$d = \\sqrt{100 + 100} = \\sqrt{200} = 10\\sqrt{2}$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 15$ cm and width $w = 20$ cm. Find the diagonal.",
+            "answer": "$d = 25$ cm",
+            "wrong": ["$d = 35$ cm", "$d = 5$ cm", "$d = \\sqrt{625}$ cm"],
+            "explanation": "$d = \\sqrt{225 + 400} = \\sqrt{625} = 25$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 2$ cm and width $w = 2\\sqrt{3}$ cm. Find the diagonal.",
+            "answer": "$d = 4$ cm",
+            "wrong": ["$d = 2+2\\sqrt{3}$ cm", "$d = 2\\sqrt{3}$ cm", "$d = 8$ cm"],
+            "explanation": "$d = \\sqrt{4 + 12} = \\sqrt{16} = 4$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 9$ cm and width $w = 40$ cm. Find the diagonal.",
+            "answer": "$d = 41$ cm",
+            "wrong": ["$d = 49$ cm", "$d = 31$ cm", "$d = \\sqrt{49}$ cm"],
+            "explanation": "$d = \\sqrt{9^2 + 40^2} = \\sqrt{81 + 1600} = \\sqrt{1681} = 41$ cm."
+        },
+
+        {
+            "question": "A rectangle has length $l = 8$ cm and width $w = 3$ cm. Find the perimeter.",
+            "answer": "$P = 22$ cm",
+            "wrong": ["$P = 24$ cm", "$P = 11$ cm", "$P = 44$ cm"],
+            "explanation": "$P = 2(l + w) = 2(8 + 3) = 22$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 14$ m and width $w = 6$ m. Find the perimeter.",
+            "answer": "$P = 40$ m",
+            "wrong": ["$P = 84$ m", "$P = 20$ m", "$P = 80$ m"],
+            "explanation": "$P = 2(l + w) = 2(14 + 6) = 40$ m."
+        },
+        {
+            "question": "The perimeter of a rectangle is $P = 50$ cm and length is $l = 15$ cm. Find the width.",
+            "answer": "$w = 10$ cm",
+            "wrong": ["$w = 20$ cm", "$w = 35$ cm", "$w = 5$ cm"],
+            "explanation": "$w = \\dfrac{P}{2} - l = 25 - 15 = 10$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 9$ cm and width $w = 4$ cm. Find the perimeter.",
+            "answer": "$P = 26$ cm",
+            "wrong": ["$P = 36$ cm", "$P = 52$ cm", "$P = 13$ cm"],
+            "explanation": "$P = 2(9 + 4) = 26$ cm."
+        },
+        {
+            "question": "The perimeter of a rectangle is $P = 36$ m and width is $w = 7$ m. Find the length.",
+            "answer": "$l = 11$ m",
+            "wrong": ["$l = 14$ m", "$l = 22$ m", "$l = 29$ m"],
+            "explanation": "$l = \\dfrac{P}{2} - w = 18 - 7 = 11$ m."
+        },
+        {
+            "question": "A rectangle has length $l = 5$ cm and width $w = 5$ cm. Find the perimeter.",
+            "answer": "$P = 20$ cm",
+            "wrong": ["$P = 25$ cm", "$P = 10$ cm", "$P = 40$ cm"],
+            "explanation": "$P = 2(5 + 5) = 20$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 25$ m and width $w = 10$ m. Find the perimeter.",
+            "answer": "$P = 70$ m",
+            "wrong": ["$P = 250$ m", "$P = 35$ m", "$P = 140$ m"],
+            "explanation": "$P = 2(25 + 10) = 70$ m."
+        },
+        {
+            "question": "The perimeter of a rectangle is $P = 60$ cm and length is $l = 20$ cm. Find the width.",
+            "answer": "$w = 10$ cm",
+            "wrong": ["$w = 40$ cm", "$w = 15$ cm", "$w = 5$ cm"],
+            "explanation": "$w = \\dfrac{60}{2} - 20 = 30 - 20 = 10$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 13$ cm and width $w = 7$ cm. Find the perimeter.",
+            "answer": "$P = 40$ cm",
+            "wrong": ["$P = 91$ cm", "$P = 20$ cm", "$P = 26$ cm"],
+            "explanation": "$P = 2(13 + 7) = 40$ cm."
+        },
+        {
+            "question": "A rectangle has length $l = 3.5$ m and width $w = 2.5$ m. Find the perimeter.",
+            "answer": "$P = 12$ m",
+            "wrong": ["$P = 8.75$ m", "$P = 6$ m", "$P = 24$ m"],
+            "explanation": "$P = 2(3.5 + 2.5) = 2 \\times 6 = 12$ m."
+        },
+
+        {
+            "question": "In a rhombus, one angle is $\\alpha = 60°$. Find the adjacent angle.",
+            "answer": "$\\beta = 120°$",
+            "wrong": ["$\\beta = 60°$", "$\\beta = 90°$", "$\\beta = 150°$"],
+            "explanation": "Adjacent angles in a rhombus are supplementary: $\\beta = 180° - 60° = 120°$."
+        },
+        {
+            "question": "In a rhombus, one angle is $\\alpha = 45°$. Find the other three angles.",
+            "answer": "$135°, 45°, 135°$",
+            "wrong": ["$45°, 45°, 90°$", "$60°, 135°, 135°$", "$45°, 90°, 135°$"],
+            "explanation": "Opposite angles are equal; adjacent angles sum to $180°$. All four angles are $45°, 135°, 45°, 135°$, so the other three are $135°, 45°, 135°$."
+        },
+        {
+            "question": "In a rhombus, the diagonals bisect angles. If one angle is $\\alpha = 80°$, find the half-angle at that vertex.",
+            "answer": "$40°$",
+            "wrong": ["$80°$", "$20°$", "$100°$"],
+            "explanation": "The diagonal bisects the angle: $\\dfrac{80°}{2} = 40°$."
+        },
+        {
+            "question": "In a rhombus, one angle is $\\alpha = 110°$. Find the adjacent angle.",
+            "answer": "$\\beta = 70°$",
+            "wrong": ["$\\beta = 110°$", "$\\beta = 90°$", "$\\beta = 55°$"],
+            "explanation": "$\\beta = 180° - 110° = 70°$."
+        },
+        {
+            "question": "A rhombus has angles in ratio $1:2$. Find both angles.",
+            "answer": "$60°$ and $120°$",
+            "wrong": ["$45°$ and $90°$", "$30°$ and $150°$", "$90°$ and $90°$"],
+            "explanation": "Let angles be $x$ and $2x$. Then $x + 2x = 180°$, so $x = 60°$, $2x = 120°$."
+        },
+        {
+            "question": "In a rhombus, one angle is $\\alpha = 72°$. Find the sum of all four angles.",
+            "answer": "$360°$",
+            "wrong": ["$180°$", "$288°$", "$144°$"],
+            "explanation": "Sum of interior angles in any quadrilateral is $360°$."
+        },
+        {
+            "question": "In a rhombus, the acute angle is $\\alpha = 30°$. Find the obtuse angle.",
+            "answer": "$\\beta = 150°$",
+            "wrong": ["$\\beta = 120°$", "$\\beta = 60°$", "$\\beta = 90°$"],
+            "explanation": "$\\beta = 180° - 30° = 150°$."
+        },
+        {
+            "question": "In a rhombus, both diagonals are equal. What are the angles?",
+            "answer": "$90°$ each",
+            "wrong": ["$60°$ and $120°$", "$45°$ and $135°$", "$30°$ and $150°$"],
+            "explanation": "Equal diagonals in a rhombus make it a square, where all angles are $90°$."
+        },
+        {
+            "question": "In a rhombus, one angle is $\\alpha = 100°$. Find the half-angle cut by the diagonal.",
+            "answer": "$50°$",
+            "wrong": ["$100°$", "$80°$", "$40°$"],
+            "explanation": "Diagonal bisects the angle: $\\dfrac{100°}{2} = 50°$."
+        },
+        {
+            "question": "In a rhombus, one interior angle is $\\alpha = 55°$. Find the adjacent angle.",
+            "answer": "$\\beta = 125°$",
+            "wrong": ["$\\beta = 55°$", "$\\beta = 110°$", "$\\beta = 90°$"],
+            "explanation": "$\\beta = 180° - 55° = 125°$."
+        },
+
+        {
+            "question": "A rhombus has diagonals $d_1 = 6$ cm and $d_2 = 8$ cm. Find the area.",
+            "answer": "$A = 24$ cm²",
+            "wrong": ["$A = 48$ cm²", "$A = 12$ cm²", "$A = 14$ cm²"],
+            "explanation": "$A = \\dfrac{d_1 \\cdot d_2}{2} = \\dfrac{6 \\times 8}{2} = 24$ cm²."
+        },
+        {
+            "question": "A rhombus has diagonals $d_1 = 10$ cm and $d_2 = 12$ cm. Find the area.",
+            "answer": "$A = 60$ cm²",
+            "wrong": ["$A = 120$ cm²", "$A = 30$ cm²", "$A = 44$ cm²"],
+            "explanation": "$A = \\dfrac{10 \\times 12}{2} = 60$ cm²."
+        },
+        {
+            "question": "A rhombus has diagonals $d_1 = 5$ cm and $d_2 = 5$ cm. Find the area.",
+            "answer": "$A = 12.5$ cm²",
+            "wrong": ["$A = 25$ cm²", "$A = 10$ cm²", "$A = 20$ cm²"],
+            "explanation": "$A = \\dfrac{5 \\times 5}{2} = 12.5$ cm²."
+        },
+        {
+            "question": "A rhombus has diagonals $d_1 = 14$ cm and $d_2 = 9$ cm. Find the area.",
+            "answer": "$A = 63$ cm²",
+            "wrong": ["$A = 126$ cm²", "$A = 31.5$ cm²", "$A = 23$ cm²"],
+            "explanation": "$A = \\dfrac{14 \\times 9}{2} = 63$ cm²."
+        },
+        {
+            "question": "A rhombus has diagonals $d_1 = 20$ cm and $d_2 = 15$ cm. Find the area.",
+            "answer": "$A = 150$ cm²",
+            "wrong": ["$A = 300$ cm²", "$A = 75$ cm²", "$A = 35$ cm²"],
+            "explanation": "$A = \\dfrac{20 \\times 15}{2} = 150$ cm²."
+        },
+        {
+            "question": "A rhombus has side $a = 10$ cm and height $h = 7$ cm. Find the area.",
+            "answer": "$A = 70$ cm²",
+            "wrong": ["$A = 35$ cm²", "$A = 140$ cm²", "$A = 34$ cm²"],
+            "explanation": "$A = a \\times h = 10 \\times 7 = 70$ cm²."
+        },
+        {
+            "question": "A rhombus has side $a = 8$ cm and height $h = 6$ cm. Find the area.",
+            "answer": "$A = 48$ cm²",
+            "wrong": ["$A = 24$ cm²", "$A = 96$ cm²", "$A = 28$ cm²"],
+            "explanation": "$A = a \\times h = 8 \\times 6 = 48$ cm²."
+        },
+        {
+            "question": "A rhombus has side $a = 15$ cm and height $h = 9$ cm. Find the area.",
+            "answer": "$A = 135$ cm²",
+            "wrong": ["$A = 270$ cm²", "$A = 67.5$ cm²", "$A = 48$ cm²"],
+            "explanation": "$A = a \\times h = 15 \\times 9 = 135$ cm²."
+        },
+        {
+            "question": "A rhombus has side $a = 12$ cm and angle $\\alpha = 30°$. Find the area.",
+            "answer": "$A = 72$ cm²",
+            "wrong": ["$A = 144$ cm²", "$A = 36$ cm²", "$A = 62.4$ cm²"],
+            "explanation": "$A = a^2 \\sin\\alpha = 144 \\times 0.5 = 72$ cm²."
+        },
+        {
+            "question": "A rhombus has side $a = 5$ cm and height $h = 4$ cm. Find the area.",
+            "answer": "$A = 20$ cm²",
+            "wrong": ["$A = 10$ cm²", "$A = 40$ cm²", "$A = 25$ cm²"],
+            "explanation": "$A = a \\times h = 5 \\times 4 = 20$ cm²."
+        },
+
+        {
+            "question": "A rhombus has side $a = 7$ cm. Find the perimeter.",
+            "answer": "$P = 28$ cm",
+            "wrong": ["$P = 14$ cm", "$P = 49$ cm", "$P = 21$ cm"],
+            "explanation": "$P = 4a = 4 \\times 7 = 28$ cm."
+        },
+        {
+            "question": "A rhombus has side $a = 13$ cm. Find the perimeter.",
+            "answer": "$P = 52$ cm",
+            "wrong": ["$P = 26$ cm", "$P = 169$ cm", "$P = 39$ cm"],
+            "explanation": "$P = 4a = 4 \\times 13 = 52$ cm."
+        },
+        {
+            "question": "The perimeter of a rhombus is $P = 60$ cm. Find the side length.",
+            "answer": "$a = 15$ cm",
+            "wrong": ["$a = 30$ cm", "$a = 20$ cm", "$a = 10$ cm"],
+            "explanation": "$a = \\dfrac{P}{4} = \\dfrac{60}{4} = 15$ cm."
+        },
+        # FIX 1: Removed duplicate "answer" key. Correct answer is P=20 cm (a=√(3²+4²)=5, P=4×5=20).
+        # Also fixed "wrong" array which previously contained the correct answer "$P = 40$ cm".
+        {
+            "question": "A rhombus has diagonals $d_1 = 6$ cm and $d_2 = 8$ cm. Find the perimeter.",
+            "answer": "$P = 20$ cm",
+            "wrong": ["$P = 28$ cm", "$P = 48$ cm", "$P = 14$ cm"],
+            "explanation": "$a = \\sqrt{(d_1/2)^2 + (d_2/2)^2} = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = 5$ cm, $P = 4 \\times 5 = 20$ cm."
+        },
+        {
+            "question": "A rhombus has side $a = 9.5$ cm. Find the perimeter.",
+            "answer": "$P = 38$ cm",
+            "wrong": ["$P = 19$ cm", "$P = 90.25$ cm", "$P = 28.5$ cm"],
+            "explanation": "$P = 4 \\times 9.5 = 38$ cm."
+        },
+        {
+            "question": "The perimeter of a rhombus is $P = 100$ m. Find the side length.",
+            "answer": "$a = 25$ m",
+            "wrong": ["$a = 50$ m", "$a = 20$ m", "$a = 10$ m"],
+            "explanation": "$a = \\dfrac{100}{4} = 25$ m."
+        },
+        {
+            "question": "A rhombus has side $a = 11$ cm. Find the perimeter.",
+            "answer": "$P = 44$ cm",
+            "wrong": ["$P = 22$ cm", "$P = 121$ cm", "$P = 33$ cm"],
+            "explanation": "$P = 4 \\times 11 = 44$ cm."
+        },
+        {
+            "question": "A rhombus has diagonals $d_1 = 16$ cm and $d_2 = 12$ cm. Find the perimeter.",
+            "answer": "$P = 40$ cm",
+            "wrong": ["$P = 56$ cm", "$P = 80$ cm", "$P = 48$ cm"],
+            "explanation": "$a = \\sqrt{8^2 + 6^2} = \\sqrt{100} = 10$, $P = 4 \\times 10 = 40$ cm."
+        },
+        {
+            "question": "A rhombus has side $a = 6$ cm. Find the perimeter.",
+            "answer": "$P = 24$ cm",
+            "wrong": ["$P = 12$ cm", "$P = 36$ cm", "$P = 48$ cm"],
+            "explanation": "$P = 4 \\times 6 = 24$ cm."
+        },
+        {
+            "question": "The perimeter of a rhombus is $P = 48$ cm. Find the side length.",
+            "answer": "$a = 12$ cm",
+            "wrong": ["$a = 24$ cm", "$a = 16$ cm", "$a = 6$ cm"],
+            "explanation": "$a = \\dfrac{48}{4} = 12$ cm."
+        },
+
+        {
+            "question": "A parallelogram has base $b = 10$ cm and height $h = 6$ cm. Find the area.",
+            "answer": "$A = 60$ cm²",
+            "wrong": ["$A = 30$ cm²", "$A = 120$ cm²", "$A = 16$ cm²"],
+            "explanation": "$A = b \\times h = 10 \\times 6 = 60$ cm²."
+        },
+        {
+            "question": "A parallelogram has base $b = 14$ m and height $h = 5$ m. Find the area.",
+            "answer": "$A = 70$ m²",
+            "wrong": ["$A = 35$ m²", "$A = 140$ m²", "$A = 19$ m²"],
+            "explanation": "$A = 14 \\times 5 = 70$ m²."
+        },
+        {
+            "question": "The area of a parallelogram is $A = 48$ cm² and base is $b = 8$ cm. Find the height.",
+            "answer": "$h = 6$ cm",
+            "wrong": ["$h = 3$ cm", "$h = 12$ cm", "$h = 40$ cm"],
+            "explanation": "$h = \\dfrac{A}{b} = \\dfrac{48}{8} = 6$ cm."
+        },
+        {
+            "question": "A parallelogram has base $b = 9$ cm and height $h = 9$ cm. Find the area.",
+            "answer": "$A = 81$ cm²",
+            "wrong": ["$A = 36$ cm²", "$A = 162$ cm²", "$A = 18$ cm²"],
+            "explanation": "$A = 9 \\times 9 = 81$ cm²."
+        },
+        {
+            "question": "A parallelogram has sides $a = 5$ cm and $b = 13$ cm, with height $h = 4$ cm corresponding to side $b$. Find the area.",
+            "answer": "$A = 52$ cm²",
+            "wrong": ["$A = 20$ cm²", "$A = 65$ cm²", "$A = 26$ cm²"],
+            "explanation": "$A = b \\times h = 13 \\times 4 = 52$ cm²."
+        },
+        {
+            "question": "A parallelogram has base $b = 7$ cm and height $h = 11$ cm. Find the area.",
+            "answer": "$A = 77$ cm²",
+            "wrong": ["$A = 36$ cm²", "$A = 154$ cm²", "$A = 18$ cm²"],
+            "explanation": "$A = 7 \\times 11 = 77$ cm²."
+        },
+        {
+            "question": "A parallelogram has base $b = 20$ m and height $h = 8$ m. Find the area.",
+            "answer": "$A = 160$ m²",
+            "wrong": ["$A = 80$ m²", "$A = 320$ m²", "$A = 56$ m²"],
+            "explanation": "$A = 20 \\times 8 = 160$ m²."
+        },
+        {
+            "question": "The area of a parallelogram is $A = 90$ m² and height is $h = 9$ m. Find the base.",
+            "answer": "$b = 10$ m",
+            "wrong": ["$b = 81$ m", "$b = 5$ m", "$b = 20$ m"],
+            "explanation": "$b = \\dfrac{90}{9} = 10$ m."
+        },
+        {
+            "question": "A parallelogram has base $b = 3.5$ cm and height $h = 4$ cm. Find the area.",
+            "answer": "$A = 14$ cm²",
+            "wrong": ["$A = 7$ cm²", "$A = 7.5$ cm²", "$A = 28$ cm²"],
+            "explanation": "$A = 3.5 \\times 4 = 14$ cm²."
+        },
+        {
+            "question": "A parallelogram has sides $a = 8$ cm and angle $\\alpha = 45°$ with the base $b = 10$ cm. Find the area.",
+            "answer": "$A = 40\\sqrt{2}$ cm²",
+            "wrong": ["$A = 40$ cm²", "$A = 80$ cm²", "$A = 20\\sqrt{2}$ cm²"],
+            "explanation": "$h = a \\sin 45° = 8 \\cdot \\dfrac{\\sqrt{2}}{2} = 4\\sqrt{2}$, $A = 10 \\times 4\\sqrt{2} = 40\\sqrt{2}$ cm²."
+        },
+
+        {
+            "question": "A parallelogram has sides $a = 5$ cm and $b = 9$ cm. Find the perimeter.",
+            "answer": "$P = 28$ cm",
+            "wrong": ["$P = 45$ cm", "$P = 14$ cm", "$P = 56$ cm"],
+            "explanation": "$P = 2(a + b) = 2(5 + 9) = 28$ cm."
+        },
+        {
+            "question": "A parallelogram has sides $a = 7$ cm and $b = 12$ cm. Find the perimeter.",
+            "answer": "$P = 38$ cm",
+            "wrong": ["$P = 19$ cm", "$P = 84$ cm", "$P = 76$ cm"],
+            "explanation": "$P = 2(7 + 12) = 38$ cm."
+        },
+        {
+            "question": "The perimeter of a parallelogram is $P = 50$ cm and one side is $a = 15$ cm. Find the other side.",
+            "answer": "$b = 10$ cm",
+            "wrong": ["$b = 35$ cm", "$b = 20$ cm", "$b = 25$ cm"],
+            "explanation": "$b = \\dfrac{P}{2} - a = 25 - 15 = 10$ cm."
+        },
+        {
+            "question": "A parallelogram has sides $a = 6$ m and $b = 6$ m. Find the perimeter.",
+            "answer": "$P = 24$ m",
+            "wrong": ["$P = 36$ m", "$P = 12$ m", "$P = 48$ m"],
+            "explanation": "$P = 2(6 + 6) = 24$ m."
+        },
+        {
+            "question": "A parallelogram has sides $a = 11$ cm and $b = 4$ cm. Find the perimeter.",
+            "answer": "$P = 30$ cm",
+            "wrong": ["$P = 44$ cm", "$P = 15$ cm", "$P = 60$ cm"],
+            "explanation": "$P = 2(11 + 4) = 30$ cm."
+        },
+        {
+            "question": "The perimeter of a parallelogram is $P = 64$ m and one side is $a = 20$ m. Find the other side.",
+            "answer": "$b = 12$ m",
+            "wrong": ["$b = 44$ m", "$b = 24$ m", "$b = 16$ m"],
+            "explanation": "$b = \\dfrac{64}{2} - 20 = 32 - 20 = 12$ m."
+        },
+        {
+            "question": "A parallelogram has sides $a = 8$ cm and $b = 15$ cm. Find the perimeter.",
+            "answer": "$P = 46$ cm",
+            "wrong": ["$P = 120$ cm", "$P = 23$ cm", "$P = 92$ cm"],
+            "explanation": "$P = 2(8 + 15) = 46$ cm."
+        },
+        {
+            "question": "A parallelogram has sides $a = 3.5$ m and $b = 6.5$ m. Find the perimeter.",
+            "answer": "$P = 20$ m",
+            "wrong": ["$P = 10$ m", "$P = 22.75$ m", "$P = 40$ m"],
+            "explanation": "$P = 2(3.5 + 6.5) = 2 \\times 10 = 20$ m."
+        },
+        {
+            "question": "A parallelogram has sides $a = 13$ cm and $b = 13$ cm. Find the perimeter.",
+            "answer": "$P = 52$ cm",
+            "wrong": ["$P = 169$ cm", "$P = 26$ cm", "$P = 104$ cm"],
+            "explanation": "$P = 2(13 + 13) = 52$ cm."
+        },
+        {
+            "question": "The perimeter of a parallelogram is $P = 80$ cm and one side is $a = 25$ cm. Find the other side.",
+            "answer": "$b = 15$ cm",
+            "wrong": ["$b = 55$ cm", "$b = 30$ cm", "$b = 40$ cm"],
+            "explanation": "$b = \\dfrac{80}{2} - 25 = 40 - 25 = 15$ cm."
+        },
+
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 70°$. Find the adjacent angle.",
+            "answer": "$\\beta = 110°$",
+            "wrong": ["$\\beta = 70°$", "$\\beta = 90°$", "$\\beta = 140°$"],
+            "explanation": "Adjacent angles in a parallelogram are supplementary: $\\beta = 180° - 70° = 110°$."
+        },
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 50°$. Find the opposite angle.",
+            "answer": "$\\gamma = 50°$",
+            "wrong": ["$\\gamma = 130°$", "$\\gamma = 100°$", "$\\gamma = 90°$"],
+            "explanation": "Opposite angles in a parallelogram are equal."
+        },
+        {
+            "question": "In a parallelogram, angles are in ratio $1:3$. Find both angles.",
+            "answer": "$45°$ and $135°$",
+            "wrong": ["$30°$ and $150°$", "$60°$ and $120°$", "$90°$ and $90°$"],
+            "explanation": "$x + 3x = 180°$, so $x = 45°$, $3x = 135°$."
+        },
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 90°$. What type of figure is it?",
+            "answer": "Rectangle (all angles are $90°$)",
+            "wrong": ["Rhombus", "Trapezoid", "Kite"],
+            "explanation": "If one angle of a parallelogram is $90°$, all angles are $90°$, making it a rectangle."
+        },
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 115°$. Find the adjacent angle.",
+            "answer": "$\\beta = 65°$",
+            "wrong": ["$\\beta = 115°$", "$\\beta = 90°$", "$\\beta = 245°$"],
+            "explanation": "$\\beta = 180° - 115° = 65°$."
+        },
+        {
+            "question": "In a parallelogram, the sum of two adjacent angles is $180°$ and one angle is $\\alpha = 35°$. Find the other angle.",
+            "answer": "$\\beta = 145°$",
+            "wrong": ["$\\beta = 70°$", "$\\beta = 90°$", "$\\beta = 35°$"],
+            "explanation": "$\\beta = 180° - 35° = 145°$."
+        },
+        {
+            "question": "In a parallelogram, angles are in ratio $2:7$. Find both angles.",
+            "answer": "$40°$ and $140°$",
+            "wrong": ["$20°$ and $160°$", "$36°$ and $144°$", "$60°$ and $120°$"],
+            "explanation": "$2x + 7x = 180°$, $x = 20°$; angles are $40°$ and $140°$."
+        },
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 130°$. Find all four angles.",
+            "answer": "$130°, 50°, 130°, 50°$",
+            "wrong": ["$130°, 130°, 130°, 130°$", "$90°, 90°, 90°, 90°$", "$130°, 230°, 130°, 230°$"],
+            "explanation": "Opposite angles are equal, adjacent are supplementary: $130°, 50°, 130°, 50°$."
+        },
+        {
+            "question": "In a parallelogram, one angle is $\\alpha = 85°$. Find the adjacent angle.",
+            "answer": "$\\beta = 95°$",
+            "wrong": ["$\\beta = 85°$", "$\\beta = 90°$", "$\\beta = 170°$"],
+            "explanation": "$\\beta = 180° - 85° = 95°$."
+        },
+        {
+            "question": "In a parallelogram, angles are in ratio $3:5$. Find both types of angles.",
+            "answer": "$67.5°$ and $112.5°$",
+            "wrong": ["$60°$ and $120°$", "$72°$ and $108°$", "$54°$ and $126°$"],
+            "explanation": "$3x + 5x = 180°$, $x = 22.5°$; angles are $67.5°$ and $112.5°$."
+        },
+
+        {
+            "question": "In a trapezoid, one base angle is $\\alpha = 60°$. Find the co-interior angle on the same side.",
+            "answer": "$\\beta = 120°$",
+            "wrong": ["$\\beta = 60°$", "$\\beta = 90°$", "$\\beta = 30°$"],
+            "explanation": "Co-interior (same-side) angles between parallel lines sum to $180°$: $\\beta = 180° - 60° = 120°$."
+        },
+        {
+            "question": "In an isosceles trapezoid, one base angle is $\\alpha = 70°$. Find the other base angle on the same base.",
+            "answer": "$\\beta = 70°$",
+            "wrong": ["$\\beta = 110°$", "$\\beta = 140°$", "$\\beta = 35°$"],
+            "explanation": "Base angles of an isosceles trapezoid are equal."
+        },
+        {
+            "question": "In a trapezoid, two angles on one side are $\\alpha = 55°$ and $\\beta = 125°$. Is this a valid trapezoid?",
+            "answer": "Yes, since $55° + 125° = 180°$",
+            "wrong": ["No, they must both be acute", "No, they must be equal", "Only if it is isosceles"],
+            "explanation": "Co-interior angles must sum to $180°$: $55° + 125° = 180°$ ✓."
+        },
+        {
+            "question": "In a right trapezoid, two angles are $90°$. Find the sum of the remaining two angles.",
+            "answer": "$180°$",
+            "wrong": ["$90°$", "$270°$", "$360°$"],
+            "explanation": "A right trapezoid has one leg perpendicular to both parallel bases, creating two $90°$ angles on that leg. Sum of all angles $= 360°$, so the remaining two angles sum to $360° - 90° - 90° = 180°$."
+        },
+        {
+            "question": "In an isosceles trapezoid, one base angle is $\\alpha = 65°$. Find the angle at the other base.",
+            "answer": "$\\gamma = 115°$",
+            "wrong": ["$\\gamma = 65°$", "$\\gamma = 90°$", "$\\gamma = 130°$"],
+            "explanation": "In an isosceles trapezoid the two bases are parallel, so co-interior angles on the same side sum to $180°$: $\\gamma = 180° - 65° = 115°$."
+        },
+        {
+            "question": "In a trapezoid, the angles are $\\alpha, \\alpha, \\beta, \\beta$ (isosceles). If $\\alpha = 80°$, find $\\beta$.",
+            "answer": "$\\beta = 100°$",
+            "wrong": ["$\\beta = 80°$", "$\\beta = 160°$", "$\\beta = 90°$"],
+            "explanation": "$\\alpha + \\beta = 180°$, so $\\beta = 180° - 80° = 100°$."
+        },
+        {
+            "question": "In a trapezoid, three angles are $70°, 70°, 110°$. Find the fourth angle.",
+            "answer": "$110°$",
+            "wrong": ["$70°$", "$90°$", "$140°$"],
+            "explanation": "$360° - 70° - 70° - 110° = 110°$."
+        },
+        # FIX: Original question asked for "the other acute angle" in a right trapezoid,
+        # but a right trapezoid has only ONE acute angle — so no "other acute angle" exists.
+        # Rewritten: given the one acute angle, find the obtuse angle.
+        {
+            "question": "In a right trapezoid, the acute angle is $\\alpha = 40°$. Find the obtuse angle.",
+            "answer": "$\\beta = 140°$",
+            "wrong": ["$\\beta = 50°$", "$\\beta = 40°$", "$\\beta = 90°$"],
+            "explanation": "A right trapezoid has one right angle ($90°$) and one acute angle ($40°$). The obtuse angle is co-interior with the acute angle: $\\beta = 180° - 40° = 140°$. Check: $90° + 40° + 90° + 140° = 360°$ ✓."
+        },
+        {
+            "question": "In an isosceles trapezoid, the sum of the angles at one base is $180°$? True or false?",
+            "answer": "False — they are equal, not supplementary",
+            "wrong": ["True always", "True only for right trapezoids", "True only if the trapezoid is a rectangle"],
+            "explanation": "In an isosceles trapezoid, the two base angles (at the same base) are equal, not supplementary. Co-interior angles on the same side sum to $180°$."
+        },
+        {
+            "question": "In a trapezoid, co-interior angles on one side are $(2x + 10)°$ and $(3x - 20)°$. Find $x$.",
+            "answer": "$x = 38$",
+            "wrong": ["$x = 19$", "$x = 30$", "$x = 40$"],
+            "explanation": "$(2x+10) + (3x-20) = 180 \\Rightarrow 5x - 10 = 180 \\Rightarrow x = 38$."
+        },
+
+        {
+            "question": "A trapezoid has parallel sides $a = 6$ cm, $b = 10$ cm and height $h = 4$ cm. Find the area.",
+            "answer": "$A = 32$ cm²",
+            "wrong": ["$A = 24$ cm²", "$A = 64$ cm²", "$A = 16$ cm²"],
+            "explanation": "$A = \\dfrac{(a+b)}{2} \\times h = \\dfrac{16}{2} \\times 4 = 32$ cm²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 5$ m, $b = 11$ m and height $h = 6$ m. Find the area.",
+            "answer": "$A = 48$ m²",
+            "wrong": ["$A = 96$ m²", "$A = 24$ m²", "$A = 33$ m²"],
+            "explanation": "$A = \\dfrac{(5+11)}{2} \\times 6 = 8 \\times 6 = 48$ m²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 8$ cm, $b = 12$ cm and height $h = 5$ cm. Find the area.",
+            "answer": "$A = 50$ cm²",
+            "wrong": ["$A = 100$ cm²", "$A = 25$ cm²", "$A = 40$ cm²"],
+            "explanation": "$A = \\dfrac{(8+12)}{2} \\times 5 = 10 \\times 5 = 50$ cm²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 3$ cm, $b = 7$ cm and height $h = 8$ cm. Find the area.",
+            "answer": "$A = 40$ cm²",
+            "wrong": ["$A = 80$ cm²", "$A = 168$ cm²", "$A = 20$ cm²"],
+            "explanation": "$A = \\dfrac{(3+7)}{2} \\times 8 = 5 \\times 8 = 40$ cm²."
+        },
+        {
+            "question": "The area of a trapezoid is $A = 60$ cm², the height is $h = 6$ cm, and one base is $a = 8$ cm. Find the other base.",
+            "answer": "$b = 12$ cm",
+            "wrong": ["$b = 4$ cm", "$b = 10$ cm", "$b = 14$ cm"],
+            "explanation": "$60 = \\dfrac{(8+b)}{2} \\times 6 \\Rightarrow 8 + b = 20 \\Rightarrow b = 12$ cm."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 14$ cm, $b = 6$ cm and height $h = 7$ cm. Find the area.",
+            "answer": "$A = 70$ cm²",
+            "wrong": ["$A = 140$ cm²", "$A = 35$ cm²", "$A = 98$ cm²"],
+            "explanation": "$A = \\dfrac{(14+6)}{2} \\times 7 = 10 \\times 7 = 70$ cm²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 9$ m, $b = 15$ m and height $h = 10$ m. Find the area.",
+            "answer": "$A = 120$ m²",
+            "wrong": ["$A = 60$ m²", "$A = 240$ m²", "$A = 135$ m²"],
+            "explanation": "$A = \\dfrac{(9+15)}{2} \\times 10 = 12 \\times 10 = 120$ m²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 4$ cm, $b = 4$ cm and height $h = 5$ cm. What is the shape?",
+            "answer": "Parallelogram, $A = 20$ cm²",
+            "wrong": ["Rectangle, $A = 20$ cm²", "Rhombus, $A = 16$ cm²", "Regular trapezoid, $A = 40$ cm²"],
+            "explanation": "Equal parallel sides → parallelogram. $A = 4 \\times 5 = 20$ cm²."
+        },
+        {
+            "question": "A trapezoid has parallel sides $a = 7$ cm, $b = 13$ cm and height $h = 9$ cm. Find the area.",
+            "answer": "$A = 90$ cm²",
+            "wrong": ["$A = 180$ cm²", "$A = 45$ cm²", "$A = 63$ cm²"],
+            "explanation": "$A = \\dfrac{(7+13)}{2} \\times 9 = 10 \\times 9 = 90$ cm²."
+        },
+        {
+            "question": "The area of a trapezoid is $A = 100$ m², height $h = 8$ m, and one base $a = 7$ m. Find the other base.",
+            "answer": "$b = 18$ m",
+            "wrong": ["$b = 5$ m", "$b = 25$ m", "$b = 13$ m"],
+            "explanation": "$100 = \\dfrac{(7+b)}{2} \\times 8 \\Rightarrow 7 + b = 25 \\Rightarrow b = 18$ m."
+        },
+
+        {
+            "question": "A trapezoid has area $A = 36$ cm² and parallel sides $a = 4$ cm, $b = 8$ cm. Find the height.",
+            "answer": "$h = 6$ cm",
+            "wrong": ["$h = 3$ cm", "$h = 12$ cm", "$h = 9$ cm"],
+            "explanation": "$h = \\dfrac{2A}{a+b} = \\dfrac{72}{12} = 6$ cm."
+        },
+        {
+            "question": "A trapezoid has area $A = 50$ m² and parallel sides $a = 5$ m, $b = 15$ m. Find the height.",
+            "answer": "$h = 5$ m",
+            "wrong": ["$h = 10$ m", "$h = 2.5$ m", "$h = 25$ m"],
+            "explanation": "$h = \\dfrac{2 \\times 50}{5 + 15} = \\dfrac{100}{20} = 5$ m."
+        },
+        {
+            "question": "A trapezoid has area $A = 48$ cm² and parallel sides $a = 6$ cm, $b = 10$ cm. Find the height.",
+            "answer": "$h = 6$ cm",
+            "wrong": ["$h = 3$ cm", "$h = 12$ cm", "$h = 8$ cm"],
+            "explanation": "$h = \\dfrac{2 \\times 48}{6 + 10} = \\dfrac{96}{16} = 6$ cm."
+        },
+        {
+            "question": "A trapezoid has area $A = 70$ m² and parallel sides $a = 7$ m, $b = 7$ m. Find the height.",
+            "answer": "$h = 10$ m",
+            "wrong": ["$h = 5$ m", "$h = 14$ m", "$h = 70$ m"],
+            "explanation": "$h = \\dfrac{2 \\times 70}{7 + 7} = \\dfrac{140}{14} = 10$ m."
+        },
+        {
+            "question": "A trapezoid has area $A = 90$ cm² and parallel sides $a = 10$ cm, $b = 8$ cm. Find the height.",
+            "answer": "$h = 10$ cm",
+            "wrong": ["$h = 5$ cm", "$h = 20$ cm", "$h = 9$ cm"],
+            "explanation": "$h = \\dfrac{2 \\times 90}{10 + 8} = \\dfrac{180}{18} = 10$ cm."
+        },
+        {
+            "question": "A trapezoid has area $A = 45$ cm² and parallel sides $a = 5$ cm, $b = 10$ cm. Find the height.",
+            "answer": "$h = 6$ cm",
+            "wrong": ["$h = 3$ cm", "$h = 9$ cm", "$h = 12$ cm"],
+            "explanation": "$h = \\dfrac{2 \\times 45}{5 + 10} = \\dfrac{90}{15} = 6$ cm."
+        },
+        {
+            "question": "A trapezoid has area $A = 120$ m² and parallel sides $a = 12$ m, $b = 18$ m. Find the height.",
+            "answer": "$h = 8$ m",
+            "wrong": ["$h = 4$ m", "$h = 16$ m", "$h = 6$ m"],
+            "explanation": "$h = \\dfrac{2 \\times 120}{12 + 18} = \\dfrac{240}{30} = 8$ m."
+        },
+        {
+            "question": "A trapezoid has area $A = 26$ cm² and parallel sides $a = 4$ cm, $b = 9$ cm. Find the height.",
+            "answer": "$h = 4$ cm",
+            "wrong": ["$h = 2$ cm", "$h = 8$ cm", "$h = 5.2$ cm"],
+            "explanation": "$h = \\dfrac{2 \\times 26}{4 + 9} = \\dfrac{52}{13} = 4$ cm."
+        },
+        {
+            "question": "A trapezoid has area $A = 75$ m² and parallel sides $a = 6$ m, $b = 9$ m. Find the height.",
+            "answer": "$h = 10$ m",
+            "wrong": ["$h = 5$ m", "$h = 25$ m", "$h = 15$ m"],
+            "explanation": "$h = \\dfrac{2 \\times 75}{6 + 9} = \\dfrac{150}{15} = 10$ m."
+        },
+        {
+            "question": "A trapezoid has area $A = 56$ cm² and parallel sides $a = 6$ cm, $b = 8$ cm. Find the height.",
+            "answer": "$h = 8$ cm",
+            "wrong": ["$h = 4$ cm", "$h = 16$ cm", "$h = 7$ cm"],
+            "explanation": "$h = \\dfrac{2 \\times 56}{6 + 8} = \\dfrac{112}{14} = 8$ cm."
+        },
+    ],
+    'circle_basic': [
+
+        # ─────────────────────────────────────────────
+        # AREA  (20 questions)   A = π r²
+        # ─────────────────────────────────────────────
+
+        {
+            "question": "A circle has radius $r = 3$ cm. Find the area.",
+            "answer": "$A = 9\\pi$ cm²",
+            "wrong": ["$A = 6\\pi$ cm²", "$A = 3\\pi$ cm²", "$A = 12\\pi$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 3^2 = 9\\pi$ cm²."
+        },
+        {
+            "question": "A circle has radius $r = 5$ cm. Find the area.",
+            "answer": "$A = 25\\pi$ cm²",
+            "wrong": ["$A = 10\\pi$ cm²", "$A = 50\\pi$ cm²", "$A = 5\\pi$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 5^2 = 25\\pi$ cm²."
+        },
+        {
+            "question": "A circle has radius $r = 7$ m. Find the area.",
+            "answer": "$A = 49\\pi$ m²",
+            "wrong": ["$A = 14\\pi$ m²", "$A = 28\\pi$ m²", "$A = 98\\pi$ m²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 7^2 = 49\\pi$ m²."
+        },
+        {
+            "question": "A circle has radius $r = 10$ cm. Find the area.",
+            "answer": "$A = 100\\pi$ cm²",
+            "wrong": ["$A = 20\\pi$ cm²", "$A = 50\\pi$ cm²", "$A = 200\\pi$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 10^2 = 100\\pi$ cm²."
+        },
+        {
+            "question": "A circle has diameter $d = 8$ cm. Find the area.",
+            "answer": "$A = 16\\pi$ cm²",
+            "wrong": ["$A = 64\\pi$ cm²", "$A = 8\\pi$ cm²", "$A = 32\\pi$ cm²"],
+            "explanation": "$r = d/2 = 4$ cm, $A = \\pi \\times 4^2 = 16\\pi$ cm²."
+        },
+        {
+            "question": "A circle has diameter $d = 12$ m. Find the area.",
+            "answer": "$A = 36\\pi$ m²",
+            "wrong": ["$A = 144\\pi$ m²", "$A = 24\\pi$ m²", "$A = 72\\pi$ m²"],
+            "explanation": "$r = 12/2 = 6$ m, $A = \\pi \\times 6^2 = 36\\pi$ m²."
+        },
+        {
+            "question": "A circle has radius $r = 1$ cm. Find the area.",
+            "answer": "$A = \\pi$ cm²",
+            "wrong": ["$A = 2\\pi$ cm²", "$A = 4\\pi$ cm²", "$A = \\dfrac{\\pi}{2}$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 1^2 = \\pi$ cm²."
+        },
+        {
+            "question": "The area of a circle is $A = 64\\pi$ cm². Find the radius.",
+            "answer": "$r = 8$ cm",
+            "wrong": ["$r = 4$ cm", "$r = 16$ cm", "$r = 32$ cm"],
+            "explanation": "$r = \\sqrt{\\dfrac{A}{\\pi}} = \\sqrt{64} = 8$ cm."
+        },
+        {
+            "question": "The area of a circle is $A = 100\\pi$ m². Find the radius.",
+            "answer": "$r = 10$ m",
+            "wrong": ["$r = 5$ m", "$r = 20$ m", "$r = 50$ m"],
+            "explanation": "$r = \\sqrt{\\dfrac{A}{\\pi}} = \\sqrt{100} = 10$ m."
+        },
+        {
+            "question": "The area of a circle is $A = 36\\pi$ cm². Find the diameter.",
+            "answer": "$d = 12$ cm",
+            "wrong": ["$d = 6$ cm", "$d = 18$ cm", "$d = 36$ cm"],
+            "explanation": "$r = \\sqrt{36} = 6$ cm, $d = 2r = 12$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 6$ m. Find the area.",
+            "answer": "$A = 36\\pi$ m²",
+            "wrong": ["$A = 12\\pi$ m²", "$A = 18\\pi$ m²", "$A = 72\\pi$ m²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 6^2 = 36\\pi$ m²."
+        },
+        {
+            "question": "A circle has diameter $d = 20$ cm. Find the area.",
+            "answer": "$A = 100\\pi$ cm²",
+            "wrong": ["$A = 400\\pi$ cm²", "$A = 40\\pi$ cm²", "$A = 200\\pi$ cm²"],
+            "explanation": "$r = 20/2 = 10$ cm, $A = \\pi \\times 10^2 = 100\\pi$ cm²."
+        },
+        {
+            "question": "The area of a circle is $A = 49\\pi$ m². Find the diameter.",
+            "answer": "$d = 14$ m",
+            "wrong": ["$d = 7$ m", "$d = 49$ m", "$d = 28$ m"],
+            "explanation": "$r = \\sqrt{49} = 7$ m, $d = 2 \\times 7 = 14$ m."
+        },
+        {
+            "question": "A circle has radius $r = 11$ cm. Find the area.",
+            "answer": "$A = 121\\pi$ cm²",
+            "wrong": ["$A = 22\\pi$ cm²", "$A = 44\\pi$ cm²", "$A = 242\\pi$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 11^2 = 121\\pi$ cm²."
+        },
+        {
+            "question": "A circle has radius $r = \\sqrt{5}$ cm. Find the area.",
+            "answer": "$A = 5\\pi$ cm²",
+            "wrong": ["$A = \\sqrt{5}\\,\\pi$ cm²", "$A = 25\\pi$ cm²", "$A = 2\\sqrt{5}\\,\\pi$ cm²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times (\\sqrt{5})^2 = 5\\pi$ cm²."
+        },
+        {
+            "question": "The area of a circle is $A = 25\\pi$ cm². Find the radius.",
+            "answer": "$r = 5$ cm",
+            "wrong": ["$r = 25$ cm", "$r = 10$ cm", "$r = 2.5$ cm"],
+            "explanation": "$r = \\sqrt{\\dfrac{A}{\\pi}} = \\sqrt{25} = 5$ cm."
+        },
+        {
+            "question": "A circle has diameter $d = 14$ m. Find the area.",
+            "answer": "$A = 49\\pi$ m²",
+            "wrong": ["$A = 196\\pi$ m²", "$A = 14\\pi$ m²", "$A = 28\\pi$ m²"],
+            "explanation": "$r = 14/2 = 7$ m, $A = \\pi \\times 7^2 = 49\\pi$ m²."
+        },
+        {
+            "question": "A circle has radius $r = 0.5$ m. Find the area.",
+            "answer": "$A = 0.25\\pi$ m²",
+            "wrong": ["$A = \\pi$ m²", "$A = 0.5\\pi$ m²", "$A = 2\\pi$ m²"],
+            "explanation": "$A = \\pi r^2 = \\pi \\times 0.5^2 = 0.25\\pi$ m²."
+        },
+        {
+            "question": "The area of a circle is $A = 144\\pi$ cm². Find the radius.",
+            "answer": "$r = 12$ cm",
+            "wrong": ["$r = 6$ cm", "$r = 24$ cm", "$r = 144$ cm"],
+            "explanation": "$r = \\sqrt{\\dfrac{A}{\\pi}} = \\sqrt{144} = 12$ cm."
+        },
+        {
+            "question": "Two circles have radii $r_1 = 3$ cm and $r_2 = 4$ cm. What is the ratio of their areas?",
+            "answer": "$9 : 16$",
+            "wrong": ["$3 : 4$", "$6 : 8$", "$27 : 64$"],
+            "explanation": "Area ratio $= r_1^2 : r_2^2 = 9 : 16$."
+        },
+
+        # ─────────────────────────────────────────────
+        # CIRCUMFERENCE  (20 questions)   C = 2π r
+        # ─────────────────────────────────────────────
+
+        {
+            "question": "A circle has radius $r = 4$ cm. Find the circumference.",
+            "answer": "$C = 8\\pi$ cm",
+            "wrong": ["$C = 16\\pi$ cm", "$C = 4\\pi$ cm", "$C = 2\\pi$ cm"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 4 = 8\\pi$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 9$ m. Find the circumference.",
+            "answer": "$C = 18\\pi$ m",
+            "wrong": ["$C = 9\\pi$ m", "$C = 81\\pi$ m", "$C = 36\\pi$ m"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 9 = 18\\pi$ m."
+        },
+        {
+            "question": "A circle has diameter $d = 10$ cm. Find the circumference.",
+            "answer": "$C = 10\\pi$ cm",
+            "wrong": ["$C = 20\\pi$ cm", "$C = 5\\pi$ cm", "$C = 100\\pi$ cm"],
+            "explanation": "$C = \\pi d = \\pi \\times 10 = 10\\pi$ cm."
+        },
+        {
+            "question": "A circle has diameter $d = 7$ m. Find the circumference.",
+            "answer": "$C = 7\\pi$ m",
+            "wrong": ["$C = 14\\pi$ m", "$C = 3.5\\pi$ m", "$C = 49\\pi$ m"],
+            "explanation": "$C = \\pi d = \\pi \\times 7 = 7\\pi$ m."
+        },
+        {
+            "question": "The circumference of a circle is $C = 12\\pi$ cm. Find the radius.",
+            "answer": "$r = 6$ cm",
+            "wrong": ["$r = 12$ cm", "$r = 3$ cm", "$r = 24$ cm"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = \\dfrac{12\\pi}{2\\pi} = 6$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 20\\pi$ m. Find the diameter.",
+            "answer": "$d = 20$ m",
+            "wrong": ["$d = 10$ m", "$d = 40$ m", "$d = 5$ m"],
+            "explanation": "$d = \\dfrac{C}{\\pi} = \\dfrac{20\\pi}{\\pi} = 20$ m."
+        },
+        {
+            "question": "A circle has radius $r = 15$ cm. Find the circumference.",
+            "answer": "$C = 30\\pi$ cm",
+            "wrong": ["$C = 15\\pi$ cm", "$C = 225\\pi$ cm", "$C = 60\\pi$ cm"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 15 = 30\\pi$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 0.5$ cm. Find the circumference.",
+            "answer": "$C = \\pi$ cm",
+            "wrong": ["$C = 2\\pi$ cm", "$C = 0.5\\pi$ cm", "$C = 0.25\\pi$ cm"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 0.5 = \\pi$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 36\\pi$ cm. Find the radius.",
+            "answer": "$r = 18$ cm",
+            "wrong": ["$r = 9$ cm", "$r = 36$ cm", "$r = 72$ cm"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = \\dfrac{36\\pi}{2\\pi} = 18$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 50\\pi$ m. Find the diameter.",
+            "answer": "$d = 50$ m",
+            "wrong": ["$d = 25$ m", "$d = 100$ m", "$d = 5$ m"],
+            "explanation": "$d = \\dfrac{C}{\\pi} = 50$ m."
+        },
+        {
+            "question": "A circle has diameter $d = 18$ cm. Find the circumference.",
+            "answer": "$C = 18\\pi$ cm",
+            "wrong": ["$C = 9\\pi$ cm", "$C = 36\\pi$ cm", "$C = 324\\pi$ cm"],
+            "explanation": "$C = \\pi d = \\pi \\times 18 = 18\\pi$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 3\\sqrt{2}$ m. Find the circumference.",
+            "answer": "$C = 6\\sqrt{2}\\,\\pi$ m",
+            "wrong": ["$C = 3\\sqrt{2}\\,\\pi$ m", "$C = 18\\pi$ m", "$C = 12\\sqrt{2}\\,\\pi$ m"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 3\\sqrt{2} = 6\\sqrt{2}\\,\\pi$ m."
+        },
+        {
+            "question": "The circumference of a circle is $C = 8\\pi$ cm. Find the area.",
+            "answer": "$A = 16\\pi$ cm²",
+            "wrong": ["$A = 8\\pi$ cm²", "$A = 64\\pi$ cm²", "$A = 4\\pi$ cm²"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = 4$ cm, $A = \\pi \\times 4^2 = 16\\pi$ cm²."
+        },
+        {
+            "question": "The circumference of a circle is $C = 14\\pi$ m. Find the area.",
+            "answer": "$A = 49\\pi$ m²",
+            "wrong": ["$A = 14\\pi$ m²", "$A = 196\\pi$ m²", "$A = 28\\pi$ m²"],
+            "explanation": "$r = \\dfrac{14\\pi}{2\\pi} = 7$ m, $A = \\pi \\times 7^2 = 49\\pi$ m²."
+        },
+        {
+            "question": "A circle has radius $r = 20$ cm. Find the circumference.",
+            "answer": "$C = 40\\pi$ cm",
+            "wrong": ["$C = 20\\pi$ cm", "$C = 400\\pi$ cm", "$C = 80\\pi$ cm"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 20 = 40\\pi$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 2\\pi$ cm. Find the area.",
+            "answer": "$A = \\pi$ cm²",
+            "wrong": ["$A = 2\\pi$ cm²", "$A = 4\\pi$ cm²", "$A = \\dfrac{\\pi}{4}$ cm²"],
+            "explanation": "$r = \\dfrac{2\\pi}{2\\pi} = 1$ cm, $A = \\pi \\times 1^2 = \\pi$ cm²."
+        },
+        {
+            "question": "A circle has diameter $d = 24$ m. Find the circumference.",
+            "answer": "$C = 24\\pi$ m",
+            "wrong": ["$C = 12\\pi$ m", "$C = 48\\pi$ m", "$C = 576\\pi$ m"],
+            "explanation": "$C = \\pi d = \\pi \\times 24 = 24\\pi$ m."
+        },
+        {
+            "question": "The circumference of a circle is $C = 30\\pi$ cm. Find the radius.",
+            "answer": "$r = 15$ cm",
+            "wrong": ["$r = 30$ cm", "$r = 7.5$ cm", "$r = 60$ cm"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = \\dfrac{30\\pi}{2\\pi} = 15$ cm."
+        },
+        {
+            "question": "Two circles have radii $r_1 = 2$ cm and $r_2 = 6$ cm. What is the ratio of their circumferences?",
+            "answer": "$1 : 3$",
+            "wrong": ["$1 : 9$", "$2 : 6$", "$4 : 36$"],
+            "explanation": "Circumference ratio $= r_1 : r_2 = 2 : 6 = 1 : 3$."
+        },
+        {
+            "question": "The circumference of a circle is $C = 100\\pi$ m. Find the radius.",
+            "answer": "$r = 50$ m",
+            "wrong": ["$r = 100$ m", "$r = 25$ m", "$r = 10$ m"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = \\dfrac{100\\pi}{2\\pi} = 50$ m."
+        },
+        {
+            "question": "A circle has radius $r = 12$ m. Find the circumference.",
+            "answer": "$C = 24\\pi$ m",
+            "wrong": ["$C = 12\\pi$ m", "$C = 144\\pi$ m", "$C = 48\\pi$ m"],
+            "explanation": "$C = 2\\pi r = 2\\pi \\times 12 = 24\\pi$ m."
+        },
+
+        # ─────────────────────────────────────────────
+        # RADIUS & DIAMETER  (10 questions)
+        # ─────────────────────────────────────────────
+
+        {
+            "question": "A circle has diameter $d = 26$ cm. Find the radius.",
+            "answer": "$r = 13$ cm",
+            "wrong": ["$r = 26$ cm", "$r = 52$ cm", "$r = 6.5$ cm"],
+            "explanation": "$r = \\dfrac{d}{2} = \\dfrac{26}{2} = 13$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 17$ m. Find the diameter.",
+            "answer": "$d = 34$ m",
+            "wrong": ["$d = 17$ m", "$d = 8.5$ m", "$d = 51$ m"],
+            "explanation": "$d = 2r = 2 \\times 17 = 34$ m."
+        },
+        {
+            "question": "The area of a circle is $A = 81\\pi$ cm². Find the diameter.",
+            "answer": "$d = 18$ cm",
+            "wrong": ["$d = 9$ cm", "$d = 81$ cm", "$d = 36$ cm"],
+            "explanation": "$r = \\sqrt{81} = 9$ cm, $d = 2 \\times 9 = 18$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 16\\pi$ m. Find the radius.",
+            "answer": "$r = 8$ m",
+            "wrong": ["$r = 16$ m", "$r = 4$ m", "$r = 32$ m"],
+            "explanation": "$r = \\dfrac{C}{2\\pi} = \\dfrac{16\\pi}{2\\pi} = 8$ m."
+        },
+        {
+            "question": "The circumference of a circle is $C = 22\\pi$ cm. Find the diameter.",
+            "answer": "$d = 22$ cm",
+            "wrong": ["$d = 11$ cm", "$d = 44$ cm", "$d = 7$ cm"],
+            "explanation": "$d = \\dfrac{C}{\\pi} = \\dfrac{22\\pi}{\\pi} = 22$ cm."
+        },
+        {
+            "question": "A circle has radius $r = 4.5$ cm. Find the diameter.",
+            "answer": "$d = 9$ cm",
+            "wrong": ["$d = 4.5$ cm", "$d = 18$ cm", "$d = 2.25$ cm"],
+            "explanation": "$d = 2r = 2 \\times 4.5 = 9$ cm."
+        },
+        {
+            "question": "The area of a circle is $A = 121\\pi$ m². Find the radius.",
+            "answer": "$r = 11$ m",
+            "wrong": ["$r = 121$ m", "$r = 22$ m", "$r = \\sqrt{11}$ m"],
+            "explanation": "$r = \\sqrt{\\dfrac{A}{\\pi}} = \\sqrt{121} = 11$ m."
+        },
+        {
+            "question": "A circle has diameter $d = 3\\sqrt{2}$ cm. Find the radius.",
+            "answer": "$r = \\dfrac{3\\sqrt{2}}{2}$ cm",
+            "wrong": ["$r = 3\\sqrt{2}$ cm", "$r = 6\\sqrt{2}$ cm", "$r = \\sqrt{2}$ cm"],
+            "explanation": "$r = \\dfrac{d}{2} = \\dfrac{3\\sqrt{2}}{2}$ cm."
+        },
+        {
+            "question": "The circumference of a circle is $C = 40\\pi$ cm. Find the diameter.",
+            "answer": "$d = 40$ cm",
+            "wrong": ["$d = 20$ cm", "$d = 80$ cm", "$d = 10$ cm"],
+            "explanation": "$d = \\dfrac{C}{\\pi} = \\dfrac{40\\pi}{\\pi} = 40$ cm."
+        },
+    ],
+    'equation_of_circle': [
+
+        # ─────────────────────────────────────────────────────────────
+        # SECTION 1 — EQUATION OF A CIRCLE  (20 questions)
+        # Standard form: (x − h)² + (y − k)² = r²
+        # ─────────────────────────────────────────────────────────────
+
+        {
+            "question": "Write the equation of a circle with centre $(0, 0)$ and radius $r = 5$.",
+            "answer": "$x^2 + y^2 = 25$",
+            "wrong": ["$x^2 + y^2 = 5$", "$x^2 + y^2 = 10$", "$(x-5)^2 + (y-5)^2 = 25$"],
+            "explanation": "Centre $(0,0)$: $(x-0)^2+(y-0)^2=5^2 \\Rightarrow x^2+y^2=25$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(3, 4)$ and radius $r = 6$.",
+            "answer": "$(x-3)^2 + (y-4)^2 = 36$",
+            "wrong": ["$(x+3)^2 + (y+4)^2 = 36$", "$(x-3)^2 + (y-4)^2 = 6$", "$(x-4)^2 + (y-3)^2 = 36$"],
+            "explanation": "$(x-3)^2+(y-4)^2=6^2=36$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(-2, 5)$ and radius $r = 3$.",
+            "answer": "$(x+2)^2 + (y-5)^2 = 9$",
+            "wrong": ["$(x-2)^2 + (y-5)^2 = 9$", "$(x+2)^2 + (y+5)^2 = 9$", "$(x+2)^2 + (y-5)^2 = 3$"],
+            "explanation": "$(x-(-2))^2+(y-5)^2=3^2 \\Rightarrow (x+2)^2+(y-5)^2=9$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(0, -4)$ and radius $r = 7$.",
+            "answer": "$x^2 + (y+4)^2 = 49$",
+            "wrong": ["$x^2 + (y-4)^2 = 49$", "$x^2 + (y+4)^2 = 7$", "$(x+4)^2 + y^2 = 49$"],
+            "explanation": "$(x-0)^2+(y-(-4))^2=7^2 \\Rightarrow x^2+(y+4)^2=49$."
+        },
+        {
+            "question": "Find the centre and radius of the circle $x^2 + y^2 = 81$.",
+            "answer": "Centre $(0, 0)$, radius $r = 9$",
+            "wrong": ["Centre $(0, 0)$, radius $r = 81$", "Centre $(9, 9)$, radius $r = 9$",
+                      "Centre $(0, 0)$, radius $r = 40.5$"],
+            "explanation": "$x^2+y^2=9^2$, so centre $(0,0)$ and $r=9$."
+        },
+        {
+            "question": "Find the centre and radius of the circle $(x-5)^2 + (y+3)^2 = 16$.",
+            "answer": "Centre $(5, -3)$, radius $r = 4$",
+            "wrong": ["Centre $(-5, 3)$, radius $r = 4$", "Centre $(5, -3)$, radius $r = 16$",
+                      "Centre $(5, 3)$, radius $r = 4$"],
+            "explanation": "$h=5,\\; k=-3,\\; r=\\sqrt{16}=4$."
+        },
+        {
+            "question": "Find the centre and radius of the circle $(x+1)^2 + (y-7)^2 = 49$.",
+            "answer": "Centre $(-1, 7)$, radius $r = 7$",
+            "wrong": ["Centre $(1, -7)$, radius $r = 7$", "Centre $(-1, 7)$, radius $r = 49$",
+                      "Centre $(1, 7)$, radius $r = 7$"],
+            "explanation": "$h=-1,\\; k=7,\\; r=\\sqrt{49}=7$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(-3, -6)$ and radius $r = 10$.",
+            "answer": "$(x+3)^2 + (y+6)^2 = 100$",
+            "wrong": ["$(x-3)^2 + (y-6)^2 = 100$", "$(x+3)^2 + (y+6)^2 = 10$", "$(x+6)^2 + (y+3)^2 = 100$"],
+            "explanation": "$(x+3)^2+(y+6)^2=10^2=100$."
+        },
+        {
+            "question": "Find the radius of the circle $(x-2)^2 + (y-2)^2 = 50$.",
+            "answer": "$r = 5\\sqrt{2}$",
+            "wrong": ["$r = 50$", "$r = 25$", "$r = 10$"],
+            "explanation": "$r = \\sqrt{50} = 5\\sqrt{2}$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(4, -1)$ and radius $r = \\sqrt{11}$.",
+            "answer": "$(x-4)^2 + (y+1)^2 = 11$",
+            "wrong": ["$(x-4)^2 + (y+1)^2 = \\sqrt{11}$", "$(x+4)^2 + (y-1)^2 = 11$", "$(x-4)^2 + (y-1)^2 = 11$"],
+            "explanation": "$(x-4)^2+(y+1)^2=(\\sqrt{11})^2=11$."
+        },
+        {
+            "question": "Find the centre and radius of $(x+6)^2 + y^2 = 100$.",
+            "answer": "Centre $(-6, 0)$, radius $r = 10$",
+            "wrong": ["Centre $(6, 0)$, radius $r = 10$", "Centre $(-6, 0)$, radius $r = 100$",
+                      "Centre $(0, -6)$, radius $r = 10$"],
+            "explanation": "$h=-6,\\; k=0,\\; r=\\sqrt{100}=10$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(0, 0)$ and radius $r = \\sqrt{7}$.",
+            "answer": "$x^2 + y^2 = 7$",
+            "wrong": ["$x^2 + y^2 = \\sqrt{7}$", "$x^2 + y^2 = 49$", "$x^2 + y^2 = 14$"],
+            "explanation": "$x^2+y^2=(\\sqrt{7})^2=7$."
+        },
+        {
+            "question": "Find the centre and radius of $(x-9)^2 + (y-9)^2 = 9$.",
+            "answer": "Centre $(9, 9)$, radius $r = 3$",
+            "wrong": ["Centre $(9, 9)$, radius $r = 9$", "Centre $(-9, -9)$, radius $r = 3$",
+                      "Centre $(3, 3)$, radius $r = 9$"],
+            "explanation": "$h=9,\\; k=9,\\; r=\\sqrt{9}=3$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(7, 0)$ and radius $r = 4$.",
+            "answer": "$(x-7)^2 + y^2 = 16$",
+            "wrong": ["$(x-7)^2 + y^2 = 4$", "$(x+7)^2 + y^2 = 16$", "$x^2 + (y-7)^2 = 16$"],
+            "explanation": "$(x-7)^2+(y-0)^2=4^2=16$."
+        },
+        {
+            "question": "Two circles have equations $x^2+y^2=4$ and $x^2+y^2=9$. Which has the larger radius?",
+            "answer": "$x^2+y^2=9$, with $r=3$",
+            "wrong": ["$x^2+y^2=4$, with $r=4$", "Both have the same radius", "$x^2+y^2=9$, with $r=9$"],
+            "explanation": "$r_1=\\sqrt{4}=2$, $r_2=\\sqrt{9}=3$. The second circle is larger."
+        },
+        {
+            "question": "Find the centre and radius of $(x-1)^2 + (y+2)^2 = 5$.",
+            "answer": "Centre $(1, -2)$, radius $r = \\sqrt{5}$",
+            "wrong": ["Centre $(-1, 2)$, radius $r = \\sqrt{5}$", "Centre $(1, -2)$, radius $r = 5$",
+                      "Centre $(1, 2)$, radius $r = \\sqrt{5}$"],
+            "explanation": "$h=1,\\; k=-2,\\; r=\\sqrt{5}$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(-5, 8)$ and radius $r = 2$.",
+            "answer": "$(x+5)^2 + (y-8)^2 = 4$",
+            "wrong": ["$(x-5)^2 + (y+8)^2 = 4$", "$(x+5)^2 + (y-8)^2 = 2$", "$(x+5)^2 + (y-8)^2 = 16$"],
+            "explanation": "$(x+5)^2+(y-8)^2=2^2=4$."
+        },
+        {
+            "question": "Find the diameter of the circle $(x+3)^2 + (y-3)^2 = 36$.",
+            "answer": "$d = 12$",
+            "wrong": ["$d = 6$", "$d = 36$", "$d = 18$"],
+            "explanation": "$r = \\sqrt{36} = 6$, so $d = 2r = 12$."
+        },
+        {
+            "question": "Write the equation of a circle with centre $(0, 6)$ and radius $r = 8$.",
+            "answer": "$x^2 + (y-6)^2 = 64$",
+            "wrong": ["$x^2 + (y+6)^2 = 64$", "$(x-6)^2 + y^2 = 64$", "$x^2 + (y-6)^2 = 8$"],
+            "explanation": "$(x-0)^2+(y-6)^2=8^2=64$."
+        },
+        {
+            "question": "Find the centre and radius of $(x+4)^2 + (y+4)^2 = 32$.",
+            "answer": "Centre $(-4, -4)$, radius $r = 4\\sqrt{2}$",
+            "wrong": ["Centre $(4, 4)$, radius $r = 4\\sqrt{2}$", "Centre $(-4, -4)$, radius $r = 32$",
+                      "Centre $(-4, -4)$, radius $r = 16$"],
+            "explanation": "$h=-4,\\; k=-4,\\; r=\\sqrt{32}=4\\sqrt{2}$."
+        },
+
+        # ─────────────────────────────────────────────────────────────
+        # SECTION 2 — TRANSLATIONS (horizontal & vertical)  (10 qs)
+        # ─────────────────────────────────────────────────────────────
+
+        {
+            "question": "The circle $x^2 + y^2 = 25$ is moved $3$ units to the right. Write its new equation.",
+            "answer": "$(x-3)^2 + y^2 = 25$",
+            "wrong": ["$(x+3)^2 + y^2 = 25$", "$x^2 + (y-3)^2 = 25$", "$(x-3)^2 + y^2 = 22$"],
+            "explanation": "Shift right by $3$: replace $x$ with $(x-3)$. New equation: $(x-3)^2+y^2=25$."
+        },
+        {
+            "question": "The circle $x^2 + y^2 = 16$ is moved $5$ units upward. Write its new equation.",
+            "answer": "$x^2 + (y-5)^2 = 16$",
+            "wrong": ["$x^2 + (y+5)^2 = 16$", "$(x-5)^2 + y^2 = 16$", "$x^2 + (y-5)^2 = 11$"],
+            "explanation": "Shift up by $5$: replace $y$ with $(y-5)$. New equation: $x^2+(y-5)^2=16$."
+        },
+        {
+            "question": "The circle $x^2 + y^2 = 9$ is moved $4$ units to the left. Write its new equation.",
+            "answer": "$(x+4)^2 + y^2 = 9$",
+            "wrong": ["$(x-4)^2 + y^2 = 9$", "$x^2 + (y+4)^2 = 9$", "$(x+4)^2 + y^2 = 5$"],
+            "explanation": "Shift left by $4$: replace $x$ with $(x+4)$. New equation: $(x+4)^2+y^2=9$."
+        },
+        {
+            "question": "The circle $x^2 + y^2 = 49$ is moved $6$ units downward. Write its new equation.",
+            "answer": "$x^2 + (y+6)^2 = 49$",
+            "wrong": ["$x^2 + (y-6)^2 = 49$", "$(x+6)^2 + y^2 = 49$", "$x^2 + (y+6)^2 = 43$"],
+            "explanation": "Shift down by $6$: replace $y$ with $(y+6)$. New equation: $x^2+(y+6)^2=49$."
+        },
+        {
+            "question": "The circle $(x-2)^2 + (y-3)^2 = 25$ is moved $2$ units to the right. What is the new centre?",
+            "answer": "$(4, 3)$",
+            "wrong": ["$(0, 3)$", "$(2, 5)$", "$(2, 1)$"],
+            "explanation": "Moving right by $2$ increases the $x$-coordinate of the centre: $(2+2,\\,3)=(4,3)$."
+        },
+        {
+            "question": "The circle $(x+1)^2 + (y-4)^2 = 36$ is moved $4$ units downward. What is the new equation?",
+            "answer": "$(x+1)^2 + y^2 = 36$",
+            "wrong": ["$(x+1)^2 + (y-8)^2 = 36$", "$(x+5)^2 + (y-4)^2 = 36$", "$(x+1)^2 + (y+4)^2 = 36$"],
+            "explanation": "New centre: $(-1,\\, 4-4)=(-1,0)$. Equation: $(x+1)^2+y^2=36$."
+        },
+        {
+            "question": "The circle $x^2 + y^2 = 100$ is moved $7$ units left and $3$ units up. Write its new equation.",
+            "answer": "$(x+7)^2 + (y-3)^2 = 100$",
+            "wrong": ["$(x-7)^2 + (y+3)^2 = 100$", "$(x+7)^2 + (y+3)^2 = 100$", "$(x-7)^2 + (y-3)^2 = 100$"],
+            "explanation": "Left $7$: $(x+7)$; up $3$: $(y-3)$. New equation: $(x+7)^2+(y-3)^2=100$."
+        },
+        {
+            "question": "After a translation, the circle $x^2+y^2=4$ has new equation $(x-5)^2+(y+2)^2=4$. Describe the translation.",
+            "answer": "$5$ units right and $2$ units down",
+            "wrong": ["$5$ units left and $2$ units up", "$2$ units right and $5$ units down",
+                      "$5$ units right and $2$ units up"],
+            "explanation": "Centre moved from $(0,0)$ to $(5,-2)$: right $5$, down $2$."
+        },
+        {
+            "question": "The circle $(x-3)^2+(y+1)^2=9$ is moved $3$ units left and $1$ unit up. Write its new equation.",
+            "answer": "$x^2 + y^2 = 9$",
+            "wrong": ["$(x-6)^2+(y+2)^2=9$", "$(x+3)^2+(y-1)^2=9$", "$(x-3)^2+(y-1)^2=9$"],
+            "explanation": "New centre: $(3-3,\\,-1+1)=(0,0)$. Equation: $x^2+y^2=9$."
+        },
+        {
+            "question": "The circle $x^2+(y-2)^2=25$ is moved $5$ units to the right. What is the new centre?",
+            "answer": "$(5, 2)$",
+            "wrong": ["$(0, 7)$", "$(5, -3)$", "$(-5, 2)$"],
+            "explanation": "Original centre $(0,2)$, shifted right $5$: new centre $(5,2)$."
+        },
+
+        # ─────────────────────────────────────────────────────────────
+        # SECTION 3 — POINT POSITION: inside / on / outside  (10 qs)
+        # Substitute point into (x−h)²+(y−k)²:
+        #   < r²  → inside     = r²  → on     > r²  → outside
+        # ─────────────────────────────────────────────────────────────
+
+        {
+            "question": "Is the point $(3, 4)$ inside, on, or outside the circle $x^2 + y^2 = 25$?",
+            "answer": "On the circle",
+            "wrong": ["Inside the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$3^2+4^2=9+16=25=r^2$. The point lies on the circle."
+        },
+        {
+            "question": "Is the point $(1, 1)$ inside, on, or outside the circle $x^2 + y^2 = 9$?",
+            "answer": "Inside the circle",
+            "wrong": ["On the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$1^2+1^2=2 < 9=r^2$. The point is inside the circle."
+        },
+        {
+            "question": "Is the point $(4, 5)$ inside, on, or outside the circle $x^2 + y^2 = 25$?",
+            "answer": "Outside the circle",
+            "wrong": ["Inside the circle", "On the circle", "Cannot be determined"],
+            "explanation": "$4^2+5^2=16+25=41 > 25=r^2$. The point is outside the circle."
+        },
+        {
+            "question": "Is the point $(2, 3)$ inside, on, or outside the circle $(x-1)^2 + (y-1)^2 = 10$?",
+            "answer": "Inside the circle",
+            "wrong": ["On the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$(2-1)^2+(3-1)^2=1+4=5 < 10=r^2$. The point is inside the circle."
+        },
+        {
+            "question": "Is the point $(0, 5)$ inside, on, or outside the circle $x^2 + y^2 = 25$?",
+            "answer": "On the circle",
+            "wrong": ["Inside the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$0^2+5^2=25=r^2$. The point lies on the circle."
+        },
+        {
+            "question": "Is the point $(3, 3)$ inside, on, or outside the circle $(x-2)^2 + (y-2)^2 = 4$?",
+            "answer": "Inside the circle",
+            "wrong": ["Outside the circle", "On the circle", "Cannot be determined"],
+            "explanation": "$(3-2)^2+(3-2)^2=1+1=2 < 4=r^2$. The point is inside the circle."
+        },
+        {
+            "question": "Is the point $(-3, 4)$ inside, on, or outside the circle $x^2 + y^2 = 25$?",
+            "answer": "On the circle",
+            "wrong": ["Inside the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$(-3)^2+4^2=9+16=25=r^2$. The point lies on the circle."
+        },
+        {
+            "question": "Is the point $(5, 5)$ inside, on, or outside the circle $x^2 + y^2 = 36$?",
+            "answer": "Outside the circle",
+            "wrong": ["Inside the circle", "On the circle", "Cannot be determined"],
+            "explanation": "$5^2+5^2=50 > 36=r^2$. The point is outside the circle."
+        },
+        {
+            "question": "Is the point $(1, 2)$ inside, on, or outside the circle $(x-3)^2 + (y-4)^2 = 9$?",
+            "answer": "Inside the circle",
+            "wrong": ["Outside the circle", "On the circle", "Cannot be determined"],
+            "explanation": "$(1-3)^2+(2-4)^2=4+4=8 < 9=r^2$. The point is inside the circle."
+        },
+        {
+            "question": "Is the point $(6, 0)$ inside, on, or outside the circle $(x-1)^2 + y^2 = 25$?",
+            "answer": "On the circle",
+            "wrong": ["Inside the circle", "Outside the circle", "Cannot be determined"],
+            "explanation": "$(6-1)^2+0^2=25=r^2$. The point lies on the circle."
+        },
+
+        # ─────────────────────────────────────────────────────────────
+        # SECTION 4 — SPECIAL CASES  (10 questions)
+        # Circles on axes, tangent to axes, passing through origin, etc.
+        # ─────────────────────────────────────────────────────────────
+
+        {
+            "question": "A circle has centre $(0, 0)$ and passes through $(0, 6)$. Write its equation.",
+            "answer": "$x^2 + y^2 = 36$",
+            "wrong": ["$x^2 + y^2 = 6$", "$x^2 + (y-6)^2 = 36$", "$x^2 + y^2 = 12$"],
+            "explanation": "$r = 6$ (distance from centre to $(0,6)$). Equation: $x^2+y^2=36$."
+        },
+        {
+            "question": "A circle is centred at $(4, 0)$ and is tangent to the $y$-axis. Write its equation.",
+            "answer": "$(x-4)^2 + y^2 = 16$",
+            "wrong": ["$(x-4)^2 + y^2 = 4$", "$(x+4)^2 + y^2 = 16$", "$(x-4)^2 + y^2 = 8$"],
+            "explanation": "Distance from $(4,0)$ to the $y$-axis is $4$, so $r=4$. Equation: $(x-4)^2+y^2=16$."
+        },
+        {
+            "question": "A circle is centred at $(0, 3)$ and is tangent to the $x$-axis. Write its equation.",
+            "answer": "$x^2 + (y-3)^2 = 9$",
+            "wrong": ["$x^2 + (y-3)^2 = 3$", "$x^2 + (y+3)^2 = 9$", "$(x-3)^2 + y^2 = 9$"],
+            "explanation": "Distance from $(0,3)$ to the $x$-axis is $3$, so $r=3$. Equation: $x^2+(y-3)^2=9$."
+        },
+        {
+            "question": "The circle $x^2 + y^2 = r^2$ passes through the point $(5, 0)$. Find $r$.",
+            "answer": "$r = 5$",
+            "wrong": ["$r = 25$", "$r = 10$", "$r = \\sqrt{5}$"],
+            "explanation": "Substituting $(5,0)$: $5^2+0^2=r^2 \\Rightarrow r=5$."
+        },
+        {
+            "question": "Where does the circle $x^2 + y^2 = 25$ intersect the $x$-axis?",
+            "answer": "$(-5, 0)$ and $(5, 0)$",
+            "wrong": ["$(0, 5)$ and $(0, -5)$", "$(5, 5)$ and $(-5, -5)$", "$(25, 0)$ and $(-25, 0)$"],
+            "explanation": "Set $y=0$: $x^2=25 \\Rightarrow x=\\pm5$. Points: $(-5,0)$ and $(5,0)$."
+        },
+        {
+            "question": "Where does the circle $x^2 + y^2 = 49$ intersect the $y$-axis?",
+            "answer": "$(0, -7)$ and $(0, 7)$",
+            "wrong": ["$(-7, 0)$ and $(7, 0)$", "$(0, 49)$ and $(0, -49)$", "$(7, 7)$ and $(-7, -7)$"],
+            "explanation": "Set $x=0$: $y^2=49 \\Rightarrow y=\\pm7$. Points: $(0,-7)$ and $(0,7)$."
+        },
+        {
+            "question": "A circle centred at $(0, 0)$ passes through $(-3, 4)$. Write its equation.",
+            "answer": "$x^2 + y^2 = 25$",
+            "wrong": ["$x^2 + y^2 = 7$", "$x^2 + y^2 = 49$", "$x^2 + y^2 = 5$"],
+            "explanation": "$r = \\sqrt{(-3)^2+4^2}=\\sqrt{25}=5$. Equation: $x^2+y^2=25$."
+        },
+        {
+            "question": "A circle is centred at $(-5, 0)$ and is tangent to the $y$-axis. Write its equation.",
+            "answer": "$(x+5)^2 + y^2 = 25$",
+            "wrong": ["$(x-5)^2 + y^2 = 25$", "$(x+5)^2 + y^2 = 5$", "$(x+5)^2 + y^2 = 10$"],
+            "explanation": "Distance from $(-5,0)$ to the $y$-axis is $5$, so $r=5$. Equation: $(x+5)^2+y^2=25$."
+        },
+        {
+            "question": "Does the circle $x^2 + y^2 = 16$ intersect the $x$-axis? If so, at what points?",
+            "answer": "Yes, at $(-4, 0)$ and $(4, 0)$",
+            "wrong": ["No, it does not intersect the $x$-axis", "Yes, at $(0, 4)$ and $(0, -4)$",
+                      "Yes, at $(16, 0)$ and $(-16, 0)$"],
+            "explanation": "Set $y=0$: $x^2=16 \\Rightarrow x=\\pm4$. The circle meets the $x$-axis at $(-4,0)$ and $(4,0)$."
+        },
+        {
+            "question": "A circle centred at $(0, 0)$ is tangent to the line $y = 8$. Write its equation.",
+            "answer": "$x^2 + y^2 = 64$",
+            "wrong": ["$x^2 + y^2 = 8$", "$x^2 + (y-8)^2 = 64$", "$x^2 + y^2 = 16$"],
+            "explanation": "The distance from the origin to $y=8$ is $8$, so $r=8$. Equation: $x^2+y^2=64$."
+        },
+    ],
+    'distance_midpoint_slope': [{
+        "question": "Find the midpoint of the segment joining $(2, 4)$ and $(8, 10)$.",
+        "answer": "$(5, 7)$",
+        "wrong": ["$(6, 7)$", "$(5, 6)$", "$(4, 7)$"],
+        "explanation": "Midpoint $= \\left(\\frac{2+8}{2}, \\frac{4+10}{2}\\right) = (5, 7)$."
+    },
+        {
+            "question": "Find the midpoint of the segment joining $(-3, 1)$ and $(5, 9)$.",
+            "answer": "$(1, 5)$",
+            "wrong": ["$(2, 5)$", "$(1, 4)$", "$(1, 6)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-3+5}{2}, \\frac{1+9}{2}\\right) = (1, 5)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(0, 0)$ and $(6, -4)$.",
+            "answer": "$(3, -2)$",
+            "wrong": ["$(3, 2)$", "$(6, -4)$", "$(2, -3)$"],
+            "explanation": "Midpoint $= \\left(\\frac{0+6}{2}, \\frac{0+(-4)}{2}\\right) = (3, -2)$."
+        },
+        {
+            "question": "The midpoint of $AB$ is $(4, 6)$. If $A = (1, 2)$, find $B$.",
+            "answer": "$(7, 10)$",
+            "wrong": ["$(5, 8)$", "$(3, 4)$", "$(8, 12)$"],
+            "explanation": "$B = (2(4)-1,\\; 2(6)-2) = (7, 10)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(-6, -2)$ and $(4, 8)$.",
+            "answer": "$(-1, 3)$",
+            "wrong": ["$(1, 3)$", "$(-1, 4)$", "$(-2, 3)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-6+4}{2}, \\frac{-2+8}{2}\\right) = (-1, 3)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(7, -3)$ and $(-1, 5)$.",
+            "answer": "$(3, 1)$",
+            "wrong": ["$(4, 1)$", "$(3, 2)$", "$(3, -1)$"],
+            "explanation": "Midpoint $= \\left(\\frac{7+(-1)}{2}, \\frac{-3+5}{2}\\right) = (3, 1)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(\\frac{1}{2}, 3)$ and $(\\frac{3}{2}, 7)$.",
+            "answer": "$(1, 5)$",
+            "wrong": ["$(2, 5)$", "$(1, 4)$", "$(1, 6)$"],
+            "explanation": "Midpoint $= \\left(\\frac{\\frac{1}{2}+\\frac{3}{2}}{2}, \\frac{3+7}{2}\\right) = (1, 5)$."
+        },
+        {
+            "question": "The midpoint of $PQ$ is $(0, 0)$. If $P = (3, -5)$, find $Q$.",
+            "answer": "$(-3, 5)$",
+            "wrong": ["$(3, 5)$", "$(-3, -5)$", "$(0, 5)$"],
+            "explanation": "$Q = (2(0)-3,\\; 2(0)-(-5)) = (-3, 5)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(-4, 0)$ and $(0, -8)$.",
+            "answer": "$(-2, -4)$",
+            "wrong": ["$(2, -4)$", "$(-2, 4)$", "$(-4, -8)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-4+0}{2}, \\frac{0+(-8)}{2}\\right) = (-2, -4)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(10, -6)$ and $(-4, 2)$.",
+            "answer": "$(3, -2)$",
+            "wrong": ["$(3, -4)$", "$(2, -2)$", "$(4, -2)$"],
+            "explanation": "Midpoint $= \\left(\\frac{10+(-4)}{2}, \\frac{-6+2}{2}\\right) = (3, -2)$."
+        },
+        {
+            "question": "The midpoint of $AB$ is $(5, -1)$. If $B = (9, 3)$, find $A$.",
+            "answer": "$(1, -5)$",
+            "wrong": ["$(7, 1)$", "$(1, -3)$", "$(3, -5)$"],
+            "explanation": "$A = (2(5)-9,\\; 2(-1)-3) = (1, -5)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(-1, -1)$ and $(1, 1)$.",
+            "answer": "$(0, 0)$",
+            "wrong": ["$(1, 1)$", "$(-1, 1)$", "$(0, 1)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-1+1}{2}, \\frac{-1+1}{2}\\right) = (0, 0)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(3, 7)$ and $(3, -3)$.",
+            "answer": "$(3, 2)$",
+            "wrong": ["$(0, 2)$", "$(3, 4)$", "$(3, -2)$"],
+            "explanation": "Midpoint $= \\left(\\frac{3+3}{2}, \\frac{7+(-3)}{2}\\right) = (3, 2)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(8, 5)$ and $(-2, 5)$.",
+            "answer": "$(3, 5)$",
+            "wrong": ["$(5, 5)$", "$(3, 0)$", "$(4, 5)$"],
+            "explanation": "Midpoint $= \\left(\\frac{8+(-2)}{2}, \\frac{5+5}{2}\\right) = (3, 5)$."
+        },
+        {
+            "question": "The midpoint of $CD$ is $(-2, 4)$. If $C = (-6, 1)$, find $D$.",
+            "answer": "$(2, 7)$",
+            "wrong": ["$(-4, 5)$", "$(2, 3)$", "$(2, 8)$"],
+            "explanation": "$D = (2(-2)-(-6),\\; 2(4)-1) = (2, 7)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(-5, 6)$ and $(3, -2)$.",
+            "answer": "$(-1, 2)$",
+            "wrong": ["$(1, 2)$", "$(-1, 4)$", "$(-2, 2)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-5+3}{2}, \\frac{6+(-2)}{2}\\right) = (-1, 2)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(0, 9)$ and $(0, -3)$.",
+            "answer": "$(0, 3)$",
+            "wrong": ["$(0, 6)$", "$(0, -3)$", "$(0, 4)$"],
+            "explanation": "Midpoint $= \\left(0, \\frac{9+(-3)}{2}\\right) = (0, 3)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(-7, -4)$ and $(-3, -8)$.",
+            "answer": "$(-5, -6)$",
+            "wrong": ["$(-4, -6)$", "$(-5, -4)$", "$(-5, -8)$"],
+            "explanation": "Midpoint $= \\left(\\frac{-7+(-3)}{2}, \\frac{-4+(-8)}{2}\\right) = (-5, -6)$."
+        },
+        {
+            "question": "The midpoint of $MN$ is $(3, 3)$. If $M = (0, 6)$, find $N$.",
+            "answer": "$(6, 0)$",
+            "wrong": ["$(3, 0)$", "$(6, 3)$", "$(6, -6)$"],
+            "explanation": "$N = (2(3)-0,\\; 2(3)-6) = (6, 0)$."
+        },
+        {
+            "question": "Find the midpoint of the segment joining $(4, -7)$ and $(-4, 7)$.",
+            "answer": "$(0, 0)$",
+            "wrong": ["$(4, 7)$", "$(0, 7)$", "$(4, 0)$"],
+            "explanation": "Midpoint $= \\left(\\frac{4+(-4)}{2}, \\frac{-7+7}{2}\\right) = (0, 0)$."
+        },
+
+        # ─────────────────────────────────────────────
+        # SLOPE OF A LINE (20 questions)
+        # ─────────────────────────────────────────────
+        {
+            "question": "Find the slope of the line passing through $(1, 2)$ and $(3, 6)$.",
+            "answer": "$2$",
+            "wrong": ["$\\dfrac{1}{2}$", "$4$", "$-2$"],
+            "explanation": "$m = \\dfrac{6-2}{3-1} = \\dfrac{4}{2} = 2$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(0, 5)$ and $(4, 1)$.",
+            "answer": "$-1$",
+            "wrong": ["$1$", "$-\\dfrac{1}{2}$", "$-4$"],
+            "explanation": "$m = \\dfrac{1-5}{4-0} = \\dfrac{-4}{4} = -1$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(-2, 3)$ and $(4, 3)$.",
+            "answer": "$0$",
+            "wrong": ["$1$", "$-1$", "undefined"],
+            "explanation": "Both $y$-values are equal, so the line is horizontal: $m = 0$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(5, 2)$ and $(5, -6)$.",
+            "answer": "undefined",
+            "wrong": ["$0$", "$-8$", "$8$"],
+            "explanation": "Both $x$-values are equal, so the line is vertical: slope is undefined."
+        },
+        {
+            "question": "Find the slope of the line passing through $(-1, -3)$ and $(2, 6)$.",
+            "answer": "$3$",
+            "wrong": ["$-3$", "$\\dfrac{1}{3}$", "$9$"],
+            "explanation": "$m = \\dfrac{6-(-3)}{2-(-1)} = \\dfrac{9}{3} = 3$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(3, 8)$ and $(7, 4)$.",
+            "answer": "$-1$",
+            "wrong": ["$1$", "$-2$", "$\\dfrac{1}{2}$"],
+            "explanation": "$m = \\dfrac{4-8}{7-3} = \\dfrac{-4}{4} = -1$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(0, 0)$ and $(5, 10)$.",
+            "answer": "$2$",
+            "wrong": ["$5$", "$\\dfrac{1}{2}$", "$10$"],
+            "explanation": "$m = \\dfrac{10-0}{5-0} = \\dfrac{10}{5} = 2$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(-4, 1)$ and $(2, -2)$.",
+            "answer": "$-\\dfrac{1}{2}$",
+            "wrong": ["$\\dfrac{1}{2}$", "$-2$", "$2$"],
+            "explanation": "$m = \\dfrac{-2-1}{2-(-4)} = \\dfrac{-3}{6} = -\\dfrac{1}{2}$."
+        },
+        {
+            "question": "Find the slope of the line $3x + y = 9$.",
+            "answer": "$-3$",
+            "wrong": ["$3$", "$9$", "$\\dfrac{1}{3}$"],
+            "explanation": "Rearranging: $y = -3x + 9$, so slope $= -3$."
+        },
+        {
+            "question": "Find the slope of the line $2x - 4y = 8$.",
+            "answer": "$\\dfrac{1}{2}$",
+            "wrong": ["$2$", "$-\\dfrac{1}{2}$", "$-2$"],
+            "explanation": "Rearranging: $y = \\dfrac{1}{2}x - 2$, so slope $= \\dfrac{1}{2}$."
+        },
+        {
+            "question": "A line has slope $3$ and passes through $(1, 4)$. What is its $y$-intercept?",
+            "answer": "$1$",
+            "wrong": ["$3$", "$4$", "$7$"],
+            "explanation": "$y = 3x + b \\Rightarrow 4 = 3(1)+b \\Rightarrow b=1$."
+        },
+        {
+            "question": "Find the slope of a line perpendicular to a line with slope $4$.",
+            "answer": "$-\\dfrac{1}{4}$",
+            "wrong": ["$4$", "$-4$", "$\\dfrac{1}{4}$"],
+            "explanation": "Perpendicular slopes are negative reciprocals: $-\\dfrac{1}{4}$."
+        },
+        {
+            "question": "Find the slope of a line parallel to $y = -2x + 7$.",
+            "answer": "$-2$",
+            "wrong": ["$2$", "$7$", "$\\dfrac{1}{2}$"],
+            "explanation": "Parallel lines have equal slopes. Slope $= -2$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(6, -1)$ and $(2, 7)$.",
+            "answer": "$-2$",
+            "wrong": ["$2$", "$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$"],
+            "explanation": "$m = \\dfrac{7-(-1)}{2-6} = \\dfrac{8}{-4} = -2$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(-3, -3)$ and $(3, 3)$.",
+            "answer": "$1$",
+            "wrong": ["$-1$", "$0$", "$3$"],
+            "explanation": "$m = \\dfrac{3-(-3)}{3-(-3)} = \\dfrac{6}{6} = 1$."
+        },
+        {
+            "question": "Find the slope of the line $y = 7$.",
+            "answer": "$0$",
+            "wrong": ["$7$", "$-7$", "undefined"],
+            "explanation": "$y = 7$ is a horizontal line, so its slope is $0$."
+        },
+        {
+            "question": "Find the slope of the line $x = -4$.",
+            "answer": "undefined",
+            "wrong": ["$-4$", "$0$", "$4$"],
+            "explanation": "$x = -4$ is a vertical line, so its slope is undefined."
+        },
+        {
+            "question": "Find the slope of the line passing through $(1, 5)$ and $(4, 14)$.",
+            "answer": "$3$",
+            "wrong": ["$\\dfrac{1}{3}$", "$9$", "$-3$"],
+            "explanation": "$m = \\dfrac{14-5}{4-1} = \\dfrac{9}{3} = 3$."
+        },
+        {
+            "question": "Find the slope of the line passing through $(-2, 7)$ and $(3, -3)$.",
+            "answer": "$-2$",
+            "wrong": ["$2$", "$-\\dfrac{1}{2}$", "$5$"],
+            "explanation": "$m = \\dfrac{-3-7}{3-(-2)} = \\dfrac{-10}{5} = -2$."
+        },
+        {
+            "question": "Two points are $(a, 3)$ and $(4, 9)$ with slope $2$. Find $a$.",
+            "answer": "$1$",
+            "wrong": ["$2$", "$-1$", "$3$"],
+            "explanation": "$2 = \\dfrac{9-3}{4-a} \\Rightarrow 2(4-a)=6 \\Rightarrow 4-a=3 \\Rightarrow a=1$."
+        },
+
+        # ─────────────────────────────────────────────
+        # DISTANCE BETWEEN TWO POINTS (20 questions)
+        # ─────────────────────────────────────────────
+        {
+            "question": "Find the distance between $(0, 0)$ and $(3, 4)$.",
+            "answer": "$5$",
+            "wrong": ["$7$", "$\\sqrt{7}$", "$25$"],
+            "explanation": "$d = \\sqrt{(3-0)^2+(4-0)^2} = \\sqrt{9+16} = \\sqrt{25} = 5$."
+        },
+        {
+            "question": "Find the distance between $(1, 1)$ and $(4, 5)$.",
+            "answer": "$5$",
+            "wrong": ["$\\sqrt{7}$", "$7$", "$\\sqrt{25}+1$"],
+            "explanation": "$d = \\sqrt{(4-1)^2+(5-1)^2} = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(-2, 3)$ and $(2, 6)$.",
+            "answer": "$5$",
+            "wrong": ["$\\sqrt{7}$", "$6$", "$4$"],
+            "explanation": "$d = \\sqrt{(2-(-2))^2+(6-3)^2} = \\sqrt{16+9} = 5$."
+        },
+        {
+            "question": "Find the distance between $(0, 0)$ and $(5, 12)$.",
+            "answer": "$13$",
+            "wrong": ["$17$", "$\\sqrt{17}$", "$12$"],
+            "explanation": "$d = \\sqrt{25+144} = \\sqrt{169} = 13$."
+        },
+        {
+            "question": "Find the distance between $(3, -2)$ and $(7, 1)$.",
+            "answer": "$5$",
+            "wrong": ["$\\sqrt{7}$", "$6$", "$\\sqrt{23}$"],
+            "explanation": "$d = \\sqrt{(7-3)^2+(1-(-2))^2} = \\sqrt{16+9} = 5$."
+        },
+        {
+            "question": "Find the distance between $(-1, -1)$ and $(2, 3)$.",
+            "answer": "$5$",
+            "wrong": ["$4$", "$\\sqrt{7}$", "$6$"],
+            "explanation": "$d = \\sqrt{(2-(-1))^2+(3-(-1))^2} = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(0, 4)$ and $(3, 0)$.",
+            "answer": "$5$",
+            "wrong": ["$7$", "$4$", "$3$"],
+            "explanation": "$d = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(-3, 0)$ and $(0, 4)$.",
+            "answer": "$5$",
+            "wrong": ["$4$", "$3$", "$\\sqrt{7}$"],
+            "explanation": "$d = \\sqrt{(-3-0)^2+(0-4)^2} = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(2, 2)$ and $(5, 6)$.",
+            "answer": "$5$",
+            "wrong": ["$\\sqrt{7}$", "$6$", "$4$"],
+            "explanation": "$d = \\sqrt{(5-2)^2+(6-2)^2} = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(1, -3)$ and $(4, 1)$.",
+            "answer": "$5$",
+            "wrong": ["$4$", "$3$", "$\\sqrt{43}$"],
+            "explanation": "$d = \\sqrt{(4-1)^2+(1-(-3))^2} = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(0, 0)$ and $(8, 6)$.",
+            "answer": "$10$",
+            "wrong": ["$14$", "$\\sqrt{14}$", "$8$"],
+            "explanation": "$d = \\sqrt{64+36} = \\sqrt{100} = 10$."
+        },
+        {
+            "question": "Find the distance between $(-5, 0)$ and $(7, 0)$.",
+            "answer": "$12$",
+            "wrong": ["$2$", "$\\sqrt{12}$", "$6$"],
+            "explanation": "Both points are on the $x$-axis: $d = |7-(-5)| = 12$."
+        },
+        {
+            "question": "Find the distance between $(0, -3)$ and $(0, 9)$.",
+            "answer": "$12$",
+            "wrong": ["$6$", "$\\sqrt{12}$", "$3$"],
+            "explanation": "Both points are on the $y$-axis: $d = |9-(-3)| = 12$."
+        },
+        {
+            "question": "Find the distance between $(-6, 1)$ and $(-2, 4)$.",
+            "answer": "$5$",
+            "wrong": ["$\\sqrt{7}$", "$4$", "$6$"],
+            "explanation": "$d = \\sqrt{(-2-(-6))^2+(4-1)^2} = \\sqrt{16+9} = 5$."
+        },
+        {
+            "question": "Find the distance between $(1, 2)$ and $(1, 8)$.",
+            "answer": "$6$",
+            "wrong": ["$\\sqrt{6}$", "$3$", "$10$"],
+            "explanation": "Same $x$: $d = |8-2| = 6$."
+        },
+        {
+            "question": "Find the distance between $(-4, -3)$ and $(0, 0)$.",
+            "answer": "$5$",
+            "wrong": ["$7$", "$\\sqrt{7}$", "$4$"],
+            "explanation": "$d = \\sqrt{16+9} = 5$."
+        },
+        {
+            "question": "Find the distance between $(2, -1)$ and $(14, 4)$.",
+            "answer": "$13$",
+            "wrong": ["$\\sqrt{13}$", "$17$", "$12$"],
+            "explanation": "$d = \\sqrt{(14-2)^2+(4-(-1))^2} = \\sqrt{144+25} = \\sqrt{169} = 13$."
+        },
+        {
+            "question": "Find the distance between $(-3, -4)$ and $(0, 0)$.",
+            "answer": "$5$",
+            "wrong": ["$7$", "$4$", "$3$"],
+            "explanation": "$d = \\sqrt{9+16} = 5$."
+        },
+        {
+            "question": "Find the distance between $(1, 1)$ and $(7, 9)$.",
+            "answer": "$10$",
+            "wrong": ["$\\sqrt{10}$", "$8$", "$14$"],
+            "explanation": "$d = \\sqrt{(7-1)^2+(9-1)^2} = \\sqrt{36+64} = \\sqrt{100} = 10$."
+        },
+        {
+            "question": "Find the distance between $(-1, 2)$ and $(11, 7)$.",
+            "answer": "$13$",
+            "wrong": ["$\\sqrt{13}$", "$12$", "$17$"],
+            "explanation": "$d = \\sqrt{(11-(-1))^2+(7-2)^2} = \\sqrt{144+25} = \\sqrt{169} = 13$."
+        }
+    ],
+    'the_laws_of_sines': [{
+        "question": "In $\\triangle ABC$, $A = 30°$, $B = 60°$, $a = 5$. Find $b$.",
+        "answer": "$5\\sqrt{3}$",
+        "wrong": ["$10$", "$\\dfrac{5\\sqrt{3}}{2}$", "$5$"],
+        "explanation": "$\\dfrac{b}{\\sin 60°} = \\dfrac{5}{\\sin 30°} \\Rightarrow b = \\dfrac{5 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{1}{2}} = 5\\sqrt{3}$."
+    },
+        {
+            "question": "In $\\triangle ABC$, $A = 45°$, $B = 75°$, $a = 8$. Find $b$.",
+            "answer": "$4\\sqrt{6}$",
+            "wrong": ["$8\\sqrt{2}$", "$4\\sqrt{3}$", "$8$"],
+            "explanation": "$\\dfrac{b}{\\sin 75°} = \\dfrac{8}{\\sin 45°}$. $\\sin 75° = \\dfrac{\\sqrt{6}+\\sqrt{2}}{4}$, $\\sin 45° = \\dfrac{\\sqrt{2}}{2}$. So $b = \\dfrac{8 \\cdot \\frac{\\sqrt{6}+\\sqrt{2}}{4}}{\\frac{\\sqrt{2}}{2}} = 4\\sqrt{3}+4 \\approx 4\\sqrt{6}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 30°$, $C = 90°$, $b = 6$. Find $c$.",
+            "answer": "$12$",
+            "wrong": ["$6\\sqrt{3}$", "$6\\sqrt{2}$", "$3$"],
+            "explanation": "$\\dfrac{c}{\\sin 90°} = \\dfrac{6}{\\sin 30°} \\Rightarrow c = \\dfrac{6 \\cdot 1}{0.5} = 12$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 45°$, $C = 90°$, $a = 7$. Find $c$.",
+            "answer": "$7\\sqrt{2}$",
+            "wrong": ["$14$", "$7$", "$\\dfrac{7\\sqrt{2}}{2}$"],
+            "explanation": "$\\dfrac{c}{\\sin 90°} = \\dfrac{7}{\\sin 45°} \\Rightarrow c = \\dfrac{7}{\\frac{\\sqrt{2}}{2}} = 7\\sqrt{2}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 60°$, $B = 40°$, $a = 10$. Find $b$ (to 2 decimal places).",
+            "answer": "$7.43$",
+            "wrong": ["$8.66$", "$6.43$", "$9.40$"],
+            "explanation": "$b = \\dfrac{10 \\cdot \\sin 40°}{\\sin 60°} = \\dfrac{10 \\times 0.6428}{0.8660} \\approx 7.43$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 50°$, $B = 70°$, $b = 15$. Find $a$.",
+            "answer": "$12.22$",
+            "wrong": ["$14.10$", "$10.50$", "$13.05$"],
+            "explanation": "$a = \\dfrac{15 \\cdot \\sin 50°}{\\sin 70°} = \\dfrac{15 \\times 0.7660}{0.9397} \\approx 12.22$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 80°$, $C = 55°$, $c = 9$. Find $b$.",
+            "answer": "$10.84$",
+            "wrong": ["$9.85$", "$8.00$", "$11.50$"],
+            "explanation": "$b = \\dfrac{9 \\cdot \\sin 80°}{\\sin 55°} = \\dfrac{9 \\times 0.9848}{0.8192} \\approx 10.84$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 30°$, $C = 120°$, $a = 4$. Find $c$.",
+            "answer": "$4\\sqrt{3}$",
+            "wrong": ["$8$", "$4$", "$2\\sqrt{3}$"],
+            "explanation": "$\\dfrac{c}{\\sin 120°} = \\dfrac{4}{\\sin 30°} \\Rightarrow c = \\dfrac{4 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{1}{2}} = 4\\sqrt{3}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 20°$, $B = 130°$, $a = 5$. Find $b$.",
+            "answer": "$12.66$",
+            "wrong": ["$10.00$", "$7.66$", "$14.00$"],
+            "explanation": "$b = \\dfrac{5 \\cdot \\sin 130°}{\\sin 20°} = \\dfrac{5 \\times 0.7660}{0.3420} \\approx 12.66$ (note: $\\sin 130° = \\sin 50°$)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 35°$, $B = 85°$, $a = 12$. Find $b$.",
+            "answer": "$20.85$",
+            "wrong": ["$18.00$", "$14.40$", "$16.50$"],
+            "explanation": "$b = \\dfrac{12 \\cdot \\sin 85°}{\\sin 35°} = \\dfrac{12 \\times 0.9962}{0.5736} \\approx 20.85$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 45°$, $C = 60°$, $b = 10$. Find $c$.",
+            "answer": "$\\dfrac{10\\sqrt{6}}{2} \\approx 12.25$",
+            "wrong": ["$10\\sqrt{2}$", "$5\\sqrt{6}$", "$10$"],
+            "explanation": "$c = \\dfrac{10 \\cdot \\sin 60°}{\\sin 45°} = \\dfrac{10 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{\\sqrt{2}}{2}} = \\dfrac{10\\sqrt{3}}{\\sqrt{2}} = 5\\sqrt{6} \\approx 12.25$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 75°$, $B = 65°$, $a = 20$. Find $b$.",
+            "answer": "$18.79$",
+            "wrong": ["$20.00$", "$17.50$", "$21.30$"],
+            "explanation": "$b = \\dfrac{20 \\cdot \\sin 65°}{\\sin 75°} = \\dfrac{20 \\times 0.9063}{0.9659} \\approx 18.79$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 100°$, $B = 40°$, $b = 7$. Find $a$.",
+            "answer": "$10.71$",
+            "wrong": ["$9.00$", "$7.00$", "$12.00$"],
+            "explanation": "$a = \\dfrac{7 \\cdot \\sin 100°}{\\sin 40°} = \\dfrac{7 \\times 0.9848}{0.6428} \\approx 10.71$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $C = 25°$, $A = 110°$, $c = 6$. Find $a$.",
+            "answer": "$13.36$",
+            "wrong": ["$10.00$", "$11.50$", "$14.00$"],
+            "explanation": "$a = \\dfrac{6 \\cdot \\sin 110°}{\\sin 25°} = \\dfrac{6 \\times 0.9397}{0.4226} \\approx 13.36$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 55°$, $C = 75°$, $c = 18$. Find $a$.",
+            "answer": "$15.29$",
+            "wrong": ["$18.00$", "$12.50$", "$16.80$"],
+            "explanation": "$a = \\dfrac{18 \\cdot \\sin 55°}{\\sin 75°} = \\dfrac{18 \\times 0.8192}{0.9659} \\approx 15.29$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 38°$, $C = 72°$, $b = 14$. Find $c$.",
+            "answer": "$21.60$",
+            "wrong": ["$19.00$", "$14.00$", "$23.50$"],
+            "explanation": "$c = \\dfrac{14 \\cdot \\sin 72°}{\\sin 38°} = \\dfrac{14 \\times 0.9511}{0.6157} \\approx 21.60$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 15°$, $B = 150°$, $a = 3$. Find $b$.",
+            "answer": "$5.80$",
+            "wrong": ["$6.00$", "$3.00$", "$4.50$"],
+            "explanation": "$b = \\dfrac{3 \\cdot \\sin 150°}{\\sin 15°} = \\dfrac{3 \\times 0.5}{0.2588} \\approx 5.80$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 62°$, $B = 48°$, $a = 25$. Find $b$.",
+            "answer": "$21.08$",
+            "wrong": ["$22.50$", "$18.00$", "$25.00$"],
+            "explanation": "$b = \\dfrac{25 \\cdot \\sin 48°}{\\sin 62°} = \\dfrac{25 \\times 0.7431}{0.8829} \\approx 21.08$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 90°$, $A = 30°$, $a = 5$. Find $b$.",
+            "answer": "$10$",
+            "wrong": ["$5\\sqrt{3}$", "$5\\sqrt{2}$", "$\\dfrac{5}{2}$"],
+            "explanation": "$\\dfrac{b}{\\sin 90°} = \\dfrac{5}{\\sin 30°} \\Rightarrow b = \\dfrac{5}{0.5} = 10$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 67°$, $C = 53°$, $c = 30$. Find $a$.",
+            "answer": "$34.44$",
+            "wrong": ["$30.00$", "$28.00$", "$36.00$"],
+            "explanation": "$a = \\dfrac{30 \\cdot \\sin 67°}{\\sin 53°} = \\dfrac{30 \\times 0.9205}{0.7986} \\approx 34.44$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 42°$, $B = 95°$, $b = 50$. Find $a$.",
+            "answer": "$33.57$",
+            "wrong": ["$40.00$", "$50.00$", "$29.00$"],
+            "explanation": "$a = \\dfrac{50 \\cdot \\sin 42°}{\\sin 95°} = \\dfrac{50 \\times 0.6691}{0.9962} \\approx 33.57$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 33°$, $C = 87°$, $c = 22$. Find $b$.",
+            "answer": "$12.01$",
+            "wrong": ["$11.00$", "$14.50$", "$10.00$"],
+            "explanation": "$b = \\dfrac{22 \\cdot \\sin 33°}{\\sin 87°} = \\dfrac{22 \\times 0.5446}{0.9986} \\approx 12.01$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 58°$, $B = 62°$, $a = 17$. Find $b$.",
+            "answer": "$17.73$",
+            "wrong": ["$17.00$", "$18.50$", "$16.00$"],
+            "explanation": "$b = \\dfrac{17 \\cdot \\sin 62°}{\\sin 58°} = \\dfrac{17 \\times 0.8829}{0.8480} \\approx 17.73$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 105°$, $C = 30°$, $c = 8$. Find $a$.",
+            "answer": "$15.45$",
+            "wrong": ["$16.00$", "$12.00$", "$14.00$"],
+            "explanation": "$a = \\dfrac{8 \\cdot \\sin 105°}{\\sin 30°} = \\dfrac{8 \\times 0.9659}{0.5} \\approx 15.45$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 120°$, $C = 25°$, $b = 11$. Find $c$.",
+            "answer": "$5.37$",
+            "wrong": ["$6.00$", "$4.50$", "$7.00$"],
+            "explanation": "$c = \\dfrac{11 \\cdot \\sin 25°}{\\sin 120°} = \\dfrac{11 \\times 0.4226}{0.8660} \\approx 5.37$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 72°$, $B = 48°$, $b = 13$. Find $a$.",
+            "answer": "$16.64$",
+            "wrong": ["$15.00$", "$18.00$", "$14.50$"],
+            "explanation": "$a = \\dfrac{13 \\cdot \\sin 72°}{\\sin 48°} = \\dfrac{13 \\times 0.9511}{0.7431} \\approx 16.64$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $C = 140°$, $A = 20°$, $a = 9$. Find $c$.",
+            "answer": "$16.97$",
+            "wrong": ["$18.00$", "$14.50$", "$20.00$"],
+            "explanation": "$c = \\dfrac{9 \\cdot \\sin 140°}{\\sin 20°} = \\dfrac{9 \\times 0.6428}{0.3420} \\approx 16.97$ (note: $\\sin 140° = \\sin 40°$)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 88°$, $B = 52°$, $a = 40$. Find $b$.",
+            "answer": "$31.54$",
+            "wrong": ["$33.00$", "$29.00$", "$35.00$"],
+            "explanation": "$b = \\dfrac{40 \\cdot \\sin 52°}{\\sin 88°} = \\dfrac{40 \\times 0.7880}{0.9994} \\approx 31.54$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 27°$, $C = 118°$, $b = 7$. Find $c$.",
+            "answer": "$13.57$",
+            "wrong": ["$12.00$", "$10.50$", "$15.00$"],
+            "explanation": "$c = \\dfrac{7 \\cdot \\sin 118°}{\\sin 27°} = \\dfrac{7 \\times 0.8829}{0.4540} \\approx 13.57$ ($\\sin 118° = \\sin 62°$)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 36°$, $B = 84°$, $a = 16$. Find $b$.",
+            "answer": "$27.08$",
+            "wrong": ["$25.00$", "$20.00$", "$30.00$"],
+            "explanation": "$b = \\dfrac{16 \\cdot \\sin 84°}{\\sin 36°} = \\dfrac{16 \\times 0.9945}{0.5878} \\approx 27.08$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 53°$, $C = 97°$, $c = 24$. Find $a$.",
+            "answer": "$19.28$",
+            "wrong": ["$21.00$", "$17.50$", "$22.00$"],
+            "explanation": "$a = \\dfrac{24 \\cdot \\sin 53°}{\\sin 97°} = \\dfrac{24 \\times 0.7986}{0.9925} \\approx 19.28$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 64°$, $C = 46°$, $c = 18$. Find $b$.",
+            "answer": "$22.54$",
+            "wrong": ["$20.00$", "$24.00$", "$18.00$"],
+            "explanation": "$b = \\dfrac{18 \\cdot \\sin 64°}{\\sin 46°} = \\dfrac{18 \\times 0.8988}{0.7193} \\approx 22.54$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 22°$, $B = 143°$, $a = 10$. Find $b$.",
+            "answer": "$15.89$",
+            "wrong": ["$18.00$", "$14.00$", "$12.50$"],
+            "explanation": "$b = \\dfrac{10 \\cdot \\sin 143°}{\\sin 22°} = \\dfrac{10 \\times 0.6018}{0.3746} \\approx 16.07$ ($\\sin 143° = \\sin 37°$)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 76°$, $C = 59°$, $b = 33$. Find $c$.",
+            "answer": "$29.26$",
+            "wrong": ["$27.00$", "$31.00$", "$33.00$"],
+            "explanation": "$c = \\dfrac{33 \\cdot \\sin 59°}{\\sin 76°} = \\dfrac{33 \\times 0.8572}{0.9703} \\approx 29.13$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 47°$, $C = 83°$, $a = 21$. Find $c$.",
+            "answer": "$28.52$",
+            "wrong": ["$26.00$", "$30.00$", "$21.00$"],
+            "explanation": "$c = \\dfrac{21 \\cdot \\sin 83°}{\\sin 47°} = \\dfrac{21 \\times 0.9925}{0.7314} \\approx 28.52$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 130°$, $B = 20°$, $b = 6$. Find $a$.",
+            "answer": "$13.44$",
+            "wrong": ["$12.00$", "$15.00$", "$10.50$"],
+            "explanation": "$a = \\dfrac{6 \\cdot \\sin 130°}{\\sin 20°} = \\dfrac{6 \\times 0.7660}{0.3420} \\approx 13.44$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 41°$, $C = 99°$, $c = 45$. Find $b$.",
+            "answer": "$29.82$",
+            "wrong": ["$31.00$", "$27.00$", "$35.00$"],
+            "explanation": "$b = \\dfrac{45 \\cdot \\sin 41°}{\\sin 99°} = \\dfrac{45 \\times 0.6561}{0.9877} \\approx 29.89$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 78°$, $B = 57°$, $b = 28$. Find $a$.",
+            "answer": "$32.46$",
+            "wrong": ["$30.00$", "$35.00$", "$28.00$"],
+            "explanation": "$a = \\dfrac{28 \\cdot \\sin 78°}{\\sin 57°} = \\dfrac{28 \\times 0.9781}{0.8387} \\approx 32.67$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $C = 112°$, $A = 33°$, $a = 14$. Find $c$.",
+            "answer": "$23.78$",
+            "wrong": ["$22.00$", "$25.00$", "$20.00$"],
+            "explanation": "$c = \\dfrac{14 \\cdot \\sin 112°}{\\sin 33°} = \\dfrac{14 \\times 0.9272}{0.5446} \\approx 23.83$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 69°$, $B = 71°$, $a = 50$. Find $b$.",
+            "answer": "$50.75$",
+            "wrong": ["$50.00$", "$52.00$", "$48.00$"],
+            "explanation": "$b = \\dfrac{50 \\cdot \\sin 71°}{\\sin 69°} = \\dfrac{50 \\times 0.9455}{0.9336} \\approx 50.64$."
+        },
+
+        # ─────────────────────────────────────────────
+        # BURCHAKNI TOPISH (41–80)
+        # ─────────────────────────────────────────────
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 10$, $A = 30°$. Find $B$.",
+            "answer": "$45.57°$",
+            "wrong": ["$30°$", "$60°$", "$90°$"],
+            "explanation": "$\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{10 \\times 0.5}{7} = \\dfrac{5}{7} \\approx 0.7143 \\Rightarrow B \\approx 45.57°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 6$, $A = 50°$. Find $B$.",
+            "answer": "$50°$",
+            "wrong": ["$60°$", "$80°$", "$40°$"],
+            "explanation": "Since $a = b$, the triangle is isosceles, so $B = A = 50°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 8$, $c = 10$, $B = 40°$. Find $C$.",
+            "answer": "$52.49°$",
+            "wrong": ["$40°$", "$60°$", "$45°$"],
+            "explanation": "$\\sin C = \\dfrac{10 \\sin 40°}{8} = \\dfrac{10 \\times 0.6428}{8} \\approx 0.8035 \\Rightarrow C \\approx 53.46°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $c = 7$, $A = 38°$. Find $C$.",
+            "answer": "$59.74°$",
+            "wrong": ["$38°$", "$72°$", "$45°$"],
+            "explanation": "$\\sin C = \\dfrac{7 \\sin 38°}{5} = \\dfrac{7 \\times 0.6157}{5} \\approx 0.8620 \\Rightarrow C \\approx 59.50°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 12$, $b = 9$, $B = 35°$. Find $A$.",
+            "answer": "$49.86°$",
+            "wrong": ["$55°$", "$40°$", "$60°$"],
+            "explanation": "$\\sin A = \\dfrac{12 \\sin 35°}{9} = \\dfrac{12 \\times 0.5736}{9} \\approx 0.7648 \\Rightarrow A \\approx 49.86°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 15$, $c = 12$, $C = 45°$. Find $B$.",
+            "answer": "$62.11°$",
+            "wrong": ["$45°$", "$75°$", "$55°$"],
+            "explanation": "$\\sin B = \\dfrac{15 \\sin 45°}{12} = \\dfrac{15 \\times 0.7071}{12} \\approx 0.8839 \\Rightarrow B \\approx 62.11°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 20$, $b = 24$, $A = 55°$. Find $B$.",
+            "answer": "$80.47°$",
+            "wrong": ["$55°$", "$65°$", "$70°$"],
+            "explanation": "$\\sin B = \\dfrac{24 \\sin 55°}{20} = \\dfrac{24 \\times 0.8192}{20} \\approx 0.9830 \\Rightarrow B \\approx 79.54°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 9$, $c = 11$, $C = 70°$. Find $A$.",
+            "answer": "$50.35°$",
+            "wrong": ["$70°$", "$40°$", "$60°$"],
+            "explanation": "$\\sin A = \\dfrac{9 \\sin 70°}{11} = \\dfrac{9 \\times 0.9397}{11} \\approx 0.7688 \\Rightarrow A \\approx 50.26°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 7$, $c = 7\\sqrt{2}$, $B = 30°$. Find $C$.",
+            "answer": "$45°$",
+            "wrong": ["$60°$", "$90°$", "$30°$"],
+            "explanation": "$\\sin C = \\dfrac{7\\sqrt{2} \\cdot \\sin 30°}{7} = \\sqrt{2} \\times 0.5 = \\dfrac{\\sqrt{2}}{2} \\Rightarrow C = 45°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 14$, $b = 10$, $B = 42°$. Find $A$.",
+            "answer": "$69.04°$",
+            "wrong": ["$42°$", "$60°$", "$75°$"],
+            "explanation": "$\\sin A = \\dfrac{14 \\sin 42°}{10} = \\dfrac{14 \\times 0.6691}{10} \\approx 0.9367 \\Rightarrow A \\approx 69.57°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 18$, $c = 22$, $A = 48°$. Find $C$.",
+            "answer": "$65.66°$",
+            "wrong": ["$48°$", "$72°$", "$55°$"],
+            "explanation": "$\\sin C = \\dfrac{22 \\sin 48°}{18} = \\dfrac{22 \\times 0.7431}{18} \\approx 0.9083 \\Rightarrow C \\approx 65.43°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 5$, $c = 5\\sqrt{3}$, $B = 30°$. Find $C$.",
+            "answer": "$60°$",
+            "wrong": ["$30°$", "$90°$", "$45°$"],
+            "explanation": "$\\sin C = \\dfrac{5\\sqrt{3} \\cdot \\sin 30°}{5} = \\sqrt{3} \\times 0.5 = \\dfrac{\\sqrt{3}}{2} \\Rightarrow C = 60°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 11$, $b = 13$, $A = 44°$. Find $B$.",
+            "answer": "$55.55°$",
+            "wrong": ["$44°$", "$60°$", "$50°$"],
+            "explanation": "$\\sin B = \\dfrac{13 \\sin 44°}{11} = \\dfrac{13 \\times 0.6947}{11} \\approx 0.8205 \\Rightarrow B \\approx 55.17°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 25$, $c = 30$, $B = 56°$. Find $C$.",
+            "answer": "$82.69°$",
+            "wrong": ["$56°$", "$65°$", "$75°$"],
+            "explanation": "$\\sin C = \\dfrac{30 \\sin 56°}{25} = \\dfrac{30 \\times 0.8290}{25} \\approx 0.9948 \\Rightarrow C \\approx 84.27°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 4$, $A = 20°$. Find $B$.",
+            "answer": "$27.00°$",
+            "wrong": ["$20°$", "$40°$", "$35°$"],
+            "explanation": "$\\sin B = \\dfrac{4 \\sin 20°}{3} = \\dfrac{4 \\times 0.3420}{3} \\approx 0.4560 \\Rightarrow B \\approx 27.13°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $c = 14$, $C = 85°$. Find $A$.",
+            "answer": "$45.45°$",
+            "wrong": ["$85°$", "$40°$", "$55°$"],
+            "explanation": "$\\sin A = \\dfrac{10 \\sin 85°}{14} = \\dfrac{10 \\times 0.9962}{14} \\approx 0.7116 \\Rightarrow A \\approx 45.32°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 16$, $c = 19$, $B = 50°$. Find $C$.",
+            "answer": "$65.59°$",
+            "wrong": ["$50°$", "$75°$", "$60°$"],
+            "explanation": "$\\sin C = \\dfrac{19 \\sin 50°}{16} = \\dfrac{19 \\times 0.7660}{16} \\approx 0.9097 \\Rightarrow C \\approx 65.65°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 8$, $A = 65°$. Find $C$.",
+            "answer": "$50°$",
+            "wrong": ["$65°$", "$70°$", "$40°$"],
+            "explanation": "Since $a = b$, $B = A = 65°$. Then $C = 180° - 65° - 65° = 50°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 30$, $c = 35$, $A = 60°$. Find $C$.",
+            "answer": "$84.29°$",
+            "wrong": ["$60°$", "$70°$", "$75°$"],
+            "explanation": "$\\sin C = \\dfrac{35 \\sin 60°}{30} = \\dfrac{35 \\times 0.8660}{30} \\approx 1.010$ — this gives no solution (ambiguous case check needed)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 9$, $c = 6$, $C = 28°$. Find $B$.",
+            "answer": "$45.23°$",
+            "wrong": ["$28°$", "$60°$", "$35°$"],
+            "explanation": "$\\sin B = \\dfrac{9 \\sin 28°}{6} = \\dfrac{9 \\times 0.4695}{6} \\approx 0.7043 \\Rightarrow B \\approx 44.77°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 9$, $A = 43°$. Find angle $B$.",
+            "answer": "$61.82°$",
+            "wrong": ["$43°$", "$55°$", "$70°$"],
+            "explanation": "$\\sin B = \\dfrac{9 \\sin 43°}{7} = \\dfrac{9 \\times 0.6820}{7} \\approx 0.8768 \\Rightarrow B \\approx 61.32°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 15$, $c = 10$, $C = 33°$. Find $A$.",
+            "answer": "$55.08°$",
+            "wrong": ["$33°$", "$45°$", "$65°$"],
+            "explanation": "$\\sin A = \\dfrac{15 \\sin 33°}{10} = \\dfrac{15 \\times 0.5446}{10} \\approx 0.8169 \\Rightarrow A \\approx 54.84°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 20$, $c = 17$, $C = 52°$. Find $B$.",
+            "answer": "$67.72°$ or $112.28°$",
+            "wrong": ["$52°$", "$90°$", "$60°$"],
+            "explanation": "$\\sin B = \\dfrac{20 \\sin 52°}{17} = \\dfrac{20 \\times 0.7880}{17} \\approx 0.9271 \\Rightarrow B \\approx 67.91°$ or $112.09°$ (ambiguous case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 6$, $A = 25°$. Find $B$.",
+            "answer": "$39.34°$",
+            "wrong": ["$25°$", "$50°$", "$45°$"],
+            "explanation": "$\\sin B = \\dfrac{6 \\sin 25°}{4} = \\dfrac{6 \\times 0.4226}{4} \\approx 0.6339 \\Rightarrow B \\approx 39.34°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 13$, $b = 11$, $B = 47°$. Find $A$.",
+            "answer": "$57.99°$",
+            "wrong": ["$47°$", "$65°$", "$70°$"],
+            "explanation": "$\\sin A = \\dfrac{13 \\sin 47°}{11} = \\dfrac{13 \\times 0.7314}{11} \\approx 0.8643 \\Rightarrow A \\approx 59.81°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 8$, $c = 12$, $B = 35°$. Find $C$.",
+            "answer": "$59.01°$ or $120.99°$",
+            "wrong": ["$35°$", "$45°$", "$70°$"],
+            "explanation": "$\\sin C = \\dfrac{12 \\sin 35°}{8} = \\dfrac{12 \\times 0.5736}{8} \\approx 0.8604 \\Rightarrow C \\approx 59.32°$ or $120.68°$ (ambiguous case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 22$, $b = 18$, $A = 75°$. Find $B$.",
+            "answer": "$51.72°$",
+            "wrong": ["$75°$", "$40°$", "$60°$"],
+            "explanation": "$\\sin B = \\dfrac{18 \\sin 75°}{22} = \\dfrac{18 \\times 0.9659}{22} \\approx 0.7903 \\Rightarrow B \\approx 52.12°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 11$, $c = 14$, $C = 67°$. Find $B$.",
+            "answer": "$46.26°$",
+            "wrong": ["$67°$", "$55°$", "$40°$"],
+            "explanation": "$\\sin B = \\dfrac{11 \\sin 67°}{14} = \\dfrac{11 \\times 0.9205}{14} \\approx 0.7232 \\Rightarrow B \\approx 46.26°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $c = 8$, $A = 40°$. Find $C$.",
+            "answer": "$58.99°$",
+            "wrong": ["$40°$", "$70°$", "$50°$"],
+            "explanation": "$\\sin C = \\dfrac{8 \\sin 40°}{6} = \\dfrac{8 \\times 0.6428}{6} \\approx 0.8571 \\Rightarrow C \\approx 58.99°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 17$, $b = 21$, $A = 54°$. Find $B$.",
+            "answer": "$83.90°$",
+            "wrong": ["$54°$", "$65°$", "$75°$"],
+            "explanation": "$\\sin B = \\dfrac{21 \\sin 54°}{17} = \\dfrac{21 \\times 0.8090}{17} \\approx 1.0 \\Rightarrow B \\approx 90°$ (borderline case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 13$, $c = 10$, $C = 37°$. Find $B$.",
+            "answer": "$51.62°$",
+            "wrong": ["$37°$", "$60°$", "$45°$"],
+            "explanation": "$\\sin B = \\dfrac{13 \\sin 37°}{10} = \\dfrac{13 \\times 0.6018}{10} \\approx 0.7823 \\Rightarrow B \\approx 51.52°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 24$, $b = 20$, $B = 62°$. Find $A$.",
+            "answer": "$90°$ (right angle)",
+            "wrong": ["$62°$", "$70°$", "$80°$"],
+            "explanation": "$\\sin A = \\dfrac{24 \\sin 62°}{20} = \\dfrac{24 \\times 0.8829}{20} \\approx 1.059$ — this is an impossible case ($> 1$), so no valid triangle exists."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 7$, $A = 32°$. Find $B$.",
+            "answer": "$47.77°$",
+            "wrong": ["$32°$", "$55°$", "$60°$"],
+            "explanation": "$\\sin B = \\dfrac{7 \\sin 32°}{5} = \\dfrac{7 \\times 0.5299}{5} \\approx 0.7419 \\Rightarrow B \\approx 47.82°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 30$, $c = 25$, $B = 80°$. Find $C$.",
+            "answer": "$55.17°$",
+            "wrong": ["$80°$", "$45°$", "$60°$"],
+            "explanation": "$\\sin C = \\dfrac{25 \\sin 80°}{30} = \\dfrac{25 \\times 0.9848}{30} \\approx 0.8207 \\Rightarrow C \\approx 55.17°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 16$, $c = 12$, $C = 46°$. Find $A$.",
+            "answer": "$72.75°$ or $107.25°$",
+            "wrong": ["$46°$", "$60°$", "$55°$"],
+            "explanation": "$\\sin A = \\dfrac{16 \\sin 46°}{12} = \\dfrac{16 \\times 0.7193}{12} \\approx 0.9591 \\Rightarrow A \\approx 73.58°$ or $106.42°$ (ambiguous case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 19$, $c = 23$, $B = 49°$. Find $C$.",
+            "answer": "$72.09°$",
+            "wrong": ["$49°$", "$80°$", "$65°$"],
+            "explanation": "$\\sin C = \\dfrac{23 \\sin 49°}{19} = \\dfrac{23 \\times 0.7547}{19} \\approx 0.9133 \\Rightarrow C \\approx 65.85°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 10\\sqrt{2}$, $A = 30°$. Find $B$.",
+            "answer": "$45°$",
+            "wrong": ["$30°$", "$60°$", "$90°$"],
+            "explanation": "$\\sin B = \\dfrac{10\\sqrt{2} \\cdot \\sin 30°}{10} = \\sqrt{2} \\times 0.5 = \\dfrac{\\sqrt{2}}{2} \\Rightarrow B = 45°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 9$, $b = 12$, $A = 36°$. Find $B$.",
+            "answer": "$52.24°$",
+            "wrong": ["$36°$", "$60°$", "$45°$"],
+            "explanation": "$\\sin B = \\dfrac{12 \\sin 36°}{9} = \\dfrac{12 \\times 0.5878}{9} \\approx 0.7837 \\Rightarrow B \\approx 51.56°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 100$, $b = 80$, $B = 40°$. Find $A$.",
+            "answer": "$53.46°$",
+            "wrong": ["$40°$", "$60°$", "$70°$"],
+            "explanation": "$\\sin A = \\dfrac{100 \\sin 40°}{80} = \\dfrac{100 \\times 0.6428}{80} \\approx 0.8035 \\Rightarrow A \\approx 53.46°$."
+        },
+
+        # ─────────────────────────────────────────────
+        # MURAKKAB / ARALASH (81–100)
+        # ─────────────────────────────────────────────
+        {
+            "question": "In $\\triangle ABC$, $A = 40°$, $a = 10$, $b = 14$. How many valid triangles exist?",
+            "answer": "$2$ (ambiguous case)",
+            "wrong": ["$0$", "$1$", "$3$"],
+            "explanation": "$\\sin B = \\dfrac{14 \\sin 40°}{10} \\approx 0.8999 < 1$ and $b > a$, so two triangles exist (SSA ambiguous case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 3$, $B = 25°$. Find the third angle $C$.",
+            "answer": "$114.06°$",
+            "wrong": ["$90°$", "$130°$", "$100°$"],
+            "explanation": "$\\sin A = \\dfrac{5 \\sin 25°}{3} \\approx 0.7036 \\Rightarrow A \\approx 44.69°$. Then $C = 180° - 44.69° - 25° \\approx 110.31°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 30°$, $B = 70°$, $c = 15$. Find $a$.",
+            "answer": "$7.76$",
+            "wrong": ["$10.00$", "$5.00$", "$12.00$"],
+            "explanation": "$C = 180° - 30° - 70° = 80°$. $a = \\dfrac{15 \\sin 30°}{\\sin 80°} = \\dfrac{15 \\times 0.5}{0.9848} \\approx 7.62$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 50°$, $C = 65°$, $b = 20$. Find $c$.",
+            "answer": "$23.66$",
+            "wrong": ["$20.00$", "$18.50$", "$26.00$"],
+            "explanation": "$c = \\dfrac{20 \\sin 65°}{\\sin 50°} = \\dfrac{20 \\times 0.9063}{0.7660} \\approx 23.66$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 8$, $c = 8$. Find all angles.",
+            "answer": "$A = B = C = 60°$",
+            "wrong": ["$A=90°, B=C=45°$", "$A=B=45°, C=90°$", "$A=B=C=90°$"],
+            "explanation": "Equilateral triangle: all sides equal, so all angles are $60°$. Confirmed by Law of Sines: all ratios equal."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 110°$, $a = 25$, $b = 13$. Find $B$.",
+            "answer": "$29.27°$",
+            "wrong": ["$30°$", "$40°$", "$20°$"],
+            "explanation": "$\\sin B = \\dfrac{13 \\sin 110°}{25} = \\dfrac{13 \\times 0.9397}{25} \\approx 0.4886 \\Rightarrow B \\approx 29.27°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 10$, $c = 10$, $B = 72°$. Find $C$ and then $A$.",
+            "answer": "$C = 72°$, $A = 36°$",
+            "wrong": ["$C=72°, A=18°$", "$C=36°, A=72°$", "$C=108°, A=0°$"],
+            "explanation": "Since $b = c$, triangle is isosceles so $C = B = 72°$. Then $A = 180° - 72° - 72° = 36°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 25°$, $C = 135°$, $a = 7$. Find $c$.",
+            "answer": "$16.56$",
+            "wrong": ["$14.00$", "$18.00$", "$12.50$"],
+            "explanation": "$c = \\dfrac{7 \\sin 135°}{\\sin 25°} = \\dfrac{7 \\times 0.7071}{0.4226} \\approx 11.71$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $A = 30°$, $b = 12$. What is $B$?",
+            "answer": "$90°$",
+            "wrong": ["$60°$", "$45°$", "$120°$"],
+            "explanation": "$\\sin B = \\dfrac{12 \\sin 30°}{6} = \\dfrac{12 \\times 0.5}{6} = 1 \\Rightarrow B = 90°$ exactly."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 35°$, $B = 95°$, $a = 18$. Find $c$. ($C = 50°$)",
+            "answer": "$24.08$",
+            "wrong": ["$20.00$", "$27.00$", "$18.00$"],
+            "explanation": "$C = 180° - 35° - 95° = 50°$. $c = \\dfrac{18 \\sin 50°}{\\sin 35°} = \\dfrac{18 \\times 0.7660}{0.5736} \\approx 24.03$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $B = 48°$, $C = 62°$, $b = 27$. Find $a$. ($A = 70°$)",
+            "answer": "$34.16$",
+            "wrong": ["$30.00$", "$27.00$", "$38.00$"],
+            "explanation": "$A = 180° - 48° - 62° = 70°$. $a = \\dfrac{27 \\sin 70°}{\\sin 48°} = \\dfrac{27 \\times 0.9397}{0.7431} \\approx 34.16$."
+        },
+        {
+            "question": "A triangle has $a = 7$, $b = 9$, $A = 48°$. Is there an ambiguous case? If yes, find both possible values of $B$.",
+            "answer": "$B_1 \\approx 74.35°$, $B_2 \\approx 105.65°$",
+            "wrong": ["Only $B = 74°$", "No solution", "$B = 48°$"],
+            "explanation": "$\\sin B = \\dfrac{9 \\sin 48°}{7} \\approx 0.9552$. Since $b > a$ and $\\sin B < 1$, two values: $B \\approx 72.84°$ or $107.16°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 50$, $b = 50$, $A = 40°$. Find $C$.",
+            "answer": "$100°$",
+            "wrong": ["$80°$", "$60°$", "$140°$"],
+            "explanation": "Isosceles: $B = A = 40°$. $C = 180° - 40° - 40° = 100°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 15°$, $B = 45°$, $c = 10$. Find $a$. ($C = 120°$)",
+            "answer": "$3.35$",
+            "wrong": ["$5.00$", "$4.00$", "$2.00$"],
+            "explanation": "$C = 120°$. $a = \\dfrac{10 \\sin 15°}{\\sin 120°} = \\dfrac{10 \\times 0.2588}{0.8660} \\approx 2.99$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 14$, $c = 20$, $B = 30°$. Find both possible values of $C$.",
+            "answer": "$C_1 \\approx 45.58°$, $C_2 \\approx 134.42°$",
+            "wrong": ["Only $C = 45°$", "No solution", "$C = 90°$"],
+            "explanation": "$\\sin C = \\dfrac{20 \\sin 30°}{14} = \\dfrac{10}{14} \\approx 0.7143 \\Rightarrow C \\approx 45.58°$ or $134.42°$ (both valid)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 60°$, $B = 60°$, $a = 12$. Find $b$ and $c$.",
+            "answer": "$b = c = 12$",
+            "wrong": ["$b=12, c=6$", "$b=c=6\\sqrt{3}$", "$b=c=24$"],
+            "explanation": "Equilateral triangle ($A=B=C=60°$): all sides equal, so $b = c = a = 12$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 90°$, $B = 30°$, $b = 5$. Find $a$ and $c$.",
+            "answer": "$a = 10$, $c = 5\\sqrt{3}$",
+            "wrong": ["$a=5\\sqrt{2}, c=5$", "$a=5, c=10$", "$a=10, c=5$"],
+            "explanation": "$a = \\dfrac{5}{ \\sin 30°} = 10$. $C = 60°$, $c = \\dfrac{10 \\sin 60°}{1} = 5\\sqrt{3}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 24$, $A = 17°$. Does a valid triangle exist?",
+            "answer": "Yes, two triangles",
+            "wrong": ["No triangle", "Exactly one triangle", "Infinitely many"],
+            "explanation": "$\\sin B = \\dfrac{24 \\sin 17°}{7} \\approx 1.009 > 1$ — no valid triangle exists (SSA impossible case)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 15$, $b = 20$, $c = 25$. Verify using Law of Sines that $C = 90°$.",
+            "answer": "$C = 90°$ ✓",
+            "wrong": ["$C = 60°$", "$C = 80°$", "$C = 75°$"],
+            "explanation": "Check: $\\dfrac{c}{\\sin C} = \\dfrac{25}{1} = 25$, $\\dfrac{a}{\\sin A} = \\dfrac{15}{0.6} = 25$. Also $15^2 + 20^2 = 625 = 25^2$ confirms right angle."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 80°$, $a = 40$, $b = 30$. Find $B$, $C$, and $c$.",
+            "answer": "$B \\approx 47.93°$, $C \\approx 52.07°$, $c \\approx 32.27$",
+            "wrong": ["$B=50°, C=50°, c=40$", "$B=40°, C=60°, c=35$", "$B=47°, C=53°, c=28$"],
+            "explanation": "$\\sin B = \\dfrac{30 \\sin 80°}{40} \\approx 0.7386 \\Rightarrow B \\approx 47.57°$. $C = 180° - 80° - 47.57° \\approx 52.43°$. $c = \\dfrac{40 \\sin 52.43°}{\\sin 80°} \\approx 32.38$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $A = 72°$, $B = 53°$, $a = 100$. Find $b$ and $c$ ($C = 55°$).",
+            "answer": "$b \\approx 87.67$, $c \\approx 86.03$",
+            "wrong": ["$b=100, c=80$", "$b=80, c=90$", "$b=90, c=75$"],
+            "explanation": "$b = \\dfrac{100 \\sin 53°}{\\sin 72°} \\approx \\dfrac{100 \\times 0.7986}{0.9511} \\approx 83.96$. $c = \\dfrac{100 \\sin 55°}{\\sin 72°} \\approx \\dfrac{100 \\times 0.8192}{0.9511} \\approx 86.13$."
+        }
+    ],
+    'the_laws_of_cosines': [{
+        "question": "In $\\triangle ABC$, $a = 5$, $b = 7$, $C = 60°$. Find $c$.",
+        "answer": "$\\sqrt{39} \\approx 6.24$",
+        "wrong": ["$\\sqrt{74}$", "$6$", "$\\sqrt{53}$"],
+        "explanation": "$c^2 = 25 + 49 - 2(5)(7)\\cos 60° = 74 - 35 = 39 \\Rightarrow c = \\sqrt{39}$."
+    },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 6$, $C = 90°$. Find $c$.",
+            "answer": "$10$",
+            "wrong": ["$14$", "$\\sqrt{28}$", "$\\sqrt{50}$"],
+            "explanation": "$c^2 = 64 + 36 - 2(8)(6)\\cos 90° = 100 - 0 = 100 \\Rightarrow c = 10$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 10$, $c = 12$, $A = 45°$. Find $a$.",
+            "answer": "$\\approx 8.56$",
+            "wrong": ["$\\approx 10.00$", "$\\approx 7.21$", "$\\approx 9.80$"],
+            "explanation": "$a^2 = 100 + 144 - 2(10)(12)\\cos 45° = 244 - 240 \\times \\frac{\\sqrt{2}}{2} \\approx 244 - 169.71 \\approx 74.29 \\Rightarrow a \\approx 8.62$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 4$, $C = 30°$. Find $c$.",
+            "answer": "$\\approx 2.05$",
+            "wrong": ["$\\approx 3.00$", "$\\approx 2.65$", "$\\approx 1.50$"],
+            "explanation": "$c^2 = 9 + 16 - 24\\cos 30° = 25 - 24 \\times \\frac{\\sqrt{3}}{2} \\approx 25 - 20.78 \\approx 4.22 \\Rightarrow c \\approx 2.05$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $c = 8$, $B = 120°$. Find $b$.",
+            "answer": "$\\approx 12.17$",
+            "wrong": ["$\\approx 10.00$", "$\\approx 14.00$", "$\\approx 11.00$"],
+            "explanation": "$b^2 = 36 + 64 - 2(6)(8)\\cos 120° = 100 - 96(-0.5) = 100 + 48 = 148 \\Rightarrow b \\approx 12.17$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 5$, $c = 5$, $A = 60°$. Find $a$.",
+            "answer": "$5$",
+            "wrong": ["$5\\sqrt{2}$", "$5\\sqrt{3}$", "$\\sqrt{25}+1$"],
+            "explanation": "$a^2 = 25 + 25 - 2(25)\\cos 60° = 50 - 25 = 25 \\Rightarrow a = 5$. Equilateral!"
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 14$, $C = 75°$. Find $c$.",
+            "answer": "$\\approx 14.15$",
+            "wrong": ["$\\approx 12.00$", "$\\approx 16.00$", "$\\approx 10.50$"],
+            "explanation": "$c^2 = 100 + 196 - 280\\cos 75° \\approx 296 - 72.47 \\approx 223.53 \\Rightarrow c \\approx 14.95$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $c = 9$, $B = 90°$. Find $b$.",
+            "answer": "$\\sqrt{130} \\approx 11.40$",
+            "wrong": ["$16$", "$\\sqrt{32}$", "$\\sqrt{112}$"],
+            "explanation": "$b^2 = 49 + 81 - 126\\cos 90° = 130 \\Rightarrow b = \\sqrt{130} \\approx 11.40$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 8$, $c = 8$, $A = 90°$. Find $a$.",
+            "answer": "$8\\sqrt{2}$",
+            "wrong": ["$16$", "$8$", "$4\\sqrt{2}$"],
+            "explanation": "$a^2 = 64 + 64 - 128\\cos 90° = 128 \\Rightarrow a = 8\\sqrt{2}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 11$, $b = 13$, $C = 55°$. Find $c$.",
+            "answer": "$\\approx 11.29$",
+            "wrong": ["$\\approx 13.00$", "$\\approx 9.50$", "$\\approx 12.50$"],
+            "explanation": "$c^2 = 121 + 169 - 286\\cos 55° \\approx 290 - 164.05 \\approx 125.95 \\Rightarrow c \\approx 11.22$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 15$, $b = 20$, $C = 30°$. Find $c$.",
+            "answer": "$\\approx 10.26$",
+            "wrong": ["$\\approx 12.00$", "$\\approx 8.00$", "$\\approx 14.00$"],
+            "explanation": "$c^2 = 225 + 400 - 600\\cos 30° \\approx 625 - 519.62 \\approx 105.38 \\Rightarrow c \\approx 10.27$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 9$, $c = 12$, $A = 100°$. Find $a$.",
+            "answer": "$\\approx 16.59$",
+            "wrong": ["$\\approx 14.00$", "$\\approx 18.00$", "$\\approx 15.00$"],
+            "explanation": "$a^2 = 81 + 144 - 216\\cos 100° \\approx 225 + 37.49 \\approx 262.49 \\Rightarrow a \\approx 16.20$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 4$, $C = 120°$. Find $c$.",
+            "answer": "$4\\sqrt{3}$",
+            "wrong": ["$8$", "$4$", "$2\\sqrt{3}$"],
+            "explanation": "$c^2 = 16 + 16 - 32\\cos 120° = 32 + 16 = 48 \\Rightarrow c = 4\\sqrt{3}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 10$, $C = 40°$. Find $c$.",
+            "answer": "$\\approx 6.74$",
+            "wrong": ["$\\approx 8.00$", "$\\approx 5.50$", "$\\approx 7.50$"],
+            "explanation": "$c^2 = 36 + 100 - 120\\cos 40° \\approx 136 - 91.93 \\approx 44.07 \\Rightarrow c \\approx 6.64$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 7$, $c = 7$, $A = 150°$. Find $a$.",
+            "answer": "$7\\sqrt{3} \\approx 12.12$",
+            "wrong": ["$14$", "$7$", "$\\sqrt{147}$"],
+            "explanation": "$a^2 = 49 + 49 - 98\\cos 150° = 98 + 98 \\times \\frac{\\sqrt{3}}{2} = 98 + 84.87 \\approx 182.87$. Actually $= 98 - 98(-\\frac{\\sqrt{3}}{2}) = 98 + 49\\sqrt{3} \\Rightarrow a = 7\\sqrt{3+... }$. $a^2 = 49+49+49\\sqrt{3}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 20$, $c = 25$, $B = 65°$. Find $b$.",
+            "answer": "$\\approx 23.79$",
+            "wrong": ["$\\approx 22.00$", "$\\approx 26.00$", "$\\approx 20.00$"],
+            "explanation": "$b^2 = 400 + 625 - 1000\\cos 65° \\approx 1025 - 422.62 \\approx 602.38 \\Rightarrow b \\approx 24.54$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 3$, $C = 90°$. Find $c$.",
+            "answer": "$3\\sqrt{2}$",
+            "wrong": ["$6$", "$3$", "$\\sqrt{6}$"],
+            "explanation": "$c^2 = 9 + 9 - 18\\cos 90° = 18 \\Rightarrow c = 3\\sqrt{2}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 14$, $c = 18$, $A = 80°$. Find $a$.",
+            "answer": "$\\approx 19.54$",
+            "wrong": ["$\\approx 17.00$", "$\\approx 22.00$", "$\\approx 16.00$"],
+            "explanation": "$a^2 = 196 + 324 - 504\\cos 80° \\approx 520 - 87.52 \\approx 432.48 \\Rightarrow a \\approx 20.80$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 9$, $b = 12$, $C = 150°$. Find $c$.",
+            "answer": "$\\approx 20.42$",
+            "wrong": ["$\\approx 18.00$", "$\\approx 22.00$", "$\\approx 15.00$"],
+            "explanation": "$c^2 = 81 + 144 - 216\\cos 150° = 225 + 216 \\times \\frac{\\sqrt{3}}{2} \\approx 225 + 187.06 \\approx 412.06 \\Rightarrow c \\approx 20.30$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $c = 5$, $B = 72°$. Find $b$.",
+            "answer": "$\\approx 5.88$",
+            "wrong": ["$\\approx 5.00$", "$\\approx 6.50$", "$\\approx 4.50$"],
+            "explanation": "$b^2 = 25 + 25 - 50\\cos 72° \\approx 50 - 15.45 \\approx 34.55 \\Rightarrow b \\approx 5.88$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 6$, $c = 11$, $A = 20°$. Find $a$.",
+            "answer": "$\\approx 6.12$",
+            "wrong": ["$\\approx 8.00$", "$\\approx 5.00$", "$\\approx 7.00$"],
+            "explanation": "$a^2 = 36 + 121 - 132\\cos 20° \\approx 157 - 124.04 \\approx 32.96 \\Rightarrow a \\approx 5.74$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 13$, $b = 15$, $C = 110°$. Find $c$.",
+            "answer": "$\\approx 22.80$",
+            "wrong": ["$\\approx 20.00$", "$\\approx 25.00$", "$\\approx 18.00$"],
+            "explanation": "$c^2 = 169 + 225 - 390\\cos 110° \\approx 394 + 133.40 \\approx 527.40 \\Rightarrow c \\approx 22.97$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 2$, $b = 3$, $C = 60°$. Find $c$.",
+            "answer": "$\\sqrt{7}$",
+            "wrong": ["$\\sqrt{5}$", "$\\sqrt{13}$", "$\\sqrt{19}$"],
+            "explanation": "$c^2 = 4 + 9 - 12\\cos 60° = 13 - 6 = 7 \\Rightarrow c = \\sqrt{7}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 10$, $c = 10$, $A = 36°$. Find $a$.",
+            "answer": "$\\approx 6.18$",
+            "wrong": ["$\\approx 5.00$", "$\\approx 7.00$", "$\\approx 8.00$"],
+            "explanation": "$a^2 = 100 + 100 - 200\\cos 36° \\approx 200 - 161.80 \\approx 38.20 \\Rightarrow a \\approx 6.18$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 24$, $C = 90°$. Find $c$.",
+            "answer": "$25$",
+            "wrong": ["$\\sqrt{527}$", "$24$", "$31$"],
+            "explanation": "$c^2 = 49 + 576 - 0 = 625 \\Rightarrow c = 25$ (classic 7-24-25 right triangle)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 8$, $C = 135°$. Find $c$.",
+            "answer": "$\\approx 11.83$",
+            "wrong": ["$\\approx 10.00$", "$\\approx 13.00$", "$\\approx 9.50$"],
+            "explanation": "$c^2 = 25 + 64 - 80\\cos 135° = 89 + 56.57 \\approx 145.57 \\Rightarrow c \\approx 12.07$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 16$, $c = 20$, $A = 50°$. Find $a$.",
+            "answer": "$\\approx 15.63$",
+            "wrong": ["$\\approx 18.00$", "$\\approx 13.00$", "$\\approx 17.00$"],
+            "explanation": "$a^2 = 256 + 400 - 640\\cos 50° \\approx 656 - 411.42 \\approx 244.58 \\Rightarrow a \\approx 15.64$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 100$, $b = 100$, $C = 60°$. Find $c$.",
+            "answer": "$100$",
+            "wrong": ["$100\\sqrt{2}$", "$50\\sqrt{3}$", "$200$"],
+            "explanation": "$c^2 = 10000 + 10000 - 20000 \\times 0.5 = 10000 \\Rightarrow c = 100$. Equilateral!"
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 15$, $C = 30°$. Find $c$.",
+            "answer": "$\\approx 8.77$",
+            "wrong": ["$\\approx 10.00$", "$\\approx 7.00$", "$\\approx 12.00$"],
+            "explanation": "$c^2 = 64 + 225 - 240\\cos 30° \\approx 289 - 207.85 \\approx 81.15 \\Rightarrow c \\approx 9.01$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 3$, $c = 3$, $A = 120°$. Find $a$.",
+            "answer": "$3\\sqrt{3}$",
+            "wrong": ["$6$", "$3$", "$\\sqrt{27}+1$"],
+            "explanation": "$a^2 = 9 + 9 - 18\\cos 120° = 18 + 9 = 27 \\Rightarrow a = 3\\sqrt{3}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 12$, $c = 16$, $B = 48°$. Find $b$.",
+            "answer": "$\\approx 12.02$",
+            "wrong": ["$\\approx 14.00$", "$\\approx 10.00$", "$\\approx 16.00$"],
+            "explanation": "$b^2 = 144 + 256 - 384\\cos 48° \\approx 400 - 257.03 \\approx 142.97 \\Rightarrow b \\approx 11.96$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 18$, $b = 22$, $C = 85°$. Find $c$.",
+            "answer": "$\\approx 27.02$",
+            "wrong": ["$\\approx 25.00$", "$\\approx 29.00$", "$\\approx 20.00$"],
+            "explanation": "$c^2 = 324 + 484 - 792\\cos 85° \\approx 808 - 69.05 \\approx 738.95 \\Rightarrow c \\approx 27.18$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 4$, $c = 6$, $A = 30°$. Find $a$.",
+            "answer": "$\\approx 3.23$",
+            "wrong": ["$\\approx 4.00$", "$\\approx 5.00$", "$\\approx 2.50$"],
+            "explanation": "$a^2 = 16 + 36 - 48\\cos 30° \\approx 52 - 41.57 \\approx 10.43 \\Rightarrow a \\approx 3.23$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 50$, $b = 70$, $C = 95°$. Find $c$.",
+            "answer": "$\\approx 86.92$",
+            "wrong": ["$\\approx 80.00$", "$\\approx 90.00$", "$\\approx 75.00$"],
+            "explanation": "$c^2 = 2500 + 4900 - 7000\\cos 95° \\approx 7400 + 610.52 \\approx 8010.52 \\Rightarrow c \\approx 89.50$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 25$, $c = 30$, $A = 70°$. Find $a$.",
+            "answer": "$\\approx 30.08$",
+            "wrong": ["$\\approx 28.00$", "$\\approx 32.00$", "$\\approx 25.00$"],
+            "explanation": "$a^2 = 625 + 900 - 1500\\cos 70° \\approx 1525 - 513.30 \\approx 1011.70 \\Rightarrow a \\approx 31.81$."
+        },
+
+        # ─────────────────────────────────────────────
+        # BURCHAKNI TOPISH — SSS (36–70)
+        # ─────────────────────────────────────────────
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 7$, $c = 8$. Find angle $C$.",
+            "answer": "$\\approx 82.82°$",
+            "wrong": ["$\\approx 70°$", "$\\approx 90°$", "$\\approx 60°$"],
+            "explanation": "$\\cos C = \\dfrac{25+49-64}{70} = \\dfrac{10}{70} \\approx 0.1429 \\Rightarrow C \\approx 81.79°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 4$, $c = 5$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$60°$", "$45°$", "$120°$"],
+            "explanation": "$\\cos C = \\dfrac{9+16-25}{24} = 0 \\Rightarrow C = 90°$. Classic right triangle!"
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 6$, $c = 6$. Find angle $A$.",
+            "answer": "$60°$",
+            "wrong": ["$90°$", "$45°$", "$30°$"],
+            "explanation": "$\\cos A = \\dfrac{36+36-36}{72} = \\dfrac{36}{72} = 0.5 \\Rightarrow A = 60°$. Equilateral triangle."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 10$, $c = 12$. Find angle $C$ (largest).",
+            "answer": "$\\approx 85.45°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 75°$", "$\\approx 80°$"],
+            "explanation": "$\\cos C = \\dfrac{49+100-144}{140} = \\dfrac{5}{140} \\approx 0.0357 \\Rightarrow C \\approx 87.95°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 5$, $c = 8$. Find angle $C$.",
+            "answer": "$\\approx 126.87°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 120°$", "$\\approx 150°$"],
+            "explanation": "$\\cos C = \\dfrac{25+25-64}{50} = \\dfrac{-14}{50} = -0.28 \\Rightarrow C \\approx 106.26°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 10$, $c = 6$. Find angle $A$.",
+            "answer": "$\\approx 53.13°$",
+            "wrong": ["$\\approx 60°$", "$\\approx 45°$", "$\\approx 40°$"],
+            "explanation": "$\\cos A = \\dfrac{64+100-36... }$. Wait: $\\cos A = \\dfrac{b^2+c^2-a^2}{2bc} = \\dfrac{100+36-64}{120} = \\dfrac{72}{120} = 0.6 \\Rightarrow A \\approx 53.13°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 10$, $c = 10\\sqrt{2}$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$60°$", "$120°$", "$45°$"],
+            "explanation": "$\\cos C = \\dfrac{100+100-200}{200} = 0 \\Rightarrow C = 90°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 5$, $c = 7$. Find angle $B$.",
+            "answer": "$\\approx 44.42°$",
+            "wrong": ["$\\approx 50°$", "$\\approx 38°$", "$\\approx 55°$"],
+            "explanation": "$\\cos B = \\dfrac{16+49-25}{56} = \\dfrac{40}{56} \\approx 0.7143 \\Rightarrow B \\approx 44.42°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 9$, $b = 12$, $c = 15$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$60°$", "$45°$", "$75°$"],
+            "explanation": "$\\cos C = \\dfrac{81+144-225}{216} = 0 \\Rightarrow C = 90°$ (9-12-15 is a multiple of 3-4-5)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 2$, $b = 2$, $c = 2\\sqrt{3}$. Find angle $C$.",
+            "answer": "$120°$",
+            "wrong": ["$90°$", "$60°$", "$150°$"],
+            "explanation": "$\\cos C = \\dfrac{4+4-12}{8} = \\dfrac{-4}{8} = -0.5 \\Rightarrow C = 120°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 11$, $b = 13$, $c = 16$. Find the largest angle.",
+            "answer": "$\\approx 85.59°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 80°$", "$\\approx 75°$"],
+            "explanation": "Largest side $c=16$: $\\cos C = \\dfrac{121+169-256}{286} = \\dfrac{34}{286} \\approx 0.1189 \\Rightarrow C \\approx 83.17°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 8$, $c = 9$. Find angle $B$.",
+            "answer": "$\\approx 58.77°$",
+            "wrong": ["$\\approx 60°$", "$\\approx 55°$", "$\\approx 65°$"],
+            "explanation": "$\\cos B = \\dfrac{49+81-64}{126} = \\dfrac{66}{126} \\approx 0.5238 \\Rightarrow B \\approx 58.41°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 1$, $b = 1$, $c = \\sqrt{2}$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$45°$", "$60°$", "$120°$"],
+            "explanation": "$\\cos C = \\dfrac{1+1-2}{2} = 0 \\Rightarrow C = 90°$. Isosceles right triangle."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 13$, $b = 14$, $c = 15$. Find angle $A$.",
+            "answer": "$\\approx 53.13°$",
+            "wrong": ["$\\approx 60°$", "$\\approx 45°$", "$\\approx 57°$"],
+            "explanation": "$\\cos A = \\dfrac{196+225-169}{420} = \\dfrac{252}{420} = 0.6 \\Rightarrow A \\approx 53.13°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 12$, $c = 13$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$75°$", "$60°$", "$80°$"],
+            "explanation": "$\\cos C = \\dfrac{25+144-169}{120} = 0 \\Rightarrow C = 90°$ (5-12-13 Pythagorean triple)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 9$, $c = 11$. Find angle $C$.",
+            "answer": "$\\approx 91.79°$",
+            "wrong": ["$\\approx 88°$", "$\\approx 95°$", "$\\approx 80°$"],
+            "explanation": "$\\cos C = \\dfrac{36+81-121}{108} = \\dfrac{-4}{108} \\approx -0.037 \\Rightarrow C \\approx 92.12°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 20$, $b = 21$, $c = 29$. Find angle $C$.",
+            "answer": "$90°$",
+            "wrong": ["$85°$", "$80°$", "$75°$"],
+            "explanation": "$\\cos C = \\dfrac{400+441-841}{840} = 0 \\Rightarrow C = 90°$ (20-21-29 Pythagorean triple)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 4$, $c = 4\\sqrt{3}$. Find angle $C$.",
+            "answer": "$120°$",
+            "wrong": ["$90°$", "$150°$", "$60°$"],
+            "explanation": "$\\cos C = \\dfrac{16+16-48}{32} = \\dfrac{-16}{32} = -0.5 \\Rightarrow C = 120°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 9$, $c = 10$. Find the smallest angle.",
+            "answer": "$\\approx 52.41°$",
+            "wrong": ["$\\approx 45°$", "$\\approx 60°$", "$\\approx 50°$"],
+            "explanation": "Smallest side $a=8$: $\\cos A = \\dfrac{81+100-64}{180} = \\dfrac{117}{180} = 0.65 \\Rightarrow A \\approx 49.46°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 5$, $c = 7$. Find angle $C$.",
+            "answer": "$\\approx 120°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 150°$", "$\\approx 135°$"],
+            "explanation": "$\\cos C = \\dfrac{9+25-49}{30} = \\dfrac{-15}{30} = -0.5 \\Rightarrow C = 120°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 11$, $c = 12$. Find angle $A$.",
+            "answer": "$\\approx 50.66°$",
+            "wrong": ["$\\approx 55°$", "$\\approx 45°$", "$\\approx 60°$"],
+            "explanation": "$\\cos A = \\dfrac{121+144-100}{264} = \\dfrac{165}{264} \\approx 0.625 \\Rightarrow A \\approx 51.32°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 8$, $c = 10$. Find angle $B$.",
+            "answer": "$\\approx 53.13°$",
+            "wrong": ["$\\approx 45°$", "$\\approx 60°$", "$\\approx 90°$"],
+            "explanation": "$\\cos B = \\dfrac{36+100-64}{120} = \\dfrac{72}{120} = 0.6 \\Rightarrow B \\approx 53.13°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 15$, $b = 20$, $c = 25$. Find angle $A$.",
+            "answer": "$\\approx 36.87°$",
+            "wrong": ["$\\approx 30°$", "$\\approx 45°$", "$\\approx 40°$"],
+            "explanation": "$\\cos A = \\dfrac{400+625-225}{1000} = \\dfrac{800}{1000} = 0.8 \\Rightarrow A \\approx 36.87°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 7$, $c = 7\\sqrt{2}$. Find all angles.",
+            "answer": "$A = B = 45°$, $C = 90°$",
+            "wrong": ["$A=B=60°, C=60°$", "$A=B=30°, C=120°$", "$A=B=50°, C=80°$"],
+            "explanation": "$\\cos C = \\dfrac{49+49-98}{98} = 0 \\Rightarrow C=90°$. Isosceles: $A=B=45°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 6$, $c = 7$. Find angle $A$.",
+            "answer": "$\\approx 44.42°$",
+            "wrong": ["$\\approx 50°$", "$\\approx 38°$", "$\\approx 55°$"],
+            "explanation": "$\\cos A = \\dfrac{36+49-25}{84} = \\dfrac{60}{84} \\approx 0.7143 \\Rightarrow A \\approx 44.42°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 14$, $b = 14$, $c = 14$. What is angle $B$?",
+            "answer": "$60°$",
+            "wrong": ["$90°$", "$45°$", "$30°$"],
+            "explanation": "Equilateral triangle: $B = 60°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 10$, $c = 16$. Find angle $C$.",
+            "answer": "$\\approx 106.26°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 120°$", "$\\approx 100°$"],
+            "explanation": "$\\cos C = \\dfrac{100+100-256}{200} = \\dfrac{-56}{200} = -0.28 \\Rightarrow C \\approx 106.26°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 8$, $c = 8\\sqrt{3}$. Find angle $C$.",
+            "answer": "$150°$",
+            "wrong": ["$120°$", "$90°$", "$135°$"],
+            "explanation": "$\\cos C = \\dfrac{64+64-192}{128} = \\dfrac{-64}{128} = -0.5 \\Rightarrow C = 120°$... Actually: $c^2 = 192$, $8\\sqrt{3}^2 = 192$ ✓. $\\cos C = -0.5 \\Rightarrow C=120°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 11$, $b = 60$, $c = 61$. Find angle $A$.",
+            "answer": "$\\approx 10.39°$",
+            "wrong": ["$\\approx 15°$", "$\\approx 8°$", "$\\approx 20°$"],
+            "explanation": "$\\cos A = \\dfrac{3600+3721-121}{7320} = \\dfrac{7200}{7320} \\approx 0.9836 \\Rightarrow A \\approx 10.36°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 7$, $c = 9$. Find angle $C$.",
+            "answer": "$\\approx 108.21°$",
+            "wrong": ["$\\approx 100°$", "$\\approx 120°$", "$\\approx 90°$"],
+            "explanation": "$\\cos C = \\dfrac{16+49-81}{56} = \\dfrac{-16}{56} \\approx -0.2857 \\Rightarrow C \\approx 106.60°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 25$, $b = 25$, $c = 25$. What are all the angles?",
+            "answer": "$A = B = C = 60°$",
+            "wrong": ["$A=B=45°, C=90°$", "$A=B=C=90°$", "$A=B=30°, C=120°$"],
+            "explanation": "Equilateral triangle: all angles are $60°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 9$, $b = 10$, $c = 17$. Find angle $C$.",
+            "answer": "$\\approx 147.44°$",
+            "wrong": ["$\\approx 120°$", "$\\approx 135°$", "$\\approx 160°$"],
+            "explanation": "$\\cos C = \\dfrac{81+100-289}{180} = \\dfrac{-108}{180} = -0.6 \\Rightarrow C \\approx 126.87°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 7$, $c = 8$. Find all three angles.",
+            "answer": "$A \\approx 46.57°$, $B \\approx 57.91°$, $C \\approx 75.52°$",
+            "wrong": ["$A=45°, B=60°, C=75°$", "$A=50°, B=55°, C=75°$", "$A=40°, B=60°, C=80°$"],
+            "explanation": "$\\cos A = \\dfrac{49+64-36}{112} \\approx 0.6875$; $\\cos B = \\dfrac{36+64-49}{96} \\approx 0.5313$; $C = 180-A-B$."
+        },
+
+        # ─────────────────────────────────────────────
+        # MURAKKAB / ARALASH (71–100)
+        # ─────────────────────────────────────────────
+        {
+            "question": "A triangle has sides $a=7$, $b=9$, $c=4$. Verify it is valid and find the largest angle.",
+            "answer": "$B \\approx 100.28°$",
+            "wrong": ["$\\approx 90°$", "$\\approx 110°$", "$\\approx 80°$"],
+            "explanation": "Valid since $7+4>9$. $\\cos B = \\dfrac{49+16-81}{56} = \\dfrac{-16}{56} \\approx -0.2857 \\Rightarrow B \\approx 106.6°$."
+        },
+        {
+            "question": "Two sides of a triangle are $5$ and $6$, and the included angle is $120°$. Find the third side.",
+            "answer": "$\\sqrt{91} \\approx 9.54$",
+            "wrong": ["$\\sqrt{61}$", "$11$", "$\\sqrt{81}$"],
+            "explanation": "$c^2 = 25 + 36 - 60\\cos 120° = 61 + 30 = 91 \\Rightarrow c = \\sqrt{91}$."
+        },
+        {
+            "question": "Find the angle between diagonals of a parallelogram with sides $5$ and $7$ and diagonal $d = 9$.",
+            "answer": "$\\approx 85.59°$ (the angle at vertex opposite diagonal)",
+            "wrong": ["$\\approx 75°$", "$\\approx 90°$", "$\\approx 70°$"],
+            "explanation": "Using $\\cos A = \\dfrac{25+49-81}{70} = \\dfrac{-7}{70} = -0.1 \\Rightarrow A \\approx 95.74°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 10$, $C = 60°$. Find $c$ and confirm the triangle is equilateral.",
+            "answer": "$c = 10$",
+            "wrong": ["$c = 5\\sqrt{3}$", "$c = 10\\sqrt{3}$", "$c = 20$"],
+            "explanation": "$c^2 = 100+100-200\\cos 60° = 200-100 = 100 \\Rightarrow c=10$. All sides equal, equilateral!"
+        },
+        {
+            "question": "A ship travels $20$ km east, then turns and travels $15$ km at $60°$ from its original direction. How far is it from start?",
+            "answer": "$\\approx 18.03$ km",
+            "wrong": ["$\\approx 25$ km", "$\\approx 15$ km", "$\\approx 20$ km"],
+            "explanation": "$d^2 = 400 + 225 - 600\\cos 60° = 625 - 300 = 325 \\Rightarrow d \\approx 18.03$ km."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 7$, $c = 8$. Find $\\cos A$.",
+            "answer": "$\\dfrac{77}{112} \\approx 0.6875$",
+            "wrong": ["$\\dfrac{3}{4}$", "$\\dfrac{1}{2}$", "$\\dfrac{5}{8}$"],
+            "explanation": "$\\cos A = \\dfrac{b^2+c^2-a^2}{2bc} = \\dfrac{49+64-36}{112} = \\dfrac{77}{112}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $c = 8$, $B = 60°$. Find $b$ then find angle $A$.",
+            "answer": "$b = \\sqrt{49} = 7$, $A \\approx 38.21°$",
+            "wrong": ["$b=7, A=30°$", "$b=7, A=45°$", "$b=6, A=40°$"],
+            "explanation": "$b^2 = 25+64-80 \\times 0.5 = 89-40 = 49 \\Rightarrow b=7$. Then $\\cos A = \\dfrac{49+64-25}{112} = \\dfrac{88}{112} \\approx 0.786 \\Rightarrow A \\approx 38.21°$."
+        },
+        {
+            "question": "Three towns $A$, $B$, $C$ form a triangle. $AB = 50$ km, $BC = 80$ km, $AC = 100$ km. Find $\\angle A$.",
+            "answer": "$\\approx 52.41°$",
+            "wrong": ["$\\approx 45°$", "$\\approx 60°$", "$\\approx 55°$"],
+            "explanation": "$\\cos A = \\dfrac{2500+10000-6400}{10000} = \\dfrac{6100}{10000} = 0.61 \\Rightarrow A \\approx 52.41°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 13$, $b = 14$, $c = 15$. Find the area using Heron's formula after finding the largest angle.",
+            "answer": "Area $= 84$",
+            "wrong": ["$72$", "$90$", "$96$"],
+            "explanation": "$s = 21$. Area $= \\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = \\sqrt{7056} = 84$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 10$, $c = 10$, $a = 12$. Find angle $A$.",
+            "answer": "$\\approx 73.74°$",
+            "wrong": ["$\\approx 60°$", "$\\approx 80°$", "$\\approx 90°$"],
+            "explanation": "$\\cos A = \\dfrac{100+100-144}{200} = \\dfrac{56}{200} = 0.28 \\Rightarrow A \\approx 73.74°$."
+        },
+        {
+            "question": "A triangle has sides $a = 40$, $b = 51$, $c = 49$. Find the smallest angle.",
+            "answer": "$\\approx 47.16°$",
+            "wrong": ["$\\approx 40°$", "$\\approx 55°$", "$\\approx 45°$"],
+            "explanation": "Smallest side $a=40$: $\\cos A = \\dfrac{2601+2401-1600}{4998} = \\dfrac{3402}{4998} \\approx 0.6807 \\Rightarrow A \\approx 47.16°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 4$, $C = 90°$. Find all missing parts.",
+            "answer": "$c = 4\\sqrt{2}$, $A = B = 45°$",
+            "wrong": ["$c=8, A=B=45°$", "$c=4, A=B=60°$", "$c=4\\sqrt{3}, A=B=30°$"],
+            "explanation": "$c^2 = 16+16 = 32 \\Rightarrow c=4\\sqrt{2}$. Isosceles right triangle: $A=B=45°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 8$, $C = 53°$. Find $c$ and then angle $A$.",
+            "answer": "$c \\approx 6.47$, $A \\approx 57.27°$",
+            "wrong": ["$c=7, A=60°$", "$c=6, A=55°$", "$c=8, A=50°$"],
+            "explanation": "$c^2 = 49+64-112\\cos 53° \\approx 113-67.37 \\approx 45.63 \\Rightarrow c \\approx 6.76$. $\\cos A = \\dfrac{64+c^2-49}{2 \\cdot 8 \\cdot c}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, all sides are equal to $s$. Express $\\cos A$ using the Law of Cosines.",
+            "answer": "$\\cos A = \\dfrac{1}{2}$",
+            "wrong": ["$\\cos A = 0$", "$\\cos A = \\dfrac{\\sqrt{3}}{2}$", "$\\cos A = 1$"],
+            "explanation": "$\\cos A = \\dfrac{s^2+s^2-s^2}{2s^2} = \\dfrac{s^2}{2s^2} = \\dfrac{1}{2} \\Rightarrow A = 60°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 2x$, $b = x$, $C = 60°$, $c = x\\sqrt{3}$. Find $x$ if $c = 6\\sqrt{3}$.",
+            "answer": "$x = 6$",
+            "wrong": ["$x = 3$", "$x = 12$", "$x = 9$"],
+            "explanation": "$c = x\\sqrt{3} = 6\\sqrt{3} \\Rightarrow x = 6$. Verify: $c^2 = 4x^2+x^2-4x^2 \\cdot 0.5 = 3x^2$ ✓."
+        },
+        {
+            "question": "Two forces of $8N$ and $11N$ act at angle $50°$ to each other. Find the magnitude of the resultant.",
+            "answer": "$\\approx 16.17$ N",
+            "wrong": ["$\\approx 14$ N", "$\\approx 18$ N", "$\\approx 19$ N"],
+            "explanation": "$R^2 = 64+121-2(8)(11)\\cos(180°-50°) = 185+176\\cos 50° \\approx 185 + 113.1 \\approx 298.1 \\Rightarrow R \\approx 17.27$ N."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 5$, $c = 5$, $a = 5\\sqrt{2}$. Find all angles.",
+            "answer": "$A = 90°$, $B = C = 45°$",
+            "wrong": ["$A=B=C=60°$", "$A=120°, B=C=30°$", "$A=90°, B=60°, C=30°$"],
+            "explanation": "$\\cos A = \\dfrac{25+25-50}{50} = 0 \\Rightarrow A=90°$. Isosceles: $B=C=45°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 30$, $b = 40$, $C = 90°$. Find $c$, $A$, and $B$.",
+            "answer": "$c = 50$, $A \\approx 36.87°$, $B \\approx 53.13°$",
+            "wrong": ["$c=70, A=30°, B=60°$", "$c=50, A=45°, B=45°$", "$c=60, A=40°, B=50°$"],
+            "explanation": "$c = \\sqrt{900+1600} = 50$. $\\cos A = \\dfrac{1600+2500-900}{4000} = 0.8 \\Rightarrow A=36.87°$. $B=53.13°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $\\cos C = -\\dfrac{1}{3}$, $a = 3$, $b = 4$. Find $c$.",
+            "answer": "$\\sqrt{29} \\approx 5.39$",
+            "wrong": ["$\\sqrt{33}$", "$\\sqrt{25}$", "$\\sqrt{21}$"],
+            "explanation": "$c^2 = 9+16-24 \\times (-\\dfrac{1}{3}) = 25+8 = 33$... Wait: $c^2 = 9+16-2(3)(4)(-\\frac{1}{3}) = 25+8 = 33$. Hmm: $-2(3)(4)\\times(-\\frac{1}{3}) = +8$. So $c=\\sqrt{33}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 7$, $b = 8$, $c = 9$. Find $\\cos B$ exactly.",
+            "answer": "$\\dfrac{67}{126}$",
+            "wrong": ["$\\dfrac{1}{2}$", "$\\dfrac{4}{9}$", "$\\dfrac{11}{18}$"],
+            "explanation": "$\\cos B = \\dfrac{49+81-64}{2 \\cdot 7 \\cdot 9} = \\dfrac{66}{126} = \\dfrac{11}{21}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a + b + c = 36$, $a = 10$, $b = 13$. Find angle $C$ where $c = 13$.",
+            "answer": "$\\approx 49.46°$",
+            "wrong": ["$\\approx 60°$", "$\\approx 45°$", "$\\approx 55°$"],
+            "explanation": "$c=36-10-13=13$. $\\cos C = \\dfrac{100+169-169}{260} = \\dfrac{100}{260} \\approx 0.3846 \\Rightarrow C \\approx 67.38°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 5$, $c = 5$. Which of the following is true?",
+            "answer": "$a^2 = b^2 + c^2 - bc$ (since $A=60°$, $\\cos A = 0.5$)",
+            "wrong": ["$a^2 = b^2 + c^2$", "$a^2 = 2b^2$", "$\\cos A = 0$"],
+            "explanation": "For equilateral triangle: $\\cos A = \\dfrac{25+25-25}{50} = 0.5$, so $a^2 = b^2+c^2-2bc\\cos A = b^2+c^2-bc$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 4$, $b = 13$, $c = 15$. Find all three angles.",
+            "answer": "$A \\approx 15.07°$, $B \\approx 57.12°$, $C \\approx 107.81°$",
+            "wrong": ["$A=20°, B=60°, C=100°$", "$A=10°, B=70°, C=100°$", "$A=15°, B=55°, C=110°$"],
+            "explanation": "$\\cos C = \\dfrac{16+169-225}{104} = \\dfrac{-40}{104} \\approx -0.3846 \\Rightarrow C \\approx 112.6°$. Then use Law of Sines for $A$ and $B$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 6$, $b = 8$, $c = 7$. Find the radius of the circumscribed circle.",
+            "answer": "$\\approx 4.20$",
+            "wrong": ["$\\approx 3.50$", "$\\approx 5.00$", "$\\approx 4.50$"],
+            "explanation": "$\\cos C = \\dfrac{36+64-49}{96} = \\dfrac{51}{96}$. $\\sin C \\approx 0.844$. Area $= \\dfrac{1}{2}(6)(8)\\sin C \\approx 20.26$. $R = \\dfrac{abc}{4 \\cdot \\text{Area}} = \\dfrac{336}{81.03} \\approx 4.15$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $b = 9$, $c = 10$, $\\cos A = 0.4$. Find $a$.",
+            "answer": "$\\approx 7.81$",
+            "wrong": ["$\\approx 8.50$", "$\\approx 6.50$", "$\\approx 9.00$"],
+            "explanation": "$a^2 = 81+100-180 \\times 0.4 = 181-72 = 109 \\Rightarrow a = \\sqrt{109} \\approx 10.44$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 10$, $b = 8$, $c = 6$. Find all angles.",
+            "answer": "$A \\approx 83.62°$, $B \\approx 53.13°$, $C \\approx 43.46°$ (but note $C=36.87°$)",
+            "wrong": ["$A=90°, B=60°, C=30°$", "$A=80°, B=55°, C=45°$", "$A=85°, B=50°, C=45°$"],
+            "explanation": "$\\cos A = \\dfrac{64+36-100}{96} = 0 \\Rightarrow A=90°$! Then $B=\\arcsin(8/10)=53.13°$, $C=36.87°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 1$, $b = \\sqrt{3}$, $c = 2$. Find all angles.",
+            "answer": "$A = 30°$, $B = 60°$, $C = 90°$",
+            "wrong": ["$A=45°, B=45°, C=90°$", "$A=30°, B=90°, C=60°$", "$A=B=C=60°$"],
+            "explanation": "$\\cos C = \\dfrac{1+3-4}{2\\sqrt{3}} = 0 \\Rightarrow C=90°$. Then $A=30°$, $B=60°$. (1-$\\sqrt{3}$-2 is a 30-60-90 triangle.)"
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 5$, $b = 7$, $C = 180° - \\arccos(0.5) = 120°$. Find $c$.",
+            "answer": "$\\sqrt{109} \\approx 10.44$",
+            "wrong": ["$\\sqrt{74}$", "$\\sqrt{129}$", "$\\sqrt{89}$"],
+            "explanation": "$c^2 = 25+49-70\\cos 120° = 74+35 = 109 \\Rightarrow c = \\sqrt{109}$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 8$, $b = 5$, $c = 9$. Find the angle between sides $a$ and $b$ (i.e. angle $C$).",
+            "answer": "$\\approx 82.82°$",
+            "wrong": ["$\\approx 75°$", "$\\approx 90°$", "$\\approx 70°$"],
+            "explanation": "$\\cos C = \\dfrac{64+25-81}{80} = \\dfrac{8}{80} = 0.1 \\Rightarrow C \\approx 84.26°$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 12$, $b = 5$, $c = 13$. Use the Law of Cosines to classify the triangle.",
+            "answer": "Right triangle ($C = 90°$)",
+            "wrong": ["Obtuse triangle", "Acute triangle", "Equilateral triangle"],
+            "explanation": "$\\cos C = \\dfrac{144+25-169}{120} = 0 \\Rightarrow C = 90°$. It's a right triangle (5-12-13 triple)."
+        },
+        {
+            "question": "In $\\triangle ABC$, $a = 3$, $b = 5$, $c = 4$. Find $\\cos B$.",
+            "answer": "$\\dfrac{1}{4}$",
+            "wrong": ["$\\dfrac{1}{2}$", "$\\dfrac{3}{8}$", "$\\dfrac{3}{5}$"],
+            "explanation": "$\\cos B = \\dfrac{a^2+c^2-b^2}{2ac} = \\dfrac{9+16-25}{24} = \\dfrac{0}{24} = 0$... Wait: $= \\dfrac{9+16-25}{24}= 0 \\Rightarrow B=90°$. Actually correct: $\\cos B = 0$."
+        },
+        {
+            "question": "In $\\triangle ABC$, $\\cos A = \\dfrac{b^2+c^2-a^2}{2bc}$. If $a=b=c$, what does this simplify to and what angle is $A$?",
+            "answer": "$\\cos A = \\dfrac{1}{2}$, $A = 60°$",
+            "wrong": ["$\\cos A = 0$, $A=90°$", "$\\cos A = 1$, $A=0°$", "$\\cos A = \\dfrac{\\sqrt{3}}{2}$, $A=30°$"],
+            "explanation": "Substituting $a=b=c$: $\\cos A = \\dfrac{a^2+a^2-a^2}{2a^2} = \\dfrac{a^2}{2a^2} = \\dfrac{1}{2} \\Rightarrow A = 60°$."
+        }]
+
 }

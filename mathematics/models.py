@@ -117,3 +117,22 @@ class Country(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='country')
     def __str__(self):
         return self.country
+
+
+class Feedback(models.Model):
+    TYPE_CHOICES = [
+        ('recommendation', 'Recommendation'),
+        ('problem', 'Problem Report'),
+    ]
+
+    sender_name = models.CharField(max_length=100, default='Anonymous')
+    message_type = models.CharField(max_length=20, choices=TYPE_CHOICES, default='recommendation')
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"[{self.get_message_type_display()}] {self.sender_name} — {self.created_at:%Y-%m-%d %H:%M}"

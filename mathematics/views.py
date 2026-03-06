@@ -5,6 +5,28 @@ import random
 from django.contrib.auth.decorators import login_required
 
 
+def feedback(request):
+    success = False
+
+    if request.method == 'POST':
+        message = request.POST.get('message', '').strip()
+        sender_name = request.POST.get('sender_name', '').strip() or 'Anonymous'
+        message_type = request.POST.get('message_type', 'recommendation')
+
+        if message_type not in ('recommendation', 'problem'):
+            message_type = 'recommendation'
+
+        if message:
+            Feedback.objects.create(
+                sender_name=sender_name[:100],
+                message_type=message_type,
+                message=message,
+            )
+            success = True
+
+    return render(request, 'feedback.html', {'success': success})
+
+
 def return_lesson_name(url):
     topics = {
         "fundamental": "Fundamental Concepts of Mathematics",
@@ -109,25 +131,26 @@ def profile(request):
     lessons2 = []
 
     lesson_urls = {'Fundamental Concepts of Mathematics': 'fundamental',
-            'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
-            'Types of Numbers': 'types_of_numbers',
-            'Operations with Positive and Negative Numbers': 'working_with_signs',
-            'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
-            'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
-            'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
-            'Operations on Logarithms': 'operation_on_logarithm', 'Logarithmic Functions': 'logarithmic_functions',
-            'Introduction to Trigonometry': 'trigonometry',
-            'Trigonometric Identities and Operations': 'operations_in_trigonometry',
-            'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
-            'Introduction to Geometry': 'introduction_to_geometry',
-            'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
-            'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
-            'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
-            'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
-            'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
-            'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
-            'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
-            'Similar Triangles': 'similar_triangles'}
+                   'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
+                   'Types of Numbers': 'types_of_numbers',
+                   'Operations with Positive and Negative Numbers': 'working_with_signs',
+                   'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
+                   'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
+                   'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
+                   'Operations on Logarithms': 'operation_on_logarithm',
+                   'Logarithmic Functions': 'logarithmic_functions',
+                   'Introduction to Trigonometry': 'trigonometry',
+                   'Trigonometric Identities and Operations': 'operations_in_trigonometry',
+                   'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
+                   'Introduction to Geometry': 'introduction_to_geometry',
+                   'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
+                   'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
+                   'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
+                   'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
+                   'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
+                   'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
+                   'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
+                   'Similar Triangles': 'similar_triangles'}
     for i in lessons:
         lessons2.append(
             {'url': lesson_urls[i.lesson],
@@ -149,7 +172,6 @@ def profile(request):
         'country_flag_code': country_flag_code,
         'urls': lesson_urls
     }
-
 
     return render(request, 'profile.html', context)
 
@@ -667,8 +689,6 @@ def practice(request):
     from .math_problems_json import math_problems_json
     url = request.GET.get('url')
 
-
-
     data = math_problems_json[url]
     print(len(data))
 
@@ -677,7 +697,6 @@ def practice(request):
 
 @login_required  # agar login kerak bo'lsa
 def save_results(request, url):
-
     if request.method == 'POST':
         print(url)
         data = json.loads(request.body)
@@ -782,8 +801,6 @@ def verify_email(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
-
-
     try:
         data = json.loads(request.body)
         code = data.get('code', '').strip()
@@ -821,5 +838,3 @@ def verify_email(request):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
-
-

@@ -68,4 +68,5 @@ urlpatterns = [
     path("send_code/", send_code, name='send_code'),
     path('verify_email/', verify_email, name='verify_email'),
     path('adding_values/', adding_values, name='adding_values'),
+    path('feedback/', feedback, name='feedback'),
 ]

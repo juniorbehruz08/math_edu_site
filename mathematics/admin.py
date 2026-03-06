@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models import Count
-from .models import Lessons, TakenLessons, MathTestResult, PendingUser, Country
+from .models import Lessons, TakenLessons, MathTestResult, PendingUser, Country, Feedback
 
 
 # ───────────────────────────────────────────
@@ -55,6 +55,7 @@ class PendingUserAdmin(admin.ModelAdmin):
 
     def is_expired(self, obj):
         return obj.is_expired()
+
     is_expired.boolean = True
     is_expired.short_description = 'Expired?'
 
@@ -95,6 +96,7 @@ class UserMonitoringAdmin(admin.ModelAdmin):
             return obj.country.country
         except Exception:
             return '—'
+
     get_country.short_description = 'Country'
 
     def changelist_view(self, request, extra_context=None):
@@ -114,3 +116,9 @@ class UserMonitoringAdmin(admin.ModelAdmin):
         extra_context['by_country'] = by_country
 
         return super().changelist_view(request, extra_context=extra_context)
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('sender_name', 'message_type', 'message', 'is_read', 'created_at')
+    list_display_links = ('sender_name',)

@@ -42,18 +42,12 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Home</span>
+                <span>Math Academy</span>
             </a>
 
             <div class="d-lg-none ms-auto me-4">
-                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
 
             <div class="d-none d-lg-block">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
