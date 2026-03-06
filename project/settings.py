@@ -138,3 +138,7 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "botbexruz640@gmail.com"
 EMAIL_HOST_PASSWORD = "l e i f n b d b x n c q c e f a"
+CSRF_TRUSTED_ORIGINS = [
+    "https://mathacademy-2k87.onrender.com"
+]
+SESSION_COOKIE_SECURE = False
