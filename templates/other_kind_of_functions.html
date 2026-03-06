@@ -42,18 +42,12 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Home</span>
+                <span>Math Academy</span>
             </a>
 
             <div class="d-lg-none ms-auto me-4">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
 
             <div class="d-none d-lg-block">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
@@ -94,7 +88,8 @@
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-center mt-5 gap-3">
-                    <a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice' %}?url=other_kind_of_functions"
+                    <a style="flex: 1 1 300px; max-width: 350px;"
+                       href="{% url 'practice' %}?url=other_kind_of_functions"
                        class="btn custom-btn custom-border-btn">Practice with Functions</a>
                 </div>
 
@@ -106,7 +101,8 @@
     <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
         <div class="container">
             <div class="card p-2">
-                <h1 style="text-align:center">To find the intersection points of any functions, their equations must be used.</h1>
+                <h1 style="text-align:center">To find the intersection points of any functions, their equations must be
+                    used.</h1>
             </div>
             <div class="card p-2 mt-1">
                 <h1 style="text-align:center">An x-intercept is where 𝑦 = 0, A y-intercept is where x = 0</h1>
@@ -152,7 +148,8 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
                              aria-labelledby="design-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-60px">General Information Relating to Quadratic Functions</h1>
+                            <h1 style="text-align:center; margin-top:-60px">General Information Relating to Quadratic
+                                Functions</h1>
                             <img style="width:100%; border-radius:10px; margin:10px"
                                  src="{% static 'images/myimages/quadratic_functions_description1.jpg' %}" alt="">
                             <img style="width:100%; border-radius:10px; margin:10px"
@@ -175,71 +172,126 @@
 
                         <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
                              aria-labelledby="marketing-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Cubic Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation3.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/cubic_functions_explanation15.jpg' %}" alt="">
+                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Cubic
+                                Functions</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation1.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation2.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation3.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation4.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation5.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation6.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation7.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation8.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation9.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation10.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation11.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation12.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation13.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation14.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/cubic_functions_explanation15.jpg' %}" alt="">
                         </div>
 
                         <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
                              tabindex="0">
-                                 <h1 style="text-align:center; margin-top:-60px">General Information Relating to Rational Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational3.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational15.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational16.jpg' %}" alt="">
+                            <h1 style="text-align:center; margin-top:-60px">General Information Relating to Rational
+                                Functions</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational1.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational2.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational3.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational4.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational5.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational6.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational7.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational8.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational9.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational10.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational11.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational12.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational13.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational14.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational15.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational16.jpg' %}" alt="">
 
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational17.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/rational18.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational17.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/rational18.jpg' %}" alt="">
                         </div>
 
                         <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
                              tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Exponential Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential3.jpg' %}" alt="">
+                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Exponential
+                                Functions</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential1.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential2.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential3.jpg' %}" alt="">
 
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential15.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential16.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential17.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential18.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/exponential19.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential4.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential5.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential6.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential7.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential8.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential9.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential10.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential11.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential12.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential13.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential14.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential15.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential16.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential17.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential18.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/exponential19.jpg' %}" alt="">
                         </div>
                     </div>
                 </div>
@@ -248,76 +300,6 @@
     </main>
 </main>
 
-
-<footer class="site-footer section-padding">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="index.html">
-                    <i class="bi-back"></i>
-                    <span>Topic</span>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-6">
-                <h6 class="site-footer-title mb-3">Resources</h6>
-
-                <ul class="site-footer-links">
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Home</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">How it works</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">FAQs</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
-                <h6 class="site-footer-title mb-3">Information</h6>
-
-                <p class="text-white d-flex mb-1">
-                    <a href="tel: 305-240-9671" class="site-footer-link">
-                        305-240-9671
-                    </a>
-                </p>
-
-                <p class="text-white d-flex">
-                    <a href="mailto:info@company.com" class="site-footer-link">
-                        info@company.com
-                    </a>
-                </p>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
-                <div class="dropdown">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            {{ language }}
-                        </button>
-                    </div>
-
-                </div>
-
-                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
-                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
-                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
-
-            </div>
-
-        </div>
-    </div>
-</footer>
 
 <!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>

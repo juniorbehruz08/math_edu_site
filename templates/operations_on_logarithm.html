@@ -42,18 +42,12 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Home</span>
+                <span>Math Academy</span>
             </a>
 
             <div class="d-lg-none ms-auto me-4">
-                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
 
             <div class="d-none d-lg-block">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
@@ -145,148 +139,85 @@
         <div class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
 
             <div class="row">
-    <div class="col-12">
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade" id="general-pane" role="tabpanel" aria-labelledby="general-tab"
-                 tabindex="0">
-                <div class="container">
-                    <div class="container"><h1 style="text-align:center; margin-top: -60px">General Information About
-                        Operations Relating to
-                        Logarithm</h1>
-                        <img style="width:100%; border-radius:10px; margin:10px"
-                             src="{% static 'images/myimages/logarithm_operation1.jpg' %}" alt="">
-                        <img style="width:100%; border-radius:10px; margin:10px"
-                             src="{% static 'images/myimages/logarithm_operation2.jpg' %}" alt="">
-                        <img style="width:100%; border-radius:10px; margin:10px"
-                             src="{% static 'images/myimages/logarithm_operation3.jpg' %}" alt="">
-                        <img style="width:100%; border-radius:10px; margin:10px"
-                             src="{% static 'images/myimages/logarithm_operation4.jpg' %}" alt="">
+                <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade" id="general-pane" role="tabpanel" aria-labelledby="general-tab"
+                             tabindex="0">
+                            <div class="container">
+                                <div class="container"><h1 style="text-align:center; margin-top: -60px">General
+                                    Information About
+                                    Operations Relating to
+                                    Logarithm</h1>
+                                    <img style="width:100%; border-radius:10px; margin:10px"
+                                         src="{% static 'images/myimages/logarithm_operation1.jpg' %}" alt="">
+                                    <img style="width:100%; border-radius:10px; margin:10px"
+                                         src="{% static 'images/myimages/logarithm_operation2.jpg' %}" alt="">
+                                    <img style="width:100%; border-radius:10px; margin:10px"
+                                         src="{% static 'images/myimages/logarithm_operation3.jpg' %}" alt="">
+                                    <img style="width:100%; border-radius:10px; margin:10px"
+                                         src="{% static 'images/myimages/logarithm_operation4.jpg' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="container">
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
+                             aria-labelledby="design-tab" tabindex="0">
+                            <h1 style="text-align:center; margin-top: -60px">Addition</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation5.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation6.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation7.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation8.jpg' %}" alt="">
+                        </div>
+
+                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
+                             aria-labelledby="marketing-tab" tabindex="0">
+                            <h1 style="text-align:center; margin-top: -60px">Subtraction</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation9.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation10.jpg' %}" alt="">
+                        </div>
+
+                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
+                             tabindex="0">
+                            <h1 style="text-align:center; margin-top: -60px">Multiplication</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation11.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation12.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation13.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation14.jpg' %}" alt="">
+                        </div>
+
+                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
+                             tabindex="0">
+                            <h1 style="text-align:center; margin-top: -60px">Division</h1>
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation15.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation16.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation17.jpg' %}" alt="">
+                            <img style="width:100%; border-radius:10px; margin:10px"
+                                 src="{% static 'images/myimages/logarithm_operation18.jpg' %}" alt="">
+
+                        </div>
+
                     </div>
                 </div>
-                <div class="container">
-                </div>
             </div>
-
-            <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                 aria-labelledby="design-tab" tabindex="0">
-                <h1 style="text-align:center; margin-top: -60px">Addition</h1>
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation5.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation6.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation7.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation8.jpg' %}" alt="">
-            </div>
-
-            <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                 aria-labelledby="marketing-tab" tabindex="0">
-                <h1 style="text-align:center; margin-top: -60px">Subtraction</h1>
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation9.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation10.jpg' %}" alt="">
-            </div>
-
-            <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
-                 tabindex="0">
-                <h1 style="text-align:center; margin-top: -60px">Multiplication</h1>
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation11.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation12.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation13.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation14.jpg' %}" alt="">
-            </div>
-
-            <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
-                 tabindex="0">
-                <h1 style="text-align:center; margin-top: -60px">Division</h1>
-                <img style="width:100%; border-radius:10px; margin:10px"
-                     src="{% static 'images/myimages/logarithm_operation15.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation16.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation17.jpg' %}" alt="">
-                <img style="width:100%; border-radius:10px; margin:10px" src="{% static 'images/myimages/logarithm_operation18.jpg' %}" alt="">
-
-            </div>
-
-        </div>
-    </div>
-</div>
         </div>
     </div>
 </main>
 
-
-<footer class="site-footer section-padding">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="index.html">
-                    <i class="bi-back"></i>
-                    <span>Topic</span>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-6">
-                <h6 class="site-footer-title mb-3">Resources</h6>
-
-                <ul class="site-footer-links">
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Home</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">How it works</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">FAQs</a>
-                    </li>
-
-                    <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
-                <h6 class="site-footer-title mb-3">Information</h6>
-
-                <p class="text-white d-flex mb-1">
-                    <a href="tel: 305-240-9671" class="site-footer-link">
-                        305-240-9671
-                    </a>
-                </p>
-
-                <p class="text-white d-flex">
-                    <a href="mailto:info@company.com" class="site-footer-link">
-                        info@company.com
-                    </a>
-                </p>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
-                <div class="dropdown">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            {{ language }}
-                        </button>
-                    </div>
-
-                </div>
-
-                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
-                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
-                    Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
-
-            </div>
-
-        </div>
-    </div>
-</footer>
 
 <!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
