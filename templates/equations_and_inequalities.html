@@ -16,60 +16,132 @@
     <style>
         /* ===== MOBILE FIX: Prevent horizontal scroll ===== */
         *, *::before, *::after { box-sizing: border-box; }
-
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
-
-        .container {
-            overflow-x: hidden;
-        }
-
-        /* Math formulas responsive */
-        .katex-display, .katex {
-            overflow-x: auto;
-            overflow-y: hidden;
-            max-width: 100%;
-        }
-
-        /* Images responsive */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Tables if any */
-        table {
-            max-width: 100%;
-            overflow-x: auto;
-            display: block;
-        }
-
-        /* Section padding smaller on mobile */
+        html, body { overflow-x: hidden; max-width: 100%; }
+        .container { overflow-x: hidden; }
+        .katex-display, .katex { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+        img { max-width: 100%; height: auto; display: block; }
+        table { max-width: 100%; overflow-x: auto; display: block; }
         @media (max-width: 576px) {
-            .container.p-5 {
-                padding: 1rem !important;
-            }
-            h2, h3, h4 {
-                word-break: break-word;
-            }
+            .container.p-5 { padding: 1rem !important; }
+            h2, h3, h4 { word-break: break-word; }
+        }
+        .practice-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 2rem; }
+        .practice-btns a { flex: 1 1 220px; max-width: 280px; text-align: center; }
+
+        /* ===== LESSON CONTENT ===== */
+        #topics-detail { font-family: 'Open Sans', sans-serif; padding: 2.5rem 1.5rem 4rem; }
+
+        .chapter-block { margin: 3rem 0 1.4rem; }
+        .chapter-block:first-child { margin-top: 0; }
+        .chapter-label {
+            display: inline-block; font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: #fff; background: #2d6a4f;
+            padding: 0.25rem 0.8rem; border-radius: 3px; margin-bottom: 0.5rem;
+        }
+        .chapter-label.quad  { background: #7b3fa0; }
+        .chapter-label.ineq  { background: #b5451b; }
+        .chapter-label.qineq { background: #1d5980; }
+        .chapter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.55rem); font-weight: 700;
+            color: #1c1c1e; margin: 0 0 0.2rem;
+        }
+        .chapter-rule {
+            height: 3px; border: none; margin: 0.5rem 0 1.3rem; border-radius: 2px;
+            background: linear-gradient(90deg, #2d6a4f, transparent);
+        }
+        .chapter-rule.quad  { background: linear-gradient(90deg, #7b3fa0, transparent); }
+        .chapter-rule.ineq  { background: linear-gradient(90deg, #b5451b, transparent); }
+        .chapter-rule.qineq { background: linear-gradient(90deg, #1d5980, transparent); }
+
+        .lesson-card {
+            background: #fdfbf8; border: 1px solid #e2ddd6;
+            border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .lesson-card-head {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.9rem 1.3rem; border-bottom: 1px solid #e2ddd6;
+            background: linear-gradient(90deg, rgba(45,106,79,0.05), transparent);
+        }
+        .lesson-card-head.quad  { background: linear-gradient(90deg, rgba(123,63,160,0.05), transparent); }
+        .lesson-card-head.ineq  { background: linear-gradient(90deg, rgba(181,69,27,0.05), transparent); }
+        .lesson-card-head.qineq { background: linear-gradient(90deg, rgba(29,89,128,0.05), transparent); }
+        .lc-num {
+            width: 30px; height: 30px; border-radius: 50%; background: #2d6a4f; color: #fff;
+            font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .lc-num.quad  { background: #7b3fa0; }
+        .lc-num.ineq  { background: #b5451b; }
+        .lc-num.qineq { background: #1d5980; }
+        .lc-title { font-family: 'Montserrat', sans-serif; font-size: 0.97rem; font-weight: 700; color: #1c1c1e; }
+        .lesson-card-body { padding: 1.3rem; }
+
+        .formula-box {
+            background: #1c1c1e; color: #e8e4dc; border-left: 3px solid #c9963a;
+            border-radius: 6px; padding: 0.9rem 1.2rem; margin: 0.85rem 0;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem;
+            text-align: center; overflow-x: auto;
+        }
+        .formula-box .fhl  { color: #c9963a; }
+        .formula-box .fhl2 { color: #7ecba1; }
+
+        .eg-block {
+            background: #f7f4ef; border: 1px dashed #d4cec4; border-radius: 6px;
+            padding: 0.9rem 1.1rem; margin: 0.8rem 0; font-size: 0.9rem; line-height: 1.75;
+        }
+        .eg-label {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: #8a8070; margin-bottom: 0.45rem;
         }
 
-        /* Practice buttons */
-        .practice-btns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 2rem;
+        .step-list { list-style: none; padding: 0; margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+        .step-list li { display: grid; grid-template-columns: 26px 1fr; gap: 0.65rem; align-items: start; font-size: 0.9rem; }
+        .step-list li .sn {
+            width: 26px; height: 26px; background: #e2ddd6; color: #6b6560;
+            border-radius: 50%; font-size: 0.72rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;
         }
-        .practice-btns a {
-            flex: 1 1 220px;
-            max-width: 280px;
-            text-align: center;
+
+        .rule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.55rem; margin: 0.85rem 0; }
+        .rule-pill {
+            background: #f7f4ef; border: 1px solid #e2ddd6; border-radius: 6px;
+            padding: 0.55rem 0.8rem; font-size: 0.84rem; display: flex; align-items: flex-start; gap: 0.4rem;
         }
+        .rule-pill .rpa { color: #2d6a4f; font-weight: 800; flex-shrink: 0; }
+
+        .callout {
+            border-radius: 6px; padding: 0.8rem 1rem; margin: 0.85rem 0;
+            font-size: 0.88rem; display: flex; gap: 0.65rem; align-items: flex-start; line-height: 1.65;
+        }
+        .callout .ci { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+        .c-warn { background: #fff8ed; border-left: 3px solid #c9963a; }
+        .c-ok   { background: #edf7f2; border-left: 3px solid #2d6a4f; }
+        .c-info { background: #edf2fb; border-left: 3px solid #4a7fcb; }
+
+        .case-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 0.85rem 0; }
+        .case-item { border-radius: 6px; overflow: hidden; border: 1px solid #e2ddd6; }
+        .case-head { padding: 0.5rem 0.95rem; font-size: 0.82rem; font-weight: 700; }
+        .ch-green { background: #edf7f2; color: #1d5c3a; }
+        .ch-amber { background: #fff8ed; color: #7a4a00; }
+        .ch-red   { background: #fdf0ec; color: #8c2a0e; }
+        .ch-blue  { background: #edf2fb; color: #1d3a7a; }
+        .case-body { padding: 0.7rem 0.95rem; font-size: 0.88rem; background: #fff; line-height: 1.65; }
+
+        .sign-tbl { width: 100%; border-collapse: collapse; font-size: 0.85rem; display: block; overflow-x: auto; margin: 0.75rem 0; }
+        .sign-tbl th { background: #1c1c1e; color: #e8e4dc; padding: 0.45rem 0.85rem; text-align: left; font-size: 0.78rem; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
+        .sign-tbl td { padding: 0.4rem 0.85rem; border-bottom: 1px solid #e2ddd6; white-space: nowrap; }
+        .sign-tbl tr:last-child td { border-bottom: none; }
+        .s-pos { color: #2d6a4f; font-weight: 700; }
+        .s-neg { color: #b5451b; font-weight: 700; }
+        .txt-green { color: #2d6a4f; font-weight: 700; }
+        .txt-red   { color: #b5451b; font-weight: 700; }
+
+        .sec-divider { display: flex; align-items: center; gap: 0.9rem; margin: 2.5rem 0 0; }
+        .sec-divider::before, .sec-divider::after { content: ''; flex: 1; height: 1px; background: #e2ddd6; }
+        .sec-divider span { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8070; white-space: nowrap; }
     </style>
 </head>
 
@@ -128,189 +200,283 @@
     </header>
 
     <!-- CONTENT -->
-    <section class="topics-detail-section section-padding" id="topics-detail">
-        <div class="container p-5">
+    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
 
-            <!-- ===== LINEAR EQUATIONS ===== -->
-            <h3><strong>Linear Equation with One Variable</strong></h3>
-            <p>A <strong>linear equation with one variable</strong> has the form:</p>
-            <div class="katex-display">
-                <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                    <mrow><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mi>c</mi></mrow>
-                </math>
-            </div>
-            <p>where:</p>
-            <ul>
-                <li><strong>a, b</strong> and <strong>c</strong> are constants (known numbers)</li>
-                <li><strong>x</strong> is the unknown variable</li>
-                <li>When solving, move known terms to one side and unknown terms to the other</li>
-                <li>
-                    Example: In <strong>2x + 5 = 3y − 5</strong>, treating y as known:
-                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                        <mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>3</mn><mi>y</mi><mo>−</mo><mn>10</mn></mrow><mn>2</mn></mfrac></mrow>
-                    </math>
-                </li>
-            </ul>
-
-            <hr>
-
-            <!-- TRANSPOSITION -->
-            <h3><strong>Moving Terms Across the Equation (Transposition)</strong></h3>
-
-            <h4>1. Addition → Subtraction</h4>
-            <p>If a term is <strong>added</strong>, move it by <strong>subtracting</strong>.</p>
-            <p><strong>Example:</strong> x + 7 = 12 → x = 12 − 7 → <strong>x = 5</strong></p>
-
-            <h4>2. Subtraction → Addition</h4>
-            <p>If a term is <strong>subtracted</strong>, move it by <strong>adding</strong>.</p>
-            <p><strong>Example:</strong> x − 4 = 9 → x = 9 + 4 → <strong>x = 13</strong></p>
-
-            <h4>3. Multiplication → Division</h4>
-            <p>If a variable is <strong>multiplied</strong>, move the number by <strong>dividing</strong>.</p>
-            <p><strong>Example:</strong> 5x = 20 → x = 20/5 → <strong>x = 4</strong></p>
-
-            <h4>4. Division → Multiplication</h4>
-            <p>If a variable is <strong>divided</strong>, move the number by <strong>multiplying</strong>.</p>
-            <p><strong>Example:</strong> x/3 = 7 → x = 7 × 3 → <strong>x = 21</strong></p>
-
-            <h4>Example with All Operations</h4>
-            <p>Solve: (2x + 5) / 3 = 7</p>
-            <ol>
-                <li>Multiply both sides by 3: 2x + 5 = 21</li>
-                <li>Subtract 5: 2x = 16</li>
-                <li>Divide by 2: <strong>x = 8</strong></li>
-            </ol>
-
-            <h4>Key Rules:</h4>
-            <ul>
-                <li>Addition → Subtract when moving</li>
-                <li>Subtraction → Add when moving</li>
-                <li>Multiplication → Divide when moving</li>
-                <li>Division → Multiply when moving</li>
-                <li><strong>If equation simplifies to x = x → infinitely many solutions</strong></li>
-                <li><strong>If a false equality remains (e.g. 8 = 3) → no solution</strong></li>
-            </ul>
-
-            <hr>
-
-            <!-- ===== QUADRATIC EQUATIONS ===== -->
-            <h3><strong>Quadratic Equations</strong></h3>
-            <p>A <strong>quadratic equation</strong> has the form:</p>
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow>
-            </math>
-            <ul>
-                <li>a, b, c are constants; a ≠ 0</li>
-                <li>If a = 1: x₁ + x₂ = −b and x₁ · x₂ = c</li>
-                <li>If a ≠ 1: x₁ + x₂ = −b/a and x₁ · x₂ = c/a</li>
-            </ul>
-
-            <h4>Solving Methods:</h4>
-            <ol>
-                <li><strong>Factoring</strong></li>
-                <li><strong>Quadratic Formula:</strong>
-                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                        <mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mo>−</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow>
-                    </math>
-                </li>
-            </ol>
-
-            <h4>Example 1 – Factoring: x² − 5x + 6 = 0</h4>
-            <ol>
-                <li>Find two numbers that multiply to 6 and add to −5: <strong>−2 and −3</strong></li>
-                <li>Factor: (x − 2)(x − 3) = 0</li>
-                <li>Solve: <strong>x = 2, x = 3</strong></li>
-            </ol>
-
-            <h4>Example 2 – Quadratic Formula: 2x² − 3x − 5 = 0</h4>
-            <ul>
-                <li>a = 2, b = −3, c = −5</li>
-                <li>D = b² − 4ac = 9 + 40 = 49</li>
-                <li>D &gt; 0 → 2 solutions</li>
-                <li>x = (3 ± 7) / 4 → <strong>x = 2.5</strong> or <strong>x = −1</strong></li>
-            </ul>
-            <p><em>Note: if D &gt; 0 → 2 solutions; D = 0 → 1 solution; D &lt; 0 → no real solution</em></p>
-
-            <hr>
-
-            <!-- ===== LINEAR INEQUALITIES ===== -->
-            <h3><strong>Linear Inequalities</strong></h3>
-            <p>Same as linear equations but uses: &gt;, &lt;, ≥, ≤ instead of =</p>
-            <p>🔹 <strong>Key rule: When multiplying or dividing by a negative number, flip the inequality sign!</strong></p>
-
-            <h4>Case 1 – Simple: 2x + 3 &gt; 7</h4>
-            <ol>
-                <li>Subtract 3: 2x &gt; 4</li>
-                <li>Divide by 2: <strong>x &gt; 2</strong></li>
-            </ol>
-
-            <h4>Case 2 – Negative Coefficient: −3x + 5 ≤ 2</h4>
-            <ol>
-                <li>Subtract 5: −3x ≤ −3</li>
-                <li>Divide by −3 (flip sign!): <strong>x ≥ 1</strong></li>
-            </ol>
-
-            <h4>Case 3 – Always True: 2x + 5 &gt; 2x + 3</h4>
-            <p>Subtract 2x: 5 &gt; 3 → always true → ✅ <strong>Solution: All real numbers (ℝ)</strong></p>
-
-            <h4>Case 4 – No Solution: 3x + 4 &lt; 3x − 2</h4>
-            <p>Subtract 3x: 4 &lt; −2 → false → ❌ <strong>No solution (∅)</strong></p>
-
-            <hr>
-
-            <!-- ===== QUADRATIC INEQUALITIES ===== -->
-            <h3><strong>Quadratic Inequalities</strong></h3>
-            <p>Form: ax² + bx + c &gt; 0 (or &lt;, ≥, ≤)</p>
-
-            <h4>Steps to Solve:</h4>
-            <ol>
-                <li>Rearrange so one side is 0</li>
-                <li>Solve the corresponding equation ax² + bx + c = 0 (find roots)</li>
-                <li>Test sign of each interval</li>
-                <li>Choose intervals based on the inequality symbol</li>
-            </ol>
-
-            <h4>Case 1 – x² − 5x + 6 &gt; 0</h4>
-            <ol>
-                <li>Roots: x = 2, x = 3</li>
-                <li>Test intervals:
-                    <ul>
-                        <li>x &lt; 2 (test x=1): positive ✓</li>
-                        <li>2 &lt; x &lt; 3 (test x=2.5): negative ✗</li>
-                        <li>x &gt; 3 (test x=4): positive ✓</li>
-                    </ul>
-                </li>
-                <li>Need &gt; 0: ✅ <strong>x &lt; 2 or x &gt; 3 → (−∞, 2) ∪ (3, +∞)</strong></li>
-            </ol>
-            <img style="width:100%" src="{% static 'images/myimages/quadratic_inequalities1.jpg' %}" alt="Quadratic inequality diagram 1">
-
-            <h4>Case 2 – x² − 4x + 3 ≤ 0</h4>
-            <ol>
-                <li>Roots: x = 1, x = 3</li>
-                <li>Test intervals:
-                    <ul>
-                        <li>x &lt; 1 (test x=0): positive</li>
-                        <li>1 &lt; x &lt; 3 (test x=2): negative ✓</li>
-                        <li>x &gt; 3 (test x=4): positive</li>
-                    </ul>
-                </li>
-                <li>Need ≤ 0 (include roots): ✅ <strong>1 ≤ x ≤ 3 → [1, 3]</strong></li>
-            </ol>
-            <img style="width:100%" src="{% static 'images/myimages/quadratic_inequalities2.jpg' %}" alt="Quadratic inequality diagram 2">
-
-            <h4>Case 3 – x² + 1 &lt; 0 → No Solution</h4>
-            <p>x² + 1 ≥ 1 for all real x → always positive → can never be &lt; 0</p>
-            <p>❌ <strong>No solution (∅)</strong></p>
-            <img style="width:100%" src="{% static 'images/myimages/quadratic_inequalities3.jpg' %}" alt="Quadratic inequality diagram 3">
-
-            <h4>Case 4 – x² + 1 ≥ 0 → All Real Numbers</h4>
-            <p>x² + 1 is always positive → inequality always true</p>
-            <p>✅ <strong>All real numbers (ℝ)</strong></p>
-            <img style="width:100%" src="{% static 'images/myimages/quadratic_inequalities4.jpg' %}" alt="Quadratic inequality diagram 4">
-
-            <hr>
+        <!-- ══ CHAPTER 1 — LINEAR EQUATIONS ══ -->
+        <div class="chapter-block" id="linear-eq">
+            <div class="chapter-label">Chapter 1</div>
+            <h2 class="chapter-title">Linear Equations</h2>
+            <hr class="chapter-rule">
         </div>
-    </section>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head">
+                <div class="lc-num">1</div>
+                <div class="lc-title">Definition &amp; Standard Form</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>A <strong>linear equation with one variable</strong> has the form:</p>
+                <div class="formula-box"><span class="fhl">a</span>x + <span class="fhl">b</span> = <span class="fhl">c</span></div>
+                <p>where <strong>a, b, c</strong> are constants and <strong>x</strong> is the unknown variable.</p>
+                <div class="callout c-info">
+                    <span class="ci">📌</span>
+                    <span>Move all <strong>known values</strong> to one side and all <strong>unknowns</strong> to the other.</span>
+                </div>
+                <div class="eg-block">
+                    <div class="eg-label">Example</div>
+                    In <strong>2x + 5 = 3y − 5</strong>, treating y as known:<br><br>
+                    2x = 3y − 5 − 5 → 2x = 3y − 10
+                    <div class="formula-box" style="margin:0.6rem 0 0;">x = <span class="fhl">(3y − 10) / 2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head">
+                <div class="lc-num">2</div>
+                <div class="lc-title">Transposition Rules</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>When a term <strong>crosses the equals sign</strong>, its operation flips:</p>
+                <div class="rule-grid">
+                    <div class="rule-pill"><span class="rpa">+</span>Addition → subtract when moving</div>
+                    <div class="rule-pill"><span class="rpa">−</span>Subtraction → add when moving</div>
+                    <div class="rule-pill"><span class="rpa">×</span>Multiplication → divide when moving</div>
+                    <div class="rule-pill"><span class="rpa">÷</span>Division → multiply when moving</div>
+                </div>
+                <div class="case-list" style="margin-top:1rem;">
+                    <div class="case-item">
+                        <div class="case-head ch-green">x + 7 = 12</div>
+                        <div class="case-body">x = 12 − 7 → <span class="txt-green">x = 5</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-green">x − 4 = 9</div>
+                        <div class="case-body">x = 9 + 4 → <span class="txt-green">x = 13</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-amber">5x = 20</div>
+                        <div class="case-body">x = 20 ÷ 5 → <span class="txt-green">x = 4</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-amber">x / 3 = 7</div>
+                        <div class="case-body">x = 7 × 3 → <span class="txt-green">x = 21</span></div>
+                    </div>
+                </div>
+                <p style="margin-top:1.1rem; font-weight:700;">Multi-step: (2x + 5) / 3 = 7</p>
+                <ul class="step-list">
+                    <li><span class="sn">1</span><span>Multiply both sides by 3: 2x + 5 = 21</span></li>
+                    <li><span class="sn">2</span><span>Subtract 5: 2x = 16</span></li>
+                    <li><span class="sn">3</span><span>Divide by 2: <span class="txt-green">x = 8</span></span></li>
+                </ul>
+                <div class="callout c-warn" style="margin-top:1rem;">
+                    <span class="ci">⚠️</span>
+                    <div>
+                        <strong>Special cases:</strong><br>
+                        · Simplifies to x = x → <strong>infinitely many solutions</strong><br>
+                        · False equality (e.g. 8 = 3) → <strong>no solution</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ CHAPTER 2 — QUADRATIC EQUATIONS ══ -->
+        <div class="sec-divider"><span>Chapter 2</span></div>
+        <div class="chapter-block" id="quad-eq" style="margin-top:1.5rem;">
+            <div class="chapter-label quad">Chapter 2</div>
+            <h2 class="chapter-title">Quadratic Equations</h2>
+            <hr class="chapter-rule quad">
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head quad">
+                <div class="lc-num quad">1</div>
+                <div class="lc-title">Definition &amp; Discriminant</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>A <strong>quadratic equation</strong> has the form:</p>
+                <div class="formula-box"><span class="fhl">a</span>x² + <span class="fhl">b</span>x + <span class="fhl">c</span> = 0 &nbsp;(<span class="fhl2">a ≠ 0</span>)</div>
+                <div class="rule-grid">
+                    <div class="rule-pill"><span class="rpa">·</span>a = 1: x₁ + x₂ = −b</div>
+                    <div class="rule-pill"><span class="rpa">·</span>a = 1: x₁ · x₂ = c</div>
+                    <div class="rule-pill"><span class="rpa">·</span>a ≠ 1: x₁ + x₂ = −b/a</div>
+                    <div class="rule-pill"><span class="rpa">·</span>a ≠ 1: x₁ · x₂ = c/a</div>
+                </div>
+                <p style="margin-top:1rem; font-weight:700;">Discriminant: D = b² − 4ac</p>
+                <div class="case-list" style="margin-top:0.6rem;">
+                    <div class="case-item">
+                        <div class="case-head ch-green">D &gt; 0</div>
+                        <div class="case-body">Two distinct real solutions</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-amber">D = 0</div>
+                        <div class="case-body">One repeated real solution</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-red">D &lt; 0</div>
+                        <div class="case-body">No real solutions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head quad">
+                <div class="lc-num quad">2</div>
+                <div class="lc-title">Solving Methods</div>
+            </div>
+            <div class="lesson-card-body">
+                <p style="font-weight:700;">Method 1 — Factoring</p>
+                <p style="font-size:0.88rem; color:#6b6560; margin:0.3rem 0 0.7rem;">Find two numbers: multiply to <strong>c</strong>, add to <strong>b</strong> (when a = 1).</p>
+                <div class="eg-block">
+                    <div class="eg-label">Example — x² − 5x + 6 = 0</div>
+                    p · q = 6, p + q = −5 → <strong>−2 and −3</strong><br>
+                    (x − 2)(x − 3) = 0 → <span class="txt-green">x = 2 or x = 3</span>
+                </div>
+                <p style="font-weight:700; margin-top:1.2rem;">Method 2 — Quadratic Formula</p>
+                <div class="formula-box">x = <span class="fhl">(−b ± √(b² − 4ac)) / 2a</span></div>
+                <div class="eg-block">
+                    <div class="eg-label">Example — 2x² − 3x − 5 = 0</div>
+                    a = 2, b = −3, c = −5<br>
+                    D = 9 + 40 = <strong>49</strong><br>
+                    x = (3 ± 7) / 4 → <span class="txt-green">x = 2.5 or x = −1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ CHAPTER 3 — LINEAR INEQUALITIES ══ -->
+        <div class="sec-divider"><span>Chapter 3</span></div>
+        <div class="chapter-block" id="linear-ineq" style="margin-top:1.5rem;">
+            <div class="chapter-label ineq">Chapter 3</div>
+            <h2 class="chapter-title">Linear Inequalities</h2>
+            <hr class="chapter-rule ineq">
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head ineq">
+                <div class="lc-num ineq">1</div>
+                <div class="lc-title">Definition &amp; Cases</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>Same as linear equations but uses <strong>&gt;, &lt;, ≥, ≤</strong> instead of =.</p>
+                <div class="callout c-warn">
+                    <span class="ci">🔁</span>
+                    <span><strong>Golden rule:</strong> When multiplying or dividing by a <strong>negative number</strong>, flip the inequality sign.</span>
+                </div>
+                <div class="case-list" style="margin-top:1rem;">
+                    <div class="case-item">
+                        <div class="case-head ch-green">Case 1 — Simple &nbsp; 2x + 3 &gt; 7</div>
+                        <div class="case-body">Subtract 3 → 2x &gt; 4 → Divide by 2 → <span class="txt-green">x &gt; 2</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-amber">Case 2 — Negative coefficient &nbsp; −3x + 5 ≤ 2</div>
+                        <div class="case-body">Subtract 5 → −3x ≤ −3 → Divide by −3 (flip!) → <span class="txt-green">x ≥ 1</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-blue">Case 3 — Always true &nbsp; 2x + 5 &gt; 2x + 3</div>
+                        <div class="case-body">Subtract 2x → 5 &gt; 3 ✓ → <span class="txt-green">All real numbers ℝ</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-red">Case 4 — No solution &nbsp; 3x + 4 &lt; 3x − 2</div>
+                        <div class="case-body">Subtract 3x → 4 &lt; −2 ✗ → <span class="txt-red">No solution ∅</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ CHAPTER 4 — QUADRATIC INEQUALITIES ══ -->
+        <div class="sec-divider"><span>Chapter 4</span></div>
+        <div class="chapter-block" id="quad-ineq" style="margin-top:1.5rem;">
+            <div class="chapter-label qineq">Chapter 4</div>
+            <h2 class="chapter-title">Quadratic Inequalities</h2>
+            <hr class="chapter-rule qineq">
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head qineq">
+                <div class="lc-num qineq">1</div>
+                <div class="lc-title">Steps to Solve</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>Form: <strong>ax² + bx + c &gt; 0</strong> (or &lt;, ≥, ≤)</p>
+                <ul class="step-list" style="margin-top:0.9rem;">
+                    <li><span class="sn">1</span><span>Rearrange so one side equals 0</span></li>
+                    <li><span class="sn">2</span><span>Solve ax² + bx + c = 0 → find roots x₁ and x₂</span></li>
+                    <li><span class="sn">3</span><span>Test a point in each interval to find the sign (+/−)</span></li>
+                    <li><span class="sn">4</span><span>Select intervals matching the inequality; include endpoints for ≥ or ≤</span></li>
+                </ul>
+                <div class="callout c-info">
+                    <span class="ci">💡</span>
+                    <span>For <strong>&gt; 0 / ≥ 0</strong> → keep positive intervals. &nbsp;For <strong>&lt; 0 / ≤ 0</strong> → keep negative intervals.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head qineq">
+                <div class="lc-num qineq">2</div>
+                <div class="lc-title">Worked Examples</div>
+            </div>
+            <div class="lesson-card-body">
+
+                <p style="font-weight:700;">Case 1 — x² − 5x + 6 &gt; 0</p>
+                <ul class="step-list">
+                    <li><span class="sn">1</span><span>Roots: (x − 2)(x − 3) = 0 → x = 2, x = 3</span></li>
+                    <li><span class="sn">2</span><span>Test each interval:</span></li>
+                </ul>
+                <table class="sign-tbl">
+                    <thead><tr><th>Interval</th><th>Test point</th><th>Sign</th></tr></thead>
+                    <tbody>
+                        <tr><td>x &lt; 2</td><td>x = 1</td><td class="s-pos">+ positive ✓</td></tr>
+                        <tr><td>2 &lt; x &lt; 3</td><td>x = 2.5</td><td class="s-neg">− negative ✗</td></tr>
+                        <tr><td>x &gt; 3</td><td>x = 4</td><td class="s-pos">+ positive ✓</td></tr>
+                    </tbody>
+                </table>
+                <div class="callout c-ok">
+                    <span class="ci">✅</span>
+                    <span><strong>x &lt; 2 or x &gt; 3 &nbsp;→&nbsp; (−∞, 2) ∪ (3, +∞)</strong></span>
+                </div>
+                <img src="{% static 'images/myimages/quadratic_inequalities1.jpg' %}" alt="" style="border-radius:6px; margin-top:0.5rem;">
+
+                <hr style="border:none; border-top:1px solid #e2ddd6; margin:1.4rem 0;">
+
+                <p style="font-weight:700;">Case 2 — x² − 4x + 3 ≤ 0</p>
+                <ul class="step-list">
+                    <li><span class="sn">1</span><span>Roots: (x − 1)(x − 3) = 0 → x = 1, x = 3</span></li>
+                    <li><span class="sn">2</span><span>Test each interval:</span></li>
+                </ul>
+                <table class="sign-tbl">
+                    <thead><tr><th>Interval</th><th>Test point</th><th>Sign</th></tr></thead>
+                    <tbody>
+                        <tr><td>x &lt; 1</td><td>x = 0</td><td class="s-pos">+ positive</td></tr>
+                        <tr><td>1 &lt; x &lt; 3</td><td>x = 2</td><td class="s-neg">− negative ✓</td></tr>
+                        <tr><td>x &gt; 3</td><td>x = 4</td><td class="s-pos">+ positive</td></tr>
+                    </tbody>
+                </table>
+                <div class="callout c-ok">
+                    <span class="ci">✅</span>
+                    <span><strong>1 ≤ x ≤ 3 &nbsp;→&nbsp; [1, 3]</strong></span>
+                </div>
+                <img src="{% static 'images/myimages/quadratic_inequalities2.jpg' %}" alt="" style="border-radius:6px; margin-top:0.5rem;">
+
+                <hr style="border:none; border-top:1px solid #e2ddd6; margin:1.4rem 0;">
+
+                <div class="case-list">
+                    <div class="case-item">
+                        <div class="case-head ch-red">Case 3 — x² + 1 &lt; 0 &nbsp;→&nbsp; No solution</div>
+                        <div class="case-body">x² + 1 ≥ 1 always → can never be &lt; 0 → <span class="txt-red">No solution ∅</span></div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-green">Case 4 — x² + 1 ≥ 0 &nbsp;→&nbsp; All real numbers</div>
+                        <div class="case-body">x² + 1 always positive → always true → <span class="txt-green">All real numbers ℝ</span></div>
+                    </div>
+                </div>
+                <img src="{% static 'images/myimages/quadratic_inequalities3.jpg' %}" alt="" style="border-radius:6px; margin-top:0.75rem;">
+                <img src="{% static 'images/myimages/quadratic_inequalities4.jpg' %}" alt="" style="border-radius:6px; margin-top:0.75rem;">
+
+            </div>
+        </div>
+
+    </main><!-- /#topics-detail -->
 
 </main>
 

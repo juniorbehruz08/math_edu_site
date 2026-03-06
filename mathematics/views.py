@@ -183,11 +183,6 @@ def equalities_inequalities(request):
 
 
 @login_required
-def practice_linear(request, back_url):
-    return render(request, 'practice_linear.html', {'back_url': back_url})
-
-
-@login_required
 def linear_equalities(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'linear_equalities.html')
@@ -206,34 +201,9 @@ def working_with_signs(request):
 
 
 @login_required
-def working_with_signs_practice(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        score = PracticeScore.objects.create(
-            user=request.user,
-            correct=data.get("correct"),
-            wrong=data.get("wrong"),
-            answered=data.get("answered"),
-            percentage=data.get("percentage"),
-            lesson='Operations with Positive and Negative Numbers'
-        )
-
-        return JsonResponse({
-            "status": "success",
-            "saved_score": score.percentage
-        })
-    return render(request, 'working_with_signs_practice.html')
-
-
-@login_required
 def fractions(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'fractions.html')
-
-
-@login_required
-def fractions_practice(request):
-    return render(request, 'fractions_practice.html')
 
 
 @login_required
@@ -243,19 +213,9 @@ def quadratic_equations(request):
 
 
 @login_required
-def quadratic_practice(request, back_url):
-    return render(request, 'quadratic_practice.html', {'back_url': back_url})
-
-
-@login_required
 def inequalities(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'inequalities.html')
-
-
-@login_required
-def inequalities_practice(request, back_url):
-    return render(request, 'inequalities_practice.html', {'back_url': back_url})
 
 
 @login_required
@@ -267,153 +227,9 @@ def linear_functions(request):
 
 
 @login_required
-def practice_linear_functions(request):
-    import json
-    from random import randint, sample
-    from fractions import Fraction
-    questions = []
-
-    for i in range(20):
-        # 1–5: linear, 6–10: slope, 11–20: system
-        if i < 5:
-            # ---------- LINEAR FUNCTION ----------
-            while True:
-                a = randint(-10, 10)
-                b = randint(-20, 20)
-                x = randint(-20, 20)
-                if a != 0 and b != 0:
-                    break
-
-            answer = a * x + b
-            b_str = str(b).replace("-", "- ")
-
-            if a == 1:
-                q = f"Find the value of f(x) = x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
-            elif a == -1:
-                q = f"Find the value of f(x) = -x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
-            else:
-                q = f"Find the value of f(x) = {a}x {('+ ' + str(b)) if b >= 0 else b_str} when x = {x}"
-
-            wrongs = set()
-            while len(wrongs) < 3:
-                w = answer + randint(-5, 5)
-                if w != answer:
-                    wrongs.add(w)
-
-            options = list(wrongs) + [answer]
-            questions.append({
-                "type": "linear",
-                "question": q,
-                "answer": str(answer),
-                "options": [str(o) for o in sample(options, len(options))]
-            })
-
-        elif i < 10:
-            # ---------- SLOPE ----------
-            while True:
-                x1, y1 = randint(-10, 10), randint(-10, 10)
-                x2, y2 = randint(-10, 10), randint(-10, 10)
-                if x1 != x2:
-                    break
-
-            slope = Fraction(y2 - y1, x2 - x1)
-            q = f"Find the slope of the line passing through points ({x1}, {y1}) and ({x2}, {y2})"
-
-            wrongs = set()
-            while len(wrongs) < 3:
-                num = slope.numerator + randint(-3, 3)
-                den = slope.denominator + randint(-3, 3)
-                if den != 0 and Fraction(num, den) != slope:
-                    wrongs.add(Fraction(num, den))
-
-            options = list(wrongs) + [slope]
-            questions.append({
-                "type": "slope",
-                "question": q,
-                "answer": str(slope),
-                "options": [str(o) for o in sample(options, len(options))]
-            })
-
-        else:
-            # ---------- SYSTEM ----------
-            while True:
-                a1 = randint(-5, 5)
-                b1 = randint(-10, 10)
-                a2 = randint(-5, 5)
-                b2 = randint(-10, 10)
-                if a1 != a2 and a1 != 0 and a2 != 0:
-                    break
-
-            x_val = Fraction(b2 - b1, a1 - a2)
-            y_val = Fraction(a1 * x_val + b1)
-
-            def fmt(a, b):
-                b_str = str(b).replace("-", "- ")
-                if a == 1:
-                    return f"y = x {('+ ' + str(b)) if b >= 0 else b_str}"
-                elif a == -1:
-                    return f"y = -x {('+ ' + str(b)) if b >= 0 else b_str}"
-                else:
-                    return f"y = {a}x {('+ ' + str(b)) if b >= 0 else b_str}"
-
-            expr1, expr2 = fmt(a1, b1), fmt(a2, b2)
-            q = f"Find the intersection point of {expr1} and {expr2}"
-            answer = f"({x_val}, {y_val})"
-
-            wrongs = set()
-            while len(wrongs) < 3:
-                wx = Fraction(randint(-5, 5), randint(1, 5))
-                wy = Fraction(randint(-5, 5), randint(1, 5))
-                w = f"({wx}, {wy})"
-                if w != answer:
-                    wrongs.add(w)
-
-            options = list(wrongs) + [answer]
-            questions.append({
-                "question": q,
-                "answer": answer,
-                "options": sample(options, len(options))
-            })
-
-    data = json.dumps(questions, indent=1)
-    return render(request, 'practice_linear_functions.html', {'data': data})
-
-
-@login_required
 def other_kind_of_functions(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'other_kind_of_functions.html')
-
-
-# views.py
-
-from .extrafunctions import generate_math_problems, generate_cubic_math_problems_en, \
-    generate_rational_math_problems_fixed  # import faylning boshida
-
-
-@login_required
-def practice_with_quadratic(request):
-    data = generate_math_problems()
-    return render(request, 'practice_functions.html', {'data': data})
-
-
-@login_required
-def practice_with_cubic(request):
-    data = generate_cubic_math_problems_en()
-    return render(request, 'practice_functions.html', {'data': data})
-
-
-@login_required
-def practice_with_rational(request):
-    data = generate_rational_math_problems_fixed()
-    return render(request, 'practice_rational_functions.html', {'data': data})
-
-
-@login_required
-def practice_with_exponential(request):
-    from .extrafunctions import generate_exponential_problems
-    data = generate_exponential_problems()
-    return render(request, 'practice_functions.html', {'data': data})
 
 
 @login_required
@@ -423,23 +239,9 @@ def logarithm(request):
 
 
 @login_required
-def logarithm_practice(request):
-    from .extrafunctions import logarithm_generator
-    data = logarithm_generator()
-    return render(request, 'logarithm_practice.html', {'data': data})
-
-
-@login_required
 def operation_on_logarithm(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'operations_on_logarithm.html')
-
-
-@login_required
-def operations_on_logarithm_practice(request):
-    from .extrafunctions import logarithm_generator_ops_v2
-    data = logarithm_generator_ops_v2()
-    return render(request, 'operations_on_logarithm_practice.html', {'data': data})
 
 
 @login_required
@@ -468,7 +270,10 @@ def inverse_trigonometric_functions(request):
 
 @login_required
 def test(request):
-    return render(request, 'myfirstfrontend_code.html')
+    if request.user.is_superuser:
+        return render(request, 'myfirstfrontend_code.html')
+    else:
+        return redirect('/')
 
 
 @login_required
@@ -556,60 +361,6 @@ def the_laws_of_cosines(request):
 
 
 @login_required
-def practice_in_trigonometry(request):
-    from .models import MathTestResult
-    if request.method == "POST":
-        data = json.loads(request.body)
-
-        score = MathTestResult.objects.create(
-            user=request.user,
-            correct=data.get("correct"),
-            wrong=data.get("wrong"),
-            answered=data.get("answered"),
-            percentage=data.get("percentage"),
-            lesson='Introduction to Trigonometry'
-        )
-
-        return JsonResponse({
-            "status": "success",
-            "saved_score": score.percentage
-        })
-
-    return render(request, 'practice_in_trigonometry.html')
-
-
-@login_required
-def practice_in_inverse_trigonometry(request):
-    from .extrafunctions import test_for_inverse_function
-    data = test_for_inverse_function()
-    return render(request, 'practice_in_inverse_trigonometry.html', {'data': data})
-
-
-@login_required
-def practice_with_distance_and_midpoint(request):
-    from .extrafunctions import midpoint_between_two_points, distance_between_two_points
-    data = distance_between_two_points() + midpoint_between_two_points()
-    return render(request, 'practice_with_distance_and_midpoint.html', {'data': data})
-
-
-@login_required
-def practice_right_triangle(request):
-    import random
-    from .extrafunctions import right_triangle_area_perimeter, right_triangle_angles, pythagoras_find_hypotenuse
-    data = right_triangle_angles() + right_triangle_area_perimeter() + pythagoras_find_hypotenuse()
-    random.shuffle(data)
-    return render(request, 'practice_right_triangle.html', {'data': data})
-
-
-@login_required
-def practice_equilateral_triangle(request):
-    from .extrafunctions import generate_equilateral_triangle_questions
-    data = generate_equilateral_triangle_questions()
-    random.shuffle(data)
-    return render(request, 'practice_right_triangle.html', {'data': data})
-
-
-@login_required
 def similar_triangles(request):
     save_taken_lessons(request.resolver_match.url_name, request)
     return render(request, 'similar_triangles.html')
@@ -619,70 +370,6 @@ import json
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
-
-
-@login_required
-def logarithmic_function_practice(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-
-        score = PracticeScore.objects.create(
-            user=request.user,
-            correct=data.get("correct"),
-            wrong=data.get("wrong"),
-            answered=data.get("answered"),
-            percentage=data.get("percentage"),
-            lesson='Logarithmic Functions'
-        )
-
-        return JsonResponse({
-            "status": "success",
-            "saved_score": score.percentage
-        })
-
-    return render(request, 'log-practice.html')
-
-
-@login_required
-def trigonometric_formulas(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-
-        score = PracticeScore.objects.create(
-            user=request.user,
-            correct=data.get("correct"),
-            wrong=data.get("wrong"),
-            answered=data.get("answered"),
-            percentage=data.get("percentage"),
-            lesson='Trigonometric Identities and Operations'
-        )
-
-        return JsonResponse({
-            "status": "success",
-            "saved_score": score.percentage
-        })
-    return render(request, 'trigonometry_practice.html')
-
-
-@login_required
-def inverse_trigonometric_practice(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        score = PracticeScore.objects.create(
-            user=request.user,
-            correct=data.get("correct"),
-            wrong=data.get("wrong"),
-            answered=data.get("answered"),
-            percentage=data.get("percentage"),
-            lesson='Inverse Trigonometric Identities and Operations'
-        )
-
-        return JsonResponse({
-            "status": "success",
-            "saved_score": score.percentage
-        })
-
-    return render(request, 'inverse_trigonometric_practice.html')
 
 
 def practice(request):
@@ -721,34 +408,38 @@ def save_results(request, url):
 
 
 def adding_values(request):
-    data = {'Fundamental Concepts of Mathematics': 'fundamental',
-            'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
-            'Types of Numbers': 'types_of_numbers',
-            'Operations with Positive and Negative Numbers': 'working_with_signs',
-            'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
-            'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
-            'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
-            'Operations on Logarithms': 'operation_on_logarithm', 'Logarithmic Functions': 'logarithmic_functions',
-            'Introduction to Trigonometry': 'trigonometry',
-            'Trigonometric Identities and Operations': 'operations_in_trigonometry',
-            'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
-            'Introduction to Geometry': 'introduction_to_geometry',
-            'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
-            'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
-            'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
-            'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
-            'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
-            'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
-            'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
-            'Similar Triangles': 'similar_triangles'}
-    from .models import Lessons
-    for i, j in data.items():
-        data = Lessons.objects.create(
-            lesson_name=i,
-            url=j,
-        )
-        data.save()
-    return JsonResponse({'status': 'ok'})
+    if request.user.is_superuser:
+
+        data = {'Fundamental Concepts of Mathematics': 'fundamental',
+                'Equalities and Inequalities': 'equalities_inequalities', 'Linear Equations': 'linear_equalities',
+                'Types of Numbers': 'types_of_numbers',
+                'Operations with Positive and Negative Numbers': 'working_with_signs',
+                'Fractions and Rational Numbers': 'fractions', 'Quadratic Equations': 'quadratic_equations',
+                'Inequalities': 'inequalities', 'Linear Functions': 'linear_functions',
+                'Other Types of Functions': 'other_kind_of_functions', 'Introduction to Logarithms': 'logarithm',
+                'Operations on Logarithms': 'operation_on_logarithm', 'Logarithmic Functions': 'logarithmic_functions',
+                'Introduction to Trigonometry': 'trigonometry',
+                'Trigonometric Identities and Operations': 'operations_in_trigonometry',
+                'Inverse Trigonometric Functions': 'inverse_trigonometric_functions',
+                'Introduction to Geometry': 'introduction_to_geometry',
+                'Measurement and Distance': 'measurement_and_distance', 'Angles and Their Properties': 'angles',
+                'Types of Triangles': 'triangle_types', 'Properties of Triangles': 'properties_of_triangles',
+                'Quadrilaterals': 'quadrilaterals_and_squares', 'Types of Quadrilaterals': 'types_of_quadrilateral',
+                'Basic Concepts of Circles': 'circle_basic', 'Properties of Circles': 'other_properties_of_circle',
+                'Equation of a Circle': 'equation_of_circle', 'Coordinate Plane': 'plane',
+                'Distance, Midpoint, and Slope Formulas': 'distance_midpoint_slope',
+                'The Law of Sines': 'the_laws_of_sines', 'The Law of Cosines': 'the_laws_of_cosines',
+                'Similar Triangles': 'similar_triangles'}
+        from .models import Lessons
+        for i, j in data.items():
+            data = Lessons.objects.create(
+                lesson_name=i,
+                url=j,
+            )
+            data.save()
+        return JsonResponse({'status': 'ok'})
+    else:
+        return redirect('/')
 
 
 def review_past_test_results(request, pk):
