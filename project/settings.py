@@ -28,8 +28,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'False'
 
-ALLOWED_HOSTS = ["213.199.42.55",
-                 "localhost", ]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "213.199.42.55"
+]
 
 # Application definition
 
@@ -144,6 +147,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "http://213.199.42.55",
+]
 
 SESSION_COOKIE_SECURE = False
