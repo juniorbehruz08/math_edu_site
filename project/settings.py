@@ -152,6 +152,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:8000",
     "http://213.199.42.55",
+    'https://my-math-academy.com',
+    'https://www.my-math-academy.com'
 ]
 
 SESSION_COOKIE_SECURE = False
