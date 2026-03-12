@@ -155,3 +155,10 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 SESSION_COOKIE_SECURE = False
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
+    }
+}

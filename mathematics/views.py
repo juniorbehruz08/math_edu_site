@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 
 
 def feedback(request):
@@ -69,6 +70,7 @@ def save_taken_lessons(url, request):
 
 
 @login_required
+@cache_page(60 * 10)
 def main_view(request):
     if request.user.is_authenticated:
         context = {
