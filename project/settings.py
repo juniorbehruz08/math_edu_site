@@ -31,7 +31,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'False'
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "213.199.42.55"
+    "213.199.42.55",
+    'my-math-academy.com'
 ]
 
 # Application definition
