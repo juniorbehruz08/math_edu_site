@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit — {{ homework.title }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill/dist/quill.js"></script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0e0f11;
+            --surface: #161719;
+            --surface-2: #1e2023;
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(255,255,255,0.14);
+            --ink: #f0ede8;
+            --muted: #888480;
+            --accent: #e8875a;
+            --accent-dim: rgba(232,135,90,0.12);
+            --success: #4caf7d;
+            --success-dim: rgba(76,175,125,0.12);
+            --danger: #e05c5c;
+            --danger-dim: rgba(224,92,92,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --card-shine: rgba(255,255,255,0.06);
+            --toggle-track: #2a2b2e;
+        }
+
+        [data-theme="day"] {
+            --bg: #f4f1ec;
+            --surface: #ffffff;
+            --surface-2: #f9f7f4;
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.16);
+            --ink: #1a1714;
+            --muted: #9a9087;
+            --accent: #c9622b;
+            --accent-dim: rgba(201,98,43,0.10);
+            --success: #1f8f4e;
+            --success-dim: rgba(31,143,78,0.10);
+            --danger: #c43030;
+            --danger-dim: rgba(196,48,48,0.10);
+            --card-shine: rgba(255,255,255,0.9);
+            --toggle-track: #e2ddd6;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            font-family: 'Instrument Sans', sans-serif;
+            color: var(--ink);
+            padding: 28px 20px 60px;
+            overflow-x: hidden;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 15% 0%, rgba(232,135,90,0.05) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 9px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--muted);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { border-color: var(--border-hover); color: var(--ink); }
+
+        /* ── THEME TOGGLE ── */
+        .theme-toggle {
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
+            user-select: none; background: var(--toggle-track);
+            border: 1px solid var(--border); border-radius: 999px;
+            padding: 5px 12px 5px 7px; transition: all 0.3s;
+        }
+        .theme-toggle:hover { border-color: var(--border-hover); }
+        .toggle-knob {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: var(--surface-2); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; transition: background 0.3s;
+        }
+        .toggle-label { font-size: 12px; font-weight: 600; color: var(--muted); min-width: 30px; }
+
+        /* ── INFO CARD ── */
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.35s ease;
+        }
+        .info-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-shine), transparent);
+        }
+        [data-theme="day"] .info-card {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05), 0 10px 28px rgba(0,0,0,0.06);
+        }
+
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--accent-dim); color: var(--accent);
+            border: 1px solid rgba(232,135,90,0.2); border-radius: 999px;
+            padding: 4px 12px; font-size: 11px; font-weight: 600;
+            letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .eyebrow::before {
+            content: ''; width: 5px; height: 5px;
+            border-radius: 50%; background: var(--accent);
+        }
+
+        .info-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 4vw, 30px);
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            margin-bottom: 12px;
+        }
+
+        .meta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
+        .meta-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 999px;
+            border: 1px solid var(--border); background: var(--surface-2);
+            font-size: 12px; color: var(--muted); font-weight: 500;
+            transition: background 0.35s ease;
+        }
+        .meta-chip strong { color: var(--ink); font-weight: 600; }
+
+        .deadline-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: var(--warn-dim, rgba(212,162,74,0.12));
+            color: var(--warn, #d4a24a);
+            border: 1px solid rgba(212,162,74,0.2);
+            border-radius: 999px; padding: 4px 10px;
+            font-size: 12px; font-weight: 600;
+        }
+
+        .hw-desc {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: 10px; padding: 12px 14px;
+            color: var(--muted); font-size: 14px; line-height: 1.6;
+            transition: background 0.35s ease;
+        }
+
+        /* ── EDITOR CARD ── */
+        .editor-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: background 0.35s ease;
+        }
+        [data-theme="day"] .editor-card {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05), 0 10px 28px rgba(0,0,0,0.06);
+        }
+
+        .editor-toolbar-wrap {
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+        }
+
+        /* Override Quill styles to match theme */
+        .ql-toolbar.ql-snow {
+            background: var(--surface-2) !important;
+            border: none !important;
+            border-bottom: 1px solid var(--border) !important;
+            padding: 10px 16px !important;
+        }
+
+        .ql-container.ql-snow {
+            border: none !important;
+            font-family: 'Instrument Sans', sans-serif !important;
+            font-size: 15px !important;
+        }
+
+        .ql-editor {
+            min-height: 380px;
+            padding: 20px 24px !important;
+            color: var(--ink) !important;
+            background: var(--surface) !important;
+            line-height: 1.7 !important;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        .ql-editor.ql-blank::before {
+            color: var(--muted) !important;
+            font-style: italic !important;
+        }
+
+        /* Dark mode Quill toolbar icons */
+        .ql-snow .ql-stroke { stroke: var(--muted) !important; }
+        .ql-snow .ql-fill  { fill: var(--muted) !important; }
+        .ql-snow .ql-picker-label { color: var(--muted) !important; }
+        .ql-snow .ql-picker-options { background: var(--surface-2) !important; border-color: var(--border) !important; }
+        .ql-snow button:hover .ql-stroke,
+        .ql-snow .ql-picker-label:hover .ql-stroke { stroke: var(--accent) !important; }
+        .ql-snow button:hover .ql-fill { fill: var(--accent) !important; }
+
+        /* ── SAVE BAR ── */
+        .save-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-top: 1px solid var(--border);
+            background: var(--surface-2);
+            transition: background 0.35s ease;
+        }
+
+        .btn-save {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 11px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 0.03em;
+            transition: all 0.2s;
+        }
+        .btn-save:hover {
+            background: #d4703e;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(232,135,90,0.35);
+        }
+        .btn-save:active { transform: translateY(0); }
+        .btn-save:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .save-status {
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+        .save-status.show { opacity: 1; }
+        .save-status.ok  { background: var(--success-dim); color: var(--success); }
+        .save-status.err { background: var(--danger-dim);  color: var(--danger);  }
+
+        .save-hint {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="topbar-actions">
+            <a href="{% url 'classroom_detail_page' classroom.id %}" class="nav-btn">← Back to class</a>
+        </div>
+        <div class="topbar-actions">
+            <div class="theme-toggle" id="themeToggle">
+                <div class="toggle-knob" id="toggleKnob">🌙</div>
+                <span class="toggle-label" id="toggleLabel">Night</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="info-card">
+        <div class="eyebrow">Editing homework</div>
+        <h1>{{ homework.title }}</h1>
+        <div class="meta-row">
+            <div class="meta-chip"><strong>{{ classroom.name }}</strong></div>
+            <div class="meta-chip">Teacher <strong>{{ classroom.teacher.username }}</strong></div>
+            {% if homework.deadline %}
+            <div class="deadline-chip">⏰ Deadline: {{ homework.deadline }}</div>
+            {% endif %}
+        </div>
+        <div class="hw-desc">{{ homework.description }}</div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="editor-card">
+        <div id="editor">{{ saved_content|safe }}</div>
+        <div class="save-bar">
+            <button class="btn-save" id="saveBtn" onclick="saveEditor()">Save changes</button>
+            <span class="save-status" id="saveStatus"></span>
+            <span class="save-hint">Ctrl+S to save</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    /* ── THEME ── */
+    const toggle = document.getElementById('themeToggle');
+    const knob   = document.getElementById('toggleKnob');
+    const label  = document.getElementById('toggleLabel');
+    const root   = document.documentElement;
+
+    applyTheme(localStorage.getItem('classroom-theme') || 'night');
+
+    toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'day' ? 'night' : 'day';
+        applyTheme(next);
+        localStorage.setItem('classroom-theme', next);
+    });
+
+    function applyTheme(theme) {
+        if (theme === 'day') {
+            root.setAttribute('data-theme', 'day');
+            knob.textContent = '🌙';
+            label.textContent = 'Day';
+        } else {
+            root.removeAttribute('data-theme');
+            knob.textContent = '☀️';
+            label.textContent = 'Night';
+        }
+    }
+
+    /* ── QUILL ── */
+    const quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Write your answer here…',
+        modules: {
+            toolbar: {
+                container: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    [{ indent: '-1' }, { indent: '+1' }],
+                    ['link', 'image'],
+                    ['clean']
+                ],
+                handlers: {
+                    // Override default image handler to upload instead of base64
+                    image: imageUploadHandler
+                }
+            }
+        }
+    });
+
+    /* ── IMAGE UPLOAD ── */
+    function imageUploadHandler() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/png,image/jpeg,image/gif,image/webp');
+        input.click();
+
+        input.addEventListener('change', async () => {
+            const file = input.files[0];
+            if (!file) return;
+
+            // Capture cursor position BEFORE inserting placeholder
+            const range = quill.getSelection(true);
+            const placeholderText = '⏳ Uploading…';
+            const placeholderLen  = placeholderText.length;
+
+            // Insert a visible placeholder at cursor
+            quill.insertText(range.index, placeholderText, { italic: true, color: '#888' });
+            quill.setSelection(range.index + placeholderLen);
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const res = await fetch(
+                    "{% url 'upload_editor_image' classroom.id homework.id %}",
+                    {
+                        method: 'POST',
+                        headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+                        body: formData
+                    }
+                );
+                const data = await res.json();
+
+                // Delete placeholder using the exact length we inserted
+                quill.deleteText(range.index, placeholderLen);
+
+                if (data.success) {
+                    quill.insertEmbed(range.index, 'image', data.url);
+                    quill.setSelection(range.index + 1);
+                    showStatus('✓ Image uploaded', 'ok');
+                } else {
+                    showStatus('✕ Upload failed: ' + (data.error || 'unknown'), 'err');
+                }
+            } catch (e) {
+                quill.deleteText(range.index, placeholderLen);
+                showStatus('✕ Network error during upload', 'err');
+            }
+        });
+    }
+
+    /* ── SAVE ── */
+    const saveBtn    = document.getElementById('saveBtn');
+    const statusEl   = document.getElementById('saveStatus');
+    let   statusTimer = null;
+
+    function showStatus(msg, type) {
+        statusEl.textContent = msg;
+        statusEl.className   = `save-status show ${type}`;
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(() => { statusEl.className = 'save-status'; }, 3000);
+    }
+
+    async function saveEditor() {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving…';
+        const content = quill.root.innerHTML;
+
+        try {
+            const res = await fetch("{% url 'save_browser_editor' classroom.id homework.id %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ content })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showStatus('✓ Saved', 'ok');
+            } else {
+                showStatus('✕ Failed: ' + (data.error || 'unknown'), 'err');
+            }
+        } catch (e) {
+            showStatus('✕ Network error', 'err');
+        } finally {
+            saveBtn.disabled    = false;
+            saveBtn.textContent = 'Save changes';
+        }
+    }
+
+    /* Ctrl+S shortcut */
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            saveEditor();
+        }
+    });
+</script>
+</body>
+</html>

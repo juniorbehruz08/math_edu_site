@@ -70,7 +70,7 @@ def save_taken_lessons(url, request):
 
 
 @login_required
-@cache_page(60 * 10)
+# @cache_page(60 * 10)
 def main_view(request):
     if request.user.is_authenticated:
         context = {
@@ -79,7 +79,8 @@ def main_view(request):
 
         return render(request, 'home.html', context=context)
     else:
-        return redirect('login')
+        return render(request, 'home.html')
+        # return redirect('login')
 
 
 def login_view(request):

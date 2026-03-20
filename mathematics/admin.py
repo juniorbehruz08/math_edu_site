@@ -23,7 +23,7 @@ class LessonsAdmin(admin.ModelAdmin):
 class TakenLessonsAdmin(admin.ModelAdmin):
     list_display = ('id', 'lesson', 'user', 'date_taken')
     search_fields = ('lesson', 'user__username')
-    list_filter = ('date_taken',)
+    list_filter = ('date_taken','lesson')
     ordering = ('-date_taken',)
 
 

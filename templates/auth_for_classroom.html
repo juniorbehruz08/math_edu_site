@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Classroom</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+          rel="stylesheet"/>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+          --bg: #f5f3ef;
+          --card: #ffffff;
+          --ink: #1a1714;
+          --muted: #7c7166;
+          --accent: #c9622b;
+          --accent-light: #f5ede6;
+          --border: #e4ddd6;
+          --shadow: 0 2px 8px rgba(26,23,20,0.06), 0 28px 52px rgba(26,23,20,0.11);
+          --success: #1f8f4e;
+          --danger: #d64545;
+        }
+
+        body {
+          min-height: 100vh;
+          background: var(--bg);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'DM Sans', sans-serif;
+          padding: 24px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        body::before {
+          content: '';
+          position: fixed;
+          border-radius: 50%;
+          pointer-events: none;
+          width: 520px;
+          height: 520px;
+          background: radial-gradient(circle, #e8d5c4 0%, transparent 70%);
+          top: -130px;
+          right: -110px;
+          opacity: 0.7;
+        }
+
+        body::after {
+          content: '';
+          position: fixed;
+          border-radius: 50%;
+          pointer-events: none;
+          width: 420px;
+          height: 420px;
+          background: radial-gradient(circle, #d9e8d5 0%, transparent 70%);
+          bottom: -110px;
+          left: -90px;
+          opacity: 0.5;
+        }
+
+        .wrapper {
+          width: 100%;
+          max-width: 440px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .brand {
+          text-align: center;
+          margin-bottom: 28px;
+          animation: fadeDown 0.5s ease both;
+        }
+
+        .brand-logo {
+          width: 54px;
+          height: 54px;
+          border-radius: 13px;
+          object-fit: contain;
+          display: block;
+          margin: 0 auto 10px;
+        }
+
+        .brand h1 {
+          font-family: 'DM Serif Display', serif;
+          font-size: 21px;
+          color: var(--ink);
+          letter-spacing: -0.3px;
+        }
+
+        .brand p {
+          font-size: 13px;
+          color: var(--muted);
+          margin-top: 3px;
+        }
+
+        .card-outer {
+          border-radius: 20px;
+          background: var(--card);
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border);
+          overflow: hidden;
+          position: relative;
+          animation: fadeUp 0.55s ease 0.08s both;
+        }
+
+        .panel {
+          width: 100%;
+          padding: 36px 38px 32px;
+        }
+
+        #panelLogin { display: block; }
+        #panelRegister { display: none; }
+
+        .card-outer.show-reg #panelLogin { display: none; }
+        .card-outer.show-reg #panelRegister { display: block; }
+
+        .card-header { margin-bottom: 24px; }
+
+        .card-header h2 {
+          font-family: 'DM Serif Display', serif;
+          font-size: 24px;
+          color: var(--ink);
+          letter-spacing: -0.4px;
+        }
+
+        .card-header p {
+          font-size: 13px;
+          color: var(--muted);
+          margin-top: 5px;
+        }
+
+        .field { margin-bottom: 15px; }
+
+        .field label {
+          display: block;
+          font-size: 12.5px;
+          font-weight: 600;
+          color: var(--ink);
+          margin-bottom: 6px;
+        }
+
+        .input-wrap { position: relative; }
+
+        .input-wrap .icon {
+          position: absolute;
+          left: 13px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--muted);
+          pointer-events: none;
+          transition: color 0.2s;
+          display: flex;
+        }
+
+        .input-wrap .icon svg {
+          width: 16px;
+          height: 16px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .input-wrap input,
+        .input-wrap select {
+          width: 100%;
+          padding: 12px 13px 12px 40px;
+          border: 1.5px solid var(--border);
+          border-radius: 11px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          color: var(--ink);
+          background: #fff;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .input-wrap select {
+          appearance: none;
+          cursor: pointer;
+          padding-right: 36px;
+        }
+
+        .input-wrap input::placeholder { color: #b8b0a8; }
+
+        .input-wrap input:focus,
+        .input-wrap select:focus {
+          border-color: var(--accent);
+          background: var(--accent-light);
+          box-shadow: 0 0 0 3px rgba(201,98,43,0.09);
+        }
+
+        .input-wrap:focus-within .icon { color: var(--accent); }
+
+        .input-wrap input[type="password"],
+        .input-wrap input[type="text"] {
+          padding-right: 42px;
+        }
+
+        .select-arrow {
+          position: absolute;
+          right: 13px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          color: var(--muted);
+        }
+
+        .select-arrow svg {
+          width: 14px;
+          height: 14px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .toggle-pw {
+          position: absolute;
+          right: 11px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: var(--muted);
+          padding: 4px;
+          display: flex;
+          transition: color 0.2s;
+          z-index: 2;
+        }
+
+        .toggle-pw:hover { color: var(--accent); }
+
+        .toggle-pw svg {
+          width: 15px;
+          height: 15px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .btn {
+          width: 100%;
+          padding: 13px;
+          background: var(--ink);
+          color: #fff;
+          border: none;
+          border-radius: 11px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14.5px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+          background: var(--accent);
+          box-shadow: 0 6px 20px rgba(201,98,43,0.28);
+          transform: translateY(-1px);
+        }
+
+        .btn:active {
+          transform: none;
+          box-shadow: none;
+        }
+
+        .btn svg {
+          width: 15px;
+          height: 15px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 2.2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          transition: transform 0.2s;
+        }
+
+        .btn:hover svg { transform: translateX(3px); }
+
+        .card-footer {
+          text-align: center;
+          margin-top: 22px;
+          font-size: 13px;
+          color: var(--muted);
+        }
+
+        .card-footer button {
+          background: none;
+          border: none;
+          color: var(--accent);
+          font-weight: 600;
+          cursor: pointer;
+          font-family: inherit;
+          font-size: inherit;
+          transition: opacity 0.2s;
+          padding: 0;
+        }
+
+        .card-footer button:hover { opacity: 0.75; }
+
+        @keyframes fadeDown {
+          from { opacity: 0; transform: translateY(-12px); }
+          to { opacity: 1; transform: none; }
+        }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: none; }
+        }
+
+        @media (max-width: 480px) {
+          .panel { padding: 28px 20px 24px; }
+          .card-header h2 { font-size: 21px; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="brand">
+        <img src="data:image/jpeg;base64,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"
+             alt="Nimbus" class="brand-logo"/>
+        <h1>SAT Ziyo</h1>
+        <p>Classroom</p>
+    </div>
+    {% if messages %}
+    <div style="max-width:440px; margin:0 auto 16px auto;">
+        {% for message in messages %}
+        <div style="
+        padding:12px 14px;
+        border-radius:10px;
+        margin-bottom:8px;
+        font-size:14px;
+        {% if message.tags == 'success' %}
+          background: rgba(31,143,78,0.08);
+          color: #1f8f4e;
+          border: 1px solid rgba(31,143,78,0.18);
+        {% else %}
+          background: rgba(214,69,69,0.08);
+          color: #d64545;
+          border: 1px solid rgba(214,69,69,0.18);
+        {% endif %}
+      ">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="card-outer" id="cardOuter">
+
+        <!-- LOGIN -->
+        <div class="panel" id="panelLogin">
+            <form method="POST" action="{% url 'login_to_classroom' %}">
+                {% csrf_token %}
+                <div class="card-header">
+                    <h2>Welcome 👋</h2>
+                    <p>Login to your account</p>
+                </div>
+
+                <div class="field">
+                    <label>Username</label>
+                    <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </span>
+                        <input type="text" name="username" id="l-user" placeholder="Username" autocomplete="username"
+                               required/>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path
+                      d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+                        <input type="password" name="password" id="l-pass" placeholder="Password"
+                               autocomplete="current-password" required/>
+                        <button class="toggle-pw" type="button" onclick="togglePw(this)">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn" type="submit">
+                    Login
+                    <svg viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="card-footer">
+                Don't you have account yet?
+                <button type="button" onclick="go('register')">Register</button>
+            </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="panel" id="panelRegister">
+            <form method="POST" action="{% url 'register_to_classroom' %}">
+                {% csrf_token %}
+                <div class="card-header">
+                    <h2>Register ✨</h2>
+                    <p>Create your classroom account</p>
+                </div>
+
+                <div class="field">
+                    <label>Username</label>
+                    <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </span>
+                        <input type="text" name="username" id="r-user" placeholder="Username tanlang"
+                               autocomplete="username" required/>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path
+                      d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+                        <input type="password" name="password" id="r-pass" placeholder="Kamida 8 ta belgi"
+                               autocomplete="new-password" required minlength="8"/>
+                        <button class="toggle-pw" type="button" onclick="togglePw(this)">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Role</label>
+                    <div class="input-wrap">
+            <span class="icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7"
+                                                                                                    r="4"/><path
+                      d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+                        <select name="role" id="r-role" required>
+                            <option value="teacher">Teacher</option>
+                            <option value="student">Student</option>
+                        </select>
+                        <span class="select-arrow">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+                    </div>
+                </div>
+
+                <button class="btn" type="submit">
+                    Register
+                    <svg viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="card-footer">
+                Already have account?
+                <button type="button" onclick="go('login')">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function go(page) {
+      const card = document.getElementById('cardOuter');
+      const panelIn = page === 'register'
+        ? document.getElementById('panelRegister')
+        : document.getElementById('panelLogin');
+
+      const panelOut = page === 'register'
+        ? document.getElementById('panelLogin')
+        : document.getElementById('panelRegister');
+
+      panelOut.style.transition = 'opacity 0.22s ease, transform 0.28s ease';
+      panelOut.style.opacity = '0';
+      panelOut.style.transform = page === 'register' ? 'translateX(-30px)' : 'translateX(30px)';
+
+      setTimeout(() => {
+        if (page === 'register') {
+          card.classList.add('show-reg');
+        } else {
+          card.classList.remove('show-reg');
+        }
+
+        panelIn.style.transition = 'none';
+        panelIn.style.opacity = '0';
+        panelIn.style.transform = page === 'register' ? 'translateX(30px)' : 'translateX(-30px)';
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            panelIn.style.transition = 'opacity 0.28s ease, transform 0.32s ease';
+            panelIn.style.opacity = '1';
+            panelIn.style.transform = 'translateX(0)';
+          });
+        });
+
+        panelOut.style.transition = '';
+        panelOut.style.opacity = '';
+        panelOut.style.transform = '';
+      }, 240);
+    }
+
+    function togglePw(btn) {
+      const inp = btn.closest('.input-wrap').querySelector('input');
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+
+      btn.innerHTML = show
+        ? '<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+        : '<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    }
+</script>
+</body>
+</html>
