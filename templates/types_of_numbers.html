@@ -4,284 +4,360 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
+    <title>Types of Numbers</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
-          rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
-
-    TemplateMo 590 topic listing
-
-    https://templatemo.com/tm-590-topic-listing
-
-    -->
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        body { background: #f6f9fc; color: #102033; font-family: 'Open Sans', sans-serif; }
+        img { max-width: 100%; height: auto; display: block; }
+        .language-switch { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.16); }
+        .language-switch__button { border: 0; border-radius: 999px; padding: 6px 12px; color: #fff; background: transparent; font-weight: 700; line-height: 1; }
+        .language-switch__button.is-active { color: #13547a; background: #fff; }
+        .lesson-shell { max-width: 920px; margin: 0 auto; padding: 42px 18px 70px; }
+        .lesson-card { background: #fff; border: 1px solid #dde8ef; border-radius: 8px; padding: clamp(20px, 4vw, 34px); margin-bottom: 22px; box-shadow: 0 16px 36px rgba(19,84,122,.08); }
+        .lesson-card h2 { color: #102033; font-family: 'Montserrat', sans-serif; font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 800; margin: 0 0 14px; }
+        .lesson-card h3 { color: #153e61; font-family: 'Montserrat', sans-serif; font-size: 1.08rem; font-weight: 800; margin: 22px 0 8px; }
+        .lesson-card p, .lesson-card li { color: #29384a; font-size: 1rem; line-height: 1.72; }
+        .lesson-card ul { margin: 0; padding-left: 1.2rem; }
+        .math-line { margin: 16px 0; text-align: center; color: #000; font-family: "Times New Roman", Times, serif; font-size: 1.22rem; font-style: italic; }
+        .visual-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0 6px; }
+        .number-bucket { min-height: 118px; padding: 16px; border: 1px solid #d9e7ee; border-radius: 8px; background: #f8fcff; }
+        .number-bucket strong { display: block; color: #13547a; font-family: 'Montserrat', sans-serif; margin-bottom: 10px; }
+        .number-row { display: flex; flex-wrap: wrap; gap: 7px; }
+        .number-chip { min-width: 34px; padding: 5px 9px; border-radius: 999px; color: #102033; background: #fff; border: 1px solid #c9dce7; text-align: center; font-weight: 700; }
+        .set-table { width: 100%; border-collapse: collapse; margin-top: 14px; overflow: hidden; border-radius: 8px; }
+        .set-table th, .set-table td { border-bottom: 1px solid #e3edf3; padding: 12px 10px; text-align: left; vertical-align: top; }
+        .set-table th { color: #102033; background: #edf7fb; font-family: 'Montserrat', sans-serif; }
+        .set-table tr:last-child td { border-bottom: 0; }
+        .number-line { position: relative; height: 86px; margin: 26px 0 4px; }
+        .number-line::before { content: ""; position: absolute; left: 0; right: 0; top: 42px; height: 4px; border-radius: 999px; background: #c9dce7; }
+        .tick { position: absolute; top: 28px; transform: translateX(-50%); text-align: center; color: #516173; font-size: .9rem; }
+        .tick::before { content: ""; display: block; width: 2px; height: 28px; margin: 0 auto 6px; background: #8196a8; }
+        .marker { position: absolute; top: 0; transform: translateX(-50%); padding: 4px 8px; border-radius: 999px; background: #13547a; color: #fff; font-size: .78rem; font-weight: 800; white-space: nowrap; }
+        .callout { border-left: 4px solid #13547a; padding: 14px 16px; background: #f4fbfd; border-radius: 0 8px 8px 0; margin-top: 18px; }
+        .practice-strip { display: flex; justify-content: center; margin-top: 28px; }
+        .topic-visual { min-height: 250px; padding: 24px; border-radius: 20px; background: linear-gradient(135deg,#eef9ff,#fff); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(19,84,122,.12); }
+        .set-diagram { width: min(360px,100%); aspect-ratio: 1.4; position: relative; }
+        .set-ring { position: absolute; border: 3px solid; border-radius: 999px; display: grid; place-items: center; font-weight: 800; background: rgba(255,255,255,.58); }
+        .set-ring.real { inset: 4% 0; border-color: #166088; color: #166088; }
+        .set-ring.rational { inset: 16% 15%; border-color: #3f8f5f; color: #3f8f5f; }
+        .set-ring.integer { inset: 29% 28%; border-color: #b86b1d; color: #b86b1d; }
+        .set-ring.natural { inset: 42% 40%; border-color: #7b3fa0; color: #7b3fa0; }
+        @media (max-width: 768px) {
+            .visual-board { grid-template-columns: 1fr; }
+            .site-header .row { gap: 22px; }
+            .set-table { display: block; overflow-x: auto; }
+        }
+    </style>
 </head>
-
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
-
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
             </div>
-
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+            </div>
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
-
-    </nav>
-
 
     <header class="site-header d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.basic">Basics</li>
                         </ol>
                     </nav>
-
-                    <h2 class="text-white">Introduction to <br>Types of Numbers</h2>
-
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Number Sets</h2>
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
-
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
-
                 <div class="col-lg-5 col-12">
-                    <div class="topics-detail-block bg-white shadow-lg">
-                        <img src="{% static 'images/myimages/numbers.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                    <div class="topic-visual" aria-label="Number sets diagram" data-i18n-aria-label="page.visualAlt">
+                        <div class="set-diagram">
+                            <div class="set-ring real" data-i18n="diagram.real">Real</div>
+                            <div class="set-ring rational" data-i18n="diagram.rational">Rational</div>
+                            <div class="set-ring integer" data-i18n="diagram.integer">Integers</div>
+                            <div class="set-ring natural" data-i18n="diagram.natural">Natural</div>
+                        </div>
                     </div>
                 </div>
-
-
+            </div>
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=types_of_numbers" class="btn custom-btn custom-border-btn" data-i18n="page.practice">Practice Number Sets</a>
             </div>
         </div>
     </header>
 
-
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-
-
-        <!-- Dynamic Accordion -->
-        <section>
-            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Main Types of Numbers</h2>
-            <div class="space-y-4" x-data="{open:null}">
-
-                <!-- Arithmetic -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 1 ? open = null : open = 1">
-                        Natural Numbers (ℕ)
-                        <span x-show="open !== 1">➕</span>
-                        <span x-show="open === 1">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 1" x-transition>
-                        <p>Naturals numbers are that we use to count</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: 1,2,3,4, ....</li>
-                            <li>0 is not a natural number.</li>
-                            <li>Since we do not use negative numbers to count, negative numbers are not natural.</li>
-                        </ul>
-                    </div>
+    <section id="topics-detail" class="lesson-shell">
+        <article class="lesson-card">
+            <h2 data-i18n="intro.title">What are number sets?</h2>
+            <p data-i18n="intro.body">Number sets are groups used to classify numbers according to their properties. The same number can belong to several sets at the same time. For example, \(5\) is a natural number, a whole number, an integer, a rational number, and a real number.</p>
+            <div class="visual-board">
+                <div class="number-bucket">
+                    <strong data-i18n="intro.counting">Counting numbers</strong>
+                    <div class="number-row"><span class="number-chip">1</span><span class="number-chip">2</span><span class="number-chip">3</span><span class="number-chip">4</span></div>
                 </div>
-
-                <!-- Algebra -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 2 ? open = null : open = 2">
-                        Whole Numbers
-                        <span x-show="open !== 2">➕</span>
-                        <span x-show="open === 2">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 2" x-transition>
-                        <p>Whole numbers include all positive numbers and 0</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: 0,1,2,3,4, ...</li>
-                            <li>Negative numbers are not included</li>
-                            <li>The difference between whole numbers and natural numbers is that whole numbers include
-                                0.
-                            </li>
-                        </ul>
-                    </div>
+                <div class="number-bucket">
+                    <strong data-i18n="intro.signed">Positive, negative, and zero</strong>
+                    <div class="number-row"><span class="number-chip">-3</span><span class="number-chip">-1</span><span class="number-chip">0</span><span class="number-chip">6</span></div>
                 </div>
-
-                <!-- Geometry -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 3 ? open = null : open = 3">
-                        Integers (ℤ)
-                        <span x-show="open !== 3">➕</span>
-                        <span x-show="open === 3">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 3" x-transition>
-                        <p>Integers are all whole numbers, including positive numbers, negative numbers, and zero.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: -2, -1, 0, 1, 2, ...</li>
-                            <li>-7 is a negative integer, while 7 is a positive integer</li>
-                            <li>0 is neutral</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Trigonometry -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 4 ? open = null : open = 4">
-                        Rational Numbers (ℚ)
-                        <span x-show="open !== 4">➕</span>
-                        <span x-show="open === 4">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 4" x-transition>
-                        <p>Numbers that can be expressed as a fraction of two integers, where the denominator is not
-                            zero.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example, 5 is a rational number since it can be written as 5/1 or 10/2.</li>
-                            <li>Some numbers cannot be a rational numbers: π, √2, √3</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Analysis -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 5 ? open = null : open = 5">
-                        Irrational numbers
-                        <span x-show="open !== 5">➕</span>
-                        <span x-show="open === 5">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 5" x-transition>
-                        <p>Numbers that cannot be expressed as a fraction of two integers</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: √2, √3, π</li>
-                            <li>Their decimal expansions are non-terminating and non-repeating</li>
-                            <li>Irrational numbers are used when quantities cannot be measured exactly as a simple
-                                fraction.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Probability & Statistics -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 6 ? open = null : open = 6">
-                        Real Numbers (ℝ)
-                        <span x-show="open !== 6">➕</span>
-                        <span x-show="open === 6">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 6" x-transition>
-                        <p>All rational and irrational numbers.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: 3/4, 5, -3, π</li>
-                            <li>They can be represented on the number line and are used to measure continuous
-                                quantities.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Discrete Mathematics -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 7 ? open = null : open = 7">
-                        Imaginary Numbers
-                        <span x-show="open !== 7">➕</span>
-                        <span x-show="open === 7">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 7" x-transition>
-                        <p>Numbers that are multiples of i, where i² = -1</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: i, 3i, -5i</li>
-                            <li>i⁴ = 1</li>
-                            <li>i = √(-1)</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 8 ? open = null : open = 8">
-                        Prime Numbers
-                        <span x-show="open !== 8">➕</span>
-                        <span x-show="open === 8">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 8" x-transition>
-                        <p>A prime number is a natural number greater than 1 that has no positive divisors other than 1
-                            and itself.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: 2,3,5,7,11</li>
-                            <li>1 is not considered prime</li>
-                            <li>Smallest prime number is 2</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 9 ? open = null : open = 9">
-                        Composite Numbers
-                        <span x-show="open !== 9">➕</span>
-                        <span x-show="open === 9">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 9" x-transition>
-                        <p>A composite number is a natural number greater than 1 that has at least one positive divisor
-                            other than 1 and itself.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>For example: 6, 8, 9, 12</li>
-                            <li>They can be expressed as a product of prime numbers</li>
-                            <li>Numbers 0 and 1 are neither prime nor composite</li>
-                        </ul>
-                    </div>
+                <div class="number-bucket">
+                    <strong data-i18n="intro.fractional">Fractions, decimals, and irrationals</strong>
+                    <div class="number-row"><span class="number-chip">1/2</span><span class="number-chip">0.75</span><span class="number-chip">π</span><span class="number-chip">√2</span></div>
                 </div>
             </div>
-        </section>
+        </article>
 
-    </main>
+        <article class="lesson-card">
+            <h2 data-i18n="sets.title">Main number sets</h2>
+            <table class="set-table">
+                <thead>
+                <tr>
+                    <th data-i18n="sets.type">Set</th>
+                    <th data-i18n="sets.meaning">Definition</th>
+                    <th data-i18n="sets.examples">Examples</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-i18n="sets.naturalName">Natural numbers</td>
+                    <td data-i18n="sets.naturalMeaning">Numbers used for counting. In this lesson, natural numbers start from \(1\): \(1,2,3,\ldots\).</td>
+                    <td>\(1,2,3,4,\ldots\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="sets.wholeName">Whole numbers</td>
+                    <td data-i18n="sets.wholeMeaning">The non-negative integers: \(0\) together with the natural numbers.</td>
+                    <td>\(0,1,2,3,\ldots\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="sets.integerName">Integers</td>
+                    <td data-i18n="sets.integerMeaning">All whole numbers and their negatives, including \(0\). Integers do not have fractional or decimal parts.</td>
+                    <td>\(\ldots,-2,-1,0,1,2,\ldots\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="sets.rationalName">Rational numbers</td>
+                    <td data-i18n="sets.rationalMeaning">Numbers that can be written in the form \(\dfrac{a}{b}\), where \(a\) and \(b\) are integers and \(b \ne 0\). Terminating and repeating decimals are rational.</td>
+                    <td>\(\dfrac{3}{4}, -2, 0.5, 7\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="sets.irrationalName">Irrational numbers</td>
+                    <td data-i18n="sets.irrationalMeaning">Real numbers that cannot be written as a ratio of two integers. Their decimal expansions are non-terminating and non-repeating.</td>
+                    <td>\(\sqrt{2}, \pi, \sqrt{3}\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="sets.realName">Real numbers</td>
+                    <td data-i18n="sets.realMeaning">All numbers that can be represented on the number line. The real numbers consist of rational and irrational numbers.</td>
+                    <td>\(-4, 0, \dfrac{2}{3}, \sqrt{5}\)</td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="line.title">Numbers on the number line</h2>
+            <p data-i18n="line.body">Every real number has a position on the number line. Negative numbers lie to the left of \(0\), while positive numbers lie to the right of \(0\).</p>
+            <div class="number-line" aria-hidden="true">
+                <span class="marker" style="left:16%">-3</span>
+                <span class="marker" style="left:50%">0</span>
+                <span class="marker" style="left:74%">2</span>
+                <span class="tick" style="left:0%">-5</span>
+                <span class="tick" style="left:25%">-2.5</span>
+                <span class="tick" style="left:50%">0</span>
+                <span class="tick" style="left:75%">2.5</span>
+                <span class="tick" style="left:100%">5</span>
+            </div>
+            <div class="callout" data-i18n="line.callout">Key idea: \(\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\). Every natural number is real, but not every real number is natural. For example, \(\sqrt{2}\) is real but not rational or natural.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="prime.title">Prime and composite numbers</h2>
+            <h3 data-i18n="prime.primeTitle">Prime numbers</h3>
+            <p data-i18n="prime.primeBody">A prime number is a natural number greater than \(1\) that has exactly two positive divisors: \(1\) and itself.</p>
+            <div class="math-line">\(2,\ 3,\ 5,\ 7,\ 11,\ 13\)</div>
+            <h3 data-i18n="prime.compositeTitle">Composite numbers</h3>
+            <p data-i18n="prime.compositeBody">A composite number is a natural number greater than \(1\) that has more than two positive divisors.</p>
+            <div class="math-line">\(4,\ 6,\ 8,\ 9,\ 10,\ 12\)</div>
+            <div class="callout" data-i18n="prime.note">The number \(1\) is neither prime nor composite because it has only one positive divisor.</div>
+        </article>
+    </section>
 </main>
 
-
-
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                basic: "Basics",
+                hero: "Introduction to <br>Number Sets",
+                readMore: "Read More",
+                backTop: "Back to top",
+                visualAlt: "Nested diagram of number sets",
+                practice: "Practice Number Sets"
+            },
+            diagram: {
+                real: "Real",
+                rational: "Rational",
+                integer: "Integers",
+                natural: "Natural"
+            },
+            intro: {
+                title: "What are number sets?",
+                body: "Number sets are groups used to classify numbers according to their properties. The same number can belong to several sets at the same time. For example, \(5\) is a natural number, a whole number, an integer, a rational number, and a real number.",
+                counting: "Counting numbers",
+                signed: "Positive, negative, and zero",
+                fractional: "Fractions, decimals, and irrationals"
+            },
+            sets: {
+                title: "Main number sets",
+                type: "Set",
+                meaning: "Definition",
+                examples: "Examples",
+                naturalName: "Natural numbers",
+                naturalMeaning: "Numbers used for counting. In this lesson, natural numbers start from \(1\): \(1,2,3,\ldots\).",
+                wholeName: "Whole numbers",
+                wholeMeaning: "The non-negative integers: \(0\) together with the natural numbers.",
+                integerName: "Integers",
+                integerMeaning: "All whole numbers and their negatives, including \(0\). Integers do not have fractional or decimal parts.",
+                rationalName: "Rational numbers",
+                rationalMeaning: "Numbers that can be written in the form \(\dfrac{a}{b}\), where \(a\) and \(b\) are integers and \(b \ne 0\). Terminating and repeating decimals are rational.",
+                irrationalName: "Irrational numbers",
+                irrationalMeaning: "Real numbers that cannot be written as a ratio of two integers. Their decimal expansions are non-terminating and non-repeating.",
+                realName: "Real numbers",
+                realMeaning: "All numbers that can be represented on the number line. The real numbers consist of rational and irrational numbers."
+            },
+            line: {
+                title: "Numbers on the number line",
+                body: "Every real number has a position on the number line. Negative numbers lie to the left of \(0\), while positive numbers lie to the right of \(0\).",
+                callout: "Key idea: \(\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\). Every natural number is real, but not every real number is natural. For example, \(\sqrt{2}\) is real but not rational or natural."
+            },
+            prime: {
+                title: "Prime and composite numbers",
+                primeTitle: "Prime numbers",
+                primeBody: "A prime number is a natural number greater than \(1\) that has exactly two positive divisors: \(1\) and itself.",
+                compositeTitle: "Composite numbers",
+                compositeBody: "A composite number is a natural number greater than \(1\) that has more than two positive divisors.",
+                note: "The number \(1\) is neither prime nor composite because it has only one positive divisor."
+            }
+        },
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo‘li",
+                homepage: "Bosh sahifa",
+                basic: "Asoslar",
+                hero: "Sonlar to‘plamlariga <br>kirish",
+                readMore: "Ko‘proq o‘qish",
+                backTop: "Yuqoriga qaytish",
+                visualAlt: "Sonlar to‘plamlarining ichma-ich diagrammasi",
+                practice: "Sonlar to‘plamlaridan mashq qilish"
+            },
+            diagram: {
+                real: "Haqiqiy",
+                rational: "Ratsional",
+                integer: "Butun",
+                natural: "Natural"
+            },
+            intro: {
+                title: "Sonlar to‘plamlari nima?",
+                body: "Sonlar to‘plamlari — sonlarni ularning xossalariga ko‘ra tasniflash uchun ishlatiladigan guruhlardir. Bitta son bir vaqtning o‘zida bir nechta to‘plamga tegishli bo‘lishi mumkin. Masalan, \(5\) natural son, nomanfiy butun son, butun son, ratsional son va haqiqiy sondir.",
+                counting: "Sanash sonlari",
+                signed: "Musbat, manfiy va nol",
+                fractional: "Kasrlar, o‘nli sonlar va irratsional sonlar"
+            },
+            sets: {
+                title: "Sonlarning asosiy to‘plamlari",
+                type: "To‘plam",
+                meaning: "Ta’rif",
+                examples: "Misollar",
+                naturalName: "Natural sonlar",
+                naturalMeaning: "Sanashda ishlatiladigan sonlar. Bu darsda natural sonlar \(1\) dan boshlanadi: \(1,2,3,\ldots\).",
+                wholeName: "Nomanfiy butun sonlar",
+                wholeMeaning: "\(0\) va barcha natural sonlardan iborat butun sonlar to‘plami.",
+                integerName: "Butun sonlar",
+                integerMeaning: "Musbat butun sonlar, ularning manfiylari va \(0\). Butun sonlarda kasr yoki o‘nli qism bo‘lmaydi.",
+                rationalName: "Ratsional sonlar",
+                rationalMeaning: "\(\dfrac{a}{b}\) ko‘rinishida yozish mumkin bo‘lgan sonlar; bu yerda \(a\) va \(b\) butun sonlar, \(b \ne 0\). Chekli va davriy o‘nli kasrlar ham ratsional sonlardir.",
+                irrationalName: "Irratsional sonlar",
+                irrationalMeaning: "Ikki butun son nisbatida yozib bo‘lmaydigan haqiqiy sonlar. Ularning o‘nli yozuvi cheksiz va davriy bo‘lmaydi.",
+                realName: "Haqiqiy sonlar",
+                realMeaning: "Sonlar o‘qida tasvirlash mumkin bo‘lgan barcha sonlar. Haqiqiy sonlar ratsional va irratsional sonlardan iborat."
+            },
+            line: {
+                title: "Sonlar o‘qidagi sonlar",
+                body: "Har bir haqiqiy son sonlar o‘qida o‘z o‘rniga ega. Manfiy sonlar \(0\) ning chap tomonida, musbat sonlar esa \(0\) ning o‘ng tomonida joylashadi.",
+                callout: "Asosiy fikr: \(\mathbb{N} \subset \mathbb{W} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\). Har bir natural son haqiqiy son bo‘ladi, lekin har bir haqiqiy son natural son emas. Masalan, \(\sqrt{2}\) haqiqiy son, ammo ratsional ham, natural ham emas."
+            },
+            prime: {
+                title: "Tub va murakkab sonlar",
+                primeTitle: "Tub sonlar",
+                primeBody: "Tub son — \(1\) dan katta natural son bo‘lib, aynan ikkita musbat bo‘luvchiga ega: \(1\) va o‘zi.",
+                compositeTitle: "Murakkab sonlar",
+                compositeBody: "Murakkab son — \(1\) dan katta natural son bo‘lib, ikkitadan ortiq musbat bo‘luvchiga ega.",
+                note: "\(1\) soni tub ham emas, murakkab ham emas, chunki u faqat bitta musbat bo‘luvchiga ega."
+            }
+        }
+    };
 
+    function getText(key, lang) {
+        return key.split('.').reduce((obj, part) => obj && obj[part], translations[lang]);
+    }
+
+    function language(lang) {
+        const next = translations[lang] ? lang : 'en';
+        localStorage.setItem('mathAcademyLanguage', next);
+        document.documentElement.lang = next;
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === next);
+        });
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+            const value = getText(element.dataset.i18n, next);
+            if (value) element.innerHTML = value;
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+            const value = getText(element.dataset.i18nAriaLabel, next);
+            if (value) element.setAttribute('aria-label', value);
+        });
+        if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise().catch(() => {});
+    }
+
+    language(localStorage.getItem('mathAcademyLanguage') || 'en');
+</script>
 </body>
 </html>

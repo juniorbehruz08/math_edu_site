@@ -1,23 +1,29 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Operations on Logarithms</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(','\\)'], ['$','$']],
+                displayMath: [['\\[','\\]'], ['$$','$$']]
+            },
+            options: {
+                skipHtmlTags: ['script','noscript','style','textarea','pre']
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,35 +31,304 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
 
-    TemplateMo 590 topic listing
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    https://templatemo.com/tm-590-topic-listing
+        html, body {
+            overflow-x: hidden;
+        }
 
-    -->
+        body {
+            background: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+            color: #111111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #111111;
+            background: #ffffff;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .practice-strip {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .lesson-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 44px 18px 72px;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: clamp(20px, 4vw, 34px);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+        }
+
+        .lesson-card h1,
+        .lesson-card h2 {
+            margin: 0 0 12px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .lesson-card h1 {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            text-align: center;
+        }
+
+        .lesson-card h2 {
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+        }
+
+        .lesson-card h3 {
+            margin: 18px 0 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .lesson-card ul,
+        .lesson-card ol {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .math-line {
+            margin: 12px 0 18px;
+            text-align: center;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .rule-card {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 16px;
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .callout {
+            border-left: 4px solid #111111;
+            background: #f4f4f4;
+            border-radius: 0 8px 8px 0;
+            padding: 13px 15px;
+            margin-top: 16px;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .steps {
+            counter-reset: step;
+            display: grid;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .step {
+            position: relative;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 14px 14px 50px;
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: #111111;
+            color: #ffffff;
+            display: grid;
+            place-items: center;
+            font-size: .78rem;
+            font-weight: 800;
+        }
+
+        .badge-num {
+            display: inline-grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #111111;
+            color: #ffffff;
+            font-size: .85rem;
+            font-weight: 800;
+            vertical-align: 2px;
+            font-style: normal;
+        }
+
+        .section-rule {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 22px 0;
+        }
+
+        .simple-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        .simple-table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            border: 1px solid #dddddd;
+            padding: 13px 14px;
+            text-align: left;
+            color: #222222;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .simple-table th {
+            background: #f1f1f1;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .mini-note {
+            font-size: .95rem;
+            color: #444444;
+            margin-top: 10px;
+        }
+
+        .answer-final {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: #101010;
+            font-weight: 700;
+        }
+
+        .answer-final .check {
+            color: #111111;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .row {
+                gap: 22px;
+            }
+
+            .lesson-shell {
+                padding: 34px 14px 60px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
 
@@ -62,167 +337,876 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a>
+                            </li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">
+                                Operations on Logarithms
+                            </li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Operations on Logarithm</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Operations on Logarithms</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                            Read More
+                        </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
                         <img src="{% static 'images/myimages/operations_on_logarithm.png' %}"
-                             class="topics-detail-block-image img-fluid">
+                             class="topics-detail-block-image img-fluid hero-image"
+                             alt="Operations on logarithms visual"
+                             data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=operation_on_logarithm"
-                       class="btn custom-btn custom-border-btn">Practice with Operations on Logarithm</a>
-                </div>
+            </div>
 
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=operation_on_logarithm"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice with Operations on Logarithms
+                </a>
             </div>
         </div>
     </header>
-    <div class="container-fluid">
-        <div class="row">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="general-tab" data-bs-toggle="tab" data-bs-target="#general-pane"
-                            type="button" role="tab" aria-controls="general-pane" aria-selected="false">General
-                        Information
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                            data-bs-target="#design-tab-pane" type="button" role="tab"
-                            aria-controls="design-tab-pane" aria-selected="true">Addition
-                    </button>
-                </li>
 
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                            data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                            aria-controls="marketing-tab-pane" aria-selected="false">Subtraction
-                    </button>
-                </li>
 
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                            data-bs-target="#finance-tab-pane" type="button" role="tab"
-                            aria-controls="finance-tab-pane" aria-selected="false">Multiplication
-                    </button>
-                </li>
+    <section id="topics-detail" class="lesson-shell">
 
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane"
-                            type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Division
-                    </button>
-                </li>
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Operations on Logarithms — Complete Lesson</h1>
 
-            </ul>
-        </div>
-    </div>
-    <div id="topic-detail" class="">
+            <p data-i18n="lesson.intro.p1">
+                Operations on logarithms are rules that help us combine, separate, and simplify logarithmic expressions.
+                These rules come from exponent laws because logarithms and exponents are inverse ideas.
+            </p>
 
-        <div class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+            <div class="math-line">
+                \(\log_b a=c \quad \Longleftrightarrow \quad b^c=a\)
+            </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade" id="general-pane" role="tabpanel" aria-labelledby="general-tab"
-                             tabindex="0">
-                            <div class="container">
-                                <div class="container"><h1 style="text-align:center; margin-top: -60px">General
-                                    Information About
-                                    Operations Relating to
-                                    Logarithm</h1>
-                                    <img style="width:100%; border-radius:10px; margin:10px"
-                                         src="{% static 'images/myimages/logarithm_operation1.jpg' %}" alt="">
-                                    <img style="width:100%; border-radius:10px; margin:10px"
-                                         src="{% static 'images/myimages/logarithm_operation2.jpg' %}" alt="">
-                                    <img style="width:100%; border-radius:10px; margin:10px"
-                                         src="{% static 'images/myimages/logarithm_operation3.jpg' %}" alt="">
-                                    <img style="width:100%; border-radius:10px; margin:10px"
-                                         src="{% static 'images/myimages/logarithm_operation4.jpg' %}" alt="">
-                                </div>
-                            </div>
-                            <div class="container">
-                            </div>
-                        </div>
+            <p data-i18n="lesson.intro.p2">
+                In this lesson, we focus on the product rule, quotient rule, power rule, and change of base formula.
+            </p>
 
-                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                             aria-labelledby="design-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">Addition</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation8.jpg' %}" alt="">
-                        </div>
+            <div class="callout" data-i18n="lesson.intro.callout">
+                <strong>Main idea:</strong> Logarithm operations are shortcuts for working with multiplication, division, and powers inside logarithms.
+            </div>
+        </article>
 
-                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                             aria-labelledby="marketing-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">Subtraction</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation10.jpg' %}" alt="">
-                        </div>
 
-                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
-                             tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">Multiplication</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation14.jpg' %}" alt="">
-                        </div>
+        <article class="lesson-card">
+            <h2><span class="badge-num">1</span><span data-i18n="lesson.conditions.title">Before Using Logarithm Rules</span></h2>
 
-                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
-                             tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">Division</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation15.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation16.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation17.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/logarithm_operation18.jpg' %}" alt="">
+            <p data-i18n="lesson.conditions.p1">
+                Logarithm rules work only when the logarithms are valid and the bases match.
+            </p>
 
-                        </div>
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.conditions.card1.title">Same base</strong>
+                    <p data-i18n="lesson.conditions.card1.text">Most combining rules require the same base.</p>
+                    <div class="math-line">\(\log_b x+\log_b y\)</div>
+                </div>
 
-                    </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.conditions.card2.title">Positive arguments</strong>
+                    <p data-i18n="lesson.conditions.card2.text">The values inside the logarithms must be positive.</p>
+                    <div class="math-line">\(x&gt;0,\quad y&gt;0\)</div>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.conditions.card3.title">Valid base</strong>
+                    <p data-i18n="lesson.conditions.card3.text">The base must be positive and not equal to one.</p>
+                    <div class="math-line">\(b&gt;0,\quad b\ne1\)</div>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.conditions.card4.title">No sum rule</strong>
+                    <p data-i18n="lesson.conditions.card4.text">There is no simple rule for \(\log_b(x+y)\).</p>
                 </div>
             </div>
-        </div>
-    </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">2</span><span data-i18n="lesson.product.title">Product Rule</span></h2>
+
+            <p data-i18n="lesson.product.p1">
+                The product rule says that the logarithm of a product can be written as the sum of two logarithms.
+            </p>
+
+            <div class="math-line">
+                \(\log_b(xy)=\log_b x+\log_b y\)
+            </div>
+
+            <p data-i18n="lesson.product.p2">
+                This rule works in both directions. You can expand one logarithm into two, or combine two logarithms into one.
+            </p>
+
+            <h3 data-i18n="lesson.product.example1.title">Example 1: Expanding</h3>
+
+            <div class="math-line">
+                \(\log_2(8x)=\log_2 8+\log_2 x\)
+            </div>
+
+            <p data-i18n="lesson.product.example1.p1">
+                Since \(\log_2 8=3\), we get:
+            </p>
+
+            <div class="answer-final" data-i18n="lesson.product.example1.answer">
+                <span class="check">✓</span><span>\(\log_2(8x)=3+\log_2x\)</span>
+            </div>
+
+            <hr class="section-rule">
+
+            <h3 data-i18n="lesson.product.example2.title">Example 2: Combining</h3>
+
+            <div class="math-line">
+                \(\log_3 x+\log_3 5=\log_3(5x)\)
+            </div>
+
+            <div class="callout" data-i18n="lesson.product.callout">
+                <strong>Remember:</strong> Addition outside logarithms becomes multiplication inside one logarithm.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">3</span><span data-i18n="lesson.quotient.title">Quotient Rule</span></h2>
+
+            <p data-i18n="lesson.quotient.p1">
+                The quotient rule says that the logarithm of a quotient can be written as the difference of two logarithms.
+            </p>
+
+            <div class="math-line">
+                \(\log_b\left(\frac{x}{y}\right)=\log_b x-\log_b y\)
+            </div>
+
+            <p data-i18n="lesson.quotient.p2">
+                This rule also works in both directions.
+            </p>
+
+            <h3 data-i18n="lesson.quotient.example1.title">Example 1: Expanding</h3>
+
+            <div class="math-line">
+                \(\log_5\left(\frac{x}{25}\right)=\log_5x-\log_5 25\)
+            </div>
+
+            <p data-i18n="lesson.quotient.example1.p1">
+                Since \(\log_5 25=2\), we get:
+            </p>
+
+            <div class="answer-final" data-i18n="lesson.quotient.example1.answer">
+                <span class="check">✓</span><span>\(\log_5\left(\frac{x}{25}\right)=\log_5x-2\)</span>
+            </div>
+
+            <hr class="section-rule">
+
+            <h3 data-i18n="lesson.quotient.example2.title">Example 2: Combining</h3>
+
+            <div class="math-line">
+                \(\log_4 x-\log_4 y=\log_4\left(\frac{x}{y}\right)\)
+            </div>
+
+            <div class="callout" data-i18n="lesson.quotient.callout">
+                <strong>Remember:</strong> Subtraction outside logarithms becomes division inside one logarithm.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">4</span><span data-i18n="lesson.power.title">Power Rule</span></h2>
+
+            <p data-i18n="lesson.power.p1">
+                The power rule says that an exponent inside a logarithm can move to the front.
+            </p>
+
+            <div class="math-line">
+                \(\log_b(x^n)=n\log_bx\)
+            </div>
+
+            <h3 data-i18n="lesson.power.example1.title">Example 1: Expanding</h3>
+
+            <div class="math-line">
+                \(\log_2(x^5)=5\log_2x\)
+            </div>
+
+            <h3 data-i18n="lesson.power.example2.title">Example 2: Combining</h3>
+
+            <div class="math-line">
+                \(3\log_7x=\log_7(x^3)\)
+            </div>
+
+            <div class="callout" data-i18n="lesson.power.callout">
+                <strong>Important:</strong> The power rule works only when the exponent belongs to the argument of the logarithm.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">5</span><span data-i18n="lesson.expand.title">Expanding Logarithmic Expressions</span></h2>
+
+            <p data-i18n="lesson.expand.p1">
+                Expanding means rewriting one logarithm as several simpler logarithms.
+            </p>
+
+            <div class="math-line">
+                \(\log_2(8x^3y)\)
+            </div>
+
+            <div class="steps">
+                <div class="step" data-i18n="lesson.expand.s1">Use the product rule: \(\log_2 8+\log_2(x^3)+\log_2y\).</div>
+                <div class="step" data-i18n="lesson.expand.s2">Use the power rule: \(\log_2 8+3\log_2x+\log_2y\).</div>
+                <div class="step" data-i18n="lesson.expand.s3">Evaluate \(\log_2 8=3\).</div>
+            </div>
+
+            <div class="answer-final" data-i18n="lesson.expand.answer">
+                <span class="check">✓</span><span>Final Answer: \(3+3\log_2x+\log_2y\)</span>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">6</span><span data-i18n="lesson.condense.title">Condensing Logarithmic Expressions</span></h2>
+
+            <p data-i18n="lesson.condense.p1">
+                Condensing means rewriting several logarithms as one logarithm.
+            </p>
+
+            <div class="math-line">
+                \(2\log_3x+\log_3y-\log_3z\)
+            </div>
+
+            <div class="steps">
+                <div class="step" data-i18n="lesson.condense.s1">Move the coefficient using the power rule: \(\log_3(x^2)+\log_3y-\log_3z\).</div>
+                <div class="step" data-i18n="lesson.condense.s2">Combine addition using multiplication: \(\log_3(x^2y)-\log_3z\).</div>
+                <div class="step" data-i18n="lesson.condense.s3">Combine subtraction using division.</div>
+            </div>
+
+            <div class="answer-final" data-i18n="lesson.condense.answer">
+                <span class="check">✓</span><span>Final Answer: \(\log_3\left(\frac{x^2y}{z}\right)\)</span>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">7</span><span data-i18n="lesson.change.title">Change of Base Formula</span></h2>
+
+            <p data-i18n="lesson.change.p1">
+                The change of base formula lets us rewrite a logarithm using another base. This is useful for calculators.
+            </p>
+
+            <div class="math-line">
+                \(\log_ba=\frac{\log a}{\log b}\)
+            </div>
+
+            <p data-i18n="lesson.change.p2">
+                It can also be written with natural logarithms:
+            </p>
+
+            <div class="math-line">
+                \(\log_ba=\frac{\ln a}{\ln b}\)
+            </div>
+
+            <h3 data-i18n="lesson.change.example.title">Example</h3>
+
+            <div class="math-line">
+                \(\log_2 7=\frac{\log 7}{\log 2}\)
+            </div>
+
+            <div class="callout" data-i18n="lesson.change.callout">
+                <strong>Meaning:</strong> We changed a base \(2\) logarithm into base \(10\) logarithms.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">8</span><span data-i18n="lesson.reciprocal.title">Reciprocal Logarithm Rule</span></h2>
+
+            <p data-i18n="lesson.reciprocal.p1">
+                Another useful rule comes directly from the change of base formula. When a logarithm is in the denominator,
+                the base and the argument can switch positions.
+            </p>
+
+            <div class="math-line">
+                \(\frac{1}{\log_b a}=\log_a b\)
+            </div>
+
+            <p data-i18n="lesson.reciprocal.p2">
+                This works because of the change of base formula:
+            </p>
+
+            <div class="math-line">
+                \(\log_b a=\frac{\log a}{\log b}\)
+            </div>
+
+            <p data-i18n="lesson.reciprocal.p3">
+                If we take the reciprocal, the fraction flips:
+            </p>
+
+            <div class="math-line">
+                \(\frac{1}{\log_b a}=\frac{\log b}{\log a}=\log_a b\)
+            </div>
+
+            <h3 data-i18n="lesson.reciprocal.example.title">Example</h3>
+
+            <div class="math-line">
+                \(\frac{1}{\log_2 8}=\log_8 2\)
+            </div>
+
+            <p data-i18n="lesson.reciprocal.example.p1">
+                Since \(\log_2 8=3\), the left side is \(\frac{1}{3}\).
+                Also, \(\log_8 2=\frac{1}{3}\), because \(8^{1/3}=2\).
+            </p>
+
+            <div class="answer-final" data-i18n="lesson.reciprocal.example.answer">
+                <span class="check">✓</span><span>So, \(\frac{1}{\log_2 8}=\log_8 2=\frac{1}{3}\)</span>
+            </div>
+
+            <div class="callout" data-i18n="lesson.reciprocal.callout">
+                <strong>Memory trick:</strong> If the logarithm is under \(1\), switch the base and the argument.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">9</span><span data-i18n="lesson.mistakes.title">Common Mistakes</span></h2>
+
+            <h3 data-i18n="lesson.mistakes.m1.title">1. Using a fake addition rule</h3>
+            <p data-i18n="lesson.mistakes.m1.text">
+                \(\log_b(x+y)\) is not equal to \(\log_bx+\log_by\).
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m2.title">2. Using a fake subtraction rule</h3>
+            <p data-i18n="lesson.mistakes.m2.text">
+                \(\log_b(x-y)\) is not equal to \(\log_bx-\log_by\).
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m3.title">3. Combining logarithms with different bases</h3>
+            <p data-i18n="lesson.mistakes.m3.text">
+                You cannot combine \(\log_2x+\log_3y\) using the product rule because the bases are different.
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m4.title">4. Forgetting domain restrictions</h3>
+            <p data-i18n="lesson.mistakes.m4.text">
+                Every logarithm argument must be positive. Always check that the expression inside each logarithm is greater than zero.
+            </p>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">10</span><span data-i18n="lesson.summary.title">Final Summary</span></h2>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.summary.table.rule">Rule</th>
+                        <th data-i18n="lesson.summary.table.formula">Formula</th>
+                        <th data-i18n="lesson.summary.table.meaning">Meaning</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td data-i18n="lesson.summary.productName">Product Rule</td>
+                        <td>\(\log_b(xy)=\log_bx+\log_by\)</td>
+                        <td data-i18n="lesson.summary.productText">Multiplication becomes addition.</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="lesson.summary.quotientName">Quotient Rule</td>
+                        <td>\(\log_b\left(\frac{x}{y}\right)=\log_bx-\log_by\)</td>
+                        <td data-i18n="lesson.summary.quotientText">Division becomes subtraction.</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="lesson.summary.powerName">Power Rule</td>
+                        <td>\(\log_b(x^n)=n\log_bx\)</td>
+                        <td data-i18n="lesson.summary.powerText">An exponent can move to the front.</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="lesson.summary.changeName">Change of Base</td>
+                        <td>\(\log_ba=\frac{\log a}{\log b}\)</td>
+                        <td data-i18n="lesson.summary.changeText">A logarithm can be rewritten using another base.</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="lesson.summary.reciprocalName">Reciprocal Rule</td>
+                        <td>\(\frac{1}{\log_b a}=\log_a b\)</td>
+                        <td data-i18n="lesson.summary.reciprocalText">The base and argument switch positions.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr class="section-rule">
+
+            <h3 data-i18n="lesson.summary.try.title">Try It Yourself</h3>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p1.title">Practice 1</strong>
+                    <div class="math-line">\(\log_2(4x)\)</div>
+                    <p data-i18n="lesson.summary.p1.q">Expand the expression.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p2.title">Practice 2</strong>
+                    <div class="math-line">\(\log_5x-\log_5y\)</div>
+                    <p data-i18n="lesson.summary.p2.q">Condense into one logarithm.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p3.title">Practice 3</strong>
+                    <div class="math-line">\(3\log_2x\)</div>
+                    <p data-i18n="lesson.summary.p3.q">Use the power rule.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p4.title">Practice 4</strong>
+                    <div class="math-line">\(\log_3 10\)</div>
+                    <p data-i18n="lesson.summary.p4.q">Rewrite using the change of base formula.</p>
+                </div>
+            </div>
+        </article>
+
+    </section>
 </main>
 
 
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                current: "Operations on Logarithms",
+                hero: "Introduction to <br>Operations on Logarithms",
+                readMore: "Read More",
+                backTop: "Back to top",
+                heroAlt: "Operations on logarithms visual",
+                practice: "Practice with Operations on Logarithms"
+            },
+            lesson: {
+                title: "Operations on Logarithms — Complete Lesson",
+                intro: {
+                    p1: "Operations on logarithms are rules that help us combine, separate, and simplify logarithmic expressions. These rules come from exponent laws because logarithms and exponents are inverse ideas.",
+                    p2: "In this lesson, we focus on the product rule, quotient rule, power rule, and change of base formula.",
+                    callout: "<strong>Main idea:</strong> Logarithm operations are shortcuts for working with multiplication, division, and powers inside logarithms."
+                },
+                conditions: {
+                    title: "Before Using Logarithm Rules",
+                    p1: "Logarithm rules work only when the logarithms are valid and the bases match.",
+                    card1: {
+                        title: "Same base",
+                        text: "Most combining rules require the same base."
+                    },
+                    card2: {
+                        title: "Positive arguments",
+                        text: "The values inside the logarithms must be positive."
+                    },
+                    card3: {
+                        title: "Valid base",
+                        text: "The base must be positive and not equal to one."
+                    },
+                    card4: {
+                        title: "No sum rule",
+                        text: "There is no simple rule for \\(\\log_b(x+y)\\)."
+                    }
+                },
+                product: {
+                    title: "Product Rule",
+                    p1: "The product rule says that the logarithm of a product can be written as the sum of two logarithms.",
+                    p2: "This rule works in both directions. You can expand one logarithm into two, or combine two logarithms into one.",
+                    example1: {
+                        title: "Example 1: Expanding",
+                        p1: "Since \\(\\log_2 8=3\\), we get:",
+                        answer: "<span class=\"check\">✓</span><span>\\(\\log_2(8x)=3+\\log_2x\\)</span>"
+                    },
+                    example2: {
+                        title: "Example 2: Combining"
+                    },
+                    callout: "<strong>Remember:</strong> Addition outside logarithms becomes multiplication inside one logarithm."
+                },
+                quotient: {
+                    title: "Quotient Rule",
+                    p1: "The quotient rule says that the logarithm of a quotient can be written as the difference of two logarithms.",
+                    p2: "This rule also works in both directions.",
+                    example1: {
+                        title: "Example 1: Expanding",
+                        p1: "Since \\(\\log_5 25=2\\), we get:",
+                        answer: "<span class=\"check\">✓</span><span>\\(\\log_5\\left(\\frac{x}{25}\\right)=\\log_5x-2\\)</span>"
+                    },
+                    example2: {
+                        title: "Example 2: Combining"
+                    },
+                    callout: "<strong>Remember:</strong> Subtraction outside logarithms becomes division inside one logarithm."
+                },
+                power: {
+                    title: "Power Rule",
+                    p1: "The power rule says that an exponent inside a logarithm can move to the front.",
+                    example1: {
+                        title: "Example 1: Expanding"
+                    },
+                    example2: {
+                        title: "Example 2: Combining"
+                    },
+                    callout: "<strong>Important:</strong> The power rule works only when the exponent belongs to the argument of the logarithm."
+                },
+                expand: {
+                    title: "Expanding Logarithmic Expressions",
+                    p1: "Expanding means rewriting one logarithm as several simpler logarithms.",
+                    s1: "Use the product rule: \\(\\log_2 8+\\log_2(x^3)+\\log_2y\\).",
+                    s2: "Use the power rule: \\(\\log_2 8+3\\log_2x+\\log_2y\\).",
+                    s3: "Evaluate \\(\\log_2 8=3\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final Answer: \\(3+3\\log_2x+\\log_2y\\)</span>"
+                },
+                condense: {
+                    title: "Condensing Logarithmic Expressions",
+                    p1: "Condensing means rewriting several logarithms as one logarithm.",
+                    s1: "Move the coefficient using the power rule: \\(\\log_3(x^2)+\\log_3y-\\log_3z\\).",
+                    s2: "Combine addition using multiplication: \\(\\log_3(x^2y)-\\log_3z\\).",
+                    s3: "Combine subtraction using division.",
+                    answer: "<span class=\"check\">✓</span><span>Final Answer: \\(\\log_3\\left(\\frac{x^2y}{z}\\right)\\)</span>"
+                },
+                change: {
+                    title: "Change of Base Formula",
+                    p1: "The change of base formula lets us rewrite a logarithm using another base. This is useful for calculators.",
+                    p2: "It can also be written with natural logarithms:",
+                    example: {
+                        title: "Example"
+                    },
+                    callout: "<strong>Meaning:</strong> We changed a base \\(2\\) logarithm into base \\(10\\) logarithms."
+                },
+                reciprocal: {
+                    title: "Reciprocal Logarithm Rule",
+                    p1: "Another useful rule comes directly from the change of base formula. When a logarithm is in the denominator, the base and the argument can switch positions.",
+                    p2: "This works because of the change of base formula:",
+                    p3: "If we take the reciprocal, the fraction flips:",
+                    example: {
+                        title: "Example",
+                        p1: "Since \\(\\log_2 8=3\\), the left side is \\(\\frac{1}{3}\\). Also, \\(\\log_8 2=\\frac{1}{3}\\), because \\(8^{1/3}=2\\).",
+                        answer: "<span class=\"check\">✓</span><span>So, \\(\\frac{1}{\\log_2 8}=\\log_8 2=\\frac{1}{3}\\)</span>"
+                    },
+                    callout: "<strong>Memory trick:</strong> If the logarithm is under \\(1\\), switch the base and the argument."
+                },
+                mistakes: {
+                    title: "Common Mistakes",
+                    m1: {
+                        title: "1. Using a fake addition rule",
+                        text: "\\(\\log_b(x+y)\\) is not equal to \\(\\log_bx+\\log_by\\)."
+                    },
+                    m2: {
+                        title: "2. Using a fake subtraction rule",
+                        text: "\\(\\log_b(x-y)\\) is not equal to \\(\\log_bx-\\log_by\\)."
+                    },
+                    m3: {
+                        title: "3. Combining logarithms with different bases",
+                        text: "You cannot combine \\(\\log_2x+\\log_3y\\) using the product rule because the bases are different."
+                    },
+                    m4: {
+                        title: "4. Forgetting domain restrictions",
+                        text: "Every logarithm argument must be positive. Always check that the expression inside each logarithm is greater than zero."
+                    }
+                },
+                summary: {
+                    title: "Final Summary",
+                    table: {
+                        rule: "Rule",
+                        formula: "Formula",
+                        meaning: "Meaning"
+                    },
+                    productName: "Product Rule",
+                    productText: "Multiplication becomes addition.",
+                    quotientName: "Quotient Rule",
+                    quotientText: "Division becomes subtraction.",
+                    powerName: "Power Rule",
+                    powerText: "An exponent can move to the front.",
+                    changeName: "Change of Base",
+                    changeText: "A logarithm can be rewritten using another base.",
+                    reciprocalName: "Reciprocal Rule",
+                    reciprocalText: "The base and argument switch positions.",
+                    try: {
+                        title: "Try It Yourself"
+                    },
+                    p1: {
+                        title: "Practice 1",
+                        q: "Expand the expression."
+                    },
+                    p2: {
+                        title: "Practice 2",
+                        q: "Condense into one logarithm."
+                    },
+                    p3: {
+                        title: "Practice 3",
+                        q: "Use the power rule."
+                    },
+                    p4: {
+                        title: "Practice 4",
+                        q: "Rewrite using the change of base formula."
+                    }
+                }
+            }
+        },
+
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo'li",
+                homepage: "Bosh sahifa",
+                current: "Logarifmlar ustida amallar",
+                hero: "Logarifmlar ustida <br>amallarga kirish",
+                readMore: "Batafsil o'qish",
+                backTop: "Yuqoriga qaytish",
+                heroAlt: "Logarifmlar ustida amallar rasmi",
+                practice: "Logarifmlar ustida amallar bo'yicha mashq"
+            },
+            lesson: {
+                title: "Logarifmlar ustida amallar — To'liq dars",
+                intro: {
+                    p1: "Logarifmlar ustida amallar logarifmik ifodalarni birlashtirish, ajratish va soddalashtirishga yordam beradigan qoidalardir. Bu qoidalar daraja qonunlaridan kelib chiqadi, chunki logarifmlar va darajalar o'zaro teskari tushunchalardir.",
+                    p2: "Bu darsda ko'paytma qoidasi, bo'linma qoidasi, daraja qoidasi va asosni almashtirish formulasini o'rganamiz.",
+                    callout: "<strong>Asosiy g'oya:</strong> Logarifm amallari logarifm ichidagi ko'paytirish, bo'lish va darajalar bilan ishlash uchun qisqa yo'ldir."
+                },
+                conditions: {
+                    title: "Logarifm qoidalaridan oldin",
+                    p1: "Logarifm qoidalari faqat logarifmlar mavjud bo'lganda va asoslar mos kelganda ishlaydi.",
+                    card1: {
+                        title: "Bir xil asos",
+                        text: "Ko'p birlashtirish qoidalari bir xil asosni talab qiladi."
+                    },
+                    card2: {
+                        title: "Musbat argumentlar",
+                        text: "Logarifm ichidagi qiymatlar musbat bo'lishi kerak."
+                    },
+                    card3: {
+                        title: "Yaroqli asos",
+                        text: "Asos musbat bo'lishi va birga teng bo'lmasligi kerak."
+                    },
+                    card4: {
+                        title: "Yig'indi qoidasi yo'q",
+                        text: "\\(\\log_b(x+y)\\) uchun oddiy qoida yo'q."
+                    }
+                },
+                product: {
+                    title: "Ko'paytma qoidasi",
+                    p1: "Ko'paytma qoidasi ko'paytmaning logarifmini ikki logarifm yig'indisi sifatida yozish mumkinligini aytadi.",
+                    p2: "Bu qoida ikki tomonga ham ishlaydi. Bitta logarifmni ikkiga ajratish yoki ikkita logarifmni bittaga birlashtirish mumkin.",
+                    example1: {
+                        title: "Misol 1: Ajratish",
+                        p1: "\\(\\log_2 8=3\\) bo'lgani uchun:",
+                        answer: "<span class=\"check\">✓</span><span>\\(\\log_2(8x)=3+\\log_2x\\)</span>"
+                    },
+                    example2: {
+                        title: "Misol 2: Birlashtirish"
+                    },
+                    callout: "<strong>Eslab qoling:</strong> Logarifmlar tashqarisidagi qo'shish bitta logarifm ichida ko'paytirishga aylanadi."
+                },
+                quotient: {
+                    title: "Bo'linma qoidasi",
+                    p1: "Bo'linma qoidasi bo'linmaning logarifmini ikki logarifm ayirmasi sifatida yozish mumkinligini aytadi.",
+                    p2: "Bu qoida ham ikki tomonga ishlaydi.",
+                    example1: {
+                        title: "Misol 1: Ajratish",
+                        p1: "\\(\\log_5 25=2\\) bo'lgani uchun:",
+                        answer: "<span class=\"check\">✓</span><span>\\(\\log_5\\left(\\frac{x}{25}\\right)=\\log_5x-2\\)</span>"
+                    },
+                    example2: {
+                        title: "Misol 2: Birlashtirish"
+                    },
+                    callout: "<strong>Eslab qoling:</strong> Logarifmlar tashqarisidagi ayirish bitta logarifm ichida bo'lishga aylanadi."
+                },
+                power: {
+                    title: "Daraja qoidasi",
+                    p1: "Daraja qoidasi logarifm ichidagi darajani oldinga ko'chirish mumkinligini aytadi.",
+                    example1: {
+                        title: "Misol 1: Ajratish"
+                    },
+                    example2: {
+                        title: "Misol 2: Birlashtirish"
+                    },
+                    callout: "<strong>Muhim:</strong> Daraja qoidasi faqat daraja logarifm argumentiga tegishli bo'lganda ishlaydi."
+                },
+                expand: {
+                    title: "Logarifmik ifodalarni ajratish",
+                    p1: "Ajratish bitta logarifmni bir nechta sodda logarifmlarga aylantirish demakdir.",
+                    s1: "Ko'paytma qoidasidan foydalaning: \\(\\log_2 8+\\log_2(x^3)+\\log_2y\\).",
+                    s2: "Daraja qoidasidan foydalaning: \\(\\log_2 8+3\\log_2x+\\log_2y\\).",
+                    s3: "\\(\\log_2 8=3\\) ni hisoblang.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(3+3\\log_2x+\\log_2y\\)</span>"
+                },
+                condense: {
+                    title: "Logarifmik ifodalarni birlashtirish",
+                    p1: "Birlashtirish bir nechta logarifmni bitta logarifmga aylantirish demakdir.",
+                    s1: "Koeffitsiyentni daraja qoidasi bilan ko'chiring: \\(\\log_3(x^2)+\\log_3y-\\log_3z\\).",
+                    s2: "Qo'shishni ko'paytirish orqali birlashtiring: \\(\\log_3(x^2y)-\\log_3z\\).",
+                    s3: "Ayirishni bo'lish orqali birlashtiring.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\log_3\\left(\\frac{x^2y}{z}\\right)\\)</span>"
+                },
+                change: {
+                    title: "Asosni almashtirish formulasi",
+                    p1: "Asosni almashtirish formulasi logarifmni boshqa asos yordamida qayta yozishga imkon beradi. Bu kalkulyator uchun qulay.",
+                    p2: "Uni natural logarifmlar orqali ham yozish mumkin:",
+                    example: {
+                        title: "Misol"
+                    },
+                    callout: "<strong>Ma'nosi:</strong> Biz asos \\(2\\) bo'lgan logarifmni asos \\(10\\) bo'lgan logarifmlarga aylantirdik."
+                },
+                reciprocal: {
+                    title: "Teskari logarifm qoidasi",
+                    p1: "Yana bir foydali qoida bevosita asosni almashtirish formulasidan kelib chiqadi. Agar logarifm maxrajda turgan bo'lsa, asos va argument o'rin almashadi.",
+                    p2: "Bu asosni almashtirish formulasi sababli ishlaydi:",
+                    p3: "Agar teskari qiymat olsak, kasr ag'dariladi:",
+                    example: {
+                        title: "Misol",
+                        p1: "\\(\\log_2 8=3\\) bo'lgani uchun chap tomon \\(\\frac{1}{3}\\) ga teng. Shuningdek, \\(\\log_8 2=\\frac{1}{3}\\), chunki \\(8^{1/3}=2\\).",
+                        answer: "<span class=\"check\">✓</span><span>Demak, \\(\\frac{1}{\\log_2 8}=\\log_8 2=\\frac{1}{3}\\)</span>"
+                    },
+                    callout: "<strong>Eslab qolish usuli:</strong> Agar logarifm \\(1\\) ning ostida bo'lsa, asos va argument o'rin almashadi."
+                },
+                mistakes: {
+                    title: "Ko'p uchraydigan xatolar",
+                    m1: {
+                        title: "1. Soxta qo'shish qoidasidan foydalanish",
+                        text: "\\(\\log_b(x+y)\\) \\(\\log_bx+\\log_by\\) ga teng emas."
+                    },
+                    m2: {
+                        title: "2. Soxta ayirish qoidasidan foydalanish",
+                        text: "\\(\\log_b(x-y)\\) \\(\\log_bx-\\log_by\\) ga teng emas."
+                    },
+                    m3: {
+                        title: "3. Har xil asosli logarifmlarni birlashtirish",
+                        text: "\\(\\log_2x+\\log_3y\\) ni ko'paytma qoidasi bilan birlashtirib bo'lmaydi, chunki asoslar har xil."
+                    },
+                    m4: {
+                        title: "4. Aniqlanish sohasini unutish",
+                        text: "Har bir logarifm argumenti musbat bo'lishi kerak. Har doim logarifm ichidagi ifoda noldan katta ekanini tekshiring."
+                    }
+                },
+                summary: {
+                    title: "Yakuniy xulosa",
+                    table: {
+                        rule: "Qoida",
+                        formula: "Formula",
+                        meaning: "Ma'nosi"
+                    },
+                    productName: "Ko'paytma qoidasi",
+                    productText: "Ko'paytirish qo'shishga aylanadi.",
+                    quotientName: "Bo'linma qoidasi",
+                    quotientText: "Bo'lish ayirishga aylanadi.",
+                    powerName: "Daraja qoidasi",
+                    powerText: "Darajani oldinga ko'chirish mumkin.",
+                    changeName: "Asosni almashtirish",
+                    changeText: "Logarifmni boshqa asos orqali yozish mumkin.",
+                    reciprocalName: "Teskari qoida",
+                    reciprocalText: "Asos va argument o'rin almashadi.",
+                    try: {
+                        title: "O'zingiz urinib ko'ring"
+                    },
+                    p1: {
+                        title: "Mashq 1",
+                        q: "Ifodani ajrating."
+                    },
+                    p2: {
+                        title: "Mashq 2",
+                        q: "Bitta logarifmga birlashtiring."
+                    },
+                    p3: {
+                        title: "Mashq 3",
+                        q: "Daraja qoidasidan foydalaning."
+                    },
+                    p4: {
+                        title: "Mashq 4",
+                        q: "Asosni almashtirish formulasi orqali qayta yozing."
+                    }
+                }
+            }
+        }
+    };
+
+    function getNestedValue(object, path) {
+        return path.split('.').reduce(function (current, key) {
+            return current && current[key] !== undefined ? current[key] : undefined;
+        }, object);
+    }
+
+    function renderMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function language(selectedLanguage) {
+        const dictionary = translations[selectedLanguage] || translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.innerHTML = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-alt');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-title');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('title', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-language-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-language-button') === selectedLanguage);
+        });
+
+        document.documentElement.lang = selectedLanguage;
+        localStorage.setItem('mathAcademyLanguage', selectedLanguage);
+
+        renderMath();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+        language(savedLanguage);
+    });
+</script>
+
 </body>
 </html>

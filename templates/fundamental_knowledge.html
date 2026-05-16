@@ -25,6 +25,203 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <style>
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #fff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #13547a;
+            background: #fff;
+        }
+
+        .branch-explorer {
+            display: grid;
+            grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+            gap: 18px;
+        }
+
+        .branch-tabs {
+            display: grid;
+            gap: 10px;
+        }
+
+        .branch-tab {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            min-height: 58px;
+            padding: 12px 14px;
+            border: 1px solid #dde7f0;
+            border-radius: 8px;
+            color: #1f2937;
+            background: #fff;
+            font-weight: 700;
+            text-align: left;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .branch-tab:hover,
+        .branch-tab:focus {
+            border-color: #13547a;
+            box-shadow: 0 12px 28px rgba(19, 84, 122, 0.14);
+            transform: translateY(-1px);
+        }
+
+        .branch-tab.is-active {
+            color: #fff;
+            border-color: #13547a;
+            background: #13547a;
+        }
+
+        .branch-tab__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            color: #13547a;
+            background: #e8f4f8;
+            font-size: 18px;
+            flex: 0 0 auto;
+        }
+
+        .branch-tab.is-active .branch-tab__icon {
+            color: #13547a;
+            background: #fff;
+        }
+
+        .branch-panel {
+            min-height: 100%;
+            padding: 26px;
+            border: 1px solid #d9e8ef;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(13, 84, 122, 0.1);
+        }
+
+        .branch-panel.is-mobile-inline {
+            grid-column: 1 / -1;
+            min-height: auto;
+        }
+
+        .branch-panel__meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .branch-panel__title {
+            margin: 0 0 12px;
+            color: #0f172a;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .branch-panel__description {
+            margin-bottom: 22px;
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .concept-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .concept-chip {
+            border: 1px solid #bfd9e5;
+            border-radius: 999px;
+            padding: 8px 14px;
+            color: #13547a;
+            background: #f5fbfd;
+            font-weight: 700;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .concept-chip:hover,
+        .concept-chip:focus,
+        .concept-chip.is-active {
+            color: #fff;
+            border-color: #13547a;
+            background: #13547a;
+        }
+
+        .concept-preview {
+            padding: 18px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border-left: 4px solid #13547a;
+        }
+
+        .concept-preview__label {
+            display: block;
+            margin-bottom: 6px;
+            color: #13547a;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .concept-preview p {
+            margin: 0;
+            color: #263445;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 768px) {
+            .branch-explorer {
+                grid-template-columns: 1fr;
+            }
+
+            .branch-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .branch-tab {
+                min-height: 54px;
+            }
+
+            .branch-panel.is-mobile-inline {
+                margin: 2px 0 8px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .branch-panel {
+                padding: 20px;
+            }
+
+            .branch-panel__title {
+                font-size: 24px;
+            }
+        }
+    </style>
     <!--
 
     TemplateMo 590 topic listing
@@ -45,7 +242,14 @@
                 <span>Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
+            <div class="language-switch ms-auto me-3" aria-label="Language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en"
+                        onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz"
+                        onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
 
@@ -64,17 +268,17 @@
                 <div class="col-lg-5 col-12 mb-5">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="nav.homepage">Homepage</a></li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Fundamental Knowledge</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="nav.fundamental">Fundamental Knowledge</li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Math</h2>
+                    <h2 class="text-white" data-i18n="hero.title">Introduction to <br>Math</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4"
+                           data-i18n="hero.readMore">Read More</a>
 
                         <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
                     </div>
@@ -96,179 +300,85 @@
 
         <!-- Introduction -->
         <section class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-2xl font-semibold text-indigo-600 mb-3">Fundamentals of Mathematics</h2>
-            <p>
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-3" data-i18n="intro.title">Fundamentals of Mathematics</h2>
+            <p data-i18n="intro.description">
                 Mathematics is the study of quantity, structure, space, and change. It provides a logical and abstract
                 framework for understanding and modeling the natural world. Below is an overview of the fundamental
                 branches of mathematics and their key concepts.
             </p>
         </section>
 
-        <!-- Dynamic Accordion -->
+        <!-- Interactive Branch Explorer -->
         <section>
-            <h2 class="text-2xl font-bold mb-4 text-indigo-600">1. Main Branches of Mathematics</h2>
-            <div class="space-y-4" x-data="{open:null}">
+            <h2 class="text-2xl font-bold mb-2 text-indigo-600" data-i18n="branches.title">1. Main Branches of Mathematics</h2>
+            <p class="text-slate-600 mb-4" data-i18n="branches.instructions">
+                Choose a branch to see its core idea, then select a concept chip to focus on a specific detail.
+            </p>
 
-                <!-- Arithmetic -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 1 ? open = null : open = 1">
-                        ➕ Arithmetic
-                        <span x-show="open !== 1">➕</span>
-                        <span x-show="open === 1">➖</span>
+            <div class="branch-explorer" data-branch-explorer>
+                <div class="branch-tabs" role="tablist" aria-label="Mathematics branches">
+                    <button class="branch-tab is-active" type="button" role="tab" data-branch-tab="arithmetic">
+                        <span class="branch-tab__icon"><i class="bi bi-123"></i></span>
+                        <span data-i18n="arithmetic.title">Arithmetic</span>
                     </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 1" x-transition>
-                        <p>Arithmetic is the study of numbers and basic operations.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Natural numbers: 1, 2, 3, …</li>
-                            <li>Integers: … -2, -1, 0, 1, 2 …</li>
-                            <li>Rational numbers: a/b where b ≠ 0</li>
-                            <li>Irrational numbers: √2, π, e …</li>
-                            <li>Complex numbers: a + bi, where i² = -1</li>
-                        </ul>
-                    </div>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="algebra">
+                        <span class="branch-tab__icon"><i class="bi bi-x-lg"></i></span>
+                        <span data-i18n="algebra.title">Algebra</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="geometry">
+                        <span class="branch-tab__icon"><i class="bi bi-triangle"></i></span>
+                        <span data-i18n="geometry.title">Geometry</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="trigonometry">
+                        <span class="branch-tab__icon"><i class="bi bi-rulers"></i></span>
+                        <span data-i18n="trigonometry.title">Trigonometry</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="analysis">
+                        <span class="branch-tab__icon"><i class="bi bi-graph-up"></i></span>
+                        <span data-i18n="analysis.title">Mathematical Analysis</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="probability">
+                        <span class="branch-tab__icon"><i class="bi bi-bar-chart"></i></span>
+                        <span data-i18n="probability.title">Probability & Statistics</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="discrete">
+                        <span class="branch-tab__icon"><i class="bi bi-diagram-3"></i></span>
+                        <span data-i18n="discrete.title">Discrete Mathematics</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="logic">
+                        <span class="branch-tab__icon"><i class="bi bi-patch-check"></i></span>
+                        <span data-i18n="logic.tabTitle">Logic & Proofs</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="applications">
+                        <span class="branch-tab__icon"><i class="bi bi-cpu"></i></span>
+                        <span data-i18n="applications.tabTitle">Applications</span>
+                    </button>
+                    <button class="branch-tab" type="button" role="tab" data-branch-tab="conclusion">
+                        <span class="branch-tab__icon"><i class="bi bi-stars"></i></span>
+                        <span data-i18n="conclusion.title">Conclusion</span>
+                    </button>
                 </div>
 
-                <!-- Algebra -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 2 ? open = null : open = 2">
-                        🔤 Algebra
-                        <span x-show="open !== 2">➕</span>
-                        <span x-show="open === 2">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 2" x-transition>
-                        <p>Algebra deals with symbols and rules for manipulating them.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Equations and inequalities</li>
-                            <li>Functions: linear, quadratic, exponential</li>
-                            <li>Matrices and determinants</li>
-                        </ul>
+                <article class="branch-panel" role="tabpanel" aria-live="polite">
+                    <div class="branch-panel__meta">
+                        <span data-i18n="branches.selectedLabel">Selected branch</span>
+                        <span data-branch-counter>1 / 7</span>
                     </div>
-                </div>
+                    <h3 class="branch-panel__title" data-branch-title>Arithmetic</h3>
+                    <p class="branch-panel__description" data-branch-description>
+                        Arithmetic is the study of numbers and basic operations.
+                    </p>
 
-                <!-- Geometry -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 3 ? open = null : open = 3">
-                        📐 Geometry
-                        <span x-show="open !== 3">➕</span>
-                        <span x-show="open === 3">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 3" x-transition>
-                        <p>Geometry studies shapes, sizes, and properties of space.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Euclidean: Triangles, circles</li>
-                            <li>Analytic: Coordinates and equations</li>
-                            <li>Affine and projective geometry</li>
-                        </ul>
-                    </div>
-                </div>
+                    <div class="concept-cloud" data-branch-concepts></div>
 
-                <!-- Trigonometry -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 4 ? open = null : open = 4">
-                        📏 Trigonometry
-                        <span x-show="open !== 4">➕</span>
-                        <span x-show="open === 4">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 4" x-transition>
-                        <p>Trigonometry studies relations between angles and sides.</p>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Sine, Cosine, Tangent, Cotangent</li>
-                            <li>Trigonometric identities</li>
-                        </ul>
+                    <div class="concept-preview">
+                        <span class="concept-preview__label" data-i18n="branches.focusLabel">Focus point</span>
+                        <p data-concept-detail>Natural numbers: 1, 2, 3, ...</p>
                     </div>
-                </div>
-
-                <!-- Analysis -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 5 ? open = null : open = 5">
-                        ⚡ Mathematical Analysis
-                        <span x-show="open !== 5">➕</span>
-                        <span x-show="open === 5">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 5" x-transition>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Limits and continuity</li>
-                            <li>Differentiation</li>
-                            <li>Integration</li>
-                            <li>Series and convergence</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Probability & Statistics -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 6 ? open = null : open = 6">
-                        🎲 Probability & Statistics
-                        <span x-show="open !== 6">➕</span>
-                        <span x-show="open === 6">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 6" x-transition>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Combinatorics</li>
-                            <li>Distributions: Normal, Poisson, Binomial</li>
-                            <li>Statistical analysis & regression</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Discrete Mathematics -->
-                <div class="bg-white rounded-xl shadow">
-                    <button class="w-full text-left px-6 py-4 font-semibold flex justify-between items-center"
-                            @click="open === 7 ? open = null : open = 7">
-                        🧩 Discrete Mathematics
-                        <span x-show="open !== 7">➕</span>
-                        <span x-show="open === 7">➖</span>
-                    </button>
-                    <div class="px-6 pb-4 text-gray-700" x-show="open === 7" x-transition>
-                        <ul class="list-disc list-inside mt-2">
-                            <li>Logic and set theory</li>
-                            <li>Graph theory</li>
-                            <li>Algorithms and computation</li>
-                        </ul>
-                    </div>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- Logic and Proofs -->
-        <section class="bg-white p-6 rounded-2xl shadow">
-            <h2 class="text-2xl font-semibold text-indigo-600 mb-3">2. Mathematical Logic and Proofs</h2>
-            <p>
-                Mathematics is built on logical reasoning and proof techniques.
-            </p>
-            <ul class="list-disc list-inside mt-2">
-                <li>Axioms and Theorems</li>
-                <li>Proof methods: direct, contradiction, induction</li>
-            </ul>
-            <p class="mt-2"><b>Example:</b> Pythagorean theorem: <i>a² + b² = c²</i></p>
-        </section>
-
-        <!-- Applications -->
-        <section class="bg-white p-6 rounded-2xl shadow">
-            <h2 class="text-2xl font-semibold text-indigo-600 mb-3">3. Applications of Mathematics</h2>
-            <ul class="list-disc list-inside">
-                <li>Physics – mechanics, quantum theory</li>
-                <li>Engineering – electronics, automation</li>
-                <li>Economics – financial modeling</li>
-                <li>Computer Science – algorithms, AI</li>
-                <li>Astronomy – orbital mechanics</li>
-            </ul>
-        </section>
-
-        <!-- Conclusion -->
-        <section class="text-white p-6 rounded-2xl shadow text-center">
-            <h2 class="text-2xl font-bold mb-3">Conclusion</h2>
-            <p>
-                Mathematics is the foundation of science and technology, providing essential tools for
-                problem-solving and discovery.
-            </p>
-        </section>
     </main>
 </main>
 
@@ -278,6 +388,357 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            "nav.homepage": "Homepage",
+            "nav.fundamental": "Fundamental Knowledge",
+            "hero.title": "Introduction to <br>Math",
+            "hero.readMore": "Read More",
+            "intro.title": "Fundamentals of Mathematics",
+            "intro.description": "Mathematics is the study of quantity, structure, space, and change. It provides a logical and abstract framework for understanding and modeling the natural world. Below is an overview of the fundamental branches of mathematics and their key concepts.",
+            "branches.title": "1. Main Branches of Mathematics",
+            "branches.instructions": "Choose a branch to see its core idea, then select a concept chip to focus on a specific detail.",
+            "branches.selectedLabel": "Selected branch",
+            "branches.focusLabel": "Focus point",
+            "arithmetic.title": "Arithmetic",
+            "arithmetic.description": "Arithmetic is the study of numbers and basic operations.",
+            "arithmetic.natural": "Natural numbers: 1, 2, 3, ...",
+            "arithmetic.integers": "Integers: ... -2, -1, 0, 1, 2 ...",
+            "arithmetic.rational": "Rational numbers: a/b where b != 0",
+            "arithmetic.irrational": "Irrational numbers: sqrt(2), pi, e ...",
+            "arithmetic.complex": "Complex numbers: a + bi, where i^2 = -1",
+            "algebra.title": "Algebra",
+            "algebra.description": "Algebra deals with symbols and rules for manipulating them.",
+            "algebra.equations": "Equations and inequalities",
+            "algebra.functions": "Functions: linear, quadratic, exponential",
+            "algebra.matrices": "Matrices and determinants",
+            "geometry.title": "Geometry",
+            "geometry.description": "Geometry studies shapes, sizes, and properties of space.",
+            "geometry.euclidean": "Euclidean: Triangles, circles",
+            "geometry.analytic": "Analytic: Coordinates and equations",
+            "geometry.affine": "Affine and projective geometry",
+            "trigonometry.title": "Trigonometry",
+            "trigonometry.description": "Trigonometry studies relations between angles and sides.",
+            "trigonometry.functions": "Sine, Cosine, Tangent, Cotangent",
+            "trigonometry.identities": "Trigonometric identities",
+            "analysis.title": "Mathematical Analysis",
+            "analysis.description": "Mathematical analysis studies change, accumulation, and infinite processes.",
+            "analysis.limits": "Limits and continuity",
+            "analysis.differentiation": "Differentiation",
+            "analysis.integration": "Integration",
+            "analysis.series": "Series and convergence",
+            "probability.title": "Probability & Statistics",
+            "probability.description": "Probability and statistics help describe uncertainty, data, and patterns.",
+            "probability.combinatorics": "Combinatorics",
+            "probability.distributions": "Distributions: Normal, Poisson, Binomial",
+            "probability.analysis": "Statistical analysis & regression",
+            "discrete.title": "Discrete Mathematics",
+            "discrete.description": "Discrete mathematics studies countable structures used in logic and computing.",
+            "discrete.logic": "Logic and set theory",
+            "discrete.graph": "Graph theory",
+            "discrete.algorithms": "Algorithms and computation",
+            "logic.tabTitle": "Logic & Proofs",
+            "logic.title": "2. Mathematical Logic and Proofs",
+            "logic.description": "Mathematics is built on logical reasoning and proof techniques.",
+            "logic.axioms": "Axioms and Theorems",
+            "logic.methods": "Proof methods: direct, contradiction, induction",
+            "logic.example": "<b>Example:</b> Pythagorean theorem: <i>a^2 + b^2 = c^2</i>",
+            "applications.tabTitle": "Applications",
+            "applications.title": "3. Applications of Mathematics",
+            "applications.physics": "Physics - mechanics, quantum theory",
+            "applications.engineering": "Engineering - electronics, automation",
+            "applications.economics": "Economics - financial modeling",
+            "applications.computerScience": "Computer Science - algorithms, AI",
+            "applications.astronomy": "Astronomy - orbital mechanics",
+            "conclusion.title": "Conclusion",
+            "conclusion.description": "Mathematics is the foundation of science and technology, providing essential tools for problem-solving and discovery."
+        },
+        uz: {
+            "nav.homepage": "Bosh sahifa",
+            "nav.fundamental": "Fundamental bilimlar",
+            "hero.title": "Matematikaga <br>kirish",
+            "hero.readMore": "Batafsil o'qish",
+            "intro.title": "Matematika asoslari",
+            "intro.description": "Matematika miqdor, tuzilma, fazo va o'zgarishlarni o'rganadi. U tabiiy dunyoni tushunish va modellashtirish uchun mantiqiy hamda abstrakt asos beradi. Quyida matematikaning asosiy bo'limlari va ularning muhim tushunchalari keltirilgan.",
+            "branches.title": "1. Matematikaning asosiy bo'limlari",
+            "branches.instructions": "Bo'limni tanlang, asosiy g'oyasini ko'ring, keyin tushuncha tugmasini bosib muhim detalga e'tibor qarating.",
+            "branches.selectedLabel": "Tanlangan bo'lim",
+            "branches.focusLabel": "Asosiy nuqta",
+            "arithmetic.title": "Arifmetika",
+            "arithmetic.description": "Arifmetika sonlar va asosiy amallarni o'rganadi.",
+            "arithmetic.natural": "Natural sonlar: 1, 2, 3, ...",
+            "arithmetic.integers": "Butun sonlar: ... -2, -1, 0, 1, 2 ...",
+            "arithmetic.rational": "Ratsional sonlar: a/b, bunda b != 0",
+            "arithmetic.irrational": "Irratsional sonlar: sqrt(2), pi, e ...",
+            "arithmetic.complex": "Kompleks sonlar: a + bi, bunda i^2 = -1",
+            "algebra.title": "Algebra",
+            "algebra.description": "Algebra belgilar va ular bilan ishlash qoidalarini o'rganadi.",
+            "algebra.equations": "Tenglamalar va tengsizliklar",
+            "algebra.functions": "Funksiyalar: chiziqli, kvadratik, eksponensial",
+            "algebra.matrices": "Matritsalar va determinantlar",
+            "geometry.title": "Geometriya",
+            "geometry.description": "Geometriya shakllar, o'lchamlar va fazo xususiyatlarini o'rganadi.",
+            "geometry.euclidean": "Yevklid geometriyasi: uchburchaklar, aylanalar",
+            "geometry.analytic": "Analitik geometriya: koordinatalar va tenglamalar",
+            "geometry.affine": "Affin va proyektiv geometriya",
+            "trigonometry.title": "Trigonometriya",
+            "trigonometry.description": "Trigonometriya burchaklar va tomonlar orasidagi munosabatlarni o'rganadi.",
+            "trigonometry.functions": "Sinus, kosinus, tangens, kotangens",
+            "trigonometry.identities": "Trigonometrik ayniyatlar",
+            "analysis.title": "Matematik analiz",
+            "analysis.description": "Matematik analiz o'zgarish, yig'ilish va cheksiz jarayonlarni o'rganadi.",
+            "analysis.limits": "Limitlar va uzluksizlik",
+            "analysis.differentiation": "Differensiallash",
+            "analysis.integration": "Integrallash",
+            "analysis.series": "Qatorlar va yaqinlashish",
+            "probability.title": "Ehtimollik va statistika",
+            "probability.description": "Ehtimollik va statistika noaniqlik, ma'lumotlar va qonuniyatlarni tasvirlashga yordam beradi.",
+            "probability.combinatorics": "Kombinatorika",
+            "probability.distributions": "Taqsimotlar: normal, Puasson, binomial",
+            "probability.analysis": "Statistik tahlil va regressiya",
+            "discrete.title": "Diskret matematika",
+            "discrete.description": "Diskret matematika mantiq va hisoblashda ishlatiladigan sanaladigan tuzilmalarni o'rganadi.",
+            "discrete.logic": "Mantiq va to'plamlar nazariyasi",
+            "discrete.graph": "Graflar nazariyasi",
+            "discrete.algorithms": "Algoritmlar va hisoblash",
+            "logic.tabTitle": "Mantiq va isbotlar",
+            "logic.title": "2. Matematik mantiq va isbotlar",
+            "logic.description": "Matematika mantiqiy fikrlash va isbotlash usullariga asoslanadi.",
+            "logic.axioms": "Aksiomalar va teoremalar",
+            "logic.methods": "Isbotlash usullari: to'g'ridan-to'g'ri, qarama-qarshilik orqali, induksiya",
+            "logic.example": "<b>Misol:</b> Pifagor teoremasi: <i>a^2 + b^2 = c^2</i>",
+            "applications.tabTitle": "Qo'llanilishi",
+            "applications.title": "3. Matematikaning qo'llanilishi",
+            "applications.physics": "Fizika - mexanika, kvant nazariyasi",
+            "applications.engineering": "Muhandislik - elektronika, avtomatlashtirish",
+            "applications.economics": "Iqtisodiyot - moliyaviy modellashtirish",
+            "applications.computerScience": "Kompyuter fanlari - algoritmlar, AI",
+            "applications.astronomy": "Astronomiya - orbital mexanika",
+            "conclusion.title": "Xulosa",
+            "conclusion.description": "Matematika fan va texnologiyaning poydevori bo'lib, masalalarni yechish va kashfiyotlar qilish uchun zarur vositalarni beradi."
+        }
+    };
+
+    const branchData = [
+        {
+            id: "arithmetic",
+            titleKey: "arithmetic.title",
+            descriptionKey: "arithmetic.description",
+            concepts: [
+                "arithmetic.natural",
+                "arithmetic.integers",
+                "arithmetic.rational",
+                "arithmetic.irrational",
+                "arithmetic.complex"
+            ]
+        },
+        {
+            id: "algebra",
+            titleKey: "algebra.title",
+            descriptionKey: "algebra.description",
+            concepts: [
+                "algebra.equations",
+                "algebra.functions",
+                "algebra.matrices"
+            ]
+        },
+        {
+            id: "geometry",
+            titleKey: "geometry.title",
+            descriptionKey: "geometry.description",
+            concepts: [
+                "geometry.euclidean",
+                "geometry.analytic",
+                "geometry.affine"
+            ]
+        },
+        {
+            id: "trigonometry",
+            titleKey: "trigonometry.title",
+            descriptionKey: "trigonometry.description",
+            concepts: [
+                "trigonometry.functions",
+                "trigonometry.identities"
+            ]
+        },
+        {
+            id: "analysis",
+            titleKey: "analysis.title",
+            descriptionKey: "analysis.description",
+            concepts: [
+                "analysis.limits",
+                "analysis.differentiation",
+                "analysis.integration",
+                "analysis.series"
+            ]
+        },
+        {
+            id: "probability",
+            titleKey: "probability.title",
+            descriptionKey: "probability.description",
+            concepts: [
+                "probability.combinatorics",
+                "probability.distributions",
+                "probability.analysis"
+            ]
+        },
+        {
+            id: "discrete",
+            titleKey: "discrete.title",
+            descriptionKey: "discrete.description",
+            concepts: [
+                "discrete.logic",
+                "discrete.graph",
+                "discrete.algorithms"
+            ]
+        },
+        {
+            id: "logic",
+            titleKey: "logic.title",
+            descriptionKey: "logic.description",
+            concepts: [
+                "logic.axioms",
+                "logic.methods",
+                "logic.example"
+            ]
+        },
+        {
+            id: "applications",
+            titleKey: "applications.title",
+            descriptionKey: "applications.physics",
+            concepts: [
+                "applications.physics",
+                "applications.engineering",
+                "applications.economics",
+                "applications.computerScience",
+                "applications.astronomy"
+            ]
+        },
+        {
+            id: "conclusion",
+            titleKey: "conclusion.title",
+            descriptionKey: "conclusion.description",
+            concepts: [
+                "conclusion.description"
+            ]
+        }
+    ];
+
+    let selectedBranchId = "arithmetic";
+    let selectedConceptIndex = 0;
+    const mobileBranchLayout = window.matchMedia("(max-width: 768px)");
+
+    function getCurrentTranslations() {
+        const savedLanguage = localStorage.getItem("mathAcademyLanguage") || "en";
+        return translations[savedLanguage] ? savedLanguage : "en";
+    }
+
+    function renderBranchExplorer(currentLanguage) {
+        const languageData = translations[currentLanguage] || translations.en;
+        const selectedBranch = branchData.find((branch) => branch.id === selectedBranchId) || branchData[0];
+        const branchIndex = branchData.findIndex((branch) => branch.id === selectedBranch.id);
+        const activeConceptKey = selectedBranch.concepts[selectedConceptIndex] || selectedBranch.concepts[0];
+
+        const titleElement = document.querySelector("[data-branch-title]");
+        const descriptionElement = document.querySelector("[data-branch-description]");
+        const counterElement = document.querySelector("[data-branch-counter]");
+        const conceptsElement = document.querySelector("[data-branch-concepts]");
+        const conceptDetailElement = document.querySelector("[data-concept-detail]");
+
+        if (!titleElement || !descriptionElement || !counterElement || !conceptsElement || !conceptDetailElement) {
+            return;
+        }
+
+        titleElement.innerHTML = languageData[selectedBranch.titleKey] || "";
+        descriptionElement.innerHTML = languageData[selectedBranch.descriptionKey] || "";
+        counterElement.textContent = `${branchIndex + 1} / ${branchData.length}`;
+        conceptDetailElement.innerHTML = languageData[activeConceptKey] || "";
+
+        conceptsElement.innerHTML = "";
+        selectedBranch.concepts.forEach((conceptKey, index) => {
+            const chip = document.createElement("button");
+            chip.type = "button";
+            chip.className = `concept-chip${index === selectedConceptIndex ? " is-active" : ""}`;
+            chip.innerHTML = languageData[conceptKey] || "";
+            chip.addEventListener("click", () => {
+                selectedConceptIndex = index;
+                renderBranchExplorer(getCurrentTranslations());
+            });
+            conceptsElement.appendChild(chip);
+        });
+
+        document.querySelectorAll("[data-branch-tab]").forEach((button) => {
+            const isActive = button.getAttribute("data-branch-tab") === selectedBranch.id;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-selected", String(isActive));
+        });
+
+        positionBranchPanel();
+    }
+
+    function positionBranchPanel() {
+        const explorer = document.querySelector("[data-branch-explorer]");
+        const tabs = document.querySelector(".branch-tabs");
+        const panel = document.querySelector(".branch-panel");
+        const activeButton = document.querySelector("[data-branch-tab].is-active");
+
+        if (!explorer || !tabs || !panel) {
+            return;
+        }
+
+        if (mobileBranchLayout.matches && activeButton) {
+            activeButton.insertAdjacentElement("afterend", panel);
+            panel.classList.add("is-mobile-inline");
+        } else {
+            explorer.appendChild(panel);
+            panel.classList.remove("is-mobile-inline");
+        }
+    }
+
+    function setupBranchExplorer() {
+        document.querySelectorAll("[data-branch-tab]").forEach((button) => {
+            button.addEventListener("click", () => {
+                selectedBranchId = button.getAttribute("data-branch-tab");
+                selectedConceptIndex = 0;
+                renderBranchExplorer(getCurrentTranslations());
+            });
+        });
+
+        mobileBranchLayout.addEventListener("change", () => {
+            positionBranchPanel();
+        });
+    }
+
+    function language(selectedLanguage) {
+        const currentLanguage = translations[selectedLanguage] ? selectedLanguage : "en";
+
+        document.documentElement.lang = currentLanguage;
+        localStorage.setItem("mathAcademyLanguage", currentLanguage);
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const key = element.getAttribute("data-i18n");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.innerHTML = translatedText;
+            }
+        });
+
+        document.querySelectorAll("[data-language-button]").forEach((button) => {
+            const isActive = button.getAttribute("data-language-button") === currentLanguage;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        renderBranchExplorer(currentLanguage);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        setupBranchExplorer();
+        language(localStorage.getItem("mathAcademyLanguage") || "en");
+    });
+</script>
 
 </body>
 </html>

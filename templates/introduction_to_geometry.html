@@ -25,6 +25,144 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <style>
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #fff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #13547a;
+            background: #fff;
+        }
+
+        .lesson-html-block {
+            color: #102a43;
+        }
+
+        .lesson-eyebrow {
+            margin-bottom: 8px;
+            color: #13547a;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .lesson-title {
+            margin-bottom: 28px;
+            color: #102a43;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            text-align: center;
+        }
+
+        .lesson-panel {
+            padding: 28px;
+            border: 1px solid #d9e8ef;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(13, 84, 122, 0.08);
+        }
+
+        .lesson-panel h2 {
+            margin-bottom: 20px;
+            color: #0f172a;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .plane-visual {
+            position: relative;
+            width: min(420px, 100%);
+            height: 210px;
+            margin: 0 auto 26px;
+        }
+
+        .plane-shape {
+            position: absolute;
+            top: 58px;
+            left: 86px;
+            width: 230px;
+            height: 112px;
+            transform: skewX(-24deg);
+            border: 3px solid #1f2937;
+            background: #baff00;
+        }
+
+        .plane-arrow {
+            position: absolute;
+            color: #8a94a6;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .plane-arrow-left { top: 94px; left: 34px; }
+        .plane-arrow-right { top: 94px; right: 35px; }
+        .plane-arrow-top { top: 12px; left: 212px; transform: rotate(-56deg); }
+        .plane-arrow-bottom { bottom: 0; left: 160px; transform: rotate(124deg); }
+
+        .lesson-list {
+            margin: 14px 0 18px;
+            padding-left: 24px;
+        }
+
+        .lesson-list li {
+            margin-bottom: 8px;
+        }
+
+        .lesson-note {
+            margin-bottom: 0;
+            padding-top: 8px;
+            color: #243b53;
+            font-style: italic;
+        }
+
+        .next-topic-title {
+            margin: 32px 0 18px;
+            color: #0f172a;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 576px) {
+            .lesson-title {
+                font-size: 23px;
+            }
+
+            .lesson-panel {
+                padding: 20px;
+            }
+
+            .plane-visual {
+                height: 170px;
+            }
+
+            .plane-shape {
+                top: 52px;
+                left: 62px;
+                width: 180px;
+                height: 88px;
+            }
+
+            .plane-arrow-left { top: 80px; left: 16px; }
+            .plane-arrow-right { top: 80px; right: 22px; }
+            .plane-arrow-top { top: 14px; left: 160px; }
+            .plane-arrow-bottom { bottom: 0; left: 118px; }
+        }
+    </style>
     <!--
 
     TemplateMo 590 topic listing
@@ -45,7 +183,14 @@
                 <span>Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
+            <div class="language-switch ms-auto me-3" aria-label="Language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en"
+                        onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz"
+                        onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
                 <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
 
@@ -64,17 +209,17 @@
                 <div class="col-lg-5 col-12 mb-5">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="nav.homepage">Homepage</a></li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="nav.basic">Basic</li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Geometry</h2>
+                    <h2 class="text-white" data-i18n="hero.title">Introduction to <br>Geometry</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4"
+                           data-i18n="hero.readMore">Read More</a>
 
                         <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
                     </div>
@@ -91,13 +236,47 @@
     </header>
 
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+    <section id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
         <div class="container">
             <div class="container">
-                <h1 style="text-align:center">General Information</h1>
-                <img style="width:100%" src="{% static 'images/myimages/geometry_introduction1.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/geometry_introduction2.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/geometry_introduction3.jpg' %}" alt="">
+                <h1 style="text-align:center" data-i18n="intro.generalInfo">General Information</h1>
+
+                <section class="lesson-html-block" aria-labelledby="lesson-title">
+                    <p class="lesson-eyebrow text-center" data-i18n="intro.module">Module 1 - Introduction to Planimetry</p>
+                    <h2 class="lesson-title" id="lesson-title" data-i18n="intro.lesson">
+                        Lesson 1.1 - Fundamental Objects of Plane Geometry (with visuals)
+                    </h2>
+
+                    <article class="lesson-panel">
+                        <h2 data-i18n="plane.heading">1. The Plane (2D Space)</h2>
+
+                        <div class="plane-visual" aria-hidden="true">
+                            <span class="plane-arrow plane-arrow-left">&#8592;</span>
+                            <span class="plane-arrow plane-arrow-right">&#8594;</span>
+                            <span class="plane-arrow plane-arrow-top">&#8593;</span>
+                            <span class="plane-arrow plane-arrow-bottom">&#8593;</span>
+                            <div class="plane-shape"></div>
+                        </div>
+
+                        <p data-i18n="plane.description">
+                            A plane is a flat, two-dimensional surface that extends infinitely in all directions.
+                        </p>
+
+                        <p class="mb-2"><strong data-i18n="plane.propertiesTitle">Key properties:</strong></p>
+                        <ul class="lesson-list">
+                            <li data-i18n="plane.propertyLength">Has <strong>length</strong> and <strong>width</strong></li>
+                            <li data-i18n="plane.propertyThickness">Has <strong>no thickness</strong></li>
+                            <li data-i18n="plane.propertyInside">All 2D geometric figures lie <strong>inside a plane</strong></li>
+                        </ul>
+
+                        <p class="lesson-note" data-i18n="plane.note">
+                            Think of a plane as an <strong>ideal flat surface</strong>, not a physical object.
+                        </p>
+                    </article>
+
+                    <h2 class="next-topic-title" data-i18n="point.heading">2. Point</h2>
+                </section>
+
                 <img style="width:100%" src="{% static 'images/myimages/geometry_introduction4.jpg' %}" alt="">
                 <img style="width:100%" src="{% static 'images/myimages/geometry_introduction5.jpg' %}" alt="">
                 <img style="width:100%" src="{% static 'images/myimages/geometry_introduction6.jpg' %}" alt="">
@@ -111,7 +290,7 @@
 
             </div>
         </div>
-    </main>
+    </section>
 </main>
 
 
@@ -120,6 +299,70 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            "nav.homepage": "Homepage",
+            "nav.basic": "Basic",
+            "hero.title": "Introduction to <br>Geometry",
+            "hero.readMore": "Read More",
+            "intro.generalInfo": "General Information",
+            "intro.module": "Module 1 - Introduction to Planimetry",
+            "intro.lesson": "Lesson 1.1 - Fundamental Objects of Plane Geometry (with visuals)",
+            "plane.heading": "1. The Plane (2D Space)",
+            "plane.description": "A plane is a flat, two-dimensional surface that extends infinitely in all directions.",
+            "plane.propertiesTitle": "Key properties:",
+            "plane.propertyLength": "Has <strong>length</strong> and <strong>width</strong>",
+            "plane.propertyThickness": "Has <strong>no thickness</strong>",
+            "plane.propertyInside": "All 2D geometric figures lie <strong>inside a plane</strong>",
+            "plane.note": "Think of a plane as an <strong>ideal flat surface</strong>, not a physical object.",
+            "point.heading": "2. Point"
+        },
+        uz: {
+            "nav.homepage": "Bosh sahifa",
+            "nav.basic": "Asosiy",
+            "hero.title": "Geometriyaga <br>kirish",
+            "hero.readMore": "Batafsil o'qish",
+            "intro.generalInfo": "Umumiy ma'lumot",
+            "intro.module": "1-modul - Planimetriyaga kirish",
+            "intro.lesson": "1.1-dars - Tekislik geometriyasining asosiy obyektlari (vizuallar bilan)",
+            "plane.heading": "1. Tekislik (2D fazo)",
+            "plane.description": "Tekislik barcha yo'nalishlarda cheksiz davom etadigan yassi, ikki o'lchamli sirtdir.",
+            "plane.propertiesTitle": "Asosiy xususiyatlar:",
+            "plane.propertyLength": "<strong>Uzunlik</strong> va <strong>kenglik</strong>ka ega",
+            "plane.propertyThickness": "<strong>Qalinligi yo'q</strong>",
+            "plane.propertyInside": "Barcha 2D geometrik shakllar <strong>tekislik ichida</strong> joylashadi",
+            "plane.note": "Tekislikni jismoniy obyekt emas, balki <strong>ideal yassi sirt</strong> sifatida tasavvur qiling.",
+            "point.heading": "2. Nuqta"
+        }
+    };
+
+    function language(selectedLanguage) {
+        const currentLanguage = translations[selectedLanguage] ? selectedLanguage : "en";
+
+        document.documentElement.lang = currentLanguage;
+        localStorage.setItem("mathAcademyLanguage", currentLanguage);
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const key = element.getAttribute("data-i18n");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.innerHTML = translatedText;
+            }
+        });
+
+        document.querySelectorAll("[data-language-button]").forEach((button) => {
+            const isActive = button.getAttribute("data-language-button") === currentLanguage;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        language(localStorage.getItem("mathAcademyLanguage") || "en");
+    });
+</script>
 
 </body>
 </html>

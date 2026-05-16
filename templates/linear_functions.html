@@ -4,117 +4,623 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
+    <title>Linear Functions</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
-          rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
-
-    TemplateMo 590 topic listing
-
-    https://templatemo.com/tm-590-topic-listing
-
-    -->
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        body { background: #f6f9fc; font-family: 'Open Sans', sans-serif; }
+        img { max-width: 100%; display: block; height: auto; }
+        .language-switch { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.16); }
+        .language-switch__button { border: 0; border-radius: 999px; padding: 6px 12px; color: #fff; background: transparent; font-weight: 700; line-height: 1; }
+        .language-switch__button.is-active { color: #13547a; background: #fff; }
+        .lesson-shell { max-width: 960px; margin: 0 auto; padding: 44px 18px 72px; }
+        .lesson-card { background: #fff; border: 1px solid #d9e6ef; border-radius: 8px; padding: clamp(20px, 4vw, 34px); margin-bottom: 20px; box-shadow: 0 14px 34px rgba(13,84,122,.08); }
+        .lesson-card h1, .lesson-card h2 { margin: 0 0 12px; color: #0f172a; font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .lesson-card h1 { font-size: clamp(1.45rem, 3vw, 1.9rem); text-align: center; }
+        .lesson-card h2 { font-size: clamp(1.25rem, 3vw, 1.65rem); }
+        .lesson-card h3 { margin: 18px 0 8px; color: #15537e; font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800; }
+        .lesson-card p, .lesson-card li { color: #2b3a4d; font-size: 1rem; line-height: 1.7; }
+        .math-line { margin: 12px 0 18px; text-align: center; color: #000; font-family: "Times New Roman", Times, serif; font-size: 1.18rem; font-style: italic; }
+        .rule-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+        .rule-card { border: 1px solid #d9e8ef; border-radius: 8px; background: #f8fcff; padding: 14px 16px; }
+        .rule-card strong { display: block; margin-bottom: 6px; color: #13547a; font-family: 'Montserrat', sans-serif; }
+        .lesson-image-stack { display: grid; gap: 16px; }
+        .lesson-image-stack img { width: 100%; border-radius: 10px; border: 1px solid #e5edf3; box-shadow: 0 10px 24px rgba(15,23,42,.06); }
+        .graph-widget { display: grid; grid-template-columns: 1fr 1.35fr; min-height: 230px; border: 1px solid #e7e7e7; border-radius: 16px; overflow: hidden; background: #fff; margin-top: 16px; }
+        .graph-controls { padding: 22px 14px 16px; border-right: 1px solid #efefef; }
+        .graph-formula { margin: 10px 0 28px; text-align: center; font-family: "Times New Roman", Times, serif; font-size: 28px; font-style: italic; color: #141414; }
+        .slider-row { display: grid; grid-template-columns: 20px 46px minmax(0, 1fr); align-items: center; gap: 10px; margin-bottom: 12px; font-family: "Times New Roman", Times, serif; font-size: 18px; font-style: italic; color: #1f1f1f; }
+        .slider-value { font-family: Arial, sans-serif; font-size: 13px; font-style: normal; text-align: right; }
+        .graph-slider { width: 100%; accent-color: #1088ff; }
+        .graph-tool { width: 24px; height: 24px; border: 0; background: transparent; color: #111; font-size: 20px; line-height: 1; cursor: pointer; padding: 0; }
+        .graph-canvas-wrap { min-width: 0; background-color: #f8f8f8; background-image: linear-gradient(to right, rgba(80,80,80,.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(80,80,80,.08) 1px, transparent 1px); background-size: 32px 32px; }
+        #linearFunctionCanvas { display: block; width: 100%; height: 100%; min-height: 230px; }
+        .practice-strip { display: flex; justify-content: center; margin-top: 28px; }
+        .hero-image { border-radius: 14px; filter: brightness(1.05) saturate(.95); box-shadow: 0 8px 20px rgba(19,84,122,.12); }
+        @media (max-width: 920px) {
+            .graph-widget { grid-template-columns: 1fr; }
+            .graph-controls { border-right: 0; border-bottom: 1px solid #efefef; }
+            #linearFunctionCanvas { min-height: 260px; }
+        }
+        @media (max-width: 768px) {
+            .rule-grid { grid-template-columns: 1fr; }
+            .site-header .row { gap: 22px; }
+        }
+        .steps { counter-reset: step; display: grid; gap: 10px; margin: 12px 0; }
+        .step { position: relative; border: 1px solid #e2edf3; border-radius: 8px; background: #fbfdff; padding: 14px 14px 14px 50px; color: #2b3a4d; font-size: 1rem; line-height: 1.7; }
+        .step::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 13px; width: 24px; height: 24px; border-radius: 999px; background: #13547a; color: #fff; display: grid; place-items: center; font-size: .78rem; font-weight: 800; }
+        .callout { border-left: 4px solid #13547a; background: #f4fbfd; border-radius: 0 8px 8px 0; padding: 13px 15px; margin-top: 16px; color: #2b3a4d; line-height: 1.7; }
+        .badge-num { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 6px; background: #56a8f5; color: #fff; font-size: .85rem; font-weight: 800; vertical-align: 2px; font-style: normal; }
+        .answer-final { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: #101010; font-weight: 700; }
+        .answer-final .check { color: #24b569; font-size: 1.1rem; }
+        .slope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+        .slope-card { border-radius: 8px; padding: 14px 12px; text-align: center; }
+        .sc-label { font-weight: 800; font-size: 1rem; margin-bottom: 4px; font-family: "Times New Roman", Times, serif; font-style: italic; }
+        .sc-desc { font-size: .85rem; margin: 0; }
+        .slope-pos { background: #dcfce7; border: 1px solid #4ade80; color: #14532d; }
+        .slope-neg { background: #fde8e8; border: 1px solid #f87171; color: #7f1d1d; }
+        .slope-zero { background: #f3f4f6; border: 1px solid #d1d5db; color: #374151; }
+        .intercept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+        .intercept-card { border: 1px solid #d9e8ef; border-radius: 8px; background: #f8fcff; padding: 14px 16px; }
+        .intercept-card strong { display: block; color: #13547a; font-family: 'Montserrat', sans-serif; margin-bottom: 6px; }
+        .section-rule { border: 0; border-top: 1px solid #e2e8ef; margin: 22px 0; }
+        @media (max-width: 640px) {
+            .slope-grid { grid-template-columns: 1fr; }
+            .intercept-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
-
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
             </div>
-
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+            </div>
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
-
 
     <header class="site-header d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">Linear Functions</li>
                         </ol>
                     </nav>
-
-                    <h2 class="text-white">Introduction to <br>Linear Functions</h2>
-
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Linear Functions</h2>
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
-
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
-
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
-                        <img src="{% static 'images/myimages/linearfunction.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                        <img src="{% static 'images/myimages/linearfunction.jpg' %}" class="topics-detail-block-image img-fluid hero-image" alt="Linear functions visual" data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
-
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=linear_functions"
-                       class="btn custom-btn custom-border-btn">Practice with Linear Functions</a>
-                </div>
-
+            </div>
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=linear_functions" class="btn custom-btn custom-border-btn" data-i18n="page.practice">Practice with Linear Functions</a>
             </div>
         </div>
     </header>
 
+    <section id="topics-detail" class="lesson-shell">
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Linear Functions — Complete Lesson</h1>
+            <p data-i18n="lesson.intro.p1">A linear function is one of the most important ideas in algebra. It describes a relationship where one quantity changes at a constant rate compared with another quantity. Its graph is always a straight line.</p>
+            <div class="math-line" data-i18n="lesson.intro.formula">\(f(x)=mx+b\quad \text{or}\quad y=mx+b\)</div>
+            <ul>
+                <li data-i18n="lesson.intro.li1">\(x\) is the input, also called the independent variable.</li>
+                <li data-i18n="lesson.intro.li2">\(y\) or \(f(x)\) is the output, also called the dependent variable.</li>
+                <li data-i18n="lesson.intro.li3">\(m\) is the slope, which tells how fast the line rises or falls.</li>
+                <li data-i18n="lesson.intro.li4">\(b\) is the \(y\)-intercept, which tells where the line crosses the \(y\)-axis.</li>
+            </ul>
+            <div class="callout" data-i18n="lesson.intro.callout"><strong>Big idea:</strong> A linear function has a constant rate of change. That means every time \(x\) increases by the same amount, \(y\) also changes by the same amount.</div>
+            <div class="rule-grid" style="margin-top:16px">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.intro.rule1.title">Function form</strong>
+                    <p data-i18n="lesson.intro.rule1.text">\(f(x)=2x+3\) means the output depends on the input \(x\).</p>
+                </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.intro.rule2.title">Graph form</strong>
+                    <p data-i18n="lesson.intro.rule2.text">\(y=2x+3\) means the same thing, but it is often used when drawing the line.</p>
+                </div>
+            </div>
+        </article>
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container">
-            <h1 style="text-align:center">General Information</h1>
-            <img src="{% static 'images/myimages/linearfunction1.jpg' %}" style="width:100%" alt="">
-            <img src="{% static 'images/myimages/linearfunction2.jpg' %}" style="width:100%" alt="">
-            <img src="{% static 'images/myimages/linearfunction3.jpg' %}" style="width:100%" alt="">
-            <img src="{% static 'images/myimages/linearfunction4.jpg' %}" style="width:100%" alt="">
-            <img src="{% static 'images/myimages/linearfunction5.jpg' %}" style="width:100%" alt="">
-            <img src="{% static 'images/myimages/linearfunction6.jpg' %}" style="width:100%" alt="">
-        </div>
-    </main>
+        <article class="lesson-card">
+            <h2 data-i18n="lesson.graph.title">Interactive Linear Function Graph</h2>
+            <p data-i18n="lesson.graph.desc">Change \(m\) and \(b\). Watch how the line moves. The slider \(m\) controls steepness and direction, while \(b\) moves the line up or down.</p>
+            <div class="graph-widget">
+                <div class="graph-controls">
+                    <button class="graph-tool" type="button" id="linearFunctionReset" title="Reset graph" data-i18n-title="graph.reset" aria-label="Reset graph" data-i18n-aria-label="graph.reset">&times;</button>
+                    <div class="graph-formula">\(y = mx + b\)</div>
+                    <label class="slider-row">
+                        <span>m</span>
+                        <span class="slider-value" id="lfMValue">1.0</span>
+                        <input class="graph-slider" id="lfMSlider" type="range" min="-5" max="5" step="0.1" value="1">
+                    </label>
+                    <label class="slider-row">
+                        <span>b</span>
+                        <span class="slider-value" id="lfBValue">1.0</span>
+                        <input class="graph-slider" id="lfBSlider" type="range" min="-10" max="10" step="0.1" value="1">
+                    </label>
+                </div>
+                <div class="graph-canvas-wrap">
+                    <canvas id="linearFunctionCanvas" width="720" height="420" aria-label="Interactive graph of a linear function" data-i18n-aria-label="graph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">1</span><span data-i18n="lesson.slope.title">Understanding Slope</span></h2>
+            <p data-i18n="lesson.slope.p1">The slope measures the rate of change. In simple words, it tells how much \(y\) changes when \(x\) increases by \(1\).</p>
+            <div class="math-line" data-i18n="lesson.slope.formula">\(m=\dfrac{\text{change in }y}{\text{change in }x}=\dfrac{\text{rise}}{\text{run}}\)</div>
+            <div class="slope-grid">
+                <div class="slope-card slope-pos">
+                    <p class="sc-label">\(m\gt0\)</p>
+                    <p class="sc-desc" data-i18n="lesson.slope.pos">The line rises from left to right.</p>
+                </div>
+                <div class="slope-card slope-neg">
+                    <p class="sc-label">\(m\lt0\)</p>
+                    <p class="sc-desc" data-i18n="lesson.slope.neg">The line falls from left to right.</p>
+                </div>
+                <div class="slope-card slope-zero">
+                    <p class="sc-label">\(m=0\)</p>
+                    <p class="sc-desc" data-i18n="lesson.slope.zero">The line is horizontal.</p>
+                </div>
+            </div>
+            <h3 data-i18n="lesson.slope.exPos.title">Example: Positive Slope</h3>
+            <div class="math-line">\(y=2x+1\)</div>
+            <p data-i18n="lesson.slope.exPos.desc">The slope is \(2\). This means when \(x\) increases by \(1\), \(y\) increases by \(2\). The line goes upward.</p>
+            <h3 data-i18n="lesson.slope.exNeg.title">Example: Negative Slope</h3>
+            <div class="math-line">\(y=-3x+4\)</div>
+            <p data-i18n="lesson.slope.exNeg.desc">The slope is \(-3\). This means when \(x\) increases by \(1\), \(y\) decreases by \(3\). The line goes downward.</p>
+            <h3 data-i18n="lesson.slope.exZero.title">Example: Zero Slope</h3>
+            <div class="math-line">\(y=5\)</div>
+            <p data-i18n="lesson.slope.exZero.desc">The slope is \(0\). The output is always \(5\), so the graph is a horizontal line.</p>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">2</span><span data-i18n="lesson.yint.title">Understanding the \(y\)-Intercept</span></h2>
+            <p data-i18n="lesson.yint.p1">The \(y\)-intercept is the point where the line crosses the \(y\)-axis. On the \(y\)-axis, \(x=0\). So to find the \(y\)-intercept, substitute \(x=0\).</p>
+            <div class="math-line">\(y=mx+b\)</div>
+            <p data-i18n="lesson.yint.p2">When \(x=0\):</p>
+            <div class="math-line">\(y=m(0)+b=b\)</div>
+            <div class="callout" data-i18n="lesson.yint.callout"><strong>Important:</strong> The \(y\)-intercept is always \((0,b)\) in slope-intercept form.</div>
+            <h3 data-i18n="lesson.yint.ex.title">Example</h3>
+            <div class="math-line">\(y=3x-4\)</div>
+            <p data-i18n="lesson.yint.ex.desc">Here, \(b=-4\). So the line crosses the \(y\)-axis at:</p>
+            <div class="answer-final"><span class="check">✅</span><span>\((0,-4)\)</span></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">3</span><span data-i18n="lesson.graphing.title">How to Graph a Linear Function</span></h2>
+            <p data-i18n="lesson.graphing.p1">The easiest way to graph \(y=mx+b\) is to use the \(y\)-intercept and the slope.</p>
+            <h3 data-i18n="lesson.graphing.ex.title">Example</h3>
+            <div class="math-line">\(y=\dfrac{2}{3}x+1\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.graphing.step1">Identify the \(y\)-intercept: \(b=1\). Plot the point \((0,1)\).</div>
+                <div class="step" data-i18n="lesson.graphing.step2">Identify the slope: \(m=\dfrac{2}{3}\). This means rise \(2\), run \(3\).</div>
+                <div class="step" data-i18n="lesson.graphing.step3">From \((0,1)\), move \(2\) units up and \(3\) units right. This gives another point: \((3,3)\).</div>
+                <div class="step" data-i18n="lesson.graphing.step4">Draw a straight line through the two points.</div>
+            </div>
+            <div class="callout" data-i18n="lesson.graphing.callout">You only need two points to draw a line, but the slope must stay the same everywhere on the line.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">4</span><span data-i18n="lesson.findY.title">Finding \(y\) When \(x\) Is Given</span></h2>
+            <p data-i18n="lesson.findY.p1">If you know \(x\), substitute it into the function and calculate \(y\).</p>
+            <h3 data-i18n="lesson.findY.ex.title">Example</h3>
+            <div class="math-line">\(y=3x+2\)</div>
+            <p data-i18n="lesson.findY.ex.q">Find \(y\) when \(x=4\).</p>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.findY.step1">Substitute \(x=4\): <div class="math-line">\(y=3(4)+2\)</div></div>
+                <div class="step" data-i18n="lesson.findY.step2">Multiply first: <div class="math-line">\(y=12+2\)</div></div>
+                <div class="step" data-i18n="lesson.findY.step3">Add: <div class="math-line">\(y=14\)</div></div>
+            </div>
+            <div class="answer-final" data-i18n="lesson.findY.answer"><span class="check">✅</span><span>Final Answer: \(y=14\)</span></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">5</span><span data-i18n="lesson.findX.title">Finding \(x\) When \(y\) Is Given</span></h2>
+            <p data-i18n="lesson.findX.p1">Sometimes you are given the output \(y\), and you must find the input \(x\). Then you solve a linear equation.</p>
+            <h3 data-i18n="lesson.findX.ex.title">Example</h3>
+            <div class="math-line">\(y=2x+5\)</div>
+            <p data-i18n="lesson.findX.ex.q">Find \(x\) when \(y=17\).</p>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.findX.step1">Replace \(y\) with \(17\): <div class="math-line">\(17=2x+5\)</div></div>
+                <div class="step" data-i18n="lesson.findX.step2">Subtract \(5\) from both sides: <div class="math-line">\(12=2x\)</div></div>
+                <div class="step" data-i18n="lesson.findX.step3">Divide by \(2\): <div class="math-line">\(x=6\)</div></div>
+            </div>
+            <div class="answer-final" data-i18n="lesson.findX.answer"><span class="check">✅</span><span>Final Answer: \(x=6\)</span></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">6</span><span data-i18n="lesson.intercepts.title">Finding Intercepts</span></h2>
+            <p data-i18n="lesson.intercepts.p1">Intercepts are the points where a line crosses the coordinate axes.</p>
+            <div class="intercept-grid">
+                <div class="intercept-card">
+                    <strong data-i18n="lesson.intercepts.y.title">\(y\)-intercept</strong>
+                    <p data-i18n="lesson.intercepts.y.rule">Set \(x=0\).</p>
+                    <div class="math-line">\(y=2(0)+6=6\)</div>
+                    <p data-i18n="lesson.intercepts.y.res">So the \(y\)-intercept is \((0,6)\).</p>
+                </div>
+                <div class="intercept-card">
+                    <strong data-i18n="lesson.intercepts.x.title">\(x\)-intercept</strong>
+                    <p data-i18n="lesson.intercepts.x.rule">Set \(y=0\).</p>
+                    <div class="math-line">\(0=2x+6\Rightarrow x=-3\)</div>
+                    <p data-i18n="lesson.intercepts.x.res">So the \(x\)-intercept is \((-3,0)\).</p>
+                </div>
+            </div>
+            <h3 data-i18n="lesson.intercepts.ex.title">Full Example</h3>
+            <div class="math-line">\(y=-4x+8\)</div>
+            <ul>
+                <li data-i18n="lesson.intercepts.ex.li1">For the \(y\)-intercept, set \(x=0\): \(y=8\), so the point is \((0,8)\).</li>
+                <li data-i18n="lesson.intercepts.ex.li2">For the \(x\)-intercept, set \(y=0\): \(0=-4x+8\), so \(x=2\), and the point is \((2,0)\).</li>
+            </ul>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">7</span><span data-i18n="lesson.slope2pts.title">Finding Slope from Two Points</span></h2>
+            <p data-i18n="lesson.slope2pts.p1">If two points are given, use the slope formula.</p>
+            <div class="math-line" data-i18n="lesson.slope2pts.formula">\(m=\dfrac{y_2-y_1}{x_2-x_1}\)</div>
+            <h3 data-i18n="lesson.slope2pts.ex.title">Example</h3>
+            <p data-i18n="lesson.slope2pts.ex.q">Find the slope through \((1,3)\) and \((4,9)\).</p>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.slope2pts.step1">Label the points: <div class="math-line">\((x_1,y_1)=(1,3),\quad (x_2,y_2)=(4,9)\)</div></div>
+                <div class="step" data-i18n="lesson.slope2pts.step2">Substitute into the formula: <div class="math-line">\(m=\dfrac{9-3}{4-1}\)</div></div>
+                <div class="step" data-i18n="lesson.slope2pts.step3">Simplify: <div class="math-line">\(m=\dfrac{6}{3}=2\)</div></div>
+            </div>
+            <div class="answer-final" data-i18n="lesson.slope2pts.answer"><span class="check">✅</span><span>Slope: \(m=2\)</span></div>
+            <div class="callout" data-i18n="lesson.slope2pts.callout">If the denominator \(x_2-x_1\) is zero, the line is vertical. A vertical line is not a function because one \(x\)-value has many \(y\)-values.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">8</span><span data-i18n="lesson.equation.title">Writing the Equation of a Line</span></h2>
+            <h3 data-i18n="lesson.equation.case1.title">Case 1: Slope and \(y\)-intercept are given</h3>
+            <p data-i18n="lesson.equation.case1.desc">If \(m=3\) and \(b=-2\), put them into \(y=mx+b\).</p>
+            <div class="math-line">\(y=3x-2\)</div>
+            <hr class="section-rule">
+            <h3 data-i18n="lesson.equation.case2.title">Case 2: Slope and one point are given</h3>
+            <p data-i18n="lesson.equation.case2.desc">Suppose the slope is \(m=2\), and the line passes through \((3,7)\). Start with:</p>
+            <div class="math-line">\(y=mx+b\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.equation.case2.step1">Substitute \(m=2\): <div class="math-line">\(y=2x+b\)</div></div>
+                <div class="step" data-i18n="lesson.equation.case2.step2">Use the point \((3,7)\). This means \(x=3\), \(y=7\): <div class="math-line">\(7=2(3)+b\)</div></div>
+                <div class="step" data-i18n="lesson.equation.case2.step3">Solve for \(b\): <div class="math-line">\(7=6+b\Rightarrow b=1\)</div></div>
+            </div>
+            <div class="answer-final" data-i18n="lesson.equation.case2.answer"><span class="check">✅</span><span>Equation: \(y=2x+1\)</span></div>
+            <hr class="section-rule">
+            <h3 data-i18n="lesson.equation.case3.title">Case 3: Two points are given</h3>
+            <p data-i18n="lesson.equation.case3.desc">Find the equation of the line through \((1,2)\) and \((3,6)\).</p>
+            <div class="steps">
+                <div class="step" data-i18n="lesson.equation.case3.step1">First find the slope: <div class="math-line">\(m=\dfrac{6-2}{3-1}=\dfrac{4}{2}=2\)</div></div>
+                <div class="step" data-i18n="lesson.equation.case3.step2">Use \(y=mx+b\): <div class="math-line">\(y=2x+b\)</div></div>
+                <div class="step" data-i18n="lesson.equation.case3.step3">Substitute point \((1,2)\): <div class="math-line">\(2=2(1)+b\Rightarrow b=0\)</div></div>
+            </div>
+            <div class="answer-final" data-i18n="lesson.equation.case3.answer"><span class="check">✅</span><span>Equation: \(y=2x\)</span></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">9</span><span data-i18n="lesson.special.title">Special Lines</span></h2>
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.special.horiz.title">Horizontal line</strong>
+                    <div class="math-line">\(y=c\)</div>
+                    <p data-i18n="lesson.special.horiz.desc">Slope is \(0\). Example: \(y=4\). It is a function.</p>
+                </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.special.vert.title">Vertical line</strong>
+                    <div class="math-line">\(x=c\)</div>
+                    <p data-i18n="lesson.special.vert.desc">Slope is undefined. Example: \(x=4\). It is not a function.</p>
+                </div>
+            </div>
+            <div class="callout" data-i18n="lesson.special.callout">A vertical line fails the vertical line test, because one input \(x\) can have many outputs \(y\).</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">10</span><span data-i18n="lesson.parallel.title">Parallel and Perpendicular Lines</span></h2>
+            <h3 data-i18n="lesson.parallel.sub1.title">Parallel Lines</h3>
+            <p data-i18n="lesson.parallel.sub1.desc">Parallel lines have the same slope but different \(y\)-intercepts.</p>
+            <div class="math-line">\(y=2x+1\quad \text{and}\quad y=2x-5\)</div>
+            <p data-i18n="lesson.parallel.sub1.conc">Both slopes are \(2\), so the lines are parallel.</p>
+            <hr class="section-rule">
+            <h3 data-i18n="lesson.parallel.sub2.title">Perpendicular Lines</h3>
+            <p data-i18n="lesson.parallel.sub2.desc">Perpendicular lines have slopes that are negative reciprocals. Their slopes multiply to \(-1\).</p>
+            <div class="math-line">\(m_1\cdot m_2=-1\)</div>
+            <p data-i18n="lesson.parallel.sub2.ex">Example:</p>
+            <div class="math-line">\(m_1=2,\quad m_2=-\dfrac{1}{2}\)</div>
+            <p data-i18n="lesson.parallel.sub2.conc">Since \(2\cdot\left(-\dfrac{1}{2}\right)=-1\), the lines are perpendicular.</p>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">11</span><span data-i18n="lesson.real.title">Real-Life Linear Models</span></h2>
+            <p data-i18n="lesson.real.p1">Linear functions are used when something changes by a constant amount.</p>
+            <h3 data-i18n="lesson.real.ex.title">Example: Taxi Cost</h3>
+            <p data-i18n="lesson.real.ex.desc">A taxi charges \(5\) dollars as a starting fee and \(2\) dollars per kilometer.</p>
+            <div class="math-line">\(C=2x+5\)</div>
+            <ul>
+                <li data-i18n="lesson.real.ex.li1">\(x\) = number of kilometers</li>
+                <li data-i18n="lesson.real.ex.li2">\(2\) = cost per kilometer</li>
+                <li data-i18n="lesson.real.ex.li3">\(5\) = starting fee</li>
+                <li data-i18n="lesson.real.ex.li4">\(C\) = total cost</li>
+            </ul>
+            <p data-i18n="lesson.real.ex.calc">If you travel \(8\) kilometers:</p>
+            <div class="math-line">\(C=2(8)+5=21\)</div>
+            <div class="answer-final" data-i18n="lesson.real.ex.answer"><span class="check">✅</span><span>Total cost: \(21\) dollars</span></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">12</span><span data-i18n="lesson.mistakes.title">Common Mistakes</span></h2>
+            <h3 data-i18n="lesson.mistakes.m1.title">1. Mixing up slope and intercept</h3>
+            <p data-i18n="lesson.mistakes.m1.desc">In \(y=mx+b\), \(m\) controls steepness, while \(b\) controls where the line crosses the \(y\)-axis.</p>
+            <h3 data-i18n="lesson.mistakes.m2.title">2. Forgetting that \(b\) is a point, not just a number</h3>
+            <p data-i18n="lesson.mistakes.m2.desc">If \(b=5\), the \(y\)-intercept is \((0,5)\), not just \(5\).</p>
+            <h3 data-i18n="lesson.mistakes.m3.title">3. Using the slope formula in the wrong order</h3>
+            <p data-i18n="lesson.mistakes.m3.desc">If you start with \(y_2-y_1\), you must also use \(x_2-x_1\). Do not switch the order halfway.</p>
+            <div class="math-line">\(m=\dfrac{y_2-y_1}{x_2-x_1}\quad \text{or}\quad m=\dfrac{y_1-y_2}{x_1-x_2}\)</div>
+            <p data-i18n="lesson.mistakes.m3.note">Both are correct, but mixing them is wrong.</p>
+            <h3 data-i18n="lesson.mistakes.m4.title">4. Thinking every straight line is a function</h3>
+            <p data-i18n="lesson.mistakes.m4.desc">Vertical lines are straight, but they are not functions because one \(x\)-value has many \(y\)-values.</p>
+        </article>
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">13</span><span data-i18n="lesson.summary.title">Final Summary</span></h2>
+            <ol>
+                <li data-i18n="lesson.summary.li1">A linear function has the form \(y=mx+b\).</li>
+                <li data-i18n="lesson.summary.li2">The graph of a linear function is a straight line.</li>
+                <li data-i18n="lesson.summary.li3">\(m\) is the slope, or rate of change.</li>
+                <li data-i18n="lesson.summary.li4">\(b\) is the \(y\)-intercept.</li>
+                <li data-i18n="lesson.summary.li5">Positive slope means the line rises.</li>
+                <li data-i18n="lesson.summary.li6">Negative slope means the line falls.</li>
+                <li data-i18n="lesson.summary.li7">Zero slope means the line is horizontal.</li>
+                <li data-i18n="lesson.summary.li8">To find the \(y\)-intercept, set \(x=0\).</li>
+                <li data-i18n="lesson.summary.li9">To find the \(x\)-intercept, set \(y=0\).</li>
+                <li data-i18n="lesson.summary.li10">To find slope from two points, use \(m=\dfrac{y_2-y_1}{x_2-x_1}\).</li>
+            </ol>
+            <hr class="section-rule">
+            <h3 data-i18n="lesson.summary.try.title">Try It Yourself</h3>
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p1.title">Practice 1</strong>
+                    <div class="math-line">\(y=4x-3\)</div>
+                    <p data-i18n="lesson.summary.p1.q">Find \(y\) when \(x=5\).</p>
+                </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p2.title">Practice 2</strong>
+                    <div class="math-line">\(y=-2x+7\)</div>
+                    <p data-i18n="lesson.summary.p2.q">Find the \(x\)-intercept and \(y\)-intercept.</p>
+                </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p3.title">Practice 3</strong>
+                    <div class="math-line">\((2,5),\quad (6,13)\)</div>
+                    <p data-i18n="lesson.summary.p3.q">Find the slope.</p>
+                </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p4.title">Practice 4</strong>
+                    <div class="math-line">\(m=-3,\quad b=4\)</div>
+                    <p data-i18n="lesson.summary.p4.q">Write the equation of the line.</p>
+                </div>
+            </div>
+        </article>
+    </section>
 </main>
 
-
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            page: { language: "Language", profile: "Profile", breadcrumb: "Breadcrumb", homepage: "Homepage", current: "Linear Functions", hero: "Introduction to <br>Linear Functions", readMore: "Read More", backTop: "Back to top", heroAlt: "Linear functions visual", practice: "Practice with Linear Functions" },
+            graph: { reset: "Reset graph", aria: "Interactive graph of a linear function", xIntercept: "x-intercept", yIntercept: "y-intercept" },
+            lesson: {
+                title: "Linear Functions — Complete Lesson",
+                intro: { p1: "A linear function is one of the most important ideas in algebra. It describes a relationship where one quantity changes at a constant rate compared with another quantity. Its graph is always a straight line.", formula: "\\(f(x)=mx+b\\quad \\text{or}\\quad y=mx+b\\)", li1: "\\(x\\) is the input, also called the independent variable.", li2: "\\(y\\) or \\(f(x)\\) is the output, also called the dependent variable.", li3: "\\(m\\) is the slope, which tells how fast the line rises or falls.", li4: "\\(b\\) is the \\(y\\)-intercept, which tells where the line crosses the \\(y\\)-axis.", callout: "<strong>Big idea:</strong> A linear function has a constant rate of change. That means every time \\(x\\) increases by the same amount, \\(y\\) also changes by the same amount.", rule1: { title: "Function form", text: "\\(f(x)=2x+3\\) means the output depends on the input \\(x\\)." }, rule2: { title: "Graph form", text: "\\(y=2x+3\\) means the same thing, but it is often used when drawing the line." } },
+                graph: { title: "Interactive Linear Function Graph", desc: "Change \\(m\\) and \\(b\\). Watch how the line moves. The slider \\(m\\) controls steepness and direction, while \\(b\\) moves the line up or down." },
+                slope: { title: "Understanding Slope", p1: "The slope measures the rate of change. In simple words, it tells how much \\(y\\) changes when \\(x\\) increases by \\(1\\).", formula: "\\(m=\\dfrac{\\text{change in }y}{\\text{change in }x}=\\dfrac{\\text{rise}}{\\text{run}}\\)", pos: "The line rises from left to right.", neg: "The line falls from left to right.", zero: "The line is horizontal.", exPos: { title: "Example: Positive Slope", desc: "The slope is \\(2\\). This means when \\(x\\) increases by \\(1\\), \\(y\\) increases by \\(2\\). The line goes upward." }, exNeg: { title: "Example: Negative Slope", desc: "The slope is \\(-3\\). This means when \\(x\\) increases by \\(1\\), \\(y\\) decreases by \\(3\\). The line goes downward." }, exZero: { title: "Example: Zero Slope", desc: "The slope is \\(0\\). The output is always \\(5\\), so the graph is a horizontal line." } },
+                yint: { title: "Understanding the \\(y\\)-Intercept", p1: "The \\(y\\)-intercept is the point where the line crosses the \\(y\\)-axis. On the \\(y\\)-axis, \\(x=0\\). So to find the \\(y\\)-intercept, substitute \\(x=0\\).", p2: "When \\(x=0\\):", callout: "<strong>Important:</strong> The \\(y\\)-intercept is always \\((0,b)\\) in slope-intercept form.", ex: { title: "Example", desc: "Here, \\(b=-4\\). So the line crosses the \\(y\\)-axis at:" } },
+                graphing: { title: "How to Graph a Linear Function", p1: "The easiest way to graph \\(y=mx+b\\) is to use the \\(y\\)-intercept and the slope.", ex: { title: "Example" }, step1: "Identify the \\(y\\)-intercept: \\(b=1\\). Plot the point \\((0,1)\\).", step2: "Identify the slope: \\(m=\\dfrac{2}{3}\\). This means rise \\(2\\), run \\(3\\).", step3: "From \\((0,1)\\), move \\(2\\) units up and \\(3\\) units right. This gives another point: \\((3,3)\\).", step4: "Draw a straight line through the two points.", callout: "You only need two points to draw a line, but the slope must stay the same everywhere on the line." },
+                findY: { title: "Finding \\(y\\) When \\(x\\) Is Given", p1: "If you know \\(x\\), substitute it into the function and calculate \\(y\\).", ex: { title: "Example", q: "Find \\(y\\) when \\(x=4\\)." }, step1: "Substitute \\(x=4\\): <div class=\"math-line\">\\(y=3(4)+2\\)</div>", step2: "Multiply first: <div class=\"math-line\">\\(y=12+2\\)</div>", step3: "Add: <div class=\"math-line\">\\(y=14\\)</div>", answer: "<span class=\"check\">✅</span><span>Final Answer: \\(y=14\\)</span>" },
+                findX: { title: "Finding \\(x\\) When \\(y\\) Is Given", p1: "Sometimes you are given the output \\(y\\), and you must find the input \\(x\\). Then you solve a linear equation.", ex: { title: "Example", q: "Find \\(x\\) when \\(y=17\\)." }, step1: "Replace \\(y\\) with \\(17\\): <div class=\"math-line\">\\(17=2x+5\\)</div>", step2: "Subtract \\(5\\) from both sides: <div class=\"math-line\">\\(12=2x\\)</div>", step3: "Divide by \\(2\\): <div class=\"math-line\">\\(x=6\\)</div>", answer: "<span class=\"check\">✅</span><span>Final Answer: \\(x=6\\)</span>" },
+                intercepts: { title: "Finding Intercepts", p1: "Intercepts are the points where a line crosses the coordinate axes.", y: { title: "\\(y\\)-intercept", rule: "Set \\(x=0\\).", res: "So the \\(y\\)-intercept is \\((0,6)\\)." }, x: { title: "\\(x\\)-intercept", rule: "Set \\(y=0\\).", res: "So the \\(x\\)-intercept is \\((-3,0)\\)." }, ex: { title: "Full Example", li1: "For the \\(y\\)-intercept, set \\(x=0\\): \\(y=8\\), so the point is \\((0,8)\\).", li2: "For the \\(x\\)-intercept, set \\(y=0\\): \\(0=-4x+8\\), so \\(x=2\\), and the point is \\((2,0)\\)." } },
+                slope2pts: { title: "Finding Slope from Two Points", p1: "If two points are given, use the slope formula.", formula: "\\(m=\\dfrac{y_2-y_1}{x_2-x_1}\\)", ex: { title: "Example", q: "Find the slope through \\((1,3)\\) and \\((4,9)\\)." }, step1: "Label the points: <div class=\"math-line\">\\((x_1,y_1)=(1,3),\\quad (x_2,y_2)=(4,9)\\)</div>", step2: "Substitute into the formula: <div class=\"math-line\">\\(m=\\dfrac{9-3}{4-1}\\)</div>", step3: "Simplify: <div class=\"math-line\">\\(m=\\dfrac{6}{3}=2\\)</div>", answer: "<span class=\"check\">✅</span><span>Slope: \\(m=2\\)</span>", callout: "If the denominator \\(x_2-x_1\\) is zero, the line is vertical. A vertical line is not a function because one \\(x\\)-value has many \\(y\\)-values." },
+                equation: { title: "Writing the Equation of a Line", case1: { title: "Case 1: Slope and \\(y\\)-intercept are given", desc: "If \\(m=3\\) and \\(b=-2\\), put them into \\(y=mx+b\\)." }, case2: { title: "Case 2: Slope and one point are given", desc: "Suppose the slope is \\(m=2\\), and the line passes through \\((3,7)\\). Start with:", step1: "Substitute \\(m=2\\): <div class=\"math-line\">\\(y=2x+b\\)</div>", step2: "Use the point \\((3,7)\\). This means \\(x=3\\), \\(y=7\\): <div class=\"math-line\">\\(7=2(3)+b\\)</div>", step3: "Solve for \\(b\\): <div class=\"math-line\">\\(7=6+b\\Rightarrow b=1\\)</div>", answer: "<span class=\"check\">✅</span><span>Equation: \\(y=2x+1\\)</span>" }, case3: { title: "Case 3: Two points are given", desc: "Find the equation of the line through \\((1,2)\\) and \\((3,6)\\).", step1: "First find the slope: <div class=\"math-line\">\\(m=\\dfrac{6-2}{3-1}=\\dfrac{4}{2}=2\\)</div>", step2: "Use \\(y=mx+b\\): <div class=\"math-line\">\\(y=2x+b\\)</div>", step3: "Substitute point \\((1,2)\\): <div class=\"math-line\">\\(2=2(1)+b\\Rightarrow b=0\\)</div>", answer: "<span class=\"check\">✅</span><span>Equation: \\(y=2x\\)</span>" } },
+                special: { title: "Special Lines", horiz: { title: "Horizontal line", desc: "Slope is \\(0\\). Example: \\(y=4\\). It is a function." }, vert: { title: "Vertical line", desc: "Slope is undefined. Example: \\(x=4\\). It is not a function." }, callout: "A vertical line fails the vertical line test, because one input \\(x\\) can have many outputs \\(y\\)." },
+                parallel: { title: "Parallel and Perpendicular Lines", sub1: { title: "Parallel Lines", desc: "Parallel lines have the same slope but different \\(y\\)-intercepts.", conc: "Both slopes are \\(2\\), so the lines are parallel." }, sub2: { title: "Perpendicular Lines", desc: "Perpendicular lines have slopes that are negative reciprocals. Their slopes multiply to \\(-1\\).", ex: "Example:", conc: "Since \\(2\\cdot\\left(-\\dfrac{1}{2}\\right)=-1\\), the lines are perpendicular." } },
+                real: { title: "Real-Life Linear Models", p1: "Linear functions are used when something changes by a constant amount.", ex: { title: "Example: Taxi Cost", desc: "A taxi charges \\(5\\) dollars as a starting fee and \\(2\\) dollars per kilometer.", li1: "\\(x\\) = number of kilometers", li2: "\\(2\\) = cost per kilometer", li3: "\\(5\\) = starting fee", li4: "\\(C\\) = total cost", calc: "If you travel \\(8\\) kilometers:", answer: "<span class=\"check\">✅</span><span>Total cost: \\(21\\) dollars</span>" } },
+                mistakes: { title: "Common Mistakes", m1: { title: "1. Mixing up slope and intercept", desc: "In \\(y=mx+b\\), \\(m\\) controls steepness, while \\(b\\) controls where the line crosses the \\(y\\)-axis." }, m2: { title: "2. Forgetting that \\(b\\) is a point, not just a number", desc: "If \\(b=5\\), the \\(y\\)-intercept is \\((0,5)\\), not just \\(5\\)." }, m3: { title: "3. Using the slope formula in the wrong order", desc: "If you start with \\(y_2-y_1\\), you must also use \\(x_2-x_1\\). Do not switch the order halfway.", note: "Both are correct, but mixing them is wrong." }, m4: { title: "4. Thinking every straight line is a function", desc: "Vertical lines are straight, but they are not functions because one \\(x\\)-value has many \\(y\\)-values." } },
+                summary: { title: "Final Summary", li1: "A linear function has the form \\(y=mx+b\\).", li2: "The graph of a linear function is a straight line.", li3: "\\(m\\) is the slope, or rate of change.", li4: "\\(b\\) is the \\(y\\)-intercept.", li5: "Positive slope means the line rises.", li6: "Negative slope means the line falls.", li7: "Zero slope means the line is horizontal.", li8: "To find the \\(y\\)-intercept, set \\(x=0\\).", li9: "To find the \\(x\\)-intercept, set \\(y=0\\).", li10: "To find slope from two points, use \\(m=\\dfrac{y_2-y_1}{x_2-x_1}\\).", try: { title: "Try It Yourself" }, p1: { title: "Practice 1", q: "Find \\(y\\) when \\(x=5\\)." }, p2: { title: "Practice 2", q: "Find the \\(x\\)-intercept and \\(y\\)-intercept." }, p3: { title: "Practice 3", q: "Find the slope." }, p4: { title: "Practice 4", q: "Write the equation of the line." } }
+            }
+        },
+        uz: {
+            page: { language: "Til", profile: "Profil", breadcrumb: "Sahifa yo'li", homepage: "Bosh sahifa", current: "Chiziqli funksiyalar", hero: "Chiziqli funksiyalarga <br>kirish", readMore: "Batafsil o'qish", backTop: "Yuqoriga qaytish", heroAlt: "Chiziqli funksiyalar rasmi", practice: "Chiziqli funksiyalar bo'yicha mashq" },
+            graph: { reset: "Grafikni qayta tiklash", aria: "Chiziqli funksiyaning interaktiv grafigi", xIntercept: "x-kesishish", yIntercept: "y-kesishish" },
+            lesson: {
+                title: "Chiziqli funksiyalar — To'liq dars",
+                intro: { p1: "Chiziqli funksiya — algebradagi eng muhim tushunchalardan biri. U bir miqdor boshqasiga nisbatan doimiy tezlikda o'zgaradigan bog'lanishni ifodalaydi. Uning grafigi har doim to'g'ri chiziq bo'ladi.", formula: "\\(f(x)=mx+b\\quad \\text{yoki}\\quad y=mx+b\\)", li1: "\\(x\\) — kiruvchi o'zgaruvchi (mustaqil o'zgaruvchi).", li2: "\\(y\\) yoki \\(f(x)\\) — chiquvchi o'zgaruvchi (bog'liq o'zgaruvchi).", li3: "\\(m\\) — qiyalik (burchak koeffitsiyenti), chiziq qanchalik tez ko'tarilishi yoki tushishini ko'rsatadi.", li4: "\\(b\\) — \\(y\\)-o'qini kesish nuqtasi, chiziq \\(y\\)-o'qini qayerda kesishini bildiradi.", callout: "<strong>Asosiy g'oya:</strong> Chiziqli funksiyaning o'zgarish tezligi doimiy bo'ladi. Ya'ni \\(x\\) har safar bir xil miqdorga oshganda, \\(y\\) ham bir xil miqdorga o'zgaradi.", rule1: { title: "Funksiya ko'rinishi", text: "\\(f(x)=2x+3\\) degani, natija \\(x\\) kiruvchi qiymatga bog'liq." }, rule2: { title: "Grafik ko'rinishi", text: "\\(y=2x+3\\) ham xuddi shuni anglatadi, lekin ko'pincha chiziqni chizishda ishlatiladi." } },
+                graph: { title: "Interaktiv chiziqli funksiya grafigi", desc: "\\(m\\) va \\(b\\) ni o'zgartiring. Chiziq qanday harakatlanishini kuzating. \\(m\\) slayderi tiklik va yo'nalishni, \\(b\\) esa chiziqni yuqoriga yoki pastga siljitishni boshqaradi." },
+                slope: { title: "Qiyalikni tushunish", p1: "Qiyalik o'zgarish tezligini o'lchaydi. Oddiy qilib aytganda, \\(x\\) \\(1\\) ga oshganda \\(y\\) qancha o'zgarishini ko'rsatadi.", formula: "\\(m=\\dfrac{y\\text{ ning o'zgarishi}}{x\\text{ ning o'zgarishi}}=\\dfrac{\\text{ko'tarilish}}{\\text{yurish}}\\)", pos: "Chiziq chapdan o'ngga ko'tariladi.", neg: "Chiziq chapdan o'ngga tushadi.", zero: "Chiziq gorizontal bo'ladi.", exPos: { title: "Misol: Musbat qiyalik", desc: "Qiyalik \\(2\\). Bu degani \\(x\\) \\(1\\) ga oshganda, \\(y\\) \\(2\\) ga oshadi. Chiziq yuqoriga qarab ketadi." }, exNeg: { title: "Misol: Manfiy qiyalik", desc: "Qiyalik \\(-3\\). Bu degani \\(x\\) \\(1\\) ga oshganda, \\(y\\) \\(3\\) ga kamayadi. Chiziq pastga qarab ketadi." }, exZero: { title: "Misol: Nol qiyalik", desc: "Qiyalik \\(0\\). Natija har doim \\(5\\) bo'ladi, shuning uchun grafik gorizontal chiziq bo'ladi." } },
+                yint: { title: "\\(y\\)-kesishishni tushunish", p1: "\\(y\\)-kesishish — chiziq \\(y\\)-o'qini kesib o'tadigan nuqta. \\(y\\)-o'qida \\(x=0\\) bo'ladi. Shuning uchun \\(y\\)-kesishishni topish uchun \\(x=0\\) ni qo'ying.", p2: "\\(x=0\\) bo'lganda:", callout: "<strong>Muhim:</strong> Qiyalik-kesishish shaklida \\(y\\)-kesishish har doim \\((0,b)\\) bo'ladi.", ex: { title: "Misol", desc: "Bu yerda \\(b=-4\\). Demak, chiziq \\(y\\)-o'qini quyidagi nuqtada kesadi:" } },
+                graphing: { title: "Chiziqli funksiya grafigini qanday chizish kerak?", p1: "\\(y=mx+b\\) grafigini chizishning eng oson yo'li — \\(y\\)-kesishish va qiyalikdan foydalanish.", ex: { title: "Misol" }, step1: "\\(y\\)-kesishishni aniqlang: \\(b=1\\). \\((0,1)\\) nuqtani belgilang.", step2: "Qiyalikni aniqlang: \\(m=\\dfrac{2}{3}\\). Bu \\(2\\) birlik yuqoriga, \\(3\\) birlik o'ngga degani.", step3: "\\((0,1)\\) dan \\(2\\) birlik yuqoriga va \\(3\\) birlik o'ngga yuring. Bu yana bir nuqtani beradi: \\((3,3)\\).", step4: "Ikkala nuqtadan to'g'ri chiziq o'tkazing.", callout: "Chiziq chizish uchun faqat ikkita nuqta kerak, lekin qiyalik chiziqning hamma joyida bir xil bo'lishi shart." },
+                findY: { title: "\\(x\\) berilganda \\(y\\) ni topish", p1: "Agar \\(x\\) ma'lum bo'lsa, uni funksiyaga qo'ying va \\(y\\) ni hisoblang.", ex: { title: "Misol", q: "\\(x=4\\) bo'lganda \\(y\\) ni toping." }, step1: "\\(x=4\\) ni qo'ying: <div class=\"math-line\">\\(y=3(4)+2\\)</div>", step2: "Avval ko'paytiring: <div class=\"math-line\">\\(y=12+2\\)</div>", step3: "Qo'shing: <div class=\"math-line\">\\(y=14\\)</div>", answer: "<span class=\"check\">✅</span><span>Yakuniy javob: \\(y=14\\)</span>" },
+                findX: { title: "\\(y\\) berilganda \\(x\\) ni topish", p1: "Ba'zida sizga \\(y\\) natijasi beriladi va \\(x\\) ni topishingiz kerak bo'ladi. Bu holda chiziqli tenglamani yechasiz.", ex: { title: "Misol", q: "\\(y=17\\) bo'lganda \\(x\\) ni toping." }, step1: "\\(y\\) o'rniga \\(17\\) qo'ying: <div class=\"math-line\">\\(17=2x+5\\)</div>", step2: "Ikkala tomondan \\(5\\) ni ayiring: <div class=\"math-line\">\\(12=2x\\)</div>", step3: "\\(2\\) ga bo'ling: <div class=\"math-line\">\\(x=6\\)</div>", answer: "<span class=\"check\">✅</span><span>Yakuniy javob: \\(x=6\\)</span>" },
+                intercepts: { title: "Kesishish nuqtalarini topish", p1: "Kesishish nuqtalari — chiziq koordinata o'qlarini kesib o'tadigan joylar.", y: { title: "\\(y\\)-kesishish", rule: "\\(x=0\\) deb oling.", res: "Demak, \\(y\\)-kesishish \\((0,6)\\) bo'ladi." }, x: { title: "\\(x\\)-kesishish", rule: "\\(y=0\\) deb oling.", res: "Demak, \\(x\\)-kesishish \\((-3,0)\\) bo'ladi." }, ex: { title: "To'liq misol", li1: "\\(y\\)-kesishish uchun \\(x=0\\) qo'ying: \\(y=8\\), nuqta \\((0,8)\\).", li2: "\\(x\\)-kesishish uchun \\(y=0\\) qo'ying: \\(0=-4x+8\\), demak \\(x=2\\), nuqta \\((2,0)\\)." } },
+                slope2pts: { title: "Ikki nuqtadan qiyalikni topish", p1: "Agar ikkita nuqta berilgan bo'lsa, qiyalik formulasidan foydalaning.", formula: "\\(m=\\dfrac{y_2-y_1}{x_2-x_1}\\)", ex: { title: "Misol", q: "\\((1,3)\\) va \\((4,9)\\) nuqtalardan o'tuvchi chiziq qiyaligini toping." }, step1: "Nuqtalarni belgilang: <div class=\"math-line\">\\((x_1,y_1)=(1,3),\\quad (x_2,y_2)=(4,9)\\)</div>", step2: "Formulaga qo'ying: <div class=\"math-line\">\\(m=\\dfrac{9-3}{4-1}\\)</div>", step3: "Soddalashtiring: <div class=\"math-line\">\\(m=\\dfrac{6}{3}=2\\)</div>", answer: "<span class=\"check\">✅</span><span>Qiyalik: \\(m=2\\)</span>", callout: "Agar maxraj \\(x_2-x_1\\) nolga teng bo'lsa, chiziq vertikal bo'ladi. Vertikal chiziq funksiya emas, chunki bitta \\(x\\) qiymatiga bir nechta \\(y\\) qiymati to'g'ri keladi." },
+                equation: { title: "Chiziq tenglamasini yozish", case1: { title: "1-holat: Qiyalik va \\(y\\)-kesishish berilgan", desc: "Agar \\(m=3\\) va \\(b=-2\\) bo'lsa, ularni \\(y=mx+b\\) ga qo'ying." }, case2: { title: "2-holat: Qiyalik va bitta nuqta berilgan", desc: "Faraz qilaylik, qiyalik \\(m=2\\) va chiziq \\((3,7)\\) nuqtadan o'tadi. Boshlang:", step1: "\\(m=2\\) ni qo'ying: <div class=\"math-line\">\\(y=2x+b\\)</div>", step2: "\\((3,7)\\) nuqtadan foydalaning. Ya'ni \\(x=3\\), \\(y=7\\): <div class=\"math-line\">\\(7=2(3)+b\\)</div>", step3: "\\(b\\) ni toping: <div class=\"math-line\">\\(7=6+b\\Rightarrow b=1\\)</div>", answer: "<span class=\"check\">✅</span><span>Tenglama: \\(y=2x+1\\)</span>" }, case3: { title: "3-holat: Ikki nuqta berilgan", desc: "\\((1,2)\\) va \\((3,6)\\) nuqtalardan o'tuvchi chiziq tenglamasini toping.", step1: "Avval qiyalikni toping: <div class=\"math-line\">\\(m=\\dfrac{6-2}{3-1}=\\dfrac{4}{2}=2\\)</div>", step2: "\\(y=mx+b\\) dan foydalaning: <div class=\"math-line\">\\(y=2x+b\\)</div>", step3: "\\((1,2)\\) nuqtani qo'ying: <div class=\"math-line\">\\(2=2(1)+b\\Rightarrow b=0\\)</div>", answer: "<span class=\"check\">✅</span><span>Tenglama: \\(y=2x\\)</span>" } },
+                special: { title: "Maxsus chiziqlar", horiz: { title: "Gorizontal chiziq", desc: "Qiyalik \\(0\\). Misol: \\(y=4\\). Bu funksiya hisoblanadi." }, vert: { title: "Vertikal chiziq", desc: "Qiyalik aniqlanmagan. Misol: \\(x=4\\). Bu funksiya emas." }, callout: "Vertikal chiziq vertikal chiziq testidan o'tmaydi, chunki bitta \\(x\\) kirishiga bir nechta \\(y\\) chiqishi to'g'ri kelishi mumkin." },
+                parallel: { title: "Parallel va perpendikulyar chiziqlar", sub1: { title: "Parallel chiziqlar", desc: "Parallel chiziqlarning qiyaliklari bir xil, lekin \\(y\\)-kesishishlari har xil bo'ladi.", conc: "Ikkala qiyalik ham \\(2\\), shuning uchun chiziqlar parallel." }, sub2: { title: "Perpendikulyar chiziqlar", desc: "Perpendikulyar chiziqlarning qiyaliklari o'zaro teskari va ishorasi qarama-qarshi bo'ladi. Ularning ko'paytmasi \\(-1\\) ga teng.", ex: "Misol:", conc: "\\(2\\cdot\\left(-\\dfrac{1}{2}\\right)=-1\\) bo'lgani uchun chiziqlar perpendikulyar." } },
+                real: { title: "Hayotiy chiziqli modellar", p1: "Chiziqli funksiyalar biror narsa doimiy miqdorda o'zgarganda qo'llaniladi.", ex: { title: "Misol: Taksi narxi", desc: "Taksi boshlanishiga \\(5\\) dollar va har kilometr uchun \\(2\\) dollar oladi.", li1: "\\(x\\) = kilometrlar soni", li2: "\\(2\\) = bir kilometr narxi", li3: "\\(5\\) = boshlang'ich to'lov", li4: "\\(C\\) = jami narx", calc: "Agar siz \\(8\\) kilometr yursangiz:", answer: "<span class=\"check\">✅</span><span>Jami narx: \\(21\\) dollar</span>" } },
+                mistakes: { title: "Keng tarqalgan xatolar", m1: { title: "1. Qiyalik va kesishishni adashtirish", desc: "\\(y=mx+b\\) da \\(m\\) tiklikni, \\(b\\) esa chiziq \\(y\\)-o'qini qayerda kesishini boshqaradi." }, m2: { title: "2. \\(b\\) faqat son emas, nuqta ekanligini unutish", desc: "Agar \\(b=5\\) bo'lsa, \\(y\\)-kesishish \\((0,5)\\) bo'ladi, shunchaki \\(5\\) emas." }, m3: { title: "3. Qiyalik formulasida tartibni noto'g'ri qo'llash", desc: "Agar \\(y_2-y_1\\) dan boshlasangiz, \\(x_2-x_1\\) dan ham foydalanishingiz kerak. O'rtada tartibni almashtirmang.", note: "Ikkalasi ham to'g'ri, lekin aralashtirish xato." }, m4: { title: "4. Har qanday to'g'ri chiziqni funksiya deb o'ylash", desc: "Vertikal chiziqlar to'g'ri chiziq, lekin ular funksiya emas, chunki bitta \\(x\\) qiymatiga bir nechta \\(y\\) qiymati to'g'ri keladi." } },
+                summary: { title: "Yakuniy xulosa", li1: "Chiziqli funksiya \\(y=mx+b\\) ko'rinishida bo'ladi.", li2: "Chiziqli funksiyaning grafigi to'g'ri chiziqdir.", li3: "\\(m\\) — qiyalik yoki o'zgarish tezligi.", li4: "\\(b\\) — \\(y\\)-kesishish.", li5: "Musbat qiyalik chiziq ko'tarilishini bildiradi.", li6: "Manfiy qiyalik chiziq tushishini bildiradi.", li7: "Nol qiyalik chiziq gorizontal ekanligini bildiradi.", li8: "\\(y\\)-kesishishni topish uchun \\(x=0\\) qo'ying.", li9: "\\(x\\)-kesishishni topish uchun \\(y=0\\) qo'ying.", li10: "Ikki nuqtadan qiyalikni topish uchun \\(m=\\dfrac{y_2-y_1}{x_2-x_1}\\) formulasidan foydalaning.", try: { title: "O'zingiz sinab ko'ring" }, p1: { title: "1-mashq", q: "\\(x=5\\) bo'lganda \\(y\\) ni toping." }, p2: { title: "2-mashq", q: "\\(x\\) va \\(y\\) kesishish nuqtalarini toping." }, p3: { title: "3-mashq", q: "Qiyalikni toping." }, p4: { title: "4-mashq", q: "Chiziq tenglamasini yozing." } }
+            }
+        }
+    };
+
+    function getText(key, lang) {
+        return key.split('.').reduce((obj, part) => obj && obj[part], translations[lang]);
+    }
+    function formatValue(value) { return Number(value).toFixed(1); }
+
+    const lfCanvas = document.getElementById('linearFunctionCanvas');
+    const lfCtx = lfCanvas.getContext('2d');
+    const lfMSlider = document.getElementById('lfMSlider');
+    const lfBSlider = document.getElementById('lfBSlider');
+    const lfMValue = document.getElementById('lfMValue');
+    const lfBValue = document.getElementById('lfBValue');
+    const lfReset = document.getElementById('linearFunctionReset');
+
+    function drawPill(context, text, x, y, widthLimit) {
+        context.font = '700 11px Arial';
+        const padX = 10;
+        const pillW = context.measureText(text).width + padX * 2;
+        const pillH = 18;
+        const left = Math.min(Math.max(x + 9, 6), widthLimit - pillW - 6);
+        const top = y - pillH / 2;
+        const r = pillH / 2;
+        context.fillStyle = '#1f8df1';
+        context.beginPath();
+        context.moveTo(left + r, top);
+        context.arcTo(left + pillW, top, left + pillW, top + pillH, r);
+        context.arcTo(left + pillW, top + pillH, left, top + pillH, r);
+        context.arcTo(left, top + pillH, left, top, r);
+        context.arcTo(left, top, left + pillW, top, r);
+        context.closePath();
+        context.fill();
+        context.fillStyle = '#fff';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(text, left + pillW / 2, top + pillH / 2 + 0.5);
+    }
+
+    function drawLinearPoint(x, y, label) {
+        lfCtx.strokeStyle = '#1f8df1';
+        lfCtx.fillStyle = '#fff';
+        lfCtx.lineWidth = 2;
+        lfCtx.beginPath();
+        lfCtx.arc(x, y, 4, 0, Math.PI * 2);
+        lfCtx.fill();
+        lfCtx.stroke();
+        drawPill(lfCtx, label, x, y, lfCanvas.clientWidth);
+    }
+
+    function drawLinearFunction(width, height, lang) {
+        const m = Number(lfMSlider.value);
+        const b = Number(lfBSlider.value);
+        const xMin = -10, xMax = 10, yMin = -10, yMax = 10;
+        const toX = (x) => ((x - xMin) / (xMax - xMin)) * width;
+        const toY = (y) => height - ((y - yMin) / (yMax - yMin)) * height;
+        lfCtx.clearRect(0, 0, width, height);
+        lfCtx.lineWidth = 1;
+        lfCtx.strokeStyle = 'rgba(0,0,0,0.08)';
+        for (let gx = xMin; gx <= xMax; gx += 1) { const px = toX(gx); lfCtx.beginPath(); lfCtx.moveTo(px, 0); lfCtx.lineTo(px, height); lfCtx.stroke(); }
+        for (let gy = yMin; gy <= yMax; gy += 1) { const py = toY(gy); lfCtx.beginPath(); lfCtx.moveTo(0, py); lfCtx.lineTo(width, py); lfCtx.stroke(); }
+        lfCtx.strokeStyle = 'rgba(0,0,0,0.22)';
+        lfCtx.lineWidth = 1.25;
+        lfCtx.beginPath(); lfCtx.moveTo(toX(0), 0); lfCtx.lineTo(toX(0), height); lfCtx.stroke();
+        lfCtx.beginPath(); lfCtx.moveTo(0, toY(0)); lfCtx.lineTo(width, toY(0)); lfCtx.stroke();
+        lfCtx.fillStyle = '#8a8a8a';
+        lfCtx.font = '11px Arial';
+        lfCtx.textAlign = 'center';
+        for (let t = xMin; t <= xMax; t += 2) if (t !== 0) lfCtx.fillText(String(t), toX(t), toY(0) + 16);
+        lfCtx.textAlign = 'left';
+        for (let t = yMin; t <= yMax; t += 5) if (t !== 0) lfCtx.fillText(String(t), toX(0) + 8, toY(t) - 4);
+        lfCtx.strokeStyle = '#1488ff';
+        lfCtx.lineWidth = 2.5;
+        lfCtx.beginPath();
+        lfCtx.moveTo(toX(xMin), toY(m * xMin + b));
+        lfCtx.lineTo(toX(xMax), toY(m * xMax + b));
+        lfCtx.stroke();
+        if (b >= yMin && b <= yMax) drawLinearPoint(toX(0), toY(b), getText('graph.yIntercept', lang));
+        if (Math.abs(m) > 1e-8) {
+            const xInt = -b / m;
+            if (xInt >= xMin && xInt <= xMax) drawLinearPoint(toX(xInt), toY(0), getText('graph.xIntercept', lang));
+        }
+    }
+
+    function resizeLinearFunction(lang) {
+        const ratio = window.devicePixelRatio || 1;
+        const rect = lfCanvas.getBoundingClientRect();
+        lfCanvas.width = Math.max(1, Math.round(rect.width * ratio));
+        lfCanvas.height = Math.max(1, Math.round(rect.height * ratio));
+        lfCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        drawLinearFunction(rect.width, rect.height, lang);
+    }
+
+    function updateLinearFunction(lang) {
+        lfMValue.textContent = formatValue(lfMSlider.value);
+        lfBValue.textContent = formatValue(lfBSlider.value);
+        resizeLinearFunction(lang);
+    }
+
+    function language(lang) {
+        const next = translations[lang] ? lang : 'en';
+        localStorage.setItem('mathAcademyLanguage', next);
+        document.documentElement.lang = next;
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === next);
+        });
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+            const value = getText(element.dataset.i18n, next);
+            if (value !== undefined) element.innerHTML = value;
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+            const value = getText(element.dataset.i18nAriaLabel, next);
+            if (value !== undefined) element.setAttribute('aria-label', value);
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+            const value = getText(element.dataset.i18nAlt, next);
+            if (value !== undefined) element.setAttribute('alt', value);
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach((element) => {
+            const value = getText(element.dataset.i18nTitle, next);
+            if (value !== undefined) element.setAttribute('title', value);
+        });
+        updateLinearFunction(next);
+        if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise().catch(err => console.warn('MathJax typeset failed:', err));
+        }
+    }
+
+    lfMSlider.addEventListener('input', () => updateLinearFunction(document.documentElement.lang || 'en'));
+    lfBSlider.addEventListener('input', () => updateLinearFunction(document.documentElement.lang || 'en'));
+    lfReset.addEventListener('click', () => {
+        lfMSlider.value = '1';
+        lfBSlider.value = '1';
+        updateLinearFunction(document.documentElement.lang || 'en');
+    });
+    window.addEventListener('resize', () => resizeLinearFunction(document.documentElement.lang || 'en'));
+    language(localStorage.getItem('mathAcademyLanguage') || 'en');
+</script>
 </body>
 </html>

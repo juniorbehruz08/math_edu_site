@@ -15,6 +15,11 @@
         .card { width:100%; max-width:560px; background:#fff; border:1px solid var(--line); border-radius:2px; box-shadow:6px 6px 0 var(--cream),7px 7px 0 var(--line); padding:52px 48px 44px; position:relative; }
         .card::before { content:''; position:absolute; top:0; left:0; width:48px; height:48px; background:var(--rust); clip-path:polygon(0 0,100% 0,0 100%); }
         .tag { font-size:10px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--rust); margin-bottom:10px; }
+        .top-actions { display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px; }
+        .top-actions .back-btn { margin-bottom:0; }
+        .language-switch { display:inline-flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:#fdfcf9;flex-shrink:0; }
+        .language-switch__button { border:0;background:transparent;color:#999;border-radius:999px;padding:5px 9px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;cursor:pointer;line-height:1; }
+        .language-switch__button.is-active { background:var(--rust);color:#fff; }
         h1 { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; line-height:1.2; color:var(--ink); margin-bottom:8px; }
         .subtitle { font-size:13px; font-weight:300; color:#888; margin-bottom:36px; line-height:1.6; }
         .type-row { display:flex; gap:10px; margin-bottom:24px; }
@@ -66,6 +71,19 @@
 <body>
 <div class="page">
     <div class="card">
+        <div class="top-actions">
+            <a href="/" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Back
+            </a>
+            <div class="language-switch" aria-label="Language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="setFeedbackLanguage('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="setFeedbackLanguage('uz')">UZ</button>
+            </div>
+        </div>
 
         {% if success %}
         <div class="success-screen">
@@ -75,32 +93,25 @@
                 </svg>
             </div>
             <h2>Message Sent</h2>
-            <p>Thank you. Your message has been<br>saved and delivered to the admin.</p>
+            <p>Thank you. Your message has been saved and delivered to the admin.</p>
             <a href="{% url 'feedback' %}" class="another-btn">Send Another</a>
         </div>
 
         {% else %}
         <div class="tag">Admin Inbox</div>
         <h1>Send a Message</h1>
-        <p class="subtitle">Submit a recommendation or report a problem.<br>We read every message.</p>
-        <a href="/" class="back-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                 stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            Back
-        </a>
+        <p class="subtitle">Submit a recommendation or report a problem. We read every message.</p>
         <form method="POST" action="{% url 'feedback' %}">
             {% csrf_token %}
 
             <div class="type-row">
                 <label class="type-label">
                     <input type="radio" name="message_type" value="recommendation" checked/>
-                    <span>💡 Recommendation</span>
+                    <span>Recommendation</span>
                 </label>
                 <label class="type-label">
                     <input type="radio" name="message_type" value="problem"/>
-                    <span>🐛 Problem Report</span>
+                    <span>Problem Report</span>
                 </label>
             </div>
 
@@ -112,7 +123,7 @@
 
             <div class="field">
                 <label>Message</label>
-                <textarea name="message" placeholder="Describe your recommendation or problem in detail…"
+                <textarea name="message" placeholder="Describe your recommendation or problem in detail..."
                           maxlength="2000" required></textarea>
             </div>
 
@@ -122,5 +133,74 @@
 
     </div>
 </div>
+<script>
+    const feedbackTextTranslations = {
+        "Send a Message": "Xabar yuborish",
+        "Back": "Orqaga",
+        "Message Sent": "Xabar yuborildi",
+        "Thank you. Your message has been saved and delivered to the admin.": "Rahmat. Xabaringiz saqlandi va adminga yetkazildi.",
+        "Send Another": "Yana yuborish",
+        "Admin Inbox": "Admin xabarlari",
+        "Submit a recommendation or report a problem. We read every message.": "Tavsiya yuboring yoki muammo haqida xabar bering. Har bir xabarni o'qiymiz.",
+        "Recommendation": "Tavsiya",
+        "Problem Report": "Muammo haqida xabar",
+        "Your Name": "Ismingiz",
+        "(optional)": "(ixtiyoriy)",
+        "Message": "Xabar",
+        "Send Message": "Xabar yuborish",
+        "e.g. Ali Karimov": "masalan, Ali Karimov",
+        "Describe your recommendation or problem in detail...": "Tavsiyangiz yoki muammoingizni batafsil yozing..."
+    };
+    const reverseFeedbackTextTranslations = Object.fromEntries(
+        Object.entries(feedbackTextTranslations).map(([english, uzbek]) => [uzbek, english])
+    );
+    let currentFeedbackLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+
+    function translateFeedbackText(englishText) {
+        return currentFeedbackLanguage === 'uz'
+            ? feedbackTextTranslations[englishText] || englishText
+            : englishText;
+    }
+
+    function setFeedbackTextNodeLanguage(node, language) {
+        const text = node.nodeValue;
+        const trimmed = text.trim();
+        if (!trimmed) return;
+        const lookupText = trimmed.replace(/\s+/g, ' ');
+        const replacement = language === 'uz'
+            ? feedbackTextTranslations[lookupText]
+            : reverseFeedbackTextTranslations[lookupText];
+        if (!replacement) return;
+        node.nodeValue = text.match(/^\s*/)[0] + replacement + text.match(/\s*$/)[0];
+    }
+
+    function setFeedbackLanguage(language) {
+        currentFeedbackLanguage = language;
+        localStorage.setItem('mathAcademyLanguage', language);
+        document.documentElement.lang = language;
+        document.title = translateFeedbackText('Send a Message');
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === language);
+        });
+        const switcher = document.querySelector('.language-switch');
+        if (switcher) switcher.setAttribute('aria-label', language === 'uz' ? 'Til' : 'Language');
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        textNodes.forEach((node) => {
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script, style')) return;
+            setFeedbackTextNodeLanguage(node, language);
+        });
+
+        const nameInput = document.querySelector('input[name="sender_name"]');
+        if (nameInput) nameInput.placeholder = translateFeedbackText('e.g. Ali Karimov');
+        const messageInput = document.querySelector('textarea[name="message"]');
+        if (messageInput) messageInput.placeholder = translateFeedbackText('Describe your recommendation or problem in detail...');
+    }
+
+    setFeedbackLanguage(currentFeedbackLanguage);
+</script>
 </body>
 </html>

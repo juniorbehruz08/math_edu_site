@@ -1,201 +1,564 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
+    <title>Working with Signs</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
-          rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
     <style>
-        :root{--bg:#f7fbff;--card:#ffffff;--muted:#4b5563;--accent:#1d4ed8}
-        *{box-sizing:border-box}
-        body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,#eef6ff,#f7fbff); color:#0b1a2b}
-        .wrap{max-width:900px;margin:28px auto;padding:20px}
-        header{display:flex;align-items:baseline;gap:16px}
-        h1{margin:0;font-size:1.8rem}
-        p.lead{color:var(--muted);margin:6px 0 18px;font-size:1.05rem}
-        .grid{display:grid;grid-template-columns:1fr;gap:20px}
-        .card{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
-        h2{margin-top:0;color:var(--accent)}
-        .small{font-size:1rem;color:#1f2937;line-height:1.6}
-        .example{margin-top:10px;padding:12px;background:#f1f7ff;border-radius:8px;font-weight:500;color:#0b1a2b}
-        footer{margin-top:22px;color:var(--muted);font-size:0.9rem;line-height:1.5}
-        @media (max-width:600px){.wrap{padding:12px}}
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        body { background: #f7fbff; color: #111827; font-family: 'Open Sans', sans-serif; }
+        .language-switch { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.16); }
+        .language-switch__button { border: 0; border-radius: 999px; padding: 6px 12px; color: #fff; background: transparent; font-weight: 700; line-height: 1; }
+        .language-switch__button.is-active { color: #13547a; background: #fff; }
+        .lesson-shell { max-width: 900px; margin: 0 auto; padding: 42px 18px 70px; }
+        .lesson-card { background: #fff; border: 1px solid #dde8ef; border-radius: 8px; padding: clamp(20px, 4vw, 34px); margin-bottom: 22px; box-shadow: 0 16px 34px rgba(13,84,122,.08); }
+        .lesson-card h2 { color: #111827; font-family: 'Montserrat', sans-serif; font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 800; margin: 0 0 12px; }
+        .lesson-card h3 { color: #17456c; font-family: 'Montserrat', sans-serif; font-size: 1.08rem; font-weight: 800; margin: 22px 0 8px; }
+        .lesson-card p, .lesson-card li { color: #263445; font-size: 1rem; line-height: 1.72; }
+        .lesson-card ul { margin: 0; padding-left: 1.2rem; }
+        .math-line { margin: 14px 0 18px; text-align: center; color: #000; font-family: "Times New Roman", Times, serif; font-size: 1.28rem; font-style: italic; }
+        .rule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0 8px; }
+        .rule-tile { min-height: 112px; padding: 18px; border: 1px solid #d9e8ef; border-radius: 8px; background: #f8fcff; }
+        .rule-tile strong { display: block; color: #13547a; font-family: 'Montserrat', sans-serif; margin-bottom: 8px; }
+        .sign-board { min-height: 250px; padding: 24px; border-radius: 20px; background: linear-gradient(135deg,#eef9ff,#fff); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(19,84,122,.12); }
+        .sign-grid { display: grid; grid-template-columns: repeat(2, minmax(110px, 1fr)); gap: 14px; width: min(360px, 100%); }
+        .sign-card { min-height: 82px; display: grid; place-items: center; border-radius: 14px; border: 1px solid #cfe0ea; background: #fff; color: #102033; font-size: 1.35rem; font-weight: 800; box-shadow: 0 10px 24px rgba(19,84,122,.1); }
+        .plus { color: #157347; }
+        .minus { color: #b42318; }
+        .steps { counter-reset: step; display: grid; gap: 12px; margin-top: 16px; }
+        .step { position: relative; padding: 15px 16px 15px 54px; border: 1px solid #e0ebf2; border-radius: 8px; background: #fbfdff; }
+        .step::before { counter-increment: step; content: counter(step); position: absolute; left: 16px; top: 16px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 999px; background: #13547a; color: #fff; font-weight: 800; }
+        .answer-box { display: inline-block; border: 1px solid #111; padding: 2px 8px; font-family: "Times New Roman", Times, serif; font-size: 1.15rem; font-style: italic; }
+        .callout { border-left: 4px solid #13547a; padding: 14px 16px; background: #f4fbfd; border-radius: 0 8px 8px 0; margin-top: 18px; }
+        .practice-strip { display: flex; justify-content: center; margin-top: 28px; }
+
+        .mini-table { width: 100%; border-collapse: collapse; margin: 16px 0; overflow: hidden; border-radius: 8px; border: 1px solid #d9e8ef; }
+        .mini-table th, .mini-table td { padding: 11px 10px; border-bottom: 1px solid #e4eef5; text-align: left; vertical-align: top; }
+        .mini-table th { background: #edf7fb; color: #102033; font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .mini-table tr:last-child td { border-bottom: 0; }
+        .example-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0 6px; }
+        .example-box { padding: 16px; border: 1px solid #d9e8ef; border-radius: 8px; background: #fbfdff; }
+        .example-box strong { display: block; color: #13547a; font-family: 'Montserrat', sans-serif; margin-bottom: 8px; }
+        .mistake-box { border-left: 4px solid #b42318; background: #fff7f7; padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 14px; }
+        .key-idea { border-left: 4px solid #157347; background: #f2fbf6; padding: 14px 16px; border-radius: 0 8px 8px 0; margin-top: 14px; }
+        .case-label { display: inline-block; padding: 3px 9px; border-radius: 999px; background: #e8f4fa; color: #13547a; font-size: .78rem; font-weight: 800; margin-bottom: 8px; }
+
+        @media (max-width: 768px) {
+            .rule-grid, .sign-grid, .example-grid { grid-template-columns: 1fr; }
+            .mini-table { display: block; overflow-x: auto; }
+            .site-header .row { gap: 22px; }
+        }
     </style>
-    <!--
-
-    TemplateMo 590 topic listing
-
-    https://templatemo.com/tm-590-topic-listing
-
-    -->
 </head>
-
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
-
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
             </div>
-
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+            </div>
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
-
 
     <header class="site-header d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-
-                            <li class="breadcrumb-item active" aria-current="page">Working with Signs</li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">Working with Signs</li>
                         </ol>
                     </nav>
-
-                    <h2 class="text-white">Introduction to <br>Working with Signs</h2>
-
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Working with Signs</h2>
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
-
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
-
                 <div class="col-lg-5 col-12">
-                    <div class="topics-detail-block bg-white shadow-lg">
-                        <img src="{% static 'images/myimages/signs.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                    <div class="sign-board" aria-label="Sign rules visual" data-i18n-aria-label="page.visualAlt">
+                        <div class="sign-grid">
+                            <div class="sign-card"><span class="plus">+</span> + <span class="plus">+</span> = <span class="plus">+</span></div>
+                            <div class="sign-card"><span class="minus">-</span> + <span class="minus">-</span> = <span class="minus">-</span></div>
+                            <div class="sign-card"><span class="plus">+</span> x <span class="minus">-</span> = <span class="minus">-</span></div>
+                            <div class="sign-card"><span class="minus">-</span> x <span class="minus">-</span> = <span class="plus">+</span></div>
+                        </div>
                     </div>
                 </div>
-
             </div>
-            <div class="d-flex justify-content-center mt-5">
-                <a style="width:300px" href="{% url 'practice' %}?url=working_with_signs"
-                   class="btn custom-btn custom-border-btn">Practice with Signs</a>
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=working_with_signs" class="btn custom-btn custom-border-btn" data-i18n="page.practice">Practice with Signs</a>
             </div>
         </div>
     </header>
 
+    <section id="topics-detail" class="lesson-shell">
+        <article class="lesson-card">
+            <h2 data-i18n="intro.title">What does working with signs mean?</h2>
+            <p data-i18n="intro.body">Working with signs means deciding whether a result is positive, negative, or zero when numbers are added, subtracted, multiplied, divided, or raised to a power. A sign is not just a small symbol; it changes the position of a number on the number line and can completely change the value of an expression.</p>
+            <p data-i18n="intro.body2">In this lesson, we separate the <strong>sign</strong> of a number from its <strong>absolute value</strong>. The absolute value is the distance from zero, so it is never negative.</p>
+            <div class="math-line">\(-7,\ -2,\ 0,\ 4,\ 9\)</div>
+            <div class="key-idea" data-i18n="intro.keyIdea">Key idea: the sign tells the direction from zero, while the absolute value tells the distance from zero.</div>
+            <div class="math-line">\(|-7| = 7,\quad |7| = 7\)</div>
+        </article>
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+        <article class="lesson-card">
+            <h2 data-i18n="signs.title">Positive, negative, and zero</h2>
+            <p data-i18n="signs.body">Positive numbers are greater than zero, negative numbers are less than zero, and zero is neither positive nor negative. On the number line, negative numbers are placed to the left of zero and positive numbers to the right.</p>
+            <table class="mini-table">
+                <thead>
+                <tr>
+                    <th data-i18n="signs.columnType">Type</th>
+                    <th data-i18n="signs.columnMeaning">Meaning</th>
+                    <th data-i18n="signs.columnExamples">Examples</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-i18n="signs.positiveName">Positive numbers</td>
+                    <td data-i18n="signs.positiveMeaning">Numbers greater than zero.</td>
+                    <td>\(3,\ 8,\ 15,\ 0.5\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="signs.negativeName">Negative numbers</td>
+                    <td data-i18n="signs.negativeMeaning">Numbers less than zero.</td>
+                    <td>\(-1,\ -6,\ -12,\ -0.75\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="signs.zeroName">Zero</td>
+                    <td data-i18n="signs.zeroMeaning">The boundary between positive and negative numbers.</td>
+                    <td>\(0\)</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="callout" data-i18n="signs.note">Important: \(0\) has no sign. It is not positive and it is not negative.</div>
+        </article>
 
-        <!-- Introduction -->
-        <div class="wrap">
-            <header>
-                <div>
-                    <h1>Working with Signs — Detailed Guide</h1>
-                    <p class="lead">This page explains how positive (+) and negative (−) signs behave in different
-                        arithmetic operations. Each section provides a clear rule and one simple example for
-                        illustration.</p>
+        <article class="lesson-card">
+            <h2 data-i18n="add.title">Adding signed numbers</h2>
+            <p data-i18n="add.intro">When adding signed numbers, first check whether the signs are the same or different. Think of positive numbers as moving to the right and negative numbers as moving to the left.</p>
+            <div class="rule-grid">
+                <div class="rule-tile">
+                    <strong data-i18n="add.sameTitle">Case 1: Same signs</strong>
+                    <p data-i18n="add.sameBody">Add the absolute values and keep the common sign.</p>
+                    <div class="math-line">\(5 + 3 = 8\)</div>
+                    <div class="math-line">\(-5 + (-3) = -8\)</div>
                 </div>
-            </header>
-
-
-            <section class="grid">
-
-
-                <div class="card">
-                    <h2>1) Addition of Signed Numbers</h2>
-                    <p class="small">When adding numbers, always look at their signs first. If both numbers have the
-                        same sign, add their magnitudes and keep that sign. If they have different signs, subtract the
-                        smaller magnitude from the larger one, and keep the sign of the larger number.</p>
-                    <div class="example">Example: -5 + 2 = -3</div>
+                <div class="rule-tile">
+                    <strong data-i18n="add.diffTitle">Case 2: Different signs</strong>
+                    <p data-i18n="add.diffBody">Subtract the smaller absolute value from the larger absolute value, then keep the sign of the number with the larger absolute value.</p>
+                    <div class="math-line">\(-7 + 4 = -3\)</div>
+                    <div class="math-line">\(9 + (-2) = 7\)</div>
                 </div>
-
-
-                <div class="card">
-                    <h2>2) Subtraction of Signed Numbers</h2>
-                    <p class="small">Subtraction is really just addition of the opposite. Rewriting every subtraction as
-                        addition makes it easier: <em>a - b = a + (-b)</em>. This way, the same rules of addition apply.
-                        Subtracting a negative means you are actually adding a positive.</p>
-                    <div class="example">Example: 4 - (-7) = 11</div>
+            </div>
+            <div class="example-grid">
+                <div class="example-box">
+                    <span class="case-label" data-i18n="add.caseA">Example A</span>
+                    <strong data-i18n="add.caseATitle">Two negative numbers</strong>
+                    <p data-i18n="add.caseABody">Both numbers are negative, so the result stays negative.</p>
+                    <div class="math-line">\(-12 + (-8) = -20\)</div>
                 </div>
-
-
-                <div class="card">
-                    <h2>3) Multiplication and Division</h2>
-                    <p class="small">Signs in multiplication and division follow a simple flip rule. If there is an even
-                        number of negative signs, the result is positive. If there is an odd number of negatives, the
-                        result is negative. You only multiply or divide the magnitudes, then decide the sign at the
-                        end.</p>
-                    <div class="example">Example: (-2) * 5 * -3 = 30</div>
+                <div class="example-box">
+                    <span class="case-label" data-i18n="add.caseB">Example B</span>
+                    <strong data-i18n="add.caseBTitle">The negative number has larger absolute value</strong>
+                    <p data-i18n="add.caseBBody">Since \(|-15| > |6|\), the answer is negative.</p>
+                    <div class="math-line">\(-15 + 6 = -9\)</div>
                 </div>
-
-
-                <div class="card">
-                    <h2>4) Exponents</h2>
-                    <p class="small">When raising a negative base to a power, the parity (even or odd) of the exponent
-                        matters. An even exponent cancels out the negative sign, producing a positive result. An odd
-                        exponent keeps the negative sign. Parentheses are important: without them, the minus sign may
-                        only apply after the exponent is calculated.</p>
-                    <div class="example">Example: (-3)^3 = -27</div>
+                <div class="example-box">
+                    <span class="case-label" data-i18n="add.caseC">Example C</span>
+                    <strong data-i18n="add.caseCTitle">The positive number has larger absolute value</strong>
+                    <p data-i18n="add.caseCBody">Since \(|20| > |-7|\), the answer is positive.</p>
+                    <div class="math-line">\(20 + (-7) = 13\)</div>
                 </div>
-
-
-                <div class="card">
-                    <h2>5) Order of Operations</h2>
-                    <p class="small">To avoid mistakes with signs, always follow the order of operations: Parentheses →
-                        Exponents → Multiplication/Division → Addition/Subtraction. Handling multiplication first is
-                        especially important when negatives are involved, as it changes how the final sign appears.</p>
-                    <div class="example">Example: 2 - 3 * (-2) = 8</div>
+                <div class="example-box">
+                    <span class="case-label" data-i18n="add.caseD">Example D</span>
+                    <strong data-i18n="add.caseDTitle">Opposite numbers cancel out</strong>
+                    <p data-i18n="add.caseDBody">Numbers with the same absolute value and opposite signs add to zero.</p>
+                    <div class="math-line">\(-11 + 11 = 0\)</div>
                 </div>
+            </div>
+        </article>
 
-
-            </section>
-
-
-            <footer>
-                <div>This guide summarizes the key principles of working with signs. Focus on the rules, then check each
-                    step carefully when solving problems to avoid small sign mistakes.
+        <article class="lesson-card">
+            <h2 data-i18n="subtract.title">Subtracting signed numbers</h2>
+            <p data-i18n="subtract.body">Subtraction is best understood as adding the opposite number. Keep the first number, change subtraction to addition, and change the sign of the second number.</p>
+            <div class="math-line">\(a - b = a + (-b)\)</div>
+            <div class="steps">
+                <div class="step"><span data-i18n="subtract.step1">Keep the first number unchanged.</span></div>
+                <div class="step"><span data-i18n="subtract.step2">Change the subtraction sign to addition.</span></div>
+                <div class="step"><span data-i18n="subtract.step3">Replace the second number by its opposite.</span></div>
+            </div>
+            <div class="example-grid">
+                <div class="example-box">
+                    <strong data-i18n="subtract.case1Title">Subtracting a positive number</strong>
+                    <p data-i18n="subtract.case1Body">Subtracting \(7\) means adding \(-7\).</p>
+                    <div class="math-line">\(4 - 7 = 4 + (-7) = -3\)</div>
                 </div>
-            </footer>
-        </div>
-        <!-- Dynamic Accordion -->
+                <div class="example-box">
+                    <strong data-i18n="subtract.case2Title">Subtracting a negative number</strong>
+                    <p data-i18n="subtract.case2Body">Subtracting \(-7\) means adding \(7\).</p>
+                    <div class="math-line">\(4 - (-7) = 4 + 7 = 11\)</div>
+                </div>
+                <div class="example-box">
+                    <strong data-i18n="subtract.case3Title">Negative minus positive</strong>
+                    <p data-i18n="subtract.case3Body">The movement goes farther to the left.</p>
+                    <div class="math-line">\(-5 - 9 = -5 + (-9) = -14\)</div>
+                </div>
+                <div class="example-box">
+                    <strong data-i18n="subtract.case4Title">Negative minus negative</strong>
+                    <p data-i18n="subtract.case4Body">Change subtraction into addition of the opposite.</p>
+                    <div class="math-line">\(-6 - (-10) = -6 + 10 = 4\)</div>
+                </div>
+            </div>
+            <div class="mistake-box" data-i18n="subtract.mistake">Common mistake: \(4 - (-7)\) is not \(-3\). Two signs together, “minus negative,” become plus.</div>
+        </article>
 
-    </main>
+        <article class="lesson-card">
+            <h2 data-i18n="multiply.title">Multiplication and division with signs</h2>
+            <p data-i18n="multiply.body">For multiplication and division, the sign depends on the number of negative factors. An even number of negative signs gives a positive result. An odd number of negative signs gives a negative result.</p>
+            <table class="mini-table">
+                <thead>
+                <tr>
+                    <th data-i18n="multiply.rule">Rule</th>
+                    <th data-i18n="multiply.example">Example</th>
+                    <th data-i18n="multiply.result">Result</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-i18n="multiply.pp">Positive × positive</td>
+                    <td>\(4 \times 3\)</td>
+                    <td>\(12\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="multiply.pn">Positive × negative</td>
+                    <td>\(4 \times (-3)\)</td>
+                    <td>\(-12\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="multiply.np">Negative × positive</td>
+                    <td>\((-4) \times 3\)</td>
+                    <td>\(-12\)</td>
+                </tr>
+                <tr>
+                    <td data-i18n="multiply.nn">Negative × negative</td>
+                    <td>\((-4) \times (-3)\)</td>
+                    <td>\(12\)</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="example-grid">
+                <div class="example-box">
+                    <strong data-i18n="multiply.multiTitle">More than two factors</strong>
+                    <p data-i18n="multiply.multiBody">There are three negative signs, so the result is negative.</p>
+                    <div class="math-line">\((-2)(-3)(-4) = -24\)</div>
+                </div>
+                <div class="example-box">
+                    <strong data-i18n="multiply.divideTitle">Division uses the same sign rules</strong>
+                    <p data-i18n="multiply.divideBody">A negative divided by a negative gives a positive result.</p>
+                    <div class="math-line">\(\dfrac{-18}{-3} = 6\)</div>
+                </div>
+            </div>
+            <div class="callout" data-i18n="multiply.note">Useful method: first calculate the absolute values, then decide the sign at the end.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="powers.title">Signs with exponents</h2>
+            <p data-i18n="powers.body">Parentheses are extremely important with powers. If the negative number is inside parentheses, the whole negative number is the base. If there are no parentheses, the exponent applies first and the negative sign stays outside.</p>
+            <div class="rule-grid">
+                <div class="rule-tile">
+                    <strong data-i18n="powers.withParens">With parentheses</strong>
+                    <p data-i18n="powers.withParensBody">The base is \(-4\), so the sign is included in the power.</p>
+                    <div class="math-line">\((-4)^2 = 16\)</div>
+                </div>
+                <div class="rule-tile">
+                    <strong data-i18n="powers.noParens">Without parentheses</strong>
+                    <p data-i18n="powers.noParensBody">Only \(4\) is squared, then the negative sign is applied.</p>
+                    <div class="math-line">\(-4^2 = -(4^2) = -16\)</div>
+                </div>
+            </div>
+            <div class="example-grid">
+                <div class="example-box">
+                    <strong data-i18n="powers.evenTitle">Even powers</strong>
+                    <p data-i18n="powers.evenBody">A negative base raised to an even power becomes positive.</p>
+                    <div class="math-line">\((-3)^4 = 81\)</div>
+                </div>
+                <div class="example-box">
+                    <strong data-i18n="powers.oddTitle">Odd powers</strong>
+                    <p data-i18n="powers.oddBody">A negative base raised to an odd power remains negative.</p>
+                    <div class="math-line">\((-3)^3 = -27\)</div>
+                </div>
+            </div>
+            <div class="mistake-box" data-i18n="powers.mistake">Common mistake: \(-5^2\) and \((-5)^2\) are not the same. The first equals \(-25\), while the second equals \(25\).</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="fractions.title">Signs in fractions</h2>
+            <p data-i18n="fractions.body">A negative sign in a fraction may be placed in the numerator, in the denominator, or in front of the fraction. These three forms are equivalent if there is exactly one negative sign.</p>
+            <div class="math-line">\(\dfrac{-a}{b} = \dfrac{a}{-b} = -\dfrac{a}{b}\)</div>
+            <div class="example-grid">
+                <div class="example-box">
+                    <strong data-i18n="fractions.oneNegativeTitle">One negative sign</strong>
+                    <p data-i18n="fractions.oneNegativeBody">One negative sign makes the whole fraction negative.</p>
+                    <div class="math-line">\(\dfrac{-6}{3} = -2\)</div>
+                </div>
+                <div class="example-box">
+                    <strong data-i18n="fractions.twoNegativeTitle">Two negative signs</strong>
+                    <p data-i18n="fractions.twoNegativeBody">Two negative signs cancel each other.</p>
+                    <div class="math-line">\(\dfrac{-6}{-3} = 2\)</div>
+                </div>
+            </div>
+            <div class="callout" data-i18n="fractions.note">Do not leave two negative signs in a simplified fraction. For example, \(\dfrac{-2}{-5}\) should be written as \(\dfrac{2}{5}\).</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="order.title">Order of operations with signs</h2>
+            <p data-i18n="order.body">When an expression contains signs and several operations, follow the standard order: parentheses, exponents, multiplication or division, and then addition or subtraction.</p>
+            <div class="steps">
+                <div class="step"><span data-i18n="order.step1">Start with:</span> <span class="math-line">\(2 - 3(-2)\)</span></div>
+                <div class="step"><span data-i18n="order.step2">Multiply first:</span> <span class="math-line">\(3(-2) = -6\)</span></div>
+                <div class="step"><span data-i18n="order.step3">Now subtract a negative:</span> <span class="math-line">\(2 - (-6) = 8\)</span></div>
+            </div>
+            <p style="text-align:center;margin-top:18px"><span class="answer-box">\(8\)</span></p>
+
+            <h3 data-i18n="order.secondExampleTitle">Another example</h3>
+            <div class="steps">
+                <div class="step"><span data-i18n="order.secondStep1">Start with:</span> <span class="math-line">\(-4^2 + 3(-2)\)</span></div>
+                <div class="step"><span data-i18n="order.secondStep2">Apply the exponent first:</span> <span class="math-line">\(-4^2 = -16\)</span></div>
+                <div class="step"><span data-i18n="order.secondStep3">Multiply:</span> <span class="math-line">\(3(-2) = -6\)</span></div>
+                <div class="step"><span data-i18n="order.secondStep4">Add the results:</span> <span class="math-line">\(-16 + (-6) = -22\)</span></div>
+            </div>
+            <p style="text-align:center;margin-top:18px"><span class="answer-box">\(-22\)</span></p>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="summary.title">Quick summary</h2>
+            <ul>
+                <li data-i18n="summary.point1">Same signs in addition: add absolute values and keep the common sign.</li>
+                <li data-i18n="summary.point2">Different signs in addition: subtract absolute values and keep the sign of the larger absolute value.</li>
+                <li data-i18n="summary.point3">Subtraction means adding the opposite.</li>
+                <li data-i18n="summary.point4">For multiplication and division, an even number of negative signs gives a positive result.</li>
+                <li data-i18n="summary.point5">For powers, parentheses decide whether the negative sign is part of the base.</li>
+                <li data-i18n="summary.point6">Zero is neither positive nor negative.</li>
+            </ul>
+        </article>
+    </section>
 </main>
 
-
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            page: { language: "Language", profile: "Profile", breadcrumb: "Breadcrumb", homepage: "Homepage", current: "Working with Signs", hero: "Introduction to <br>Working with Signs", readMore: "Read More", backTop: "Back to top", visualAlt: "Sign rules visual", practice: "Practice with Signs" },
+            intro: {
+                title: "What does working with signs mean?",
+                body: "Working with signs means deciding whether a result is positive, negative, or zero when numbers are added, subtracted, multiplied, divided, or raised to a power. A sign is not just a small symbol; it changes the position of a number on the number line and can completely change the value of an expression.",
+                body2: "In this lesson, we separate the <strong>sign</strong> of a number from its <strong>absolute value</strong>. The absolute value is the distance from zero, so it is never negative.",
+                keyIdea: "Key idea: the sign tells the direction from zero, while the absolute value tells the distance from zero."
+            },
+            signs: {
+                title: "Positive, negative, and zero",
+                body: "Positive numbers are greater than zero, negative numbers are less than zero, and zero is neither positive nor negative. On the number line, negative numbers are placed to the left of zero and positive numbers to the right.",
+                columnType: "Type", columnMeaning: "Meaning", columnExamples: "Examples",
+                positiveName: "Positive numbers", positiveMeaning: "Numbers greater than zero.",
+                negativeName: "Negative numbers", negativeMeaning: "Numbers less than zero.",
+                zeroName: "Zero", zeroMeaning: "The boundary between positive and negative numbers.",
+                note: "Important: \\(0\\) has no sign. It is not positive and it is not negative."
+            },
+            add: {
+                title: "Adding signed numbers",
+                intro: "When adding signed numbers, first check whether the signs are the same or different. Think of positive numbers as moving to the right and negative numbers as moving to the left.",
+                sameTitle: "Case 1: Same signs", sameBody: "Add the absolute values and keep the common sign.",
+                diffTitle: "Case 2: Different signs", diffBody: "Subtract the smaller absolute value from the larger absolute value, then keep the sign of the number with the larger absolute value.",
+                caseA: "Example A", caseATitle: "Two negative numbers", caseABody: "Both numbers are negative, so the result stays negative.",
+                caseB: "Example B", caseBTitle: "The negative number has larger absolute value", caseBBody: "Since \\(|-15| > |6|\\), the answer is negative.",
+                caseC: "Example C", caseCTitle: "The positive number has larger absolute value", caseCBody: "Since \\(|20| > |-7|\\), the answer is positive.",
+                caseD: "Example D", caseDTitle: "Opposite numbers cancel out", caseDBody: "Numbers with the same absolute value and opposite signs add to zero."
+            },
+            subtract: {
+                title: "Subtracting signed numbers",
+                body: "Subtraction is best understood as adding the opposite number. Keep the first number, change subtraction to addition, and change the sign of the second number.",
+                step1: "Keep the first number unchanged.", step2: "Change the subtraction sign to addition.", step3: "Replace the second number by its opposite.",
+                case1Title: "Subtracting a positive number", case1Body: "Subtracting \\(7\\) means adding \\(-7\\).",
+                case2Title: "Subtracting a negative number", case2Body: "Subtracting \\(-7\\) means adding \\(7\\).",
+                case3Title: "Negative minus positive", case3Body: "The movement goes farther to the left.",
+                case4Title: "Negative minus negative", case4Body: "Change subtraction into addition of the opposite.",
+                mistake: "Common mistake: \\(4 - (-7)\\) is not \\(-3\\). Two signs together, “minus negative,” become plus."
+            },
+            multiply: {
+                title: "Multiplication and division with signs",
+                body: "For multiplication and division, the sign depends on the number of negative factors. An even number of negative signs gives a positive result. An odd number of negative signs gives a negative result.",
+                rule: "Rule", example: "Example", result: "Result",
+                pp: "Positive × positive", pn: "Positive × negative", np: "Negative × positive", nn: "Negative × negative",
+                multiTitle: "More than two factors", multiBody: "There are three negative signs, so the result is negative.",
+                divideTitle: "Division uses the same sign rules", divideBody: "A negative divided by a negative gives a positive result.",
+                note: "Useful method: first calculate the absolute values, then decide the sign at the end."
+            },
+            powers: {
+                title: "Signs with exponents",
+                body: "Parentheses are extremely important with powers. If the negative number is inside parentheses, the whole negative number is the base. If there are no parentheses, the exponent applies first and the negative sign stays outside.",
+                withParens: "With parentheses", withParensBody: "The base is \\(-4\\), so the sign is included in the power.",
+                noParens: "Without parentheses", noParensBody: "Only \\(4\\) is squared, then the negative sign is applied.",
+                evenTitle: "Even powers", evenBody: "A negative base raised to an even power becomes positive.",
+                oddTitle: "Odd powers", oddBody: "A negative base raised to an odd power remains negative.",
+                mistake: "Common mistake: \\(-5^2\\) and \\((-5)^2\\) are not the same. The first equals \\(-25\\), while the second equals \\(25\\)."
+            },
+            fractions: {
+                title: "Signs in fractions",
+                body: "A negative sign in a fraction may be placed in the numerator, in the denominator, or in front of the fraction. These three forms are equivalent if there is exactly one negative sign.",
+                oneNegativeTitle: "One negative sign", oneNegativeBody: "One negative sign makes the whole fraction negative.",
+                twoNegativeTitle: "Two negative signs", twoNegativeBody: "Two negative signs cancel each other.",
+                note: "Do not leave two negative signs in a simplified fraction. For example, \\(\\dfrac{-2}{-5}\\) should be written as \\(\\dfrac{2}{5}\\)."
+            },
+            order: {
+                title: "Order of operations with signs",
+                body: "When an expression contains signs and several operations, follow the standard order: parentheses, exponents, multiplication or division, and then addition or subtraction.",
+                step1: "Start with:", step2: "Multiply first:", step3: "Now subtract a negative:",
+                secondExampleTitle: "Another example", secondStep1: "Start with:", secondStep2: "Apply the exponent first:", secondStep3: "Multiply:", secondStep4: "Add the results:"
+            },
+            summary: {
+                title: "Quick summary",
+                point1: "Same signs in addition: add absolute values and keep the common sign.",
+                point2: "Different signs in addition: subtract absolute values and keep the sign of the larger absolute value.",
+                point3: "Subtraction means adding the opposite.",
+                point4: "For multiplication and division, an even number of negative signs gives a positive result.",
+                point5: "For powers, parentheses decide whether the negative sign is part of the base.",
+                point6: "Zero is neither positive nor negative."
+            }
+        },
+        uz: {
+            page: { language: "Til", profile: "Profil", breadcrumb: "Sahifa yo‘li", homepage: "Bosh sahifa", current: "Ishoralar bilan ishlash", hero: "Ishoralar bilan ishlashga <br>kirish", readMore: "Ko‘proq o‘qish", backTop: "Yuqoriga qaytish", visualAlt: "Ishoralar qoidalari ko‘rinishi", practice: "Ishoralar bilan mashq qilish" },
+            intro: {
+                title: "Ishoralar bilan ishlash nimani anglatadi?",
+                body: "Ishoralar bilan ishlash sonlarni qo‘shish, ayirish, ko‘paytirish, bo‘lish yoki darajaga oshirishda natija musbat, manfiy yoki nol bo‘lishini to‘g‘ri aniqlash demakdir. Ishora oddiy belgi emas: u sonning sonlar o‘qidagi joylashuvini o‘zgartiradi va ifodaning qiymatini butunlay o‘zgartirishi mumkin.",
+                body2: "Bu darsda sonning <strong>ishorasi</strong> va <strong>moduli</strong> alohida tushuntiriladi. Modul sonning noldan masofasini bildiradi, shuning uchun u hech qachon manfiy bo‘lmaydi.",
+                keyIdea: "Asosiy fikr: ishora noldan qaysi tomonga yurishni, modul esa noldan qancha masofa borligini bildiradi."
+            },
+            signs: {
+                title: "Musbat, manfiy va nol",
+                body: "Musbat sonlar noldan katta, manfiy sonlar noldan kichik bo‘ladi. Nol esa musbat ham emas, manfiy ham emas. Sonlar o‘qida manfiy sonlar nolning chap tomonida, musbat sonlar esa o‘ng tomonida joylashadi.",
+                columnType: "Tur", columnMeaning: "Ma’nosi", columnExamples: "Misollar",
+                positiveName: "Musbat sonlar", positiveMeaning: "Noldan katta sonlar.",
+                negativeName: "Manfiy sonlar", negativeMeaning: "Noldan kichik sonlar.",
+                zeroName: "Nol", zeroMeaning: "Musbat va manfiy sonlar orasidagi chegara.",
+                note: "Muhim: \\(0\\) ishoraga ega emas. U musbat ham emas, manfiy ham emas."
+            },
+            add: {
+                title: "Ishorali sonlarni qo‘shish",
+                intro: "Ishorali sonlarni qo‘shishda avval ishoralar bir xilmi yoki har xilmi, shuni aniqlang. Musbat sonlarni o‘ngga yurish, manfiy sonlarni esa chapga yurish deb tasavvur qilish mumkin.",
+                sameTitle: "1-holat: Ishoralar bir xil", sameBody: "Modullarni qo‘shing va umumiy ishorani saqlang.",
+                diffTitle: "2-holat: Ishoralar har xil", diffBody: "Katta moduldan kichik modulni ayiring, keyin moduli kattaroq sonning ishorasini qo‘ying.",
+                caseA: "A-misol", caseATitle: "Ikkita manfiy son", caseABody: "Ikkala son ham manfiy, shuning uchun natija ham manfiy bo‘ladi.",
+                caseB: "B-misol", caseBTitle: "Manfiy sonning moduli kattaroq", caseBBody: "\\(|-15| > |6|\\) bo‘lgani uchun javob manfiy bo‘ladi.",
+                caseC: "C-misol", caseCTitle: "Musbat sonning moduli kattaroq", caseCBody: "\\(|20| > |-7|\\) bo‘lgani uchun javob musbat bo‘ladi.",
+                caseD: "D-misol", caseDTitle: "Qarama-qarshi sonlar qisqaradi", caseDBody: "Modullari teng, ishoralari qarama-qarshi sonlarning yig‘indisi nolga teng."
+            },
+            subtract: {
+                title: "Ishorali sonlarni ayirish",
+                body: "Ayirishni qarama-qarshi sonni qo‘shish deb tushunish eng qulay usuldir. Birinchi sonni o‘zgarishsiz qoldiring, ayirishni qo‘shishga aylantiring va ikkinchi sonni qarama-qarshi songa almashtiring.",
+                step1: "Birinchi sonni o‘zgarishsiz qoldiring.", step2: "Ayirish belgisini qo‘shish belgisiga o‘zgartiring.", step3: "Ikkinchi sonni qarama-qarshi songa almashtiring.",
+                case1Title: "Musbat sonni ayirish", case1Body: "\\(7\\) ni ayirish \\(-7\\) ni qo‘shish demakdir.",
+                case2Title: "Manfiy sonni ayirish", case2Body: "\\(-7\\) ni ayirish \\(7\\) ni qo‘shish demakdir.",
+                case3Title: "Manfiy sondan musbat sonni ayirish", case3Body: "Harakat chap tomonga yana uzoqroq davom etadi.",
+                case4Title: "Manfiy sondan manfiy sonni ayirish", case4Body: "Ayirishni qarama-qarshi sonni qo‘shishga aylantiring.",
+                mistake: "Ko‘p uchraydigan xato: \\(4 - (-7)\\) javobi \\(-3\\) emas. Ketma-ket kelgan “minus manfiy” plusga aylanadi."
+            },
+            multiply: {
+                title: "Ko‘paytirish va bo‘lishda ishoralar",
+                body: "Ko‘paytirish va bo‘lishda natijaning ishorasi manfiy ko‘paytuvchilar soniga bog‘liq. Manfiy ishoralar soni juft bo‘lsa, natija musbat bo‘ladi. Manfiy ishoralar soni toq bo‘lsa, natija manfiy bo‘ladi.",
+                rule: "Qoida", example: "Misol", result: "Natija",
+                pp: "Musbat × musbat", pn: "Musbat × manfiy", np: "Manfiy × musbat", nn: "Manfiy × manfiy",
+                multiTitle: "Ikki tadan ko‘p ko‘paytuvchi", multiBody: "Bu yerda uchta manfiy ishora bor, shuning uchun natija manfiy bo‘ladi.",
+                divideTitle: "Bo‘lishda ham shu ishora qoidalari ishlaydi", divideBody: "Manfiy sonni manfiy songa bo‘lish musbat natija beradi.",
+                note: "Foydali usul: avval modullar bilan hisoblang, ishorani esa oxirida aniqlang."
+            },
+            powers: {
+                title: "Darajalarda ishoralar",
+                body: "Darajalarda qavslar juda muhim. Agar manfiy son qavs ichida bo‘lsa, butun manfiy son asos hisoblanadi. Agar qavs bo‘lmasa, avval daraja bajariladi va manfiy ishora tashqarida qoladi.",
+                withParens: "Qavs bilan", withParensBody: "Asos \\(-4\\), ya’ni ishora ham darajaga kiradi.",
+                noParens: "Qavssiz", noParensBody: "Faqat \\(4\\) kvadratga oshiriladi, keyin manfiy ishora qo‘llanadi.",
+                evenTitle: "Juft darajalar", evenBody: "Manfiy asos juft darajaga oshirilsa, natija musbat bo‘ladi.",
+                oddTitle: "Toq darajalar", oddBody: "Manfiy asos toq darajaga oshirilsa, natija manfiyligicha qoladi.",
+                mistake: "Ko‘p uchraydigan xato: \\(-5^2\\) va \\((-5)^2\\) bir xil emas. Birinchisi \\(-25\\), ikkinchisi esa \\(25\\) ga teng."
+            },
+            fractions: {
+                title: "Kasrlarda ishoralar",
+                body: "Kasrdagi manfiy ishora suratda, maxrajda yoki kasrning oldida turishi mumkin. Agar faqat bitta manfiy ishora bo‘lsa, bu uch ko‘rinish bir-biriga teng.",
+                oneNegativeTitle: "Bitta manfiy ishora", oneNegativeBody: "Bitta manfiy ishora butun kasrni manfiy qiladi.",
+                twoNegativeTitle: "Ikkita manfiy ishora", twoNegativeBody: "Ikkita manfiy ishora bir-birini yo‘q qiladi.",
+                note: "Soddalashtirilgan kasrda ikkita manfiy ishorani qoldirmang. Masalan, \\(\\dfrac{-2}{-5}\\) o‘rniga \\(\\dfrac{2}{5}\\) yoziladi."
+            },
+            order: {
+                title: "Ishoralar bilan amallar tartibi",
+                body: "Agar ifodada ishoralar va bir nechta amal bo‘lsa, odatiy tartibga amal qiling: qavslar, darajalar, ko‘paytirish yoki bo‘lish, keyin qo‘shish yoki ayirish.",
+                step1: "Boshlang‘ich ifoda:", step2: "Avval ko‘paytiring:", step3: "Endi manfiy sonni ayiring:",
+                secondExampleTitle: "Yana bir misol", secondStep1: "Boshlang‘ich ifoda:", secondStep2: "Avval darajani bajaring:", secondStep3: "Ko‘paytiring:", secondStep4: "Natijalarni qo‘shing:"
+            },
+            summary: {
+                title: "Qisqa xulosa",
+                point1: "Qo‘shishda ishoralar bir xil bo‘lsa, modullar qo‘shiladi va umumiy ishora saqlanadi.",
+                point2: "Qo‘shishda ishoralar har xil bo‘lsa, modullar ayiriladi va moduli kattaroq sonning ishorasi olinadi.",
+                point3: "Ayirish qarama-qarshi sonni qo‘shish demakdir.",
+                point4: "Ko‘paytirish va bo‘lishda manfiy ishoralar soni juft bo‘lsa, natija musbat bo‘ladi.",
+                point5: "Darajalarda manfiy ishora asosga kiradimi yoki yo‘qmi — buni qavslar aniqlaydi.",
+                point6: "Nol musbat ham emas, manfiy ham emas."
+            }
+        }
+    };
 
+    function getText(key, lang) {
+        return key.split('.').reduce((obj, part) => obj && obj[part], translations[lang]);
+    }
+
+    function language(lang) {
+        const next = translations[lang] ? lang : 'en';
+        localStorage.setItem('mathAcademyLanguage', next);
+        document.documentElement.lang = next;
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === next);
+        });
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+            const value = getText(element.dataset.i18n, next);
+            if (value) element.innerHTML = value;
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+            const value = getText(element.dataset.i18nAriaLabel, next);
+            if (value) element.setAttribute('aria-label', value);
+        });
+        if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise().catch(() => {});
+    }
+
+    language(localStorage.getItem('mathAcademyLanguage') || 'en');
+</script>
 </body>
 </html>

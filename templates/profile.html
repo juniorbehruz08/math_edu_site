@@ -48,6 +48,9 @@
         .eyebrow-row { display:flex;align-items:center;gap:.75rem;margin-bottom:2rem; }
         .eyebrow-row .label { font-family:'Syne',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);flex-shrink:0; }
         .eyebrow-row .line { flex:1;height:1px;background:var(--border); }
+        .language-switch { display:inline-flex;align-items:center;gap:4px;padding:4px;border:1px solid rgba(232,255,90,.28);border-radius:999px;background:rgba(232,255,90,.06);flex-shrink:0; }
+        .language-switch__button { border:0;background:transparent;color:var(--muted);border-radius:999px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:.62rem;font-weight:700;cursor:pointer;line-height:1; }
+        .language-switch__button.is-active { background:var(--accent);color:#0b0c10; }
 
         .profile-card { background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden;animation:fadeUp .5s ease both; }
         .profile-card::before { content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,255,90,.08) 0%,transparent 70%);pointer-events:none; }
@@ -158,6 +161,10 @@
   <div class="eyebrow-row">
     <span class="label">User Profile</span>
     <span class="line"></span>
+    <div class="language-switch" aria-label="Language">
+      <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="setProfileLanguage('en')">EN</button>
+      <button class="language-switch__button" type="button" data-language-button="uz" onclick="setProfileLanguage('uz')">UZ</button>
+    </div>
     <div style="display:flex;gap:.5rem;flex-shrink:0">
       <a href="javascript:history.back()" class="back-btn">
         <svg viewBox="0 0 24 24"><path d="M15 21H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H15"/><polyline points="8 17 3 12 8 7"/><line x1="3" y1="12" x2="15" y2="12"/></svg>
@@ -210,6 +217,62 @@
 
 </div>
 <script>
+  const profileTextTranslations = {
+    "User Profile": "Foydalanuvchi profili",
+    "Back": "Orqaga",
+    "Exit": "Chiqish",
+    "First Name": "Ism",
+    "Last Name": "Familiya",
+    "Username": "Foydalanuvchi nomi",
+    "Member Since": "A'zo bo'lgan sana",
+    "Country": "Mamlakat",
+    "Recent Practice Tests": "So'nggi amaliy testlar",
+    "Taken Lessons": "O'tilgan darslar",
+    "Nothing here yet.": "Hali hech narsa yo'q."
+  };
+  const reverseProfileTextTranslations = Object.fromEntries(
+    Object.entries(profileTextTranslations).map(([english, uzbek]) => [uzbek, english])
+  );
+  let currentProfileLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+
+  function translateProfileText(englishText) {
+    return currentProfileLanguage === 'uz'
+      ? profileTextTranslations[englishText] || englishText
+      : englishText;
+  }
+
+  function setProfileTextNodeLanguage(node, language) {
+    const text = node.nodeValue;
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    const lookupText = trimmed.replace(/\s+/g, ' ');
+    const replacement = language === 'uz'
+      ? profileTextTranslations[lookupText]
+      : reverseProfileTextTranslations[lookupText];
+    if (!replacement) return;
+    node.nodeValue = text.match(/^\s*/)[0] + replacement + text.match(/\s*$/)[0];
+  }
+
+  function setProfileLanguage(language) {
+    currentProfileLanguage = language;
+    localStorage.setItem('mathAcademyLanguage', language);
+    document.documentElement.lang = language;
+    document.title = translateProfileText('User Profile');
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.languageButton === language);
+    });
+    const switcher = document.querySelector('.language-switch');
+    if (switcher) switcher.setAttribute('aria-label', language === 'uz' ? 'Til' : 'Language');
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      const parent = node.parentElement;
+      if (!parent || parent.closest('script, style')) return;
+      setProfileTextNodeLanguage(node, language);
+    });
+  }
+
   const u = {
     firstName: "{{ user.first_name|capfirst }}",
     lastName:  "{{ user.last_name|capfirst }}",
@@ -248,7 +311,7 @@
 
     if (!items.length) {
       shell.style.height = '80px';
-      stage.innerHTML = '<div class="drum-empty" style="padding:1.2rem 1rem">Nothing here yet.</div>';
+      stage.innerHTML = `<div class="drum-empty" style="padding:1.2rem 1rem">${translateProfileText('Nothing here yet.')}</div>`;
       return;
     }
 
@@ -404,6 +467,7 @@
 
   makeDrum('tests-shell',   'tests-stage',   'tests-nav',   'tests-up',   'tests-down',   'tests-ctr',   scoresData,  testCard);
   makeDrum('lessons-shell', 'lessons-stage', 'lessons-nav', 'lessons-up', 'lessons-down', 'lessons-ctr', lessonsData, lessonCard);
+  setProfileLanguage(currentProfileLanguage);
 </script>
 </body>
 </html>

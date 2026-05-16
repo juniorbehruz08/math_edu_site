@@ -1,23 +1,29 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trigonometric Formulas</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(','\\)'], ['$','$']],
+                displayMath: [['\\[','\\]'], ['$$','$$']]
+            },
+            options: {
+                skipHtmlTags: ['script','noscript','style','textarea','pre']
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,35 +31,346 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
 
-    TemplateMo 590 topic listing
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    https://templatemo.com/tm-590-topic-listing
+        html, body {
+            overflow-x: hidden;
+        }
 
-    -->
+        body {
+            background: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+            color: #111111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #111111;
+            background: #ffffff;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .practice-strip {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .lesson-shell {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 44px 18px 72px;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: clamp(20px, 4vw, 34px);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+        }
+
+        .lesson-card h1,
+        .lesson-card h2 {
+            margin: 0 0 12px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .lesson-card h1 {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            text-align: center;
+        }
+
+        .lesson-card h2 {
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+        }
+
+        .lesson-card h3 {
+            margin: 18px 0 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .lesson-card ul,
+        .lesson-card ol {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .math-line {
+            margin: 12px 0 18px;
+            text-align: center;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+            overflow-x: auto;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .rule-card {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 16px;
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .callout {
+            border-left: 4px solid #111111;
+            background: #f4f4f4;
+            border-radius: 0 8px 8px 0;
+            padding: 13px 15px;
+            margin-top: 16px;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .steps {
+            counter-reset: step;
+            display: grid;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .step {
+            position: relative;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 14px 14px 50px;
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: #111111;
+            color: #ffffff;
+            display: grid;
+            place-items: center;
+            font-size: .78rem;
+            font-weight: 800;
+        }
+
+        .badge-num {
+            display: inline-grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #111111;
+            color: #ffffff;
+            font-size: .85rem;
+            font-weight: 800;
+            vertical-align: 2px;
+            font-style: normal;
+        }
+
+        .section-rule {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 22px 0;
+        }
+
+        .simple-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        .simple-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            border: 1px solid #dddddd;
+            padding: 13px 14px;
+            text-align: left;
+            color: #222222;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .simple-table th {
+            background: #f1f1f1;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .module-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 22px 0 0;
+            border-bottom: 1px solid #dddddd;
+            padding-bottom: 12px;
+        }
+
+        .module-tab {
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            color: #111111;
+            border-radius: 999px;
+            padding: 9px 14px;
+            font-weight: 800;
+            font-size: .92rem;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .module-tab.is-active {
+            background: #111111;
+            color: #ffffff;
+            border-color: #111111;
+        }
+
+        .module-panel {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .module-panel.is-active {
+            display: block;
+        }
+
+        .mini-note {
+            font-size: .95rem;
+            color: #444444;
+            margin-top: 10px;
+        }
+
+        .answer-final {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: #101010;
+            font-weight: 700;
+        }
+
+        .answer-final .check {
+            color: #111111;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .row {
+                gap: 22px;
+            }
+
+            .lesson-shell {
+                padding: 34px 14px 60px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+
+            .module-tab {
+                width: 100%;
+                border-radius: 8px;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
 
@@ -62,141 +379,1312 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a>
+                            </li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">
+                                Trigonometric Formulas
+                            </li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Trigonometry</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Trigonometric Formulas</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                            Read More
+                        </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
                         <img src="{% static 'images/myimages/trigonometry.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                             class="topics-detail-block-image img-fluid hero-image"
+                             alt="Trigonometric formulas visual"
+                             data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=operations_in_trigonometry"
-                       class="btn custom-btn custom-border-btn">Practice with Trigonometric Formulas</a>
-                </div>
 
+            </div>
+
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=operations_in_trigonometry"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice with Trigonometric Formulas
+                </a>
             </div>
         </div>
     </header>
 
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <section id="topics-detail" class="lesson-shell">
 
-                    <!-- Sine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                                data-bs-target="#design-tab-pane" type="button" role="tab"
-                                aria-controls="design-tab-pane" aria-selected="true">Sum-to-Product
-                        </button>
-                    </li>
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Trigonometric Formulas — Modular Guide</h1>
 
-                    <!-- Cosine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                                aria-controls="marketing-tab-pane" aria-selected="false">Product-to-Sum
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p1">
+                This page organizes the most important trigonometric formulas into modules. Instead of one very long page,
+                use the tabs below to study one formula group at a time.
+            </p>
 
-                    <!-- Tangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                                data-bs-target="#finance-tab-pane" type="button" role="tab"
-                                aria-controls="finance-tab-pane" aria-selected="false">Angle Addition and Subtraction
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p2">
+                The formulas here include fundamental identities, angle addition and subtraction, double-angle formulas,
+                half-angle formulas, product-to-sum, sum-to-product, power-reduction, and related formulas derived from the main identities.
+            </p>
 
-                    <!-- Cotangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="music-tab" data-bs-toggle="tab"
-                                data-bs-target="#music-tab-pane" type="button" role="tab"
-                                aria-controls="music-tab-pane" aria-selected="false">Double-Angle
-                        </button>
-                    </li>
-                </ul>
+            <div class="callout" data-i18n="lesson.intro.callout">
+                <strong>Main idea:</strong> Most trigonometric formulas are not random. They come from a small number of core identities.
             </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
+            <div class="module-tabs" role="tablist" aria-label="Trigonometry formula modules" data-i18n-aria-label="tabs.aria">
+                <button class="module-tab is-active" type="button" data-module-button="overview" data-i18n="tabs.overview">Overview</button>
+                <button class="module-tab" type="button" data-module-button="fundamental" data-i18n="tabs.fundamental">Fundamental</button>
+                <button class="module-tab" type="button" data-module-button="addition" data-i18n="tabs.addition">Angle Addition</button>
+                <button class="module-tab" type="button" data-module-button="double" data-i18n="tabs.double">Double-Angle</button>
+                <button class="module-tab" type="button" data-module-button="half" data-i18n="tabs.half">Half-Angle</button>
+                <button class="module-tab" type="button" data-module-button="product" data-i18n="tabs.product">Product ↔ Sum</button>
+                <button class="module-tab" type="button" data-module-button="reduction" data-i18n="tabs.reduction">Power Reduction</button>
+                <button class="module-tab" type="button" data-module-button="summary" data-i18n="tabs.summary">Summary</button>
+            </div>
+        </article>
 
-                        <!-- Sine Content -->
-                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                             aria-labelledby="design-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/addition_in_trigonometry1.jpg' %}"
-                                 alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/addition_in_trigonometry2.jpg' %}"
-                                 alt="">
-                        </div>
 
-                        <!-- Cosine Content -->
-                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                             aria-labelledby="marketing-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%"
-                                 src="{% static 'images/myimages/multiplication_in_trigonometry1.jpg' %}" alt="">
-                        </div>
+        <article class="module-panel is-active" data-module-panel="overview">
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span><span data-i18n="overview.title">How These Formula Groups Connect</span></h2>
 
-                        <!-- Tangent Content -->
-                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel"
-                             aria-labelledby="finance-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/angle_addition1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/angle_addition2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/angle_addition3.jpg' %}" alt="">
-                        </div>
+                <p data-i18n="overview.p1">
+                    Trigonometric formulas are useful because they allow us to rewrite complicated expressions in simpler or more convenient forms.
+                    For example, a product can be changed into a sum, a double angle can be rewritten using one angle, and a half angle can be found from a known angle.
+                </p>
 
-                        <!-- Cotangent Content -->
-                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel"
-                             aria-labelledby="music-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/double_angle1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/double_angle2.jpg' %}" alt="">
-                        </div>
-
-                        <!-- ⭐ NEW EMPTY VALUES TAB -->
-                        <div class="tab-pane fade" id="values-tab-pane" role="tabpanel"
-                             aria-labelledby="values-tab" tabindex="0">
-                            <div class="container" style="text-align:center; margin-top: 40px;">
-
-                            </div>
-                        </div>
-                    </div>
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="overview.table.group">Formula group</th>
+                            <th data-i18n="overview.table.purpose">Purpose</th>
+                            <th data-i18n="overview.table.example">Typical use</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td data-i18n="overview.fundamental.name">Fundamental identities</td>
+                            <td data-i18n="overview.fundamental.purpose">Connect sine, cosine, tangent, and cotangent.</td>
+                            <td data-i18n="overview.fundamental.example">Simplifying expressions.</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="overview.addition.name">Angle addition and subtraction</td>
+                            <td data-i18n="overview.addition.purpose">Find trigonometric values of combined angles.</td>
+                            <td data-i18n="overview.addition.example">Finding \(\sin(75^\circ)\) from \(45^\circ+30^\circ\).</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="overview.double.name">Double-angle formulas</td>
+                            <td data-i18n="overview.double.purpose">Rewrite trig functions of \(2x\).</td>
+                            <td data-i18n="overview.double.example">Changing \(\cos(2x)\) into expressions with \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="overview.half.name">Half-angle formulas</td>
+                            <td data-i18n="overview.half.purpose">Find trig functions of half an angle.</td>
+                            <td data-i18n="overview.half.example">Finding values like \(\sin(15^\circ)\).</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="overview.product.name">Product-to-sum and sum-to-product</td>
+                            <td data-i18n="overview.product.purpose">Convert products into sums or sums into products.</td>
+                            <td data-i18n="overview.product.example">Useful in simplification and advanced problem solving.</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </main>
+        </article>
 
+
+        <article class="module-panel" data-module-panel="fundamental">
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span><span data-i18n="fundamental.title">Fundamental Identities</span></h2>
+
+                <p data-i18n="fundamental.p1">
+                    These are the base identities. Many later formulas are built from them.
+                </p>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="fundamental.card1.title">Pythagorean identity</strong>
+                        <div class="math-line">\(\sin^2x+\cos^2x=1\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="fundamental.card2.title">Tangent identity</strong>
+                        <div class="math-line">\(\tan x=\frac{\sin x}{\cos x}\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="fundamental.card3.title">Cotangent identity</strong>
+                        <div class="math-line">\(\cot x=\frac{\cos x}{\sin x}\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="fundamental.card4.title">Tangent and cotangent</strong>
+                        <div class="math-line">\(\tan x\cdot\cot x=1\)</div>
+                    </div>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="fundamental.derived.title">Simple Derived Forms</h3>
+
+                <p data-i18n="fundamental.derived.p1">
+                    From the main identity \(\sin^2x+\cos^2x=1\), we can isolate either sine squared or cosine squared.
+                </p>
+
+                <div class="math-line">
+                    \(\sin^2x=1-\cos^2x\)
+                </div>
+
+                <div class="math-line">
+                    \(\cos^2x=1-\sin^2x\)
+                </div>
+
+                <p data-i18n="fundamental.derived.p2">
+                    We can also write the related identities without using extra names like secant or cosecant.
+                </p>
+
+                <div class="math-line">
+                    \(1+\tan^2x=\frac{1}{\cos^2x}\)
+                </div>
+
+                <div class="math-line">
+                    \(1+\cot^2x=\frac{1}{\sin^2x}\)
+                </div>
+
+                <div class="callout" data-i18n="fundamental.callout">
+                    <strong>Important:</strong> Instead of using \(\sec x\) or \(\csc x\), this page writes them as \(\frac{1}{\cos x}\) and \(\frac{1}{\sin x}\).
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="fundamental.examples.title">Examples for the Fundamental Identities</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin^2x+\cos^2x=1\)</td>
+                            <td>\(\sin^230^\circ+\cos^230^\circ=\left(\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2=1\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan x=\frac{\sin x}{\cos x}\)</td>
+                            <td>\(\tan45^\circ=\frac{\sin45^\circ}{\cos45^\circ}=\frac{\frac{\sqrt2}{2}}{\frac{\sqrt2}{2}}=1\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot x=\frac{\cos x}{\sin x}\)</td>
+                            <td>\(\cot45^\circ=\frac{\cos45^\circ}{\sin45^\circ}=1\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan x\cdot\cot x=1\)</td>
+                            <td>\(\tan30^\circ\cdot\cot30^\circ=\frac{\sqrt3}{3}\cdot\sqrt3=1\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin^2x=1-\cos^2x\)</td>
+                            <td>\(\sin^260^\circ=1-\cos^260^\circ=1-\left(\frac12\right)^2=\frac34\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos^2x=1-\sin^2x\)</td>
+                            <td>\(\cos^260^\circ=1-\sin^260^\circ=1-\frac34=\frac14\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(1+\tan^2x=\frac{1}{\cos^2x}\)</td>
+                            <td>\(1+\tan^245^\circ=1+1=2=\frac{1}{\cos^245^\circ}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(1+\cot^2x=\frac{1}{\sin^2x}\)</td>
+                            <td>\(1+\cot^245^\circ=1+1=2=\frac{1}{\sin^245^\circ}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="addition">
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span><span data-i18n="addition.title">Angle Addition and Subtraction Formulas</span></h2>
+
+                <p data-i18n="addition.p1">
+                    These formulas help us find trigonometric values of combined angles such as \(x+y\) or \(x-y\).
+                </p>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="addition.table.formula">Formula</th>
+                            <th data-i18n="addition.table.meaning">Meaning</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin(x+y)=\sin x\cos y+\cos x\sin y\)</td>
+                            <td data-i18n="addition.sinPlus">Sine of a sum uses sine-cosine plus cosine-sine.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin(x-y)=\sin x\cos y-\cos x\sin y\)</td>
+                            <td data-i18n="addition.sinMinus">Sine of a difference uses the same pattern with minus.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(x+y)=\cos x\cos y-\sin x\sin y\)</td>
+                            <td data-i18n="addition.cosPlus">Cosine of a sum uses cosine-cosine minus sine-sine.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(x-y)=\cos x\cos y+\sin x\sin y\)</td>
+                            <td data-i18n="addition.cosMinus">Cosine of a difference uses cosine-cosine plus sine-sine.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan(x+y)=\frac{\tan x+\tan y}{1-\tan x\tan y}\)</td>
+                            <td data-i18n="addition.tanPlus">Tangent of a sum has a denominator involving \(1-\tan x\tan y\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan(x-y)=\frac{\tan x-\tan y}{1+\tan x\tan y}\)</td>
+                            <td data-i18n="addition.tanMinus">Tangent of a difference has a denominator involving \(1+\tan x\tan y\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" data-i18n="addition.callout">
+                    <strong>Memory warning:</strong> Sine keeps the same sign as the angle operation. Cosine changes the sign.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="addition.examples.title">Examples for Angle Addition and Subtraction</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin(x+y)=\sin x\cos y+\cos x\sin y\)</td>
+                            <td>\(\sin75^\circ=\sin45^\circ\cos30^\circ+\cos45^\circ\sin30^\circ=\frac{\sqrt6+\sqrt2}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin(x-y)=\sin x\cos y-\cos x\sin y\)</td>
+                            <td>\(\sin15^\circ=\sin45^\circ\cos30^\circ-\cos45^\circ\sin30^\circ=\frac{\sqrt6-\sqrt2}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(x+y)=\cos x\cos y-\sin x\sin y\)</td>
+                            <td>\(\cos75^\circ=\cos45^\circ\cos30^\circ-\sin45^\circ\sin30^\circ=\frac{\sqrt6-\sqrt2}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(x-y)=\cos x\cos y+\sin x\sin y\)</td>
+                            <td>\(\cos15^\circ=\cos45^\circ\cos30^\circ+\sin45^\circ\sin30^\circ=\frac{\sqrt6+\sqrt2}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan(x+y)=\frac{\tan x+\tan y}{1-\tan x\tan y}\)</td>
+                            <td>\(\tan75^\circ=\frac{1+\frac{\sqrt3}{3}}{1-1\cdot\frac{\sqrt3}{3}}=2+\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan(x-y)=\frac{\tan x-\tan y}{1+\tan x\tan y}\)</td>
+                            <td>\(\tan15^\circ=\frac{1-\frac{\sqrt3}{3}}{1+1\cdot\frac{\sqrt3}{3}}=2-\sqrt3\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="double">
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span><span data-i18n="double.title">Double-Angle Formulas</span></h2>
+
+                <p data-i18n="double.p1">
+                    Double-angle formulas come from angle addition formulas by setting both angles equal.
+                </p>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="double.card1.title">Sine double angle</strong>
+                        <div class="math-line">\(\sin(2x)=2\sin x\cos x\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="double.card2.title">Cosine double angle</strong>
+                        <div class="math-line">\(\cos(2x)=\cos^2x-\sin^2x\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="double.card3.title">Cosine version 2</strong>
+                        <div class="math-line">\(\cos(2x)=2\cos^2x-1\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="double.card4.title">Cosine version 3</strong>
+                        <div class="math-line">\(\cos(2x)=1-2\sin^2x\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="double.card5.title">Tangent double angle</strong>
+                        <div class="math-line">\(\tan(2x)=\frac{2\tan x}{1-\tan^2x}\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="double.card6.title">Cotangent double angle</strong>
+                        <div class="math-line">\(\cot(2x)=\frac{\cot^2x-1}{2\cot x}\)</div>
+                    </div>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="double.derived.title">How one formula derives from another</h3>
+
+                <p data-i18n="double.derived.p1">
+                    Starting from \(\cos(2x)=\cos^2x-\sin^2x\), use \(\sin^2x+\cos^2x=1\).
+                </p>
+
+                <div class="steps">
+                    <div class="step" data-i18n="double.derived.s1">Replace \(\sin^2x\) with \(1-\cos^2x\).</div>
+                    <div class="step" data-i18n="double.derived.s2">Then \(\cos(2x)=\cos^2x-(1-\cos^2x)\).</div>
+                    <div class="step" data-i18n="double.derived.s3">So \(\cos(2x)=2\cos^2x-1\).</div>
+                </div>
+
+                <div class="callout" data-i18n="double.callout">
+                    <strong>Main point:</strong> The three cosine double-angle formulas are different forms of the same identity.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="double.examples.title">Examples for Double-Angle Formulas</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin(2x)=2\sin x\cos x\)</td>
+                            <td>\(\sin60^\circ=2\sin30^\circ\cos30^\circ=2\cdot\frac12\cdot\frac{\sqrt3}{2}=\frac{\sqrt3}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(2x)=\cos^2x-\sin^2x\)</td>
+                            <td>\(\cos60^\circ=\cos^230^\circ-\sin^230^\circ=\frac34-\frac14=\frac12\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(2x)=2\cos^2x-1\)</td>
+                            <td>\(\cos60^\circ=2\cos^230^\circ-1=2\cdot\frac34-1=\frac12\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos(2x)=1-2\sin^2x\)</td>
+                            <td>\(\cos60^\circ=1-2\sin^230^\circ=1-2\cdot\frac14=\frac12\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan(2x)=\frac{2\tan x}{1-\tan^2x}\)</td>
+                            <td>\(\tan60^\circ=\frac{2\tan30^\circ}{1-\tan^230^\circ}=\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot(2x)=\frac{\cot^2x-1}{2\cot x}\)</td>
+                            <td>\(\cot60^\circ=\frac{\cot^230^\circ-1}{2\cot30^\circ}=\frac{\sqrt3}{3}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="half">
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span><span data-i18n="half.title">Half-Angle Formulas</span></h2>
+
+                <p data-i18n="half.p1">
+                    Half-angle formulas help us find trigonometric values of \(\frac{x}{2}\). They come from the cosine double-angle identities.
+                </p>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="half.table.function">Function</th>
+                            <th data-i18n="half.table.formula">Formula</th>
+                            <th data-i18n="half.table.note">Sign note</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin\frac{x}{2}\)</td>
+                            <td>\(\sin\frac{x}{2}=\pm\sqrt{\frac{1-\cos x}{2}}\)</td>
+                            <td data-i18n="half.sinNote">Choose the sign based on the quadrant of \(\frac{x}{2}\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos\frac{x}{2}\)</td>
+                            <td>\(\cos\frac{x}{2}=\pm\sqrt{\frac{1+\cos x}{2}}\)</td>
+                            <td data-i18n="half.cosNote">Choose the sign based on the quadrant of \(\frac{x}{2}\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan\frac{x}{2}\)</td>
+                            <td>\(\tan\frac{x}{2}=\frac{\sin x}{1+\cos x}\)</td>
+                            <td data-i18n="half.tanNote1">Useful when \(1+\cos x\ne0\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan\frac{x}{2}\)</td>
+                            <td>\(\tan\frac{x}{2}=\frac{1-\cos x}{\sin x}\)</td>
+                            <td data-i18n="half.tanNote2">Useful when \(\sin x\ne0\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="half.derived.title">Where half-angle formulas come from</h3>
+
+                <p data-i18n="half.derived.p1">
+                    From the double-angle identity \(\cos(2u)=1-2\sin^2u\), solve for \(\sin^2u\).
+                    Then let \(u=\frac{x}{2}\).
+                </p>
+
+                <div class="math-line">
+                    \(\sin^2\frac{x}{2}=\frac{1-\cos x}{2}\)
+                </div>
+
+                <p data-i18n="half.derived.p2">
+                    Taking the square root gives the half-angle formula for sine.
+                </p>
+
+                <div class="callout" data-i18n="half.callout">
+                    <strong>Important:</strong> The \(\pm\) sign is not optional decoration. The correct sign depends on where the half-angle lies.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="half.examples.title">Examples for Half-Angle Formulas</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin\frac{x}{2}=\pm\sqrt{\frac{1-\cos x}{2}}\)</td>
+                            <td>\(\sin15^\circ=\sqrt{\frac{1-\cos30^\circ}{2}}=\sqrt{\frac{1-\frac{\sqrt3}{2}}{2}}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos\frac{x}{2}=\pm\sqrt{\frac{1+\cos x}{2}}\)</td>
+                            <td>\(\cos15^\circ=\sqrt{\frac{1+\cos30^\circ}{2}}=\sqrt{\frac{1+\frac{\sqrt3}{2}}{2}}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan\frac{x}{2}=\frac{\sin x}{1+\cos x}\)</td>
+                            <td>\(\tan15^\circ=\frac{\sin30^\circ}{1+\cos30^\circ}=\frac{\frac12}{1+\frac{\sqrt3}{2}}=2-\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan\frac{x}{2}=\frac{1-\cos x}{\sin x}\)</td>
+                            <td>\(\tan15^\circ=\frac{1-\cos30^\circ}{\sin30^\circ}=\frac{1-\frac{\sqrt3}{2}}{\frac12}=2-\sqrt3\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="product">
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span><span data-i18n="product.title">Product-to-Sum and Sum-to-Product Formulas</span></h2>
+
+                <p data-i18n="product.p1">
+                    These formulas are useful when a problem contains products of trigonometric functions or sums of trigonometric functions.
+                </p>
+
+                <h3 data-i18n="product.productToSum.title">Product-to-Sum</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="product.table.original">Original expression</th>
+                            <th data-i18n="product.table.rewritten">Rewritten form</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin x\sin y\)</td>
+                            <td>\(\frac{1}{2}\left[\cos(x-y)-\cos(x+y)\right]\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x\cos y\)</td>
+                            <td>\(\frac{1}{2}\left[\cos(x-y)+\cos(x+y)\right]\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin x\cos y\)</td>
+                            <td>\(\frac{1}{2}\left[\sin(x+y)+\sin(x-y)\right]\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x\sin y\)</td>
+                            <td>\(\frac{1}{2}\left[\sin(x+y)-\sin(x-y)\right]\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="product.sumToProduct.title">Sum-to-Product</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="product.table.original">Original expression</th>
+                            <th data-i18n="product.table.rewritten">Rewritten form</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin x+\sin y\)</td>
+                            <td>\(2\sin\frac{x+y}{2}\cos\frac{x-y}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin x-\sin y\)</td>
+                            <td>\(2\cos\frac{x+y}{2}\sin\frac{x-y}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x+\cos y\)</td>
+                            <td>\(2\cos\frac{x+y}{2}\cos\frac{x-y}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x-\cos y\)</td>
+                            <td>\(-2\sin\frac{x+y}{2}\sin\frac{x-y}{2}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" data-i18n="product.callout">
+                    <strong>Connection:</strong> Product-to-sum and sum-to-product formulas are closely connected to angle addition and subtraction formulas.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="product.examples.title">Examples for Product-to-Sum and Sum-to-Product</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin x\sin y=\frac{1}{2}\left[\cos(x-y)-\cos(x+y)\right]\)</td>
+                            <td>\(\sin60^\circ\sin30^\circ=\frac12[\cos30^\circ-\cos90^\circ]=\frac{\sqrt3}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x\cos y=\frac{1}{2}\left[\cos(x-y)+\cos(x+y)\right]\)</td>
+                            <td>\(\cos60^\circ\cos30^\circ=\frac12[\cos30^\circ+\cos90^\circ]=\frac{\sqrt3}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin x\cos y=\frac{1}{2}\left[\sin(x+y)+\sin(x-y)\right]\)</td>
+                            <td>\(\sin60^\circ\cos30^\circ=\frac12[\sin90^\circ+\sin30^\circ]=\frac34\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x\sin y=\frac{1}{2}\left[\sin(x+y)-\sin(x-y)\right]\)</td>
+                            <td>\(\cos60^\circ\sin30^\circ=\frac12[\sin90^\circ-\sin30^\circ]=\frac14\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin x+\sin y=2\sin\frac{x+y}{2}\cos\frac{x-y}{2}\)</td>
+                            <td>\(\sin75^\circ+\sin15^\circ=2\sin45^\circ\cos30^\circ=\frac{\sqrt6}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin x-\sin y=2\cos\frac{x+y}{2}\sin\frac{x-y}{2}\)</td>
+                            <td>\(\sin75^\circ-\sin15^\circ=2\cos45^\circ\sin30^\circ=\frac{\sqrt2}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x+\cos y=2\cos\frac{x+y}{2}\cos\frac{x-y}{2}\)</td>
+                            <td>\(\cos75^\circ+\cos15^\circ=2\cos45^\circ\cos30^\circ=\frac{\sqrt6}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos x-\cos y=-2\sin\frac{x+y}{2}\sin\frac{x-y}{2}\)</td>
+                            <td>\(\cos75^\circ-\cos15^\circ=-2\sin45^\circ\sin30^\circ=-\frac{\sqrt2}{2}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="reduction">
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span><span data-i18n="reduction.title">Power-Reduction and Related Formulas</span></h2>
+
+                <p data-i18n="reduction.p1">
+                    Power-reduction formulas rewrite powers such as \(\sin^2x\) and \(\cos^2x\) using double angles.
+                    They come from the cosine double-angle formulas.
+                </p>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="reduction.card1.title">Sine squared</strong>
+                        <div class="math-line">\(\sin^2x=\frac{1-\cos(2x)}{2}\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="reduction.card2.title">Cosine squared</strong>
+                        <div class="math-line">\(\cos^2x=\frac{1+\cos(2x)}{2}\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="reduction.card3.title">Tangent squared</strong>
+                        <div class="math-line">\(\tan^2x=\frac{1}{\cos^2x}-1\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="reduction.card4.title">Cotangent squared</strong>
+                        <div class="math-line">\(\cot^2x=\frac{1}{\sin^2x}-1\)</div>
+                    </div>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="reduction.derived.title">Derived from double-angle formulas</h3>
+
+                <p data-i18n="reduction.derived.p1">
+                    From \(\cos(2x)=1-2\sin^2x\), solve for \(\sin^2x\).
+                </p>
+
+                <div class="math-line">
+                    \(2\sin^2x=1-\cos(2x)\)
+                </div>
+
+                <div class="math-line">
+                    \(\sin^2x=\frac{1-\cos(2x)}{2}\)
+                </div>
+
+                <p data-i18n="reduction.derived.p2">
+                    From \(\cos(2x)=2\cos^2x-1\), solve for \(\cos^2x\).
+                </p>
+
+                <div class="math-line">
+                    \(\cos^2x=\frac{1+\cos(2x)}{2}\)
+                </div>
+
+                <div class="callout" data-i18n="reduction.callout">
+                    <strong>Use case:</strong> Power-reduction formulas are helpful when expressions contain squared trigonometric functions.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="reduction.examples.title">Examples for Power-Reduction and Related Formulas</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="examples.table.formula">Formula</th>
+                            <th data-i18n="examples.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin^2x=\frac{1-\cos(2x)}{2}\)</td>
+                            <td>\(\sin^230^\circ=\frac{1-\cos60^\circ}{2}=\frac{1-\frac12}{2}=\frac14\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos^2x=\frac{1+\cos(2x)}{2}\)</td>
+                            <td>\(\cos^230^\circ=\frac{1+\cos60^\circ}{2}=\frac{1+\frac12}{2}=\frac34\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan^2x=\frac{1}{\cos^2x}-1\)</td>
+                            <td>\(\tan^245^\circ=\frac{1}{\cos^245^\circ}-1=2-1=1\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot^2x=\frac{1}{\sin^2x}-1\)</td>
+                            <td>\(\cot^245^\circ=\frac{1}{\sin^245^\circ}-1=2-1=1\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="summary">
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span><span data-i18n="summary.title">Final Formula Summary</span></h2>
+
+                <p data-i18n="summary.p1">
+                    This section gives a compact checklist of the most important formulas from the modules.
+                </p>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="summary.table.group">Group</th>
+                            <th data-i18n="summary.table.formulas">Main formulas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td data-i18n="summary.fundamental">Fundamental</td>
+                            <td>\(\sin^2x+\cos^2x=1\), \(\tan x=\frac{\sin x}{\cos x}\), \(\cot x=\frac{\cos x}{\sin x}\)</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="summary.addition">Angle addition</td>
+                            <td>\(\sin(x\pm y)\), \(\cos(x\pm y)\), \(\tan(x\pm y)\)</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="summary.double">Double-angle</td>
+                            <td>\(\sin(2x)=2\sin x\cos x\), \(\cos(2x)=\cos^2x-\sin^2x\), \(\tan(2x)=\frac{2\tan x}{1-\tan^2x}\)</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="summary.half">Half-angle</td>
+                            <td>\(\sin\frac{x}{2}=\pm\sqrt{\frac{1-\cos x}{2}}\), \(\cos\frac{x}{2}=\pm\sqrt{\frac{1+\cos x}{2}}\)</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="summary.product">Product and sum</td>
+                            <td data-i18n="summary.productText">Convert products to sums and sums to products.</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="summary.reduction">Power reduction</td>
+                            <td>\(\sin^2x=\frac{1-\cos(2x)}{2}\), \(\cos^2x=\frac{1+\cos(2x)}{2}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" data-i18n="summary.callout">
+                    <strong>Best study order:</strong> Learn fundamental identities first, then angle addition, then double-angle, then half-angle and product-sum formulas.
+                </div>
+            </div>
+        </article>
+
+    </section>
 </main>
 
 
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                current: "Trigonometric Formulas",
+                hero: "Introduction to <br>Trigonometric Formulas",
+                readMore: "Read More",
+                backTop: "Back to top",
+                heroAlt: "Trigonometric formulas visual",
+                practice: "Practice with Trigonometric Formulas"
+            },
+            tabs: {
+                aria: "Trigonometry formula modules",
+                overview: "Overview",
+                fundamental: "Fundamental",
+                addition: "Angle Addition",
+                double: "Double-Angle",
+                half: "Half-Angle",
+                product: "Product ↔ Sum",
+                reduction: "Power Reduction",
+                summary: "Summary"
+            },
+            examples: {
+                table: {
+                    formula: "Formula",
+                    example: "Example"
+                }
+            },
+            lesson: {
+                title: "Trigonometric Formulas — Modular Guide",
+                intro: {
+                    p1: "This page organizes the most important trigonometric formulas into modules. Instead of one very long page, use the tabs below to study one formula group at a time.",
+                    p2: "The formulas here include fundamental identities, angle addition and subtraction, double-angle formulas, half-angle formulas, product-to-sum, sum-to-product, power-reduction, and related formulas derived from the main identities.",
+                    callout: "<strong>Main idea:</strong> Most trigonometric formulas are not random. They come from a small number of core identities."
+                }
+            },
+            overview: {
+                title: "How These Formula Groups Connect",
+                p1: "Trigonometric formulas are useful because they allow us to rewrite complicated expressions in simpler or more convenient forms. For example, a product can be changed into a sum, a double angle can be rewritten using one angle, and a half angle can be found from a known angle.",
+                table: {
+                    group: "Formula group",
+                    purpose: "Purpose",
+                    example: "Typical use"
+                },
+                fundamental: {
+                    name: "Fundamental identities",
+                    purpose: "Connect sine, cosine, tangent, and cotangent.",
+                    example: "Simplifying expressions."
+                },
+                addition: {
+                    name: "Angle addition and subtraction",
+                    purpose: "Find trigonometric values of combined angles.",
+                    example: "Finding \\(\\sin(75^\\circ)\\) from \\(45^\\circ+30^\\circ\\)."
+                },
+                double: {
+                    name: "Double-angle formulas",
+                    purpose: "Rewrite trig functions of \\(2x\\).",
+                    example: "Changing \\(\\cos(2x)\\) into expressions with \\(x\\)."
+                },
+                half: {
+                    name: "Half-angle formulas",
+                    purpose: "Find trig functions of half an angle.",
+                    example: "Finding values like \\(\\sin(15^\\circ)\\)."
+                },
+                product: {
+                    name: "Product-to-sum and sum-to-product",
+                    purpose: "Convert products into sums or sums into products.",
+                    example: "Useful in simplification and advanced problem solving."
+                }
+            },
+            fundamental: {
+                title: "Fundamental Identities",
+                p1: "These are the base identities. Many later formulas are built from them.",
+                card1: {title: "Pythagorean identity"},
+                card2: {title: "Tangent identity"},
+                card3: {title: "Cotangent identity"},
+                card4: {title: "Tangent and cotangent"},
+                derived: {
+                    title: "Simple Derived Forms",
+                    p1: "From the main identity \\(\\sin^2x+\\cos^2x=1\\), we can isolate either sine squared or cosine squared.",
+                    p2: "We can also write the related identities without using extra names like secant or cosecant."
+                },
+                callout: "<strong>Important:</strong> Instead of using \\(\\sec x\\) or \\(\\csc x\\), this page writes them as \\(\\frac{1}{\\cos x}\\) and \\(\\frac{1}{\\sin x}\\).",
+                examples: {
+                    title: "Examples for the Fundamental Identities"
+                }
+            },
+            addition: {
+                title: "Angle Addition and Subtraction Formulas",
+                p1: "These formulas help us find trigonometric values of combined angles such as \\(x+y\\) or \\(x-y\\).",
+                table: {
+                    formula: "Formula",
+                    meaning: "Meaning"
+                },
+                sinPlus: "Sine of a sum uses sine-cosine plus cosine-sine.",
+                sinMinus: "Sine of a difference uses the same pattern with minus.",
+                cosPlus: "Cosine of a sum uses cosine-cosine minus sine-sine.",
+                cosMinus: "Cosine of a difference uses cosine-cosine plus sine-sine.",
+                tanPlus: "Tangent of a sum has a denominator involving \\(1-\\tan x\\tan y\\).",
+                tanMinus: "Tangent of a difference has a denominator involving \\(1+\\tan x\\tan y\\).",
+                callout: "<strong>Memory warning:</strong> Sine keeps the same sign as the angle operation. Cosine changes the sign.",
+                examples: {
+                    title: "Examples for Angle Addition and Subtraction"
+                }
+            },
+            double: {
+                title: "Double-Angle Formulas",
+                p1: "Double-angle formulas come from angle addition formulas by setting both angles equal.",
+                card1: {title: "Sine double angle"},
+                card2: {title: "Cosine double angle"},
+                card3: {title: "Cosine version 2"},
+                card4: {title: "Cosine version 3"},
+                card5: {title: "Tangent double angle"},
+                card6: {title: "Cotangent double angle"},
+                derived: {
+                    title: "How one formula derives from another",
+                    p1: "Starting from \\(\\cos(2x)=\\cos^2x-\\sin^2x\\), use \\(\\sin^2x+\\cos^2x=1\\).",
+                    s1: "Replace \\(\\sin^2x\\) with \\(1-\\cos^2x\\).",
+                    s2: "Then \\(\\cos(2x)=\\cos^2x-(1-\\cos^2x)\\).",
+                    s3: "So \\(\\cos(2x)=2\\cos^2x-1\\)."
+                },
+                callout: "<strong>Main point:</strong> The three cosine double-angle formulas are different forms of the same identity.",
+                examples: {
+                    title: "Examples for Double-Angle Formulas"
+                }
+            },
+            half: {
+                title: "Half-Angle Formulas",
+                p1: "Half-angle formulas help us find trigonometric values of \\(\\frac{x}{2}\\). They come from the cosine double-angle identities.",
+                table: {
+                    function: "Function",
+                    formula: "Formula",
+                    note: "Sign note"
+                },
+                sinNote: "Choose the sign based on the quadrant of \\(\\frac{x}{2}\\).",
+                cosNote: "Choose the sign based on the quadrant of \\(\\frac{x}{2}\\).",
+                tanNote1: "Useful when \\(1+\\cos x\\ne0\\).",
+                tanNote2: "Useful when \\(\\sin x\\ne0\\).",
+                derived: {
+                    title: "Where half-angle formulas come from",
+                    p1: "From the double-angle identity \\(\\cos(2u)=1-2\\sin^2u\\), solve for \\(\\sin^2u\\). Then let \\(u=\\frac{x}{2}\\).",
+                    p2: "Taking the square root gives the half-angle formula for sine."
+                },
+                callout: "<strong>Important:</strong> The \\(\\pm\\) sign is not optional decoration. The correct sign depends on where the half-angle lies.",
+                examples: {
+                    title: "Examples for Half-Angle Formulas"
+                }
+            },
+            product: {
+                title: "Product-to-Sum and Sum-to-Product Formulas",
+                p1: "These formulas are useful when a problem contains products of trigonometric functions or sums of trigonometric functions.",
+                productToSum: {title: "Product-to-Sum"},
+                sumToProduct: {title: "Sum-to-Product"},
+                table: {
+                    original: "Original expression",
+                    rewritten: "Rewritten form"
+                },
+                callout: "<strong>Connection:</strong> Product-to-sum and sum-to-product formulas are closely connected to angle addition and subtraction formulas.",
+                examples: {
+                    title: "Examples for Product-to-Sum and Sum-to-Product"
+                }
+            },
+            reduction: {
+                title: "Power-Reduction and Related Formulas",
+                p1: "Power-reduction formulas rewrite powers such as \\(\\sin^2x\\) and \\(\\cos^2x\\) using double angles. They come from the cosine double-angle formulas.",
+                card1: {title: "Sine squared"},
+                card2: {title: "Cosine squared"},
+                card3: {title: "Tangent squared"},
+                card4: {title: "Cotangent squared"},
+                derived: {
+                    title: "Derived from double-angle formulas",
+                    p1: "From \\(\\cos(2x)=1-2\\sin^2x\\), solve for \\(\\sin^2x\\).",
+                    p2: "From \\(\\cos(2x)=2\\cos^2x-1\\), solve for \\(\\cos^2x\\)."
+                },
+                callout: "<strong>Use case:</strong> Power-reduction formulas are helpful when expressions contain squared trigonometric functions.",
+                examples: {
+                    title: "Examples for Power-Reduction and Related Formulas"
+                }
+            },
+            summary: {
+                title: "Final Formula Summary",
+                p1: "This section gives a compact checklist of the most important formulas from the modules.",
+                table: {
+                    group: "Group",
+                    formulas: "Main formulas"
+                },
+                fundamental: "Fundamental",
+                addition: "Angle addition",
+                double: "Double-angle",
+                half: "Half-angle",
+                product: "Product and sum",
+                productText: "Convert products to sums and sums to products.",
+                reduction: "Power reduction",
+                callout: "<strong>Best study order:</strong> Learn fundamental identities first, then angle addition, then double-angle, then half-angle and product-sum formulas."
+            }
+        },
+
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo'li",
+                homepage: "Bosh sahifa",
+                current: "Trigonometrik formulalar",
+                hero: "Trigonometrik formulalarga <br>kirish",
+                readMore: "Batafsil o'qish",
+                backTop: "Yuqoriga qaytish",
+                heroAlt: "Trigonometrik formulalar rasmi",
+                practice: "Trigonometrik formulalar bo'yicha mashq"
+            },
+            tabs: {
+                aria: "Trigonometriya formulalari modullari",
+                overview: "Umumiy",
+                fundamental: "Asosiy",
+                addition: "Burchak qo'shish",
+                double: "Ikki burchak",
+                half: "Yarim burchak",
+                product: "Ko'paytma ↔ Yig'indi",
+                reduction: "Darajani kamaytirish",
+                summary: "Xulosa"
+            },
+            examples: {
+                table: {
+                    formula: "Formula",
+                    example: "Misol"
+                }
+            },
+            lesson: {
+                title: "Trigonometrik formulalar — Modulli qo'llanma",
+                intro: {
+                    p1: "Bu sahifa eng muhim trigonometrik formulalarni modullarga ajratadi. Juda uzun bitta sahifa o'rniga, pastdagi tablar orqali har bir formula guruhini alohida o'rganing.",
+                    p2: "Bu yerda asosiy ayniyatlar, burchak qo'shish va ayirish, ikki burchak formulalari, yarim burchak formulalari, ko'paytmani yig'indiga, yig'indini ko'paytmaga aylantirish, darajani kamaytirish va asosiy ayniyatlardan kelib chiqadigan formulalar bor.",
+                    callout: "<strong>Asosiy g'oya:</strong> Trigonometrik formulalarning ko'pi tasodifiy emas. Ular bir nechta asosiy ayniyatlardan kelib chiqadi."
+                }
+            },
+            overview: {
+                title: "Formula guruhlari qanday bog'langan?",
+                p1: "Trigonometrik formulalar murakkab ifodalarni sodda yoki qulayroq ko'rinishga o'tkazishga yordam beradi. Masalan, ko'paytmani yig'indiga aylantirish, ikki burchakni bitta burchak orqali yozish yoki ma'lum burchakdan yarim burchak qiymatini topish mumkin.",
+                table: {
+                    group: "Formula guruhi",
+                    purpose: "Maqsad",
+                    example: "Odatdagi qo'llanish"
+                },
+                fundamental: {
+                    name: "Asosiy ayniyatlar",
+                    purpose: "Sinus, kosinus, tangens va kotangensni bog'laydi.",
+                    example: "Ifodalarni soddalashtirish."
+                },
+                addition: {
+                    name: "Burchak qo'shish va ayirish",
+                    purpose: "Birlashtirilgan burchaklarning trigonometrik qiymatlarini topadi.",
+                    example: "\\(45^\\circ+30^\\circ\\) orqali \\(\\sin(75^\\circ)\\) ni topish."
+                },
+                double: {
+                    name: "Ikki burchak formulalari",
+                    purpose: "\\(2x\\) trigonometrik funksiyalarini qayta yozadi.",
+                    example: "\\(\\cos(2x)\\) ni \\(x\\) orqali ifodalash."
+                },
+                half: {
+                    name: "Yarim burchak formulalari",
+                    purpose: "Yarim burchakning trigonometrik qiymatlarini topadi.",
+                    example: "\\(\\sin(15^\\circ)\\) kabi qiymatlarni topish."
+                },
+                product: {
+                    name: "Ko'paytmani yig'indiga va yig'indini ko'paytmaga",
+                    purpose: "Ko'paytmalarni yig'indiga yoki yig'indilarni ko'paytmaga aylantiradi.",
+                    example: "Soddalashtirish va murakkab masalalarda foydali."
+                }
+            },
+            fundamental: {
+                title: "Asosiy ayniyatlar",
+                p1: "Bular asosiy ayniyatlardir. Keyingi ko'p formulalar shu ayniyatlardan quriladi.",
+                card1: {title: "Pifagor ayniyati"},
+                card2: {title: "Tangens ayniyati"},
+                card3: {title: "Kotangens ayniyati"},
+                card4: {title: "Tangens va kotangens"},
+                derived: {
+                    title: "Oddiy keltirilgan ko'rinishlar",
+                    p1: "Asosiy ayniyat \\(\\sin^2x+\\cos^2x=1\\) dan sinus kvadrat yoki kosinus kvadratni alohida ajratib olish mumkin.",
+                    p2: "Bog'liq ayniyatlarni ham secant yoki cosecant kabi qo'shimcha nomlarsiz yozish mumkin."
+                },
+                callout: "<strong>Muhim:</strong> \\(\\sec x\\) yoki \\(\\csc x\\) ishlatish o'rniga, bu sahifada ular \\(\\frac{1}{\\cos x}\\) va \\(\\frac{1}{\\sin x}\\) ko'rinishida yoziladi.",
+                examples: {
+                    title: "Asosiy ayniyatlar uchun misollar"
+                }
+            },
+            addition: {
+                title: "Burchak qo'shish va ayirish formulalari",
+                p1: "Bu formulalar \\(x+y\\) yoki \\(x-y\\) kabi birlashtirilgan burchaklarning trigonometrik qiymatlarini topishga yordam beradi.",
+                table: {
+                    formula: "Formula",
+                    meaning: "Ma'nosi"
+                },
+                sinPlus: "Yig'indining sinusi sinus-kosinus plus kosinus-sinus ko'rinishida yoziladi.",
+                sinMinus: "Ayirmaning sinusi shu naqsh bilan, lekin minus belgisi bilan yoziladi.",
+                cosPlus: "Yig'indining kosinusi kosinus-kosinus minus sinus-sinus ko'rinishida yoziladi.",
+                cosMinus: "Ayirmaning kosinusi kosinus-kosinus plus sinus-sinus ko'rinishida yoziladi.",
+                tanPlus: "Yig'indining tangensi maxrajda \\(1-\\tan x\\tan y\\) bilan keladi.",
+                tanMinus: "Ayirmaning tangensi maxrajda \\(1+\\tan x\\tan y\\) bilan keladi.",
+                callout: "<strong>Eslatma:</strong> Sinus burchak amalidagi belgini saqlaydi. Kosinus esa belgini o'zgartiradi.",
+                examples: {
+                    title: "Burchak qo'shish va ayirish formulalari uchun misollar"
+                }
+            },
+            double: {
+                title: "Ikki burchak formulalari",
+                p1: "Ikki burchak formulalari burchak qo'shish formulalarida ikkala burchakni teng qilib qo'yishdan kelib chiqadi.",
+                card1: {title: "Sinus ikki burchak"},
+                card2: {title: "Kosinus ikki burchak"},
+                card3: {title: "Kosinus 2-ko'rinish"},
+                card4: {title: "Kosinus 3-ko'rinish"},
+                card5: {title: "Tangens ikki burchak"},
+                card6: {title: "Kotangens ikki burchak"},
+                derived: {
+                    title: "Bitta formula boshqasidan qanday kelib chiqadi?",
+                    p1: "\\(\\cos(2x)=\\cos^2x-\\sin^2x\\) dan boshlang va \\(\\sin^2x+\\cos^2x=1\\) dan foydalaning.",
+                    s1: "\\(\\sin^2x\\) o'rniga \\(1-\\cos^2x\\) yozing.",
+                    s2: "Shunda \\(\\cos(2x)=\\cos^2x-(1-\\cos^2x)\\).",
+                    s3: "Demak, \\(\\cos(2x)=2\\cos^2x-1\\)."
+                },
+                callout: "<strong>Asosiy fikr:</strong> Kosinusning uchta ikki burchak formulasi bir xil ayniyatning turli ko'rinishlaridir.",
+                examples: {
+                    title: "Ikki burchak formulalari uchun misollar"
+                }
+            },
+            half: {
+                title: "Yarim burchak formulalari",
+                p1: "Yarim burchak formulalari \\(\\frac{x}{2}\\) ning trigonometrik qiymatlarini topishga yordam beradi. Ular kosinus ikki burchak ayniyatlaridan kelib chiqadi.",
+                table: {
+                    function: "Funksiya",
+                    formula: "Formula",
+                    note: "Ishora eslatmasi"
+                },
+                sinNote: "Ishorani \\(\\frac{x}{2}\\) qaysi chorakda yotishiga qarab tanlang.",
+                cosNote: "Ishorani \\(\\frac{x}{2}\\) qaysi chorakda yotishiga qarab tanlang.",
+                tanNote1: "\\(1+\\cos x\\ne0\\) bo'lganda qulay.",
+                tanNote2: "\\(\\sin x\\ne0\\) bo'lganda qulay.",
+                derived: {
+                    title: "Yarim burchak formulalari qayerdan keladi?",
+                    p1: "\\(\\cos(2u)=1-2\\sin^2u\\) ikki burchak ayniyatidan \\(\\sin^2u\\) ni toping. Keyin \\(u=\\frac{x}{2}\\) deb oling.",
+                    p2: "Kvadrat ildiz olish sinus uchun yarim burchak formulasini beradi."
+                },
+                callout: "<strong>Muhim:</strong> \\(\\pm\\) belgisi shunchaki bezak emas. To'g'ri ishora yarim burchak qaysi chorakda yotishiga bog'liq.",
+                examples: {
+                    title: "Yarim burchak formulalari uchun misollar"
+                }
+            },
+            product: {
+                title: "Ko'paytmani yig'indiga va yig'indini ko'paytmaga aylantirish",
+                p1: "Bu formulalar masalada trigonometrik funksiyalar ko'paytmasi yoki yig'indisi bor bo'lganda foydali.",
+                productToSum: {title: "Ko'paytmani yig'indiga"},
+                sumToProduct: {title: "Yig'indini ko'paytmaga"},
+                table: {
+                    original: "Boshlang'ich ifoda",
+                    rewritten: "Qayta yozilgan ko'rinish"
+                },
+                callout: "<strong>Bog'lanish:</strong> Bu formulalar burchak qo'shish va ayirish formulalari bilan juda bog'liq.",
+                examples: {
+                    title: "Ko'paytma-yig'indi formulalari uchun misollar"
+                }
+            },
+            reduction: {
+                title: "Darajani kamaytirish va bog'liq formulalar",
+                p1: "Darajani kamaytirish formulalari \\(\\sin^2x\\) va \\(\\cos^2x\\) kabi darajalarni ikki burchak orqali qayta yozadi. Ular kosinus ikki burchak formulalaridan kelib chiqadi.",
+                card1: {title: "Sinus kvadrat"},
+                card2: {title: "Kosinus kvadrat"},
+                card3: {title: "Tangens kvadrat"},
+                card4: {title: "Kotangens kvadrat"},
+                derived: {
+                    title: "Ikki burchak formulalaridan kelib chiqishi",
+                    p1: "\\(\\cos(2x)=1-2\\sin^2x\\) dan \\(\\sin^2x\\) ni toping.",
+                    p2: "\\(\\cos(2x)=2\\cos^2x-1\\) dan \\(\\cos^2x\\) ni toping."
+                },
+                callout: "<strong>Qo'llanish:</strong> Darajani kamaytirish formulalari ifodada trigonometrik kvadratlar bo'lsa juda foydali.",
+                examples: {
+                    title: "Darajani kamaytirish formulalari uchun misollar"
+                }
+            },
+            summary: {
+                title: "Yakuniy formula xulosasi",
+                p1: "Bu bo'lim modullardagi eng muhim formulalarning qisqa ro'yxatini beradi.",
+                table: {
+                    group: "Guruh",
+                    formulas: "Asosiy formulalar"
+                },
+                fundamental: "Asosiy",
+                addition: "Burchak qo'shish",
+                double: "Ikki burchak",
+                half: "Yarim burchak",
+                product: "Ko'paytma va yig'indi",
+                productText: "Ko'paytmalarni yig'indiga va yig'indilarni ko'paytmaga aylantiradi.",
+                reduction: "Darajani kamaytirish",
+                callout: "<strong>Eng yaxshi o'rganish tartibi:</strong> Avval asosiy ayniyatlarni, keyin burchak qo'shishni, keyin ikki burchakni, so'ng yarim burchak va ko'paytma-yig'indi formulalarini o'rganing."
+            }
+        }
+    };
+
+    function getNestedValue(object, path) {
+        return path.split('.').reduce(function (current, key) {
+            return current && current[key] !== undefined ? current[key] : undefined;
+        }, object);
+    }
+
+    function renderMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function language(selectedLanguage) {
+        const dictionary = translations[selectedLanguage] || translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.innerHTML = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-alt');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-title');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('title', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-language-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-language-button') === selectedLanguage);
+        });
+
+        document.documentElement.lang = selectedLanguage;
+        localStorage.setItem('mathAcademyLanguage', selectedLanguage);
+
+        renderMath();
+    }
+
+    function activateModule(moduleName) {
+        document.querySelectorAll('[data-module-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-module-button') === moduleName);
+        });
+
+        document.querySelectorAll('[data-module-panel]').forEach(function (panel) {
+            panel.classList.toggle('is-active', panel.getAttribute('data-module-panel') === moduleName);
+        });
+
+        renderMath();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+        language(savedLanguage);
+
+        document.querySelectorAll('[data-module-button]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                activateModule(button.getAttribute('data-module-button'));
+            });
+        });
+
+        activateModule('overview');
+    });
+</script>
 
 </body>
 </html>

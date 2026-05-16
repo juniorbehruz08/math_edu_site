@@ -4,118 +4,469 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
+    <title>Quadratic Equations</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
-          rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        body { background: #f6f9fc; color: #101828; font-family: 'Open Sans', sans-serif; }
+        img { max-width: 100%; display: block; height: auto; }
+        .language-switch { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.16); }
+        .language-switch__button { border: 0; border-radius: 999px; padding: 6px 12px; color: #fff; background: transparent; font-weight: 700; line-height: 1; }
+        .language-switch__button.is-active { color: #13547a; background: #fff; }
+        .lesson-shell { max-width: 960px; margin: 0 auto; padding: 44px 18px 72px; }
+        .lesson-card { background: #fff; border: 1px solid #d9e6ef; border-radius: 10px; padding: clamp(20px, 4vw, 34px); margin-bottom: 22px; box-shadow: 0 14px 34px rgba(13,84,122,.08); }
+        .lesson-card h2 { margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: clamp(1.3rem, 3vw, 1.85rem); font-weight: 800; color: #0f172a; }
+        .lesson-card h3 { margin: 22px 0 9px; font-family: 'Montserrat', sans-serif; font-size: 1.08rem; font-weight: 800; color: #15537e; }
+        .lesson-card p, .lesson-card li { color: #2b3a4d; font-size: 1rem; line-height: 1.72; }
+        .lesson-card ul { margin: 0; padding-left: 1.2rem; }
+        .math-line { margin: 12px 0 18px; text-align: center; color: #000; font-family: "Times New Roman", Times, serif; font-size: 1.22rem; font-style: italic; overflow: visible; }
+        .hero-image { border-radius: 14px; filter: brightness(1.06) saturate(.9); box-shadow: 0 8px 20px rgba(19,84,122,.12); }
+        .practice-strip { display: flex; justify-content: center; margin-top: 28px; }
+        .callout { border-left: 4px solid #13547a; background: #f4fbfd; border-radius: 0 8px 8px 0; padding: 13px 15px; margin-top: 16px; }
+        .callout.warn { border-left-color: #d97706; background: #fff7ed; }
+        .answer-box { display: inline-block; border: 1px solid #111; padding: 2px 8px; font-family: "Times New Roman", Times, serif; font-size: 1.12rem; font-style: italic; }
+        .quick-grid, .method-grid, .disc-grid, .mistake-grid { display: grid; gap: 12px; margin-top: 16px; }
+        .quick-grid { grid-template-columns: repeat(3, 1fr); }
+        .method-grid { grid-template-columns: repeat(3, 1fr); }
+        .disc-grid { grid-template-columns: repeat(3, 1fr); }
+        .mistake-grid { grid-template-columns: repeat(2, 1fr); }
+        .tile, .method, .mistake { border: 1px solid #d9e8ef; border-radius: 10px; background: #f8fcff; padding: 15px 16px; }
+        .tile strong, .method strong, .mistake strong { color: #13547a; font-family: 'Montserrat', sans-serif; display: block; margin-bottom: 8px; }
+        .disc-card { border-radius: 10px; padding: 16px; text-align: center; }
+        .dc-cond { font-family: "Times New Roman", Times, serif; font-size: 1.22rem; font-weight: 700; margin-bottom: 6px; }
+        .dc-result { font-size: .92rem; font-weight: 700; margin: 0; }
+        .dc-sub { font-size: .82rem; opacity: .85; margin: 5px 0 0; }
+        .disc-pos { background: #dcfce7; border: 1px solid #4ade80; color: #14532d; }
+        .disc-zer { background: #e0f2fe; border: 1px solid #38bdf8; color: #0c4a6e; }
+        .disc-neg { background: #fde8e8; border: 1px solid #f87171; color: #7f1d1d; }
+        .steps { counter-reset: step; display: grid; gap: 10px; margin-top: 12px; }
+        .step { position: relative; border: 1px solid #e2edf3; border-radius: 8px; background: #fbfdff; padding: 14px 14px 14px 50px; }
+        .step::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 13px; width: 24px; height: 24px; border-radius: 999px; background: #13547a; color: #fff; display: grid; place-items: center; font-size: .78rem; font-weight: 800; }
+        .case-block { border: 1px solid #d9e8ef; border-radius: 10px; padding: 16px 18px; margin: 14px 0; background: #f8fcff; }
+        .case-badge { display: inline-block; padding: 3px 12px 4px; border-radius: 999px; background: #13547a; color: #fff; font-size: .82rem; font-weight: 700; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .case-badge.green { background: #0e6040; }
+        .case-badge.purple { background: #6b21a8; }
+        .case-badge.orange { background: #b45309; }
+        .mini-table { width: 100%; border-collapse: collapse; margin-top: 14px; overflow: hidden; border-radius: 10px; }
+        .mini-table th, .mini-table td { border-bottom: 1px solid #e3edf3; padding: 11px 10px; text-align: left; vertical-align: top; }
+        .mini-table th { background: #edf7fb; color: #102033; font-family: 'Montserrat', sans-serif; }
+        .mini-table tr:last-child td { border-bottom: 0; }
 
-    TemplateMo 590 topic listing
+        .graph-widget { display: grid; grid-template-columns: 1fr 1.35fr; min-height: 310px; border: 1px solid #e7e7e7; border-radius: 18px; overflow: hidden; background: #fff; margin: 14px 0 10px; }
+        .graph-controls { position: relative; padding: 22px 15px 16px; border-right: 1px solid #efefef; }
+        .graph-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+        .graph-tool { width: 26px; height: 26px; border: 0; border-radius: 999px; background: #eef5f9; color: #111; font-size: 18px; line-height: 1; cursor: pointer; padding: 0; }
+        .graph-formula { margin-bottom: 20px; text-align: center; font-family: "Times New Roman", Times, serif; font-size: 26px; font-style: italic; color: #141414; }
+        .slider-row { display: grid; grid-template-columns: 18px 44px minmax(0, 1fr); align-items: center; gap: 10px; margin-bottom: 10px; font-family: "Times New Roman", Times, serif; color: #1f1f1f; font-size: 19px; font-style: italic; }
+        .slider-value { font-family: Arial, sans-serif; font-size: 13px; font-style: normal; text-align: right; }
+        .graph-slider { width: 100%; accent-color: #13547a; }
+        .graph-canvas-wrap { position: relative; min-width: 0; background-color: #f8f8f8; background-image: linear-gradient(to right, rgba(80,80,80,.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(80,80,80,.08) 1px, transparent 1px); background-size: 32px 32px; }
+        #quadraticGraphCanvas, .small-graph { display: block; width: 100%; height: 100%; min-height: 310px; }
+        .graph-helper { margin-top: 10px; color: #4b5563; font-size: .92rem; line-height: 1.55; }
+        .status-panel { display: grid; gap: 8px; margin-top: 14px; }
+        .status-pill { display: block; border-radius: 10px; padding: 9px 11px; background: #eef5f9; color: #0f172a; font-weight: 700; font-size: .9rem; }
+        .preset-buttons { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 14px; }
+        .preset-btn { border: 1px solid #d9e8ef; border-radius: 999px; padding: 8px 10px; background: #fff; color: #13547a; font-weight: 800; cursor: pointer; }
+        .preset-btn:hover { background: #f4fbfd; }
+        .comparison-graphs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+        .graph-card { border: 1px solid #d9e8ef; border-radius: 12px; background: #fff; overflow: hidden; }
+        .graph-card-head { padding: 12px 14px; background: #f8fcff; border-bottom: 1px solid #d9e8ef; }
+        .graph-card-head strong { color: #13547a; font-family: 'Montserrat', sans-serif; }
+        .graph-card canvas { height: 170px; min-height: 170px; }
+        .graph-card p { padding: 0 14px 14px; margin: 0; font-size: .9rem; }
 
-    https://templatemo.com/tm-590-topic-listing
-
-    -->
+        @media (max-width: 960px) {
+            .graph-widget { grid-template-columns: 1fr; }
+            .graph-controls { border-right: 0; border-bottom: 1px solid #efefef; }
+            .graph-formula { font-size: 23px; margin-bottom: 16px; }
+            #quadraticGraphCanvas { min-height: 290px; }
+            .quick-grid, .method-grid, .disc-grid, .comparison-graphs, .mistake-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) { .site-header .row { gap: 22px; } .mini-table { display: block; overflow-x: auto; } }
+    </style>
 </head>
-
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
-
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
             </div>
-
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+            </div>
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
     <header class="site-header d-flex flex-column justify-content-center align-items-center">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">Quadratic Equations</li>
                         </ol>
                     </nav>
-
-                    <h2 class="text-white">Introduction to <br>Quadratic Equations</h2>
-
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Quadratic Equations</h2>
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
-
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
-
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
-                        <img src="{% static 'images/myimages/kvadrat.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                        <img src="{% static 'images/myimages/kvadrat.jpg' %}" alt="Quadratic equations visual" class="topics-detail-block-image img-fluid hero-image" data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
-
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=quadratic_equations"
-                       class="btn custom-btn custom-border-btn">Practice with Quadratic Equations</a>
-                </div>
-
+            </div>
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=quadratic_equations" class="btn custom-btn custom-border-btn" data-i18n="page.practice">Practice with Quadratic Equations</a>
             </div>
         </div>
     </header>
 
-
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container">
-            <div class="container">
-                <h1 style="text-align:center">General Information</h1>
-                <img style="width:100%" src="{% static 'images/myimages/quadratic_equations1.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/quadratic_equations2.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/quadratic_equations3.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/quadratic_equations4.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/quadratic_equations5.jpg' %}" alt="">
+    <section id="topics-detail" class="lesson-shell">
+        <article class="lesson-card">
+            <h2 data-i18n="intro.title">What is a quadratic equation?</h2>
+            <p data-i18n="intro.body">A quadratic equation is an equation whose highest power of the variable is \(2\). In standard form, all terms are moved to one side and the other side is \(0\).</p>
+            <div class="math-line">\(ax^2+bx+c=0,\quad a\ne0\)</div>
+            <div class="quick-grid">
+                <div class="tile"><strong data-i18n="intro.aTitle">Coefficient \(a\)</strong><p data-i18n="intro.aBody">Controls whether the parabola opens upward or downward and how wide it is.</p></div>
+                <div class="tile"><strong data-i18n="intro.bTitle">Coefficient \(b\)</strong><p data-i18n="intro.bBody">Helps determine the axis of symmetry and shifts the vertex.</p></div>
+                <div class="tile"><strong data-i18n="intro.cTitle">Constant \(c\)</strong><p data-i18n="intro.cBody">The \(y\)-intercept: the point where the graph crosses the \(y\)-axis.</p></div>
             </div>
-        </div>
-    </main>
+            <div class="callout" data-i18n="intro.solution">The solutions of a quadratic equation are the \(x\)-values where the parabola meets, touches, or fails to meet the \(x\)-axis.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="graph.title">Interactive graph: see how many answers appear</h2>
+            <p class="graph-helper" data-i18n="graph.helper">Move \(a\), \(b\), and \(c\). Watch the parabola and the discriminant. If it crosses the \(x\)-axis twice, there are two real roots. If it only touches once, there is one repeated root. If it never touches, there are no real roots.</p>
+            <div class="graph-widget">
+                <div class="graph-controls">
+                    <div class="graph-toolbar">
+                        <button class="graph-tool" type="button" id="resetQuadraticGraphBtn" title="Reset graph" data-i18n-title="graph.reset" aria-label="Reset graph" data-i18n-aria-label="graph.reset">×</button>
+                        <span class="status-pill" id="equationStatus">\(y=x^2-4\)</span>
+                    </div>
+                    <div class="graph-formula">\(y=ax^2+bx+c\)</div>
+                    <label class="slider-row"><span>a</span><span class="slider-value" id="quadAValue">1.0</span><input class="graph-slider" id="quadASlider" type="range" min="-4" max="4" step="0.1" value="1"></label>
+                    <label class="slider-row"><span>b</span><span class="slider-value" id="quadBValue">0.0</span><input class="graph-slider" id="quadBSlider" type="range" min="-10" max="10" step="0.1" value="0"></label>
+                    <label class="slider-row"><span>c</span><span class="slider-value" id="quadCValue">-4.0</span><input class="graph-slider" id="quadCSlider" type="range" min="-20" max="20" step="0.1" value="-4"></label>
+                    <div class="status-panel">
+                        <span class="status-pill" id="discStatus">D = 16</span>
+                        <span class="status-pill" id="rootStatus">2 real roots</span>
+                        <span class="status-pill" id="vertexStatus">Vertex: (0, -4)</span>
+                    </div>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" type="button" data-preset="two" data-i18n="graph.presetTwo">Show 2 answers</button>
+                        <button class="preset-btn" type="button" data-preset="one" data-i18n="graph.presetOne">Show 1 answer</button>
+                        <button class="preset-btn" type="button" data-preset="none" data-i18n="graph.presetNone">Show no real answers</button>
+                    </div>
+                </div>
+                <div class="graph-canvas-wrap">
+                    <canvas id="quadraticGraphCanvas" width="760" height="460" aria-label="Interactive graph of a quadratic equation" data-i18n-aria-label="graph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="disc.title">Why can a quadratic have \(2\), \(1\), or \(0\) real answers?</h2>
+            <p data-i18n="disc.body">A quadratic equation is solved by finding where the parabola has height \(0\). In graph language, this means we look for intersections with the \(x\)-axis.</p>
+            <div class="math-line">\(D=b^2-4ac\)</div>
+            <div class="disc-grid">
+                <div class="disc-card disc-pos"><div class="dc-cond">\(D>0\)</div><p class="dc-result" data-i18n="disc.pos">Two distinct real solutions</p><p class="dc-sub" data-i18n="disc.posSub">The parabola crosses the \(x\)-axis twice.</p></div>
+                <div class="disc-card disc-zer"><div class="dc-cond">\(D=0\)</div><p class="dc-result" data-i18n="disc.zer">One repeated real solution</p><p class="dc-sub" data-i18n="disc.zerSub">The parabola just touches the \(x\)-axis.</p></div>
+                <div class="disc-card disc-neg"><div class="dc-cond">\(D<0\)</div><p class="dc-result" data-i18n="disc.neg">No real solutions</p><p class="dc-sub" data-i18n="disc.negSub">The parabola does not meet the \(x\)-axis.</p></div>
+            </div>
+            <div class="callout warn" data-i18n="disc.note">The discriminant does not give the roots directly. It first tells you how many real roots to expect. Then you solve using factoring, square roots, or the quadratic formula.</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="visualCases.title">Three graph cases side by side</h2>
+            <p data-i18n="visualCases.body">These three mini-graphs show the whole idea: crossing twice means two answers, touching once means one repeated answer, and not touching means no real answer.</p>
+            <div class="comparison-graphs">
+                <div class="graph-card"><div class="graph-card-head"><strong data-i18n="visualCases.twoTitle">Two roots</strong></div><canvas id="caseTwoCanvas" class="small-graph" width="360" height="200"></canvas><p data-i18n="visualCases.twoBody">Example: \(y=x^2-4\). Roots are \(x=-2\) and \(x=2\).</p></div>
+                <div class="graph-card"><div class="graph-card-head"><strong data-i18n="visualCases.oneTitle">One repeated root</strong></div><canvas id="caseOneCanvas" class="small-graph" width="360" height="200"></canvas><p data-i18n="visualCases.oneBody">Example: \(y=x^2\). The vertex touches the \(x\)-axis at \(x=0\).</p></div>
+                <div class="graph-card"><div class="graph-card-head"><strong data-i18n="visualCases.noneTitle">No real roots</strong></div><canvas id="caseNoneCanvas" class="small-graph" width="360" height="200"></canvas><p data-i18n="visualCases.noneBody">Example: \(y=x^2+4\). The graph stays above the \(x\)-axis.</p></div>
+            </div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="methods.title">Which method should I use?</h2>
+            <div class="method-grid">
+                <div class="method"><strong data-i18n="methods.factoringTitle">Factoring</strong><p data-i18n="methods.factoringBody">Use it when the quadratic expression splits nicely into two brackets.</p><div class="math-line">\((x-2)(x-3)=0\)</div></div>
+                <div class="method"><strong data-i18n="methods.sqrtTitle">Square root method</strong><p data-i18n="methods.sqrtBody">Use it when there is no \(x\)-term or when a squared expression is isolated.</p><div class="math-line">\(x^2=25\)</div></div>
+                <div class="method"><strong data-i18n="methods.formulaTitle">Quadratic formula</strong><p data-i18n="methods.formulaBody">Use it when factoring is not obvious. This method always works.</p><div class="math-line">\(x=\dfrac{-b\pm\sqrt{D}}{2a}\)</div></div>
+            </div>
+            <table class="mini-table">
+                <thead><tr><th data-i18n="methods.tableType">Equation type</th><th data-i18n="methods.tableBest">Best method</th><th data-i18n="methods.tableReason">Reason</th></tr></thead>
+                <tbody>
+                    <tr><td>\(x^2-9=0\)</td><td data-i18n="methods.bestSqrt">Square root method</td><td data-i18n="methods.reasonSqrt">You can isolate \(x^2\) quickly.</td></tr>
+                    <tr><td>\(x^2-5x+6=0\)</td><td data-i18n="methods.bestFactoring">Factoring</td><td data-i18n="methods.reasonFactoring">The numbers \(-2\) and \(-3\) work cleanly.</td></tr>
+                    <tr><td>\(2x^2+3x-2=0\)</td><td data-i18n="methods.bestFormula">Formula or factoring</td><td data-i18n="methods.reasonFormula">Formula is safe when the factors are not obvious.</td></tr>
+                </tbody>
+            </table>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="types.title">Types of quadratic equations</h2>
+            <p data-i18n="types.body">A quadratic equation may be complete or incomplete. The missing term changes the easiest solving method.</p>
+            <div class="case-block"><span class="case-badge" data-i18n="types.case1Label">Case 1 — No \(bx\) term</span><p data-i18n="types.case1Body">If the equation looks like \(ax^2+c=0\), isolate \(x^2\), then take both positive and negative square roots.</p><div class="math-line">\(x^2-16=0\Rightarrow x^2=16\Rightarrow x=\pm4\)</div></div>
+            <div class="case-block"><span class="case-badge green" data-i18n="types.case2Label">Case 2 — No constant term</span><p data-i18n="types.case2Body">If the equation looks like \(ax^2+bx=0\), factor out \(x\). One solution will usually be \(x=0\).</p><div class="math-line">\(2x^2-6x=0\Rightarrow 2x(x-3)=0\Rightarrow x=0,3\)</div></div>
+            <div class="case-block"><span class="case-badge purple" data-i18n="types.case3Label">Case 3 — Complete quadratic</span><p data-i18n="types.case3Body">If all three terms are present, try factoring first. If it does not factor easily, use the formula.</p><div class="math-line">\(ax^2+bx+c=0\)</div></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="example1.title">Example 1 — two real solutions</h2>
+            <p data-i18n="shared.solve">Solve:</p><div class="math-line">\(x^2-5x+6=0\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="example1.step1">First check the discriminant: \(D=(-5)^2-4(1)(6)=25-24=1\). Since \(D>0\), expect two real solutions.</div>
+                <div class="step" data-i18n="example1.step2">Find two numbers that multiply to \(6\) and add to \(-5\): \(-2\) and \(-3\).</div>
+                <div class="step" data-i18n="example1.step3">Factor: \(x^2-5x+6=(x-2)(x-3)\).</div>
+                <div class="step" data-i18n="example1.step4">Set each factor to zero: \(x-2=0\) or \(x-3=0\).</div>
+            </div>
+            <p data-i18n="shared.answer">Answer:</p><p style="text-align:center"><span class="answer-box">\(x=2,\quad x=3\)</span></p>
+            <div class="callout" data-i18n="example1.graph">Graph meaning: the parabola crosses the \(x\)-axis at \(2\) and \(3\).</div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="example2.title">Example 2 — one repeated solution</h2>
+            <p data-i18n="shared.solve">Solve:</p><div class="math-line">\(x^2-6x+9=0\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="example2.step1">Compute the discriminant: \(D=(-6)^2-4(1)(9)=36-36=0\).</div>
+                <div class="step" data-i18n="example2.step2">Since \(D=0\), there is one repeated solution. The parabola touches the \(x\)-axis only once.</div>
+                <div class="step" data-i18n="example2.step3">Factor: \(x^2-6x+9=(x-3)^2\).</div>
+                <div class="step" data-i18n="example2.step4">Solve: \((x-3)^2=0\Rightarrow x=3\).</div>
+            </div>
+            <p data-i18n="shared.answer">Answer:</p><p style="text-align:center"><span class="answer-box">\(x=3\)</span></p>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="example3.title">Example 3 — no real solution</h2>
+            <p data-i18n="shared.solve">Solve:</p><div class="math-line">\(x^2+4=0\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="example3.step1">Move \(4\) to the other side: \(x^2=-4\).</div>
+                <div class="step" data-i18n="example3.step2">A square of a real number cannot be negative, so there is no real solution.</div>
+                <div class="step" data-i18n="example3.step3">Discriminant check: \(D=0^2-4(1)(4)=-16<0\), so the graph does not cross the \(x\)-axis.</div>
+            </div>
+            <p data-i18n="shared.answer">Answer:</p><p style="text-align:center"><span class="answer-box">\(\varnothing\)</span></p>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="example4.title">Example 4 — quadratic formula, step by step</h2>
+            <p data-i18n="shared.solve">Solve:</p><div class="math-line">\(2x^2+3x-2=0\)</div>
+            <div class="steps">
+                <div class="step" data-i18n="example4.step1">Identify the coefficients: \(a=2\), \(b=3\), \(c=-2\).</div>
+                <div class="step" data-i18n="example4.step2">Find the discriminant: \(D=3^2-4(2)(-2)=9+16=25\).</div>
+                <div class="step" data-i18n="example4.step3">Substitute into the formula: \(x=\dfrac{-3\pm\sqrt{25}}{2\cdot2}\).</div>
+                <div class="step" data-i18n="example4.step4">Simplify: \(x=\dfrac{-3\pm5}{4}\).</div>
+                <div class="step" data-i18n="example4.step5">Split into two answers: \(x=\dfrac{-3+5}{4}=\dfrac12\), and \(x=\dfrac{-3-5}{4}=-2\).</div>
+            </div>
+            <p data-i18n="shared.answer">Answer:</p><p style="text-align:center"><span class="answer-box">\(x=\dfrac12,\quad x=-2\)</span></p>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="vertex.title">Vertex and axis of symmetry</h2>
+            <p data-i18n="vertex.body">The vertex is the turning point of the parabola. It is the lowest point if \(a>0\) and the highest point if \(a<0\). The vertical line through the vertex is called the axis of symmetry.</p>
+            <div class="math-line">\(x_{\text{vertex}}=-\dfrac{b}{2a}\)</div>
+            <div class="case-block"><span class="case-badge orange" data-i18n="vertex.exampleLabel">Example</span><p data-i18n="vertex.exampleBody">For \(y=x^2-4x+3\), we have \(a=1\) and \(b=-4\), so \(x_{\text{vertex}}=-\dfrac{-4}{2(1)}=2\). Then \(y(2)=4-8+3=-1\), so the vertex is \((2,-1)\).</p></div>
+        </article>
+
+        <article class="lesson-card">
+            <h2 data-i18n="mistakes.title">Common mistakes</h2>
+            <div class="mistake-grid">
+                <div class="mistake"><strong data-i18n="mistakes.m1Title">Forgetting \(\pm\)</strong><p data-i18n="mistakes.m1Body">When solving \(x^2=25\), the answer is not only \(5\). It is \(x=\pm5\).</p></div>
+                <div class="mistake"><strong data-i18n="mistakes.m2Title">Using the formula with wrong signs</strong><p data-i18n="mistakes.m2Body">If \(b=-6\), then \(-b=6\). Keep parentheses when substituting.</p></div>
+                <div class="mistake"><strong data-i18n="mistakes.m3Title">Thinking \(D<0\) means no solution at all</strong><p data-i18n="mistakes.m3Body">It means no real solution. In advanced math, there are complex solutions.</p></div>
+                <div class="mistake"><strong data-i18n="mistakes.m4Title">Forgetting to set the equation equal to \(0\)</strong><p data-i18n="mistakes.m4Body">Factoring works after everything is moved to one side: \(ax^2+bx+c=0\).</p></div>
+            </div>
+        </article>
+    </section>
 </main>
 
-
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            page: { language: "Language", profile: "Profile", breadcrumb: "Breadcrumb", homepage: "Homepage", current: "Quadratic Equations", hero: "Introduction to <br>Quadratic Equations", readMore: "Read More", backTop: "Back to top", heroAlt: "Quadratic equations visual", practice: "Practice with Quadratic Equations" },
+            intro: { title: "What is a quadratic equation?", body: "A quadratic equation is an equation whose highest power of the variable is \\(2\\). In standard form, all terms are moved to one side and the other side is \\(0\\).", aTitle: "Coefficient \\(a\\)", aBody: "Controls whether the parabola opens upward or downward and how wide it is.", bTitle: "Coefficient \\(b\\)", bBody: "Helps determine the axis of symmetry and shifts the vertex.", cTitle: "Constant \\(c\\)", cBody: "The \\(y\\)-intercept: the point where the graph crosses the \\(y\\)-axis.", solution: "The solutions of a quadratic equation are the \\(x\\)-values where the parabola meets, touches, or fails to meet the \\(x\\)-axis." },
+            graph: { title: "Interactive graph: see how many answers appear", helper: "Move \\(a\\), \\(b\\), and \\(c\\). Watch the parabola and the discriminant. If it crosses the \\(x\\)-axis twice, there are two real roots. If it only touches once, there is one repeated root. If it never touches, there are no real roots.", reset: "Reset graph", aria: "Interactive graph of a quadratic equation", root: "root", vertex: "Vertex", discriminant: "Discriminant", twoRoots: "2 real roots", oneRoot: "1 repeated root", noRoots: "No real roots", presetTwo: "Show 2 answers", presetOne: "Show 1 answer", presetNone: "Show no real answers" },
+            disc: { title: "Why can a quadratic have \\(2\\), \\(1\\), or \\(0\\) real answers?", body: "A quadratic equation is solved by finding where the parabola has height \\(0\\). In graph language, this means we look for intersections with the \\(x\\)-axis.", pos: "Two distinct real solutions", posSub: "The parabola crosses the \\(x\\)-axis twice.", zer: "One repeated real solution", zerSub: "The parabola just touches the \\(x\\)-axis.", neg: "No real solutions", negSub: "The parabola does not meet the \\(x\\)-axis.", note: "The discriminant does not give the roots directly. It first tells you how many real roots to expect. Then you solve using factoring, square roots, or the quadratic formula." },
+            visualCases: { title: "Three graph cases side by side", body: "These three mini-graphs show the whole idea: crossing twice means two answers, touching once means one repeated answer, and not touching means no real answer.", twoTitle: "Two roots", twoBody: "Example: \\(y=x^2-4\\). Roots are \\(x=-2\\) and \\(x=2\\).", oneTitle: "One repeated root", oneBody: "Example: \\(y=x^2\\). The vertex touches the \\(x\\)-axis at \\(x=0\\).", noneTitle: "No real roots", noneBody: "Example: \\(y=x^2+4\\). The graph stays above the \\(x\\)-axis." },
+            methods: { title: "Which method should I use?", factoringTitle: "Factoring", factoringBody: "Use it when the quadratic expression splits nicely into two brackets.", sqrtTitle: "Square root method", sqrtBody: "Use it when there is no \\(x\\)-term or when a squared expression is isolated.", formulaTitle: "Quadratic formula", formulaBody: "Use it when factoring is not obvious. This method always works.", tableType: "Equation type", tableBest: "Best method", tableReason: "Reason", bestSqrt: "Square root method", reasonSqrt: "You can isolate \\(x^2\\) quickly.", bestFactoring: "Factoring", reasonFactoring: "The numbers \\(-2\\) and \\(-3\\) work cleanly.", bestFormula: "Formula or factoring", reasonFormula: "Formula is safe when the factors are not obvious." },
+            types: { title: "Types of quadratic equations", body: "A quadratic equation may be complete or incomplete. The missing term changes the easiest solving method.", case1Label: "Case 1 — No \\(bx\\) term", case1Body: "If the equation looks like \\(ax^2+c=0\\), isolate \\(x^2\\), then take both positive and negative square roots.", case2Label: "Case 2 — No constant term", case2Body: "If the equation looks like \\(ax^2+bx=0\\), factor out \\(x\\). One solution will usually be \\(x=0\\).", case3Label: "Case 3 — Complete quadratic", case3Body: "If all three terms are present, try factoring first. If it does not factor easily, use the formula." },
+            shared: { solve: "Solve:", answer: "Answer:" },
+            example1: { title: "Example 1 — two real solutions", step1: "First check the discriminant: \\(D=(-5)^2-4(1)(6)=25-24=1\\). Since \\(D>0\\), expect two real solutions.", step2: "Find two numbers that multiply to \\(6\\) and add to \\(-5\\): \\(-2\\) and \\(-3\\).", step3: "Factor: \\(x^2-5x+6=(x-2)(x-3)\\).", step4: "Set each factor to zero: \\(x-2=0\\) or \\(x-3=0\\).", graph: "Graph meaning: the parabola crosses the \\(x\\)-axis at \\(2\\) and \\(3\\)." },
+            example2: { title: "Example 2 — one repeated solution", step1: "Compute the discriminant: \\(D=(-6)^2-4(1)(9)=36-36=0\\).", step2: "Since \\(D=0\\), there is one repeated solution. The parabola touches the \\(x\\)-axis only once.", step3: "Factor: \\(x^2-6x+9=(x-3)^2\\).", step4: "Solve: \\((x-3)^2=0\\Rightarrow x=3\\)." },
+            example3: { title: "Example 3 — no real solution", step1: "Move \\(4\\) to the other side: \\(x^2=-4\\).", step2: "A square of a real number cannot be negative, so there is no real solution.", step3: "Discriminant check: \\(D=0^2-4(1)(4)=-16<0\\), so the graph does not cross the \\(x\\)-axis." },
+            example4: { title: "Example 4 — quadratic formula, step by step", step1: "Identify the coefficients: \\(a=2\\), \\(b=3\\), \\(c=-2\\).", step2: "Find the discriminant: \\(D=3^2-4(2)(-2)=9+16=25\\).", step3: "Substitute into the formula: \\(x=\\dfrac{-3\\pm\\sqrt{25}}{2\\cdot2}\\).", step4: "Simplify: \\(x=\\dfrac{-3\\pm5}{4}\\).", step5: "Split into two answers: \\(x=\\dfrac{-3+5}{4}=\\dfrac12\\), and \\(x=\\dfrac{-3-5}{4}=-2\\)." },
+            vertex: { title: "Vertex and axis of symmetry", body: "The vertex is the turning point of the parabola. It is the lowest point if \\(a>0\\) and the highest point if \\(a<0\\). The vertical line through the vertex is called the axis of symmetry.", exampleLabel: "Example", exampleBody: "For \\(y=x^2-4x+3\\), we have \\(a=1\\) and \\(b=-4\\), so \\(x_{\\text{vertex}}=-\\dfrac{-4}{2(1)}=2\\). Then \\(y(2)=4-8+3=-1\\), so the vertex is \\((2,-1)\\)." },
+            mistakes: { title: "Common mistakes", m1Title: "Forgetting \\(\\pm\\)", m1Body: "When solving \\(x^2=25\\), the answer is not only \\(5\\). It is \\(x=\\pm5\\).", m2Title: "Using the formula with wrong signs", m2Body: "If \\(b=-6\\), then \\(-b=6\\). Keep parentheses when substituting.", m3Title: "Thinking \\(D<0\\) means no solution at all", m3Body: "It means no real solution. In advanced math, there are complex solutions.", m4Title: "Forgetting to set the equation equal to \\(0\\)", m4Body: "Factoring works after everything is moved to one side: \\(ax^2+bx+c=0\\)." }
+        },
+        uz: {
+            page: { language: "Til", profile: "Profil", breadcrumb: "Sahifa yo‘li", homepage: "Bosh sahifa", current: "Kvadrat tenglamalar", hero: "Kvadrat tenglamalarga <br>kirish", readMore: "Batafsil o‘qish", backTop: "Yuqoriga qaytish", heroAlt: "Kvadrat tenglamalar tasviri", practice: "Kvadrat tenglamalar bo‘yicha mashq qilish" },
+            intro: { title: "Kvadrat tenglama nima?", body: "Kvadrat tenglama — o‘zgaruvchining eng yuqori darajasi \\(2\\) bo‘lgan tenglama. Standart ko‘rinishda barcha hadlar bir tomonga o‘tkaziladi, ikkinchi tomon esa \\(0\\) bo‘ladi.", aTitle: "\\(a\\) koeffitsiyenti", aBody: "Parabolaning yuqoriga yoki pastga ochilishini hamda qanchalik keng yoki tor bo‘lishini belgilaydi.", bTitle: "\\(b\\) koeffitsiyenti", bBody: "Simmetriya o‘qi va uch nuqtaning joylashuviga ta’sir qiladi.", cTitle: "Ozod had \\(c\\)", cBody: "\\(y\\)-o‘q bilan kesishish nuqtasi: grafik \\(y\\)-o‘qni qayerda kesishini bildiradi.", solution: "Kvadrat tenglamaning yechimlari — parabola \\(x\\)-o‘qini kesadigan, tegadigan yoki umuman kesmaydigan holatlarni bildiruvchi \\(x\\) qiymatlaridir." },
+            graph: { title: "Interaktiv grafik: nechta javob chiqishini ko‘ring", helper: "\\(a\\), \\(b\\) va \\(c\\) ni o‘zgartiring. Parabola va diskriminantni kuzating. Grafik \\(x\\)-o‘qini ikki marta kessa — ikkita haqiqiy ildiz, faqat tegsa — bitta qo‘sh ildiz, umuman kesmasa — haqiqiy ildiz yo‘q.", reset: "Grafikni qayta tiklash", aria: "Kvadrat tenglamaning interaktiv grafigi", root: "ildiz", vertex: "Uch nuqta", discriminant: "Diskriminant", twoRoots: "2 ta haqiqiy ildiz", oneRoot: "1 ta qo‘sh ildiz", noRoots: "Haqiqiy ildiz yo‘q", presetTwo: "2 ta javobni ko‘rsat", presetOne: "1 ta javobni ko‘rsat", presetNone: "Haqiqiy javob yo‘q holat" },
+            disc: { title: "Nega kvadrat tenglamada \\(2\\), \\(1\\) yoki \\(0\\) ta haqiqiy javob bo‘ladi?", body: "Kvadrat tenglamani yechish — parabolaning balandligi \\(0\\) bo‘ladigan joylarini topish demak. Grafik tilida bu \\(x\\)-o‘q bilan kesishish nuqtalarini topishdir.", pos: "Ikkita turli haqiqiy yechim", posSub: "Parabola \\(x\\)-o‘qini ikki joyda kesadi.", zer: "Bitta qo‘sh haqiqiy yechim", zerSub: "Parabola \\(x\\)-o‘qiga faqat tegib o‘tadi.", neg: "Haqiqiy yechim yo‘q", negSub: "Parabola \\(x\\)-o‘qiga yetmaydi.", note: "Diskriminant ildizlarni bevosita bermaydi. U avval nechta haqiqiy ildiz kutish kerakligini aytadi. Keyin ko‘paytuvchilarga ajratish, kvadrat ildiz olish yoki formula bilan yechiladi." },
+            visualCases: { title: "Uchta grafik holat yonma-yon", body: "Bu uch mini-grafik asosiy fikrni ko‘rsatadi: ikki marta kesishsa — ikki javob, bir marta tegsa — bitta qo‘sh javob, umuman tegmasa — haqiqiy javob yo‘q.", twoTitle: "Ikkita ildiz", twoBody: "Misol: \\(y=x^2-4\\). Ildizlar: \\(x=-2\\) va \\(x=2\\).", oneTitle: "Bitta qo‘sh ildiz", oneBody: "Misol: \\(y=x^2\\). Uch nuqta \\(x\\)-o‘qiga \\(x=0\\) da tegadi.", noneTitle: "Haqiqiy ildiz yo‘q", noneBody: "Misol: \\(y=x^2+4\\). Grafik \\(x\\)-o‘qidan yuqorida qoladi." },
+            methods: { title: "Qaysi usuldan foydalanish kerak?", factoringTitle: "Ko‘paytuvchilarga ajratish", factoringBody: "Kvadrat ifoda ikki qavsga chiroyli ajralsa, shu usul qulay.", sqrtTitle: "Kvadrat ildiz usuli", sqrtBody: "\\(x\\)-had yo‘q bo‘lsa yoki kvadrat ifoda ajratilgan bo‘lsa ishlatiladi.", formulaTitle: "Kvadrat formula", formulaBody: "Ajratish aniq ko‘rinmasa, shu usuldan foydalaning. Formula doim ishlaydi.", tableType: "Tenglama turi", tableBest: "Eng qulay usul", tableReason: "Sabab", bestSqrt: "Kvadrat ildiz usuli", reasonSqrt: "\\(x^2\\) ni tez ajratish mumkin.", bestFactoring: "Ko‘paytuvchilarga ajratish", reasonFactoring: "\\(-2\\) va \\(-3\\) sonlari toza ishlaydi.", bestFormula: "Formula yoki ajratish", reasonFormula: "Ko‘paytuvchilar darrov ko‘rinmasa, formula xavfsizroq." },
+            types: { title: "Kvadrat tenglamalar turlari", body: "Kvadrat tenglama to‘liq yoki noto‘liq bo‘lishi mumkin. Qaysi had yo‘qligi eng oson yechish usulini o‘zgartiradi.", case1Label: "1-holat — \\(bx\\) had yo‘q", case1Body: "Tenglama \\(ax^2+c=0\\) ko‘rinishida bo‘lsa, \\(x^2\\) ni ajratib, musbat va manfiy kvadrat ildizlarni olamiz.", case2Label: "2-holat — ozod had yo‘q", case2Body: "Tenglama \\(ax^2+bx=0\\) ko‘rinishida bo‘lsa, \\(x\\) ni umumiy ko‘paytuvchi sifatida chiqaramiz. Odatda yechimlardan biri \\(x=0\\) bo‘ladi.", case3Label: "3-holat — to‘liq kvadrat tenglama", case3Body: "Uchala had ham mavjud bo‘lsa, avval ko‘paytuvchilarga ajratib ko‘ring. Qiyin bo‘lsa, formuladan foydalaning." },
+            shared: { solve: "Yeching:", answer: "Javob:" },
+            example1: { title: "1-misol — ikkita haqiqiy yechim", step1: "Avval diskriminantni tekshiramiz: \\(D=(-5)^2-4(1)(6)=25-24=1\\). \\(D>0\\), demak ikkita haqiqiy yechim kutamiz.", step2: "Ko‘paytmasi \\(6\\), yig‘indisi \\(-5\\) bo‘lgan sonlar: \\(-2\\) va \\(-3\\).", step3: "Ko‘paytuvchilarga ajratamiz: \\(x^2-5x+6=(x-2)(x-3)\\).", step4: "Har bir ko‘paytuvchini nolga tenglaymiz: \\(x-2=0\\) yoki \\(x-3=0\\).", graph: "Grafik ma’nosi: parabola \\(x\\)-o‘qini \\(2\\) va \\(3\\) nuqtalarda kesadi." },
+            example2: { title: "2-misol — bitta qo‘sh yechim", step1: "Diskriminantni hisoblaymiz: \\(D=(-6)^2-4(1)(9)=36-36=0\\).", step2: "\\(D=0\\), demak bitta qo‘sh yechim bor. Parabola \\(x\\)-o‘qiga faqat bir marta tegadi.", step3: "Ajratamiz: \\(x^2-6x+9=(x-3)^2\\).", step4: "Yechamiz: \\((x-3)^2=0\\Rightarrow x=3\\)." },
+            example3: { title: "3-misol — haqiqiy yechim yo‘q", step1: "\\(4\\) ni boshqa tomonga o‘tkazamiz: \\(x^2=-4\\).", step2: "Haqiqiy sonning kvadrati manfiy bo‘la olmaydi, shuning uchun haqiqiy yechim yo‘q.", step3: "Diskriminant orqali tekshirish: \\(D=0^2-4(1)(4)=-16<0\\), demak grafik \\(x\\)-o‘qini kesmaydi." },
+            example4: { title: "4-misol — kvadrat formula, bosqichma-bosqich", step1: "Koeffitsiyentlarni aniqlaymiz: \\(a=2\\), \\(b=3\\), \\(c=-2\\).", step2: "Diskriminantni topamiz: \\(D=3^2-4(2)(-2)=9+16=25\\).", step3: "Formulaga qo‘yamiz: \\(x=\\dfrac{-3\\pm\\sqrt{25}}{2\\cdot2}\\).", step4: "Soddalashtiramiz: \\(x=\\dfrac{-3\\pm5}{4}\\).", step5: "Ikki javobga ajratamiz: \\(x=\\dfrac{-3+5}{4}=\\dfrac12\\), va \\(x=\\dfrac{-3-5}{4}=-2\\)." },
+            vertex: { title: "Uch nuqta va simmetriya o‘qi", body: "Uch nuqta — parabolaning burilish nuqtasi. Agar \\(a>0\\) bo‘lsa, u eng pastki nuqta; agar \\(a<0\\) bo‘lsa, eng yuqori nuqta bo‘ladi. Uch nuqtadan o‘tuvchi vertikal chiziq simmetriya o‘qi deyiladi.", exampleLabel: "Misol", exampleBody: "\\(y=x^2-4x+3\\) uchun \\(a=1\\), \\(b=-4\\). Shuning uchun \\(x_{\\text{uch}}=-\\dfrac{-4}{2(1)}=2\\). Keyin \\(y(2)=4-8+3=-1\\), demak uch nuqta \\((2,-1)\\)." },
+            mistakes: { title: "Ko‘p uchraydigan xatolar", m1Title: "\\(\\pm\\) ni unutish", m1Body: "\\(x^2=25\\) ni yechganda javob faqat \\(5\\) emas. To‘g‘ri javob: \\(x=\\pm5\\).", m2Title: "Formulada ishoralarni adashtirish", m2Body: "Agar \\(b=-6\\) bo‘lsa, \\(-b=6\\). Formulaga qo‘yishda qavs ishlating.", m3Title: "\\(D<0\\) ni umuman yechim yo‘q deb tushunish", m3Body: "Bu haqiqiy yechim yo‘q degani. Yuqori matematikada kompleks yechimlar mavjud.", m4Title: "Tenglamani \\(0\\) ga tenglashni unutish", m4Body: "Ko‘paytuvchilarga ajratish uchun hamma hadlar bir tomonga o‘tkazilib, \\(ax^2+bx+c=0\\) holiga keltiriladi." }
+        }
+    };
 
+    let currentLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+    function getText(key, lang = currentLanguage) { return key.split('.').reduce((obj, part) => obj && obj[part], translations[lang]); }
+    function formatValue(value) { return Number(value).toFixed(1); }
+    function nice(num) {
+        const value = Number(num);
+        if (Math.abs(value) < 1e-9) return '0';
+        if (Number.isInteger(value)) return String(value);
+        return value.toFixed(2).replace(/\.?0+$/, '');
+    }
+
+    const canvas = document.getElementById('quadraticGraphCanvas');
+    const quadASlider = document.getElementById('quadASlider');
+    const quadBSlider = document.getElementById('quadBSlider');
+    const quadCSlider = document.getElementById('quadCSlider');
+    const quadAValue = document.getElementById('quadAValue');
+    const quadBValue = document.getElementById('quadBValue');
+    const quadCValue = document.getElementById('quadCValue');
+    const resetQuadraticGraphBtn = document.getElementById('resetQuadraticGraphBtn');
+    const equationStatus = document.getElementById('equationStatus');
+    const discStatus = document.getElementById('discStatus');
+    const rootStatus = document.getElementById('rootStatus');
+    const vertexStatus = document.getElementById('vertexStatus');
+    const ctx = canvas.getContext('2d');
+
+    function safeAValue(a) { return Math.abs(a) < 0.1 ? (a >= 0 ? 0.1 : -0.1) : a; }
+
+    function niceCoefficient(num) {
+        const value = Number(num);
+        if (Math.abs(value) < 1e-9) return '';
+        if (Math.abs(value - 1) < 1e-9) return '';
+        if (Math.abs(value + 1) < 1e-9) return '-';
+        return nice(value);
+    }
+
+    function formatQuadraticEquation(a, b, c) {
+        const parts = [];
+        const addTerm = (coef, variable) => {
+            if (Math.abs(coef) < 1e-9) return;
+            const sign = coef < 0 ? '-' : '+';
+            const absCoef = Math.abs(coef);
+            let body;
+            if (variable && Math.abs(absCoef - 1) < 1e-9) body = variable;
+            else body = `${nice(absCoef)}${variable || ''}`;
+            if (!parts.length) parts.push(sign === '-' ? `-${body}` : body);
+            else parts.push(`${sign} ${body}`);
+        };
+        addTerm(a, 'x²');
+        addTerm(b, 'x');
+        addTerm(c, '');
+        return `y = ${parts.join(' ')}`;
+    }
+    function drawRoundedPill(ctx, text, x, y, widthLimit) {
+        ctx.font = '700 11px Arial';
+        const padX = 9; const pillW = ctx.measureText(text).width + padX * 2; const pillH = 18;
+        const left = Math.min(Math.max(x + 8, 6), widthLimit - pillW - 6); const top = y - pillH / 2; const r = pillH / 2;
+        ctx.fillStyle = '#1f8df1'; ctx.beginPath(); ctx.moveTo(left + r, top); ctx.arcTo(left + pillW, top, left + pillW, top + pillH, r); ctx.arcTo(left + pillW, top + pillH, left, top + pillH, r); ctx.arcTo(left, top + pillH, left, top, r); ctx.arcTo(left, top, left + pillW, top, r); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, left + pillW / 2, top + pillH / 2 + 0.5);
+    }
+    function drawPointOn(ctx, x, y, label, widthLimit) { ctx.strokeStyle = '#1f8df1'; ctx.fillStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); drawRoundedPill(ctx, label, x, y, widthLimit); }
+
+    function drawQuadraticOn(targetCanvas, a, b, c, lang, compact=false) {
+        const context = targetCanvas.getContext('2d');
+        const ratio = window.devicePixelRatio || 1;
+        const rect = targetCanvas.getBoundingClientRect();
+        const cssW = Math.max(1, rect.width || targetCanvas.clientWidth || 360);
+        const cssH = Math.max(1, rect.height || targetCanvas.clientHeight || 200);
+        targetCanvas.width = Math.round(cssW * ratio); targetCanvas.height = Math.round(cssH * ratio);
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        const width = cssW; const height = cssH;
+        const safeA = safeAValue(a); const xMin = -8; const xMax = 8; const yMin = compact ? -6 : -10; const yMax = compact ? 12 : 25;
+        const toX = x => ((x - xMin) / (xMax - xMin)) * width;
+        const toY = y => height - ((y - yMin) / (yMax - yMin)) * height;
+        context.clearRect(0, 0, width, height);
+        context.lineWidth = 1; context.strokeStyle = 'rgba(0,0,0,0.08)';
+        for (let gx = xMin; gx <= xMax; gx += compact ? 2 : 1) { const px = toX(gx); context.beginPath(); context.moveTo(px, 0); context.lineTo(px, height); context.stroke(); }
+        for (let gy = yMin; gy <= yMax; gy += compact ? 3 : 5) { const py = toY(gy); context.beginPath(); context.moveTo(0, py); context.lineTo(width, py); context.stroke(); }
+        context.strokeStyle = 'rgba(0,0,0,0.32)'; context.lineWidth = 1.25;
+        context.beginPath(); context.moveTo(toX(0), 0); context.lineTo(toX(0), height); context.stroke();
+        context.beginPath(); context.moveTo(0, toY(0)); context.lineTo(width, toY(0)); context.stroke();
+        context.strokeStyle = '#1488ff'; context.lineWidth = compact ? 2 : 2.6; context.beginPath();
+        let started = false;
+        for (let px = 0; px <= width; px += 1) { const x = xMin + (px / width) * (xMax - xMin); const y = safeA*x*x + b*x + c; const py = toY(y); if (!started) { context.moveTo(px, py); started = true; } else { context.lineTo(px, py); } }
+        context.stroke();
+        const d = b*b - 4*safeA*c;
+        if (d >= -1e-8) {
+            const fixedD = Math.max(0, d); const sqrtD = Math.sqrt(fixedD); const r1 = (-b - sqrtD)/(2*safeA); const r2 = (-b + sqrtD)/(2*safeA);
+            if (r1 >= xMin && r1 <= xMax) drawPointOn(context, toX(r1), toY(0), compact ? nice(r1) : `${getText('graph.root', lang)} ${nice(r1)}`, width);
+            if (Math.abs(r2-r1) > 1e-5 && r2 >= xMin && r2 <= xMax) drawPointOn(context, toX(r2), toY(0), compact ? nice(r2) : `${getText('graph.root', lang)} ${nice(r2)}`, width);
+        }
+        const vx = -b/(2*safeA); const vy = safeA*vx*vx + b*vx + c;
+        if (!compact && vx >= xMin && vx <= xMax && vy >= yMin && vy <= yMax) drawPointOn(context, toX(vx), toY(vy), `${getText('graph.vertex', lang)} (${nice(vx)}, ${nice(vy)})`, width);
+    }
+
+    function updateStatus(lang) {
+        const a = safeAValue(Number(quadASlider.value)); const b = Number(quadBSlider.value); const c = Number(quadCSlider.value);
+        const d = b*b - 4*a*c; const vx = -b/(2*a); const vy = a*vx*vx + b*vx + c;
+        equationStatus.textContent = formatQuadraticEquation(a, b, c);
+        discStatus.textContent = `${getText('graph.discriminant', lang)}: D = ${nice(d)}`;
+        if (d > 1e-8) rootStatus.textContent = getText('graph.twoRoots', lang);
+        else if (Math.abs(d) <= 1e-8) rootStatus.textContent = getText('graph.oneRoot', lang);
+        else rootStatus.textContent = getText('graph.noRoots', lang);
+        vertexStatus.textContent = `${getText('graph.vertex', lang)}: (${nice(vx)}, ${nice(vy)})`;
+    }
+    function updateGraph(lang=currentLanguage) { quadAValue.textContent = formatValue(quadASlider.value); quadBValue.textContent = formatValue(quadBSlider.value); quadCValue.textContent = formatValue(quadCSlider.value); updateStatus(lang); drawQuadraticOn(canvas, Number(quadASlider.value), Number(quadBSlider.value), Number(quadCSlider.value), lang, false); }
+    function setPreset(kind) { if (kind === 'two') { quadASlider.value='1'; quadBSlider.value='0'; quadCSlider.value='-4'; } if (kind === 'one') { quadASlider.value='1'; quadBSlider.value='0'; quadCSlider.value='0'; } if (kind === 'none') { quadASlider.value='1'; quadBSlider.value='0'; quadCSlider.value='4'; } updateGraph(currentLanguage); }
+    function drawSmallGraphs(lang=currentLanguage) { drawQuadraticOn(document.getElementById('caseTwoCanvas'), 1, 0, -4, lang, true); drawQuadraticOn(document.getElementById('caseOneCanvas'), 1, 0, 0, lang, true); drawQuadraticOn(document.getElementById('caseNoneCanvas'), 1, 0, 4, lang, true); }
+
+    function language(lang) {
+        const next = translations[lang] ? lang : 'en'; currentLanguage = next; localStorage.setItem('mathAcademyLanguage', next); document.documentElement.lang = next;
+        document.querySelectorAll('[data-language-button]').forEach(button => button.classList.toggle('is-active', button.dataset.languageButton === next));
+        document.querySelectorAll('[data-i18n]').forEach(element => { const value = getText(element.dataset.i18n, next); if (value) element.innerHTML = value; });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => { const value = getText(element.dataset.i18nAriaLabel, next); if (value) element.setAttribute('aria-label', value); });
+        document.querySelectorAll('[data-i18n-alt]').forEach(element => { const value = getText(element.dataset.i18nAlt, next); if (value) element.setAttribute('alt', value); });
+        document.querySelectorAll('[data-i18n-title]').forEach(element => { const value = getText(element.dataset.i18nTitle, next); if (value) element.setAttribute('title', value); });
+        updateGraph(next); drawSmallGraphs(next); if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise().catch(() => {});
+    }
+    [quadASlider, quadBSlider, quadCSlider].forEach(slider => slider.addEventListener('input', () => updateGraph(currentLanguage)));
+    resetQuadraticGraphBtn.addEventListener('click', () => setPreset('two'));
+    document.querySelectorAll('[data-preset]').forEach(btn => btn.addEventListener('click', () => setPreset(btn.dataset.preset)));
+    window.addEventListener('resize', () => { updateGraph(currentLanguage); drawSmallGraphs(currentLanguage); });
+    document.addEventListener('DOMContentLoaded', () => language(currentLanguage));
+    language(currentLanguage);
+</script>
 </body>
 </html>

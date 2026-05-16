@@ -23,6 +23,51 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <style>
+        .language-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .language-switch__button {
+            border: 0;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.78);
+            border-radius: 999px;
+            padding: 5px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .language-switch__button.is-active {
+            background: #ffffff;
+            color: var(--primary-color);
+        }
+
+        .navbar.sticky .language-switch,
+        .navbar:hover .language-switch {
+            border-color: rgba(0, 0, 0, 0.12);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .navbar.sticky .language-switch__button,
+        .navbar:hover .language-switch__button {
+            color: var(--p-color);
+        }
+
+        .navbar.sticky .language-switch__button.is-active,
+        .navbar:hover .language-switch__button.is-active {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+    </style>
     <!--
 
     TemplateMo 590 topic listing
@@ -38,7 +83,7 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span data-no-translate>My Math Academy</span>
             </a>
 
             <div class="d-lg-none ms-auto me-4">
@@ -75,6 +120,12 @@
                     </li>
                     {% endif %}
                 </ul>
+                <div class="language-switch me-lg-3 my-3 my-lg-0" aria-label="Language">
+                    <button class="language-switch__button is-active" type="button" data-language-button="en"
+                            onclick="setSiteLanguage('en')">EN</button>
+                    <button class="language-switch__button" type="button" data-language-button="uz"
+                            onclick="setSiteLanguage('uz')">UZ</button>
+                </div>
                 {% if request.user.is_authenticated %}
                 <div class="d-none d-lg-block">
                     <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
@@ -1204,6 +1255,144 @@
 <script src="{% static 'js/click-scroll.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
 <script>
+    const siteTextTranslations = {
+        "Home Page": "Bosh sahifa",
+        "Introduction": "Kirish",
+        "Algebra": "Algebra",
+        "Geometry": "Geometriya",
+        "EXIT": "CHIQISH",
+        "REPORT": "XABAR BERISH",
+        "Admin Panel": "Admin paneli",
+        "Learn. Use. Solve": "O'rgan. Qo'lla. Yech",
+        "platform for new math learners around the world": "dunyo bo'ylab matematikani endi o'rganayotganlar uchun platforma",
+        "Basics of mathematics": "Matematika asoslari",
+        "All the essential fundamental mathematical knowledge you will ever need.": "Sizga kerak bo'ladigan barcha muhim matematik asoslar.",
+        "Equations and Inequalities": "Tenglamalar va tengsizliklar",
+        "All the essential knowledge, fundamental concepts, and effective strategies required to understand, manipulate, and solve various types of equations, including linear and quadratic.": "Chiziqli va kvadrat tenglamalarni ham o'z ichiga olgan turli tenglamalarni tushunish, almashtirish va yechish uchun kerak bo'ladigan asosiy bilimlar, tushunchalar va samarali usullar.",
+        "Start Learning": "O'rganishni boshlash",
+        "Math": "Matematika",
+        "Basic": "Asosiy",
+        "Functions": "Funksiyalar",
+        "Logarithm": "Logarifm",
+        "Trigonometry": "Trigonometriya",
+        "Types of Numbers": "Sonlar turlari",
+        "The first step to learn math": "Matematikani o'rganishdagi birinchi qadam",
+        "Working with Signs": "Belgilar bilan ishlash",
+        "This topic is crucial to learn": "Bu mavzuni o'rganish juda muhim",
+        "Fraction": "Kasr",
+        "Common mathematical example": "Ko'p uchraydigan matematik misol",
+        "Linear Equations": "Chiziqli tenglamalar",
+        "Basic properties of linear equations": "Chiziqli tenglamalarning asosiy xossalari",
+        "Quadratic Equations": "Kvadrat tenglamalar",
+        "Basic concepts about quadratic equations": "Kvadrat tenglamalar haqidagi asosiy tushunchalar",
+        "Inequalities": "Tengsizliklar",
+        "Lorem Ipsum dolor sit amet consectetur": "Tengsizliklarni yechish uchun asosiy tushunchalar",
+        "Linear Functions": "Chiziqli funksiyalar",
+        "Basic knowledge": "Asosiy bilimlar",
+        "Other Kinds of Functions": "Funksiyalarning boshqa turlari",
+        "Good explanation with examples": "Misollar bilan yaxshi tushuntirish",
+        "Learn More": "Ko'proq o'rganish",
+        "Share:": "Ulashish:",
+        "Logarithmic Functions": "Logarifmik funksiyalar",
+        "More about logarithmic functions": "Logarifmik funksiyalar haqida ko'proq",
+        "Logarithmic Examples": "Logarifmik misollar",
+        "Operations on Logarithms": "Logarifmlar ustida amallar",
+        "Introduction to Trigonometry": "Trigonometriyaga kirish",
+        "Good examples to understand": "Tushunish uchun yaxshi misollar",
+        "Algebraic Operations in Trigonometry": "Trigonometriyada algebraik amallar",
+        "Adding, Subtracting, Multiplying, and Dividing": "Qo'shish, ayirish, ko'paytirish va bo'lish",
+        "Inverse Trigonometric Functions": "Teskari trigonometrik funksiyalar",
+        "Deep knowledge you must learn": "O'rganishingiz kerak bo'lgan chuqur bilimlar",
+        "Planimetry": "Planimetriya",
+        "Module 1": "1-modul",
+        "Module 2": "2-modul",
+        "Module 3": "3-modul",
+        "Module 4": "4-modul",
+        "Module 5": "5-modul",
+        "Module 6": "6-modul",
+        "Introduction to Geometry": "Geometriyaga kirish",
+        "The first step to learn geometry": "Geometriyani o'rganishdagi birinchi qadam",
+        "Measurement and Distance in The Plane": "Tekislikda o'lchash va masofa",
+        "Angles": "Burchaklar",
+        "Everything you should know about angles": "Burchaklar haqida bilishingiz kerak bo'lgan hamma narsa",
+        "Triangles": "Uchburchaklar",
+        "Types of Triangles": "Uchburchak turlari",
+        "Similar Triangles": "O'xshash uchburchaklar",
+        "Basic concepts about similar triangles": "O'xshash uchburchaklar haqidagi asosiy tushunchalar",
+        "Triangle Inequality, Perimeter & Area": "Uchburchak tengsizligi, perimetr va yuza",
+        "Main properties of triangles": "Uchburchaklarning asosiy xossalari",
+        "Quadrilaterals": "To'rtburchaklar",
+        "Basic concepts and fundamental formulas": "Asosiy tushunchalar va formulalar",
+        "Types of Quadrilaterals": "To'rtburchak turlari",
+        "Circles": "Aylanalar",
+        "Main Properties": "Asosiy xossalar",
+        "Other Properties of Circles": "Aylananing boshqa xossalari",
+        "More about circles": "Aylanalar haqida ko'proq",
+        "Equation of Circle": "Aylana tenglamasi",
+        "The Coordinate Plane & Points": "Koordinata tekisligi va nuqtalar",
+        "Learn more about Geometry": "Geometriya haqida ko'proq o'rganing",
+        "Distance, Midpoint & Slope": "Masofa, o'rta nuqta va qiyalik",
+        "Important thing to learn": "O'rganish muhim bo'lgan mavzu",
+        "The Law of Sines": "Sinuslar qonuni",
+        "The Law of Cosines": "Kosinuslar qonuni"
+    };
+    const reverseSiteTextTranslations = Object.fromEntries(
+        Object.entries(siteTextTranslations).map(([english, uzbek]) => [uzbek, english])
+    );
+    let currentSiteLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+
+    function setTextNodeLanguage(node, language) {
+        const text = node.nodeValue;
+        const trimmed = text.trim();
+        if (!trimmed) return;
+        const lookupText = trimmed.replace(/\s+/g, ' ');
+
+        const replacement = language === 'uz'
+            ? siteTextTranslations[lookupText]
+            : reverseSiteTextTranslations[lookupText];
+
+        if (!replacement) return;
+
+        const leading = text.match(/^\s*/)[0];
+        const trailing = text.match(/\s*$/)[0];
+        node.nodeValue = leading + replacement + trailing;
+    }
+
+    function setSiteLanguage(language) {
+        currentSiteLanguage = language;
+        localStorage.setItem('mathAcademyLanguage', language);
+        document.documentElement.lang = language;
+        document.title = language === 'uz' ? 'Bosh sahifa' : 'Home Page';
+
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === language);
+        });
+
+        const switcher = document.querySelector('.language-switch');
+        if (switcher) {
+            switcher.setAttribute('aria-label', language === 'uz' ? 'Til' : 'Language');
+        }
+
+        const toggler = document.querySelector('.navbar-toggler');
+        if (toggler) {
+            toggler.setAttribute('aria-label', language === 'uz' ? 'Menyuni ochish yoki yopish' : 'Toggle navigation');
+        }
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach((node) => {
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script, style, [data-no-translate]')) return;
+            setTextNodeLanguage(node, language);
+        });
+    }
+
+    setSiteLanguage(currentSiteLanguage);
+
     function showPlanimetry() {
         document.getElementById('planimetry-container_new').style.display = 'block';
         document.getElementById('stereometry-container_new').style.display = 'none';

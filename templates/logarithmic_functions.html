@@ -1,23 +1,29 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Logarithmic Functions</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(','\\)'], ['$','$']],
+                displayMath: [['\\[','\\]'], ['$$','$$']]
+            },
+            options: {
+                skipHtmlTags: ['script','noscript','style','textarea','pre']
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,35 +31,391 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
 
-    TemplateMo 590 topic listing
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    https://templatemo.com/tm-590-topic-listing
+        html, body {
+            overflow-x: hidden;
+        }
 
-    -->
+        body {
+            background: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+            color: #111111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #111111;
+            background: #ffffff;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .practice-strip {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .lesson-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 44px 18px 72px;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: clamp(20px, 4vw, 34px);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+        }
+
+        .lesson-card h1,
+        .lesson-card h2 {
+            margin: 0 0 12px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .lesson-card h1 {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            text-align: center;
+        }
+
+        .lesson-card h2 {
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+        }
+
+        .lesson-card h3 {
+            margin: 18px 0 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .lesson-card ul,
+        .lesson-card ol {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .math-line {
+            margin: 12px 0 18px;
+            text-align: center;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .rule-card {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 16px;
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .callout {
+            border-left: 4px solid #111111;
+            background: #f4f4f4;
+            border-radius: 0 8px 8px 0;
+            padding: 13px 15px;
+            margin-top: 16px;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .steps {
+            counter-reset: step;
+            display: grid;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .step {
+            position: relative;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 14px 14px 50px;
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: #111111;
+            color: #ffffff;
+            display: grid;
+            place-items: center;
+            font-size: .78rem;
+            font-weight: 800;
+        }
+
+        .badge-num {
+            display: inline-grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #111111;
+            color: #ffffff;
+            font-size: .85rem;
+            font-weight: 800;
+            vertical-align: 2px;
+            font-style: normal;
+        }
+
+        .section-rule {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 22px 0;
+        }
+
+        .simple-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        .simple-table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            border: 1px solid #dddddd;
+            padding: 13px 14px;
+            text-align: left;
+            color: #222222;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .simple-table th {
+            background: #f1f1f1;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .mini-note {
+            font-size: .95rem;
+            color: #444444;
+            margin-top: 10px;
+        }
+
+        .graph-widget {
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            min-height: 300px;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            margin-top: 16px;
+        }
+
+        .graph-controls {
+            padding: 22px 14px 16px;
+            border-right: 1px solid #eeeeee;
+        }
+
+        .graph-formula {
+            margin: 10px 0 24px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 24px;
+            font-style: italic;
+            color: #111111;
+            overflow-x: auto;
+        }
+
+        .slider-row {
+            display: grid;
+            grid-template-columns: 22px 50px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #111111;
+        }
+
+        .slider-value {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-style: normal;
+            text-align: right;
+            color: #111111;
+        }
+
+        .graph-slider {
+            width: 100%;
+            accent-color: #111111;
+        }
+
+        .graph-tool {
+            width: 24px;
+            height: 24px;
+            border: 0;
+            background: transparent;
+            color: #111111;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .graph-help {
+            margin-top: 16px;
+            font-size: .92rem;
+            line-height: 1.65;
+            color: #333333;
+        }
+
+        .graph-canvas-wrap {
+            min-width: 0;
+            background-color: #f8f8f8;
+            background-image:
+                linear-gradient(to right, rgba(0,0,0,.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        #logarithmicFunctionCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        @media (max-width: 920px) {
+            .graph-widget {
+                grid-template-columns: 1fr;
+            }
+
+            .graph-controls {
+                border-right: 0;
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            #logarithmicFunctionCanvas {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .row {
+                gap: 22px;
+            }
+
+            .lesson-shell {
+                padding: 34px 14px 60px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
 
@@ -62,67 +424,1243 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a>
+                            </li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">
+                                Logarithmic Functions
+                            </li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Logarithmic Functions</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Logarithmic Functions</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                            Read More
+                        </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
                         <img src="{% static 'images/myimages/logarithmfunction.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                             class="topics-detail-block-image img-fluid hero-image"
+                             alt="Logarithmic functions visual"
+                             data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=logarithmic_functions"
-                       class="btn custom-btn custom-border-btn">Practice with Logarithm</a>
-                </div>
+            </div>
 
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=logarithmic_functions"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice with Logarithmic Functions
+                </a>
             </div>
         </div>
     </header>
 
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container">
-            <div class="container">
-                <h1 style="text-align:center">General Information</h1>
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions1.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions2.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions3.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions4.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions5.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions6.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions7.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions8.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions9.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions10.jpg' %}" alt="">
-                <img style="width:100%" src="{% static 'images/myimages/logarithmic_functions11.jpg' %}" alt="">
+    <section id="topics-detail" class="lesson-shell">
+
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Logarithmic Functions — Complete Introduction</h1>
+
+            <p data-i18n="lesson.intro.p1">
+                A logarithmic function is a function that contains a logarithm. It is closely connected to exponential functions.
+                Exponential functions show growth using powers, while logarithmic functions help us find the power behind a value.
+            </p>
+
+            <div class="math-line">
+                \(f(x)=\log_b x\)
             </div>
-        </div>
-    </main>
+
+            <p data-i18n="lesson.intro.p2">
+                In this function, \(b\) is the base and \(x\) is the input. The function asks:
+                “What power of \(b\) gives \(x\)?”
+            </p>
+
+            <div class="callout" data-i18n="lesson.intro.callout">
+                <strong>Main idea:</strong> A logarithmic function turns an input into the exponent needed to create that input.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">1</span><span data-i18n="lesson.graph.title">Interactive Logarithmic Function Graph</span></h2>
+
+            <p data-i18n="lesson.graph.desc">
+                Change the sliders to see how the logarithmic graph changes. The graph below shows
+                \(y=a\log_b(x-h)+k\). The dashed vertical line is the vertical asymptote.
+            </p>
+
+            <div class="graph-widget">
+                <div class="graph-controls">
+                    <button class="graph-tool" type="button" id="logFunctionReset" title="Reset graph" data-i18n-title="graph.reset" aria-label="Reset graph" data-i18n-aria-label="graph.reset">&times;</button>
+
+                    <div class="graph-formula" id="logFunctionFormula">
+                        \(y=a\log_b(x-h)+k\)
+                    </div>
+
+                    <label class="slider-row">
+                        <span>a</span>
+                        <span class="slider-value" id="logAValue">1.0</span>
+                        <input class="graph-slider" id="logASlider" type="range" min="-3" max="3" step="0.1" value="1">
+                    </label>
+
+                    <label class="slider-row">
+                        <span>b</span>
+                        <span class="slider-value" id="logBValue">2.0</span>
+                        <input class="graph-slider" id="logBSlider" type="range" min="0.2" max="5" step="0.1" value="2">
+                    </label>
+
+                    <label class="slider-row">
+                        <span>h</span>
+                        <span class="slider-value" id="logHValue">0.0</span>
+                        <input class="graph-slider" id="logHSlider" type="range" min="-8" max="8" step="0.1" value="0">
+                    </label>
+
+                    <label class="slider-row">
+                        <span>k</span>
+                        <span class="slider-value" id="logKValue">0.0</span>
+                        <input class="graph-slider" id="logKSlider" type="range" min="-8" max="8" step="0.1" value="0">
+                    </label>
+
+                    <p class="graph-help" data-i18n="lesson.graph.help">
+                        \(a\) stretches or reflects the graph, \(b\) changes the base, \(h\) moves the graph left or right,
+                        and \(k\) moves it up or down.
+                    </p>
+                </div>
+
+                <div class="graph-canvas-wrap">
+                    <canvas id="logarithmicFunctionCanvas" width="720" height="440" aria-label="Interactive graph of a logarithmic function" data-i18n-aria-label="graph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">2</span><span data-i18n="lesson.basic.title">Basic Form</span></h2>
+
+            <p data-i18n="lesson.basic.p1">
+                The simplest logarithmic function is called the parent logarithmic function.
+            </p>
+
+            <div class="math-line">
+                \(f(x)=\log_b x\)
+            </div>
+
+            <p data-i18n="lesson.basic.p2">
+                This means the function gives the exponent needed to get \(x\) from the base \(b\).
+            </p>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.basic.card1.title">Base</strong>
+                    <p data-i18n="lesson.basic.card1.text">The base is \(b\). It must be positive.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.basic.card2.title">Input</strong>
+                    <p data-i18n="lesson.basic.card2.text">The input is \(x\). It must be greater than zero.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.basic.card3.title">Output</strong>
+                    <p data-i18n="lesson.basic.card3.text">The output is \(f(x)\), which is an exponent.</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.basic.card4.title">Graph</strong>
+                    <p data-i18n="lesson.basic.card4.text">The graph is a curve with a vertical asymptote.</p>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">3</span><span data-i18n="lesson.connection.title">Connection with Exponential Functions</span></h2>
+
+            <p data-i18n="lesson.connection.p1">
+                Logarithmic functions and exponential functions are inverse functions.
+                This means they undo each other.
+            </p>
+
+            <div class="math-line">
+                \(y=\log_b x\)
+            </div>
+
+            <p data-i18n="lesson.connection.p2">
+                This is the same relationship as:
+            </p>
+
+            <div class="math-line">
+                \(b^y=x\)
+            </div>
+
+            <div class="callout" data-i18n="lesson.connection.callout">
+                <strong>Simple meaning:</strong> If \(y=\log_b x\), then \(y\) is the exponent that makes \(b^y=x\).
+            </div>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.connection.table.log">Logarithmic form</th>
+                        <th data-i18n="lesson.connection.table.exp">Exponential form</th>
+                        <th data-i18n="lesson.connection.table.meaning">Meaning</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(y=\log_2 x\)</td>
+                        <td>\(2^y=x\)</td>
+                        <td data-i18n="lesson.connection.r1">\(y\) is the exponent of \(2\).</td>
+                    </tr>
+                    <tr>
+                        <td>\(y=\log_3 x\)</td>
+                        <td>\(3^y=x\)</td>
+                        <td data-i18n="lesson.connection.r2">\(y\) is the exponent of \(3\).</td>
+                    </tr>
+                    <tr>
+                        <td>\(y=\log_{10}x\)</td>
+                        <td>\(10^y=x\)</td>
+                        <td data-i18n="lesson.connection.r3">\(y\) is the exponent of \(10\).</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">4</span><span data-i18n="lesson.domain.title">Domain and Range</span></h2>
+
+            <p data-i18n="lesson.domain.p1">
+                The domain tells which input values are allowed. The range tells which output values are possible.
+            </p>
+
+            <div class="math-line">
+                \(f(x)=\log_b x\)
+            </div>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.domain.domainTitle">Domain</strong>
+                    <div class="math-line">\(x&gt;0\)</div>
+                    <p data-i18n="lesson.domain.domainText">
+                        The input must be positive because logarithms of zero or negative numbers are not defined in basic real-number algebra.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.domain.rangeTitle">Range</strong>
+                    <div class="math-line">\((-\infty,\infty)\)</div>
+                    <p data-i18n="lesson.domain.rangeText">
+                        The output can be any real number.
+                    </p>
+                </div>
+            </div>
+
+            <div class="callout" data-i18n="lesson.domain.callout">
+                <strong>Remember:</strong> The graph of the parent logarithmic function exists only for positive \(x\)-values.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">5</span><span data-i18n="lesson.asymptote.title">Vertical Asymptote</span></h2>
+
+            <p data-i18n="lesson.asymptote.p1">
+                A vertical asymptote is a vertical line that the graph gets closer and closer to, but does not touch.
+                For the parent logarithmic function, the vertical asymptote is:
+            </p>
+
+            <div class="math-line">
+                \(x=0\)
+            </div>
+
+            <p data-i18n="lesson.asymptote.p2">
+                This happens because the logarithm is not defined at \(x=0\). The graph can get very close to the \(y\)-axis,
+                but it cannot cross it.
+            </p>
+
+            <div class="callout" data-i18n="lesson.asymptote.callout">
+                <strong>Important:</strong> For \(f(x)=\log_b x\), the \(y\)-axis is the vertical asymptote.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">6</span><span data-i18n="lesson.points.title">Key Points on the Graph</span></h2>
+
+            <p data-i18n="lesson.points.p1">
+                Some points appear often on logarithmic graphs. For example, for \(f(x)=\log_2x\):
+            </p>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.points.table.x">Input \(x\)</th>
+                        <th data-i18n="lesson.points.table.y">Output \(y=\log_2x\)</th>
+                        <th data-i18n="lesson.points.table.point">Point</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(\frac{1}{2}\)</td>
+                        <td>\(-1\)</td>
+                        <td>\((\frac{1}{2},-1)\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(1\)</td>
+                        <td>\(0\)</td>
+                        <td>\((1,0)\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(2\)</td>
+                        <td>\(1\)</td>
+                        <td>\((2,1)\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(4\)</td>
+                        <td>\(2\)</td>
+                        <td>\((4,2)\)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="mini-note" data-i18n="lesson.points.note">
+                These points are useful because they help you sketch the graph quickly.
+            </p>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">7</span><span data-i18n="lesson.increase.title">Increasing and Decreasing Graphs</span></h2>
+
+            <p data-i18n="lesson.increase.p1">
+                The base decides whether the logarithmic function increases or decreases.
+            </p>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.increase.card1.title">If \(b&gt;1\)</strong>
+                    <p data-i18n="lesson.increase.card1.text">
+                        The logarithmic function increases from left to right.
+                    </p>
+                    <div class="math-line">\(f(x)=\log_2x\)</div>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.increase.card2.title">If \(0&lt;b&lt;1\)</strong>
+                    <p data-i18n="lesson.increase.card2.text">
+                        The logarithmic function decreases from left to right.
+                    </p>
+                    <div class="math-line">\(f(x)=\log_{\frac{1}{2}}x\)</div>
+                </div>
+            </div>
+
+            <div class="callout" data-i18n="lesson.increase.callout">
+                <strong>Simple rule:</strong> Bases greater than \(1\) give increasing graphs. Bases between \(0\) and \(1\) give decreasing graphs.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">8</span><span data-i18n="lesson.transform.title">Transformations</span></h2>
+
+            <p data-i18n="lesson.transform.p1">
+                A logarithmic graph can move, stretch, shrink, or reflect. A common transformed logarithmic function is:
+            </p>
+
+            <div class="math-line">
+                \(y=a\log_b(x-h)+k\)
+            </div>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.transform.table.part">Part</th>
+                        <th data-i18n="lesson.transform.table.effect">Effect</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(a\)</td>
+                        <td data-i18n="lesson.transform.r1">Stretches, shrinks, or reflects the graph.</td>
+                    </tr>
+                    <tr>
+                        <td>\(b\)</td>
+                        <td data-i18n="lesson.transform.r2">Changes the base and affects the curve shape.</td>
+                    </tr>
+                    <tr>
+                        <td>\(h\)</td>
+                        <td data-i18n="lesson.transform.r3">Moves the graph left or right. The vertical asymptote becomes \(x=h\).</td>
+                    </tr>
+                    <tr>
+                        <td>\(k\)</td>
+                        <td data-i18n="lesson.transform.r4">Moves the graph up or down.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout" data-i18n="lesson.transform.callout">
+                <strong>Important:</strong> In \(y=a\log_b(x-h)+k\), the vertical asymptote is \(x=h\), not always \(x=0\).
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">9</span><span data-i18n="lesson.real.title">Real-Life Meaning</span></h2>
+
+            <p data-i18n="lesson.real.p1">
+                Logarithmic functions are useful when values grow very quickly, but we want to describe them on a smaller scale.
+                They help compress large numbers into easier numbers.
+            </p>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.real.card1.title">Sound</strong>
+                    <p data-i18n="lesson.real.card1.text">
+                        Decibels use logarithmic thinking to measure sound intensity.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.real.card2.title">Earthquakes</strong>
+                    <p data-i18n="lesson.real.card2.text">
+                        Earthquake scales use logarithmic ideas to compare very large amounts of energy.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.real.card3.title">Computer science</strong>
+                    <p data-i18n="lesson.real.card3.text">
+                        Logarithms appear in algorithms, data structures, and binary search.
+                    </p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.real.card4.title">Science</strong>
+                    <p data-i18n="lesson.real.card4.text">
+                        Logarithmic scales are used when values vary across very large ranges.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">10</span><span data-i18n="lesson.mistakes.title">Common Mistakes</span></h2>
+
+            <h3 data-i18n="lesson.mistakes.m1.title">1. Forgetting the domain</h3>
+            <p data-i18n="lesson.mistakes.m1.text">
+                A logarithmic function cannot take zero or negative inputs in basic real-number algebra.
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m2.title">2. Thinking the graph crosses the \(y\)-axis</h3>
+            <p data-i18n="lesson.mistakes.m2.text">
+                The parent logarithmic graph gets close to the \(y\)-axis, but it does not cross it.
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m3.title">3. Confusing logarithmic and exponential graphs</h3>
+            <p data-i18n="lesson.mistakes.m3.text">
+                Exponential graphs usually have a horizontal asymptote. Logarithmic graphs have a vertical asymptote.
+            </p>
+
+            <h3 data-i18n="lesson.mistakes.m4.title">4. Ignoring the base</h3>
+            <p data-i18n="lesson.mistakes.m4.text">
+                The base controls whether the graph increases or decreases.
+            </p>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">11</span><span data-i18n="lesson.summary.title">Final Summary</span></h2>
+
+            <ol>
+                <li data-i18n="lesson.summary.li1">A logarithmic function has the basic form \(f(x)=\log_bx\).</li>
+                <li data-i18n="lesson.summary.li2">The base must be positive and cannot be \(1\).</li>
+                <li data-i18n="lesson.summary.li3">The input \(x\) must be positive.</li>
+                <li data-i18n="lesson.summary.li4">The domain of \(f(x)=\log_bx\) is \(x&gt;0\).</li>
+                <li data-i18n="lesson.summary.li5">The range is all real numbers.</li>
+                <li data-i18n="lesson.summary.li6">The parent graph has a vertical asymptote at \(x=0\).</li>
+                <li data-i18n="lesson.summary.li7">The graph crosses the \(x\)-axis at \((1,0)\).</li>
+                <li data-i18n="lesson.summary.li8">If \(b&gt;1\), the function increases.</li>
+                <li data-i18n="lesson.summary.li9">If \(0&lt;b&lt;1\), the function decreases.</li>
+                <li data-i18n="lesson.summary.li10">Logarithmic functions are inverses of exponential functions.</li>
+            </ol>
+
+            <hr class="section-rule">
+
+            <h3 data-i18n="lesson.summary.try.title">Try It Yourself</h3>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p1.title">Practice 1</strong>
+                    <div class="math-line">\(f(x)=\log_2x\)</div>
+                    <p data-i18n="lesson.summary.p1.q">What is the domain?</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p2.title">Practice 2</strong>
+                    <div class="math-line">\(f(x)=\log_3x\)</div>
+                    <p data-i18n="lesson.summary.p2.q">Is the function increasing or decreasing?</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p3.title">Practice 3</strong>
+                    <div class="math-line">\(f(x)=\log_{\frac{1}{2}}x\)</div>
+                    <p data-i18n="lesson.summary.p3.q">Is the function increasing or decreasing?</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.summary.p4.title">Practice 4</strong>
+                    <div class="math-line">\(f(x)=\log_5(x-3)\)</div>
+                    <p data-i18n="lesson.summary.p4.q">What is the vertical asymptote?</p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-5">
+                <a style="width:300px" href="{% url 'practice' %}?url=logarithmic_functions"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice with Logarithmic Functions
+                </a>
+            </div>
+        </article>
+
+    </section>
 </main>
 
 
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                current: "Logarithmic Functions",
+                hero: "Introduction to <br>Logarithmic Functions",
+                readMore: "Read More",
+                backTop: "Back to top",
+                heroAlt: "Logarithmic functions visual",
+                practice: "Practice with Logarithmic Functions"
+            },
+            graph: {
+                reset: "Reset graph",
+                aria: "Interactive graph of a logarithmic function"
+            },
+            lesson: {
+                title: "Logarithmic Functions — Complete Introduction",
+                intro: {
+                    p1: "A logarithmic function is a function that contains a logarithm. It is closely connected to exponential functions. Exponential functions show growth using powers, while logarithmic functions help us find the power behind a value.",
+                    p2: "In this function, \\(b\\) is the base and \\(x\\) is the input. The function asks: “What power of \\(b\\) gives \\(x\\)?”",
+                    callout: "<strong>Main idea:</strong> A logarithmic function turns an input into the exponent needed to create that input."
+                },
+                graph: {
+                    title: "Interactive Logarithmic Function Graph",
+                    desc: "Change the sliders to see how the logarithmic graph changes. The graph below shows \\(y=a\\log_b(x-h)+k\\). The dashed vertical line is the vertical asymptote.",
+                    help: "\\(a\\) stretches or reflects the graph, \\(b\\) changes the base, \\(h\\) moves the graph left or right, and \\(k\\) moves it up or down."
+                },
+                basic: {
+                    title: "Basic Form",
+                    p1: "The simplest logarithmic function is called the parent logarithmic function.",
+                    p2: "This means the function gives the exponent needed to get \\(x\\) from the base \\(b\\).",
+                    card1: {
+                        title: "Base",
+                        text: "The base is \\(b\\). It must be positive."
+                    },
+                    card2: {
+                        title: "Input",
+                        text: "The input is \\(x\\). It must be greater than zero."
+                    },
+                    card3: {
+                        title: "Output",
+                        text: "The output is \\(f(x)\\), which is an exponent."
+                    },
+                    card4: {
+                        title: "Graph",
+                        text: "The graph is a curve with a vertical asymptote."
+                    }
+                },
+                connection: {
+                    title: "Connection with Exponential Functions",
+                    p1: "Logarithmic functions and exponential functions are inverse functions. This means they undo each other.",
+                    p2: "This is the same relationship as:",
+                    callout: "<strong>Simple meaning:</strong> If \\(y=\\log_b x\\), then \\(y\\) is the exponent that makes \\(b^y=x\\).",
+                    table: {
+                        log: "Logarithmic form",
+                        exp: "Exponential form",
+                        meaning: "Meaning"
+                    },
+                    r1: "\\(y\\) is the exponent of \\(2\\).",
+                    r2: "\\(y\\) is the exponent of \\(3\\).",
+                    r3: "\\(y\\) is the exponent of \\(10\\)."
+                },
+                domain: {
+                    title: "Domain and Range",
+                    p1: "The domain tells which input values are allowed. The range tells which output values are possible.",
+                    domainTitle: "Domain",
+                    domainText: "The input must be positive because logarithms of zero or negative numbers are not defined in basic real-number algebra.",
+                    rangeTitle: "Range",
+                    rangeText: "The output can be any real number.",
+                    callout: "<strong>Remember:</strong> The graph of the parent logarithmic function exists only for positive \\(x\\)-values."
+                },
+                asymptote: {
+                    title: "Vertical Asymptote",
+                    p1: "A vertical asymptote is a vertical line that the graph gets closer and closer to, but does not touch. For the parent logarithmic function, the vertical asymptote is:",
+                    p2: "This happens because the logarithm is not defined at \\(x=0\\). The graph can get very close to the \\(y\\)-axis, but it cannot cross it.",
+                    callout: "<strong>Important:</strong> For \\(f(x)=\\log_b x\\), the \\(y\\)-axis is the vertical asymptote."
+                },
+                points: {
+                    title: "Key Points on the Graph",
+                    p1: "Some points appear often on logarithmic graphs. For example, for \\(f(x)=\\log_2x\\):",
+                    table: {
+                        x: "Input \\(x\\)",
+                        y: "Output \\(y=\\log_2x\\)",
+                        point: "Point"
+                    },
+                    note: "These points are useful because they help you sketch the graph quickly."
+                },
+                increase: {
+                    title: "Increasing and Decreasing Graphs",
+                    p1: "The base decides whether the logarithmic function increases or decreases.",
+                    card1: {
+                        title: "If \\(b&gt;1\\)",
+                        text: "The logarithmic function increases from left to right."
+                    },
+                    card2: {
+                        title: "If \\(0&lt;b&lt;1\\)",
+                        text: "The logarithmic function decreases from left to right."
+                    },
+                    callout: "<strong>Simple rule:</strong> Bases greater than \\(1\\) give increasing graphs. Bases between \\(0\\) and \\(1\\) give decreasing graphs."
+                },
+                transform: {
+                    title: "Transformations",
+                    p1: "A logarithmic graph can move, stretch, shrink, or reflect. A common transformed logarithmic function is:",
+                    table: {
+                        part: "Part",
+                        effect: "Effect"
+                    },
+                    r1: "Stretches, shrinks, or reflects the graph.",
+                    r2: "Changes the base and affects the curve shape.",
+                    r3: "Moves the graph left or right. The vertical asymptote becomes \\(x=h\\).",
+                    r4: "Moves the graph up or down.",
+                    callout: "<strong>Important:</strong> In \\(y=a\\log_b(x-h)+k\\), the vertical asymptote is \\(x=h\\), not always \\(x=0\\)."
+                },
+                real: {
+                    title: "Real-Life Meaning",
+                    p1: "Logarithmic functions are useful when values grow very quickly, but we want to describe them on a smaller scale. They help compress large numbers into easier numbers.",
+                    card1: {
+                        title: "Sound",
+                        text: "Decibels use logarithmic thinking to measure sound intensity."
+                    },
+                    card2: {
+                        title: "Earthquakes",
+                        text: "Earthquake scales use logarithmic ideas to compare very large amounts of energy."
+                    },
+                    card3: {
+                        title: "Computer science",
+                        text: "Logarithms appear in algorithms, data structures, and binary search."
+                    },
+                    card4: {
+                        title: "Science",
+                        text: "Logarithmic scales are used when values vary across very large ranges."
+                    }
+                },
+                mistakes: {
+                    title: "Common Mistakes",
+                    m1: {
+                        title: "1. Forgetting the domain",
+                        text: "A logarithmic function cannot take zero or negative inputs in basic real-number algebra."
+                    },
+                    m2: {
+                        title: "2. Thinking the graph crosses the \\(y\\)-axis",
+                        text: "The parent logarithmic graph gets close to the \\(y\\)-axis, but it does not cross it."
+                    },
+                    m3: {
+                        title: "3. Confusing logarithmic and exponential graphs",
+                        text: "Exponential graphs usually have a horizontal asymptote. Logarithmic graphs have a vertical asymptote."
+                    },
+                    m4: {
+                        title: "4. Ignoring the base",
+                        text: "The base controls whether the graph increases or decreases."
+                    }
+                },
+                summary: {
+                    title: "Final Summary",
+                    li1: "A logarithmic function has the basic form \\(f(x)=\\log_bx\\).",
+                    li2: "The base must be positive and cannot be \\(1\\).",
+                    li3: "The input \\(x\\) must be positive.",
+                    li4: "The domain of \\(f(x)=\\log_bx\\) is \\(x&gt;0\\).",
+                    li5: "The range is all real numbers.",
+                    li6: "The parent graph has a vertical asymptote at \\(x=0\\).",
+                    li7: "The graph crosses the \\(x\\)-axis at \\((1,0)\\).",
+                    li8: "If \\(b&gt;1\\), the function increases.",
+                    li9: "If \\(0&lt;b&lt;1\\), the function decreases.",
+                    li10: "Logarithmic functions are inverses of exponential functions.",
+                    try: {
+                        title: "Try It Yourself"
+                    },
+                    p1: {
+                        title: "Practice 1",
+                        q: "What is the domain?"
+                    },
+                    p2: {
+                        title: "Practice 2",
+                        q: "Is the function increasing or decreasing?"
+                    },
+                    p3: {
+                        title: "Practice 3",
+                        q: "Is the function increasing or decreasing?"
+                    },
+                    p4: {
+                        title: "Practice 4",
+                        q: "What is the vertical asymptote?"
+                    }
+                }
+            }
+        },
+
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo'li",
+                homepage: "Bosh sahifa",
+                current: "Logarifmik funksiyalar",
+                hero: "Logarifmik funksiyalarga <br>kirish",
+                readMore: "Batafsil o'qish",
+                backTop: "Yuqoriga qaytish",
+                heroAlt: "Logarifmik funksiyalar rasmi",
+                practice: "Logarifmik funksiyalar bo'yicha mashq"
+            },
+            graph: {
+                reset: "Grafikni qayta tiklash",
+                aria: "Logarifmik funksiyaning interaktiv grafigi"
+            },
+            lesson: {
+                title: "Logarifmik funksiyalar — To'liq kirish",
+                intro: {
+                    p1: "Logarifmik funksiya — ichida logarifm bo'lgan funksiya. U ko'rsatkichli funksiyalar bilan juda bog'liq. Ko'rsatkichli funksiyalar darajalar orqali o'sishni ko'rsatsa, logarifmik funksiyalar qiymat ortidagi darajani topishga yordam beradi.",
+                    p2: "Bu funksiyada \\(b\\) asos, \\(x\\) esa kiruvchi qiymat. Funksiya shunday savol beradi: “\\(b\\) ni nechanchi darajaga ko'tarsak \\(x\\) hosil bo'ladi?”",
+                    callout: "<strong>Asosiy g'oya:</strong> Logarifmik funksiya kiruvchi qiymatni hosil qilish uchun kerak bo'lgan darajani topadi."
+                },
+                graph: {
+                    title: "Interaktiv logarifmik funksiya grafigi",
+                    desc: "Slayderlarni o'zgartirib, logarifmik grafik qanday o'zgarishini ko'ring. Quyidagi grafik \\(y=a\\log_b(x-h)+k\\) ni ko'rsatadi. Uzilgan vertikal chiziq — vertikal asimptota.",
+                    help: "\\(a\\) grafikni cho'zadi yoki akslantiradi, \\(b\\) asosni o'zgartiradi, \\(h\\) grafikni chapga yoki o'ngga siljitadi, \\(k\\) esa yuqoriga yoki pastga siljitadi."
+                },
+                basic: {
+                    title: "Asosiy ko'rinish",
+                    p1: "Eng sodda logarifmik funksiya boshlang'ich logarifmik funksiya deyiladi.",
+                    p2: "Bu funksiya \\(b\\) asosdan \\(x\\) ni hosil qilish uchun kerak bo'lgan darajani beradi.",
+                    card1: {
+                        title: "Asos",
+                        text: "Asos \\(b\\). U musbat bo'lishi kerak."
+                    },
+                    card2: {
+                        title: "Kirish qiymati",
+                        text: "Kirish qiymati \\(x\\). U noldan katta bo'lishi kerak."
+                    },
+                    card3: {
+                        title: "Chiqish qiymati",
+                        text: "Chiqish qiymati \\(f(x)\\). Bu daraja hisoblanadi."
+                    },
+                    card4: {
+                        title: "Grafik",
+                        text: "Grafik vertikal asimptotali egri chiziq bo'ladi."
+                    }
+                },
+                connection: {
+                    title: "Ko'rsatkichli funksiyalar bilan bog'lanish",
+                    p1: "Logarifmik funksiyalar va ko'rsatkichli funksiyalar o'zaro teskari funksiyalardir. Ya'ni ular bir-birini bekor qiladi.",
+                    p2: "Bu bir xil bog'lanishning boshqa ko'rinishi:",
+                    callout: "<strong>Oddiy ma'no:</strong> Agar \\(y=\\log_b x\\) bo'lsa, unda \\(y\\) — \\(b^y=x\\) ni hosil qiladigan daraja.",
+                    table: {
+                        log: "Logarifmik ko'rinish",
+                        exp: "Ko'rsatkichli ko'rinish",
+                        meaning: "Ma'nosi"
+                    },
+                    r1: "\\(y\\) — \\(2\\) ning darajasi.",
+                    r2: "\\(y\\) — \\(3\\) ning darajasi.",
+                    r3: "\\(y\\) — \\(10\\) ning darajasi."
+                },
+                domain: {
+                    title: "Aniqlanish sohasi va qiymatlar sohasi",
+                    p1: "Aniqlanish sohasi qaysi kiruvchi qiymatlar mumkinligini bildiradi. Qiymatlar sohasi esa qanday chiqish qiymatlari bo'lishi mumkinligini bildiradi.",
+                    domainTitle: "Aniqlanish sohasi",
+                    domainText: "Kirish qiymati musbat bo'lishi kerak, chunki boshlang'ich haqiqiy sonlar algebrasida nol yoki manfiy sonlarning logarifmi aniqlanmagan.",
+                    rangeTitle: "Qiymatlar sohasi",
+                    rangeText: "Chiqish qiymati istalgan haqiqiy son bo'lishi mumkin.",
+                    callout: "<strong>Eslab qoling:</strong> Boshlang'ich logarifmik funksiya grafigi faqat musbat \\(x\\)-qiymatlar uchun mavjud."
+                },
+                asymptote: {
+                    title: "Vertikal asimptota",
+                    p1: "Vertikal asimptota — grafik yaqinlashadigan, lekin tegmaydigan vertikal chiziq. Boshlang'ich logarifmik funksiya uchun vertikal asimptota:",
+                    p2: "Bu logarifm \\(x=0\\) da aniqlanmagani sababli yuz beradi. Grafik \\(y\\)-o'qiga juda yaqinlashishi mumkin, lekin uni kesib o'ta olmaydi.",
+                    callout: "<strong>Muhim:</strong> \\(f(x)=\\log_b x\\) uchun \\(y\\)-o'qi vertikal asimptotadir."
+                },
+                points: {
+                    title: "Grafikdagi asosiy nuqtalar",
+                    p1: "Logarifmik grafiklarda ayrim nuqtalar tez-tez uchraydi. Masalan, \\(f(x)=\\log_2x\\) uchun:",
+                    table: {
+                        x: "Kirish qiymati \\(x\\)",
+                        y: "Chiqish qiymati \\(y=\\log_2x\\)",
+                        point: "Nuqta"
+                    },
+                    note: "Bu nuqtalar grafikni tez chizishga yordam beradi."
+                },
+                increase: {
+                    title: "O'suvchi va kamayuvchi grafiklar",
+                    p1: "Funksiya o'suvchi yoki kamayuvchi bo'lishini asos belgilaydi.",
+                    card1: {
+                        title: "Agar \\(b&gt;1\\) bo'lsa",
+                        text: "Logarifmik funksiya chapdan o'ngga qarab o'sadi."
+                    },
+                    card2: {
+                        title: "Agar \\(0&lt;b&lt;1\\) bo'lsa",
+                        text: "Logarifmik funksiya chapdan o'ngga qarab kamayadi."
+                    },
+                    callout: "<strong>Oddiy qoida:</strong> \\(1\\) dan katta asoslar o'suvchi grafik beradi. \\(0\\) bilan \\(1\\) orasidagi asoslar kamayuvchi grafik beradi."
+                },
+                transform: {
+                    title: "Transformatsiyalar",
+                    p1: "Logarifmik grafik siljishi, cho'zilishi, qisqarishi yoki akslanishi mumkin. Ko'p ishlatiladigan o'zgargan logarifmik funksiya:",
+                    table: {
+                        part: "Qism",
+                        effect: "Ta'siri"
+                    },
+                    r1: "Grafikni cho'zadi, qisqartiradi yoki akslantiradi.",
+                    r2: "Asosni o'zgartiradi va egri chiziq shakliga ta'sir qiladi.",
+                    r3: "Grafikni chapga yoki o'ngga siljitadi. Vertikal asimptota \\(x=h\\) bo'ladi.",
+                    r4: "Grafikni yuqoriga yoki pastga siljitadi.",
+                    callout: "<strong>Muhim:</strong> \\(y=a\\log_b(x-h)+k\\) da vertikal asimptota har doim \\(x=0\\) emas, balki \\(x=h\\) bo'ladi."
+                },
+                real: {
+                    title: "Haqiqiy hayotdagi ma'nosi",
+                    p1: "Logarifmik funksiyalar qiymatlar juda tez o'sganda, lekin biz ularni kichikroq shkalada tasvirlamoqchi bo'lganimizda foydali. Ular katta sonlarni qulayroq sonlarga siqib beradi.",
+                    card1: {
+                        title: "Tovush",
+                        text: "Desibellar tovush kuchini o'lchashda logarifmik fikrlashdan foydalanadi."
+                    },
+                    card2: {
+                        title: "Zilzilalar",
+                        text: "Zilzila shkalalari juda katta energiyalarni solishtirishda logarifmik g'oyalardan foydalanadi."
+                    },
+                    card3: {
+                        title: "Kompyuter fanlari",
+                        text: "Logarifmlar algoritmlar, ma'lumot tuzilmalari va binary searchda uchraydi."
+                    },
+                    card4: {
+                        title: "Fan",
+                        text: "Qiymatlar juda katta oraliqda o'zgarganda logarifmik shkalalar ishlatiladi."
+                    }
+                },
+                mistakes: {
+                    title: "Ko'p uchraydigan xatolar",
+                    m1: {
+                        title: "1. Aniqlanish sohasini unutish",
+                        text: "Boshlang'ich haqiqiy sonlar algebrasida logarifmik funksiya nol yoki manfiy kirish qiymatlarini qabul qila olmaydi."
+                    },
+                    m2: {
+                        title: "2. Grafik \\(y\\)-o'qini kesadi deb o'ylash",
+                        text: "Boshlang'ich logarifmik grafik \\(y\\)-o'qiga yaqinlashadi, lekin uni kesib o'tmaydi."
+                    },
+                    m3: {
+                        title: "3. Logarifmik va ko'rsatkichli grafiklarni chalkashtirish",
+                        text: "Ko'rsatkichli grafiklarda odatda gorizontal asimptota bo'ladi. Logarifmik grafiklarda esa vertikal asimptota bo'ladi."
+                    },
+                    m4: {
+                        title: "4. Asosni e'tiborsiz qoldirish",
+                        text: "Asos grafik o'suvchi yoki kamayuvchi bo'lishini belgilaydi."
+                    }
+                },
+                summary: {
+                    title: "Yakuniy xulosa",
+                    li1: "Logarifmik funksiya asosiy ko'rinishda \\(f(x)=\\log_bx\\) bo'ladi.",
+                    li2: "Asos musbat bo'lishi va \\(1\\) ga teng bo'lmasligi kerak.",
+                    li3: "Kirish qiymati \\(x\\) musbat bo'lishi kerak.",
+                    li4: "\\(f(x)=\\log_bx\\) ning aniqlanish sohasi \\(x&gt;0\\).",
+                    li5: "Qiymatlar sohasi barcha haqiqiy sonlar.",
+                    li6: "Boshlang'ich grafikda \\(x=0\\) da vertikal asimptota bor.",
+                    li7: "Grafik \\(x\\)-o'qini \\((1,0)\\) nuqtada kesadi.",
+                    li8: "Agar \\(b&gt;1\\) bo'lsa, funksiya o'sadi.",
+                    li9: "Agar \\(0&lt;b&lt;1\\) bo'lsa, funksiya kamayadi.",
+                    li10: "Logarifmik funksiyalar ko'rsatkichli funksiyalarning teskarisidir.",
+                    try: {
+                        title: "O'zingiz urinib ko'ring"
+                    },
+                    p1: {
+                        title: "Mashq 1",
+                        q: "Aniqlanish sohasi nima?"
+                    },
+                    p2: {
+                        title: "Mashq 2",
+                        q: "Funksiya o'suvchimi yoki kamayuvchimi?"
+                    },
+                    p3: {
+                        title: "Mashq 3",
+                        q: "Funksiya o'suvchimi yoki kamayuvchimi?"
+                    },
+                    p4: {
+                        title: "Mashq 4",
+                        q: "Vertikal asimptota nima?"
+                    }
+                }
+            }
+        }
+    };
+
+    function getNestedValue(object, path) {
+        return path.split('.').reduce(function (current, key) {
+            return current && current[key] !== undefined ? current[key] : undefined;
+        }, object);
+    }
+
+    function renderMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function language(selectedLanguage) {
+        const dictionary = translations[selectedLanguage] || translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.innerHTML = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-alt');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-title');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('title', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-language-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-language-button') === selectedLanguage);
+        });
+
+        document.documentElement.lang = selectedLanguage;
+        localStorage.setItem('mathAcademyLanguage', selectedLanguage);
+
+        renderMath();
+    }
+
+    const logCanvas = document.getElementById('logarithmicFunctionCanvas');
+    const logCtx = logCanvas.getContext('2d');
+
+    const logASlider = document.getElementById('logASlider');
+    const logBSlider = document.getElementById('logBSlider');
+    const logHSlider = document.getElementById('logHSlider');
+    const logKSlider = document.getElementById('logKSlider');
+
+    const logAValue = document.getElementById('logAValue');
+    const logBValue = document.getElementById('logBValue');
+    const logHValue = document.getElementById('logHValue');
+    const logKValue = document.getElementById('logKValue');
+
+    const logFunctionFormula = document.getElementById('logFunctionFormula');
+    const logFunctionReset = document.getElementById('logFunctionReset');
+
+    const graphState = {
+        xMin: -10,
+        xMax: 10,
+        yMin: -10,
+        yMax: 10
+    };
+
+    function formatNumber(value) {
+        const rounded = Math.round(value * 10) / 10;
+        return rounded.toFixed(1);
+    }
+
+    function logBase(value, base) {
+        return Math.log(value) / Math.log(base);
+    }
+
+    function resizeCanvas() {
+        const rect = logCanvas.getBoundingClientRect();
+        const ratio = window.devicePixelRatio || 1;
+
+        logCanvas.width = Math.max(320, Math.floor(rect.width * ratio));
+        logCanvas.height = Math.max(260, Math.floor(rect.height * ratio));
+
+        logCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function toCanvasX(x) {
+        const width = logCanvas.getBoundingClientRect().width;
+        return ((x - graphState.xMin) / (graphState.xMax - graphState.xMin)) * width;
+    }
+
+    function toCanvasY(y) {
+        const height = logCanvas.getBoundingClientRect().height;
+        return height - ((y - graphState.yMin) / (graphState.yMax - graphState.yMin)) * height;
+    }
+
+    function drawGrid() {
+        const rect = logCanvas.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        logCtx.clearRect(0, 0, width, height);
+
+        logCtx.lineWidth = 1;
+        logCtx.strokeStyle = '#e2e2e2';
+
+        for (let x = Math.ceil(graphState.xMin); x <= graphState.xMax; x++) {
+            const cx = toCanvasX(x);
+            logCtx.beginPath();
+            logCtx.moveTo(cx, 0);
+            logCtx.lineTo(cx, height);
+            logCtx.stroke();
+        }
+
+        for (let y = Math.ceil(graphState.yMin); y <= graphState.yMax; y++) {
+            const cy = toCanvasY(y);
+            logCtx.beginPath();
+            logCtx.moveTo(0, cy);
+            logCtx.lineTo(width, cy);
+            logCtx.stroke();
+        }
+
+        logCtx.strokeStyle = '#111111';
+        logCtx.lineWidth = 1.5;
+
+        if (graphState.yMin <= 0 && graphState.yMax >= 0) {
+            const xAxisY = toCanvasY(0);
+            logCtx.beginPath();
+            logCtx.moveTo(0, xAxisY);
+            logCtx.lineTo(width, xAxisY);
+            logCtx.stroke();
+        }
+
+        if (graphState.xMin <= 0 && graphState.xMax >= 0) {
+            const yAxisX = toCanvasX(0);
+            logCtx.beginPath();
+            logCtx.moveTo(yAxisX, 0);
+            logCtx.lineTo(yAxisX, height);
+            logCtx.stroke();
+        }
+
+        logCtx.fillStyle = '#111111';
+        logCtx.font = '12px Arial';
+
+        for (let x = Math.ceil(graphState.xMin); x <= graphState.xMax; x++) {
+            if (x === 0) continue;
+            const cx = toCanvasX(x);
+            const labelY = graphState.yMin <= 0 && graphState.yMax >= 0 ? toCanvasY(0) + 14 : height - 6;
+            if (cx > 10 && cx < width - 10) {
+                logCtx.fillText(String(x), cx - 4, labelY);
+            }
+        }
+
+        for (let y = Math.ceil(graphState.yMin); y <= graphState.yMax; y++) {
+            if (y === 0) continue;
+            const cy = toCanvasY(y);
+            const labelX = graphState.xMin <= 0 && graphState.xMax >= 0 ? toCanvasX(0) + 5 : 5;
+            if (cy > 12 && cy < height - 6) {
+                logCtx.fillText(String(y), labelX, cy + 4);
+            }
+        }
+    }
+
+    function updateFormula(a, b, h, k) {
+        const aText = formatNumber(a);
+        const bText = formatNumber(b);
+        const hText = formatNumber(Math.abs(h));
+        const kText = formatNumber(Math.abs(k));
+
+        let insideText;
+
+        if (h === 0) {
+            insideText = 'x';
+        } else if (h > 0) {
+            insideText = 'x-' + hText;
+        } else {
+            insideText = 'x+' + hText;
+        }
+
+        let kPart = '';
+
+        if (k > 0) {
+            kPart = '+' + kText;
+        } else if (k < 0) {
+            kPart = '-' + kText;
+        }
+
+        logFunctionFormula.innerHTML = '\\(y=' + aText + '\\log_{' + bText + '}(' + insideText + ')' + kPart + '\\)';
+        renderMath();
+    }
+
+    function drawAsymptote(h) {
+        const rect = logCanvas.getBoundingClientRect();
+        const height = rect.height;
+        const asymptoteX = toCanvasX(h);
+
+        if (asymptoteX < 0 || asymptoteX > rect.width) return;
+
+        logCtx.save();
+        logCtx.setLineDash([7, 6]);
+        logCtx.strokeStyle = '#111111';
+        logCtx.lineWidth = 1.6;
+        logCtx.beginPath();
+        logCtx.moveTo(asymptoteX, 0);
+        logCtx.lineTo(asymptoteX, height);
+        logCtx.stroke();
+        logCtx.restore();
+
+        logCtx.fillStyle = '#111111';
+        logCtx.font = '12px Arial';
+        logCtx.fillText('x=' + formatNumber(h), asymptoteX + 6, 18);
+    }
+
+    function drawLogFunction() {
+        const a = parseFloat(logASlider.value);
+        let b = parseFloat(logBSlider.value);
+        const h = parseFloat(logHSlider.value);
+        const k = parseFloat(logKSlider.value);
+
+        if (Math.abs(b - 1) < 0.05) {
+            b = b < 1 ? 0.9 : 1.1;
+            logBSlider.value = b;
+        }
+
+        logAValue.textContent = formatNumber(a);
+        logBValue.textContent = formatNumber(b);
+        logHValue.textContent = formatNumber(h);
+        logKValue.textContent = formatNumber(k);
+
+        resizeCanvas();
+        drawGrid();
+        drawAsymptote(h);
+        updateFormula(a, b, h, k);
+
+        const rect = logCanvas.getBoundingClientRect();
+        const width = rect.width;
+
+        logCtx.strokeStyle = '#111111';
+        logCtx.lineWidth = 2.4;
+        logCtx.beginPath();
+
+        let started = false;
+
+        for (let pixelX = 0; pixelX <= width; pixelX++) {
+            const x = graphState.xMin + (pixelX / width) * (graphState.xMax - graphState.xMin);
+            const innerValue = x - h;
+
+            if (innerValue <= 0) {
+                started = false;
+                continue;
+            }
+
+            const y = a * logBase(innerValue, b) + k;
+
+            if (!Number.isFinite(y) || y < graphState.yMin - 5 || y > graphState.yMax + 5) {
+                started = false;
+                continue;
+            }
+
+            const canvasX = toCanvasX(x);
+            const canvasY = toCanvasY(y);
+
+            if (!started) {
+                logCtx.moveTo(canvasX, canvasY);
+                started = true;
+            } else {
+                logCtx.lineTo(canvasX, canvasY);
+            }
+        }
+
+        logCtx.stroke();
+
+        const pointX = h + 1;
+        const pointY = k;
+
+        if (pointX >= graphState.xMin && pointX <= graphState.xMax && pointY >= graphState.yMin && pointY <= graphState.yMax) {
+            const cx = toCanvasX(pointX);
+            const cy = toCanvasY(pointY);
+
+            logCtx.fillStyle = '#111111';
+            logCtx.beginPath();
+            logCtx.arc(cx, cy, 4, 0, Math.PI * 2);
+            logCtx.fill();
+
+            logCtx.font = '12px Arial';
+            logCtx.fillText('(' + formatNumber(pointX) + ', ' + formatNumber(pointY) + ')', cx + 8, cy - 8);
+        }
+    }
+
+    function resetLogGraph() {
+        logASlider.value = 1;
+        logBSlider.value = 2;
+        logHSlider.value = 0;
+        logKSlider.value = 0;
+        drawLogFunction();
+    }
+
+    [logASlider, logBSlider, logHSlider, logKSlider].forEach(function (slider) {
+        slider.addEventListener('input', drawLogFunction);
+    });
+
+    logFunctionReset.addEventListener('click', resetLogGraph);
+
+    window.addEventListener('resize', drawLogFunction);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+        language(savedLanguage);
+        drawLogFunction();
+    });
+</script>
 
 </body>
 </html>

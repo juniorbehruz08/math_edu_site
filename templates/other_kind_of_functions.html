@@ -2,309 +2,1209 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
-          rel="stylesheet">
-
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-
-    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
-
-    TemplateMo 590 topic listing
-
-    https://templatemo.com/tm-590-topic-listing
-
-    -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Fundamental Knowledge</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
+  startup: {
+    ready: function () {
+      window.MathJax.startup.defaultReady();
+      window.MathJax.startup.promise.then(function () {
+        window.__mathjaxReady = true;
+        document.dispatchEvent(new Event('mathjax-initial-typeset-done'));
+      });
+    }
+  }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/alpinejs" defer></script>
+<!-- CSS FILES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+body { background: #f6f9fc; font-family: 'Open Sans', sans-serif; }
+img { max-width: 100%; height: auto; }
+.language-switch { display: inline-flex; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.16); }
+.language-switch__button { border: 0; border-radius: 999px; padding: 6px 12px; color: #fff; background: transparent; font-weight: 700; line-height: 1; }
+.language-switch__button.is-active { color: #13547a; background: #fff; }
+.functions-lesson-shell { max-width: 1060px; }
+.functions-note-card { border: 1px solid #d9e6ef; border-radius: 10px; background: #fff; box-shadow: 0 12px 28px rgba(13,84,122,.08); padding: 18px 20px; }
+.functions-note-card h1 { margin: 0; color: #0f172a; font-family: 'Montserrat', sans-serif; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 800; line-height: 1.45; }
+.functions-note-card h1:not([data-i18n]) { display: none; }
+.function-tab-heading { margin: 18px 0 18px !important; text-align: center; color: #0f172a; font-family: 'Montserrat', sans-serif; font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; }
+.function-graph-card { margin: 0 0 22px; border: 1px solid #d9e6ef; border-radius: 14px; background: #fff; box-shadow: 0 14px 34px rgba(13,84,122,.08); overflow: hidden; }
+.function-graph-intro { padding: 18px 20px 0; color: #2b3a4d; line-height: 1.7; }
+.graph-widget { display: grid; grid-template-columns: 330px minmax(0, 1fr); min-height: 270px; }
+.graph-controls { padding: 22px 16px 18px; border-right: 1px solid #efefef; }
+.graph-formula { margin: 6px 0 24px; text-align: center; font-family: "Times New Roman", Times, serif; font-size: 26px; font-style: italic; color: #111; }
+.slider-row { display: grid; grid-template-columns: 30px 48px minmax(0, 1fr); align-items: center; gap: 10px; margin-bottom: 12px; font-family: "Times New Roman", Times, serif; font-size: 18px; font-style: italic; color: #1f1f1f; }
+.slider-value { font-family: Arial, sans-serif; font-size: 13px; font-style: normal; text-align: right; }
+.graph-slider { width: 100%; accent-color: #1088ff; }
+.graph-canvas-wrap { min-width: 0; min-height: 270px; background-color: #f8f8f8; background-image: linear-gradient(to right, rgba(80,80,80,.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(80,80,80,.08) 1px, transparent 1px); background-size: 32px 32px; }
+.function-canvas { display: block; width: 100%; height: 100%; min-height: 270px; }
+.lesson-panel-image { width: 100%; border-radius: 10px; margin: 10px 0; border: 1px solid #e5edf3; box-shadow: 0 8px 20px rgba(15,23,42,.05); }
+/* Function Tab Lesson Cards */
+.fn-card{background:#fff;border:1px solid #d9e6ef;border-radius:12px;box-shadow:0 8px 22px rgba(13,84,122,.07);padding:20px 22px;margin:16px 0;}
+.fn-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:#13547a;color:#fff;font-weight:700;font-size:.95rem;margin-right:8px;flex-shrink:0;}
+.fn-section-title{display:flex;align-items:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.08rem;color:#0f172a;margin:0 0 12px;}
+.fn-formula{text-align:center;font-family:"Times New Roman",Times,serif;font-size:1.3rem;font-style:italic;margin:12px 0;color:#111;}
+.fn-bullets{padding-left:1.4em;margin:6px 0;line-height:1.8;}
+.fn-bullets li{margin-bottom:3px;}
+.fn-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+.fn-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:12px 0;}
+.fn-inner-card{border:1px solid #e2ecf4;border-radius:8px;padding:12px 14px;background:#f8fcff;}
+.fn-inner-card h4{margin:0 0 6px;font-size:.88rem;font-weight:700;color:#13547a;font-family:'Montserrat',sans-serif;}
+.fn-callout{background:#fffbe6;border-left:4px solid #f5c518;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;color:#5c4200;font-size:.93rem;}
+.fn-answer{background:#edfaf1;border:1.5px solid #4ade80;border-radius:8px;padding:10px 14px;margin:12px 0;text-align:center;font-family:"Times New Roman",Times,serif;font-size:1.2rem;font-style:italic;color:#14532d;font-weight:700;}
+.fn-steps{counter-reset:fn-step;margin:10px 0;}
+.fn-step{counter-increment:fn-step;position:relative;padding:6px 10px 6px 36px;margin-bottom:6px;background:#f8fcff;border-radius:6px;border:1px solid #e2ecf4;line-height:1.6;}
+.fn-step::before{content:counter(fn-step);position:absolute;left:8px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:#13547a;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.fn-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem;}
+.fn-table th{background:#13547a;color:#fff;padding:8px 10px;text-align:left;font-family:'Montserrat',sans-serif;font-size:.85rem;}
+.fn-table td{padding:7px 10px;border-bottom:1px solid #e2ecf4;}
+.fn-table tr:nth-child(even) td{background:#f4f9fc;}
+.fn-divider{border:0;border-top:1px solid #e5edf3;margin:16px 0;}
+@media(max-width:640px){.fn-2col,.fn-3col{grid-template-columns:1fr;}}
+@media (max-width: 900px) {
+.graph-widget { grid-template-columns: 1fr; }
+.graph-controls { border-right: 0; border-bottom: 1px solid #efefef; }
+.function-canvas { min-height: 300px; }
+}
+</style>
+<!--
+TemplateMo 590 topic listing
+https://templatemo.com/tm-590-topic-listing
+-->
 </head>
-
 <body id="top">
-
 <main>
-
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'main_view' %}">
-                <i class="bi-back"></i>
-                <span>Math Academy</span>
-            </a>
-
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
-            </div>
-
-            <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
-            </div>
-        </div>
-
-    </nav>
-
-
-    <header class="site-header d-flex flex-column justify-content-center align-items-center">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-
-                <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
-                        </ol>
-                    </nav>
-
-                    <h2 class="text-white">Introduction to <br>Functions</h2>
-
-                    <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
-
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-5 col-12">
-                    <div class="topics-detail-block bg-white shadow-lg">
-                        <img style="width:100%" src="{% static 'images/myimages/functions.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
-                    </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-center mt-5 gap-3">
-                    <a style="flex: 1 1 300px; max-width: 350px;"
-                       href="{% url 'practice' %}?url=other_kind_of_functions"
-                       class="btn custom-btn custom-border-btn">Practice with Functions</a>
-                </div>
-
-
-            </div>
-        </div>
-    </header>
-
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container">
-            <div class="card p-2">
-                <h1 style="text-align:center">To find the intersection points of any functions, their equations must be
-                    used.</h1>
-            </div>
-            <div class="card p-2 mt-1">
-                <h1 style="text-align:center">An x-intercept is where 𝑦 = 0, A y-intercept is where x = 0</h1>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                                data-bs-target="#design-tab-pane" type="button" role="tab"
-                                aria-controls="design-tab-pane" aria-selected="true">Quadratic Functions
-                        </button>
-                    </li>
-
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                                aria-controls="marketing-tab-pane" aria-selected="false">Cubic Functions
-                        </button>
-                    </li>
-
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                                data-bs-target="#finance-tab-pane" type="button" role="tab"
-                                aria-controls="finance-tab-pane" aria-selected="false">Rational Functions
-                        </button>
-                    </li>
-
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane"
-                                type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">
-                            Exponential
-                            Functions
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                             aria-labelledby="design-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-60px">General Information Relating to Quadratic
-                                Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description3.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/quadratic_functions_description9.jpg' %}" alt="">
-                        </div>
-
-                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                             aria-labelledby="marketing-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Cubic
-                                Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation3.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/cubic_functions_explanation15.jpg' %}" alt="">
-                        </div>
-
-                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab"
-                             tabindex="0">
-                            <h1 style="text-align:center; margin-top:-60px">General Information Relating to Rational
-                                Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational3.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational15.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational16.jpg' %}" alt="">
-
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational17.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/rational18.jpg' %}" alt="">
-                        </div>
-
-                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
-                             tabindex="0">
-                            <h1 style="text-align:center; margin-top: -60px">General Information Relating to Exponential
-                                Functions</h1>
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential1.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential2.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential3.jpg' %}" alt="">
-
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential4.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential5.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential6.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential7.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential8.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential9.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential10.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential11.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential12.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential13.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential14.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential15.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential16.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential17.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential18.jpg' %}" alt="">
-                            <img style="width:100%; border-radius:10px; margin:10px"
-                                 src="{% static 'images/myimages/exponential19.jpg' %}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+<a class="navbar-brand" href="{% url 'main_view' %}">
+<i class="bi-back"></i>
+<span>My Math Academy</span>
+</a>
+<div class="language-switch ms-auto me-3" aria-label="Language">
+<button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+<button class="language-switch__button" type="button" data_language-button="uz" onclick="language('uz')">UZ</button>
+</div>
+<div class="d-lg-none me-4">
+<a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile"></a>
+</div>
+<div class="d-none d-lg-block">
+<a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile"></a>
+</div>
+</div>
+</nav>
+<header class="site-header d-flex flex-column justify-content-center align-items-center">
+<div class="container">
+<div class="row justify-content-center align-items-center">
+<div class="col-lg-5 col-12 mb-5">
+<nav aria-label="Breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="nav_home">Homepage</a></li>
+<li class="breadcrumb-item active" aria-current="page" data-i18n="nav_other">Other Kinds of Functions</li>
+</ol>
+</nav>
+<h2 class="text-white" data-i18n="header_title" data-i18n-type="html">Introduction to <br>Functions</h2>
+<div class="d-flex align-items-center mt-5">
+<a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="btn_readmore">Read More</a>
+<a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top"></a>
+</div>
+</div>
+<div class="col-lg-5 col-12">
+<div class="topics-detail-block bg-white shadow-lg">
+<img style="width:100%" src="{% static 'images/myimages/functions.jpg' %}" class="topics-detail-block-image img-fluid" alt="Other kinds of functions visual">
+</div>
+</div>
+<div class="d-flex flex-wrap justify-content-center mt-5 gap-3">
+<a style="flex: 1 1 300px; max-width: 350px;" href="{% url 'practice' %}?url=other_kind_of_functions" class="btn custom-btn custom-border-btn" data-i18n="btn_practice">Practice with Functions</a>
+</div>
+</div>
+</div>
+</header>
+<main id="topics-detail" class="container mx-auto px-4 py-10 functions-lesson-shell space-y-10">
+<div class="container">
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">0</span><span data-i18n="sec0_title">Before You Start: The Language of Functions</span></div>
+<p data-i18n="sec0_desc1">A function is a precise mathematical rule that assigns exactly one output to every valid input. Think of it as a machine: you feed it a number, it follows a fixed process, and it produces one result. We usually write:</p>
+<div class="fn-formula">\(y=f(x)\)</div>
+<p data-i18n="sec0_desc2">This notation means “the output \(y\) depends entirely on the input \(x\).” The graph of a function is a visual map of every possible input-output pair plotted on the coordinate plane. If a vertical line ever crosses a graph more than once, it fails the vertical line test and is not a function.</p>
+<div class="fn-3col">
+<div class="fn-inner-card">
+<h4 data-i18n="sec0_input_title">Input</h4>
+<p style="margin:0" data-i18n="sec0_input_desc">The value you put into the function. Usually this is \(x\), also called the independent variable because you choose it freely within the domain.</p>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="sec0_output_title">Output</h4>
+<p style="margin:0" data-i18n="sec0_output_desc">The value the function gives back. Usually this is \(y\) or \(f(x)\), also called the dependent variable because its value depends on \(x\).</p>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="sec0_graph_title">Graph</h4>
+<p style="margin:0" data-i18n="sec0_graph_desc">A visual picture of all points \((x,y)\) that satisfy the function rule. The shape reveals behavior: increasing/decreasing intervals, symmetry, bounds, and asymptotic trends.</p>
+</div>
+</div>
+<hr class="fn-divider">
+<div class="fn-section-title"><span class="fn-badge">1</span><span data-i18n="sec1_title">Domain, Range, Intercepts, and Intersections</span></div>
+<div class="fn-2col">
+<div class="fn-inner-card">
+<h4 data-i18n="sec1_domain_title">Domain</h4>
+<p data-i18n="sec1_domain_desc">All allowed \(x\)-values. Ask: “Which inputs are legal?” Restrictions come from division by zero, even roots of negative numbers, or logarithms of non-positive values.</p>
+<p style="margin:0" data-i18n="sec1_domain_ex" data-i18n-type="html"><strong>Example:</strong> In \(\frac{1}{x-2}\), \(x=2\) makes the denominator zero, so it is excluded from the domain.</p>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="sec1_range_title">Range</h4>
+<p data-i18n="sec1_range_desc">All possible \(y\)-values the function can actually produce. Ask: “Which outputs can happen?” The range is often found by analyzing the graph’s highest/lowest points or asymptotic limits.</p>
+<p style="margin:0" data-i18n="sec1_range_ex" data-i18n-type="html"><strong>Example:</strong> For \(x^2\), squaring any real number never gives a negative result, so the range is \(y\ge0\).</p>
+</div>
+</div>
+<div class="fn-2col">
+<div class="fn-inner-card">
+<h4 data-i18n="sec1_xint_title">\(x\)-intercept</h4>
+<p data-i18n="sec1_xint_desc">Where the graph crosses the \(x\)-axis. At these points, the output is zero, so set \(y=0\) or \(f(x)=0\) and solve for \(x\). These are also called roots or zeros.</p>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="sec1_yint_title">\(y\)-intercept</h4>
+<p data-i18n="sec1_yint_desc">Where the graph crosses the \(y\)-axis. This happens when the input is zero, so set \(x=0\) and evaluate \(f(0)\). A function can have at most one \(y\)-intercept.</p>
+</div>
+</div>
+<div class="fn-callout" data-i18n="sec1_callout">When two functions intersect, they share the exact same coordinates at that point. This means \(f(x)=g(x)\) at the intersection. Solve this equation for \(x\), then substitute back into either function to find the matching \(y\)-value.</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+<li class="nav-item" role="presentation">
+<button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true" data-i18n="tab_quad">Quadratic Functions</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="marketing-tab" data-bs-toggle="tab" data-bs-target="#marketing-tab-pane" type="button" role="tab" aria-controls="marketing-tab-pane" aria-selected="false" data-i18n="tab_cubic">Cubic Functions</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance-tab-pane" type="button" role="tab" aria-controls="finance-tab-pane" aria-selected="false" data-i18n="tab_rational">Rational Functions</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false" data-i18n="tab_exp">Exponential Functions</button>
+</li>
+</ul>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="tab-content" id="myTabContent">
+<!-- QUADRATIC FUNCTIONS -->
+<div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+<h1 class="function-tab-heading" data-i18n="quad_title">Quadratic Functions: Complete Case-by-Case Lesson</h1>
+<div class="function-graph-card" data-graph-kind="quadratic">
+<p class="function-graph-intro" data-i18n="quad_intro">Change \(a\), \(b\), and \(c\) to see how the parabola \(y=ax^2+bx+c\) moves. Watch especially how \(a\) changes direction and width, and how \(c\) moves the \(y\)-intercept.</p>
+<div class="graph-widget">
+<div class="graph-controls">
+<div class="graph-formula">\(y = ax^2 + bx + c\)</div>
+<label class="slider-row"><span>a</span><span class="slider-value" data-value-for="quadratic-a">1.0</span><input class="graph-slider" data-slider="quadratic-a" type="range" min="-4" max="4" step="0.1" value="1"></label>
+<label class="slider-row"><span>b</span><span class="slider-value" data-value-for="quadratic-b">0.0</span><input class="graph-slider" data-slider="quadratic-b" type="range" min="-8" max="8" step="0.1" value="0"></label>
+<label class="slider-row"><span>c</span><span class="slider-value" data-value-for="quadratic-c">0.0</span><input class="graph-slider" data-slider="quadratic-c" type="range" min="-10" max="10" step="0.1" value="0"></label>
+</div>
+<div class="graph-canvas-wrap"><canvas class="function-canvas" id="quadraticFunctionCanvas" width="760" height="420" aria-label="Quadratic function graph"></canvas></div>
+</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">1</span><span data-i18n="quad_def_title">What is a quadratic function?</span></div>
+<p data-i18n="quad_def_desc">A quadratic function is a polynomial of degree \(2\). The word “quadratic” comes from the Latin “quadratus,” meaning square, because the variable is squared. The highest power of \(x\) is exactly \(2\), which guarantees the graph is always a symmetric U-shaped curve called a parabola. The condition \(a \neq 0\) is essential; if \(a=0\), the \(x^2\) term vanishes and the function becomes linear.</p>
+<div class="fn-formula">\(f(x)=ax^2+bx+c,\qquad a \neq 0\)</div>
+<ul class="fn-bullets">
+<li data-i18n="quad_bullet1">\(a\) controls whether the parabola opens upward or downward. Positive \(a\) creates a “smile” shape (minimum), negative \(a\) creates a “frown” shape (maximum).</li>
+<li data-i18n="quad_bullet2">\(a\) also controls how wide or narrow the parabola is. Larger \(|a|\) compresses the graph vertically, making it steeper and narrower. Smaller \(|a|\) stretches it, making it wider and flatter.</li>
+<li data-i18n="quad_bullet3">\(b\) helps determine the position of the vertex and axis of symmetry. Together with \(a\), it shifts the parabola left or right according to \(x=\frac{-b}{2a}\).</li>
+<li data-i18n="quad_bullet4">\(c\) is the \(y\)-intercept because \(f(0)=c\). It vertically shifts the entire parabola without changing its shape or direction.</li>
+</ul>
+<div class="fn-callout" data-i18n="quad_callout1">A quadratic is not just “a curve.” It is a highly structured graph with predictable features: a single vertex (turning point), a vertical axis of symmetry, a consistent opening direction, up to two real roots, and a bounded range on one side. These properties make quadratics foundational in physics, economics, and optimization.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">2</span><span data-i18n="quad_forms_title">The three main forms of a quadratic</span></div>
+<p data-i18n="quad_forms_desc">Each form highlights different features of the same parabola. Converting between them is a core algebraic skill that reveals hidden information about the graph.</p>
+<div class="fn-3col">
+<div class="fn-inner-card">
+<h4 data-i18n="quad_formA_title">Case Form A: Standard Form</h4>
+<div class="fn-formula" style="font-size:1.05rem">\(f(x)=ax^2+bx+c\)</div>
+<ul class="fn-bullets" style="font-size:.88rem">
+<li data-i18n="quad_formA_1">Best for identifying coefficients \(a,b,c\) directly.</li>
+<li data-i18n="quad_formA_2">\(c\) gives the \(y\)-intercept instantly.</li>
+<li data-i18n="quad_formA_3">Vertex uses \(x=\frac{-b}{2a}\), then substitute to find \(y\).</li>
+</ul>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="quad_formB_title">Case Form B: Vertex Form</h4>
+<div class="fn-formula" style="font-size:1.05rem">\(f(x)=a(x-h)^2+k\)</div>
+<ul class="fn-bullets" style="font-size:.88rem">
+<li data-i18n="quad_formB_1">Best for seeing transformations and the turning point.</li>
+<li data-i18n="quad_formB_2">Vertex is \((h,k)\) directly from the equation.</li>
+<li data-i18n="quad_formB_3">Axis of symmetry is \(x=h\). The sign of \(a\) still controls direction.</li>
+</ul>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="quad_formC_title">Case Form C: Factored Form</h4>
+<div class="fn-formula" style="font-size:1.05rem">\(f(x)=a(x-r_1)(x-r_2)\)</div>
+<ul class="fn-bullets" style="font-size:.88rem">
+<li data-i18n="quad_formC_1">Best for seeing roots and \(x\)-intercepts immediately.</li>
+<li data-i18n="quad_formC_2">\(x=r_1\) and \(x=r_2\) are the zeros of the function.</li>
+<li data-i18n="quad_formC_3">Roots are \(x\)-intercepts. The vertex lies exactly halfway between them.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">3</span><span data-i18n="quad_case1_title">Case 1: \(a>0\), two roots, upward parabola</span></div>
+<p data-i18n="quad_case1_desc">This is the most common beginner case. If \(a>0\), the parabola opens upward, meaning the vertex is the lowest point on the graph (a global minimum). The function decreases until the vertex, then increases symmetrically.</p>
+<div class="fn-formula">\(f(x)=x^2-5x+6\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="quad_step1">Factor the expression to reveal the roots:</span><div class="fn-formula" style="font-size:1.05rem">\(x^2-5x+6=(x-2)(x-3)\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step2">Find the \(x\)-intercepts by setting \(f(x)=0\). The zero-product property says if a product is zero, at least one factor must be zero:</span><div class="fn-formula" style="font-size:1.05rem">\(x=2,\qquad x=3\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step3">Find the \(y\)-intercept by evaluating at \(x=0\). This tells you where the graph starts on the vertical axis:</span><div class="fn-formula" style="font-size:1.05rem">\(f(0)=6\Rightarrow (0,6)\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step4">Find the vertex. The parabola is symmetric, so the vertex lies exactly halfway between the roots at \(x=\frac{2+3}{2}=2.5\). Alternatively, use \(x=\frac{-b}{2a}\):</span><div class="fn-formula" style="font-size:1.05rem">\(x=\frac{-(-5)}{2(1)}=2.5\)</div><div class="fn-formula" style="font-size:1.05rem">\(f(2.5)=2.5^2-5(2.5)+6=-0.25\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="quad_case1_ans">Vertex: \((2.5,-0.25)\), roots: \(2\) and \(3\), \(y\)-intercept: \((0,6)\)</div>
+<div class="fn-callout" data-i18n="quad_case1_callout">Because \(a>0\), the graph decreases until the vertex, then increases. The range is bounded below by the vertex \(y\)-value: \(y\ge -0.25\). This minimum value is crucial in optimization problems.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">4</span><span data-i18n="quad_case2_title">Case 2: \(a<0\), two roots, downward parabola</span></div>
+<p data-i18n="quad_case2_desc">If \(a<0\), the parabola opens downward. This flips the entire graph over the \(x\)-axis compared to the positive case. The vertex becomes the highest point (a global maximum), and the range is bounded above instead of below.</p>
+<div class="fn-formula">\(f(x)=-x^2+5x-6\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="quad_step5">Factor out the negative to simplify factoring:</span><div class="fn-formula" style="font-size:1.05rem">\(-x^2+5x-6=-(x^2-5x+6)\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step6">Factor the inside expression normally:</span><div class="fn-formula" style="font-size:1.05rem">\(-(x-2)(x-3)\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step7">The roots are still found by setting each factor to zero. The negative sign doesn’t change where the graph crosses the axis:</span><div class="fn-formula" style="font-size:1.05rem">\(x=2,\qquad x=3\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step8">Find the vertex using the same symmetry principle. The \(x\)-coordinate is unchanged, but the \(y\)-value flips sign:</span><div class="fn-formula" style="font-size:1.05rem">\(x=\frac{-5}{2(-1)}=2.5\)</div><div class="fn-formula" style="font-size:1.05rem">\(f(2.5)=0.25\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="quad_case2_ans">Vertex: \((2.5,0.25)\), maximum value: \(0.25\)</div>
+<div class="fn-callout" data-i18n="quad_case2_callout">Same roots as the previous example, but the whole graph is reflected over the \(x\)-axis. This is why the vertex changed from a minimum to a maximum, and the range is now \(y\le 0.25\).</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">5</span><span data-i18n="quad_case3_title">Case 3: Repeated root, parabola touches the \(x\)-axis</span></div>
+<p data-i18n="quad_case3_desc">Sometimes a quadratic has only one distinct real root. This happens when the parabola just touches the \(x\)-axis at its vertex but does not cross it. Algebraically, the discriminant \(D=b^2-4ac\) equals zero, indicating a double root.</p>
+<div class="fn-formula">\(f(x)=(x-2)^2\)</div>
+<ul class="fn-bullets">
+<li data-i18n="quad_case3_1">The root is \(x=2\), but it has multiplicity 2.</li>
+<li data-i18n="quad_case3_2">The vertex is \((2,0)\), sitting exactly on the \(x\)-axis.</li>
+<li data-i18n="quad_case3_3">The graph touches the \(x\)-axis at \((2,0)\) and bounces back up.</li>
+<li data-i18n="quad_case3_4">The discriminant is \(D=0\), confirming a single repeated root.</li>
+</ul>
+<div class="fn-answer" data-i18n="quad_case3_ans">One real root: \(x=2\), repeated twice</div>
+<div class="fn-callout" data-i18n="quad_case3_callout">A repeated root means the graph is tangent to the \(x\)-axis. It touches and turns around instead of passing through. This behavior is critical when analyzing inequalities and sign charts.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">6</span><span data-i18n="quad_case4_title">Case 4: No real roots, parabola never touches the \(x\)-axis</span></div>
+<p data-i18n="quad_case4_desc">A quadratic can have no real roots. This means the graph never crosses or touches the \(x\)-axis. The entire parabola floats completely above or below the axis, depending on the sign of \(a\). The discriminant is negative, indicating complex conjugate roots.</p>
+<div class="fn-formula">\(f(x)=x^2+4\)</div>
+<ul class="fn-bullets">
+<li data-i18n="quad_case4_1">\(x^2\ge0\) for every real \(x\), so adding 4 guarantees positivity.</li>
+<li data-i18n="quad_case4_2">So \(x^2+4\ge4\). The output never drops below 4.</li>
+<li data-i18n="quad_case4_3">The graph is always above the \(x\)-axis, floating 4 units higher than \(y=x^2\).</li>
+<li data-i18n="quad_case4_4">There are no \(x\)-intercepts because \(f(x)=0\) has no real solution.</li>
+</ul>
+<div class="fn-answer" data-i18n="quad_case4_ans">No real roots; range: \(y\ge4\)</div>
+<div class="fn-callout" data-i18n="quad_case4_callout">Use the discriminant to confirm: \(D=b^2-4ac=0^2-4(1)(4)=-16<0\). Since \(D<0\), there are no real roots. The vertex \((0,4)\) is the absolute minimum, and the graph never descends to the axis.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">7</span><span data-i18n="quad_case5_title">Case 5: Vertex form and transformations</span></div>
+<p data-i18n="quad_case5_desc">Vertex form shows transformations clearly. Instead of calculating the vertex, you read it directly. This form is built by shifting, stretching, and reflecting the parent function \(y=x^2\).</p>
+<div class="fn-formula">\(f(x)=2(x-3)^2-5\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="quad_step9">Vertex is read directly from \((h,k)\):</span><div class="fn-formula" style="font-size:1.05rem">\((3,-5)\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step10">Axis of symmetry passes through the vertex:</span><div class="fn-formula" style="font-size:1.05rem">\(x=3\)</div></div>
+<div class="fn-step"><span data-i18n="quad_step11">Since \(a=2>0\), it opens upward and is vertically stretched by factor 2, making it narrower than \(y=x^2\).</span></div>
+<div class="fn-step"><span data-i18n="quad_step12">Range starts at the vertex \(y\)-value and extends upward:</span><div class="fn-formula" style="font-size:1.05rem">\(y\ge -5\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="quad_case5_ans">Vertex form immediately gives the graph’s position, shape, direction, and range without extra calculation.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">8</span><span data-i18n="quad_qtypes_title">Quadratic question types you must master</span></div>
+<table class="fn-table">
+<thead><tr><th data-i18n="tbl_qtype">Question Type</th><th data-i18n="tbl_todo">What to Do</th><th data-i18n="tbl_ex">Example</th></tr></thead>
+<tbody>
+<tr><td data-i18n="quad_tbl1_1">Given \(x\), find \(y\)</td><td data-i18n="quad_tbl1_2">Substitute \(x\) into the equation and simplify</td><td data-i18n="quad_tbl1_3">\(f(2)=2^2-5(2)+6=0\)</td></tr>
+<tr><td data-i18n="quad_tbl2_1">Find roots</td><td data-i18n="quad_tbl2_2">Set \(f(x)=0\) and factor, complete the square, or use quadratic formula</td><td data-i18n="quad_tbl2_3">\((x-2)(x-3)=0\)</td></tr>
+<tr><td data-i18n="quad_tbl3_1">Find vertex</td><td data-i18n="quad_tbl3_2">Use \(x=\frac{-b}{2a}\) or read \((h,k)\) from vertex form</td><td data-i18n="quad_tbl3_3">\(x=2.5\)</td></tr>
+<tr><td data-i18n="quad_tbl4_1">Find \(y\)-intercept</td><td data-i18n="quad_tbl4_2">Set \(x=0\) and evaluate \(f(0)\)</td><td data-i18n="quad_tbl4_3">\(f(0)=c\)</td></tr>
+<tr><td data-i18n="quad_tbl5_1">Determine roots count</td><td data-i18n="quad_tbl5_2">Compute discriminant \(D=b^2-4ac\)</td><td data-i18n="quad_tbl5_3">\(D>0\): 2 roots, \(D=0\): 1 root, \(D<0\): 0 real roots</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- CUBIC FUNCTIONS -->
+<div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
+<h1 class="function-tab-heading" data-i18n="cubic_title">Cubic Functions: Complete Case-by-Case Lesson</h1>
+<div class="function-graph-card" data-graph-kind="cubic">
+<p class="function-graph-intro" data-i18n="cubic_intro">Change \(a\), \(h\), and \(k\) to graph the transformed cubic \(y=a(x-h)^3+k\). The point \((h,k)\) is the center-like turning-through point called the inflection point.</p>
+<div class="graph-widget">
+<div class="graph-controls">
+<div class="graph-formula">\(y = a(x-h)^3 + k\)</div>
+<label class="slider-row"><span>a</span><span class="slider-value" data-value-for="cubic-a">1.0</span><input class="graph-slider" data-slider="cubic-a" type="range" min="-2" max="2" step="0.1" value="1"></label>
+<label class="slider-row"><span>h</span><span class="slider-value" data-value-for="cubic-h">0.0</span><input class="graph-slider" data-slider="cubic-h" type="range" min="-5" max="5" step="0.1" value="0"></label>
+<label class="slider-row"><span>k</span><span class="slider-value" data-value-for="cubic-k">0.0</span><input class="graph-slider" data-slider="cubic-k" type="range" min="-8" max="8" step="0.1" value="0"></label>
+</div>
+<div class="graph-canvas-wrap"><canvas class="function-canvas" id="cubicFunctionCanvas" width="760" height="420" aria-label="Cubic function graph"></canvas></div>
+</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">1</span><span data-i18n="cubic_def_title">What is a cubic function?</span></div>
+<p data-i18n="cubic_def_desc">A cubic function is a polynomial of degree \(3\). Its highest power is \(x^3\), which fundamentally changes its behavior compared to quadratics. Because the degree is odd, the ends of the graph always point in opposite directions. Cubics can twist, turn, and cross the \(x\)-axis up to three times, making them essential for modeling volume, fluid dynamics, and economic cycles.</p>
+<div class="fn-formula">\(f(x)=ax^3+bx^2+cx+d,\qquad a \neq 0\)</div>
+<ul class="fn-bullets">
+<li data-i18n="cubic_bullet1">Its end behavior is controlled by the sign of \(a\). Odd degree means one end goes to \(+\infty\) and the other to \(-\infty\).</li>
+<li data-i18n="cubic_bullet2">It can have \(1\), \(2\), or \(3\) real \(x\)-intercepts depending on root multiplicity and turning points.</li>
+<li data-i18n="cubic_bullet3">It can have no turning point (monotonic), or it can have two turning points (a local max and a local min).</li>
+<li data-i18n="cubic_bullet4">It has an inflection point where the curve changes concavity (from cupping up to cupping down, or vice versa).</li>
+</ul>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">2</span><span data-i18n="cubic_case1_title">Case 1: Basic cubic \(f(x)=x^3\)</span></div>
+<p data-i18n="cubic_case1_desc">The parent cubic function is the simplest cubic. It passes through the origin and has an S-shape. It is an odd function, meaning \(f(-x)=-f(x)\), which creates rotational symmetry about the origin.</p>
+<div class="fn-formula">\(f(x)=x^3\)</div>
+<div class="fn-2col">
+<div class="fn-inner-card">
+<h4 data-i18n="cubic_pts_title">Important points</h4>
+<ul class="fn-bullets" style="font-size:.88rem">
+<li>\((-2,-8)\)</li><li>\((-1,-1)\)</li><li>\((0,0)\)</li><li>\((1,1)\)</li><li>\((2,8)\)</li>
+</ul>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="cubic_beh_title">Behavior</h4>
+<ul class="fn-bullets" style="font-size:.88rem">
+<li data-i18n="cubic_beh1">Left side goes down rapidly as \(x\) becomes more negative.</li>
+<li data-i18n="cubic_beh2">Right side goes up rapidly as \(x\) increases.</li>
+<li data-i18n="cubic_beh3">Domain is all real numbers: \((-\infty,\infty)\).</li>
+<li data-i18n="cubic_beh4">Range is all real numbers: \((-\infty,\infty)\).</li>
+</ul>
+</div>
+</div>
+<div class="fn-answer" data-i18n="cubic_case1_ans">\(x^3\) is strictly increasing everywhere, passes through the origin, and has an inflection point at \((0,0)\) where concavity changes.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">3</span><span data-i18n="cubic_case2_title">Case 2: Negative leading coefficient</span></div>
+<p data-i18n="cubic_case2_desc">If \(a<0\), the cubic is reflected over the \(x\)-axis. The left side goes up and the right side goes down. This reversal happens because multiplying the entire output by a negative flips every \(y\)-value.</p>
+<div class="fn-formula">\(f(x)=-x^3\)</div>
+<div class="fn-2col">
+<div class="fn-inner-card" style="border-color:#4ade80;background:#edfaf1">
+<h4 style="color:#14532d" data-i18n="cubic_posA">If \(a>0\)</h4>
+<p style="font-size:.88rem;margin:0" data-i18n="cubic_posA_1">\(x\to-\infty\Rightarrow f(x)\to-\infty\)</p>
+<p style="font-size:.88rem;margin:4px 0 0" data-i18n="cubic_posA_2">\(x\to+\infty\Rightarrow f(x)\to+\infty\)</p>
+</div>
+<div class="fn-inner-card" style="border-color:#f87171;background:#fef2f2">
+<h4 style="color:#7f1d1d" data-i18n="cubic_negA">If \(a<0\)</h4>
+<p style="font-size:.88rem;margin:0" data-i18n="cubic_negA_1">\(x\to-\infty\Rightarrow f(x)\to+\infty\)</p>
+<p style="font-size:.88rem;margin:4px 0 0" data-i18n="cubic_negA_2">\(x\to+\infty\Rightarrow f(x)\to-\infty\)</p>
+</div>
+</div>
+<div class="fn-answer" data-i18n="cubic_case2_ans">Negative \(a\) reverses the cubic’s end behavior and reflects the entire S-curve across the \(x\)-axis.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">4</span><span data-i18n="cubic_case3_title">Case 3: Shifted cubic \(a(x-h)^3+k\)</span></div>
+<p data-i18n="cubic_case3_desc">The form \(a(x-h)^3+k\) shows transformations clearly. Instead of recalculating points, you translate the entire parent graph. The inflection point moves from \((0,0)\) to \((h,k)\), and the shape scales by \(|a|\).</p>
+<div class="fn-formula">\(f(x)=2(x-3)^3-4\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="cubic_step1">\(h=3\), so the graph shifts right \(3\) units. Note: the sign inside the parenthesis is opposite to the direction of shift.</span></div>
+<div class="fn-step"><span data-i18n="cubic_step2">\(k=-4\), so the graph shifts down \(4\) units. This moves the entire curve vertically without distortion.</span></div>
+<div class="fn-step"><span data-i18n="cubic_step3">\(a=2\), so the graph is vertically stretched by factor \(2\). It becomes steeper, but the inflection point and symmetry remain intact.</span></div>
+<div class="fn-step"><span data-i18n="cubic_step4">The inflection point is the new center of symmetry:</span><div class="fn-formula" style="font-size:1.05rem">\((3,-4)\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="cubic_case3_ans">\(a(x-h)^3+k\) moves the parent cubic without changing its basic S-shape. The inflection point anchors all transformations.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">5</span><span data-i18n="cubic_case4_title">Case 4: Cubic with three real roots</span></div>
+<p data-i18n="cubic_case4_desc">A cubic may cross the \(x\)-axis three times. This happens when the graph has two turning points that straddle the axis, creating three distinct zeros. Factoring reveals these intercepts directly.</p>
+<div class="fn-formula">\(f(x)=x^3-4x\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="cubic_step5">Factor common \(x\) to simplify the polynomial:</span><div class="fn-formula" style="font-size:1.05rem">\(x^3-4x=x(x^2-4)\)</div></div>
+<div class="fn-step"><span data-i18n="cubic_step6">Use difference of squares on the quadratic factor:</span><div class="fn-formula" style="font-size:1.05rem">\(x(x-2)(x+2)\)</div></div>
+<div class="fn-step"><span data-i18n="cubic_step7">Set each factor equal to zero. The zero-product property applies regardless of degree:</span><div class="fn-formula" style="font-size:1.05rem">\(x=-2,\quad x=0,\quad x=2\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="cubic_case4_ans">\(x\)-intercepts: \((-2,0)\), \((0,0)\), \((2,0)\). The graph crosses the axis at each root because all have odd multiplicity.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">6</span><span data-i18n="cubic_case5_title">Case 5: Cubic with one real root</span></div>
+<p data-i18n="cubic_case5_desc">Some cubics cross the \(x\)-axis only once. This occurs when the turning points are both above or both below the axis, or when the function is strictly monotonic. The other two roots are complex conjugates.</p>
+<div class="fn-formula">\(f(x)=x^3+1\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="cubic_step8">Set \(f(x)=0\) to find where the output vanishes:</span><div class="fn-formula" style="font-size:1.05rem">\(x^3+1=0\)</div></div>
+<div class="fn-step"><span data-i18n="cubic_step9">Move \(1\) to the other side to isolate the cubic term:</span><div class="fn-formula" style="font-size:1.05rem">\(x^3=-1\)</div></div>
+<div class="fn-step"><span data-i18n="cubic_step10">Cube root both sides. Unlike square roots, cube roots preserve sign:</span><div class="fn-formula" style="font-size:1.05rem">\(x=-1\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="cubic_case5_ans">One real \(x\)-intercept: \((-1,0)\). The graph crosses once and continues monotonically.</div>
+<div class="fn-callout" data-i18n="cubic_case5_callout">Cubics always have at least one real root because their ends go to opposite infinities. By the Intermediate Value Theorem, the continuous curve must cross the \(x\)-axis somewhere.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">7</span><span data-i18n="cubic_qtypes_title">Cubic question types you must master</span></div>
+<table class="fn-table">
+<thead><tr><th data-i18n="tbl_qtype">Question Type</th><th data-i18n="tbl_method">Method</th><th data-i18n="tbl_mini_ex">Mini Example</th></tr></thead>
+<tbody>
+<tr><td data-i18n="cubic_tbl1_1">Given \(x\), find \(y\)</td><td data-i18n="cubic_tbl1_2">Substitute \(x\) and evaluate carefully</td><td data-i18n="cubic_tbl1_3">\(f(2)=2^3-2(2)=4\)</td></tr>
+<tr><td data-i18n="cubic_tbl2_1">Find roots</td><td data-i18n="cubic_tbl2_2">Set \(f(x)=0\), factor by grouping or synthetic division</td><td data-i18n="cubic_tbl2_3">\(x(x-2)(x+2)=0\)</td></tr>
+<tr><td data-i18n="cubic_tbl3_1">Describe end behavior</td><td data-i18n="cubic_tbl3_2">Look at leading coefficient and odd degree</td><td data-i18n="cubic_tbl3_3">\(a>0\): left down, right up</td></tr>
+<tr><td data-i18n="cubic_tbl4_1">Transform graph</td><td data-i18n="cubic_tbl4_2">Use \(a(x-h)^3+k\) to shift and scale</td><td data-i18n="cubic_tbl4_3">\((h,k)\) gives inflection point</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- RATIONAL FUNCTIONS -->
+<div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">
+<h1 class="function-tab-heading" data-i18n="rat_title">Rational Functions: Complete Case-by-Case Lesson</h1>
+<div class="function-graph-card" data-graph-kind="rational">
+<p class="function-graph-intro" data-i18n="rat_intro">Change \(a\), \(h\), and \(k\) to graph \(y=\frac{a}{x-h}+k\). This graph has a vertical asymptote \(x=h\) and a horizontal asymptote \(y=k\).</p>
+<div class="graph-widget">
+<div class="graph-controls">
+<div class="graph-formula">\(y = \frac{a}{x-h} + k\)</div>
+<label class="slider-row"><span>a</span><span class="slider-value" data-value-for="rational-a">1.0</span><input class="graph-slider" data-slider="rational-a" type="range" min="-8" max="8" step="0.1" value="1"></label>
+<label class="slider-row"><span>h</span><span class="slider-value" data-value-for="rational-h">0.0</span><input class="graph-slider" data-slider="rational-h" type="range" min="-5" max="5" step="0.1" value="0"></label>
+<label class="slider-row"><span>k</span><span class="slider-value" data-value-for="rational-k">0.0</span><input class="graph-slider" data-slider="rational-k" type="range" min="-8" max="8" step="0.1" value="0"></label>
+</div>
+<div class="graph-canvas-wrap"><canvas class="function-canvas" id="rationalFunctionCanvas" width="760" height="420" aria-label="Rational function graph"></canvas></div>
+</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">1</span><span data-i18n="rat_def_title">What is a rational function?</span></div>
+<p data-i18n="rat_def_desc">A rational function is a ratio of two polynomials. The word “rational” comes from “ratio,” not from being logical. Because division by zero is undefined, any \(x\)-value that makes the denominator zero is excluded from the domain. These exclusions create dramatic graphical features: vertical asymptotes where the function blows up, or holes where a factor cancels out.</p>
+<div class="fn-formula">\(f(x)=\frac{P(x)}{Q(x)},\qquad Q(x) \neq 0\)</div>
+<ul class="fn-bullets">
+<li data-i18n="rat_bullet1">The denominator cannot be zero. This restriction defines the domain boundaries.</li>
+<li data-i18n="rat_bullet2">Values that make the denominator zero are excluded from the domain and often create asymptotes.</li>
+<li data-i18n="rat_bullet3">The graph may have vertical asymptotes where the function approaches \(\pm\infty\).</li>
+<li data-i18n="rat_bullet4">The graph may have horizontal or slant asymptotes that describe long-term behavior as \(x\to\pm\infty\).</li>
+<li data-i18n="rat_bullet5">The graph may also have holes if a factor cancels completely, leaving a removable discontinuity.</li>
+</ul>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">2</span><span data-i18n="rat_case1_title">Case 1: Basic rational function \(f(x)=\frac{1}{x}\)</span></div>
+<p data-i18n="rat_case1_desc">This is the parent rational function. Its graph is a rectangular hyperbola with two branches in opposite quadrants. As \(x\) approaches zero, the output explodes. As \(x\) grows large, the output shrinks toward zero.</p>
+<div class="fn-formula">\(f(x)=\frac{1}{x}\)</div>
+<div class="fn-2col">
+<div class="fn-inner-card">
+<h4 data-i18n="rat_dom_title">Domain</h4>
+<p style="font-size:.88rem;margin:0" data-i18n="rat_dom_desc">\(x \neq 0\), because division by zero is undefined. The domain splits into two intervals.</p>
+<div class="fn-formula" style="font-size:1rem">\((-\infty,0)\cup(0,\infty)\)</div>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="rat_asymp_title">Asymptotes</h4>
+<p style="font-size:.88rem;margin:0" data-i18n="rat_vasymp">Vertical asymptote: \(x=0\) (function blows up near zero)</p>
+<p style="font-size:.88rem;margin:4px 0 0" data-i18n="rat_hasymp">Horizontal asymptote: \(y=0\) (output approaches zero at extremes)</p>
+</div>
+</div>
+<div class="fn-answer" data-i18n="rat_case1_ans">The graph approaches the axes infinitely closely but never touches or crosses them. This boundary behavior defines asymptotes.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">3</span><span data-i18n="rat_case2_title">Case 2: Shifted rational function</span></div>
+<p data-i18n="rat_case2_desc">The form \(\frac{a}{x-h}+k\) shows the asymptotes directly. The entire hyperbola translates without changing shape. The vertical asymptote moves to \(x=h\), and the horizontal asymptote moves to \(y=k\).</p>
+<div class="fn-formula">\(f(x)=\frac{3}{x-2}+4\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="rat_step1">Vertical asymptote comes from the denominator. Set it to zero to find the forbidden \(x\)-value:</span><div class="fn-formula" style="font-size:1.05rem">\(x-2=0\Rightarrow x=2\)</div></div>
+<div class="fn-step"><span data-i18n="rat_step2">Horizontal asymptote comes from the vertical shift. As \(x\to\pm\infty\), the fraction vanishes, leaving only \(k\):</span><div class="fn-formula" style="font-size:1.05rem">\(y=4\)</div></div>
+<div class="fn-step"><span data-i18n="rat_step3">The value \(a=3\) controls stretch and branch direction. Positive \(a\) keeps branches in quadrants I/III relative to the asymptote intersection.</span></div>
+</div>
+<div class="fn-answer" data-i18n="rat_case2_ans">Vertical asymptote: \(x=2\), horizontal asymptote: \(y=4\). The center of the hyperbola is \((2,4)\).</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">4</span><span data-i18n="rat_case3_title">Case 3: Rational function with a vertical asymptote</span></div>
+<p data-i18n="rat_case3_desc">A vertical asymptote happens when the denominator is zero and the factor does not cancel with the numerator. Near this \(x\)-value, the function grows without bound in opposite directions on either side.</p>
+<div class="fn-formula">\(f(x)=\frac{x+1}{x-3}\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="rat_step4">Set the denominator equal to zero to find the restriction:</span><div class="fn-formula" style="font-size:1.05rem">\(x-3=0\Rightarrow x=3\)</div></div>
+<div class="fn-step"><span data-i18n="rat_step5">Check numerator at \(x=3\). If it’s nonzero, the fraction blows up:</span><div class="fn-formula" style="font-size:1.05rem">\(3+1=4 \neq 0\)</div></div>
+<div class="fn-step"><span data-i18n="rat_step6">Since the numerator is not zero, the graph has a vertical asymptote. The function approaches \(+\infty\) on one side and \(-\infty\) on the other.</span></div>
+</div>
+<div class="fn-answer" data-i18n="rat_case3_ans">Vertical asymptote: \(x=3\). The graph splits into two branches separated by this line.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">5</span><span data-i18n="rat_case4_title">Case 4: Hole / removable discontinuity</span></div>
+<p data-i18n="rat_case4_desc">A hole happens when the same factor appears in the numerator and denominator and cancels. The function behaves like the simplified version everywhere except at the canceled value, where it is undefined. This creates a single missing point on the graph.</p>
+<div class="fn-formula">\(f(x)=\frac{(x-2)(x+1)}{x-2}\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="rat_step7">The denominator is zero at \(x=2\), so \(x=2\) is excluded from the domain.</span></div>
+<div class="fn-step"><span data-i18n="rat_step8">Cancel the common factor. The function simplifies, but the restriction remains:</span><div class="fn-formula" style="font-size:1.05rem">\(f(x)=x+1,\qquad x \neq 2\)</div></div>
+<div class="fn-step"><span data-i18n="rat_step9">Find the missing \(y\)-value using the simplified function. This is where the hole sits:</span><div class="fn-formula" style="font-size:1.05rem">\(y=2+1=3\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="rat_case4_ans">Hole at \((2,3)\). The graph is a straight line with one missing point.</div>
+<div class="fn-callout" data-i18n="rat_case4_callout">If a factor cancels, it usually creates a hole. If a factor remains in the denominator after simplifying, it creates a vertical asymptote. Always check multiplicity.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">6</span><span data-i18n="rat_case5_title">Case 5: Horizontal asymptote rules</span></div>
+<p data-i18n="rat_case5_desc">Compare the degree of the numerator with the degree of the denominator. The highest-degree terms dominate as \(x\to\pm\infty\), determining the long-term behavior of the function.</p>
+<table class="fn-table">
+<thead><tr><th data-i18n="tbl_case">Case</th><th data-i18n="tbl_rule">Rule</th><th data-i18n="tbl_ex">Example</th></tr></thead>
+<tbody>
+<tr><td data-i18n="rat_tbl1_1">Degree top \(<\) degree bottom</td><td data-i18n="rat_tbl1_2">Horizontal asymptote is \(y=0\). The denominator grows faster, crushing the fraction to zero.</td><td data-i18n="rat_tbl1_3">\(\frac{1}{x^2+1}\)</td></tr>
+<tr><td data-i18n="rat_tbl2_1">Degree top \(=\) degree bottom</td><td data-i18n="rat_tbl2_2">Use ratio of leading coefficients. The highest powers cancel, leaving a constant.</td><td data-i18n="rat_tbl2_3">\(\frac{2x+1}{x-3}\Rightarrow y=2\)</td></tr>
+<tr><td data-i18n="rat_tbl3_1">Degree top \(>\) degree bottom</td><td data-i18n="rat_tbl3_2">No horizontal asymptote; may have slant asymptote. The numerator grows faster, so the function behaves like a polynomial.</td><td data-i18n="rat_tbl3_3">\(\frac{x^2+1}{x-1}\)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">7</span><span data-i18n="rat_case6_title">Case 6: Finding intercepts of a rational function</span></div>
+<div class="fn-formula">\(f(x)=\frac{x-4}{x+2}\)</div>
+<div class="fn-2col">
+<div class="fn-inner-card">
+<h4 data-i18n="rat_xint_title">\(x\)-intercept</h4>
+<p style="font-size:.88rem" data-i18n="rat_xint_desc">Set numerator equal to zero. A fraction is zero only when its numerator is zero (and denominator is not):</p>
+<div class="fn-formula" style="font-size:1rem">\(x-4=0\Rightarrow x=4\)</div>
+<p style="font-size:.88rem" data-i18n="rat_xint_check">Check denominator: \(4+2=6 \neq 0\). Valid intercept.</p>
+<div class="fn-answer" style="font-size:1rem" data-i18n="rat_xint_ans">\((4,0)\)</div>
+</div>
+<div class="fn-inner-card">
+<h4 data-i18n="rat_yint_title">\(y\)-intercept</h4>
+<p style="font-size:.88rem" data-i18n="rat_yint_desc">Set \(x=0\) and evaluate. This gives the starting height on the vertical axis:</p>
+<div class="fn-formula" style="font-size:1rem">\(f(0)=\frac{-4}{2}=-2\)</div>
+<div class="fn-answer" style="font-size:1rem" data-i18n="rat_yint_ans">\((0,-2)\)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- EXPONENTIAL FUNCTIONS -->
+<div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
+<h1 class="function-tab-heading" data-i18n="exp_title">Exponential Functions: Complete Case-by-Case Lesson</h1>
+<div class="function-graph-card" data-graph-kind="exponential">
+<p class="function-graph-intro" data-i18n="exp_intro">Change \(a\), \(b\), and \(k\) to graph \(y=a\cdot b^x+k\). The base \(b\) controls growth or decay, while \(k\) moves the horizontal asymptote.</p>
+<div class="graph-widget">
+<div class="graph-controls">
+<div class="graph-formula">\(y = a\cdot b^x + k\)</div>
+<label class="slider-row"><span>a</span><span class="slider-value" data-value-for="exponential-a">1.0</span><input class="graph-slider" data-slider="exponential-a" type="range" min="-5" max="5" step="0.1" value="1"></label>
+<label class="slider-row"><span>b</span><span class="slider-value" data-value-for="exponential-b">2.0</span><input class="graph-slider" data-slider="exponential-b" type="range" min="0.2" max="4" step="0.1" value="2"></label>
+<label class="slider-row"><span>k</span><span class="slider-value" data-value-for="exponential-k">0.0</span><input class="graph-slider" data-slider="exponential-k" type="range" min="-8" max="8" step="0.1" value="0"></label>
+</div>
+<div class="graph-canvas-wrap"><canvas class="function-canvas" id="exponentialFunctionCanvas" width="760" height="420" aria-label="Exponential function graph"></canvas></div>
+</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">1</span><span data-i18n="exp_def_title">What is an exponential function?</span></div>
+<p data-i18n="exp_def_desc">An exponential function is a function where the variable appears in the exponent, not the base. This creates multiplicative change instead of additive change. Each step multiplies the previous output by a constant factor \(b\), leading to rapid acceleration or gradual decay. These functions model population growth, radioactive decay, compound interest, and cooling processes.</p>
+<div class="fn-formula">\(f(x)=a\cdot b^x,\qquad a \neq 0,\quad b>0,\quad b \neq 1\)</div>
+<ul class="fn-bullets">
+<li data-i18n="exp_bullet1">\(a\) controls the starting scale and reflection. It is the initial value when \(x=0\).</li>
+<li data-i18n="exp_bullet2">\(b\) controls growth or decay. It is the constant multiplicative factor per unit increase in \(x\).</li>
+<li data-i18n="exp_bullet3">If \(b>1\), the function grows exponentially. The larger \(b\), the faster the explosion.</li>
+<li data-i18n="exp_bullet4">If \(0<b<1\), the function decays exponentially. The closer \(b\) is to zero, the faster the decline.</li>
+<li data-i18n="exp_bullet5">The parent exponential usually has horizontal asymptote \(y=0\), because \(b^x\) approaches zero but never reaches it.</li>
+</ul>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">2</span><span data-i18n="exp_case1_title">Case 1: Exponential growth</span></div>
+<p data-i18n="exp_case1_desc">If the base is greater than \(1\), the function grows as \(x\) increases. The growth starts slowly, then accelerates dramatically. This compounding effect is why exponential growth eventually outpaces any polynomial.</p>
+<div class="fn-formula">\(f(x)=2^x\)</div>
+<table class="fn-table">
+<thead><tr><th>\(x\)</th><th>\(2^x\)</th><th data-i18n="tbl_meaning">Meaning</th></tr></thead>
+<tbody>
+<tr><td>\(-2\)</td><td>\(\frac14\)</td><td data-i18n="exp_tbl1_1">Small positive value, approaching asymptote</td></tr>
+<tr><td>\(-1\)</td><td>\(\frac12\)</td><td data-i18n="exp_tbl1_2">Still positive, doubling each step right</td></tr>
+<tr><td>\(0\)</td><td>\(1\)</td><td data-i18n="exp_tbl1_3">Any nonzero base to power \(0\) is \(1\)</td></tr>
+<tr><td>\(1\)</td><td>\(2\)</td><td data-i18n="exp_tbl1_4">Starts growing, multiplicative pattern begins</td></tr>
+<tr><td>\(2\)</td><td>\(4\)</td><td data-i18n="exp_tbl1_5">Growth accelerates, each step doubles previous</td></tr>
+</tbody>
+</table>
+<div class="fn-answer" data-i18n="exp_case1_ans">Growth case: \(b>1\). Domain: all reals. Range: \(y>0\). Horizontal asymptote: \(y=0\).</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">3</span><span data-i18n="exp_case2_title">Case 2: Exponential decay</span></div>
+<p data-i18n="exp_case2_desc">If the base is between \(0\) and \(1\), the function decays as \(x\) increases. The output shrinks by a constant fraction each step. It approaches zero asymptotically but never actually reaches it, modeling half-life and depreciation.</p>
+<div class="fn-formula">\(f(x)=\left(\frac12\right)^x\)</div>
+<table class="fn-table">
+<thead><tr><th>\(x\)</th><th>\(\left(\frac12\right)^x\)</th><th data-i18n="tbl_meaning">Meaning</th></tr></thead>
+<tbody>
+<tr><td>\(-2\)</td><td>\(4\)</td><td data-i18n="exp_tbl2_1">Large when \(x\) is negative (reciprocal effect)</td></tr>
+<tr><td>\(-1\)</td><td>\(2\)</td><td data-i18n="exp_tbl2_2">Still above \(1\), halving as \(x\) increases</td></tr>
+<tr><td>\(0\)</td><td>\(1\)</td><td data-i18n="exp_tbl2_3">Crosses \(y=1\), universal anchor point</td></tr>
+<tr><td>\(1\)</td><td>\(\frac12\)</td><td data-i18n="exp_tbl2_4">Gets smaller, multiplicative decay begins</td></tr>
+<tr><td>\(2\)</td><td>\(\frac14\)</td><td data-i18n="exp_tbl2_5">Approaches \(0\), never touches asymptote</td></tr>
+</tbody>
+</table>
+<div class="fn-answer" data-i18n="exp_case2_ans">Decay case: \(0<b<1\). Graph is a reflection of growth across the \(y\)-axis. Range remains \(y>0\).</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">4</span><span data-i18n="exp_case3_title">Case 3: Vertical shift and horizontal asymptote</span></div>
+<p data-i18n="exp_case3_desc">Adding \(k\) moves the exponential graph up or down. This shifts the horizontal asymptote from \(y=0\) to \(y=k\). The shape and growth rate stay identical, but the entire curve translates vertically. This models real-world scenarios like temperature approaching room temperature or debt approaching a baseline.</p>
+<div class="fn-formula">\(f(x)=2^x+3\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="exp_step1">Parent function \(2^x\) has horizontal asymptote:</span><div class="fn-formula" style="font-size:1.05rem">\(y=0\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step2">Adding \(+3\) moves everything up \(3\) units. Every output increases by 3.</span></div>
+<div class="fn-step"><span data-i18n="exp_step3">New horizontal asymptote shifts accordingly:</span><div class="fn-formula" style="font-size:1.05rem">\(y=3\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step4">\(y\)-intercept shifts too:</span><div class="fn-formula" style="font-size:1.05rem">\(f(0)=2^0+3=4\Rightarrow(0,4)\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="exp_case3_ans">Vertical shift changes the asymptote from \(y=0\) to \(y=k\). Range becomes \(y>k\) (if \(a>0\)).</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">5</span><span data-i18n="exp_case4_title">Case 4: Reflection over the \(x\)-axis</span></div>
+<p data-i18n="exp_case4_desc">If \(a<0\), the exponential graph reflects over the \(x\)-axis. The parent function’s positive outputs become negative. The curve now approaches the asymptote from below instead of above. This models loss, debt accumulation, or cooling below a reference point.</p>
+<div class="fn-formula">\(f(x)=-2^x\)</div>
+<ul class="fn-bullets">
+<li data-i18n="exp_case4_1">The parent \(2^x\) is always positive.</li>
+<li data-i18n="exp_case4_2">The negative sign makes all outputs negative, flipping the curve downward.</li>
+<li data-i18n="exp_case4_3">The graph is below the \(x\)-axis, approaching \(y=0\) from below.</li>
+<li data-i18n="exp_case4_4">The horizontal asymptote is still \(y=0\). Reflection doesn’t move boundaries.</li>
+</ul>
+<div class="fn-answer" data-i18n="exp_case4_ans">Reflection case: \(a<0\). Range becomes \(y<0\). Asymptote unchanged.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">6</span><span data-i18n="exp_case5_title">Case 5: Solving exponential equations without logs</span></div>
+<p data-i18n="exp_case5_desc">If both sides can be written with the same base, solve by matching exponents. This works because exponential functions are one-to-one: if \(b^m=b^p\) and \(b>0, b\neq1\), then \(m=p\). This method is fast but only works when bases align perfectly.</p>
+<div class="fn-formula">\(3\cdot2^x=24\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="exp_step5">Divide by \(3\) to isolate the exponential term:</span><div class="fn-formula" style="font-size:1.05rem">\(2^x=8\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step6">Rewrite \(8\) as a power of \(2\) to match bases:</span><div class="fn-formula" style="font-size:1.05rem">\(8=2^3\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step7">Match exponents. Since bases are identical, exponents must be equal:</span><div class="fn-formula" style="font-size:1.05rem">\(x=3\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="exp_case5_ans">\(x=3\). Always verify by substituting back into the original equation.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">7</span><span data-i18n="exp_case6_title">Case 6: Solving exponential equations with logs</span></div>
+<p data-i18n="exp_case6_desc">If the number cannot be rewritten with the same base, use logarithms. Logarithms are the inverse of exponentials, allowing you to bring the variable down from the exponent. This method works for any positive base and is essential for real-world modeling.</p>
+<div class="fn-formula">\(5\cdot3^x=40\)</div>
+<div class="fn-steps">
+<div class="fn-step"><span data-i18n="exp_step8">Divide by \(5\) to isolate the exponential:</span><div class="fn-formula" style="font-size:1.05rem">\(3^x=8\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step9">Take logarithm of both sides. Any base works; common or natural log is standard:</span><div class="fn-formula" style="font-size:1.05rem">\(\log(3^x)=\log(8)\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step10">Bring down the exponent using the power rule \(\log(b^x)=x\log b\):</span><div class="fn-formula" style="font-size:1.05rem">\(x\log3=\log8\)</div></div>
+<div class="fn-step"><span data-i18n="exp_step11">Solve for \(x\) by dividing:</span><div class="fn-formula" style="font-size:1.05rem">\(x=\frac{\log8}{\log3}\)</div></div>
+</div>
+<div class="fn-answer" data-i18n="exp_case6_ans">\(x=\frac{\log8}{\log3}\approx1.89\). This exact form is preferred; decimal is for interpretation.</div>
+</div>
+<div class="fn-card">
+<div class="fn-section-title"><span class="fn-badge">8</span><span data-i18n="exp_qtypes_title">Exponential question types you must master</span></div>
+<table class="fn-table">
+<thead><tr><th data-i18n="tbl_qtype">Question Type</th><th data-i18n="tbl_method">Method</th><th data-i18n="tbl_ex">Example</th></tr></thead>
+<tbody>
+<tr><td data-i18n="exp_tbl1_1">Given \(x\), find \(y\)</td><td data-i18n="exp_tbl1_2">Substitute \(x\) and evaluate carefully</td><td data-i18n="exp_tbl1_3">\(3\cdot2^4=48\)</td></tr>
+<tr><td data-i18n="exp_tbl2_1">Given \(y\), find \(x\)</td><td data-i18n="exp_tbl2_2">Isolate exponential, then use same-base or logs</td><td data-i18n="exp_tbl2_3">\(2^x=8\Rightarrow x=3\)</td></tr>
+<tr><td data-i18n="exp_tbl3_1">Find starting value</td><td data-i18n="exp_tbl3_2">Use \(f(0)\). The exponent vanishes, leaving \(a\)</td><td data-i18n="exp_tbl3_3">\(a\cdot b^0=a\)</td></tr>
+<tr><td data-i18n="exp_tbl4_1">Identify growth/decay</td><td data-i18n="exp_tbl4_2">Look at \(b\). Greater than 1 grows, between 0 and 1 decays</td><td data-i18n="exp_tbl4_3">\(b>1\) growth, \(0<b<1\) decay</td></tr>
+<tr><td data-i18n="exp_tbl5_1">Find asymptote</td><td data-i18n="exp_tbl5_2">Look at \(k\). The exponential part vanishes at extremes</td><td data-i18n="exp_tbl5_3">\(a\cdot b^x+k\Rightarrow y=k\)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </main>
-
-
+</main>
 <!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<!-- ============================================================
+GRAPH DRAWING (independent of language system)
+============================================================ -->
+<script>
+function sliderValue(key) {
+  const input = document.querySelector(`[data-slider="${key}"]`);
+  return input ? Number(input.value) : 0;
+}
+function formatValue(value) {
+  return Number(value).toFixed(1);
+}
+function drawAxes(ctx, width, height, xMin, xMax, yMin, yMax, toX, toY) {
+  ctx.clearRect(0, 0, width, height);
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+  for (let x = Math.ceil(xMin); x <= xMax; x += 1) {
+    const px = toX(x);
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, height); ctx.stroke();
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y += 1) {
+    const py = toY(y);
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(width, py); ctx.stroke();
+  }
+  ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+  ctx.lineWidth = 1.25;
+  ctx.beginPath(); ctx.moveTo(toX(0), 0); ctx.lineTo(toX(0), height); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, toY(0)); ctx.lineTo(width, toY(0)); ctx.stroke();
+  ctx.fillStyle = '#8a8a8a';
+  ctx.font = '11px Arial';
+  ctx.textAlign = 'center';
+  for (let x = Math.ceil(xMin / 2) * 2; x <= xMax; x += 2) {
+    if (x !== 0) ctx.fillText(String(x), toX(x), toY(0) + 16);
+  }
+  ctx.textAlign = 'left';
+  for (let y = Math.ceil(yMin / 5) * 5; y <= yMax; y += 5) {
+    if (y !== 0) ctx.fillText(String(y), toX(0) + 8, toY(y) - 4);
+  }
+}
+function drawFunctionCanvas(canvas, fn, options = {}) {
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width < 20 || rect.height < 20) return;
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  const width = rect.width;
+  const height = rect.height;
+  const xMin = options.xMin ?? -10;
+  const xMax = options.xMax ?? 10;
+  const yMin = options.yMin ?? -10;
+  const yMax = options.yMax ?? 10;
+  const toX = (x) => ((x - xMin) / (xMax - xMin)) * width;
+  const toY = (y) => height - ((y - yMin) / (yMax - yMin)) * height;
+  drawAxes(ctx, width, height, xMin, xMax, yMin, yMax, toX, toY);
+  if (options.verticalAsymptote !== undefined) {
+    const px = toX(options.verticalAsymptote);
+    ctx.save(); ctx.setLineDash([7, 6]); ctx.strokeStyle = 'rgba(239,68,68,0.65)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, height); ctx.stroke(); ctx.restore();
+  }
+  if (options.horizontalAsymptote !== undefined) {
+    const py = toY(options.horizontalAsymptote);
+    ctx.save(); ctx.setLineDash([7, 6]); ctx.strokeStyle = 'rgba(239,68,68,0.65)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(width, py); ctx.stroke(); ctx.restore();
+  }
+  ctx.strokeStyle = '#1488ff';
+  ctx.lineWidth = 2.4;
+  ctx.beginPath();
+  let drawing = false;
+  let lastY = null;
+  const samples = Math.max(320, Math.floor(width * 1.4));
+  for (let i = 0; i <= samples; i += 1) {
+    const x = xMin + (i / samples) * (xMax - xMin);
+    const y = fn(x);
+    const valid = Number.isFinite(y) && y > yMin - 30 && y < yMax + 30 && (lastY === null || Math.abs(y - lastY) < 40);
+    if (valid) {
+      const px = toX(x);
+      const py = toY(Math.max(yMin - 30, Math.min(yMax + 30, y)));
+      if (!drawing) { ctx.moveTo(px, py); drawing = true; } else { ctx.lineTo(px, py); }
+    } else { drawing = false; }
+    lastY = Number.isFinite(y) ? y : null;
+  }
+  ctx.stroke();
+}
+function updateGraphValues() {
+  document.querySelectorAll('[data-slider]').forEach((input) => {
+    const valueTarget = document.querySelector(`[data-value-for="${input.dataset.slider}"]`);
+    if (valueTarget) valueTarget.textContent = formatValue(input.value);
+  });
+}
+function drawAllFunctionGraphs() {
+  updateGraphValues();
+  drawFunctionCanvas(document.getElementById('quadraticFunctionCanvas'), (x) => {
+    const a = sliderValue('quadratic-a'); const b = sliderValue('quadratic-b'); const c = sliderValue('quadratic-c');
+    return a * x * x + b * x + c;
+  }, { yMin: -10, yMax: 30 });
+  drawFunctionCanvas(document.getElementById('cubicFunctionCanvas'), (x) => {
+    const a = sliderValue('cubic-a'); const h = sliderValue('cubic-h'); const k = sliderValue('cubic-k');
+    return a * Math.pow(x - h, 3) + k;
+  }, { yMin: -20, yMax: 20 });
+  const rationalH = sliderValue('rational-h'); const rationalK = sliderValue('rational-k');
+  drawFunctionCanvas(document.getElementById('rationalFunctionCanvas'), (x) => {
+    const a = sliderValue('rational-a');
+    if (Math.abs(x - rationalH) < 0.04) return NaN;
+    return a / (x - rationalH) + rationalK;
+  }, { yMin: -10, yMax: 10, verticalAsymptote: rationalH, horizontalAsymptote: rationalK });
+  drawFunctionCanvas(document.getElementById('exponentialFunctionCanvas'), (x) => {
+    const a = sliderValue('exponential-a'); const b = sliderValue('exponential-b'); const k = sliderValue('exponential-k');
+    return a * Math.pow(b, x) + k;
+  }, { yMin: -10, yMax: 25 });
+}
+document.querySelectorAll('[data-slider]').forEach((input) => { input.addEventListener('input', drawAllFunctionGraphs); });
+document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => { tab.addEventListener('shown.bs.tab', drawAllFunctionGraphs); });
+window.addEventListener('resize', drawAllFunctionGraphs);
+drawAllFunctionGraphs();
+window.drawAllFunctionGraphs = drawAllFunctionGraphs;
+</script>
+<!-- ============================================================
+ROBUST LANGUAGE SYSTEM (English <-> Uzbek)
+============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  const I18N = {
+    en: {
+      nav_home: "Homepage", nav_other: "Other Kinds of Functions", header_title: "Introduction to <br>Functions",
+      btn_readmore: "Read More", btn_practice: "Practice with Functions",
+      sec0_title: "Before You Start: The Language of Functions",
+      sec0_desc1: "A function is a precise mathematical rule that assigns exactly one output to every valid input. Think of it as a machine: you feed it a number, it follows a fixed process, and it produces one result. We usually write:",
+      sec0_desc2: "This notation means “the output \\(y\\) depends entirely on the input \\(x\\).” The graph of a function is a visual map of every possible input-output pair plotted on the coordinate plane. If a vertical line ever crosses a graph more than once, it fails the vertical line test and is not a function.",
+      sec0_input_title: "Input", sec0_input_desc: "The value you put into the function. Usually this is \\(x\\), also called the independent variable because you choose it freely within the domain.",
+      sec0_output_title: "Output", sec0_output_desc: "The value the function gives back. Usually this is \\(y\\) or \\(f(x)\\), also called the dependent variable because its value depends on \\(x\\).",
+      sec0_graph_title: "Graph", sec0_graph_desc: "A visual picture of all points \\((x,y)\\) that satisfy the function rule. The shape reveals behavior: increasing/decreasing intervals, symmetry, bounds, and asymptotic trends.",
+      sec1_title: "Domain, Range, Intercepts, and Intersections",
+      sec1_domain_title: "Domain", sec1_domain_desc: "All allowed \\(x\\)-values. Ask: “Which inputs are legal?” Restrictions come from division by zero, even roots of negative numbers, or logarithms of non-positive values.",
+      sec1_domain_ex: "<strong>Example:</strong> In \\(\\frac{1}{x-2}\\), \\(x=2\\) makes the denominator zero, so it is excluded from the domain.",
+      sec1_range_title: "Range", sec1_range_desc: "All possible \\(y\\)-values the function can actually produce. Ask: “Which outputs can happen?” The range is often found by analyzing the graph’s highest/lowest points or asymptotic limits.",
+      sec1_range_ex: "<strong>Example:</strong> For \\(x^2\\), squaring any real number never gives a negative result, so the range is \\(y\\ge0\\).",
+      sec1_xint_title: "\\(x\\)-intercept", sec1_xint_desc: "Where the graph crosses the \\(x\\)-axis. At these points, the output is zero, so set \\(y=0\\) or \\(f(x)=0\\) and solve for \\(x\\). These are also called roots or zeros.",
+      sec1_yint_title: "\\(y\\)-intercept", sec1_yint_desc: "Where the graph crosses the \\(y\\)-axis. This happens when the input is zero, so set \\(x=0\\) and evaluate \\(f(0)\\). A function can have at most one \\(y\\)-intercept.",
+      sec1_callout: "When two functions intersect, they share the exact same coordinates at that point. This means \\(f(x)=g(x)\\) at the intersection. Solve this equation for \\(x\\), then substitute back into either function to find the matching \\(y\\)-value.",
+      tab_quad: "Quadratic Functions", tab_cubic: "Cubic Functions", tab_rational: "Rational Functions", tab_exp: "Exponential Functions",
+      quad_title: "Quadratic Functions: Complete Case-by-Case Lesson",
+      quad_intro: "Change \\(a\\), \\(b\\), and \\(c\\) to see how the parabola \\(y=ax^2+bx+c\\) moves. Watch especially how \\(a\\) changes direction and width, and how \\(c\\) moves the \\(y\\)-intercept.",
+      quad_def_title: "What is a quadratic function?",
+      quad_def_desc: "A quadratic function is a polynomial of degree \\(2\\). The word “quadratic” comes from the Latin “quadratus,” meaning square, because the variable is squared. The highest power of \\(x\\) is exactly \\(2\\), which guarantees the graph is always a symmetric U-shaped curve called a parabola. The condition \\(a \\neq 0\\) is essential; if \\(a=0\\), the \\(x^2\\) term vanishes and the function becomes linear.",
+      quad_bullet1: "\\(a\\) controls whether the parabola opens upward or downward. Positive \\(a\\) creates a “smile” shape (minimum), negative \\(a\\) creates a “frown” shape (maximum).",
+      quad_bullet2: "\\(a\\) also controls how wide or narrow the parabola is. Larger \\(|a|\\) compresses the graph vertically, making it steeper and narrower. Smaller \\(|a|\\) stretches it, making it wider and flatter.",
+      quad_bullet3: "\\(b\\) helps determine the position of the vertex and axis of symmetry. Together with \\(a\\), it shifts the parabola left or right according to \\(x=\\frac{-b}{2a}\\).",
+      quad_bullet4: "\\(c\\) is the \\(y\\)-intercept because \\(f(0)=c\\). It vertically shifts the entire parabola without changing its shape or direction.",
+      quad_callout1: "A quadratic is not just “a curve.” It is a highly structured graph with predictable features: a single vertex (turning point), a vertical axis of symmetry, a consistent opening direction, up to two real roots, and a bounded range on one side. These properties make quadratics foundational in physics, economics, and optimization.",
+      quad_forms_title: "The three main forms of a quadratic",
+      quad_forms_desc: "Each form highlights different features of the same parabola. Converting between them is a core algebraic skill that reveals hidden information about the graph.",
+      quad_formA_title: "Case Form A: Standard Form", quad_formA_1: "Best for identifying coefficients \\(a,b,c\\) directly.", quad_formA_2: "\\(c\\) gives the \\(y\\)-intercept instantly.", quad_formA_3: "Vertex uses \\(x=\\frac{-b}{2a}\\), then substitute to find \\(y\\).",
+      quad_formB_title: "Case Form B: Vertex Form", quad_formB_1: "Best for seeing transformations and the turning point.", quad_formB_2: "Vertex is \\((h,k)\\) directly from the equation.", quad_formB_3: "Axis of symmetry is \\(x=h\\). The sign of \\(a\\) still controls direction.",
+      quad_formC_title: "Case Form C: Factored Form", quad_formC_1: "Best for seeing roots and \\(x\\)-intercepts immediately.", quad_formC_2: "\\(x=r_1\\) and \\(x=r_2\\) are the zeros of the function.", quad_formC_3: "Roots are \\(x\\)-intercepts. The vertex lies exactly halfway between them.",
+      quad_case1_title: "Case 1: \\(a>0\\), two roots, upward parabola",
+      quad_case1_desc: "This is the most common beginner case. If \\(a>0\\), the parabola opens upward, meaning the vertex is the lowest point on the graph (a global minimum). The function decreases until the vertex, then increases symmetrically.",
+      quad_step1: "Factor the expression to reveal the roots:", quad_step2: "Find the \\(x\\)-intercepts by setting \\(f(x)=0\\). The zero-product property says if a product is zero, at least one factor must be zero:", quad_step3: "Find the \\(y\\)-intercept by evaluating at \\(x=0\\). This tells you where the graph starts on the vertical axis:", quad_step4: "Find the vertex. The parabola is symmetric, so the vertex lies exactly halfway between the roots at \\(x=\\frac{2+3}{2}=2.5\\). Alternatively, use \\(x=\\frac{-b}{2a}\\):",
+      quad_case1_ans: "Vertex: \\((2.5,-0.25)\\), roots: \\(2\\) and \\(3\\), \\(y\\)-intercept: \\((0,6)\\)",
+      quad_case1_callout: "Because \\(a>0\\), the graph decreases until the vertex, then increases. The range is bounded below by the vertex \\(y\\)-value: \\(y\\ge -0.25\\). This minimum value is crucial in optimization problems.",
+      quad_case2_title: "Case 2: \\(a<0\\), two roots, downward parabola",
+      quad_case2_desc: "If \\(a<0\\), the parabola opens downward. This flips the entire graph over the \\(x\\)-axis compared to the positive case. The vertex becomes the highest point (a global maximum), and the range is bounded above instead of below.",
+      quad_step5: "Factor out the negative to simplify factoring:", quad_step6: "Factor the inside expression normally:", quad_step7: "The roots are still found by setting each factor to zero. The negative sign doesn’t change where the graph crosses the axis:", quad_step8: "Find the vertex using the same symmetry principle. The \\(x\\)-coordinate is unchanged, but the \\(y\\)-value flips sign:",
+      quad_case2_ans: "Vertex: \\((2.5,0.25)\\), maximum value: \\(0.25\\)",
+      quad_case2_callout: "Same roots as the previous example, but the whole graph is reflected over the \\(x\\)-axis. This is why the vertex changed from a minimum to a maximum, and the range is now \\(y\\le 0.25\\).",
+      quad_case3_title: "Case 3: Repeated root, parabola touches the \\(x\\)-axis",
+      quad_case3_desc: "Sometimes a quadratic has only one distinct real root. This happens when the parabola just touches the \\(x\\)-axis at its vertex but does not cross it. Algebraically, the discriminant \\(D=b^2-4ac\\) equals zero, indicating a double root.",
+      quad_case3_1: "The root is \\(x=2\\), but it has multiplicity 2.", quad_case3_2: "The vertex is \\((2,0)\\), sitting exactly on the \\(x\\)-axis.", quad_case3_3: "The graph touches the \\(x\\)-axis at \\((2,0)\\) and bounces back up.", quad_case3_4: "The discriminant is \\(D=0\\), confirming a single repeated root.",
+      quad_case3_ans: "One real root: \\(x=2\\), repeated twice",
+      quad_case3_callout: "A repeated root means the graph is tangent to the \\(x\\)-axis. It touches and turns around instead of passing through. This behavior is critical when analyzing inequalities and sign charts.",
+      quad_case4_title: "Case 4: No real roots, parabola never touches the \\(x\\)-axis",
+      quad_case4_desc: "A quadratic can have no real roots. This means the graph never crosses or touches the \\(x\\)-axis. The entire parabola floats completely above or below the axis, depending on the sign of \\(a\\). The discriminant is negative, indicating complex conjugate roots.",
+      quad_case4_1: "\\(x^2\\ge0\\) for every real \\(x\\), so adding 4 guarantees positivity.", quad_case4_2: "So \\(x^2+4\\ge4\\). The output never drops below 4.", quad_case4_3: "The graph is always above the \\(x\\)-axis, floating 4 units higher than \\(y=x^2\\).", quad_case4_4: "There are no \\(x\\)-intercepts because \\(f(x)=0\\) has no real solution.",
+      quad_case4_ans: "No real roots; range: \\(y\\ge4\\)",
+      quad_case4_callout: "Use the discriminant to confirm: \\(D=b^2-4ac=0^2-4(1)(4)=-16<0\\). Since \\(D<0\\), there are no real roots. The vertex \\((0,4)\\) is the absolute minimum, and the graph never descends to the axis.",
+      quad_case5_title: "Case 5: Vertex form and transformations",
+      quad_case5_desc: "Vertex form shows transformations clearly. Instead of calculating the vertex, you read it directly. This form is built by shifting, stretching, and reflecting the parent function \\(y=x^2\\).",
+      quad_step9: "Vertex is read directly from \\((h,k)\\):", quad_step10: "Axis of symmetry passes through the vertex:", quad_step11: "Since \\(a=2>0\\), it opens upward and is vertically stretched by factor 2, making it narrower than \\(y=x^2\\).", quad_step12: "Range starts at the vertex \\(y\\)-value and extends upward:",
+      quad_case5_ans: "Vertex form immediately gives the graph’s position, shape, direction, and range without extra calculation.",
+      quad_qtypes_title: "Quadratic question types you must master",
+      tbl_qtype: "Question Type", tbl_todo: "What to Do", tbl_ex: "Example", tbl_method: "Method", tbl_mini_ex: "Mini Example", tbl_case: "Case", tbl_rule: "Rule", tbl_meaning: "Meaning",
+      quad_tbl1_1: "Given \\(x\\), find \\(y\\)", quad_tbl1_2: "Substitute \\(x\\) into the equation and simplify", quad_tbl1_3: "\\(f(2)=2^2-5(2)+6=0\\)",
+      quad_tbl2_1: "Find roots", quad_tbl2_2: "Set \\(f(x)=0\\) and factor, complete the square, or use quadratic formula", quad_tbl2_3: "\\((x-2)(x-3)=0\\)",
+      quad_tbl3_1: "Find vertex", quad_tbl3_2: "Use \\(x=\\frac{-b}{2a}\\) or read \\((h,k)\\) from vertex form", quad_tbl3_3: "\\(x=2.5\\)",
+      quad_tbl4_1: "Find \\(y\\)-intercept", quad_tbl4_2: "Set \\(x=0\\) and evaluate \\(f(0)\\)", quad_tbl4_3: "\\(f(0)=c\\)",
+      quad_tbl5_1: "Determine roots count", quad_tbl5_2: "Compute discriminant \\(D=b^2-4ac\\)", quad_tbl5_3: "\\(D>0\\): 2 roots, \\(D=0\\): 1 root, \\(D<0\\): 0 real roots",
+      cubic_title: "Cubic Functions: Complete Case-by-Case Lesson",
+      cubic_intro: "Change \\(a\\), \\(h\\), and \\(k\\) to graph the transformed cubic \\(y=a(x-h)^3+k\\). The point \\((h,k)\\) is the center-like turning-through point called the inflection point.",
+      cubic_def_title: "What is a cubic function?",
+      cubic_def_desc: "A cubic function is a polynomial of degree \\(3\\). Its highest power is \\(x^3\\), which fundamentally changes its behavior compared to quadratics. Because the degree is odd, the ends of the graph always point in opposite directions. Cubics can twist, turn, and cross the \\(x\\)-axis up to three times, making them essential for modeling volume, fluid dynamics, and economic cycles.",
+      cubic_bullet1: "Its end behavior is controlled by the sign of \\(a\\). Odd degree means one end goes to \\(+\\infty\\) and the other to \\(-\\infty\\).",
+      cubic_bullet2: "It can have \\(1\\), \\(2\\), or \\(3\\) real \\(x\\)-intercepts depending on root multiplicity and turning points.",
+      cubic_bullet3: "It can have no turning point (monotonic), or it can have two turning points (a local max and a local min).",
+      cubic_bullet4: "It has an inflection point where the curve changes concavity (from cupping up to cupping down, or vice versa).",
+      cubic_case1_title: "Case 1: Basic cubic \\(f(x)=x^3\\)",
+      cubic_case1_desc: "The parent cubic function is the simplest cubic. It passes through the origin and has an S-shape. It is an odd function, meaning \\(f(-x)=-f(x)\\), which creates rotational symmetry about the origin.",
+      cubic_pts_title: "Important points", cubic_beh_title: "Behavior",
+      cubic_beh1: "Left side goes down rapidly as \\(x\\) becomes more negative.", cubic_beh2: "Right side goes up rapidly as \\(x\\) increases.", cubic_beh3: "Domain is all real numbers: \\((-\\infty,\\infty)\\).", cubic_beh4: "Range is all real numbers: \\((-\\infty,\\infty)\\).",
+      cubic_case1_ans: "\\(x^3\\) is strictly increasing everywhere, passes through the origin, and has an inflection point at \\((0,0)\\) where concavity changes.",
+      cubic_case2_title: "Case 2: Negative leading coefficient",
+      cubic_case2_desc: "If \\(a<0\\), the cubic is reflected over the \\(x\\)-axis. The left side goes up and the right side goes down. This reversal happens because multiplying the entire output by a negative flips every \\(y\\)-value.",
+      cubic_posA: "If \\(a>0\\)", cubic_posA_1: "\\(x\\to-\\infty\\Rightarrow f(x)\\to-\\infty\\)", cubic_posA_2: "\\(x\\to+\\infty\\Rightarrow f(x)\\to+\\infty\\)",
+      cubic_negA: "If \\(a<0\\)", cubic_negA_1: "\\(x\\to-\\infty\\Rightarrow f(x)\\to+\\infty\\)", cubic_negA_2: "\\(x\\to+\\infty\\Rightarrow f(x)\\to-\\infty\\)",
+      cubic_case2_ans: "Negative \\(a\\) reverses the cubic’s end behavior and reflects the entire S-curve across the \\(x\\)-axis.",
+      cubic_case3_title: "Case 3: Shifted cubic \\(a(x-h)^3+k\\)",
+      cubic_case3_desc: "The form \\(a(x-h)^3+k\\) shows transformations clearly. Instead of recalculating points, you translate the entire parent graph. The inflection point moves from \\((0,0)\\) to \\((h,k)\\), and the shape scales by \\(|a|\\).",
+      cubic_step1: "\\(h=3\\), so the graph shifts right \\(3\\) units. Note: the sign inside the parenthesis is opposite to the direction of shift.", cubic_step2: "\\(k=-4\\), so the graph shifts down \\(4\\) units. This moves the entire curve vertically without distortion.",
+      cubic_step3: "\\(a=2\\), so the graph is vertically stretched by factor \\(2\\). It becomes steeper, but the inflection point and symmetry remain intact.", cubic_step4: "The inflection point is the new center of symmetry:",
+      cubic_case3_ans: "\\(a(x-h)^3+k\\) moves the parent cubic without changing its basic S-shape. The inflection point anchors all transformations.",
+      cubic_case4_title: "Case 4: Cubic with three real roots",
+      cubic_case4_desc: "A cubic may cross the \\(x\\)-axis three times. This happens when the graph has two turning points that straddle the axis, creating three distinct zeros. Factoring reveals these intercepts directly.",
+      cubic_step5: "Factor common \\(x\\) to simplify the polynomial:", cubic_step6: "Use difference of squares on the quadratic factor:", cubic_step7: "Set each factor equal to zero. The zero-product property applies regardless of degree:",
+      cubic_case4_ans: "\\(x\\)-intercepts: \\((-2,0)\\), \\((0,0)\\), \\((2,0)\\). The graph crosses the axis at each root because all have odd multiplicity.",
+      cubic_case5_title: "Case 5: Cubic with one real root",
+      cubic_case5_desc: "Some cubics cross the \\(x\\)-axis only once. This occurs when the turning points are both above or both below the axis, or when the function is strictly monotonic. The other two roots are complex conjugates.",
+      cubic_step8: "Set \\(f(x)=0\\) to find where the output vanishes:", cubic_step9: "Move \\(1\\) to the other side to isolate the cubic term:", cubic_step10: "Cube root both sides. Unlike square roots, cube roots preserve sign:",
+      cubic_case5_ans: "One real \\(x\\)-intercept: \\((-1,0)\\). The graph crosses once and continues monotonically.",
+      cubic_case5_callout: "Cubics always have at least one real root because their ends go to opposite infinities. By the Intermediate Value Theorem, the continuous curve must cross the \\(x\\)-axis somewhere.",
+      cubic_qtypes_title: "Cubic question types you must master",
+      cubic_tbl1_1: "Given \\(x\\), find \\(y\\)", cubic_tbl1_2: "Substitute \\(x\\) and evaluate carefully", cubic_tbl1_3: "\\(f(2)=2^3-2(2)=4\\)",
+      cubic_tbl2_1: "Find roots", cubic_tbl2_2: "Set \\(f(x)=0\\), factor by grouping or synthetic division", cubic_tbl2_3: "\\(x(x-2)(x+2)=0\\)",
+      cubic_tbl3_1: "Describe end behavior", cubic_tbl3_2: "Look at leading coefficient and odd degree", cubic_tbl3_3: "\\(a>0\\): left down, right up",
+      cubic_tbl4_1: "Transform graph", cubic_tbl4_2: "Use \\(a(x-h)^3+k\\) to shift and scale", cubic_tbl4_3: "\\((h,k)\\) gives inflection point",
+      rat_title: "Rational Functions: Complete Case-by-Case Lesson",
+      rat_intro: "Change \\(a\\), \\(h\\), and \\(k\\) to graph \\(y=\\frac{a}{x-h}+k\\). This graph has a vertical asymptote \\(x=h\\) and a horizontal asymptote \\(y=k\\).",
+      rat_def_title: "What is a rational function?",
+      rat_def_desc: "A rational function is a ratio of two polynomials. The word “rational” comes from “ratio,” not from being logical. Because division by zero is undefined, any \\(x\\)-value that makes the denominator zero is excluded from the domain. These exclusions create dramatic graphical features: vertical asymptotes where the function blows up, or holes where a factor cancels out.",
+      rat_bullet1: "The denominator cannot be zero. This restriction defines the domain boundaries.", rat_bullet2: "Values that make the denominator zero are excluded from the domain and often create asymptotes.",
+      rat_bullet3: "The graph may have vertical asymptotes where the function approaches \\(\\pm\\infty\\).", rat_bullet4: "The graph may have horizontal or slant asymptotes that describe long-term behavior as \\(x\\to\\pm\\infty\\).", rat_bullet5: "The graph may also have holes if a factor cancels completely, leaving a removable discontinuity.",
+      rat_case1_title: "Case 1: Basic rational function \\(f(x)=\\frac{1}{x}\\)",
+      rat_case1_desc: "This is the parent rational function. Its graph is a rectangular hyperbola with two branches in opposite quadrants. As \\(x\\) approaches zero, the output explodes. As \\(x\\) grows large, the output shrinks toward zero.",
+      rat_dom_title: "Domain", rat_dom_desc: "\\(x \\neq 0\\), because division by zero is undefined. The domain splits into two intervals.",
+      rat_asymp_title: "Asymptotes", rat_vasymp: "Vertical asymptote: \\(x=0\\) (function blows up near zero)", rat_hasymp: "Horizontal asymptote: \\(y=0\\) (output approaches zero at extremes)",
+      rat_case1_ans: "The graph approaches the axes infinitely closely but never touches or crosses them. This boundary behavior defines asymptotes.",
+      rat_case2_title: "Case 2: Shifted rational function",
+      rat_case2_desc: "The form \\(\\frac{a}{x-h}+k\\) shows the asymptotes directly. The entire hyperbola translates without changing shape. The vertical asymptote moves to \\(x=h\\), and the horizontal asymptote moves to \\(y=k\\).",
+      rat_step1: "Vertical asymptote comes from the denominator. Set it to zero to find the forbidden \\(x\\)-value:", rat_step2: "Horizontal asymptote comes from the vertical shift. As \\(x\\to\\pm\\infty\\), the fraction vanishes, leaving only \\(k\\):", rat_step3: "The value \\(a=3\\) controls stretch and branch direction. Positive \\(a\\) keeps branches in quadrants I/III relative to the asymptote intersection.",
+      rat_case2_ans: "Vertical asymptote: \\(x=2\\), horizontal asymptote: \\(y=4\\). The center of the hyperbola is \\((2,4)\\).",
+      rat_case3_title: "Case 3: Rational function with a vertical asymptote",
+      rat_case3_desc: "A vertical asymptote happens when the denominator is zero and the factor does not cancel with the numerator. Near this \\(x\\)-value, the function grows without bound in opposite directions on either side.",
+      rat_step4: "Set the denominator equal to zero to find the restriction:", rat_step5: "Check numerator at \\(x=3\\). If it’s nonzero, the fraction blows up:", rat_step6: "Since the numerator is not zero, the graph has a vertical asymptote. The function approaches \\(+\\infty\\) on one side and \\(-\\infty\\) on the other.",
+      rat_case3_ans: "Vertical asymptote: \\(x=3\\). The graph splits into two branches separated by this line.",
+      rat_case4_title: "Case 4: Hole / removable discontinuity",
+      rat_case4_desc: "A hole happens when the same factor appears in the numerator and denominator and cancels. The function behaves like the simplified version everywhere except at the canceled value, where it is undefined. This creates a single missing point on the graph.",
+      rat_step7: "The denominator is zero at \\(x=2\\), so \\(x=2\\) is excluded from the domain.", rat_step8: "Cancel the common factor. The function simplifies, but the restriction remains:", rat_step9: "Find the missing \\(y\\)-value using the simplified function. This is where the hole sits:",
+      rat_case4_ans: "Hole at \\((2,3)\\). The graph is a straight line with one missing point.",
+      rat_case4_callout: "If a factor cancels, it usually creates a hole. If a factor remains in the denominator after simplifying, it creates a vertical asymptote. Always check multiplicity.",
+      rat_case5_title: "Case 5: Horizontal asymptote rules",
+      rat_case5_desc: "Compare the degree of the numerator with the degree of the denominator. The highest-degree terms dominate as \\(x\\to\\pm\\infty\\), determining the long-term behavior of the function.",
+      rat_tbl1_1: "Degree top \\(<\\) degree bottom", rat_tbl1_2: "Horizontal asymptote is \\(y=0\\). The denominator grows faster, crushing the fraction to zero.", rat_tbl1_3: "\\(\\frac{1}{x^2+1}\\)",
+      rat_tbl2_1: "Degree top \\(=\\) degree bottom", rat_tbl2_2: "Use ratio of leading coefficients. The highest powers cancel, leaving a constant.", rat_tbl2_3: "\\(\\frac{2x+1}{x-3}\\Rightarrow y=2\\)",
+      rat_tbl3_1: "Degree top \\(>\\) degree bottom", rat_tbl3_2: "No horizontal asymptote; may have slant asymptote. The numerator grows faster, so the function behaves like a polynomial.", rat_tbl3_3: "\\(\\frac{x^2+1}{x-1}\\)",
+      rat_case6_title: "Case 6: Finding intercepts of a rational function",
+      rat_xint_title: "\\(x\\)-intercept", rat_xint_desc: "Set numerator equal to zero. A fraction is zero only when its numerator is zero (and denominator is not):", rat_xint_check: "Check denominator: \\(4+2=6 \\neq 0\\). Valid intercept.", rat_xint_ans: "\\((4,0)\\)",
+      rat_yint_title: "\\(y\\)-intercept", rat_yint_desc: "Set \\(x=0\\) and evaluate. This gives the starting height on the vertical axis:", rat_yint_ans: "\\((0,-2)\\)",
+      exp_title: "Exponential Functions: Complete Case-by-Case Lesson",
+      exp_intro: "Change \\(a\\), \\(b\\), and \\(k\\) to graph \\(y=a\\cdot b^x+k\\). The base \\(b\\) controls growth or decay, while \\(k\\) moves the horizontal asymptote.",
+      exp_def_title: "What is an exponential function?",
+      exp_def_desc: "An exponential function is a function where the variable appears in the exponent, not the base. This creates multiplicative change instead of additive change. Each step multiplies the previous output by a constant factor \\(b\\), leading to rapid acceleration or gradual decay. These functions model population growth, radioactive decay, compound interest, and cooling processes.",
+      exp_bullet1: "\\(a\\) controls the starting scale and reflection. It is the initial value when \\(x=0\\).", exp_bullet2: "\\(b\\) controls growth or decay. It is the constant multiplicative factor per unit increase in \\(x\\).",
+      exp_bullet3: "If \\(b>1\\), the function grows exponentially. The larger \\(b\\), the faster the explosion.", exp_bullet4: "If \\(0<b<1\\), the function decays exponentially. The closer \\(b\\) is to zero, the faster the decline.", exp_bullet5: "The parent exponential usually has horizontal asymptote \\(y=0\\), because \\(b^x\\) approaches zero but never reaches it.",
+      exp_case1_title: "Case 1: Exponential growth",
+      exp_case1_desc: "If the base is greater than \\(1\\), the function grows as \\(x\\) increases. The growth starts slowly, then accelerates dramatically. This compounding effect is why exponential growth eventually outpaces any polynomial.",
+      exp_tbl1_1: "Small positive value, approaching asymptote", exp_tbl1_2: "Still positive, doubling each step right", exp_tbl1_3: "Any nonzero base to power \\(0\\) is \\(1\\)", exp_tbl1_4: "Starts growing, multiplicative pattern begins", exp_tbl1_5: "Growth accelerates, each step doubles previous",
+      exp_case1_ans: "Growth case: \\(b>1\\). Domain: all reals. Range: \\(y>0\\). Horizontal asymptote: \\(y=0\\).",
+      exp_case2_title: "Case 2: Exponential decay",
+      exp_case2_desc: "If the base is between \\(0\\) and \\(1\\), the function decays as \\(x\\) increases. The output shrinks by a constant fraction each step. It approaches zero asymptotically but never actually reaches it, modeling half-life and depreciation.",
+      exp_tbl2_1: "Large when \\(x\\) is negative (reciprocal effect)", exp_tbl2_2: "Still above \\(1\\), halving as \\(x\\) increases", exp_tbl2_3: "Crosses \\(y=1\\), universal anchor point", exp_tbl2_4: "Gets smaller, multiplicative decay begins", exp_tbl2_5: "Approaches \\(0\\), never touches asymptote",
+      exp_case2_ans: "Decay case: \\(0<b<1\\). Graph is a reflection of growth across the \\(y\\)-axis. Range remains \\(y>0\\).",
+      exp_case3_title: "Case 3: Vertical shift and horizontal asymptote",
+      exp_case3_desc: "Adding \\(k\\) moves the exponential graph up or down. This shifts the horizontal asymptote from \\(y=0\\) to \\(y=k\\). The shape and growth rate stay identical, but the entire curve translates vertically. This models real-world scenarios like temperature approaching room temperature or debt approaching a baseline.",
+      exp_step1: "Parent function \\(2^x\\) has horizontal asymptote:", exp_step2: "Adding \\(+3\\) moves everything up \\(3\\) units. Every output increases by 3.", exp_step3: "New horizontal asymptote shifts accordingly:", exp_step4: "\\(y\\)-intercept shifts too:",
+      exp_case3_ans: "Vertical shift changes the asymptote from \\(y=0\\) to \\(y=k\\). Range becomes \\(y>k\\) (if \\(a>0\\)).",
+      exp_case4_title: "Case 4: Reflection over the \\(x\\)-axis",
+      exp_case4_desc: "If \\(a<0\\), the exponential graph reflects over the \\(x\\)-axis. The parent function’s positive outputs become negative. The curve now approaches the asymptote from below instead of above. This models loss, debt accumulation, or cooling below a reference point.",
+      exp_case4_1: "The parent \\(2^x\\) is always positive.", exp_case4_2: "The negative sign makes all outputs negative, flipping the curve downward.", exp_case4_3: "The graph is below the \\(x\\)-axis, approaching \\(y=0\\) from below.", exp_case4_4: "The horizontal asymptote is still \\(y=0\\). Reflection doesn’t move boundaries.",
+      exp_case4_ans: "Reflection case: \\(a<0\\). Range becomes \\(y<0\\). Asymptote unchanged.",
+      exp_case5_title: "Case 5: Solving exponential equations without logs",
+      exp_case5_desc: "If both sides can be written with the same base, solve by matching exponents. This works because exponential functions are one-to-one: if \\(b^m=b^p\\) and \\(b>0, b\\neq1\\), then \\(m=p\\). This method is fast but only works when bases align perfectly.",
+      exp_step5: "Divide by \\(3\\) to isolate the exponential term:", exp_step6: "Rewrite \\(8\\) as a power of \\(2\\) to match bases:", exp_step7: "Match exponents. Since bases are identical, exponents must be equal:",
+      exp_case5_ans: "\\(x=3\\). Always verify by substituting back into the original equation.",
+      exp_case6_title: "Case 6: Solving exponential equations with logs",
+      exp_case6_desc: "If the number cannot be rewritten with the same base, use logarithms. Logarithms are the inverse of exponentials, allowing you to bring the variable down from the exponent. This method works for any positive base and is essential for real-world modeling.",
+      exp_step8: "Divide by \\(5\\) to isolate the exponential:", exp_step9: "Take logarithm of both sides. Any base works; common or natural log is standard:", exp_step10: "Bring down the exponent using the power rule \\(\\log(b^x)=x\\log b\\):", exp_step11: "Solve for \\(x\\) by dividing:",
+      exp_case6_ans: "\\(x=\\frac{\\log8}{\\log3}\\approx1.89\\). This exact form is preferred; decimal is for interpretation.",
+      exp_qtypes_title: "Exponential question types you must master",
+      exp_tbl1_1: "Given \\(x\\), find \\(y\\)", exp_tbl1_2: "Substitute \\(x\\) and evaluate carefully", exp_tbl1_3: "\\(3\\cdot2^4=48\\)",
+      exp_tbl2_1: "Given \\(y\\), find \\(x\\)", exp_tbl2_2: "Isolate exponential, then use same-base or logs", exp_tbl2_3: "\\(2^x=8\\Rightarrow x=3\\)",
+      exp_tbl3_1: "Find starting value", exp_tbl3_2: "Use \\(f(0)\\). The exponent vanishes, leaving \\(a\\)", exp_tbl3_3: "\\(a\\cdot b^0=a\\)",
+      exp_tbl4_1: "Identify growth/decay", exp_tbl4_2: "Look at \\(b\\). Greater than 1 grows, between 0 and 1 decays", exp_tbl4_3: "\\(b>1\\) growth, \\(0<b<1\\) decay",
+      exp_tbl5_1: "Find asymptote", exp_tbl5_2: "Look at \\(k\\). The exponential part vanishes at extremes", exp_tbl5_3: "\\(a\\cdot b^x+k\\Rightarrow y=k\\)"
+    },
+    uz: {
+      nav_home: "Bosh sahifa", nav_other: "Funksiyalarning boshqa turlari", header_title: "Funksiyalarga <br>kirish",
+      btn_readmore: "Batafsil o‘qish", btn_practice: "Funksiyalar bo‘yicha mashq qilish",
+      sec0_title: "Boshlashdan oldin: funksiyalar tili",
+      sec0_desc1: "Funksiya — bu har bir ruxsat etilgan kirish qiymatiga aynan bitta chiqish qiymatini mos qo‘yuvchi aniq matematik qoida. Uni mashina deb tasavvur qiling: siz songa kiritasiz, u belgilangan jarayonni bajaradi va bitta natija beradi. Odatda bunday yozamiz:",
+      sec0_desc2: "Bu yozuv “chiqish qiymati \\(y\\) to‘liq kirish qiymati \\(x\\) ga bog‘liq” degani. Funksiya grafigi esa koordinata tekisligida chizilgan barcha mumkin bo‘lgan kirish-chiqish juftliklarining vizual xaritasidir. Agar vertikal chiziq grafikni bir martadan ko‘p kesib o‘tsa, u vertikal chiziq testidan o‘tmaydi va funksiya hisoblanmaydi.",
+      sec0_input_title: "Kirish qiymati", sec0_input_desc: "Funksiyaga kiritiladigan qiymat. Odatda u \\(x\\) bilan belgilanadi va erkli o‘zgaruvchi deb ataladi, chunki uni aniqlanish sohasi doirasida erkin tanlaysiz.",
+      sec0_output_title: "Chiqish qiymati", sec0_output_desc: "Funksiya natija sifatida beradigan qiymat. Odatda u \\(y\\) yoki \\(f(x)\\) bilan belgilanadi va erksiz o‘zgaruvchi deb ataladi, chunki uning qiymati \\(x\\) ga bog‘liq.",
+      sec0_graph_title: "Grafik", sec0_graph_desc: "Funksiya qoidasini qanoatlantiradigan barcha \\((x,y)\\) nuqtalarning geometrik tasviri. Shakl funksiyaning xatti-harakatini ochib beradi: o‘sish/kamayish oraliqlari, simmetriya, chegaralar va asimptotik tendensiyalar.",
+      sec1_title: "Aniqlanish sohasi, qiymatlar sohasi, o‘qlar bilan kesishish va grafiklar kesishishi",
+      sec1_domain_title: "Aniqlanish sohasi", sec1_domain_desc: "Ruxsat etilgan barcha \\(x\\) qiymatlar. Savol: “Qaysi kirish qiymatlari mumkin?” Cheklovlar nolga bo‘lish, manfiy sonlardan juft darajali ildiz olish yoki musbat bo‘lmagan sonlarning logarifmidan kelib chiqadi.",
+      sec1_domain_ex: "<strong>Misol:</strong> \\(\\frac{1}{x-2}\\) da \\(x=2\\) maxrajni nolga aylantiradi, shuning uchun u aniqlanish sohasidan chiqarib tashlanadi.",
+      sec1_range_title: "Qiymatlar sohasi", sec1_range_desc: "Funksiya hosil qila oladigan barcha \\(y\\) qiymatlar. Savol: “Qaysi chiqish qiymatlari hosil bo‘ladi?” Qiymatlar sohasi ko‘pincha grafikning eng yuqori/pastki nuqtalari yoki asimptotik chegaralarni tahlil qilish orqali topiladi.",
+      sec1_range_ex: "<strong>Misol:</strong> \\(x^2\\) uchun har qanday haqiqiy sonni kvadratga oshirish hech qachon manfiy natija bermaydi, shuning uchun qiymatlar sohasi \\(y\\ge0\\).",
+      sec1_xint_title: "\\(x\\)-o‘qi bilan kesishish", sec1_xint_desc: "Grafik \\(x\\)-o‘qini kesadigan joy. Bu nuqtalarda chiqish qiymati nolga teng, shuning uchun \\(y=0\\) yoki \\(f(x)=0\\) deb olib, \\(x\\) ni toping. Bular ildizlar yoki nollar deb ham ataladi.",
+      sec1_yint_title: "\\(y\\)-o‘qi bilan kesishish", sec1_yint_desc: "Grafik \\(y\\)-o‘qini kesadigan joy. Bu kirish qiymati nolga teng bo‘lganda sodir bo‘ladi, shuning uchun \\(x=0\\) deb olib, \\(f(0)\\) ni hisoblang. Funksiya ko‘pi bilan bitta \\(y\\)-kesishishga ega bo‘lishi mumkin.",
+      sec1_callout: "Ikki funksiya kesishganda ular o‘sha nuqtada aynan bir xil koordinatalarga ega bo‘ladi. Bu kesishishda \\(f(x)=g(x)\\) degani. Bu tenglamani \\(x\\) ga nisbatan yeching, keyin natijani istalgan funksiyaga qo‘yib mos \\(y\\) qiymatni toping.",
+      tab_quad: "Kvadrat funksiyalar", tab_cubic: "Kubik funksiyalar", tab_rational: "Ratsional funksiyalar", tab_exp: "Eksponensial funksiyalar",
+      quad_title: "Kvadrat funksiyalar: holatlar bo‘yicha to‘liq dars",
+      quad_intro: "\\(a\\), \\(b\\) va \\(c\\) parametrlarini o‘zgartirib, \\(y=ax^2+bx+c\\) parabolasi qanday o‘zgarishini kuzating. Ayniqsa, \\(a\\) koeffitsiyenti parabolaning yo‘nalishi va kengligiga, \\(c\\) esa \\(y\\)-o‘qi bilan kesishish nuqtasiga qanday ta’sir qilishiga e’tibor bering.",
+      quad_def_title: "Kvadrat funksiya nima?",
+      quad_def_desc: "Kvadrat funksiya — darajasi \\(2\\) bo‘lgan ko‘phad funksiya. “Kvadrat” so‘zi lotincha “quadratus” (kvadrat, to‘rtburchak) so‘zidan olingan, chunki o‘zgaruvchi kvadratga oshiriladi. \\(x\\) ning eng katta darajasi aynan \\(2\\), bu esa grafikning har doim parabola deb ataladigan simmetrik U-simon egri chiziq bo‘lishini kafolatlaydi. \\(a \\neq 0\\) sharti juda muhim; agar \\(a=0\\) bo‘lsa, \\(x^2\\) hadi yo‘qoladi va funksiya chiziqli bo‘lib qoladi.",
+      quad_bullet1: "\\(a\\) parabolaning yuqoriga yoki pastga ochilishini belgilaydi. Musbat \\(a\\) “tabassum” shaklini (minimum), manfiy \\(a\\) esa “xafa” shaklini (maksimum) hosil qiladi.",
+      quad_bullet2: "\\(a\\) parabolaning keng yoki tor bo‘lishiga ham ta’sir qiladi. Katta \\(|a|\\) grafikni vertikal siqadi, uni tikroq va torroq qiladi. Kichik \\(|a|\\) esa uni cho‘zadi, kengroq va yassiroq qiladi.",
+      quad_bullet3: "\\(b\\) uch nuqta va simmetriya o‘qining joylashuvini aniqlashda rol o‘ynaydi. \\(a\\) bilan birgalikda u parabolani \\(x=\\frac{-b}{2a}\\) formulaga ko‘ra chapga yoki o‘ngga siljitadi.",
+      quad_bullet4: "\\(c\\) — \\(y\\)-o‘qi bilan kesishish qiymati, chunki \\(f(0)=c\\). U butun parabolani shakli yoki yo‘nalishini o‘zgartirmasdan vertikal siljitadi.",
+      quad_callout1: "Kvadrat funksiya shunchaki “egri chiziq” emas. Uning aniq bashorat qilinadigan tuzilishi bor: bitta uch nuqta (burilish nuqtasi), vertikal simmetriya o‘qi, barqaror ochilish yo‘nalishi, ko‘pi bilan ikkita haqiqiy ildiz va bir tomondan chegaralangan qiymatlar sohasi. Bu xususiyatlar kvadratik funksiyalarni fizika, iqtisodiyot va optimallashtirishda asosiy vosita qiladi.",
+      quad_forms_title: "Kvadrat funksiyaning uch asosiy ko‘rinishi",
+      quad_forms_desc: "Har bir ko‘rinish bitta parabolaning turli jihatlarini yoritadi. Ular o‘rtasida o‘tish algebraning asosiy ko‘nikmasi bo‘lib, grafik haqida yashirin ma’lumotlarni ochib beradi.",
+      quad_formA_title: "A-ko‘rinish: standart ko‘rinish", quad_formA_1: "\\(a,b,c\\) koeffitsiyentlarni to‘g‘ridan-to‘g‘ri ko‘rish uchun qulay.", quad_formA_2: "\\(c\\) \\(y\\)-o‘qi bilan kesishish qiymatini darhol beradi.", quad_formA_3: "Uch nuqtaning \\(x\\) koordinatasi \\(x=\\frac{-b}{2a}\\) orqali topiladi, keyin \\(y\\) ni topish uchun qo‘yiladi.",
+      quad_formB_title: "B-ko‘rinish: uch nuqta ko‘rinishi", quad_formB_1: "Almashtirishlar va burilish nuqtasini ko‘rish uchun qulay.", quad_formB_2: "Uch nuqta: \\((h,k)\\) tenglamadan to‘g‘ridan-to‘g‘ri o‘qiladi.", quad_formB_3: "Simmetriya o‘qi: \\(x=h\\). \\(a\\) ning ishorasi hali ham yo‘nalishni boshqaradi.",
+      quad_formC_title: "C-ko‘rinish: ko‘paytuvchilarga ajratilgan ko‘rinish", quad_formC_1: "Ildizlar va \\(x\\)-kesishishlarni darhol ko‘rish uchun qulay.", quad_formC_2: "\\(x=r_1\\) va \\(x=r_2\\) funksiyaning nollaridir.", quad_formC_3: "Ildizlar — grafikning \\(x\\)-o‘qi bilan kesishish nuqtalari. Uch nuqta ularning aynan o‘rtasida joylashadi.",
+      quad_case1_title: "1-holat: \\(a>0\\), ikkita ildiz, yuqoriga ochilgan parabola",
+      quad_case1_desc: "Bu boshlang‘ich darajada eng ko‘p uchraydigan holat. Agar \\(a>0\\) bo‘lsa, parabola yuqoriga ochiladi, ya’ni uch nuqta grafikning eng pastki nuqtasi (global minimum) bo‘ladi. Funksiya uch nuqtagacha kamayadi, keyin simmetrik ravishda o‘sadi.",
+      quad_step1: "Ildizlarni ko‘rsatish uchun ifodani ko‘paytuvchilarga ajrating:", quad_step2: "\\(f(x)=0\\) deb olib, \\(x\\)-kesishishlarni toping. Nol ko‘paytma xossasiga ko‘ra, agar ko‘paytma nolga teng bo‘lsa, kamida bitta ko‘paytuvchi nol bo‘lishi kerak:", quad_step3: "\\(x=0\\) da qiymatni hisoblab, \\(y\\)-kesishishni toping. Bu grafikning vertikal o‘qda qayerdan boshlanishini ko‘rsatadi:", quad_step4: "Uch nuqtani toping. Parabola simmetrik, shuning uchun uch nuqta ildizlarning aynan o‘rtasida \\(x=\\frac{2+3}{2}=2.5\\) da joylashadi. Yoki \\(x=\\frac{-b}{2a}\\) dan foydalaning:",
+      quad_case1_ans: "Uch nuqta: \\((2.5,-0.25)\\), ildizlar: \\(2\\) va \\(3\\), \\(y\\)-o‘qi bilan kesishish: \\((0,6)\\)",
+      quad_case1_callout: "\\(a>0\\) bo‘lgani uchun grafik uch nuqtagacha pastga tushadi, keyin yuqoriga ko‘tariladi. Qiymatlar sohasi uch nuqta \\(y\\) qiymati bilan pastdan chegaralangan: \\(y\\ge -0.25\\). Bu minimum qiymat optimallashtirish masalalarida juda muhim.",
+      quad_case2_title: "2-holat: \\(a<0\\), ikkita ildiz, pastga ochilgan parabola",
+      quad_case2_desc: "Agar \\(a<0\\) bo‘lsa, parabola pastga ochiladi. Bu butun grafikni musbat holatga nisbatan \\(x\\)-o‘qiga akslantiradi. Uch nuqta eng yuqori nuqta (global maksimum) bo‘lib qoladi va qiymatlar sohasi pastdan emas, yuqoridan chegaralanadi.",
+      quad_step5: "Ko‘paytuvchilarga ajratishni soddalashtirish uchun manfiy ishorani tashqariga chiqaring:", quad_step6: "Ichkaridagi ifodani odatdagidek ko‘paytuvchilarga ajrating:", quad_step7: "Ildizlar har bir ko‘paytuvchini nolga tenglash orqali topiladi. Manfiy ishora grafikning o‘qni qayerda kesishini o‘zgartirmaydi:", quad_step8: "Xuddi shu simmetriya prinsipidan foydalanib uch nuqtani toping. \\(x\\) koordinatasi o‘zgarmaydi, lekin \\(y\\) qiymati ishorasini o‘zgartiradi:",
+      quad_case2_ans: "Uch nuqta: \\((2.5,0.25)\\), maksimum qiymat: \\(0.25\\)",
+      quad_case2_callout: "Ildizlar oldingi misoldagidek, lekin butun grafik \\(x\\)-o‘qiga nisbatan akslantirilgan. Shuning uchun uch nuqta minimumdan maksimumga aylandi va qiymatlar sohasi endi \\(y\\le 0.25\\).",
+      quad_case3_title: "3-holat: takroriy ildiz, parabola \\(x\\)-o‘qiga urinadi",
+      quad_case3_desc: "Ba’zan kvadrat funksiyaning faqat bitta haqiqiy ildizi bo‘ladi. Bu parabola \\(x\\)-o‘qiga uch nuqtada tegib, lekin uni kesib o‘tmaganda yuz beradi. Algebraik jihatdan diskriminant \\(D=b^2-4ac\\) nolga teng bo‘lib, ikki karrali ildizni bildiradi.",
+      quad_case3_1: "Ildiz: \\(x=2\\), lekin uning karraligi 2 ga teng.", quad_case3_2: "Uch nuqta: \\((2,0)\\), aynan \\(x\\)-o‘qida joylashgan.", quad_case3_3: "Grafik \\((2,0)\\) nuqtada \\(x\\)-o‘qiga urinadi va yuqoriga qaytadi.", quad_case3_4: "Diskriminant: \\(D=0\\), bu bitta takroriy ildizni tasdiqlaydi.",
+      quad_case3_ans: "Bitta haqiqiy ildiz: \\(x=2\\), ikki marta takrorlangan",
+      quad_case3_callout: "Takroriy ildiz grafikning \\(x\\)-o‘qiga urinma ekanligini bildiradi. U tegib, ortga qaytadi, kesib o‘tmaydi. Bu xususiyat tengsizliklar va ishoralar jadvalini tahlil qilishda juda muhim.",
+      quad_case4_title: "4-holat: haqiqiy ildiz yo‘q, parabola \\(x\\)-o‘qiga tegmaydi",
+      quad_case4_desc: "Kvadrat funksiya haqiqiy ildizga ega bo‘lmasligi ham mumkin. Bu grafik \\(x\\)-o‘qini na kesadi, na unga tegadi degani. Butun parabola \\(a\\) ning ishorasiga qarab o‘qdan to‘liq yuqorida yoki pastda suzib yuradi. Diskriminant manfiy bo‘lib, kompleks qo‘shma ildizlarni bildiradi.",
+      quad_case4_1: "Har qanday haqiqiy \\(x\\) uchun \\(x^2\\ge0\\), shuning uchun 4 ni qo‘shish musbatlikni kafolatlaydi.", quad_case4_2: "Shuning uchun \\(x^2+4\\ge4\\). Chiqish qiymati hech qachon 4 dan pastga tushmaydi.", quad_case4_3: "Grafik har doim \\(x\\)-o‘qidan yuqorida, \\(y=x^2\\) dan 4 birlik balandroqda joylashadi.", quad_case4_4: "\\(f(x)=0\\) ning haqiqiy yechimi yo‘qligi sababli \\(x\\)-kesishishlar mavjud emas.",
+      quad_case4_ans: "Haqiqiy ildiz yo‘q; qiymatlar sohasi: \\(y\\ge4\\)",
+      quad_case4_callout: "Buni diskriminant orqali tekshiring: \\(D=b^2-4ac=0^2-4(1)(4)=-16<0\\). \\(D<0\\) bo‘lgani uchun haqiqiy ildizlar yo‘q. Uch nuqta \\((0,4)\\) mutlaq minimum bo‘lib, grafik hech qachon o‘qqa tushmaydi.",
+      quad_case5_title: "5-holat: uch nuqta ko‘rinishi va almashtirishlar",
+      quad_case5_desc: "Uch nuqta ko‘rinishi grafikdagi almashtirishlarni aniq ko‘rsatadi. Uch nuqtani hisoblash o‘rniga, uni to‘g‘ridan-to‘g‘ri o‘qiysiz. Bu ko‘rinish \\(y=x^2\\) asosiy funksiyasini siljitish, cho‘zish va akslantirish orqali quriladi.",
+      quad_step9: "Uch nuqta \\((h,k)\\) dan to‘g‘ridan-to‘g‘ri o‘qiladi:", quad_step10: "Simmetriya o‘qi uch nuqta orqali o‘tadi:", quad_step11: "\\(a=2>0\\) bo‘lgani uchun parabola yuqoriga ochiladi va 2 koeffitsiyentga vertikal cho‘ziladi, bu uni \\(y=x^2\\) ga qaraganda torroq qiladi.", quad_step12: "Qiymatlar sohasi uch nuqta \\(y\\) qiymatidan boshlanib, yuqoriga cho‘ziladi:",
+      quad_case5_ans: "Uch nuqta ko‘rinishi qo‘shimcha hisob-kitoblarsiz grafikning joylashuvi, shakli, yo‘nalishi va qiymatlar sohasini darhol beradi.",
+      quad_qtypes_title: "Yaxshi bilishingiz kerak bo‘lgan kvadrat funksiya savol turlari",
+      tbl_qtype: "Savol turi", tbl_todo: "Nima qilish kerak", tbl_ex: "Misol", tbl_method: "Usul", tbl_mini_ex: "Kichik misol", tbl_case: "Holat", tbl_rule: "Qoida", tbl_meaning: "Ma’nosi",
+      quad_tbl1_1: "\\(x\\) berilgan, \\(y\\) ni topish", quad_tbl1_2: "\\(x\\) ni tenglamaga qo‘yib soddalashtiring", quad_tbl1_3: "\\(f(2)=2^2-5(2)+6=0\\)",
+      quad_tbl2_1: "Ildizlarni topish", quad_tbl2_2: "\\(f(x)=0\\) deb oling, ko‘paytuvchilarga ajrating, to‘la kvadratga to‘ldiring yoki kvadrat formuladan foydalaning", quad_tbl2_3: "\\((x-2)(x-3)=0\\)",
+      quad_tbl3_1: "Uch nuqtani topish", quad_tbl3_2: "\\(x=\\frac{-b}{2a}\\) dan foydalaning yoki uch nuqta ko‘rinishidan \\((h,k)\\) ni o‘qing", quad_tbl3_3: "\\(x=2.5\\)",
+      quad_tbl4_1: "\\(y\\)-o‘qi bilan kesishishni topish", quad_tbl4_2: "\\(x=0\\) deb olib, \\(f(0)\\) ni hisoblang", quad_tbl4_3: "\\(f(0)=c\\)",
+      quad_tbl5_1: "Ildizlar sonini aniqlash", quad_tbl5_2: "Diskriminantni hisoblang: \\(D=b^2-4ac\\)", quad_tbl5_3: "\\(D>0\\): 2 ta ildiz, \\(D=0\\): 1 ta ildiz, \\(D<0\\): haqiqiy ildiz yo‘q",
+      cubic_title: "Kubik funksiyalar: holatlar bo‘yicha to‘liq dars",
+      cubic_intro: "\\(a\\), \\(h\\) va \\(k\\) ni o‘zgartirib, \\(y=a(x-h)^3+k\\) kubik funksiyaning grafigini kuzating. \\((h,k)\\) nuqta egilish nuqtasi deb ataladi; grafik shu nuqta atrofida yo‘nalishini yumshoq o‘zgartiradi.",
+      cubic_def_title: "Kubik funksiya nima?",
+      cubic_def_desc: "Kubik funksiya — darajasi \\(3\\) bo‘lgan ko‘phad funksiya. Unda \\(x\\) ning eng katta darajasi \\(x^3\\), bu esa uning xatti-harakatini kvadratik funksiyalardan tubdan farq qiladi. Daraja toq bo‘lgani uchun grafikning uchlari har doim qarama-qarshi yo‘nalishda bo‘ladi. Kubik funksiyalar buralishi, burilishi va \\(x\\)-o‘qini uch martagacha kesib o‘tishi mumkin, bu ularni hajm, suyuqlik dinamikasi va iqtisodiy tsikllarni modellashtirishda muhim qiladi.",
+      cubic_bullet1: "Grafikning chekkalardagi yo‘nalishi \\(a\\) ning ishorasiga bog‘liq. Toq daraja bir uch \\(+\\infty\\) ga, ikkinchisi \\(-\\infty\\) ga ketishini anglatadi.",
+      cubic_bullet2: "Ildiz karraligi va burilish nuqtalariga qarab u \\(1\\), \\(2\\) yoki \\(3\\) ta haqiqiy \\(x\\)-kesishish nuqtasiga ega bo‘lishi mumkin.",
+      cubic_bullet3: "Unda burilish nuqtasi bo‘lmasligi (monoton) yoki ikkita burilish nuqtasi (lokal maksimum va minimum) bo‘lishi mumkin.",
+      cubic_bullet4: "Unda egilish nuqtasi bo‘ladi; shu joyda grafikning botiqligi o‘zgaradi (yuqoriga botiqdan pastga botiqqa yoki aksincha).",
+      cubic_case1_title: "1-holat: asosiy kubik funksiya \\(f(x)=x^3\\)",
+      cubic_case1_desc: "Asosiy kubik funksiya eng sodda kubik funksiyadir. U koordinata boshidan o‘tadi va S-simon shaklga ega. Bu toq funksiya, ya’ni \\(f(-x)=-f(x)\\), bu koordinata boshiga nisbatan burilish simmetriyasini hosil qiladi.",
+      cubic_pts_title: "Muhim nuqtalar", cubic_beh_title: "Grafik harakati",
+      cubic_beh1: "\\(x\\) manfiylashgani sari chap tomon tez pastga ketadi.", cubic_beh2: "\\(x\\) ortgani sari o‘ng tomon tez yuqoriga ketadi.", cubic_beh3: "Aniqlanish sohasi — barcha haqiqiy sonlar: \\((-\\infty,\\infty)\\).", cubic_beh4: "Qiymatlar sohasi — barcha haqiqiy sonlar: \\((-\\infty,\\infty)\\).",
+      cubic_case1_ans: "\\(x^3\\) hamma joyda qat’iy o‘suvchi, koordinata boshidan o‘tadi va \\((0,0)\\) da botiqlik o‘zgaradigan egilish nuqtasiga ega.",
+      cubic_case2_title: "2-holat: bosh koeffitsiyent manfiy",
+      cubic_case2_desc: "Agar \\(a<0\\) bo‘lsa, kubik grafik \\(x\\)-o‘qiga nisbatan akslanadi. Chap tomoni yuqoriga, o‘ng tomoni pastga ketadi. Bu teskari o‘zgarish butun chiqish qiymatlarini manfiy songa ko‘paytirish har bir \\(y\\) ni ag‘darib yuborgani uchun sodir bo‘ladi.",
+      cubic_posA: "Agar \\(a>0\\) bo‘lsa", cubic_posA_1: "\\(x\\to-\\infty\\Rightarrow f(x)\\to-\\infty\\)", cubic_posA_2: "\\(x\\to+\\infty\\Rightarrow f(x)\\to+\\infty\\)",
+      cubic_negA: "Agar \\(a<0\\) bo‘lsa", cubic_negA_1: "\\(x\\to-\\infty\\Rightarrow f(x)\\to+\\infty\\)", cubic_negA_2: "\\(x\\to+\\infty\\Rightarrow f(x)\\to-\\infty\\)",
+      cubic_case2_ans: "Manfiy \\(a\\) kubik grafikning chekkalardagi yo‘nalishini teskari qiladi va butun S-egri chizig‘ini \\(x\\)-o‘qiga nisbatan akslantiradi.",
+      cubic_case3_title: "3-holat: siljigan kubik funksiya \\(a(x-h)^3+k\\)",
+      cubic_case3_desc: "\\(a(x-h)^3+k\\) ko‘rinishi grafikdagi almashtirishlarni aniq ko‘rsatadi. Nuqtalarni qayta hisoblash o‘rniga, siz butun asosiy grafikni siljitasiz. Egilish nuqtasi \\((0,0)\\) dan \\((h,k)\\) ga ko‘chadi va shakl \\(|a|\\) ga masshtablanadi.",
+      cubic_step1: "\\(h=3\\), shuning uchun grafik \\(3\\) birlik o‘ngga siljiydi. Eslatma: qavs ichidagi ishora siljish yo‘nalishiga qarama-qarshi.", cubic_step2: "\\(k=-4\\), shuning uchun grafik \\(4\\) birlik pastga siljiydi. Bu butun egri chiziqni deformatsiyasiz vertikal ko‘chiradi.",
+      cubic_step3: "\\(a=2\\), shuning uchun grafik vertikal yo‘nalishda \\(2\\) marta cho‘ziladi. U tikroq bo‘ladi, lekin egilish nuqtasi va simmetriya saqlanib qoladi.", cubic_step4: "Egilish nuqtasi yangi simmetriya markazi hisoblanadi:",
+      cubic_case3_ans: "\\(a(x-h)^3+k\\) asosiy kubik grafikni S-simon shaklini saqlagan holda siljitadi. Egilish nuqtasi barcha almashtirishlarni bog‘lab turadi.",
+      cubic_case4_title: "4-holat: uchta haqiqiy ildizli kubik funksiya",
+      cubic_case4_desc: "Kubik funksiya \\(x\\)-o‘qini uch marta kesib o‘tishi mumkin. Bu grafikda o‘qni qamrab oluvchi ikkita burilish nuqtasi bo‘lganda sodir bo‘lib, uchta turli nolni hosil qiladi. Ko‘paytuvchilarga ajratish bu kesishishlarni to‘g‘ridan-to‘g‘ri ko‘rsatadi.",
+      cubic_step5: "Ko‘phadni soddalashtirish uchun umumiy \\(x\\) ni tashqariga chiqaring:", cubic_step6: "Kvadrat hadga kvadratlar ayirmasini qo‘llang:", cubic_step7: "Har bir ko‘paytuvchini nolga tenglang. Nol ko‘paytma xossasi darajadan qat’i nazar amal qiladi:",
+      cubic_case4_ans: "\\(x\\)-kesishish nuqtalari: \\((-2,0)\\), \\((0,0)\\), \\((2,0)\\). Grafik har bir ildizda o‘qni kesib o‘tadi, chunki barchasi toq karralikka ega.",
+      cubic_case5_title: "5-holat: bitta haqiqiy ildizli kubik funksiya",
+      cubic_case5_desc: "Ba’zi kubik funksiyalar \\(x\\)-o‘qini faqat bir marta kesadi. Bu burilish nuqtalari ikkalasi ham o‘qdan yuqorida yoki pastda bo‘lganda, yoki funksiya qat’iy monoton bo‘lganda sodir bo‘ladi. Qolgan ikkita ildiz kompleks qo‘shma bo‘ladi.",
+      cubic_step8: "Chiqish qiymati nolga aylanadigan joyni topish uchun \\(f(x)=0\\) deb oling:", cubic_step9: "Kubik hadni yakka qoldirish uchun \\(1\\) ni tenglamaning boshqa tomoniga o‘tkazing:", cubic_step10: "Har ikki tomondan kub ildiz oling. Kvadrat ildizdan farqli o‘laroq, kub ildiz ishorani saqlaydi:",
+      cubic_case5_ans: "Bitta haqiqiy \\(x\\)-kesishish: \\((-1,0)\\). Grafik bir marta kesib o‘tadi va monoton davom etadi.",
+      cubic_case5_callout: "Kubik funksiyada har doim kamida bitta haqiqiy ildiz bo‘ladi, chunki uning uchlari qarama-qarshi cheksizlikka ketadi. Oraliq qiymatlar teoremasiga ko‘ra, uzluksiz egri chiziq qayerdadir \\(x\\)-o‘qini kesib o‘tishi shart.",
+      cubic_qtypes_title: "Yaxshi bilishingiz kerak bo‘lgan kubik funksiya savol turlari",
+      cubic_tbl1_1: "\\(x\\) berilgan, \\(y\\) ni topish", cubic_tbl1_2: "\\(x\\) ni qo‘yib, ehtiyotkorlik bilan hisoblang", cubic_tbl1_3: "\\(f(2)=2^3-2(2)=4\\)",
+      cubic_tbl2_1: "Ildizlarni topish", cubic_tbl2_2: "\\(f(x)=0\\) deb oling, guruhlash yoki sintetik bo‘lish orqali ko‘paytuvchilarga ajrating", cubic_tbl2_3: "\\(x(x-2)(x+2)=0\\)",
+      cubic_tbl3_1: "Chekkalardagi yo‘nalishni tasvirlash", cubic_tbl3_2: "Bosh koeffitsiyent va toq darajaga qarang", cubic_tbl3_3: "\\(a>0\\): chap pastga, o‘ng yuqoriga",
+      cubic_tbl4_1: "Grafikni almashtirish", cubic_tbl4_2: "Siljitish va masshtablash uchun \\(a(x-h)^3+k\\) dan foydalaning", cubic_tbl4_3: "\\((h,k)\\) egilish nuqtasini beradi",
+      rat_title: "Ratsional funksiyalar: holatlar bo‘yicha to‘liq dars",
+      rat_intro: "\\(a\\), \\(h\\) va \\(k\\) ni o‘zgartirib, \\(y=\\frac{a}{x-h}+k\\) grafigini kuzating. Bu grafikda vertikal asimptota \\(x=h\\), gorizontal asimptota esa \\(y=k\\) bo‘ladi.",
+      rat_def_title: "Ratsional funksiya nima?",
+      rat_def_desc: "Ratsional funksiya — ikki ko‘phadning nisbati ko‘rinishida yoziladigan funksiya. “Ratsional” so‘zi “nisbat” (ratio) dan olingan, mantiqiy degani emas. Nolga bo‘lish aniqlanmaganligi sababli, maxrajni nolga aylantiradigan har qanday \\(x\\) qiymati aniqlanish sohasidan chiqarib tashlanadi. Bu cheklovlar dramatik grafik xususiyatlarni hosil qiladi: funksiya cheksizlikka intiladigan vertikal asimptotalar yoki ko‘paytuvchi qisqarganda paydo bo‘ladigan teshiklar.",
+      rat_bullet1: "Maxraj nol bo‘lishi mumkin emas. Bu cheklov aniqlanish sohasi chegaralarini belgilaydi.", rat_bullet2: "Maxrajni nolga aylantiradigan qiymatlar aniqlanish sohasidan chiqariladi va ko‘pincha asimptotalarni hosil qiladi.",
+      rat_bullet3: "Grafikda funksiya \\(\\pm\\infty\\) ga yaqinlashadigan vertikal asimptotalar bo‘lishi mumkin.", rat_bullet4: "Grafikda \\(x\\to\\pm\\infty\\) da uzoq muddatli xatti-harakatni tavsiflovchi gorizontal yoki qiya asimptotalar bo‘lishi mumkin.", rat_bullet5: "Agar ko‘paytuvchi to‘liq qisqarsa, grafikda bartaraf etiladigan uzilish (teshik) ham paydo bo‘lishi mumkin.",
+      rat_case1_title: "1-holat: asosiy ratsional funksiya \\(f(x)=\\frac{1}{x}\\)",
+      rat_case1_desc: "Bu asosiy ratsional funksiyadir. Uning grafigi qarama-qarshi choraklarda ikkita shoxga ega bo‘lgan to‘g‘ri burchakli giperboladir. \\(x\\) nolga yaqinlashganda chiqish qiymati portlaydi. \\(x\\) kattalashganda chiqish nolga intiladi.",
+      rat_dom_title: "Aniqlanish sohasi", rat_dom_desc: "\\(x \\neq 0\\), chunki nolga bo‘lish aniqlanmagan. Aniqlanish sohasi ikkita oraliqqa bo‘linadi.",
+      rat_asymp_title: "Asimptotalar", rat_vasymp: "Vertikal asimptota: \\(x=0\\) (funksiya nol yaqinida portlaydi)", rat_hasymp: "Gorizontal asimptota: \\(y=0\\) (chekka qiymatlarda chiqish nolga intiladi)",
+      rat_case1_ans: "Grafik o‘qlarga cheksiz yaqinlashadi, lekin ularga hech qachon tegmaydi yoki kesib o‘tmaydi. Bu chegaraviy xatti-harakat asimptotalarni belgilaydi.",
+      rat_case2_title: "2-holat: siljigan ratsional funksiya",
+      rat_case2_desc: "\\(\\frac{a}{x-h}+k\\) ko‘rinishi asimptotalarni darhol ko‘rsatadi. Butun giperbola shaklini o‘zgartirmasdan ko‘chadi. Vertikal asimptota \\(x=h\\) ga, gorizontal asimptota \\(y=k\\) ga siljiydi.",
+      rat_step1: "Vertikal asimptota maxrajdan topiladi. Taqiqlangan \\(x\\) qiymatni topish uchun uni nolga tenglang:", rat_step2: "Gorizontal asimptota vertikal siljishdan keladi. \\(x\\to\\pm\\infty\\) da kasr yo‘qoladi, faqat \\(k\\) qoladi:", rat_step3: "\\(a=3\\) qiymati cho‘zilish va shoxlarning yo‘nalishini belgilaydi. Musbat \\(a\\) shoxlarni asimptotalar kesishishiga nisbatan I/III choraklarda saqlaydi.",
+      rat_case2_ans: "Vertikal asimptota: \\(x=2\\), gorizontal asimptota: \\(y=4\\). Giperbolaning markazi \\((2,4)\\).",
+      rat_case3_title: "3-holat: vertikal asimptotali ratsional funksiya",
+      rat_case3_desc: "Vertikal asimptota maxraj nolga teng bo‘lib, shu ko‘paytuvchi surat bilan qisqarmaganda paydo bo‘ladi. Bu \\(x\\) qiymat yaqinida funksiya ikki tomonda qarama-qarshi yo‘nalishda cheksiz o‘sadi.",
+      rat_step4: "Cheklovni topish uchun maxrajni nolga tenglang:", rat_step5: "\\(x=3\\) da suratni tekshiring. Agar u noldan farqli bo‘lsa, kasr portlaydi:", rat_step6: "Surat nol bo‘lmagani uchun grafikda vertikal asimptota bo‘ladi. Funksiya bir tomonda \\(+\\infty\\) ga, ikkinchi tomonda \\(-\\infty\\) ga intiladi.",
+      rat_case3_ans: "Vertikal asimptota: \\(x=3\\). Grafik bu chiziq bilan ajratilgan ikkita shoxga bo‘linadi.",
+      rat_case4_title: "4-holat: teshik / bartaraf etiladigan uzilish",
+      rat_case4_desc: "Teshik surat va maxrajda bir xil ko‘paytuvchi bo‘lib, u qisqarganda paydo bo‘ladi. Funksiya qisqartirilgan versiya kabi hamma joyda harakat qiladi, faqat qisqargan qiymatda aniqlanmagan bo‘ladi. Bu grafikda bitta yo‘qolgan nuqtani hosil qiladi.",
+      rat_step7: "\\(x=2\\) da maxraj nolga teng, shuning uchun \\(x=2\\) aniqlanish sohasiga kirmaydi.", rat_step8: "Umumiy ko‘paytuvchini qisqartiring. Funksiya soddalashadi, lekin cheklov saqlanib qoladi:", rat_step9: "Soddalashtirilgan funksiya orqali yetishmayotgan \\(y\\) qiymatni toping. Teshik aynan shu joyda joylashadi:",
+      rat_case4_ans: "Teshik nuqta: \\((2,3)\\). Grafik bitta yo‘qolgan nuqtaga ega to‘g‘ri chiziq.",
+      rat_case4_callout: "Agar ko‘paytuvchi qisqarsa, odatda teshik hosil bo‘ladi. Agar soddalashtirgandan keyin ko‘paytuvchi maxrajda qolsa, vertikal asimptota hosil bo‘ladi. Har doim karralikni tekshiring.",
+      rat_case5_title: "5-holat: gorizontal asimptota qoidalari",
+      rat_case5_desc: "Surat darajasini maxraj darajasi bilan solishtiring. \\(x\\to\\pm\\infty\\) da eng yuqori darajali hadlar ustunlik qiladi va funksiyaning uzoq muddatli xatti-harakatini belgilaydi.",
+      rat_tbl1_1: "Surat darajasi \\(<\\) maxraj darajasi", rat_tbl1_2: "Gorizontal asimptota \\(y=0\\). Maxraj tezroq o‘sadi, kasrni nolga ezib yuboradi.", rat_tbl1_3: "\\(\\frac{1}{x^2+1}\\)",
+      rat_tbl2_1: "Surat darajasi \\(=\\) maxraj darajasi", rat_tbl2_2: "Bosh koeffitsiyentlar nisbatidan foydalaning. Eng yuqori darajalar qisqarib, o‘zgarmas son qoladi.", rat_tbl2_3: "\\(\\frac{2x+1}{x-3}\\Rightarrow y=2\\)",
+      rat_tbl3_1: "Surat darajasi \\(>\\) maxraj darajasi", rat_tbl3_2: "Gorizontal asimptota yo‘q; qiya asimptota bo‘lishi mumkin. Surat tezroq o‘sadi, shuning uchun funksiya ko‘phad kabi harakat qiladi.", rat_tbl3_3: "\\(\\frac{x^2+1}{x-1}\\)",
+      rat_case6_title: "6-holat: ratsional funksiyaning o‘qlar bilan kesishish nuqtalarini topish",
+      rat_xint_title: "\\(x\\)-o‘qi bilan kesishish", rat_xint_desc: "Suratni nolga tenglang. Kasr faqat surati nolga teng bo‘lganda (va maxraj nol bo‘lmaganda) nolga teng bo‘ladi:", rat_xint_check: "Maxrajni tekshiring: \\(4+2=6 \\neq 0\\). Haqiqiy kesishish.", rat_xint_ans: "\\((4,0)\\)",
+      rat_yint_title: "\\(y\\)-o‘qi bilan kesishish", rat_yint_desc: "\\(x=0\\) deb olib hisoblang. Bu vertikal o‘qdagi boshlang‘ich balandlikni beradi:", rat_yint_ans: "\\((0,-2)\\)",
+      exp_title: "Eksponensial funksiyalar: holatlar bo‘yicha to‘liq dars",
+      exp_intro: "\\(a\\), \\(b\\) va \\(k\\) ni o‘zgartirib, \\(y=a\\cdot b^x+k\\) grafigini kuzating. Asos \\(b\\) o‘sish yoki kamayishni, \\(k\\) esa gorizontal asimptotaning joyini belgilaydi.",
+      exp_def_title: "Eksponensial funksiya nima?",
+      exp_def_desc: "Eksponensial funksiya — o‘zgaruvchi asosda emas, balki daraja ko‘rsatkichida qatnashadigan funksiya. Bu qo‘shiluvchi o‘zgarish o‘rniga ko‘paytuvchi o‘zgarishni hosil qiladi. Har bir qadam oldingi chiqishni doimiy \\(b\\) koeffitsiyentga ko‘paytiradi, bu esa tezlashuvchi o‘sish yoki asta-sekin kamayishga olib keladi. Bu funksiyalar aholi o‘sishi, radioaktiv parchalanish, murakkab foiz va sovish jarayonlarini modellashtiradi.",
+      exp_bullet1: "\\(a\\) boshlang‘ich miqyos va akslantirishni belgilaydi. Bu \\(x=0\\) dagi boshlang‘ich qiymat.", exp_bullet2: "\\(b\\) o‘sish yoki kamayishni belgilaydi. Bu \\(x\\) ning har bir birlik o‘sishidagi doimiy ko‘paytiruvchi omil.",
+      exp_bullet3: "Agar \\(b>1\\) bo‘lsa, funksiya eksponensial o‘sadi. \\(b\\) qancha katta bo‘lsa, portlash shuncha tez bo‘ladi.", exp_bullet4: "Agar \\(0<b<1\\) bo‘lsa, funksiya eksponensial kamayadi. \\(b\\) nolga qancha yaqin bo‘lsa, pasayish shuncha tez bo‘ladi.", exp_bullet5: "Asosiy eksponensial funksiyada odatda gorizontal asimptota \\(y=0\\) bo‘ladi, chunki \\(b^x\\) nolga intiladi, lekin hech qachon unga yetib bormaydi.",
+      exp_case1_title: "1-holat: eksponensial o‘sish",
+      exp_case1_desc: "Agar asos \\(1\\) dan katta bo‘lsa, \\(x\\) ortgani sari funksiya o‘sadi. O‘sish sekin boshlanadi, keyin keskin tezlashadi. Bu murakkablashuv effekti eksponensial o‘sish oxir-oqibat har qanday ko‘phaddan o‘zib ketishining sababidir.",
+      exp_tbl1_1: "Kichik musbat qiymat, asimptotaga yaqinlashmoqda", exp_tbl1_2: "Hali ham musbat, har o‘ngga qadamda ikki baravar oshmoqda", exp_tbl1_3: "Noldan farqli har qanday asosning \\(0\\)-darajasi \\(1\\) ga teng", exp_tbl1_4: "O‘sish boshlanadi, ko‘paytiruvchi qonuniyat ishga tushadi", exp_tbl1_5: "O‘sish tezlashadi, har bir qadam oldingisini ikki baravar oshiradi",
+      exp_case1_ans: "O‘sish holati: \\(b>1\\). Aniqlanish sohasi: barcha haqiqiy sonlar. Qiymatlar sohasi: \\(y>0\\). Gorizontal asimptota: \\(y=0\\).",
+      exp_case2_title: "2-holat: eksponensial kamayish",
+      exp_case2_desc: "Agar asos \\(0\\) bilan \\(1\\) orasida bo‘lsa, \\(x\\) ortgani sari funksiya kamayadi. Chiqish qiymati har qadamda doimiy kasrga qisqaradi. U asimptotik ravishda nolga intiladi, lekin hech qachon unga yetib bormaydi; bu yarim yemirilish va amortizatsiyani modellashtiradi.",
+      exp_tbl2_1: "\\(x\\) manfiy bo‘lganda qiymat katta (teskari kasr effekti)", exp_tbl2_2: "Hali ham \\(1\\) dan katta, \\(x\\) ortgani sari yarmiga qisqarmoqda", exp_tbl2_3: "\\(y=1\\) chizig‘idan o‘tadi, universal tayanch nuqta", exp_tbl2_4: "Kichrayadi, ko‘paytiruvchi kamayish boshlanadi", exp_tbl2_5: "\\(0\\) ga yaqinlashadi, asimptotaga hech qachon tegmaydi",
+      exp_case2_ans: "Kamayish holati: \\(0<b<1\\). Grafik o‘sishning \\(y\\)-o‘qiga nisbatan aksidir. Qiymatlar sohasi \\(y>0\\) bo‘lib qoladi.",
+      exp_case3_title: "3-holat: vertikal siljish va gorizontal asimptota",
+      exp_case3_desc: "\\(k\\) qo‘shilishi eksponensial grafikni yuqoriga yoki pastga siljitadi. Bu gorizontal asimptotani \\(y=0\\) dan \\(y=k\\) ga ko‘chiradi. Shakl va o‘sish sur’ati bir xil bo‘lib qoladi, lekin butun egri chiziq vertikal ko‘chadi. Bu xona haroratiga intilayotgan jismoniy sovish yoki ma’lum bir bazaga yaqinlashayotgan qarz kabi real hayotiy holatlarni modellashtiradi.",
+      exp_step1: "Asosiy funksiya \\(2^x\\) ning gorizontal asimptotasi:", exp_step2: "\\(+3\\) qo‘shilishi hamma narsani \\(3\\) birlik yuqoriga siljitadi. Har bir chiqish qiymati 3 ga ortadi.", exp_step3: "Yangi gorizontal asimptota shunga mos ravishda siljiydi:", exp_step4: "\\(y\\)-o‘qi bilan kesishish ham siljiydi:",
+      exp_case3_ans: "Vertikal siljish asimptotani \\(y=0\\) dan \\(y=k\\) ga o‘zgartiradi. Qiymatlar sohasi \\(y>k\\) bo‘ladi (agar \\(a>0\\) bo‘lsa).",
+      exp_case4_title: "4-holat: \\(x\\)-o‘qiga nisbatan akslantirish",
+      exp_case4_desc: "Agar \\(a<0\\) bo‘lsa, eksponensial grafik \\(x\\)-o‘qiga nisbatan akslanadi. Asosiy funksiyaning musbat chiqishlari manfiy bo‘ladi. Egri chiziq endi asimptotaga yuqoridan emas, pastdan yaqinlashadi. Bu yo‘qotish, qarz to‘planishi yoki ma’lum bir nuqtadan pastga sovishni modellashtiradi.",
+      exp_case4_1: "Asosiy \\(2^x\\) funksiyaning qiymatlari har doim musbat.", exp_case4_2: "Manfiy ishora barcha chiqish qiymatlarini manfiy qiladi, egri chiziqni pastga ag‘daradi.", exp_case4_3: "Grafik \\(x\\)-o‘qidan pastda joylashadi, \\(y=0\\) ga pastdan yaqinlashadi.", exp_case4_4: "Gorizontal asimptota baribir \\(y=0\\) bo‘lib qoladi. Akslantirish chegaralarni siljitmaydi.",
+      exp_case4_ans: "Akslantirish holati: \\(a<0\\). Qiymatlar sohasi \\(y<0\\) bo‘ladi. Asimptota o‘zgarmaydi.",
+      exp_case5_title: "5-holat: logarifmsiz eksponensial tenglamalarni yechish",
+      exp_case5_desc: "Agar ikkala tomonni bir xil asosda yozish mumkin bo‘lsa, daraja ko‘rsatkichlarini tenglashtirib yeching. Bu usul eksponensial funksiyalar bir qiymatli ekanligiga asoslanadi: agar \\(b^m=b^p\\) va \\(b>0, b\\neq1\\) bo‘lsa, u holda \\(m=p\\). Bu usul tez, lekin faqat asoslar mos kelganda ishlaydi.",
+      exp_step5: "Eksponensial qismni yakka qoldirish uchun \\(3\\) ga bo‘ling:", exp_step6: "Asoslarni moslashtirish uchun \\(8\\) ni \\(2\\) ning darajasi sifatida yozing:", exp_step7: "Daraja ko‘rsatkichlarini tenglashtiring. Asoslar bir xil bo‘lgani uchun darajalar ham teng bo‘lishi shart:",
+      exp_case5_ans: "\\(x=3\\). Har doim asl tenglamaga qo‘yib tekshiring.",
+      exp_case6_title: "6-holat: logarifm yordamida eksponensial tenglamalarni yechish",
+      exp_case6_desc: "Agar sonni bir xil asosda qayta yozib bo‘lmasa, logarifmdan foydalaning. Logarifmlar eksponensiallarning teskari funksiyasi bo‘lib, o‘zgaruvchini darajadan pastga tushirish imkonini beradi. Bu usul har qanday musbat asos uchun ishlaydi va real dunyo modellashtirishida juda muhim.",
+      exp_step8: "Eksponensial qismni yakka qoldirish uchun \\(5\\) ga bo‘ling:", exp_step9: "Ikkala tomondan logarifm oling. Istalgan asos ishlaydi; o‘nli yoki natural logarifm standart hisoblanadi:", exp_step10: "\\(\\log(b^x)=x\\log b\\) daraja qoidasidan foydalanib ko‘rsatkichni oldinga tushiring:", exp_step11: "Bo‘lish orqali \\(x\\) ni toping:",
+      exp_case6_ans: "\\(x=\\frac{\\log8}{\\log3}\\approx1.89\\). Bu aniq ko‘rinish afzal; o‘nli kasr faqat talqin uchun.",
+      exp_qtypes_title: "Yaxshi bilishingiz kerak bo‘lgan eksponensial funksiya savol turlari",
+      exp_tbl1_1: "\\(x\\) berilgan, \\(y\\) ni topish", exp_tbl1_2: "\\(x\\) ni qo‘yib, ehtiyotkorlik bilan hisoblang", exp_tbl1_3: "\\(3\\cdot2^4=48\\)",
+      exp_tbl2_1: "\\(y\\) berilgan, \\(x\\) ni topish", exp_tbl2_2: "Eksponensial qismni yakka qoldiring, keyin bir xil asos yoki logarifm ishlating", exp_tbl2_3: "\\(2^x=8\\Rightarrow x=3\\)",
+      exp_tbl3_1: "Boshlang‘ich qiymatni topish", exp_tbl3_2: "\\(f(0)\\) dan foydalaning. Daraja yo‘qoladi, faqat \\(a\\) qoladi", exp_tbl3_3: "\\(a\\cdot b^0=a\\)",
+      exp_tbl4_1: "O‘sish yoki kamayishni aniqlash", exp_tbl4_2: "\\(b\\) ga qarang. 1 dan katta bo‘lsa o‘sadi, 0 va 1 orasida bo‘lsa kamayadi", exp_tbl4_3: "\\(b>1\\) — o‘sish, \\(0<b<1\\) — kamayish",
+      exp_tbl5_1: "Asimptotani topish", exp_tbl5_2: "\\(k\\) ga qarang. Chekka qiymatlarda eksponensial qism yo‘qoladi", exp_tbl5_3: "\\(a\\cdot b^x+k\\Rightarrow y=k\\)"
+    }
+  };
+
+  function applyLanguage(lang) {
+    const target = I18N[lang] || I18N.en;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const content = target[key];
+      if (!content) return;
+      if (el.dataset.i18nType === 'html') {
+        el.innerHTML = content;
+      } else {
+        el.textContent = content;
+      }
+    });
+
+    document.querySelectorAll('[data-language-button]').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.languageButton === lang);
+    });
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise().catch(err => console.warn('MathJax typeset warning:', err));
+    }
+    if (typeof window.drawAllFunctionGraphs === 'function') {
+      window.drawAllFunctionGraphs();
+    }
+    try { localStorage.setItem('mathAcademyLang', lang); } catch(e) {}
+  }
+
+  window.language = function(lang) {
+    applyLanguage(lang === 'uz' ? 'uz' : 'en');
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    let saved = 'en';
+    try { saved = localStorage.getItem('mathAcademyLang') || 'en'; } catch(e) {}
+    applyLanguage(saved);
+  });
+})();
+</script>
 </body>
 </html>

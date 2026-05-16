@@ -6,6 +6,7 @@ math_problems_json = {
             'wrong': ["$16$", "$8$", "$-8$"],
             'explanation': "According to the order of operations (PEMDAS/BODMAS), exponentiation is performed before multiplication. The expression $-4^2$ is interpreted as the negative of $4^2$. So, we first calculate $4^2 = 16$, and then apply the negative sign, resulting in $-16$."
         },
+
         {
             'question': "Evaluate: $(-4)^2$",
             'answer': "$16$",
@@ -259,10 +260,10 @@ math_problems_json = {
             'explanation': "The parentheses emphasize that we compute $4^2 = 16$ first, and then apply the negative sign, giving $-16$."
         },
         {
-            'question': "Evaluate: $(-4)^2$",
-            'answer': "$16$",
-            'wrong': ["$-16$", "$8$", "$-8$"],
-            'explanation': "The parentheses are around the $-4$, making it the base. So, $(-4)^2 = 16$."
+            'question': "Evaluate: $-(-5)^2$",
+            'answer': "$-25$",
+            'wrong': ["$25$", "$-10$", "$10$"],
+            'explanation': "First evaluate the exponent because it comes before the outside negative sign. Since $(-5)^2 = 25$, the expression becomes $-25$. Therefore, $-(-5)^2 = -25$."
         },
         {
             'question': "Evaluate: $-(-2)^2$",
@@ -6238,10 +6239,10 @@ math_problems_json = {
         },
         # --- 2 ---
         {
-            'question': 'Find the domain of $f(x) = \\log(|x| - 1)$.',
-            'answer': '$(-\\infty,\\ -1) \\cup (1,\\ +\\infty)$',
-            'wrong': ['$(-1,\\ 1)$', '$(-\\infty,\\ 1) \\cup (-1,\\ +\\infty)$', '$(-\\infty,\\ +\\infty)$'],
-            'explanation': 'Argument must be $> 0$: $|x| - 1 > 0 \\Rightarrow |x| > 1$. $|x| > 1$ means $x > 1$ or $x < -1$. **Domain:** $\\boldsymbol{(-\\infty,-1)\\cup(1,+\\infty)}$.',
+            'question': 'Find the domain of $f(x) = \\log(x - 7)$.',
+            'answer': '$(7,\\ +\\infty)$',
+            'wrong': ['$(-\\infty,\\ 7)$', '$[7,\\ +\\infty)$', '$(-\\infty,\\ +\\infty)$'],
+            'explanation': 'The argument of a logarithm must be positive. Set $x - 7 > 0$. Adding $7$ to both sides gives $x > 7$. Therefore, the domain is $(7,\\ +\\infty)$.',
         },
         # --- 3 ---
         {
@@ -6400,17 +6401,17 @@ math_problems_json = {
         },
         # --- 25 ---
         {
-            'question': 'Evaluate $\\log(10000)$.',
-            'answer': '$4$',
-            'wrong': ['$5$', '$3$', '$3$'],
-            'explanation': '$$\\log(10000) = \\log(10^{4}) = 4$$ Alternatively using product rule: $\\log(10^{1} \\cdot 10^{3}) = \\log(10^{1}) + \\log(10^{3}) = 1 + 3 = 4$.',
+            'question': 'Evaluate $\\log(10^{5})$.',
+            'answer': '$5$',
+            'wrong': ['$4$', '$-5$', '$10$'],
+            'explanation': 'Here $\\log(x)$ means $\\log_{10}(x)$. Since the argument is already written as $10^{5}$, use the inverse property $\\log(10^{n}) = n$. Thus $\\log(10^{5}) = 5$.',
         },
         # --- 26 ---
         {
-            'question': 'Evaluate $\\log(100)$.',
-            'answer': '$2$',
-            'wrong': ['$3$', '$1$', '$4$'],
-            'explanation': "Recall: $\\log(x)$ means $\\log_{10}(x)$ — ''what power of 10 gives $x$?'' $$\\log(100) = \\log(10^{2}) = 2$$ Because $10^{2} = 100$. **Answer: $\\boldsymbol{2}$.**",
+            'question': 'Evaluate $\\log(0.01)$.',
+            'answer': '$-2$',
+            'wrong': ['$-1$', '$2$', '$-3$'],
+            'explanation': 'Convert the decimal to a power of $10$: $0.01 = \\dfrac{1}{100} = 10^{-2}$. Therefore, $\\log(0.01) = \\log(10^{-2}) = -2$.',
         },
         # --- 27 ---
         {
@@ -6442,24 +6443,24 @@ math_problems_json = {
         },
         # --- 31 ---
         {
-            'question': 'Evaluate $\\log\\!\\left(\\dfrac{1}{1000}\\right)$.',
-            'answer': '$-3$',
-            'wrong': ['$-2$', '$3$', '$-4$'],
-            'explanation': '$\\log\\!\\left(\\dfrac{1}{1000}\\right) = \\log(10^{-3}) = -3$. Because $10^{-3} = \\dfrac{1}{10^{3}} = \\dfrac{1}{1000}$.',
+            'question': 'Evaluate $\\log\\!\\left(\\dfrac{1}{10}\\right)$.',
+            'answer': '$-1$',
+            'wrong': ['$1$', '$0$', '$-2$'],
+            'explanation': 'Rewrite the argument as a power of $10$: $\\dfrac{1}{10} = 10^{-1}$. Then use $\\log(10^{n}) = n$. Therefore, $\\log\\!\\left(\\dfrac{1}{10}\\right) = \\log(10^{-1}) = -1$.',
         },
         # --- 32 ---
         {
-            'question': 'Evaluate $\\log\\!\\left(\\dfrac{1}{1000}\\right)$.',
-            'answer': '$-3$',
-            'wrong': ['$-2$', '$3$', '$-4$'],
-            'explanation': '$\\log\\!\\left(\\dfrac{1}{1000}\\right) = \\log(10^{-3}) = -3$. Because $10^{-3} = \\dfrac{1}{10^{3}} = \\dfrac{1}{1000}$.',
+            'question': 'Evaluate $\\log\\!\\left(\\dfrac{1}{10000}\\right)$.',
+            'answer': '$-4$',
+            'wrong': ['$-3$', '$4$', '$-5$'],
+            'explanation': 'Write the fraction as a power of $10$: $\\dfrac{1}{10000} = \\dfrac{1}{10^{4}} = 10^{-4}$. Since $\\log(10^{n}) = n$, the value is $-4$.',
         },
         # --- 33 ---
         {
-            'question': 'Evaluate $\\log(10000)$.',
-            'answer': '$4$',
-            'wrong': ['$5$', '$3$', '$3$'],
-            'explanation': '$$\\log(10000) = \\log(10^{4}) = 4$$ Alternatively using product rule: $\\log(10^{1} \\cdot 10^{3}) = \\log(10^{1}) + \\log(10^{3}) = 1 + 3 = 4$.',
+            'question': 'Evaluate $\\log(10)$.',
+            'answer': '$1$',
+            'wrong': ['$0$', '$10$', '$-1$'],
+            'explanation': 'The common logarithm has base $10$. We ask: what power of $10$ gives $10$? Since $10^{1} = 10$, $\\log(10) = 1$.',
         },
         # --- 34 ---
         {
@@ -6470,10 +6471,10 @@ math_problems_json = {
         },
         # --- 35 ---
         {
-            'question': 'Evaluate $\\ln\\!\\left(\\dfrac{1}{e^{3}}\\right)$.',
-            'answer': '$-3$',
-            'wrong': ['$-2$', '$3$', '$-4$'],
-            'explanation': '$$\\ln\\!\\left(\\frac{1}{e^{3}}\\right) = \\ln(e^{-3}) = -3$$ Using $\\ln(e^n) = n$.',
+            'question': 'Evaluate $\\ln\\!\\left(\\dfrac{1}{e^{2}}\\right)$.',
+            'answer': '$-2$',
+            'wrong': ['$-1$', '$2$', '$-3$'],
+            'explanation': 'Rewrite the fraction as a power of $e$: $\\dfrac{1}{e^{2}} = e^{-2}$. Then use $\\ln(e^{n}) = n$. So $\\ln\\!\\left(\\dfrac{1}{e^{2}}\\right) = -2$.',
         },
         # --- 36 ---
         {
@@ -6484,24 +6485,24 @@ math_problems_json = {
         },
         # --- 37 ---
         {
-            'question': 'Evaluate $\\ln\\!\\left(\\dfrac{1}{e^{1}}\\right)$.',
-            'answer': '$-1$',
-            'wrong': ['$0$', '$1$', '$-2$'],
-            'explanation': '$$\\ln\\!\\left(\\frac{1}{e^{1}}\\right) = \\ln(e^{-1}) = -1$$ Using $\\ln(e^n) = n$.',
+            'question': 'Evaluate $\\ln\\!\\left(\\dfrac{1}{e^{4}}\\right)$.',
+            'answer': '$-4$',
+            'wrong': ['$-3$', '$4$', '$-5$'],
+            'explanation': 'Since $\\dfrac{1}{e^{4}} = e^{-4}$, the expression becomes $\\ln(e^{-4})$. Using the inverse property $\\ln(e^{n}) = n$, the answer is $-4$.',
         },
         # --- 38 ---
         {
-            'question': 'Evaluate $\\ln(e^{4})$.',
-            'answer': '$4$',
-            'wrong': ['$5$', '$3$', '$8$'],
-            'explanation': '$\\ln(x)$ is the natural logarithm with base $e$. $$\\ln(e^{4}) = 4$$ This follows directly from $\\ln(e^n) = n$ (inverse property). **Answer: $\\boldsymbol{4}$.**',
+            'question': 'Evaluate $\\ln(e^{5})$.',
+            'answer': '$5$',
+            'wrong': ['$4$', '$6$', '$10$'],
+            'explanation': 'The natural logarithm has base $e$. By the inverse property, $\\ln(e^{n}) = n$. Here $n = 5$, so $\\ln(e^{5}) = 5$.',
         },
         # --- 39 ---
         {
-            'question': 'Evaluate $\\ln(e^{1})$.',
-            'answer': '$1$',
-            'wrong': ['$2$', '$0$', '$2$'],
-            'explanation': '$\\ln(x)$ is the natural logarithm with base $e$. $$\\ln(e^{1}) = 1$$ This follows directly from $\\ln(e^n) = n$ (inverse property). **Answer: $\\boldsymbol{1}$.**',
+            'question': 'Evaluate $\\ln(e^{0})$.',
+            'answer': '$0$',
+            'wrong': ['$1$', '$-1$', '$e$'],
+            'explanation': 'Use the inverse property $\\ln(e^{n}) = n$. Because the exponent is $0$, $\\ln(e^{0}) = 0$. This is the same as $\\ln(1) = 0$.',
         },
         # --- 40 ---
         {
@@ -6614,16 +6615,16 @@ math_problems_json = {
         {
             'question': 'Expand: $\\log_{5}(x^{3} y^{3})$',
             'answer': '$3\\log_{5}(x) + 3\\log_{5}(y)$',
-            'wrong': ['$3\\log_{5}(x) + 3\\log_{5}(y)$', '$3\\log_{5}(x) \\cdot 3\\log_{5}(y)$',
+            'wrong': ['$6\\log_{5}(x) + 6\\log_{5}(y)$', '$3\\log_{5}(x) \\cdot 3\\log_{5}(y)$',
                       '$3\\log_{5}(x) - 3\\log_{5}(y)$'],
             'explanation': '**Product Rule:** $\\log(x^{3} y^{3}) = \\log(x^{3}) + \\log(y^{3})$. **Power Rule:** $\\log(x^{3}) = 3\\log(x)$, $\\log(y^{3}) = 3\\log(y)$. $$= 3\\log_{5}(x) + 3\\log_{5}(y)$$',
         },
         # --- 55 ---
         {
-            'question': 'Expand: $\\log(x^{3} y^{2})$',
-            'answer': '$3\\log(x) + 2\\log(y)$',
-            'wrong': ['$2\\log(x) + 3\\log(y)$', '$3\\log(x) \\cdot 2\\log(y)$', '$3\\log(x) - 2\\log(y)$'],
-            'explanation': '**Product Rule:** $\\log(x^{3} y^{2}) = \\log(x^{3}) + \\log(y^{2})$. **Power Rule:** $\\log(x^{3}) = 3\\log(x)$, $\\log(y^{2}) = 2\\log(y)$. $$= 3\\log(x) + 2\\log(y)$$',
+            'question': 'Expand: $\\log(x^{2} y^{5})$',
+            'answer': '$2\\log(x) + 5\\log(y)$',
+            'wrong': ['$5\\log(x) + 2\\log(y)$', '$2\\log(x) \\cdot 5\\log(y)$', '$2\\log(x) - 5\\log(y)$'],
+            'explanation': 'Use the product rule first: $\\log(x^{2}y^{5}) = \\log(x^{2}) + \\log(y^{5})$. Then use the power rule: $\\log(x^{2}) = 2\\log(x)$ and $\\log(y^{5}) = 5\\log(y)$. So the expansion is $2\\log(x) + 5\\log(y)$.',
         },
         # --- 56 ---
         {
@@ -6644,7 +6645,7 @@ math_problems_json = {
         {
             'question': 'Expand: $\\log(x^{3} y^{3})$',
             'answer': '$3\\log(x) + 3\\log(y)$',
-            'wrong': ['$3\\log(x) + 3\\log(y)$', '$3\\log(x) \\cdot 3\\log(y)$', '$3\\log(x) - 3\\log(y)$'],
+            'wrong': ['$6\\log(x) + 6\\log(y)$', '$3\\log(x) \\cdot 3\\log(y)$', '$3\\log(x) - 3\\log(y)$'],
             'explanation': '**Product Rule:** $\\log(x^{3} y^{3}) = \\log(x^{3}) + \\log(y^{3})$. **Power Rule:** $\\log(x^{3}) = 3\\log(x)$, $\\log(y^{3}) = 3\\log(y)$. $$= 3\\log(x) + 3\\log(y)$$',
         },
         # --- 59 ---
@@ -6733,24 +6734,24 @@ math_problems_json = {
         },
         # --- 71 ---
         {
-            'question': 'Condense: $\\log_{2}(x^{3}) - \\log_{2}(x)$',
-            'answer': '$\\log_{2}(x^{2})$',
-            'wrong': ['$\\log_{2}(x^{4})$', '$\\log_{2}(x^{1})$', '$\\log_{2}(x^{3})$'],
-            'explanation': '**Quotient Rule:** $\\log_{2}(x^{3}) - \\log_{2}(x) = \\log_{2}(x^{3}/x) = \\log_{2}(x^{2})$. Since $x^{3}/x = x^{3}/x^1 = x^{2}$.',
+            'question': 'Condense: $\\log_{2}(x^{4}) - \\log_{2}(x)$',
+            'answer': '$\\log_{2}(x^{3})$',
+            'wrong': ['$\\log_{2}(x^{5})$', '$\\log_{2}(x^{4})$', '$\\log_{2}(x^{2})$'],
+            'explanation': 'Use the quotient rule: $\\log_{2}(A) - \\log_{2}(B) = \\log_{2}\\!\\left(\\dfrac{A}{B}\\right)$. Here, $\\dfrac{x^{4}}{x} = x^{3}$. Therefore, the condensed form is $\\log_{2}(x^{3})$.',
         },
         # --- 72 ---
         {
-            'question': 'Condense: $\\log_{2}(x^{3}) - \\log_{2}(x)$',
-            'answer': '$\\log_{2}(x^{2})$',
-            'wrong': ['$\\log_{2}(x^{4})$', '$\\log_{2}(x^{1})$', '$\\log_{2}(x^{3})$'],
-            'explanation': '**Quotient Rule:** $\\log_{2}(x^{3}) - \\log_{2}(x) = \\log_{2}(x^{3}/x) = \\log_{2}(x^{2})$. Since $x^{3}/x = x^{3}/x^1 = x^{2}$.',
+            'question': 'Condense: $\\log_{2}(x^{5}) - \\log_{2}(x^{2})$',
+            'answer': '$\\log_{2}(x^{3})$',
+            'wrong': ['$\\log_{2}(x^{7})$', '$\\log_{2}(x^{2})$', '$\\log_{2}(x^{10})$'],
+            'explanation': 'Apply the quotient rule: $\\log_{2}(x^{5}) - \\log_{2}(x^{2}) = \\log_{2}\\!\\left(\\dfrac{x^{5}}{x^{2}}\\right)$. Subtract exponents when dividing powers with the same base: $x^{5}/x^{2} = x^{3}$. Thus the result is $\\log_{2}(x^{3})$.',
         },
         # --- 73 ---
         {
-            'question': 'Condense: $3\\log_{2}(x) - \\log_{2}(y)$',
-            'answer': '$\\log_{2}(x^{3}/y)$',
-            'wrong': ['$\\log_{2}(x)/\\log_{2}(y)$', '$\\log_{2}(x^{3} \\cdot y)$', '$\\log_{2}(x/3y)$'],
-            'explanation': '**Step 1 — Power Rule:** $3\\log_{2}(x) = \\log_{2}(x^{3})$. **Step 2 — Quotient Rule:** $\\log_{2}(x^{3}) - \\log_{2}(y) = \\log_{2}(x^{3}/y)$.',
+            'question': 'Condense: $2\\log_{2}(x) - \\log_{2}(y)$',
+            'answer': '$\\log_{2}(x^{2}/y)$',
+            'wrong': ['$\\log_{2}(x^{2} \\cdot y)$', '$\\log_{2}(x)/\\log_{2}(y)$', '$\\log_{2}(x/2y)$'],
+            'explanation': 'First use the power rule: $2\\log_{2}(x) = \\log_{2}(x^{2})$. Then use the quotient rule: $\\log_{2}(x^{2}) - \\log_{2}(y) = \\log_{2}\\!\\left(\\dfrac{x^{2}}{y}\\right)$.',
         },
         # --- 74 ---
         {
@@ -6868,7 +6869,7 @@ math_problems_json = {
         {
             'question': 'Evaluate: $\\log_{8}\\!\\left(2^{3}\\right)$',
             'answer': '$1$',
-            'wrong': ['$1$', '$9$', '$\\dfrac{4}{3}$'],
+            'wrong': ['$0$', '$9$', '$\\dfrac{4}{3}$'],
             'explanation': '**Method 1 — Power Rule:** $\\log_{8}(b^m) = \\dfrac{m}{n} \\log_b(b) = \\dfrac{3}{3} \\cdot 1 = 1$. **Method 2 — Direct:** Let $\\log_{8}(2^{3}) = y$. Then $(2^{3})^y = 2^{3} \\Rightarrow 2^{3y} = 2^{3} \\Rightarrow 3y = 3 \\Rightarrow y = \\dfrac{3}{3} = 1$.',
         },
         # --- 91 ---
@@ -6894,11 +6895,11 @@ math_problems_json = {
         },
         # --- 94 ---
         {
-            'question': 'Simplify: $\\log_{125}(x^{3})$ in terms of $\\log_{5}(x)$.',
-            'answer': '$\\dfrac{3}{3} \\cdot \\log_{5}(x)$',
-            'wrong': ['$\\dfrac{3}{3} \\cdot \\log_{5}(x)$', '$3\\cdot3 \\cdot \\log_{5}(x)$',
-                      '$\\dfrac{4}{3} \\cdot \\log_{5}(x)$'],
-            'explanation': 'Apply **both** power rules together: $\\log_{b^m}(x^n) = \\dfrac{n}{m} \\log_b(x)$. **Step 1 — argument power:** $\\log_{b^m}(x^n) = n \\cdot \\log_{b^m}(x)$. **Step 2 — base power:** $n \\cdot \\log_{b^m}(x) = n \\cdot \\dfrac{1}{3} \\log_b(x) = \\dfrac{3}{3} \\log_b(x)$. $$\\log_{125}(x^{3}) = \\dfrac{3}{3} \\cdot \\log_{5}(x)$$',
+            'question': 'Simplify: $\\log_{25}(x^{3})$ in terms of $\\log_{5}(x)$.',
+            'answer': '$\\dfrac{3}{2} \\cdot \\log_{5}(x)$',
+            'wrong': ['$\\dfrac{2}{3} \\cdot \\log_{5}(x)$', '$6 \\cdot \\log_{5}(x)$',
+                      '$\\dfrac{4}{2} \\cdot \\log_{5}(x)$'],
+            'explanation': 'Since $25 = 5^{2}$, use the base-power rule: $\\log_{25}(x) = \\dfrac{1}{2}\\log_{5}(x)$. Also use the argument power rule: $\\log_{25}(x^{3}) = 3\\log_{25}(x)$. Combining them gives $3\\cdot\\dfrac{1}{2}\\log_{5}(x) = \\dfrac{3}{2}\\log_{5}(x)$.',
         },
         # --- 95 ---
         {
@@ -6919,7 +6920,7 @@ math_problems_json = {
         {
             'question': 'Simplify: $\\log_{125}(x^{3})$ in terms of $\\log_{5}(x)$.',
             'answer': '$\\dfrac{3}{3} \\cdot \\log_{5}(x)$',
-            'wrong': ['$\\dfrac{3}{3} \\cdot \\log_{5}(x)$', '$3\\cdot3 \\cdot \\log_{5}(x)$',
+            'wrong': ['$\\dfrac{1}{3} \\cdot \\log_{5}(x)$', '$3\\cdot3 \\cdot \\log_{5}(x)$',
                       '$\\dfrac{4}{3} \\cdot \\log_{5}(x)$'],
             'explanation': 'Apply **both** power rules together: $\\log_{b^m}(x^n) = \\dfrac{n}{m} \\log_b(x)$. **Step 1 — argument power:** $\\log_{b^m}(x^n) = n \\cdot \\log_{b^m}(x)$. **Step 2 — base power:** $n \\cdot \\log_{b^m}(x) = n \\cdot \\dfrac{1}{3} \\log_b(x) = \\dfrac{3}{3} \\log_b(x)$. $$\\log_{125}(x^{3}) = \\dfrac{3}{3} \\cdot \\log_{5}(x)$$',
         },
@@ -6933,10 +6934,10 @@ math_problems_json = {
         },
         # --- 99 ---
         {
-            'question': 'Evaluate: $\\log_{100}\\!\\left(10^{6}\\right)$',
-            'answer': '$3$',
-            'wrong': ['$\\dfrac{1}{3}$', '$12$', '$\\dfrac{7}{2}$'],
-            'explanation': '**Method 1 — Power Rule:** $\\log_{100}(b^m) = \\dfrac{m}{n} \\log_b(b) = \\dfrac{6}{2} \\cdot 1 = 3$. **Method 2 — Direct:** Let $\\log_{100}(10^{6}) = y$. Then $(10^{2})^y = 10^{6} \\Rightarrow 10^{2y} = 10^{6} \\Rightarrow 2y = 6 \\Rightarrow y = \\dfrac{6}{2} = 3$.',
+            'question': 'Evaluate: $\\log_{1000}\\!\\left(10^{6}\\right)$',
+            'answer': '$2$',
+            'wrong': ['$3$', '$\\dfrac{1}{2}$', '$18$'],
+            'explanation': 'Write the base as a power of $10$: $1000 = 10^{3}$. Let $\\log_{1000}(10^{6}) = y$. Then $(10^{3})^{y} = 10^{6}$, so $10^{3y} = 10^{6}$. Therefore $3y = 6$, and $y = 2$.',
         },
         # --- 100 ---
         {

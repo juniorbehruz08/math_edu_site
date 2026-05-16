@@ -1,23 +1,29 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inverse Trigonometric Functions</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(','\\)'], ['$','$']],
+                displayMath: [['\\[','\\]'], ['$$','$$']]
+            },
+            options: {
+                skipHtmlTags: ['script','noscript','style','textarea','pre']
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,35 +31,346 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
 
-    TemplateMo 590 topic listing
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    https://templatemo.com/tm-590-topic-listing
+        html, body {
+            overflow-x: hidden;
+        }
 
-    -->
+        body {
+            background: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+            color: #111111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #111111;
+            background: #ffffff;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .practice-strip {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .lesson-shell {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 44px 18px 72px;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: clamp(20px, 4vw, 34px);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+        }
+
+        .lesson-card h1,
+        .lesson-card h2 {
+            margin: 0 0 12px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .lesson-card h1 {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            text-align: center;
+        }
+
+        .lesson-card h2 {
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+        }
+
+        .lesson-card h3 {
+            margin: 18px 0 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .lesson-card ul,
+        .lesson-card ol {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .math-line {
+            margin: 12px 0 18px;
+            text-align: center;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+            overflow-x: auto;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .rule-card {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 16px;
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .callout {
+            border-left: 4px solid #111111;
+            background: #f4f4f4;
+            border-radius: 0 8px 8px 0;
+            padding: 13px 15px;
+            margin-top: 16px;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .steps {
+            counter-reset: step;
+            display: grid;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .step {
+            position: relative;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 14px 14px 50px;
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: #111111;
+            color: #ffffff;
+            display: grid;
+            place-items: center;
+            font-size: .78rem;
+            font-weight: 800;
+        }
+
+        .badge-num {
+            display: inline-grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #111111;
+            color: #ffffff;
+            font-size: .85rem;
+            font-weight: 800;
+            vertical-align: 2px;
+            font-style: normal;
+        }
+
+        .section-rule {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 22px 0;
+        }
+
+        .simple-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        .simple-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            border: 1px solid #dddddd;
+            padding: 13px 14px;
+            text-align: left;
+            color: #222222;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .simple-table th {
+            background: #f1f1f1;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .module-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 22px 0 0;
+            border-bottom: 1px solid #dddddd;
+            padding-bottom: 12px;
+        }
+
+        .module-tab {
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            color: #111111;
+            border-radius: 999px;
+            padding: 9px 14px;
+            font-weight: 800;
+            font-size: .92rem;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .module-tab.is-active {
+            background: #111111;
+            color: #ffffff;
+            border-color: #111111;
+        }
+
+        .module-panel {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .module-panel.is-active {
+            display: block;
+        }
+
+        .mini-note {
+            font-size: .95rem;
+            color: #444444;
+            margin-top: 10px;
+        }
+
+        .answer-final {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: #101010;
+            font-weight: 700;
+        }
+
+        .answer-final .check {
+            color: #111111;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .row {
+                gap: 22px;
+            }
+
+            .lesson-shell {
+                padding: 34px 14px 60px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+
+            .module-tab {
+                width: 100%;
+                border-radius: 8px;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
 
@@ -62,171 +379,1434 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a>
+                            </li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">
+                                Inverse Trigonometric Functions
+                            </li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Inverse Trigonometric Functions</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Inverse Trigonometric Functions</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                            Read More
+                        </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
                         <img src="{% static 'images/myimages/arc.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                             class="topics-detail-block-image img-fluid hero-image"
+                             alt="Inverse trigonometric functions visual"
+                             data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=inverse_trigonometric_functions"
-                       class="btn custom-btn custom-border-btn">Practice with Inverse Trigonometric Functions</a>
-                </div>
+
+            </div>
+
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=inverse_trigonometric_functions"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice with Inverse Trigonometric Functions
+                </a>
             </div>
         </div>
     </header>
 
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <section id="topics-detail" class="lesson-shell">
 
-                    <!-- Sine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                                data-bs-target="#design-tab-pane" type="button" role="tab"
-                                aria-controls="design-tab-pane" aria-selected="true">arcsin(x)
-                        </button>
-                    </li>
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Inverse Trigonometric Functions — Modular Guide</h1>
 
-                    <!-- Cosine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                                aria-controls="marketing-tab-pane" aria-selected="false">arccos(x)
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p1">
+                Inverse trigonometric functions reverse the basic trigonometric functions. They answer questions like:
+                “Which angle has this sine value?” or “Which angle has this tangent value?”
+            </p>
 
-                    <!-- Tangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                                data-bs-target="#finance-tab-pane" type="button" role="tab"
-                                aria-controls="finance-tab-pane" aria-selected="false">arctan(x)
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p2">
+                Because ordinary trigonometric functions repeat, inverse trigonometric functions must use restricted output ranges.
+                Those ranges make each inverse function give one principal answer.
+            </p>
 
-                    <!-- Cotangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="music-tab" data-bs-toggle="tab"
-                                data-bs-target="#music-tab-pane" type="button" role="tab"
-                                aria-controls="music-tab-pane" aria-selected="false">arccot(x)
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="minus-tab" data-bs-toggle="tab"
-                                data-bs-target="#minus-tab-pane" type="button" role="tab"
-                                aria-controls="minus-tab-pane" aria-selected="false">Pulling out the negative
-                        </button>
-                    </li>
-                </ul>
+            <div class="callout" data-i18n="lesson.intro.callout">
+                <strong>Main idea:</strong> Inverse trigonometric functions take a ratio or coordinate value and return an angle.
             </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
+            <div class="module-tabs" role="tablist" aria-label="Inverse trigonometry modules" data-i18n-aria-label="tabs.aria">
+                <button class="module-tab is-active" type="button" data-module-button="overview" data-i18n="tabs.overview">Overview</button>
+                <button class="module-tab" type="button" data-module-button="arcsin" data-i18n="tabs.arcsin">arcsin</button>
+                <button class="module-tab" type="button" data-module-button="arccos" data-i18n="tabs.arccos">arccos</button>
+                <button class="module-tab" type="button" data-module-button="arctan" data-i18n="tabs.arctan">arctan</button>
+                <button class="module-tab" type="button" data-module-button="arccot" data-i18n="tabs.arccot">arccot</button>
+                <button class="module-tab" type="button" data-module-button="values" data-i18n="tabs.values">Values</button>
+                <button class="module-tab" type="button" data-module-button="cases" data-i18n="tabs.cases">Composition Cases</button>
+                <button class="module-tab" type="button" data-module-button="negative" data-i18n="tabs.negative">Negative Inputs</button>
+                <button class="module-tab" type="button" data-module-button="summary" data-i18n="tabs.summary">Summary</button>
+            </div>
+        </article>
 
-                        <!-- Sine Content -->
-                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                             aria-labelledby="design-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine3.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine4.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine5.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine6.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine7.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arcsine8.jpg' %}" alt="">
-                        </div>
 
-                        <!-- Cosine Content -->
-                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                             aria-labelledby="marketing-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine3.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine4.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine5.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine6.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine7.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccosine8.jpg' %}" alt="">
-                        </div>
+        <article class="module-panel is-active" data-module-panel="overview">
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span><span data-i18n="overview.title">What Inverse Trigonometric Functions Mean</span></h2>
 
-                        <!-- Tangent Content -->
-                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel"
-                             aria-labelledby="finance-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/arctan1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan3.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan4.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan5.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan6.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan7.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arctan8.jpg' %}" alt="">
+                <p data-i18n="overview.p1">
+                    A normal trigonometric function starts with an angle and gives a value. An inverse trigonometric function starts with a value and gives an angle.
+                </p>
 
-                        </div>
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="overview.table.normal">Normal trig function</th>
+                            <th data-i18n="overview.table.inverse">Inverse trig function</th>
+                            <th data-i18n="overview.table.meaning">Meaning</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\sin\theta=x\)</td>
+                            <td>\(\arcsin x=\theta\)</td>
+                            <td data-i18n="overview.sinMeaning">The angle whose sine is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos\theta=x\)</td>
+                            <td>\(\arccos x=\theta\)</td>
+                            <td data-i18n="overview.cosMeaning">The angle whose cosine is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\tan\theta=x\)</td>
+                            <td>\(\arctan x=\theta\)</td>
+                            <td data-i18n="overview.tanMeaning">The angle whose tangent is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot\theta=x\)</td>
+                            <td>\(\operatorname{arccot}x=\theta\)</td>
+                            <td data-i18n="overview.cotMeaning">The angle whose cotangent is \(x\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <!-- Cotangent Content -->
-                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel"
-                             aria-labelledby="music-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/arccot1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot3.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot4.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot5.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot6.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot7.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot8.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot9.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/arccot10.jpg' %}" alt="">
+                <div class="callout" data-i18n="overview.callout">
+                    <strong>Important:</strong> The answer of an inverse trigonometric function is an angle, not a ratio.
+                </div>
+            </div>
 
-                        </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span><span data-i18n="overview.restrict.title">Why We Restrict the Range</span></h2>
 
-                        <!-- ⭐ NEW EMPTY VALUES TAB -->
-                        <div class="tab-pane fade" id="minus-tab-pane" role="tabpanel"
-                             aria-labelledby="minus-tab" tabindex="0">
-                            <h1 style="text-align:center; margin-top:-70px">General Information</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/minus.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/minus1.jpg' %}" alt="">
-                        </div>
+                <p data-i18n="overview.restrict.p1">
+                    Trigonometric functions repeat. For example, many different angles can have the same sine value.
+                    To make an inverse function, we choose one main interval where each output is used only once.
+                </p>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong>\(\arcsin x\)</strong>
+                        <p data-i18n="overview.restrict.arcsin">Returns angles from \(-90^\circ\) to \(90^\circ\).</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong>\(\arccos x\)</strong>
+                        <p data-i18n="overview.restrict.arccos">Returns angles from \(0^\circ\) to \(180^\circ\).</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong>\(\arctan x\)</strong>
+                        <p data-i18n="overview.restrict.arctan">Returns angles between \(-90^\circ\) and \(90^\circ\).</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong>\(\operatorname{arccot}x\)</strong>
+                        <p data-i18n="overview.restrict.arccot">Usually returns angles from \(0^\circ\) to \(180^\circ\).</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </article>
 
+
+        <article class="module-panel" data-module-panel="arcsin">
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span><span data-i18n="arcsin.title">Arcsine: \(\arcsin x\)</span></h2>
+
+                <p data-i18n="arcsin.p1">
+                    The function \(\arcsin x\) returns the principal angle whose sine is \(x\).
+                </p>
+
+                <div class="math-line">
+                    \(y=\arcsin x \quad \Longleftrightarrow \quad \sin y=x\)
+                </div>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="common.domain">Domain</strong>
+                        <div class="math-line">\([-1,1]\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="common.range">Range</strong>
+                        <div class="math-line">\(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)</div>
+                        <p class="mini-note" data-i18n="common.degrees">In degrees: \([-90^\circ,90^\circ]\).</p>
+                    </div>
+                </div>
+
+                <div class="callout" data-i18n="arcsin.callout">
+                    <strong>Meaning:</strong> \(\arcsin x\) asks: “Which angle between \(-90^\circ\) and \(90^\circ\) has sine \(x\)?”
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="common.examples">Examples</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="common.expression">Expression</th>
+                            <th data-i18n="common.answer">Answer</th>
+                            <th data-i18n="common.reason">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arcsin(0)\)</td>
+                            <td>\(0\)</td>
+                            <td data-i18n="arcsin.e1">Because \(\sin0=0\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arcsin\left(\frac12\right)\)</td>
+                            <td>\(\frac{\pi}{6}\)</td>
+                            <td data-i18n="arcsin.e2">Because \(\sin\frac{\pi}{6}=\frac12\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arcsin(-1)\)</td>
+                            <td>\(-\frac{\pi}{2}\)</td>
+                            <td data-i18n="arcsin.e3">Because \(\sin\left(-\frac{\pi}{2}\right)=-1\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="arccos">
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span><span data-i18n="arccos.title">Arccosine: \(\arccos x\)</span></h2>
+
+                <p data-i18n="arccos.p1">
+                    The function \(\arccos x\) returns the principal angle whose cosine is \(x\).
+                </p>
+
+                <div class="math-line">
+                    \(y=\arccos x \quad \Longleftrightarrow \quad \cos y=x\)
+                </div>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="common.domain">Domain</strong>
+                        <div class="math-line">\([-1,1]\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="common.range">Range</strong>
+                        <div class="math-line">\([0,\pi]\)</div>
+                        <p class="mini-note" data-i18n="arccos.degrees">In degrees: \([0^\circ,180^\circ]\).</p>
+                    </div>
+                </div>
+
+                <div class="callout" data-i18n="arccos.callout">
+                    <strong>Meaning:</strong> \(\arccos x\) asks: “Which angle between \(0^\circ\) and \(180^\circ\) has cosine \(x\)?”
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="common.examples">Examples</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="common.expression">Expression</th>
+                            <th data-i18n="common.answer">Answer</th>
+                            <th data-i18n="common.reason">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arccos(1)\)</td>
+                            <td>\(0\)</td>
+                            <td data-i18n="arccos.e1">Because \(\cos0=1\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arccos\left(\frac12\right)\)</td>
+                            <td>\(\frac{\pi}{3}\)</td>
+                            <td data-i18n="arccos.e2">Because \(\cos\frac{\pi}{3}=\frac12\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arccos(-1)\)</td>
+                            <td>\(\pi\)</td>
+                            <td data-i18n="arccos.e3">Because \(\cos\pi=-1\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="arctan">
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span><span data-i18n="arctan.title">Arctangent: \(\arctan x\)</span></h2>
+
+                <p data-i18n="arctan.p1">
+                    The function \(\arctan x\) returns the principal angle whose tangent is \(x\).
+                </p>
+
+                <div class="math-line">
+                    \(y=\arctan x \quad \Longleftrightarrow \quad \tan y=x\)
+                </div>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="common.domain">Domain</strong>
+                        <div class="math-line">\((-\infty,\infty)\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="common.range">Range</strong>
+                        <div class="math-line">\(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)</div>
+                        <p class="mini-note" data-i18n="arctan.degrees">In degrees: \((-90^\circ,90^\circ)\).</p>
+                    </div>
+                </div>
+
+                <div class="callout" data-i18n="arctan.callout">
+                    <strong>Meaning:</strong> \(\arctan x\) asks: “Which angle between \(-90^\circ\) and \(90^\circ\), not including the endpoints, has tangent \(x\)?”
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="common.examples">Examples</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="common.expression">Expression</th>
+                            <th data-i18n="common.answer">Answer</th>
+                            <th data-i18n="common.reason">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arctan(0)\)</td>
+                            <td>\(0\)</td>
+                            <td data-i18n="arctan.e1">Because \(\tan0=0\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arctan(1)\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                            <td data-i18n="arctan.e2">Because \(\tan\frac{\pi}{4}=1\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arctan(-\sqrt3)\)</td>
+                            <td>\(-\frac{\pi}{3}\)</td>
+                            <td data-i18n="arctan.e3">Because \(\tan\left(-\frac{\pi}{3}\right)=-\sqrt3\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="arccot">
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span><span data-i18n="arccot.title">Arccotangent: \(\operatorname{arccot}x\)</span></h2>
+
+                <p data-i18n="arccot.p1">
+                    The function \(\operatorname{arccot}x\) returns the principal angle whose cotangent is \(x\).
+                    Different textbooks sometimes choose different ranges, but the most common school convention is \((0,\pi)\).
+                </p>
+
+                <div class="math-line">
+                    \(y=\operatorname{arccot}x \quad \Longleftrightarrow \quad \cot y=x\)
+                </div>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="common.domain">Domain</strong>
+                        <div class="math-line">\((-\infty,\infty)\)</div>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="common.range">Range</strong>
+                        <div class="math-line">\((0,\pi)\)</div>
+                        <p class="mini-note" data-i18n="arccot.degrees">In degrees: \((0^\circ,180^\circ)\).</p>
+                    </div>
+                </div>
+
+                <div class="callout" data-i18n="arccot.callout">
+                    <strong>Meaning:</strong> \(\operatorname{arccot}x\) asks: “Which angle between \(0^\circ\) and \(180^\circ\), not including the endpoints, has cotangent \(x\)?”
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="common.examples">Examples</h3>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="common.expression">Expression</th>
+                            <th data-i18n="common.answer">Answer</th>
+                            <th data-i18n="common.reason">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\operatorname{arccot}(1)\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                            <td data-i18n="arccot.e1">Because \(\cot\frac{\pi}{4}=1\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\operatorname{arccot}(0)\)</td>
+                            <td>\(\frac{\pi}{2}\)</td>
+                            <td data-i18n="arccot.e2">Because \(\cot\frac{\pi}{2}=0\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\operatorname{arccot}(-1)\)</td>
+                            <td>\(\frac{3\pi}{4}\)</td>
+                            <td data-i18n="arccot.e3">Because \(\cot\frac{3\pi}{4}=-1\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="values">
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span><span data-i18n="values.title">Important Values</span></h2>
+
+                <p data-i18n="values.p1">
+                    These values are very common. The outputs are principal angles.
+                </p>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th>\(x\)</th>
+                            <th>\(\arcsin x\)</th>
+                            <th>\(\arccos x\)</th>
+                            <th>\(\arctan x\)</th>
+                            <th>\(\operatorname{arccot}x\)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(-1\)</td>
+                            <td>\(-\frac{\pi}{2}\)</td>
+                            <td>\(\pi\)</td>
+                            <td>\(-\frac{\pi}{4}\)</td>
+                            <td>\(\frac{3\pi}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(-\frac{\sqrt3}{3}\)</td>
+                            <td data-i18n="values.notBasic">not a basic arcsin value</td>
+                            <td data-i18n="values.notBasic">not a basic arccos value</td>
+                            <td>\(-\frac{\pi}{6}\)</td>
+                            <td>\(\frac{2\pi}{3}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(0\)</td>
+                            <td>\(0\)</td>
+                            <td>\(\frac{\pi}{2}\)</td>
+                            <td>\(0\)</td>
+                            <td>\(\frac{\pi}{2}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\frac12\)</td>
+                            <td>\(\frac{\pi}{6}\)</td>
+                            <td>\(\frac{\pi}{3}\)</td>
+                            <td data-i18n="values.notBasic">not a basic arctan value</td>
+                            <td data-i18n="values.notBasic">not a basic arccot value</td>
+                        </tr>
+                        <tr>
+                            <td>\(\frac{\sqrt2}{2}\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                            <td data-i18n="values.notBasic">not a basic arctan value</td>
+                            <td data-i18n="values.notBasic">not a basic arccot value</td>
+                        </tr>
+                        <tr>
+                            <td>\(\frac{\sqrt3}{2}\)</td>
+                            <td>\(\frac{\pi}{3}\)</td>
+                            <td>\(\frac{\pi}{6}\)</td>
+                            <td data-i18n="values.notBasic">not a basic arctan value</td>
+                            <td data-i18n="values.notBasic">not a basic arccot value</td>
+                        </tr>
+                        <tr>
+                            <td>\(1\)</td>
+                            <td>\(\frac{\pi}{2}\)</td>
+                            <td>\(0\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                            <td>\(\frac{\pi}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sqrt3\)</td>
+                            <td data-i18n="values.outOfDomain">outside domain</td>
+                            <td data-i18n="values.outOfDomain">outside domain</td>
+                            <td>\(\frac{\pi}{3}\)</td>
+                            <td>\(\frac{\pi}{6}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" data-i18n="values.callout">
+                    <strong>Remember:</strong> \(\arcsin x\) and \(\arccos x\) only accept inputs from \([-1,1]\), but \(\arctan x\) and \(\operatorname{arccot}x\) accept all real inputs.
+                </div>
+            </div>
+        </article>
+
+
+
+
+
+
+        <article class="module-panel" data-module-panel="cases">
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span><span data-i18n="cases.title">Five Common Problem Types in Inverse Trigonometry</span></h2>
+
+                <p data-i18n="cases.p1">
+                    In inverse trigonometric functions, most mistakes happen because students try to memorize answers without checking
+                    the domain, the principal range, and the order of the functions. This section shows the most common problem types
+                    and how to solve them step by step.
+                </p>
+
+                <div class="callout" data-i18n="cases.mainCallout">
+                    <strong>Core habit:</strong> Always ask two questions: “Is the input allowed?” and “Is the final angle inside the principal range?”
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem1.title">Problem Type 1: Evaluating Basic Inverse Trig Values</h3>
+
+                <p data-i18n="cases.problem1.p1">
+                    These problems ask you to find an angle from a trigonometric value.
+                </p>
+
+                <div class="math-line">
+                    \(\arcsin\left(\frac12\right)\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem1.s1">First identify the function: \(\arcsin\) means “the angle whose sine is the input.”</div>
+                    <div class="step" data-i18n="cases.problem1.s2">Check the input: \(\frac12\) is allowed because it is between \(-1\) and \(1\).</div>
+                    <div class="step" data-i18n="cases.problem1.s3">Use the principal range of \(\arcsin\): \(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\).</div>
+                    <div class="step" data-i18n="cases.problem1.s4">Find the angle in that range whose sine is \(\frac12\): that angle is \(\frac{\pi}{6}\).</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem1.answer">
+                    <span class="check">✓</span><span>Final answer: \(\arcsin\left(\frac12\right)=\frac{\pi}{6}\)</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.problem1.nuance">
+                    <strong>Nuance:</strong> \(\arcsin\left(\frac12\right)\) is not asking for every angle with sine \(\frac12\). It asks for the principal angle only.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem2.title">Problem Type 2: Checking Whether the Input Is Allowed</h3>
+
+                <p data-i18n="cases.problem2.p1">
+                    Before solving, check the domain. Some inverse trig functions do not accept every input.
+                </p>
+
+                <div class="math-line">
+                    \(\arccos(2)\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem2.s1">The function is \(\arccos x\).</div>
+                    <div class="step" data-i18n="cases.problem2.s2">The domain of \(\arccos x\) is \([-1,1]\).</div>
+                    <div class="step" data-i18n="cases.problem2.s3">The input \(2\) is outside this domain.</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem2.answer">
+                    <span class="check">✓</span><span>Final answer: \(\arccos(2)\) is undefined in real numbers.</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.problem2.nuance">
+                    <strong>Nuance:</strong> \(\arcsin x\) and \(\arccos x\) require \(-1\le x\le1\). But \(\arctan x\) and \(\operatorname{arccot}x\) accept all real inputs.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem3.title">Problem Type 3: Trig Outside Inverse Trig</h3>
+
+                <p data-i18n="cases.problem3.p1">
+                    If the outside trig function matches the inside inverse trig function, the expression usually simplifies directly.
+                </p>
+
+                <div class="math-line">
+                    \(\cos(\arccos x)\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem3.s1">Let \(\theta=\arccos x\).</div>
+                    <div class="step" data-i18n="cases.problem3.s2">Then \(\cos\theta=x\).</div>
+                    <div class="step" data-i18n="cases.problem3.s3">So \(\cos(\arccos x)=x\).</div>
+                    <div class="step" data-i18n="cases.problem3.s4">But remember the input restriction: \(x\) must be between \(-1\) and \(1\).</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem3.answer">
+                    <span class="check">✓</span><span>Final answer: \(\cos(\arccos x)=x,\ -1\le x\le1\)</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.problem3.nuance">
+                    <strong>Nuance:</strong> This type is usually direct because the outside function cancels the inside inverse function on its valid domain.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem4.title">Problem Type 4: Inverse Trig Outside Trig</h3>
+
+                <p data-i18n="cases.problem4.p1">
+                    This is the tricky case you mentioned. \(\arccos(\cos x)\) is not always \(x\), because \(\arccos\) only returns angles from \(0\) to \(\pi\).
+                </p>
+
+                <div class="math-line">
+                    \(\arccos\left(\cos\frac{5\pi}{3}\right)\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem4.s1">First find the cosine value: \(\cos\frac{5\pi}{3}=\frac12\).</div>
+                    <div class="step" data-i18n="cases.problem4.s2">Now solve \(\arccos\left(\frac12\right)\).</div>
+                    <div class="step" data-i18n="cases.problem4.s3">The answer must be inside the principal range of \(\arccos\): \([0,\pi]\).</div>
+                    <div class="step" data-i18n="cases.problem4.s4">The angle in \([0,\pi]\) whose cosine is \(\frac12\) is \(\frac{\pi}{3}\).</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem4.answer">
+                    <span class="check">✓</span><span>Final answer: \(\arccos\left(\cos\frac{5\pi}{3}\right)=\frac{\pi}{3}\), not \(\frac{5\pi}{3}\)</span>
+                </div>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="cases.table.expression">Expression</th>
+                            <th data-i18n="cases.table.whenX">When it equals \(x\)</th>
+                            <th data-i18n="cases.table.nuance">Nuance</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arcsin(\sin x)\)</td>
+                            <td>\(-\frac{\pi}{2}\le x\le\frac{\pi}{2}\)</td>
+                            <td data-i18n="cases.problem4.t1">The answer must be in the arcsin principal range.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arccos(\cos x)\)</td>
+                            <td>\(0\le x\le\pi\)</td>
+                            <td data-i18n="cases.problem4.t2">The answer must be in the arccos principal range.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arctan(\tan x)\)</td>
+                            <td>\(-\frac{\pi}{2}&lt;x&lt;\frac{\pi}{2}\)</td>
+                            <td data-i18n="cases.problem4.t3">The answer must be in the arctan principal range.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\operatorname{arccot}(\cot x)\)</td>
+                            <td>\(0&lt;x&lt;\pi\)</td>
+                            <td data-i18n="cases.problem4.t4">The answer must be in the arccot principal range.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem5.title">Problem Type 5: Simplifying Expressions Like \(\sin(\arccos x)\)</h3>
+
+                <p data-i18n="cases.problem5.p1">
+                    These problems do not cancel directly because the outside function and inside inverse function do not match.
+                    The best method is to draw a right triangle or use \(\sin^2\theta+\cos^2\theta=1\).
+                </p>
+
+                <div class="math-line">
+                    \(\sin(\arccos x)\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem5.s1">Let \(\theta=\arccos x\). Then \(\cos\theta=x\).</div>
+                    <div class="step" data-i18n="cases.problem5.s2">Since \(\arccos x\) returns \(\theta\in[0,\pi]\), the sine of \(\theta\) is never negative.</div>
+                    <div class="step" data-i18n="cases.problem5.s3">Use \(\sin^2\theta+\cos^2\theta=1\).</div>
+                    <div class="step" data-i18n="cases.problem5.s4">So \(\sin^2\theta=1-x^2\), and because \(\sin\theta\ge0\), \(\sin\theta=\sqrt{1-x^2}\).</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem5.answer">
+                    <span class="check">✓</span><span>Final answer: \(\sin(\arccos x)=\sqrt{1-x^2}\)</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.problem5.nuance">
+                    <strong>Nuance:</strong> Do not write \(\pm\sqrt{1-x^2}\). Because \(\arccos x\) returns angles from \(0\) to \(\pi\), sine is nonnegative there.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem6.title">Problem Type 6: Solving Equations with Inverse Trig</h3>
+
+                <p data-i18n="cases.problem6.p1">
+                    When an inverse trig expression equals an angle, rewrite it as a normal trig statement.
+                </p>
+
+                <div class="math-line">
+                    \(\arcsin(2x-1)=\frac{\pi}{6}\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem6.s1">Rewrite the equation: if \(\arcsin(2x-1)=\frac{\pi}{6}\), then \(\sin\frac{\pi}{6}=2x-1\).</div>
+                    <div class="step" data-i18n="cases.problem6.s2">Use the known value: \(\sin\frac{\pi}{6}=\frac12\).</div>
+                    <div class="step" data-i18n="cases.problem6.s3">So \(2x-1=\frac12\).</div>
+                    <div class="step" data-i18n="cases.problem6.s4">Solve: \(2x=\frac32\), so \(x=\frac34\).</div>
+                    <div class="step" data-i18n="cases.problem6.s5">Check the input: \(2x-1=\frac12\), which is inside \([-1,1]\). So the answer is valid.</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem6.answer">
+                    <span class="check">✓</span><span>Final answer: \(x=\frac34\)</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.problem6.nuance">
+                    <strong>Nuance:</strong> Always check the domain after solving. Algebra can produce answers that make the inverse trig input invalid.
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="cases.problem7.title">Problem Type 7: Solving Equations Where the Answer Must Be Principal</h3>
+
+                <p data-i18n="cases.problem7.p1">
+                    Sometimes the expression looks like it should give many angles, but inverse trig gives only the principal angle.
+                </p>
+
+                <div class="math-line">
+                    \(\arctan x=\frac{3\pi}{4}\)
+                </div>
+
+                <div class="steps">
+                    <div class="step" data-i18n="cases.problem7.s1">Check the principal range of \(\arctan x\): \(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\).</div>
+                    <div class="step" data-i18n="cases.problem7.s2">The angle \(\frac{3\pi}{4}\) is outside this range.</div>
+                    <div class="step" data-i18n="cases.problem7.s3">Therefore, no real \(x\) can make \(\arctan x=\frac{3\pi}{4}\).</div>
+                </div>
+
+                <div class="answer-final" data-i18n="cases.problem7.answer">
+                    <span class="check">✓</span><span>Final answer: no real solution.</span>
+                </div>
+
+                <div class="callout" data-i18n="cases.finalCallout">
+                    <strong>Final memory:</strong> For inverse trig problems, solving is not just calculation. You must check domain, principal range, and whether the composition order changes the answer.
+                </div>
+            </div>
+        </article>
+
+<article class="module-panel" data-module-panel="negative">
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span><span data-i18n="negative.title">Pulling Out the Negative</span></h2>
+
+                <p data-i18n="negative.p1">
+                    Some inverse trigonometric functions allow the negative sign to come outside directly, while others do not.
+                    This depends on the symmetry of the function and the chosen principal range.
+                </p>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="negative.table.function">Function</th>
+                            <th data-i18n="negative.table.rule">Rule</th>
+                            <th data-i18n="negative.table.example">Example</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arcsin x\)</td>
+                            <td>\(\arcsin(-x)=-\arcsin x\)</td>
+                            <td>\(\arcsin\left(-\frac12\right)=-\frac{\pi}{6}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arctan x\)</td>
+                            <td>\(\arctan(-x)=-\arctan x\)</td>
+                            <td>\(\arctan(-1)=-\frac{\pi}{4}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arccos x\)</td>
+                            <td>\(\arccos(-x)=\pi-\arccos x\)</td>
+                            <td>\(\arccos\left(-\frac12\right)=\frac{2\pi}{3}\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\operatorname{arccot}x\)</td>
+                            <td>\(\operatorname{arccot}(-x)=\pi-\operatorname{arccot}x\)</td>
+                            <td>\(\operatorname{arccot}(-1)=\frac{3\pi}{4}\)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout" data-i18n="negative.callout">
+                    <strong>Quick memory:</strong> Arcsine and arctangent are odd. Arccosine and arccotangent use \(\pi-\) because their principal outputs are chosen from \(0\) to \(\pi\).
+                </div>
+            </div>
+        </article>
+
+
+        <article class="module-panel" data-module-panel="summary">
+            <div class="lesson-card">
+                <h2><span class="badge-num">10</span><span data-i18n="summary.title">Final Summary</span></h2>
+
+                <div class="simple-table-wrap">
+                    <table class="simple-table">
+                        <thead>
+                        <tr>
+                            <th data-i18n="summary.table.function">Function</th>
+                            <th data-i18n="summary.table.domain">Domain</th>
+                            <th data-i18n="summary.table.range">Principal range</th>
+                            <th data-i18n="summary.table.meaning">Meaning</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>\(\arcsin x\)</td>
+                            <td>\([-1,1]\)</td>
+                            <td>\(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)</td>
+                            <td data-i18n="summary.arcsin">Angle whose sine is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arccos x\)</td>
+                            <td>\([-1,1]\)</td>
+                            <td>\([0,\pi]\)</td>
+                            <td data-i18n="summary.arccos">Angle whose cosine is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\arctan x\)</td>
+                            <td>\((-\infty,\infty)\)</td>
+                            <td>\(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)</td>
+                            <td data-i18n="summary.arctan">Angle whose tangent is \(x\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\operatorname{arccot}x\)</td>
+                            <td>\((-\infty,\infty)\)</td>
+                            <td>\((0,\pi)\)</td>
+                            <td data-i18n="summary.arccot">Angle whose cotangent is \(x\).</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="section-rule">
+
+                <h3 data-i18n="summary.mistakes.title">Common Mistakes</h3>
+
+                <div class="rule-grid">
+                    <div class="rule-card">
+                        <strong data-i18n="summary.mistakes.m1.title">Forgetting the principal range</strong>
+                        <p data-i18n="summary.mistakes.m1.text">Inverse trig functions return the principal angle, not every possible angle.</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="summary.mistakes.m2.title">Using invalid inputs</strong>
+                        <p data-i18n="summary.mistakes.m2.text">\(\arcsin x\) and \(\arccos x\) do not accept inputs less than \(-1\) or greater than \(1\).</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="summary.mistakes.m3.title">Pulling out negatives incorrectly</strong>
+                        <p data-i18n="summary.mistakes.m3.text">\(\arccos(-x)\) is not equal to \(-\arccos x\).</p>
+                    </div>
+
+                    <div class="rule-card">
+                        <strong data-i18n="summary.mistakes.m4.title">Confusing inverse with reciprocal</strong>
+                        <p data-i18n="summary.mistakes.m4.text">\(\arcsin x\) is not the same as \(\frac{1}{\sin x}\).</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </section>
 </main>
 
 
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                current: "Inverse Trigonometric Functions",
+                hero: "Introduction to <br>Inverse Trigonometric Functions",
+                readMore: "Read More",
+                backTop: "Back to top",
+                heroAlt: "Inverse trigonometric functions visual",
+                practice: "Practice with Inverse Trigonometric Functions"
+            },
+            tabs: {
+                aria: "Inverse trigonometry modules",
+                overview: "Overview",
+                arcsin: "arcsin",
+                arccos: "arccos",
+                arctan: "arctan",
+                arccot: "arccot",
+                values: "Values",
+                cases: "Common Problems",
+                negative: "Negative Inputs",
+                summary: "Summary"
+            },
+            common: {
+                domain: "Domain",
+                range: "Range",
+                degrees: "In degrees: \\([-90^\\circ,90^\\circ]\\).",
+                examples: "Examples",
+                expression: "Expression",
+                answer: "Answer",
+                reason: "Reason"
+            },
+            lesson: {
+                title: "Inverse Trigonometric Functions — Modular Guide",
+                intro: {
+                    p1: "Inverse trigonometric functions reverse the basic trigonometric functions. They answer questions like: “Which angle has this sine value?” or “Which angle has this tangent value?”",
+                    p2: "Because ordinary trigonometric functions repeat, inverse trigonometric functions must use restricted output ranges. Those ranges make each inverse function give one principal answer.",
+                    callout: "<strong>Main idea:</strong> Inverse trigonometric functions take a ratio or coordinate value and return an angle."
+                }
+            },
+            overview: {
+                title: "What Inverse Trigonometric Functions Mean",
+                p1: "A normal trigonometric function starts with an angle and gives a value. An inverse trigonometric function starts with a value and gives an angle.",
+                table: {
+                    normal: "Normal trig function",
+                    inverse: "Inverse trig function",
+                    meaning: "Meaning"
+                },
+                sinMeaning: "The angle whose sine is \\(x\\).",
+                cosMeaning: "The angle whose cosine is \\(x\\).",
+                tanMeaning: "The angle whose tangent is \\(x\\).",
+                cotMeaning: "The angle whose cotangent is \\(x\\).",
+                callout: "<strong>Important:</strong> The answer of an inverse trigonometric function is an angle, not a ratio.",
+                restrict: {
+                    title: "Why We Restrict the Range",
+                    p1: "Trigonometric functions repeat. For example, many different angles can have the same sine value. To make an inverse function, we choose one main interval where each output is used only once.",
+                    arcsin: "Returns angles from \\(-90^\\circ\\) to \\(90^\\circ\\).",
+                    arccos: "Returns angles from \\(0^\\circ\\) to \\(180^\\circ\\).",
+                    arctan: "Returns angles between \\(-90^\\circ\\) and \\(90^\\circ\\).",
+                    arccot: "Usually returns angles from \\(0^\\circ\\) to \\(180^\\circ\\)."
+                }
+            },
+            arcsin: {
+                title: "Arcsine: \\(\\arcsin x\\)",
+                p1: "The function \\(\\arcsin x\\) returns the principal angle whose sine is \\(x\\).",
+                callout: "<strong>Meaning:</strong> \\(\\arcsin x\\) asks: “Which angle between \\(-90^\\circ\\) and \\(90^\\circ\\) has sine \\(x\\)?”",
+                e1: "Because \\(\\sin0=0\\).",
+                e2: "Because \\(\\sin\\frac{\\pi}{6}=\\frac12\\).",
+                e3: "Because \\(\\sin\\left(-\\frac{\\pi}{2}\\right)=-1\\)."
+            },
+            arccos: {
+                title: "Arccosine: \\(\\arccos x\\)",
+                p1: "The function \\(\\arccos x\\) returns the principal angle whose cosine is \\(x\\).",
+                degrees: "In degrees: \\([0^\\circ,180^\\circ]\\).",
+                callout: "<strong>Meaning:</strong> \\(\\arccos x\\) asks: “Which angle between \\(0^\\circ\\) and \\(180^\\circ\\) has cosine \\(x\\)?”",
+                e1: "Because \\(\\cos0=1\\).",
+                e2: "Because \\(\\cos\\frac{\\pi}{3}=\\frac12\\).",
+                e3: "Because \\(\\cos\\pi=-1\\)."
+            },
+            arctan: {
+                title: "Arctangent: \\(\\arctan x\\)",
+                p1: "The function \\(\\arctan x\\) returns the principal angle whose tangent is \\(x\\).",
+                degrees: "In degrees: \\((-90^\\circ,90^\\circ)\\).",
+                callout: "<strong>Meaning:</strong> \\(\\arctan x\\) asks: “Which angle between \\(-90^\\circ\\) and \\(90^\\circ\\), not including the endpoints, has tangent \\(x\\)?”",
+                e1: "Because \\(\\tan0=0\\).",
+                e2: "Because \\(\\tan\\frac{\\pi}{4}=1\\).",
+                e3: "Because \\(\\tan\\left(-\\frac{\\pi}{3}\\right)=-\\sqrt3\\)."
+            },
+            arccot: {
+                title: "Arccotangent: \\(\\operatorname{arccot}x\\)",
+                p1: "The function \\(\\operatorname{arccot}x\\) returns the principal angle whose cotangent is \\(x\\). Different textbooks sometimes choose different ranges, but the most common school convention is \\((0,\\pi)\\).",
+                degrees: "In degrees: \\((0^\\circ,180^\\circ)\\).",
+                callout: "<strong>Meaning:</strong> \\(\\operatorname{arccot}x\\) asks: “Which angle between \\(0^\\circ\\) and \\(180^\\circ\\), not including the endpoints, has cotangent \\(x\\)?”",
+                e1: "Because \\(\\cot\\frac{\\pi}{4}=1\\).",
+                e2: "Because \\(\\cot\\frac{\\pi}{2}=0\\).",
+                e3: "Because \\(\\cot\\frac{3\\pi}{4}=-1\\)."
+            },
+            values: {
+                title: "Important Values",
+                p1: "These values are very common. The outputs are principal angles.",
+                notBasic: "not a basic value",
+                outOfDomain: "outside domain",
+                callout: "<strong>Remember:</strong> \\(\\arcsin x\\) and \\(\\arccos x\\) only accept inputs from \\([-1,1]\\), but \\(\\arctan x\\) and \\(\\operatorname{arccot}x\\) accept all real inputs."
+            },
+            cases: {
+                title: "Five Common Problem Types in Inverse Trigonometry",
+                p1: "In inverse trigonometric functions, most mistakes happen because students try to memorize answers without checking the domain, the principal range, and the order of the functions. This section shows the most common problem types and how to solve them step by step.",
+                mainCallout: "<strong>Core habit:</strong> Always ask two questions: “Is the input allowed?” and “Is the final angle inside the principal range?”",
+                table: {
+                    expression: "Expression",
+                    whenX: "When it equals \\(x\\)",
+                    nuance: "Nuance"
+                },
+                problem1: {
+                    title: "Problem Type 1: Evaluating Basic Inverse Trig Values",
+                    p1: "These problems ask you to find an angle from a trigonometric value.",
+                    s1: "First identify the function: \\(\\arcsin\\) means “the angle whose sine is the input.”",
+                    s2: "Check the input: \\(\\frac12\\) is allowed because it is between \\(-1\\) and \\(1\\).",
+                    s3: "Use the principal range of \\(\\arcsin\\): \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\).",
+                    s4: "Find the angle in that range whose sine is \\(\\frac12\\): that angle is \\(\\frac{\\pi}{6}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(\\arcsin\\left(\\frac12\\right)=\\frac{\\pi}{6}\\)</span>",
+                    nuance: "<strong>Nuance:</strong> \\(\\arcsin\\left(\\frac12\\right)\\) is not asking for every angle with sine \\(\\frac12\\). It asks for the principal angle only."
+                },
+                problem2: {
+                    title: "Problem Type 2: Checking Whether the Input Is Allowed",
+                    p1: "Before solving, check the domain. Some inverse trig functions do not accept every input.",
+                    s1: "The function is \\(\\arccos x\\).",
+                    s2: "The domain of \\(\\arccos x\\) is \\([-1,1]\\).",
+                    s3: "The input \\(2\\) is outside this domain.",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(\\arccos(2)\\) is undefined in real numbers.</span>",
+                    nuance: "<strong>Nuance:</strong> \\(\\arcsin x\\) and \\(\\arccos x\\) require \\(-1\\le x\\le1\\). But \\(\\arctan x\\) and \\(\\operatorname{arccot}x\\) accept all real inputs."
+                },
+                problem3: {
+                    title: "Problem Type 3: Trig Outside Inverse Trig",
+                    p1: "If the outside trig function matches the inside inverse trig function, the expression usually simplifies directly.",
+                    s1: "Let \\(\\theta=\\arccos x\\).",
+                    s2: "Then \\(\\cos\\theta=x\\).",
+                    s3: "So \\(\\cos(\\arccos x)=x\\).",
+                    s4: "But remember the input restriction: \\(x\\) must be between \\(-1\\) and \\(1\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(\\cos(\\arccos x)=x,\\ -1\\le x\\le1\\)</span>",
+                    nuance: "<strong>Nuance:</strong> This type is usually direct because the outside function cancels the inside inverse function on its valid domain."
+                },
+                problem4: {
+                    title: "Problem Type 4: Inverse Trig Outside Trig",
+                    p1: "This is the tricky case you mentioned. \\(\\arccos(\\cos x)\\) is not always \\(x\\), because \\(\\arccos\\) only returns angles from \\(0\\) to \\(\\pi\\).",
+                    s1: "First find the cosine value: \\(\\cos\\frac{5\\pi}{3}=\\frac12\\).",
+                    s2: "Now solve \\(\\arccos\\left(\\frac12\\right)\\).",
+                    s3: "The answer must be inside the principal range of \\(\\arccos\\): \\([0,\\pi]\\).",
+                    s4: "The angle in \\([0,\\pi]\\) whose cosine is \\(\\frac12\\) is \\(\\frac{\\pi}{3}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(\\arccos\\left(\\cos\\frac{5\\pi}{3}\\right)=\\frac{\\pi}{3}\\), not \\(\\frac{5\\pi}{3}\\)</span>",
+                    t1: "The answer must be in the arcsin principal range.",
+                    t2: "The answer must be in the arccos principal range.",
+                    t3: "The answer must be in the arctan principal range.",
+                    t4: "The answer must be in the arccot principal range."
+                },
+                problem5: {
+                    title: "Problem Type 5: Simplifying Expressions Like \\(\\sin(\\arccos x)\\)",
+                    p1: "These problems do not cancel directly because the outside function and inside inverse function do not match. The best method is to draw a right triangle or use \\(\\sin^2\\theta+\\cos^2\\theta=1\\).",
+                    s1: "Let \\(\\theta=\\arccos x\\). Then \\(\\cos\\theta=x\\).",
+                    s2: "Since \\(\\arccos x\\) returns \\(\\theta\\in[0,\\pi]\\), the sine of \\(\\theta\\) is never negative.",
+                    s3: "Use \\(\\sin^2\\theta+\\cos^2\\theta=1\\).",
+                    s4: "So \\(\\sin^2\\theta=1-x^2\\), and because \\(\\sin\\theta\\ge0\\), \\(\\sin\\theta=\\sqrt{1-x^2}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(\\sin(\\arccos x)=\\sqrt{1-x^2}\\)</span>",
+                    nuance: "<strong>Nuance:</strong> Do not write \\(\\pm\\sqrt{1-x^2}\\). Because \\(\\arccos x\\) returns angles from \\(0\\) to \\(\\pi\\), sine is nonnegative there."
+                },
+                problem6: {
+                    title: "Problem Type 6: Solving Equations with Inverse Trig",
+                    p1: "When an inverse trig expression equals an angle, rewrite it as a normal trig statement.",
+                    s1: "Rewrite the equation: if \\(\\arcsin(2x-1)=\\frac{\\pi}{6}\\), then \\(\\sin\\frac{\\pi}{6}=2x-1\\).",
+                    s2: "Use the known value: \\(\\sin\\frac{\\pi}{6}=\\frac12\\).",
+                    s3: "So \\(2x-1=\\frac12\\).",
+                    s4: "Solve: \\(2x=\\frac32\\), so \\(x=\\frac34\\).",
+                    s5: "Check the input: \\(2x-1=\\frac12\\), which is inside \\([-1,1]\\). So the answer is valid.",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: \\(x=\\frac34\\)</span>",
+                    nuance: "<strong>Nuance:</strong> Always check the domain after solving. Algebra can produce answers that make the inverse trig input invalid."
+                },
+                problem7: {
+                    title: "Problem Type 7: Solving Equations Where the Answer Must Be Principal",
+                    p1: "Sometimes the expression looks like it should give many angles, but inverse trig gives only the principal angle.",
+                    s1: "Check the principal range of \\(\\arctan x\\): \\(\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\).",
+                    s2: "The angle \\(\\frac{3\\pi}{4}\\) is outside this range.",
+                    s3: "Therefore, no real \\(x\\) can make \\(\\arctan x=\\frac{3\\pi}{4}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Final answer: no real solution.</span>"
+                },
+                finalCallout: "<strong>Final memory:</strong> For inverse trig problems, solving is not just calculation. You must check domain, principal range, and whether the composition order changes the answer."
+            },
+            negative: {
+                title: "Pulling Out the Negative",
+                p1: "Some inverse trigonometric functions allow the negative sign to come outside directly, while others do not. This depends on the symmetry of the function and the chosen principal range.",
+                table: {
+                    function: "Function",
+                    rule: "Rule",
+                    example: "Example"
+                },
+                callout: "<strong>Quick memory:</strong> Arcsine and arctangent are odd. Arccosine and arccotangent use \\(\\pi-\\) because their principal outputs are chosen from \\(0\\) to \\(\\pi\\)."
+            },
+            summary: {
+                title: "Final Summary",
+                table: {
+                    function: "Function",
+                    domain: "Domain",
+                    range: "Principal range",
+                    meaning: "Meaning"
+                },
+                arcsin: "Angle whose sine is \\(x\\).",
+                arccos: "Angle whose cosine is \\(x\\).",
+                arctan: "Angle whose tangent is \\(x\\).",
+                arccot: "Angle whose cotangent is \\(x\\).",
+                mistakes: {
+                    title: "Common Mistakes",
+                    m1: {
+                        title: "Forgetting the principal range",
+                        text: "Inverse trig functions return the principal angle, not every possible angle."
+                    },
+                    m2: {
+                        title: "Using invalid inputs",
+                        text: "\\(\\arcsin x\\) and \\(\\arccos x\\) do not accept inputs less than \\(-1\\) or greater than \\(1\\)."
+                    },
+                    m3: {
+                        title: "Pulling out negatives incorrectly",
+                        text: "\\(\\arccos(-x)\\) is not equal to \\(-\\arccos x\\)."
+                    },
+                    m4: {
+                        title: "Confusing inverse with reciprocal",
+                        text: "\\(\\arcsin x\\) is not the same as \\(\\frac{1}{\\sin x}\\)."
+                    }
+                }
+            }
+        },
+
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo'li",
+                homepage: "Bosh sahifa",
+                current: "Teskari trigonometrik funksiyalar",
+                hero: "Teskari trigonometrik <br>funksiyalarga kirish",
+                readMore: "Batafsil o'qish",
+                backTop: "Yuqoriga qaytish",
+                heroAlt: "Teskari trigonometrik funksiyalar rasmi",
+                practice: "Teskari trigonometrik funksiyalar bo'yicha mashq"
+            },
+            tabs: {
+                aria: "Teskari trigonometriya modullari",
+                overview: "Umumiy",
+                arcsin: "arcsin",
+                arccos: "arccos",
+                arctan: "arctan",
+                arccot: "arccot",
+                values: "Qiymatlar",
+                cases: "Asosiy masalalar",
+                negative: "Manfiy kirishlar",
+                summary: "Xulosa"
+            },
+            common: {
+                domain: "Aniqlanish sohasi",
+                range: "Qiymatlar sohasi",
+                degrees: "Gradusda: \\([-90^\\circ,90^\\circ]\\).",
+                examples: "Misollar",
+                expression: "Ifoda",
+                answer: "Javob",
+                reason: "Sabab"
+            },
+            lesson: {
+                title: "Teskari trigonometrik funksiyalar — Modulli qo'llanma",
+                intro: {
+                    p1: "Teskari trigonometrik funksiyalar asosiy trigonometrik funksiyalarni teskari qiladi. Ular “qaysi burchakning sinusi shu qiymatga teng?” yoki “qaysi burchakning tangensi shu qiymatga teng?” kabi savollarga javob beradi.",
+                    p2: "Oddiy trigonometrik funksiyalar takrorlanadi, shuning uchun teskari trigonometrik funksiyalar cheklangan qiymatlar sohasidan foydalanadi. Shu cheklov har bir teskari funksiyaga bitta asosiy javob beradi.",
+                    callout: "<strong>Asosiy g'oya:</strong> Teskari trigonometrik funksiyalar nisbat yoki koordinata qiymatini olib, burchak qaytaradi."
+                }
+            },
+            overview: {
+                title: "Teskari trigonometrik funksiyalar nimani anglatadi?",
+                p1: "Oddiy trigonometrik funksiya burchakdan boshlanib qiymat beradi. Teskari trigonometrik funksiya esa qiymatdan boshlanib burchak beradi.",
+                table: {
+                    normal: "Oddiy trigonometrik funksiya",
+                    inverse: "Teskari trigonometrik funksiya",
+                    meaning: "Ma'nosi"
+                },
+                sinMeaning: "Sinusi \\(x\\) bo'lgan burchak.",
+                cosMeaning: "Kosinusi \\(x\\) bo'lgan burchak.",
+                tanMeaning: "Tangensi \\(x\\) bo'lgan burchak.",
+                cotMeaning: "Kotangensi \\(x\\) bo'lgan burchak.",
+                callout: "<strong>Muhim:</strong> Teskari trigonometrik funksiyaning javobi nisbat emas, burchak bo'ladi.",
+                restrict: {
+                    title: "Nega qiymatlar sohasi cheklanadi?",
+                    p1: "Trigonometrik funksiyalar takrorlanadi. Masalan, ko'p burchaklar bir xil sinus qiymatiga ega bo'lishi mumkin. Teskari funksiya hosil qilish uchun har bir natija bir marta ishlatiladigan asosiy oraliq tanlanadi.",
+                    arcsin: "\\(-90^\\circ\\) dan \\(90^\\circ\\) gacha burchaklarni qaytaradi.",
+                    arccos: "\\(0^\\circ\\) dan \\(180^\\circ\\) gacha burchaklarni qaytaradi.",
+                    arctan: "\\(-90^\\circ\\) va \\(90^\\circ\\) orasidagi burchaklarni qaytaradi.",
+                    arccot: "Odatda \\(0^\\circ\\) dan \\(180^\\circ\\) gacha burchaklarni qaytaradi."
+                }
+            },
+            arcsin: {
+                title: "Arksinus: \\(\\arcsin x\\)",
+                p1: "\\(\\arcsin x\\) funksiyasi sinusi \\(x\\) bo'lgan asosiy burchakni qaytaradi.",
+                callout: "<strong>Ma'nosi:</strong> \\(\\arcsin x\\) “\\(-90^\\circ\\) va \\(90^\\circ\\) orasidagi qaysi burchakning sinusi \\(x\\)?” deb so'raydi.",
+                e1: "Chunki \\(\\sin0=0\\).",
+                e2: "Chunki \\(\\sin\\frac{\\pi}{6}=\\frac12\\).",
+                e3: "Chunki \\(\\sin\\left(-\\frac{\\pi}{2}\\right)=-1\\)."
+            },
+            arccos: {
+                title: "Arkkosinus: \\(\\arccos x\\)",
+                p1: "\\(\\arccos x\\) funksiyasi kosinusi \\(x\\) bo'lgan asosiy burchakni qaytaradi.",
+                degrees: "Gradusda: \\([0^\\circ,180^\\circ]\\).",
+                callout: "<strong>Ma'nosi:</strong> \\(\\arccos x\\) “\\(0^\\circ\\) va \\(180^\\circ\\) orasidagi qaysi burchakning kosinusi \\(x\\)?” deb so'raydi.",
+                e1: "Chunki \\(\\cos0=1\\).",
+                e2: "Chunki \\(\\cos\\frac{\\pi}{3}=\\frac12\\).",
+                e3: "Chunki \\(\\cos\\pi=-1\\)."
+            },
+            arctan: {
+                title: "Arktangens: \\(\\arctan x\\)",
+                p1: "\\(\\arctan x\\) funksiyasi tangensi \\(x\\) bo'lgan asosiy burchakni qaytaradi.",
+                degrees: "Gradusda: \\((-90^\\circ,90^\\circ)\\).",
+                callout: "<strong>Ma'nosi:</strong> \\(\\arctan x\\) “\\(-90^\\circ\\) va \\(90^\\circ\\) orasidagi, chekka nuqtalarsiz, qaysi burchakning tangensi \\(x\\)?” deb so'raydi.",
+                e1: "Chunki \\(\\tan0=0\\).",
+                e2: "Chunki \\(\\tan\\frac{\\pi}{4}=1\\).",
+                e3: "Chunki \\(\\tan\\left(-\\frac{\\pi}{3}\\right)=-\\sqrt3\\)."
+            },
+            arccot: {
+                title: "Arkkotangens: \\(\\operatorname{arccot}x\\)",
+                p1: "\\(\\operatorname{arccot}x\\) funksiyasi kotangensi \\(x\\) bo'lgan asosiy burchakni qaytaradi. Ba'zi kitoblarda boshqa oraliqlar tanlanishi mumkin, lekin maktablarda ko'p uchraydigan kelishuv \\((0,\\pi)\\).",
+                degrees: "Gradusda: \\((0^\\circ,180^\\circ)\\).",
+                callout: "<strong>Ma'nosi:</strong> \\(\\operatorname{arccot}x\\) “\\(0^\\circ\\) va \\(180^\\circ\\) orasidagi, chekka nuqtalarsiz, qaysi burchakning kotangensi \\(x\\)?” deb so'raydi.",
+                e1: "Chunki \\(\\cot\\frac{\\pi}{4}=1\\).",
+                e2: "Chunki \\(\\cot\\frac{\\pi}{2}=0\\).",
+                e3: "Chunki \\(\\cot\\frac{3\\pi}{4}=-1\\)."
+            },
+            values: {
+                title: "Muhim qiymatlar",
+                p1: "Bu qiymatlar juda ko'p uchraydi. Natijalar asosiy burchaklardir.",
+                notBasic: "asosiy qiymat emas",
+                outOfDomain: "aniqlanish sohasidan tashqarida",
+                callout: "<strong>Eslab qoling:</strong> \\(\\arcsin x\\) va \\(\\arccos x\\) faqat \\([-1,1]\\) oralig'idagi kirishlarni qabul qiladi, \\(\\arctan x\\) va \\(\\operatorname{arccot}x\\) esa barcha haqiqiy kirishlarni qabul qiladi."
+            },
+            cases: {
+                title: "Teskari trigonometriyada eng ko'p uchraydigan 5 turdagi masala",
+                p1: "Teskari trigonometrik funksiyalarda xatolar ko'pincha javobni yodlab, aniqlanish sohasi, asosiy qiymatlar sohasi va funksiyalar tartibini tekshirmaslikdan kelib chiqadi. Bu bo'lim eng ko'p uchraydigan masala turlarini va ularni bosqichma-bosqich yechishni ko'rsatadi.",
+                mainCallout: "<strong>Asosiy odat:</strong> Har doim ikki savol bering: “Kirish qiymati mumkinmi?” va “Yakuniy burchak asosiy oraliq ichidami?”",
+                table: {
+                    expression: "Ifoda",
+                    whenX: "Qachon \\(x\\) ga teng",
+                    nuance: "Nozik joyi"
+                },
+                problem1: {
+                    title: "Masala turi 1: Asosiy teskari trig qiymatlarni hisoblash",
+                    p1: "Bu masalalarda trigonometrik qiymatdan burchak topish kerak bo'ladi.",
+                    s1: "Avval funksiyani aniqlang: \\(\\arcsin\\) “sinusi berilgan qiymatga teng burchak” degani.",
+                    s2: "Kirishni tekshiring: \\(\\frac12\\) mumkin, chunki u \\(-1\\) va \\(1\\) orasida.",
+                    s3: "\\(\\arcsin\\) ning asosiy oraliqini ishlating: \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\).",
+                    s4: "Shu oraliqda sinusi \\(\\frac12\\) bo'lgan burchakni toping: bu burchak \\(\\frac{\\pi}{6}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\arcsin\\left(\\frac12\\right)=\\frac{\\pi}{6}\\)</span>",
+                    nuance: "<strong>Nozik joyi:</strong> \\(\\arcsin\\left(\\frac12\\right)\\) sinusi \\(\\frac12\\) bo'lgan barcha burchaklarni so'ramaydi. Faqat asosiy burchakni so'raydi."
+                },
+                problem2: {
+                    title: "Masala turi 2: Kirish qiymati mumkinmi, tekshirish",
+                    p1: "Yechishdan oldin aniqlanish sohasini tekshiring. Ba'zi teskari trigonometrik funksiyalar barcha kirishlarni qabul qilmaydi.",
+                    s1: "Funksiya \\(\\arccos x\\).",
+                    s2: "\\(\\arccos x\\) ning aniqlanish sohasi \\([-1,1]\\).",
+                    s3: "Kirish qiymati \\(2\\) bu sohadan tashqarida.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\arccos(2)\\) haqiqiy sonlarda aniqlanmagan.</span>",
+                    nuance: "<strong>Nozik joyi:</strong> \\(\\arcsin x\\) va \\(\\arccos x\\) uchun \\(-1\\le x\\le1\\) bo'lishi kerak. Lekin \\(\\arctan x\\) va \\(\\operatorname{arccot}x\\) barcha haqiqiy kirishlarni qabul qiladi."
+                },
+                problem3: {
+                    title: "Masala turi 3: Tashqarida trig, ichkarida teskari trig",
+                    p1: "Agar tashqaridagi trigonometrik funksiya ichkaridagi teskari trigonometrik funksiya bilan mos bo'lsa, ifoda odatda to'g'ridan-to'g'ri soddalashadi.",
+                    s1: "\\(\\theta=\\arccos x\\) deb oling.",
+                    s2: "Unda \\(\\cos\\theta=x\\).",
+                    s3: "Shuning uchun \\(\\cos(\\arccos x)=x\\).",
+                    s4: "Lekin kirish cheklovini unutmang: \\(x\\) \\(-1\\) va \\(1\\) orasida bo'lishi kerak.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\cos(\\arccos x)=x,\\ -1\\le x\\le1\\)</span>",
+                    nuance: "<strong>Nozik joyi:</strong> Bu tur odatda bevosita soddalashadi, chunki tashqaridagi funksiya ichkaridagi teskari funksiyani valid sohada bekor qiladi."
+                },
+                problem4: {
+                    title: "Masala turi 4: Tashqarida teskari trig, ichkarida trig",
+                    p1: "Bu siz aytgan tricky case. \\(\\arccos(\\cos x)\\) har doim \\(x\\) emas, chunki \\(\\arccos\\) faqat \\(0\\) dan \\(\\pi\\) gacha burchak qaytaradi.",
+                    s1: "Avval kosinus qiymatini toping: \\(\\cos\\frac{5\\pi}{3}=\\frac12\\).",
+                    s2: "Endi \\(\\arccos\\left(\\frac12\\right)\\) ni yeching.",
+                    s3: "Javob \\(\\arccos\\) ning asosiy oraliqi \\([0,\\pi]\\) ichida bo'lishi kerak.",
+                    s4: "\\([0,\\pi]\\) ichida kosinusi \\(\\frac12\\) bo'lgan burchak \\(\\frac{\\pi}{3}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\arccos\\left(\\cos\\frac{5\\pi}{3}\\right)=\\frac{\\pi}{3}\\), \\(\\frac{5\\pi}{3}\\) emas.</span>",
+                    t1: "Javob arcsin asosiy oraliqi ichida bo'lishi kerak.",
+                    t2: "Javob arccos asosiy oraliqi ichida bo'lishi kerak.",
+                    t3: "Javob arctan asosiy oraliqi ichida bo'lishi kerak.",
+                    t4: "Javob arccot asosiy oraliqi ichida bo'lishi kerak."
+                },
+                problem5: {
+                    title: "Masala turi 5: \\(\\sin(\\arccos x)\\) kabi ifodalarni soddalashtirish",
+                    p1: "Bu masalalarda to'g'ridan-to'g'ri cancel bo'lmaydi, chunki tashqaridagi funksiya va ichkaridagi teskari funksiya mos emas. Eng yaxshi usul — to'g'ri burchakli uchburchak chizish yoki \\(\\sin^2\\theta+\\cos^2\\theta=1\\) dan foydalanish.",
+                    s1: "\\(\\theta=\\arccos x\\) deb oling. Unda \\(\\cos\\theta=x\\).",
+                    s2: "\\(\\arccos x\\) \\(\\theta\\in[0,\\pi]\\) qaytargani uchun \\(\\theta\\) ning sinusi manfiy bo'lmaydi.",
+                    s3: "\\(\\sin^2\\theta+\\cos^2\\theta=1\\) dan foydalaning.",
+                    s4: "Demak, \\(\\sin^2\\theta=1-x^2\\), va \\(\\sin\\theta\\ge0\\) bo'lgani uchun \\(\\sin\\theta=\\sqrt{1-x^2}\\).",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(\\sin(\\arccos x)=\\sqrt{1-x^2}\\)</span>",
+                    nuance: "<strong>Nozik joyi:</strong> \\(\\pm\\sqrt{1-x^2}\\) deb yozmang. \\(\\arccos x\\) \\(0\\) dan \\(\\pi\\) gacha burchak qaytaradi, bu oraliqda sinus manfiy emas."
+                },
+                problem6: {
+                    title: "Masala turi 6: Teskari trigonometrik tenglamalarni yechish",
+                    p1: "Teskari trig ifoda burchakka teng bo'lsa, uni oddiy trigonometrik tenglama sifatida qayta yozing.",
+                    s1: "Tenglamani qayta yozing: agar \\(\\arcsin(2x-1)=\\frac{\\pi}{6}\\) bo'lsa, unda \\(\\sin\\frac{\\pi}{6}=2x-1\\).",
+                    s2: "Ma'lum qiymatdan foydalaning: \\(\\sin\\frac{\\pi}{6}=\\frac12\\).",
+                    s3: "Demak, \\(2x-1=\\frac12\\).",
+                    s4: "Yeching: \\(2x=\\frac32\\), shuning uchun \\(x=\\frac34\\).",
+                    s5: "Kirishni tekshiring: \\(2x-1=\\frac12\\), bu \\([-1,1]\\) ichida. Demak javob valid.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: \\(x=\\frac34\\)</span>",
+                    nuance: "<strong>Nozik joyi:</strong> Yechgandan keyin doim domainni tekshiring. Algebra teskari trig kirishini invalid qiladigan javob ham chiqarishi mumkin."
+                },
+                problem7: {
+                    title: "Masala turi 7: Javob principal bo'lishi kerak bo'lgan tenglamalar",
+                    p1: "Ba'zan ifoda ko'p burchak beradigandek ko'rinadi, lekin teskari trigonometrik funksiya faqat asosiy burchakni beradi.",
+                    s1: "\\(\\arctan x\\) ning asosiy oraliqini tekshiring: \\(\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)\\).",
+                    s2: "\\(\\frac{3\\pi}{4}\\) bu oraliqdan tashqarida.",
+                    s3: "Shuning uchun hech qanday haqiqiy \\(x\\) \\(\\arctan x=\\frac{3\\pi}{4}\\) qila olmaydi.",
+                    answer: "<span class=\"check\">✓</span><span>Yakuniy javob: haqiqiy yechim yo'q.</span>"
+                },
+                finalCallout: "<strong>Yakuniy eslatma:</strong> Teskari trig masalalarda yechish faqat hisoblash emas. Domain, principal range va kompozitsiya tartibi javobni o'zgartiradimi — shularni tekshirish kerak."
+            },
+            negative: {
+                title: "Manfiy belgini tashqariga chiqarish",
+                p1: "Ba'zi teskari trigonometrik funksiyalarda manfiy belgini to'g'ridan-to'g'ri tashqariga chiqarish mumkin, boshqalarida esa mumkin emas. Bu funksiya simmetriyasi va tanlangan asosiy oraliqqa bog'liq.",
+                table: {
+                    function: "Funksiya",
+                    rule: "Qoida",
+                    example: "Misol"
+                },
+                callout: "<strong>Tez eslab qolish:</strong> Arksinus va arktangens toq funksiyalarga o'xshaydi. Arkkosinus va arkkotangensda esa asosiy natijalar \\(0\\) dan \\(\\pi\\) gacha tanlangani uchun \\(\\pi-\\) ishlatiladi."
+            },
+            summary: {
+                title: "Yakuniy xulosa",
+                table: {
+                    function: "Funksiya",
+                    domain: "Aniqlanish sohasi",
+                    range: "Asosiy qiymatlar sohasi",
+                    meaning: "Ma'nosi"
+                },
+                arcsin: "Sinusi \\(x\\) bo'lgan burchak.",
+                arccos: "Kosinusi \\(x\\) bo'lgan burchak.",
+                arctan: "Tangensi \\(x\\) bo'lgan burchak.",
+                arccot: "Kotangensi \\(x\\) bo'lgan burchak.",
+                mistakes: {
+                    title: "Ko'p uchraydigan xatolar",
+                    m1: {
+                        title: "Asosiy oraliqni unutish",
+                        text: "Teskari trigonometrik funksiyalar barcha mumkin bo'lgan burchaklarni emas, asosiy burchakni qaytaradi."
+                    },
+                    m2: {
+                        title: "Noto'g'ri kirishlardan foydalanish",
+                        text: "\\(\\arcsin x\\) va \\(\\arccos x\\) \\(-1\\) dan kichik yoki \\(1\\) dan katta kirishlarni qabul qilmaydi."
+                    },
+                    m3: {
+                        title: "Manfiy belgini noto'g'ri chiqarish",
+                        text: "\\(\\arccos(-x)\\) \\(-\\arccos x\\) ga teng emas."
+                    },
+                    m4: {
+                        title: "Teskari funksiya va teskari qiymatni chalkashtirish",
+                        text: "\\(\\arcsin x\\) \\(\\frac{1}{\\sin x}\\) bilan bir xil emas."
+                    }
+                }
+            }
+        }
+    };
+
+    function getNestedValue(object, path) {
+        return path.split('.').reduce(function (current, key) {
+            return current && current[key] !== undefined ? current[key] : undefined;
+        }, object);
+    }
+
+    function renderMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function language(selectedLanguage) {
+        const dictionary = translations[selectedLanguage] || translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.innerHTML = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-alt');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-title');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('title', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-language-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-language-button') === selectedLanguage);
+        });
+
+        document.documentElement.lang = selectedLanguage;
+        localStorage.setItem('mathAcademyLanguage', selectedLanguage);
+
+        renderMath();
+    }
+
+    function activateModule(moduleName) {
+        document.querySelectorAll('[data-module-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-module-button') === moduleName);
+        });
+
+        document.querySelectorAll('[data-module-panel]').forEach(function (panel) {
+            panel.classList.toggle('is-active', panel.getAttribute('data-module-panel') === moduleName);
+        });
+
+        renderMath();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+        language(savedLanguage);
+
+        document.querySelectorAll('[data-module-button]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                activateModule(button.getAttribute('data-module-button'));
+            });
+        });
+
+        activateModule('overview');
+    });
+</script>
 
 </body>
 </html>

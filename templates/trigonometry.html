@@ -1,23 +1,29 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Trigonometry</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(','\\)'], ['$','$']],
+                displayMath: [['\\[','\\]'], ['$$','$$']]
+            },
+            options: {
+                skipHtmlTags: ['script','noscript','style','textarea','pre']
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
-    <title>Fundamental Knowledge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap"
           rel="stylesheet">
 
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,35 +31,344 @@
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
     <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
-    <!--
 
-    TemplateMo 590 topic listing
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    https://templatemo.com/tm-590-topic-listing
+        html, body {
+            overflow-x: hidden;
+        }
 
-    -->
+        body {
+            background: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+            color: #111111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .language-switch__button.is-active {
+            color: #111111;
+            background: #ffffff;
+        }
+
+        .hero-image {
+            border-radius: 12px;
+            filter: grayscale(100%) contrast(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .practice-strip {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .lesson-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 44px 18px 72px;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: clamp(20px, 4vw, 34px);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+        }
+
+        .lesson-card h1,
+        .lesson-card h2 {
+            margin: 0 0 12px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .lesson-card h1 {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            text-align: center;
+        }
+
+        .lesson-card h2 {
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+        }
+
+        .lesson-card h3 {
+            margin: 18px 0 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .lesson-card p,
+        .lesson-card li {
+            color: #222222;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .lesson-card ul,
+        .lesson-card ol {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .math-line {
+            margin: 12px 0 18px;
+            text-align: center;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .rule-card {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 14px 16px;
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .callout {
+            border-left: 4px solid #111111;
+            background: #f4f4f4;
+            border-radius: 0 8px 8px 0;
+            padding: 13px 15px;
+            margin-top: 16px;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .section-rule {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 22px 0;
+        }
+
+        .simple-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        .simple-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            border: 1px solid #dddddd;
+            padding: 13px 14px;
+            text-align: left;
+            color: #222222;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .simple-table th {
+            background: #f1f1f1;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .badge-num {
+            display: inline-grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #111111;
+            color: #ffffff;
+            font-size: .85rem;
+            font-weight: 800;
+            vertical-align: 2px;
+            font-style: normal;
+        }
+
+        .round-graph-widget {
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            min-height: 390px;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            margin-top: 16px;
+        }
+
+        .round-controls {
+            padding: 22px 18px 18px;
+            border-right: 1px solid #eeeeee;
+        }
+
+        .round-function-title {
+            margin: 4px 0 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: #111111;
+            font-size: 1.05rem;
+        }
+
+        .round-value {
+            margin: 8px 0 18px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: italic;
+            color: #111111;
+            line-height: 1.9;
+        }
+
+        .round-row {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #222222;
+            font-weight: 700;
+        }
+
+        .round-row select {
+            min-width: 0;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: 8px 10px;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        .round-slider {
+            width: 100%;
+            accent-color: #111111;
+        }
+
+        .round-help {
+            margin-top: 14px;
+            color: #333333;
+            font-size: .92rem;
+            line-height: 1.65;
+        }
+
+        .round-canvas-wrap {
+            min-width: 0;
+            background-color: #f8f8f8;
+            background-image:
+                linear-gradient(to right, rgba(0,0,0,.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .round-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 390px;
+        }
+
+        @media (max-width: 920px) {
+            .round-graph-widget {
+                grid-template-columns: 1fr;
+            }
+
+            .round-controls {
+                border-right: 0;
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            .round-canvas {
+                min-height: 340px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .site-header .row {
+                gap: 22px;
+            }
+
+            .lesson-shell {
+                padding: 34px 14px 60px;
+            }
+
+            .lesson-card {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
 
-            <div class="d-lg-none ms-auto me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
+                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+            </div>
+
+            <div class="d-lg-none me-4">
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
-
     </nav>
 
 
@@ -62,186 +377,1177 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a>
+                            </li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Basic</li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.current">
+                                Trigonometry
+                            </li>
                         </ol>
                     </nav>
 
-                    <h2 class="text-white">Introduction to <br>Trigonometry</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Trigonometry</h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read
-                            More</a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                            Read More
+                        </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
                         <img src="{% static 'images/myimages/trigonometry.jpg' %}"
-                             class="topics-detail-block-image img-fluid">
+                             class="topics-detail-block-image img-fluid hero-image"
+                             alt="Trigonometry visual"
+                             data-i18n-alt="page.heroAlt">
                     </div>
                 </div>
-                <div class="d-flex justify-content-center mt-5">
-                    <a style="width:300px" href="{% url 'practice' %}?url=trigonometry"
-                       class="btn custom-btn custom-border-btn">Practice</a>
-                </div>
+
+            </div>
+
+            <div class="practice-strip">
+                <a style="width:300px" href="{% url 'practice' %}?url=trigonometry"
+                   class="btn custom-btn custom-border-btn"
+                   data-i18n="page.practice">
+                    Practice
+                </a>
             </div>
         </div>
     </header>
 
 
-    <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <section id="topics-detail" class="lesson-shell">
 
-                    <!-- Sine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                                data-bs-target="#design-tab-pane" type="button" role="tab"
-                                aria-controls="design-tab-pane" aria-selected="true">Sine
-                        </button>
-                    </li>
+        <article class="lesson-card">
+            <h1 data-i18n="lesson.title">Trigonometry — Sine, Cosine, Tangent, and Cotangent</h1>
 
-                    <!-- Cosine -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                                aria-controls="marketing-tab-pane" aria-selected="false">Cosine
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p1">
+                Trigonometry studies relationships between angles and numbers. The four basic trigonometric functions in this lesson are sine,
+                cosine, tangent, and cotangent.
+            </p>
 
-                    <!-- Tangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                                data-bs-target="#finance-tab-pane" type="button" role="tab"
-                                aria-controls="finance-tab-pane" aria-selected="false">Tangent
-                        </button>
-                    </li>
+            <p data-i18n="lesson.intro.p2">
+                They can be understood from a right triangle and from the unit circle. In this lesson, we focus on general meaning,
+                domains, ranges, important values, and round unit-circle graphs.
+            </p>
 
-                    <!-- Cotangent -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="music-tab" data-bs-toggle="tab"
-                                data-bs-target="#music-tab-pane" type="button" role="tab"
-                                aria-controls="music-tab-pane" aria-selected="false">Cotangent
-                        </button>
-                    </li>
-
-                    <!-- ⭐ NEW: Values Section (EMPTY) -->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="values-tab" data-bs-toggle="tab"
-                                data-bs-target="#values-tab-pane" type="button" role="tab"
-                                aria-controls="values-tab-pane" aria-selected="false">Values
-                        </button>
-                    </li>
-
-                </ul>
+            <div class="callout" data-i18n="lesson.intro.callout">
+                <strong>Main idea:</strong> An angle can be connected to a point on a circle, and the coordinates of that point help define trigonometric values.
             </div>
-        </div>
+        </article>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
 
-                        <!-- Sine Content -->
-                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                             aria-labelledby="design-tab" tabindex="0">
-                            <div class="container" style="text-align:center; margin-top: -50px; margin-bottom:20px">
-                                <h1>Domain: All Real Numbers</h1>
-                                <h1>Range: From -1 To 1</h1>
-                            </div>
-                            <img style="width:100%" src="{% static 'images/myimages/sine1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/sine2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/sine3.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/sine4.jpg' %}" alt="">
-                            <h1 style="text-align:center; margin:20px">Simplifying When The Degree of Sine is High</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/sine5.jpg' %}" alt="">
-                        </div>
+        <article class="lesson-card">
+            <h2><span class="badge-num">1</span><span data-i18n="lesson.circle.title">The Unit Circle Idea</span></h2>
 
-                        <!-- Cosine Content -->
-                        <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                             aria-labelledby="marketing-tab" tabindex="0">
-                            <div class="container" style="text-align:center; margin-top: -50px; margin-bottom:20px">
-                                <h1>Domain: All Real Numbers</h1>
-                                <h1>Range: From -1 To 1</h1>
-                            </div>
-                            <img style="width:100%" src="{% static 'images/myimages/cosine1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/cosine2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/cosine3.jpg' %}" alt="">
-                            <h1 style="text-align:center; margin:20px">Simplifying When The Degree of Cosine is
-                                High</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/cosine4.jpg' %}" alt="">
-                        </div>
+            <p data-i18n="lesson.circle.p1">
+                A unit circle is a circle with radius \(1\), centered at the origin. Every angle creates a point on this circle.
+            </p>
 
-                        <!-- Tangent Content -->
-                        <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel"
-                             aria-labelledby="finance-tab" tabindex="0">
-                            <div class="container" style="text-align:center; margin-top: -50px; margin-bottom:20px">
-                                <h1>Domain: All Real Numbers Except π/2 + πk, k∈Z</h1>
-                                <h1>Range: All Real Numbers</h1>
-                            </div>
-                            <img style="width:100%" src="{% static 'images/myimages/tangent1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/tangent2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/tangent3.jpg' %}" alt="">
-                            <h1 style="text-align:center; margin:20px">Simplifying When The Degree of Tangent is
-                                High</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/tangent4.jpg' %}" alt="">
-                        </div>
+            <div class="math-line">
+                \((x,y)=(\cos\theta,\sin\theta)\)
+            </div>
 
-                        <!-- Cotangent Content -->
-                        <div class="tab-pane fade" id="music-tab-pane" role="tabpanel"
-                             aria-labelledby="music-tab" tabindex="0">
-                            <div class="container" style="text-align:center; margin-top: -50px; margin-bottom:20px">
-                                <h1>Domain: All Real Numbers Except πk, k∈Z</h1>
-                                <h1>Range: All Real Numbers</h1>
-                            </div>
-                            <img style="width:100%" src="{% static 'images/myimages/cotangent1.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/cotangent2.jpg' %}" alt="">
-                            <img style="width:100%" src="{% static 'images/myimages/cotangent3.jpg' %}" alt="">
-                            <h1 style="text-align:center; margin:20px">Simplifying When The Degree of Cotangent is
-                                High</h1>
-                            <img style="width:100%" src="{% static 'images/myimages/cotangent4.jpg' %}" alt="">
-                        </div>
+            <p data-i18n="lesson.circle.p2">
+                This means cosine is connected to the horizontal coordinate, and sine is connected to the vertical coordinate.
+            </p>
 
-                        <!-- ⭐ NEW EMPTY VALUES TAB -->
-                        <div class="tab-pane fade" id="values-tab-pane" role="tabpanel"
-                             aria-labelledby="values-tab" tabindex="0">
-                            <div class="container">
-                                <h1>As tangent is sine divided by cosine, when cosine is 0, tangent is undefined.
-                                    Similarly, cotangent is cosine divided by sine, and when sine is 0, cotangent is
-                                    undefined</h1>
-                            </div>
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.circle.card1.title">Cosine</strong>
+                    <p data-i18n="lesson.circle.card1.text">Cosine gives the \(x\)-coordinate of the point on the unit circle.</p>
+                </div>
 
-                            <!-- EMPTY CONTENT AREA -->
-                            <div class="container" style="text-align:center; margin-top: 40px;">
-                                <h1>Values</h1>
-                                <img style="width:100%" src="{% static 'images/myimages/values.jpg' %}" alt="">
-                                <img style="width:100%" src="{% static 'images/myimages/values2.jpg' %}" alt="">
-                            </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.circle.card2.title">Sine</strong>
+                    <p data-i18n="lesson.circle.card2.text">Sine gives the \(y\)-coordinate of the point on the unit circle.</p>
+                </div>
 
-                        </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.circle.card3.title">Tangent</strong>
+                    <p data-i18n="lesson.circle.card3.text">Tangent compares sine to cosine.</p>
+                </div>
 
-                    </div>
+                <div class="rule-card">
+                    <strong data-i18n="lesson.circle.card4.title">Cotangent</strong>
+                    <p data-i18n="lesson.circle.card4.text">Cotangent compares cosine to sine.</p>
                 </div>
             </div>
-        </div>
-    </main>
+        </article>
 
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">2</span><span data-i18n="lesson.functions.title">General Meaning of the Four Functions</span></h2>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.functions.table.function">Function</th>
+                        <th data-i18n="lesson.functions.table.unitCircle">Unit-circle meaning</th>
+                        <th data-i18n="lesson.functions.table.rightTriangle">Right-triangle meaning</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(\sin\theta\)</td>
+                        <td data-i18n="lesson.functions.sinCircle">The \(y\)-coordinate on the unit circle.</td>
+                        <td data-i18n="lesson.functions.sinTriangle">Opposite side divided by hypotenuse.</td>
+                    </tr>
+                    <tr>
+                        <td>\(\cos\theta\)</td>
+                        <td data-i18n="lesson.functions.cosCircle">The \(x\)-coordinate on the unit circle.</td>
+                        <td data-i18n="lesson.functions.cosTriangle">Adjacent side divided by hypotenuse.</td>
+                    </tr>
+                    <tr>
+                        <td>\(\tan\theta\)</td>
+                        <td data-i18n="lesson.functions.tanCircle">The ratio of sine to cosine.</td>
+                        <td data-i18n="lesson.functions.tanTriangle">Opposite side divided by adjacent side.</td>
+                    </tr>
+                    <tr>
+                        <td>\(\cot\theta\)</td>
+                        <td data-i18n="lesson.functions.cotCircle">The ratio of cosine to sine.</td>
+                        <td data-i18n="lesson.functions.cotTriangle">Adjacent side divided by opposite side.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">3</span><span data-i18n="lesson.domain.title">Domain and Range</span></h2>
+
+            <p data-i18n="lesson.domain.p1">
+                The domain tells which angle inputs are allowed. The range tells which output values are possible.
+            </p>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.domain.table.function">Function</th>
+                        <th data-i18n="lesson.domain.table.domain">Domain</th>
+                        <th data-i18n="lesson.domain.table.range">Range</th>
+                        <th data-i18n="lesson.domain.table.note">Important note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(\sin\theta\)</td>
+                        <td data-i18n="lesson.domain.allReal">All real numbers</td>
+                        <td>\([-1,1]\)</td>
+                        <td data-i18n="lesson.domain.sinNote">Always defined.</td>
+                    </tr>
+                    <tr>
+                        <td>\(\cos\theta\)</td>
+                        <td data-i18n="lesson.domain.allReal">All real numbers</td>
+                        <td>\([-1,1]\)</td>
+                        <td data-i18n="lesson.domain.cosNote">Always defined.</td>
+                    </tr>
+                    <tr>
+                        <td>\(\tan\theta\)</td>
+                        <td>\(\theta\ne90^\circ+180^\circ k,\ k\in\mathbb Z\)</td>
+                        <td data-i18n="lesson.domain.allReal">All real numbers</td>
+                        <td data-i18n="lesson.domain.tanNote">Undefined when cosine is \(0\).</td>
+                    </tr>
+                    <tr>
+                        <td>\(\cot\theta\)</td>
+                        <td>\(\theta\ne180^\circ k,\ k\in\mathbb Z\)</td>
+                        <td data-i18n="lesson.domain.allReal">All real numbers</td>
+                        <td data-i18n="lesson.domain.cotNote">Undefined when sine is \(0\).</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">4</span><span data-i18n="lesson.values.title">Important Values</span></h2>
+
+            <p data-i18n="lesson.values.p1">
+                The following angles are the most important basic angles. These values are used very often in trigonometry.
+            </p>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.values.table.degree">Degree</th>
+                        <th data-i18n="lesson.values.table.radian">Radian</th>
+                        <th>\(\sin\theta\)</th>
+                        <th>\(\cos\theta\)</th>
+                        <th>\(\tan\theta\)</th>
+                        <th>\(\cot\theta\)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>\(0^\circ\)</td>
+                        <td>\(0\)</td>
+                        <td>\(0\)</td>
+                        <td>\(1\)</td>
+                        <td>\(0\)</td>
+                        <td data-i18n="lesson.values.undefined">undefined</td>
+                    </tr>
+                    <tr>
+                        <td>\(30^\circ\)</td>
+                        <td>\(\frac{\pi}{6}\)</td>
+                        <td>\(\frac{1}{2}\)</td>
+                        <td>\(\frac{\sqrt3}{2}\)</td>
+                        <td>\(\frac{\sqrt3}{3}\)</td>
+                        <td>\(\sqrt3\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(45^\circ\)</td>
+                        <td>\(\frac{\pi}{4}\)</td>
+                        <td>\(\frac{\sqrt2}{2}\)</td>
+                        <td>\(\frac{\sqrt2}{2}\)</td>
+                        <td>\(1\)</td>
+                        <td>\(1\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(60^\circ\)</td>
+                        <td>\(\frac{\pi}{3}\)</td>
+                        <td>\(\frac{\sqrt3}{2}\)</td>
+                        <td>\(\frac{1}{2}\)</td>
+                        <td>\(\sqrt3\)</td>
+                        <td>\(\frac{\sqrt3}{3}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(90^\circ\)</td>
+                        <td>\(\frac{\pi}{2}\)</td>
+                        <td>\(1\)</td>
+                        <td>\(0\)</td>
+                        <td data-i18n="lesson.values.undefined">undefined</td>
+                        <td>\(0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(180^\circ\)</td>
+                        <td>\(\pi\)</td>
+                        <td>\(0\)</td>
+                        <td>\(-1\)</td>
+                        <td>\(0\)</td>
+                        <td data-i18n="lesson.values.undefined">undefined</td>
+                    </tr>
+                    <tr>
+                        <td>\(270^\circ\)</td>
+                        <td>\(\frac{3\pi}{2}\)</td>
+                        <td>\(-1\)</td>
+                        <td>\(0\)</td>
+                        <td data-i18n="lesson.values.undefined">undefined</td>
+                        <td>\(0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(360^\circ\)</td>
+                        <td>\(2\pi\)</td>
+                        <td>\(0\)</td>
+                        <td>\(1\)</td>
+                        <td>\(0\)</td>
+                        <td data-i18n="lesson.values.undefined">undefined</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout" data-i18n="lesson.values.callout">
+                <strong>Important:</strong> Tangent is undefined when cosine is \(0\). Cotangent is undefined when sine is \(0\).
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">5</span><span data-i18n="lesson.signs.title">Signs in the Four Quadrants</span></h2>
+
+            <p data-i18n="lesson.signs.p1">
+                The sign of each trigonometric value depends on the quadrant where the angle lands.
+            </p>
+
+            <div class="simple-table-wrap">
+                <table class="simple-table">
+                    <thead>
+                    <tr>
+                        <th data-i18n="lesson.signs.table.quadrant">Quadrant</th>
+                        <th data-i18n="lesson.signs.table.angles">Angle range</th>
+                        <th>\(\sin\theta\)</th>
+                        <th>\(\cos\theta\)</th>
+                        <th>\(\tan\theta\)</th>
+                        <th>\(\cot\theta\)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>I</td>
+                        <td>\(0^\circ&lt;\theta&lt;90^\circ\)</td>
+                        <td>+</td>
+                        <td>+</td>
+                        <td>+</td>
+                        <td>+</td>
+                    </tr>
+                    <tr>
+                        <td>II</td>
+                        <td>\(90^\circ&lt;\theta&lt;180^\circ\)</td>
+                        <td>+</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>III</td>
+                        <td>\(180^\circ&lt;\theta&lt;270^\circ\)</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>+</td>
+                        <td>+</td>
+                    </tr>
+                    <tr>
+                        <td>IV</td>
+                        <td>\(270^\circ&lt;\theta&lt;360^\circ\)</td>
+                        <td>-</td>
+                        <td>+</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">6</span><span data-i18n="lesson.sinGraph.title">Round Graph for Sine</span></h2>
+
+            <p data-i18n="lesson.sinGraph.p1">
+                Move the angle to see the sine value on a round unit-circle graph. The sine value is shown by the vertical coordinate.
+            </p>
+
+            <div class="round-graph-widget">
+                <div class="round-controls">
+                    <div class="round-function-title" data-i18n="lesson.sinGraph.controlTitle">Sine value</div>
+                    <div class="round-value" id="sinValueBox">\(\sin(30^\circ)=0.500\)</div>
+
+                    <label class="round-row">
+                        <span data-i18n="lesson.graph.angle">Angle</span>
+                        <select id="sinPreset">
+                            <option value="0">0°</option>
+                            <option value="30" selected>30°</option>
+                            <option value="45">45°</option>
+                            <option value="60">60°</option>
+                            <option value="90">90°</option>
+                            <option value="120">120°</option>
+                            <option value="135">135°</option>
+                            <option value="150">150°</option>
+                            <option value="180">180°</option>
+                            <option value="210">210°</option>
+                            <option value="225">225°</option>
+                            <option value="240">240°</option>
+                            <option value="270">270°</option>
+                            <option value="300">300°</option>
+                            <option value="315">315°</option>
+                            <option value="330">330°</option>
+                            <option value="360">360°</option>
+                        </select>
+                    </label>
+
+                    <input class="round-slider" id="sinSlider" type="range" min="0" max="360" step="1" value="30">
+
+                    <p class="round-help" data-i18n="lesson.sinGraph.help">
+                        Positive sine values are above the center. Negative sine values are below the center.
+                    </p>
+                </div>
+
+                <div class="round-canvas-wrap">
+                    <canvas class="round-canvas" id="sinCanvas" width="720" height="460" aria-label="Round graph for sine" data-i18n-aria-label="lesson.sinGraph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">7</span><span data-i18n="lesson.cosGraph.title">Round Graph for Cosine</span></h2>
+
+            <p data-i18n="lesson.cosGraph.p1">
+                Move the angle to see the cosine value on a round unit-circle graph. The cosine value is shown by the horizontal coordinate.
+            </p>
+
+            <div class="round-graph-widget">
+                <div class="round-controls">
+                    <div class="round-function-title" data-i18n="lesson.cosGraph.controlTitle">Cosine value</div>
+                    <div class="round-value" id="cosValueBox">\(\cos(30^\circ)=0.866\)</div>
+
+                    <label class="round-row">
+                        <span data-i18n="lesson.graph.angle">Angle</span>
+                        <select id="cosPreset">
+                            <option value="0">0°</option>
+                            <option value="30" selected>30°</option>
+                            <option value="45">45°</option>
+                            <option value="60">60°</option>
+                            <option value="90">90°</option>
+                            <option value="120">120°</option>
+                            <option value="135">135°</option>
+                            <option value="150">150°</option>
+                            <option value="180">180°</option>
+                            <option value="210">210°</option>
+                            <option value="225">225°</option>
+                            <option value="240">240°</option>
+                            <option value="270">270°</option>
+                            <option value="300">300°</option>
+                            <option value="315">315°</option>
+                            <option value="330">330°</option>
+                            <option value="360">360°</option>
+                        </select>
+                    </label>
+
+                    <input class="round-slider" id="cosSlider" type="range" min="0" max="360" step="1" value="30">
+
+                    <p class="round-help" data-i18n="lesson.cosGraph.help">
+                        Positive cosine values are to the right of the center. Negative cosine values are to the left.
+                    </p>
+                </div>
+
+                <div class="round-canvas-wrap">
+                    <canvas class="round-canvas" id="cosCanvas" width="720" height="460" aria-label="Round graph for cosine" data-i18n-aria-label="lesson.cosGraph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">8</span><span data-i18n="lesson.tanGraph.title">Round Graph for Tangent</span></h2>
+
+            <p data-i18n="lesson.tanGraph.p1">
+                Move the angle to see the tangent value. Tangent is undefined when the point is directly above or below the center.
+            </p>
+
+            <div class="round-graph-widget">
+                <div class="round-controls">
+                    <div class="round-function-title" data-i18n="lesson.tanGraph.controlTitle">Tangent value</div>
+                    <div class="round-value" id="tanValueBox">\(\tan(30^\circ)=0.577\)</div>
+
+                    <label class="round-row">
+                        <span data-i18n="lesson.graph.angle">Angle</span>
+                        <select id="tanPreset">
+                            <option value="0">0°</option>
+                            <option value="30" selected>30°</option>
+                            <option value="45">45°</option>
+                            <option value="60">60°</option>
+                            <option value="90">90°</option>
+                            <option value="120">120°</option>
+                            <option value="135">135°</option>
+                            <option value="150">150°</option>
+                            <option value="180">180°</option>
+                            <option value="210">210°</option>
+                            <option value="225">225°</option>
+                            <option value="240">240°</option>
+                            <option value="270">270°</option>
+                            <option value="300">300°</option>
+                            <option value="315">315°</option>
+                            <option value="330">330°</option>
+                            <option value="360">360°</option>
+                        </select>
+                    </label>
+
+                    <input class="round-slider" id="tanSlider" type="range" min="0" max="360" step="1" value="30">
+
+                    <p class="round-help" data-i18n="lesson.tanGraph.help">
+                        Tangent becomes undefined at \(90^\circ\) and \(270^\circ\), where cosine is \(0\).
+                    </p>
+                </div>
+
+                <div class="round-canvas-wrap">
+                    <canvas class="round-canvas" id="tanCanvas" width="720" height="460" aria-label="Round graph for tangent" data-i18n-aria-label="lesson.tanGraph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">9</span><span data-i18n="lesson.cotGraph.title">Round Graph for Cotangent</span></h2>
+
+            <p data-i18n="lesson.cotGraph.p1">
+                Move the angle to see the cotangent value. Cotangent is undefined when the point is on the left or right side of the circle.
+            </p>
+
+            <div class="round-graph-widget">
+                <div class="round-controls">
+                    <div class="round-function-title" data-i18n="lesson.cotGraph.controlTitle">Cotangent value</div>
+                    <div class="round-value" id="cotValueBox">\(\cot(30^\circ)=1.732\)</div>
+
+                    <label class="round-row">
+                        <span data-i18n="lesson.graph.angle">Angle</span>
+                        <select id="cotPreset">
+                            <option value="0">0°</option>
+                            <option value="30" selected>30°</option>
+                            <option value="45">45°</option>
+                            <option value="60">60°</option>
+                            <option value="90">90°</option>
+                            <option value="120">120°</option>
+                            <option value="135">135°</option>
+                            <option value="150">150°</option>
+                            <option value="180">180°</option>
+                            <option value="210">210°</option>
+                            <option value="225">225°</option>
+                            <option value="240">240°</option>
+                            <option value="270">270°</option>
+                            <option value="300">300°</option>
+                            <option value="315">315°</option>
+                            <option value="330">330°</option>
+                            <option value="360">360°</option>
+                        </select>
+                    </label>
+
+                    <input class="round-slider" id="cotSlider" type="range" min="0" max="360" step="1" value="30">
+
+                    <p class="round-help" data-i18n="lesson.cotGraph.help">
+                        Cotangent becomes undefined at \(0^\circ\), \(180^\circ\), and \(360^\circ\), where sine is \(0\).
+                    </p>
+                </div>
+
+                <div class="round-canvas-wrap">
+                    <canvas class="round-canvas" id="cotCanvas" width="720" height="460" aria-label="Round graph for cotangent" data-i18n-aria-label="lesson.cotGraph.aria"></canvas>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">10</span><span data-i18n="lesson.period.title">Repeating Pattern</span></h2>
+
+            <p data-i18n="lesson.period.p1">
+                Trigonometric values repeat after a full turn. A full turn is \(360^\circ\), or \(2\pi\) radians.
+            </p>
+
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong data-i18n="lesson.period.card1.title">Sine and cosine</strong>
+                    <p data-i18n="lesson.period.card1.text">Their values repeat every \(360^\circ\).</p>
+                </div>
+
+                <div class="rule-card">
+                    <strong data-i18n="lesson.period.card2.title">Tangent and cotangent</strong>
+                    <p data-i18n="lesson.period.card2.text">Their values repeat every \(180^\circ\).</p>
+                </div>
+            </div>
+
+            <div class="callout" data-i18n="lesson.period.callout">
+                <strong>Simple meaning:</strong> Once you understand one full circle, you can understand many larger angles by looking at where they land on the circle.
+            </div>
+        </article>
+
+
+        <article class="lesson-card">
+            <h2><span class="badge-num">11</span><span data-i18n="lesson.summary.title">Final Summary</span></h2>
+
+            <ol>
+                <li data-i18n="lesson.summary.li1">Sine is connected to the vertical coordinate on the unit circle.</li>
+                <li data-i18n="lesson.summary.li2">Cosine is connected to the horizontal coordinate on the unit circle.</li>
+                <li data-i18n="lesson.summary.li3">Tangent compares sine to cosine.</li>
+                <li data-i18n="lesson.summary.li4">Cotangent compares cosine to sine.</li>
+                <li data-i18n="lesson.summary.li5">Sine and cosine have range \([-1,1]\).</li>
+                <li data-i18n="lesson.summary.li6">Tangent and cotangent can have any real output value.</li>
+                <li data-i18n="lesson.summary.li7">Tangent is undefined where cosine is \(0\).</li>
+                <li data-i18n="lesson.summary.li8">Cotangent is undefined where sine is \(0\).</li>
+                <li data-i18n="lesson.summary.li9">The most important angles are \(0^\circ\), \(30^\circ\), \(45^\circ\), \(60^\circ\), and \(90^\circ\), plus their related angles around the circle.</li>
+            </ol>
+        </article>
+
+    </section>
 </main>
 
 
-
-<!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    const translations = {
+        en: {
+            page: {
+                language: "Language",
+                profile: "Profile",
+                breadcrumb: "Breadcrumb",
+                homepage: "Homepage",
+                current: "Trigonometry",
+                hero: "Introduction to <br>Trigonometry",
+                readMore: "Read More",
+                backTop: "Back to top",
+                heroAlt: "Trigonometry visual",
+                practice: "Practice"
+            },
+            lesson: {
+                title: "Trigonometry — Sine, Cosine, Tangent, and Cotangent",
+                intro: {
+                    p1: "Trigonometry studies relationships between angles and numbers. The four basic trigonometric functions in this lesson are sine, cosine, tangent, and cotangent.",
+                    p2: "They can be understood from a right triangle and from the unit circle. In this lesson, we focus on general meaning, domains, ranges, important values, and round unit-circle graphs.",
+                    callout: "<strong>Main idea:</strong> An angle can be connected to a point on a circle, and the coordinates of that point help define trigonometric values."
+                },
+                circle: {
+                    title: "The Unit Circle Idea",
+                    p1: "A unit circle is a circle with radius \\(1\\), centered at the origin. Every angle creates a point on this circle.",
+                    p2: "This means cosine is connected to the horizontal coordinate, and sine is connected to the vertical coordinate.",
+                    card1: {
+                        title: "Cosine",
+                        text: "Cosine gives the \\(x\\)-coordinate of the point on the unit circle."
+                    },
+                    card2: {
+                        title: "Sine",
+                        text: "Sine gives the \\(y\\)-coordinate of the point on the unit circle."
+                    },
+                    card3: {
+                        title: "Tangent",
+                        text: "Tangent compares sine to cosine."
+                    },
+                    card4: {
+                        title: "Cotangent",
+                        text: "Cotangent compares cosine to sine."
+                    }
+                },
+                functions: {
+                    title: "General Meaning of the Four Functions",
+                    table: {
+                        function: "Function",
+                        unitCircle: "Unit-circle meaning",
+                        rightTriangle: "Right-triangle meaning"
+                    },
+                    sinCircle: "The \\(y\\)-coordinate on the unit circle.",
+                    sinTriangle: "Opposite side divided by hypotenuse.",
+                    cosCircle: "The \\(x\\)-coordinate on the unit circle.",
+                    cosTriangle: "Adjacent side divided by hypotenuse.",
+                    tanCircle: "The ratio of sine to cosine.",
+                    tanTriangle: "Opposite side divided by adjacent side.",
+                    cotCircle: "The ratio of cosine to sine.",
+                    cotTriangle: "Adjacent side divided by opposite side."
+                },
+                domain: {
+                    title: "Domain and Range",
+                    p1: "The domain tells which angle inputs are allowed. The range tells which output values are possible.",
+                    table: {
+                        function: "Function",
+                        domain: "Domain",
+                        range: "Range",
+                        note: "Important note"
+                    },
+                    allReal: "All real numbers",
+                    sinNote: "Always defined.",
+                    cosNote: "Always defined.",
+                    tanNote: "Undefined when cosine is \\(0\\).",
+                    cotNote: "Undefined when sine is \\(0\\)."
+                },
+                values: {
+                    title: "Important Values",
+                    p1: "The following angles are the most important basic angles. These values are used very often in trigonometry.",
+                    table: {
+                        degree: "Degree",
+                        radian: "Radian"
+                    },
+                    undefined: "undefined",
+                    callout: "<strong>Important:</strong> Tangent is undefined when cosine is \\(0\\). Cotangent is undefined when sine is \\(0\\)."
+                },
+                signs: {
+                    title: "Signs in the Four Quadrants",
+                    p1: "The sign of each trigonometric value depends on the quadrant where the angle lands.",
+                    table: {
+                        quadrant: "Quadrant",
+                        angles: "Angle range"
+                    }
+                },
+                graph: {
+                    angle: "Angle"
+                },
+                sinGraph: {
+                    title: "Round Graph for Sine",
+                    p1: "Move the angle to see the sine value on a round unit-circle graph. The sine value is shown by the vertical coordinate.",
+                    controlTitle: "Sine value",
+                    help: "Positive sine values are above the center. Negative sine values are below the center.",
+                    aria: "Round graph for sine"
+                },
+                cosGraph: {
+                    title: "Round Graph for Cosine",
+                    p1: "Move the angle to see the cosine value on a round unit-circle graph. The cosine value is shown by the horizontal coordinate.",
+                    controlTitle: "Cosine value",
+                    help: "Positive cosine values are to the right of the center. Negative cosine values are to the left.",
+                    aria: "Round graph for cosine"
+                },
+                tanGraph: {
+                    title: "Round Graph for Tangent",
+                    p1: "Move the angle to see the tangent value. Tangent is undefined when the point is directly above or below the center.",
+                    controlTitle: "Tangent value",
+                    help: "Tangent becomes undefined at \\(90^\\circ\\) and \\(270^\\circ\\), where cosine is \\(0\\).",
+                    aria: "Round graph for tangent"
+                },
+                cotGraph: {
+                    title: "Round Graph for Cotangent",
+                    p1: "Move the angle to see the cotangent value. Cotangent is undefined when the point is on the left or right side of the circle.",
+                    controlTitle: "Cotangent value",
+                    help: "Cotangent becomes undefined at \\(0^\\circ\\), \\(180^\\circ\\), and \\(360^\\circ\\), where sine is \\(0\\).",
+                    aria: "Round graph for cotangent"
+                },
+                period: {
+                    title: "Repeating Pattern",
+                    p1: "Trigonometric values repeat after a full turn. A full turn is \\(360^\\circ\\), or \\(2\\pi\\) radians.",
+                    card1: {
+                        title: "Sine and cosine",
+                        text: "Their values repeat every \\(360^\\circ\\)."
+                    },
+                    card2: {
+                        title: "Tangent and cotangent",
+                        text: "Their values repeat every \\(180^\\circ\\)."
+                    },
+                    callout: "<strong>Simple meaning:</strong> Once you understand one full circle, you can understand many larger angles by looking at where they land on the circle."
+                },
+                summary: {
+                    title: "Final Summary",
+                    li1: "Sine is connected to the vertical coordinate on the unit circle.",
+                    li2: "Cosine is connected to the horizontal coordinate on the unit circle.",
+                    li3: "Tangent compares sine to cosine.",
+                    li4: "Cotangent compares cosine to sine.",
+                    li5: "Sine and cosine have range \\([-1,1]\\).",
+                    li6: "Tangent and cotangent can have any real output value.",
+                    li7: "Tangent is undefined where cosine is \\(0\\).",
+                    li8: "Cotangent is undefined where sine is \\(0\\).",
+                    li9: "The most important angles are \\(0^\\circ\\), \\(30^\\circ\\), \\(45^\\circ\\), \\(60^\\circ\\), and \\(90^\\circ\\), plus their related angles around the circle."
+                }
+            }
+        },
+
+        uz: {
+            page: {
+                language: "Til",
+                profile: "Profil",
+                breadcrumb: "Sahifa yo'li",
+                homepage: "Bosh sahifa",
+                current: "Trigonometriya",
+                hero: "Trigonometriyaga <br>kirish",
+                readMore: "Batafsil o'qish",
+                backTop: "Yuqoriga qaytish",
+                heroAlt: "Trigonometriya rasmi",
+                practice: "Mashq"
+            },
+            lesson: {
+                title: "Trigonometriya — Sinus, Kosinus, Tangens va Kotangens",
+                intro: {
+                    p1: "Trigonometriya burchaklar va sonlar orasidagi bog'lanishlarni o'rganadi. Bu darsdagi to'rtta asosiy trigonometrik funksiya: sinus, kosinus, tangens va kotangens.",
+                    p2: "Ularni to'g'ri burchakli uchburchak va birlik aylana orqali tushunish mumkin. Bu darsda umumiy ma'no, aniqlanish sohasi, qiymatlar sohasi, muhim qiymatlar va aylana grafiklariga e'tibor beramiz.",
+                    callout: "<strong>Asosiy g'oya:</strong> Har bir burchak aylanadagi nuqta bilan bog'lanadi, shu nuqtaning koordinatalari trigonometrik qiymatlarni aniqlashga yordam beradi."
+                },
+                circle: {
+                    title: "Birlik aylana g'oyasi",
+                    p1: "Birlik aylana radiusi \\(1\\) bo'lgan va markazi koordinata boshida joylashgan aylanadir. Har bir burchak bu aylanada bitta nuqta hosil qiladi.",
+                    p2: "Bu kosinus gorizontal koordinata, sinus esa vertikal koordinata bilan bog'liq degani.",
+                    card1: {
+                        title: "Kosinus",
+                        text: "Kosinus birlik aylanadagi nuqtaning \\(x\\)-koordinatasini beradi."
+                    },
+                    card2: {
+                        title: "Sinus",
+                        text: "Sinus birlik aylanadagi nuqtaning \\(y\\)-koordinatasini beradi."
+                    },
+                    card3: {
+                        title: "Tangens",
+                        text: "Tangens sinusni kosinus bilan taqqoslaydi."
+                    },
+                    card4: {
+                        title: "Kotangens",
+                        text: "Kotangens kosinusni sinus bilan taqqoslaydi."
+                    }
+                },
+                functions: {
+                    title: "To'rtta funksiyaning umumiy ma'nosi",
+                    table: {
+                        function: "Funksiya",
+                        unitCircle: "Birlik aylanadagi ma'nosi",
+                        rightTriangle: "To'g'ri burchakli uchburchakdagi ma'nosi"
+                    },
+                    sinCircle: "Birlik aylanadagi \\(y\\)-koordinata.",
+                    sinTriangle: "Qarshi katet gipotenuzaga bo'linadi.",
+                    cosCircle: "Birlik aylanadagi \\(x\\)-koordinata.",
+                    cosTriangle: "Yondosh katet gipotenuzaga bo'linadi.",
+                    tanCircle: "Sinusning kosinusga nisbati.",
+                    tanTriangle: "Qarshi katet yondosh katetga bo'linadi.",
+                    cotCircle: "Kosinusning sinusga nisbati.",
+                    cotTriangle: "Yondosh katet qarshi katetga bo'linadi."
+                },
+                domain: {
+                    title: "Aniqlanish sohasi va qiymatlar sohasi",
+                    p1: "Aniqlanish sohasi qaysi burchaklar kiritilishi mumkinligini bildiradi. Qiymatlar sohasi esa qanday natijalar chiqishi mumkinligini bildiradi.",
+                    table: {
+                        function: "Funksiya",
+                        domain: "Aniqlanish sohasi",
+                        range: "Qiymatlar sohasi",
+                        note: "Muhim eslatma"
+                    },
+                    allReal: "Barcha haqiqiy sonlar",
+                    sinNote: "Har doim aniqlangan.",
+                    cosNote: "Har doim aniqlangan.",
+                    tanNote: "Kosinus \\(0\\) bo'lganda aniqlanmagan.",
+                    cotNote: "Sinus \\(0\\) bo'lganda aniqlanmagan."
+                },
+                values: {
+                    title: "Muhim qiymatlar",
+                    p1: "Quyidagi burchaklar eng muhim asosiy burchaklardir. Bu qiymatlar trigonometriyada juda ko'p ishlatiladi.",
+                    table: {
+                        degree: "Gradus",
+                        radian: "Radian"
+                    },
+                    undefined: "aniqlanmagan",
+                    callout: "<strong>Muhim:</strong> Kosinus \\(0\\) bo'lganda tangens aniqlanmaydi. Sinus \\(0\\) bo'lganda kotangens aniqlanmaydi."
+                },
+                signs: {
+                    title: "To'rtta chorakdagi ishoralar",
+                    p1: "Har bir trigonometrik qiymatning ishorasi burchak qaysi chorakka tushishiga bog'liq.",
+                    table: {
+                        quadrant: "Chorak",
+                        angles: "Burchak oralig'i"
+                    }
+                },
+                graph: {
+                    angle: "Burchak"
+                },
+                sinGraph: {
+                    title: "Sinus uchun aylana grafigi",
+                    p1: "Sinus qiymatini aylana grafigida ko'rish uchun burchakni o'zgartiring. Sinus qiymati vertikal koordinata orqali ko'rsatiladi.",
+                    controlTitle: "Sinus qiymati",
+                    help: "Musbat sinus qiymatlari markazdan yuqorida, manfiy sinus qiymatlari markazdan pastda bo'ladi.",
+                    aria: "Sinus uchun aylana grafigi"
+                },
+                cosGraph: {
+                    title: "Kosinus uchun aylana grafigi",
+                    p1: "Kosinus qiymatini aylana grafigida ko'rish uchun burchakni o'zgartiring. Kosinus qiymati gorizontal koordinata orqali ko'rsatiladi.",
+                    controlTitle: "Kosinus qiymati",
+                    help: "Musbat kosinus qiymatlari markazdan o'ngda, manfiy kosinus qiymatlari markazdan chapda bo'ladi.",
+                    aria: "Kosinus uchun aylana grafigi"
+                },
+                tanGraph: {
+                    title: "Tangens uchun aylana grafigi",
+                    p1: "Tangens qiymatini ko'rish uchun burchakni o'zgartiring. Nuqta markazning to'g'ri yuqorisida yoki pastida bo'lsa, tangens aniqlanmaydi.",
+                    controlTitle: "Tangens qiymati",
+                    help: "Tangens \\(90^\\circ\\) va \\(270^\\circ\\) da aniqlanmaydi, chunki bu joylarda kosinus \\(0\\).",
+                    aria: "Tangens uchun aylana grafigi"
+                },
+                cotGraph: {
+                    title: "Kotangens uchun aylana grafigi",
+                    p1: "Kotangens qiymatini ko'rish uchun burchakni o'zgartiring. Nuqta aylananing chap yoki o'ng tomonida bo'lsa, kotangens aniqlanmaydi.",
+                    controlTitle: "Kotangens qiymati",
+                    help: "Kotangens \\(0^\\circ\\), \\(180^\\circ\\) va \\(360^\\circ\\) da aniqlanmaydi, chunki bu joylarda sinus \\(0\\).",
+                    aria: "Kotangens uchun aylana grafigi"
+                },
+                period: {
+                    title: "Takrorlanish tartibi",
+                    p1: "Trigonometrik qiymatlar to'liq aylanishdan keyin takrorlanadi. To'liq aylanish \\(360^\\circ\\), ya'ni \\(2\\pi\\) radian.",
+                    card1: {
+                        title: "Sinus va kosinus",
+                        text: "Ularning qiymatlari har \\(360^\\circ\\) da takrorlanadi."
+                    },
+                    card2: {
+                        title: "Tangens va kotangens",
+                        text: "Ularning qiymatlari har \\(180^\\circ\\) da takrorlanadi."
+                    },
+                    callout: "<strong>Oddiy ma'no:</strong> Bitta to'liq aylanani tushunsangiz, katta burchaklarni ham ularning aylanada qayerga tushishiga qarab tushunishingiz mumkin."
+                },
+                summary: {
+                    title: "Yakuniy xulosa",
+                    li1: "Sinus birlik aylanadagi vertikal koordinata bilan bog'liq.",
+                    li2: "Kosinus birlik aylanadagi gorizontal koordinata bilan bog'liq.",
+                    li3: "Tangens sinusni kosinus bilan taqqoslaydi.",
+                    li4: "Kotangens kosinusni sinus bilan taqqoslaydi.",
+                    li5: "Sinus va kosinusning qiymatlar sohasi \\([-1,1]\\).",
+                    li6: "Tangens va kotangens istalgan haqiqiy qiymatni olishi mumkin.",
+                    li7: "Kosinus \\(0\\) bo'lgan joyda tangens aniqlanmaydi.",
+                    li8: "Sinus \\(0\\) bo'lgan joyda kotangens aniqlanmaydi.",
+                    li9: "Eng muhim burchaklar \\(0^\\circ\\), \\(30^\\circ\\), \\(45^\\circ\\), \\(60^\\circ\\), \\(90^\\circ\\) va ularning aylana bo'ylab bog'liq burchaklaridir."
+                }
+            }
+        }
+    };
+
+    function getNestedValue(object, path) {
+        return path.split('.').reduce(function (current, key) {
+            return current && current[key] !== undefined ? current[key] : undefined;
+        }, object);
+    }
+
+    function renderMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function language(selectedLanguage) {
+        const dictionary = translations[selectedLanguage] || translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.innerHTML = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-alt');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('alt', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-title');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('title', value);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (element) {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const value = getNestedValue(dictionary, key);
+
+            if (value !== undefined) {
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.querySelectorAll('[data-language-button]').forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-language-button') === selectedLanguage);
+        });
+
+        document.documentElement.lang = selectedLanguage;
+        localStorage.setItem('mathAcademyLanguage', selectedLanguage);
+
+        renderMath();
+    }
+
+    function formatTrig(value) {
+        if (!Number.isFinite(value)) {
+            return 'undefined';
+        }
+
+        if (Math.abs(value) < 0.000001) {
+            return '0.000';
+        }
+
+        if (Math.abs(value) > 999) {
+            return value > 0 ? 'very large +' : 'very large -';
+        }
+
+        return value.toFixed(3);
+    }
+
+    function degreesToRadians(deg) {
+        return deg * Math.PI / 180;
+    }
+
+    function setupCanvas(canvas, ctx) {
+        const rect = canvas.getBoundingClientRect();
+        const ratio = window.devicePixelRatio || 1;
+        canvas.width = Math.max(320, Math.floor(rect.width * ratio));
+        canvas.height = Math.max(320, Math.floor(rect.height * ratio));
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function drawRoundGraph(config) {
+        const canvas = document.getElementById(config.canvasId);
+        const ctx = canvas.getContext('2d');
+        const slider = document.getElementById(config.sliderId);
+        const preset = document.getElementById(config.presetId);
+        const valueBox = document.getElementById(config.valueBoxId);
+
+        const degree = parseFloat(slider.value);
+        const rad = degreesToRadians(degree);
+        const cos = Math.cos(rad);
+        const sin = Math.sin(rad);
+        let value;
+
+        if (config.type === 'sin') {
+            value = sin;
+        } else if (config.type === 'cos') {
+            value = cos;
+        } else if (config.type === 'tan') {
+            value = Math.abs(cos) < 0.000001 ? NaN : sin / cos;
+        } else {
+            value = Math.abs(sin) < 0.000001 ? NaN : cos / sin;
+        }
+
+        valueBox.innerHTML = '\\(\\' + config.type + '(' + degree.toFixed(0) + '^\\circ)=' + formatTrig(value) + '\\)';
+        renderMath();
+
+        setupCanvas(canvas, ctx);
+
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const cx = width / 2;
+        const cy = height / 2;
+        const r = Math.min(width, height) * 0.34;
+        const px = cx + r * cos;
+        const py = cy - r * sin;
+
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.strokeStyle = '#dddddd';
+        ctx.lineWidth = 1;
+
+        for (let i = 0; i <= 360; i += 30) {
+            const angle = degreesToRadians(i);
+            const x = cx + r * Math.cos(angle);
+            const y = cy - r * Math.sin(angle);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.moveTo(cx - r - 32, cy);
+        ctx.lineTo(cx + r + 32, cy);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r - 32);
+        ctx.lineTo(cx, cy + r + 32);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 2.3;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+
+        ctx.setLineDash([5, 5]);
+        ctx.lineWidth = 1.4;
+
+        if (config.type === 'sin') {
+            ctx.beginPath();
+            ctx.moveTo(px, cy);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+        } else if (config.type === 'cos') {
+            ctx.beginPath();
+            ctx.moveTo(cx, py);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+        } else if (config.type === 'tan') {
+            const tangentX = cx + r;
+            ctx.beginPath();
+            ctx.moveTo(tangentX, cy - r - 28);
+            ctx.lineTo(tangentX, cy + r + 28);
+            ctx.stroke();
+
+            if (Number.isFinite(value)) {
+                const ty = cy - r * value;
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(tangentX, ty);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(tangentX, ty, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#111111';
+                ctx.fill();
+            }
+        } else {
+            const cotY = cy - r;
+            ctx.beginPath();
+            ctx.moveTo(cx - r - 28, cotY);
+            ctx.lineTo(cx + r + 28, cotY);
+            ctx.stroke();
+
+            if (Number.isFinite(value)) {
+                const tx = cx + r * value;
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(tx, cotY);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(tx, cotY, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#111111';
+                ctx.fill();
+            }
+        }
+
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#111111';
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = '12px Arial';
+        ctx.fillText('0°', cx + r + 8, cy - 6);
+        ctx.fillText('90°', cx + 8, cy - r - 8);
+        ctx.fillText('180°', cx - r - 38, cy - 6);
+        ctx.fillText('270°', cx + 8, cy + r + 18);
+
+        ctx.fillText('θ=' + degree.toFixed(0) + '°', 18, 24);
+        ctx.fillText('x=' + cos.toFixed(3), 18, 44);
+        ctx.fillText('y=' + sin.toFixed(3), 18, 64);
+
+        if (!Number.isFinite(value)) {
+            ctx.fillText(config.type + ' is undefined', 18, 84);
+        }
+    }
+
+    const roundGraphs = [
+        { type: 'sin', canvasId: 'sinCanvas', sliderId: 'sinSlider', presetId: 'sinPreset', valueBoxId: 'sinValueBox' },
+        { type: 'cos', canvasId: 'cosCanvas', sliderId: 'cosSlider', presetId: 'cosPreset', valueBoxId: 'cosValueBox' },
+        { type: 'tan', canvasId: 'tanCanvas', sliderId: 'tanSlider', presetId: 'tanPreset', valueBoxId: 'tanValueBox' },
+        { type: 'cot', canvasId: 'cotCanvas', sliderId: 'cotSlider', presetId: 'cotPreset', valueBoxId: 'cotValueBox' }
+    ];
+
+    function connectRoundGraphs() {
+        roundGraphs.forEach(function (graph) {
+            const slider = document.getElementById(graph.sliderId);
+            const preset = document.getElementById(graph.presetId);
+
+            slider.addEventListener('input', function () {
+                preset.value = slider.value;
+                drawRoundGraph(graph);
+            });
+
+            preset.addEventListener('change', function () {
+                slider.value = preset.value;
+                drawRoundGraph(graph);
+            });
+        });
+    }
+
+    function drawAllRoundGraphs() {
+        roundGraphs.forEach(drawRoundGraph);
+    }
+
+    window.addEventListener('resize', drawAllRoundGraphs);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+        language(savedLanguage);
+        connectRoundGraphs();
+        drawAllRoundGraphs();
+    });
+</script>
 
 </body>
 </html>

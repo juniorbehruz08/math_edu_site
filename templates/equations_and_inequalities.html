@@ -4,7 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Equalities and Inequalities</title>
+    <title>Equations and Inequalities</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +26,8 @@
         html, body { overflow-x: hidden; max-width: 100%; }
         .container { overflow-x: hidden; }
         .katex-display, .katex { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+        mjx-container { overflow: visible !important; max-width: 100%; }
+        mjx-container svg { max-width: 100%; height: auto !important; }
         img { max-width: 100%; height: auto; display: block; }
         table { max-width: 100%; overflow-x: auto; display: block; }
         @media (max-width: 576px) {
@@ -27,6 +36,26 @@
         }
         .practice-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 2rem; }
         .practice-btns a { flex: 1 1 220px; max-width: 280px; text-align: center; }
+        .language-switch {
+            display: inline-flex;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .language-switch__button {
+            border: 0;
+            border-radius: 999px;
+            padding: 6px 12px;
+            color: #fff;
+            background: transparent;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .language-switch__button.is-active {
+            color: #13547a;
+            background: #fff;
+        }
 
         /* ===== LESSON CONTENT ===== */
         #topics-detail { font-family: 'Open Sans', sans-serif; padding: 2.5rem 1.5rem 4rem; }
@@ -42,6 +71,7 @@
         .chapter-label.quad  { background: #7b3fa0; }
         .chapter-label.ineq  { background: #b5451b; }
         .chapter-label.qineq { background: #1d5980; }
+        .chapter-label.summary { background: #5d5a54; }
         .chapter-title {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.2rem, 3vw, 1.55rem); font-weight: 700;
@@ -54,7 +84,247 @@
         .chapter-rule.quad  { background: linear-gradient(90deg, #7b3fa0, transparent); }
         .chapter-rule.ineq  { background: linear-gradient(90deg, #b5451b, transparent); }
         .chapter-rule.qineq { background: linear-gradient(90deg, #1d5980, transparent); }
+        .chapter-rule.summary { background: linear-gradient(90deg, #5d5a54, transparent); }
 
+        .lesson-topic-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1.4rem;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0 0 0.25rem;
+            margin-bottom: 2.2rem;
+            scroll-padding-inline: 1rem;
+        }
+        .lesson-topic-tabs .nav-item { flex: 0 0 auto; }
+        .lesson-topic-tabs .nav-link {
+            margin-right: 0 !important;
+            white-space: nowrap;
+        }
+        .topic-panel { display: none; }
+        .topic-panel.is-active { display: block; }
+        #linear-eq,
+        #linear-eq + .lesson-card,
+        #linear-eq + .lesson-card + .lesson-card {
+            display: none;
+        }
+        #linear-ineq-panel > .sec-divider,
+        #linear-ineq-panel > .chapter-block,
+        #linear-ineq-panel > .lesson-card,
+        #quad-eq-panel > .sec-divider,
+        #quad-eq-panel > .chapter-block,
+        #quad-eq-panel > .lesson-card,
+        #quad-ineq-panel > .sec-divider,
+        #quad-ineq-panel > .chapter-block,
+        #quad-ineq-panel > .lesson-card,
+        #summary-similarities-panel > .sec-divider,
+        #summary-similarities-panel > .chapter-block,
+        #summary-similarities-panel > .lesson-card {
+            display: none;
+        }
+
+        .linear-sheet {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #000;
+            background: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        .linear-sheet h2 {
+            margin: 0 0 8px;
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .linear-sheet p { margin: 0 0 18px; }
+        .linear-sheet ul {
+            margin: 0 0 26px 28px;
+            padding: 0;
+        }
+        .linear-sheet li { margin: 4px 0; padding-left: 4px; }
+        .sheet-section {
+            padding: 0 4px 18px;
+            border-bottom: 1px solid #d7d7d7;
+            margin-bottom: 25px;
+        }
+        .sheet-section:last-child { border-bottom: 0; }
+        .sheet-label {
+            margin: 18px 0 6px;
+            color: #000;
+            font-weight: 400;
+        }
+        .math-line {
+            min-height: 28px;
+            margin: 8px 0 18px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #000;
+        }
+        .math-line.compact { margin-bottom: 8px; }
+        .answer-line { text-align: center; margin: 10px 0 18px; }
+        .answer-box {
+            display: inline-block;
+            border: 1px solid #111;
+            padding: 1px 6px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 18px;
+            font-style: italic;
+            line-height: 1.2;
+        }
+        .graph-widget {
+            display: grid;
+            grid-template-columns: 1fr 1.32fr;
+            min-height: 210px;
+            border: 1px solid #e7e7e7;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #fff;
+            margin: 12px 0 30px;
+        }
+        .graph-controls {
+            position: relative;
+            padding: 26px 12px 18px;
+            border-right: 1px solid #eeeeee;
+        }
+        .graph-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 36px;
+        }
+        .graph-tool {
+            width: 22px;
+            height: 22px;
+            border: 0;
+            background: transparent;
+            color: #111;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+        }
+        .graph-formula {
+            margin-bottom: 48px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 26px;
+            font-style: italic;
+        }
+        .slider-row {
+            display: grid;
+            grid-template-columns: 20px 42px 1fr;
+            align-items: center;
+            gap: 10px;
+            margin: 13px 0;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12px;
+            font-style: italic;
+        }
+        .slider-value {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-style: normal;
+            color: #000;
+        }
+        .graph-slider {
+            width: 100%;
+            accent-color: #111;
+        }
+        .graph-canvas-wrap {
+            position: relative;
+            min-height: 210px;
+            background: #fbfbfb;
+        }
+        #linearGraphCanvas,
+        #quadraticGraphCanvas,
+        #linearInequalityGraphCanvas,
+        #quadraticInequalityGraphCanvas {
+            width: 100%;
+            height: 100%;
+            min-height: 210px;
+            display: block;
+        }
+        .inequality-graph-widget .graph-formula {
+            margin-bottom: 28px;
+            font-size: 22px;
+        }
+        .sign-display {
+            display: inline-block;
+            min-width: 24px;
+            color: #1088ff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            text-align: center;
+        }
+        .graph-select {
+            width: 100%;
+            height: 28px;
+            border: 1px solid #dedede;
+            border-radius: 8px;
+            background: #fff;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            padding: 2px 8px;
+        }
+        .quadratic-sheet .method-list {
+            margin: 0 0 22px 24px;
+            padding: 0;
+        }
+        .quadratic-sheet .method-list li {
+            margin: 4px 0;
+            padding-left: 4px;
+        }
+        .quadratic-graph-widget .graph-formula {
+            margin-bottom: 28px;
+            font-size: 20px;
+        }
+        .sheet-quote {
+            margin: 0 0 22px;
+            padding: 8px 0 8px 20px;
+            border-left: 4px solid #d7d7d7;
+        }
+        .interval-title {
+            margin: 20px 0 8px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .summary-pattern-table {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 34px;
+            font-size: 14px;
+        }
+        .summary-pattern-table th,
+        .summary-pattern-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #ededed;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .summary-pattern-table th {
+            border-bottom-color: #d8d8d8;
+            font-weight: 700;
+        }
+        .summary-pattern-table .math-cell {
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 18px;
+            font-style: italic;
+        }
         .lesson-card {
             background: #fdfbf8; border: 1px solid #e2ddd6;
             border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem;
@@ -68,6 +338,7 @@
         .lesson-card-head.quad  { background: linear-gradient(90deg, rgba(123,63,160,0.05), transparent); }
         .lesson-card-head.ineq  { background: linear-gradient(90deg, rgba(181,69,27,0.05), transparent); }
         .lesson-card-head.qineq { background: linear-gradient(90deg, rgba(29,89,128,0.05), transparent); }
+        .lesson-card-head.summary { background: linear-gradient(90deg, rgba(93,90,84,0.06), transparent); }
         .lc-num {
             width: 30px; height: 30px; border-radius: 50%; background: #2d6a4f; color: #fff;
             font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
@@ -76,6 +347,7 @@
         .lc-num.quad  { background: #7b3fa0; }
         .lc-num.ineq  { background: #b5451b; }
         .lc-num.qineq { background: #1d5980; }
+        .lc-num.summary { background: #5d5a54; }
         .lc-title { font-family: 'Montserrat', sans-serif; font-size: 0.97rem; font-weight: 700; color: #1c1c1e; }
         .lesson-card-body { padding: 1.3rem; }
 
@@ -142,6 +414,86 @@
         .sec-divider { display: flex; align-items: center; gap: 0.9rem; margin: 2.5rem 0 0; }
         .sec-divider::before, .sec-divider::after { content: ''; flex: 1; height: 1px; background: #e2ddd6; }
         .sec-divider span { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8070; white-space: nowrap; }
+
+        @media (max-width: 576px) {
+            .lesson-topic-tabs {
+                justify-content: flex-start;
+                gap: 0.85rem;
+                margin-bottom: 1.6rem;
+            }
+            .lesson-topic-tabs .nav-link {
+                font-size: 0.88rem;
+                padding: 12px 14px;
+            }
+            .graph-widget {
+                grid-template-columns: 1fr;
+            }
+            .graph-controls {
+                border-right: 0;
+                border-bottom: 1px solid #eeeeee;
+            }
+        }
+
+
+        /* =========================================================
+           FIX: Responsive topic tabs
+           Desktop: centered tabs.
+           Narrow screens: left-aligned horizontal scroll so no tab disappears.
+           ========================================================= */
+        #topics-detail,
+        #topics-detail.container {
+            max-width: 100%;
+        }
+
+        .lesson-topic-tabs {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .lesson-topic-tabs .nav-item,
+        .lesson-topic-tabs .nav-link {
+            flex: 0 0 auto !important;
+            white-space: nowrap !important;
+        }
+
+        .lesson-topic-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .lesson-topic-tabs::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .lesson-topic-tabs::-webkit-scrollbar-thumb {
+            background: rgba(19, 84, 122, 0.35);
+            border-radius: 999px;
+        }
+
+        @media (max-width: 992px) {
+            .lesson-topic-tabs {
+                justify-content: flex-start !important;
+                gap: 0.75rem;
+                padding-left: 0.25rem;
+                padding-right: 0.25rem;
+                padding-bottom: 0.65rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lesson-topic-tabs {
+                gap: 0.55rem;
+            }
+
+            .lesson-topic-tabs .nav-link {
+                font-size: 0.82rem;
+                padding: 9px 12px;
+            }
+        }
+
     </style>
 </head>
 
@@ -153,10 +505,16 @@
         <div class="container">
             <a class="navbar-brand" href="{% url 'main_view' %}">
                 <i class="bi-back"></i>
-                <span>Math Academy</span>
+                <span>My Math Academy</span>
             </a>
-            <div class="ms-auto">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll"></a>
+            <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.languageSwitch">
+                <button class="language-switch__button is-active" type="button" data-language-button="en"
+                        onclick="language('en')">EN</button>
+                <button class="language-switch__button" type="button" data-language-button="uz"
+                        onclick="language('uz')">UZ</button>
+            </div>
+            <div>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
     </nav>
@@ -167,31 +525,31 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-5 col-12 mb-5">
-                    <nav aria-label="breadcrumb">
+                    <nav aria-label="breadcrumb" data-i18n-aria-label="page.breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}">Homepage</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Fundamental Knowledge</li>
+                            <li class="breadcrumb-item"><a href="{% url 'main_view' %}" data-i18n="page.homepage">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" data-i18n="page.breadcrumbCurrent">Equations and Inequalities</li>
                         </ol>
                     </nav>
-                    <h2 class="text-white">Introduction to <br>Equations and Inequalities</h2>
+                    <h2 class="text-white" data-i18n="page.heroTitle">Introduction to <br>Equations and Inequalities</h2>
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read More</a>
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backToTop"></a>
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-12">
                     <div class="topics-detail-block bg-white shadow-lg">
-                        <img src="{% static 'images/myimages/equation.jpg' %}" class="topics-detail-block-image img-fluid" alt="Equations">
+                        <img src="{% static 'images/myimages/equation.jpg' %}" class="topics-detail-block-image img-fluid" alt="Equations" data-i18n-alt="page.heroImageAlt">
                     </div>
                 </div>
 
                 <!-- Practice Buttons -->
                 <div class="col-12">
                     <div class="practice-btns">
-                        <a href="{% url 'practice' %}?url=linear_equalities" class="btn custom-btn custom-border-btn">Practice With Linear Equations</a>
-                        <a href="{% url 'practice' %}?url=quadratic_equations" class="btn custom-btn custom-border-btn">Practice With Quadratic Equations</a>
-                        <a href="{% url 'practice' %}?url=inequalities" class="btn custom-btn custom-border-btn">Practice with Inequalities</a>
+                        <a href="{% url 'practice' %}?url=linear_equalities" class="btn custom-btn custom-border-btn" data-i18n="page.practiceLinear">Practice With Linear Equations</a>
+                        <a href="{% url 'practice' %}?url=quadratic_equations" class="btn custom-btn custom-border-btn" data-i18n="page.practiceQuadratic">Practice With Quadratic Equations</a>
+                        <a href="{% url 'practice' %}?url=inequalities" class="btn custom-btn custom-border-btn" data-i18n="page.practiceInequalities">Practice with Inequalities</a>
                     </div>
                 </div>
 
@@ -201,6 +559,157 @@
 
     <!-- CONTENT -->
     <main id="topics-detail" class="container mx-auto px-4 py-10 max-w-4xl space-y-10">
+
+        <ul class="nav nav-tabs lesson-topic-tabs" id="equationTopicTabs" role="tablist" aria-label="Equations and inequalities sections" data-i18n-aria-label="page.topicTabs">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" type="button" data-panel-target="linear-eq-panel" data-i18n="tabs.linearEquation">Linear Equation</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" type="button" data-panel-target="linear-ineq-panel" data-i18n="tabs.linearInequality">Linear Inequality</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" type="button" data-panel-target="quad-eq-panel" data-i18n="tabs.quadraticEquation">Quadratic Equation</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" type="button" data-panel-target="quad-ineq-panel" data-i18n="tabs.quadraticInequality">Quadratic Inequality</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" type="button" data-panel-target="summary-similarities-panel" data-i18n="tabs.summary">Conclusion &amp; Similarities</button>
+            </li>
+        </ul>
+
+        <div class="topic-panel is-active" id="linear-eq-panel">
+            <div class="linear-sheet">
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.title">What is a linear equation?</h2>
+                    <p data-i18n="linearEquation.definition">A <strong>linear equation</strong> has the variable mostly in the first power only.</p>
+
+                    <p data-i18n="linearEquation.generalFormLabel">General form:</p>
+                    <div class="math-line">\(ax + b = 0\)</div>
+
+                    <p data-i18n="linearEquation.where">where \(a \ne 0\).</p>
+
+                    <p data-i18n="linearEquation.examplesLabel">Examples:</p>
+                    <div class="math-line">\(2x + 5 = 13\)</div>
+                    <div class="math-line">\(3x - 7 = 2x + 4\)</div>
+                    <div class="math-line">\(\dfrac{x}{2} + 3 = 9\)</div>
+
+                    <p data-i18n="linearEquation.graphSentence">The graph of a linear equation is a straight line.</p>
+
+                    <div class="graph-widget" id="linearGraphWidget">
+                        <div class="graph-controls">
+                            <div class="graph-toolbar">
+                                <button class="graph-tool" type="button" id="resetGraphBtn" title="Reset graph" data-i18n-title="page.resetGraph" aria-label="Reset graph" data-i18n-aria-label="page.resetGraph">&times;</button>
+                            </div>
+
+                            <div class="graph-formula">\(y = mx + b\)</div>
+
+                            <label class="slider-row">
+                                <span>m</span>
+                                <span class="slider-value" id="slopeValue">1.0</span>
+                                <input class="graph-slider" id="slopeSlider" type="range" min="-5" max="5" step="0.1" value="1">
+                            </label>
+                            <label class="slider-row">
+                                <span>b</span>
+                                <span class="slider-value" id="interceptValue">5.0</span>
+                                <input class="graph-slider" id="interceptSlider" type="range" min="-10" max="10" step="0.1" value="5">
+                            </label>
+                        </div>
+                        <div class="graph-canvas-wrap">
+                            <canvas id="linearGraphCanvas" width="720" height="420" aria-label="Interactive graph of y equals mx plus b" data-i18n-aria-label="page.linearGraphAria"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.mainRuleTitle">Main rule</h2>
+                    <p data-i18n="linearEquation.mainRuleText">Whatever you do to one side, you must do to the other side.</p>
+                    <p data-i18n="linearEquation.youCan">You can:</p>
+                    <ul>
+                        <li data-i18n="linearEquation.ruleAdd">add/subtract both sides</li>
+                        <li data-i18n="linearEquation.ruleMultiply">multiply/divide both sides</li>
+                        <li data-i18n="linearEquation.ruleCombine">combine like terms</li>
+                        <li data-i18n="linearEquation.ruleMove">move variables to one side and constants to the other</li>
+                    </ul>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.moveSignTitle">Moving a term to the other side</h2>
+                    <p data-i18n="linearEquation.moveSignText">When a term moves across the equal sign, its sign changes. A positive term becomes negative, and a negative term becomes positive.</p>
+                    <div class="math-line">\(x + 7 = 12\)</div>
+                    <p class="sheet-label" data-i18n="linearEquation.moveSignStep1">Move \(+7\) to the right side. It becomes \(-7\).</p>
+                    <div class="math-line">\(x = 12 - 7\)</div>
+                    <div class="math-line">\(x = 5\)</div>
+                    <p class="sheet-label" data-i18n="linearEquation.moveSignSecondExample">Another quick example:</p>
+                    <div class="math-line">\(x - 4 = 9 \Rightarrow x = 9 + 4 \Rightarrow x = 13\)</div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.example1Title">Linear Equation Example 1</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(2x + 5 = 17\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example1Step1">Step 1: Subtract 5 from both sides.</p>
+                    <div class="math-line">\(2x + 5 - 5 = 17 - 5\)</div>
+                    <div class="math-line">\(2x = 12\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example1Step2">Step 2: Divide both sides by 2.</p>
+                    <div class="math-line">\(x = 6\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = 6\)</span></div>
+
+                    <p class="sheet-label" data-i18n="shared.check">Check:</p>
+                    <div class="math-line">\(2(6) + 5 = 12 + 5 = 17\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.example2Title">Linear Equation Example 2</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(3x - 4 = x + 10\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example2Step1">Step 1: Move \(x\) to the left side.</p>
+                    <div class="math-line">\(3x - x - 4 = 10\)</div>
+                    <div class="math-line">\(2x - 4 = 10\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example2Step2">Step 2: Add 4 to both sides.</p>
+                    <div class="math-line">\(2x = 14\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example2Step3">Step 3: Divide by 2.</p>
+                    <div class="math-line">\(x = 7\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = 7\)</span></div>
+
+                    <p class="sheet-label" data-i18n="shared.check">Check:</p>
+                    <p class="sheet-label" data-i18n="shared.leftSide">Left side:</p>
+                    <div class="math-line">\(3(7) - 4 = 21 - 4 = 17\)</div>
+                    <p class="sheet-label" data-i18n="shared.rightSide">Right side:</p>
+                    <div class="math-line">\(7 + 10 = 17\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearEquation.example3Title">Linear Equation Example 3</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(\dfrac{x}{3} + 5 = 11\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example3Step1">Step 1: Subtract 5.</p>
+                    <div class="math-line">\(\dfrac{x}{3} = 6\)</div>
+
+                    <p class="sheet-label" data-i18n="linearEquation.example3Step2">Step 2: Multiply both sides by 3.</p>
+                    <div class="math-line">\(x = 18\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = 18\)</span></div>
+
+                    <p class="sheet-label" data-i18n="shared.check">Check:</p>
+                    <div class="math-line">\(\dfrac{18}{3} + 5 = 6 + 5 = 11\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+            </div>
+        </div>
 
         <!-- ══ CHAPTER 1 — LINEAR EQUATIONS ══ -->
         <div class="chapter-block" id="linear-eq">
@@ -280,6 +789,153 @@
         </div>
 
         <!-- ══ CHAPTER 2 — QUADRATIC EQUATIONS ══ -->
+        <div class="topic-panel" id="quad-eq-panel">
+            <div class="linear-sheet quadratic-sheet">
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticEquation.title">What is a quadratic equation?</h2>
+                    <p data-i18n="quadraticEquation.definition">A <strong>quadratic equation</strong> has \(x^2\) as the highest power.</p>
+
+                    <p data-i18n="quadraticEquation.generalFormLabel">General form:</p>
+                    <div class="math-line">\(ax^2 + bx + c = 0\)</div>
+
+                    <p data-i18n="quadraticEquation.where">where \(a \ne 0\).</p>
+
+                    <p data-i18n="quadraticEquation.examplesLabel">Examples:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 = 0\)</div>
+                    <div class="math-line">\(2x^2 + 3x - 2 = 0\)</div>
+                    <div class="math-line">\(x^2 = 16\)</div>
+
+                    <p data-i18n="quadraticEquation.graphSentence">The graph of a quadratic equation is a parabola.</p>
+                    <p data-i18n="quadraticEquation.solutionSentence">The solutions of a quadratic equation are the \(x\)-values where the parabola crosses the \(x\)-axis.</p>
+
+                    <h2 data-i18n="quadraticEquation.methodsTitle">Main methods for solving quadratic equations</h2>
+                    <p data-i18n="quadraticEquation.methodsIntro">There are three common methods:</p>
+                    <ol class="method-list">
+                        <li data-i18n="quadraticEquation.methodFactoring"><strong>Factoring</strong></li>
+                        <li data-i18n="quadraticEquation.methodSquareRoot"><strong>Square root method</strong></li>
+                        <li data-i18n="quadraticEquation.methodFormula"><strong>Quadratic formula</strong></li>
+                    </ol>
+
+                    <div class="graph-widget quadratic-graph-widget" id="quadraticGraphWidget">
+                        <div class="graph-controls">
+                            <div class="graph-toolbar">
+                                <button class="graph-tool" type="button" id="resetQuadraticGraphBtn" title="Reset graph" data-i18n-title="page.resetGraph" aria-label="Reset graph" data-i18n-aria-label="page.resetGraph">&times;</button>
+                            </div>
+
+                            <div class="graph-formula">\(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</div>
+
+                            <label class="slider-row">
+                                <span>a</span>
+                                <span class="slider-value" id="quadAValue">1.0</span>
+                                <input class="graph-slider" id="quadASlider" type="range" min="-4" max="4" step="0.1" value="1">
+                            </label>
+                            <label class="slider-row">
+                                <span>b</span>
+                                <span class="slider-value" id="quadBValue">0.0</span>
+                                <input class="graph-slider" id="quadBSlider" type="range" min="-10" max="10" step="0.1" value="0">
+                            </label>
+                            <label class="slider-row">
+                                <span>c</span>
+                                <span class="slider-value" id="quadCValue">-4.0</span>
+                                <input class="graph-slider" id="quadCSlider" type="range" min="-20" max="20" step="0.1" value="-4">
+                            </label>
+                        </div>
+                        <div class="graph-canvas-wrap">
+                            <canvas id="quadraticGraphCanvas" width="720" height="420" aria-label="Interactive graph of a quadratic equation" data-i18n-aria-label="page.quadraticGraphAria"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticEquation.example1Title">Quadratic Equation Example 1 &mdash; Factoring</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 = 0\)</div>
+
+                    <p data-i18n="quadraticEquation.needNumbers">We need two numbers that:</p>
+                    <ul>
+                        <li data-i18n="quadraticEquation.multiplyTo6">multiply to 6</li>
+                        <li data-i18n="quadraticEquation.addToNegative5">add to \(-5\)</li>
+                    </ul>
+
+                    <p data-i18n="quadraticEquation.thoseNumbers">Those numbers are \(-2\) and \(-3\).</p>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 = (x - 2)(x - 3)\)</div>
+
+                    <p data-i18n="quadraticEquation.nowSolve">Now solve:</p>
+                    <div class="math-line">\((x - 2)(x - 3) = 0\)</div>
+
+                    <p data-i18n="quadraticEquation.zeroProduct">If two factors multiply to zero, at least one of them must be zero.</p>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\(x - 2 = 0\)</div>
+                    <div class="math-line">\(x = 2\)</div>
+
+                    <p data-i18n="quadraticEquation.or">or</p>
+                    <div class="math-line">\(x - 3 = 0\)</div>
+                    <div class="math-line">\(x = 3\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = 2,\ x = 3\)</span></div>
+
+                    <p class="sheet-label" data-i18n="quadraticEquation.checkWith2">Check with \(x = 2\):</p>
+                    <div class="math-line">\(2^2 - 5(2) + 6 = 4 - 10 + 6 = 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticEquation.checkWith3">Check with \(x = 3\):</p>
+                    <div class="math-line">\(3^2 - 5(3) + 6 = 9 - 15 + 6 = 0\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticEquation.example2Title">Quadratic Equation Example 2 &mdash; Square Root Method</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(x^2 = 49\)</div>
+
+                    <p data-i18n="quadraticEquation.takeSquareRoot">Take the square root of both sides.</p>
+                    <p data-i18n="quadraticEquation.importantRoots">Important: when solving \(x^2 = a\), we take both positive and negative roots.</p>
+                    <div class="math-line">\(x = \pm 7\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = -7,\ 7\)</span></div>
+
+                    <p data-i18n="quadraticEquation.whyBoth">Why both?</p>
+                    <p data-i18n="quadraticEquation.because">Because:</p>
+                    <div class="math-line">\(7^2 = 49\)</div>
+                    <p data-i18n="quadraticEquation.and">and</p>
+                    <div class="math-line">\((-7)^2 = 49\)</div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticEquation.example3Title">Quadratic Equation Example 3 &mdash; Quadratic Formula</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(2x^2 + 3x - 2 = 0\)</div>
+
+                    <p data-i18n="quadraticEquation.here">Here:</p>
+                    <div class="math-line">\(a = 2,\quad b = 3,\quad c = -2\)</div>
+
+                    <p data-i18n="quadraticEquation.useFormula">Use the quadratic formula:</p>
+                    <div class="math-line">\(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</div>
+
+                    <p data-i18n="quadraticEquation.substitute">Substitute:</p>
+                    <div class="math-line">\(x = \dfrac{-3 \pm \sqrt{3^2 - 4(2)(-2)}}{2(2)}\)</div>
+
+                    <p data-i18n="quadraticEquation.simplifyRoot">Simplify inside the square root:</p>
+                    <div class="math-line">\(x = \dfrac{-3 \pm \sqrt{9 + 16}}{4}\)</div>
+                    <div class="math-line">\(x = \dfrac{-3 \pm \sqrt{25}}{4}\)</div>
+                    <div class="math-line">\(x = \dfrac{-3 \pm 5}{4}\)</div>
+
+                    <p data-i18n="quadraticEquation.splitAnswers">Now split into two answers.</p>
+
+                    <p data-i18n="quadraticEquation.first">First:</p>
+                    <div class="math-line">\(x = \dfrac{-3 + 5}{4} = \dfrac{2}{4} = \dfrac{1}{2}\)</div>
+
+                    <p data-i18n="quadraticEquation.second">Second:</p>
+                    <div class="math-line">\(x = \dfrac{-3 - 5}{4} = \dfrac{-8}{4} = -2\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x = \dfrac{1}{2},\ -2\)</span></div>
+                </section>
+            </div>
         <div class="sec-divider"><span>Chapter 2</span></div>
         <div class="chapter-block" id="quad-eq" style="margin-top:1.5rem;">
             <div class="chapter-label quad">Chapter 2</div>
@@ -344,6 +1000,144 @@
         </div>
 
         <!-- ══ CHAPTER 3 — LINEAR INEQUALITIES ══ -->
+        </div>
+
+        <div class="topic-panel" id="linear-ineq-panel">
+            <div class="linear-sheet">
+                <section class="sheet-section">
+                    <h2 data-i18n="linearInequality.title">What is a linear inequality?</h2>
+                    <p data-i18n="linearInequality.definition">A <strong>linear inequality</strong> is like a linear equation, but with inequality signs.</p>
+
+                    <p data-i18n="linearInequality.generalFormsLabel">General forms:</p>
+                    <div class="math-line">\(ax + b \gt 0\)</div>
+                    <div class="math-line">\(ax + b \lt 0\)</div>
+                    <div class="math-line">\(ax + b \ge 0\)</div>
+                    <div class="math-line">\(ax + b \le 0\)</div>
+
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\(2x + 5 \lt 13\)</div>
+
+                    <h2 data-i18n="linearInequality.importantRuleTitle">Very important rule</h2>
+                    <p data-i18n="linearInequality.importantRule">When you multiply or divide both sides by a <strong>negative number</strong>, you must flip the inequality sign.</p>
+                    <p data-i18n="linearInequality.forExample">For example:</p>
+                    <div class="math-line">\(-2x \lt 6\)</div>
+                    <p data-i18n="linearInequality.divideRule">Divide by \(-2\), and flip \(\lt\) to \(\gt\):</p>
+                    <div class="math-line">\(x \gt -3\)</div>
+                    <p data-i18n="linearInequality.ruleConclusion">This is one of the most important inequality rules.</p>
+
+                    <p data-i18n="linearInequality.graphHelper">Change the sign and values. The blue shadow shows all \(x\)-values that make the inequality true.</p>
+                    <div class="graph-widget inequality-graph-widget" id="linearInequalityGraphWidget">
+                        <div class="graph-controls">
+                            <div class="graph-toolbar">
+                                <button class="graph-tool" type="button" id="resetLinearInequalityGraphBtn" title="Reset graph" data-i18n-title="page.resetGraph" aria-label="Reset graph" data-i18n-aria-label="page.resetGraph">&times;</button>
+                            </div>
+
+                            <div class="graph-formula">\(mx + b\) <span class="sign-display" id="linearIneqSignDisplay">&lt;</span> \(0\)</div>
+
+                            <label class="slider-row">
+                                <span>m</span>
+                                <span class="slider-value" id="linearIneqMValue">2.0</span>
+                                <input class="graph-slider" id="linearIneqMSlider" type="range" min="-5" max="5" step="0.1" value="2">
+                            </label>
+                            <label class="slider-row">
+                                <span>b</span>
+                                <span class="slider-value" id="linearIneqBValue">5.0</span>
+                                <input class="graph-slider" id="linearIneqBSlider" type="range" min="-10" max="10" step="0.1" value="5">
+                            </label>
+                            <label class="slider-row">
+                                <span data-i18n="shared.sign">sign</span>
+                                <span class="slider-value" id="linearIneqSignValue">&lt;</span>
+                                <select class="graph-select" id="linearIneqSignSelect" aria-label="Linear inequality sign" data-i18n-aria-label="page.linearInequalitySign">
+                                    <option value="lt" selected>&lt;</option>
+                                    <option value="lte">&le;</option>
+                                    <option value="gt">&gt;</option>
+                                    <option value="gte">&ge;</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="graph-canvas-wrap">
+                            <canvas id="linearInequalityGraphCanvas" width="720" height="420" aria-label="Interactive graph of a linear inequality" data-i18n-aria-label="page.linearInequalityGraphAria"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearInequality.example1Title">Linear Inequality Example 1</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(2x + 5 \lt 17\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example1Step1">Step 1: Subtract 5.</p>
+                    <div class="math-line">\(2x \lt 12\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example1Step2">Step 2: Divide by 2.</p>
+                    <div class="math-line">\(x \lt 6\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x \lt 6\)</span></div>
+
+                    <p data-i18n="linearInequality.example1Meaning">This means every number less than 6 works.</p>
+                    <p data-i18n="linearInequality.workingExamples">Examples that work:</p>
+                    <div class="math-line">\(x = 5,\quad x = 0,\quad x = -100\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.checkWith5">Check with \(x = 5\):</p>
+                    <div class="math-line">\(2(5) + 5 = 15 \lt 17\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearInequality.example2Title">Linear Inequality Example 2 — Negative Coefficient</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(-3x + 4 \ge 16\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example2Step1">Step 1: Subtract 4.</p>
+                    <div class="math-line">\(-3x \ge 12\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example2Step2">Step 2: Divide by \(-3\).</p>
+                    <p data-i18n="linearInequality.flipReminder">Because we divide by a negative number, flip the sign:</p>
+                    <div class="math-line">\(x \le -4\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x \le -4\)</span></div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.checkWithNegative5">Check with \(x = -5\):</p>
+                    <div class="math-line">\(-3(-5) + 4 = 15 + 4 = 19\)</div>
+                    <div class="math-line">\(19 \ge 16\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+
+                    <p class="sheet-label" data-i18n="linearInequality.checkWith0">Check with \(x = 0\):</p>
+                    <div class="math-line">\(-3(0) + 4 = 4\)</div>
+                    <div class="math-line">\(4 \ge 16\)</div>
+                    <p data-i18n="shared.false">False.</p>
+                    <p data-i18n="linearInequality.example2Conclusion">So \(x \le -4\) makes sense.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="linearInequality.example3Title">Linear Inequality Example 3 — Variables on Both Sides</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(5x - 7 \lt 2x + 8\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example3Step1">Step 1: Move \(2x\) to the left.</p>
+                    <div class="math-line">\(5x - 2x - 7 \lt 8\)</div>
+                    <div class="math-line">\(3x - 7 \lt 8\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example3Step2">Step 2: Add 7.</p>
+                    <div class="math-line">\(3x \lt 15\)</div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.example3Step3">Step 3: Divide by 3.</p>
+                    <div class="math-line">\(x \lt 5\)</div>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(x \lt 5\)</span></div>
+
+                    <p class="sheet-label" data-i18n="linearInequality.checkWith4">Check with \(x = 4\):</p>
+                    <p class="sheet-label" data-i18n="shared.leftSide">Left side:</p>
+                    <div class="math-line">\(5(4) - 7 = 20 - 7 = 13\)</div>
+                    <p class="sheet-label" data-i18n="shared.rightSide">Right side:</p>
+                    <div class="math-line">\(2(4) + 8 = 8 + 8 = 16\)</div>
+                    <div class="math-line">\(13 \lt 16\)</div>
+                    <p data-i18n="shared.correct">Correct.</p>
+                </section>
+            </div>
         <div class="sec-divider"><span>Chapter 3</span></div>
         <div class="chapter-block" id="linear-ineq" style="margin-top:1.5rem;">
             <div class="chapter-label ineq">Chapter 3</div>
@@ -384,6 +1178,231 @@
         </div>
 
         <!-- ══ CHAPTER 4 — QUADRATIC INEQUALITIES ══ -->
+        </div>
+
+        <div class="topic-panel" id="quad-ineq-panel">
+            <div class="linear-sheet quadratic-inequality-sheet">
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticInequality.title">What is a quadratic inequality?</h2>
+                    <p data-i18n="quadraticInequality.definition">A <strong>quadratic inequality</strong> has \(x^2\) and an inequality sign.</p>
+
+                    <p data-i18n="quadraticInequality.examplesLabel">Examples:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 \gt 0\)</div>
+                    <div class="math-line">\(x^2 - 4 \le 0\)</div>
+                    <div class="math-line">\(2x^2 + 3x - 2 \ge 0\)</div>
+
+                    <p data-i18n="quadraticInequality.asksLabel">A quadratic inequality asks:</p>
+                    <div class="sheet-quote" data-i18n="quadraticInequality.askQuestion">For which values of \(x\) is the quadratic expression positive, negative, greater than zero, or less than zero?</div>
+
+                    <p data-i18n="quadraticInequality.graphSentence">The graph is a parabola.</p>
+
+                    <p data-i18n="quadraticInequality.graphHelper">Change the sign and values. The blue shadow shows the solution intervals.</p>
+                    <div class="graph-widget inequality-graph-widget quadratic-inequality-graph-widget" id="quadraticInequalityGraphWidget">
+                        <div class="graph-controls">
+                            <div class="graph-toolbar">
+                                <button class="graph-tool" type="button" id="resetQuadraticInequalityGraphBtn" title="Reset graph" data-i18n-title="page.resetGraph" aria-label="Reset graph" data-i18n-aria-label="page.resetGraph">&times;</button>
+                            </div>
+
+                            <div class="graph-formula">\(ax^2 + bx + c\) <span class="sign-display" id="quadraticIneqSignDisplay">&gt;</span> \(0\)</div>
+
+                            <label class="slider-row">
+                                <span>a</span>
+                                <span class="slider-value" id="quadIneqAValue">1.0</span>
+                                <input class="graph-slider" id="quadIneqASlider" type="range" min="-4" max="4" step="0.1" value="1">
+                            </label>
+                            <label class="slider-row">
+                                <span>b</span>
+                                <span class="slider-value" id="quadIneqBValue">-5.0</span>
+                                <input class="graph-slider" id="quadIneqBSlider" type="range" min="-10" max="10" step="0.1" value="-5">
+                            </label>
+                            <label class="slider-row">
+                                <span>c</span>
+                                <span class="slider-value" id="quadIneqCValue">6.0</span>
+                                <input class="graph-slider" id="quadIneqCSlider" type="range" min="-20" max="20" step="0.1" value="6">
+                            </label>
+                            <label class="slider-row">
+                                <span data-i18n="shared.sign">sign</span>
+                                <span class="slider-value" id="quadIneqSignValue">&gt;</span>
+                                <select class="graph-select" id="quadIneqSignSelect" aria-label="Quadratic inequality sign" data-i18n-aria-label="page.quadraticInequalitySign">
+                                    <option value="gt" selected>&gt;</option>
+                                    <option value="gte">&ge;</option>
+                                    <option value="lt">&lt;</option>
+                                    <option value="lte">&le;</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="graph-canvas-wrap">
+                            <canvas id="quadraticInequalityGraphCanvas" width="720" height="420" aria-label="Interactive graph of a quadratic inequality" data-i18n-aria-label="page.quadraticInequalityGraphAria"></canvas>
+                        </div>
+                    </div>
+
+                    <p data-i18n="quadraticInequality.strategyTitle">The main strategy:</p>
+                    <ol class="method-list">
+                        <li data-i18n="quadraticInequality.strategyMove">Move everything to one side.</li>
+                        <li data-i18n="quadraticInequality.strategySetZero">Set the expression equal to zero.</li>
+                        <li data-i18n="quadraticInequality.strategySolve">Solve the quadratic equation.</li>
+                        <li data-i18n="quadraticInequality.strategyRoots">Use the roots to divide the number line into intervals.</li>
+                        <li data-i18n="quadraticInequality.strategyTest">Test each interval.</li>
+                        <li data-i18n="quadraticInequality.strategyChoose">Choose the interval that satisfies the inequality.</li>
+                    </ol>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticInequality.keyIdeaTitle">Key idea: roots split the number line</h2>
+                    <p data-i18n="quadraticInequality.suppose">Suppose:</p>
+                    <div class="math-line">\((x - 2)(x - 3) \gt 0\)</div>
+
+                    <p data-i18n="quadraticInequality.rootsAre">The roots are:</p>
+                    <div class="math-line">\(x = 2,\quad x = 3\)</div>
+
+                    <p data-i18n="quadraticInequality.divideIntervals">These divide the number line into three intervals:</p>
+                    <div class="math-line">\((-\infty, 2),\quad (2, 3),\quad (3, \infty)\)</div>
+
+                    <p data-i18n="quadraticInequality.testIntervals">Then we test each interval.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticInequality.example1Title">Quadratic Inequality Example 1</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 \gt 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step1Factor">Step 1: Factor.</p>
+                    <div class="math-line">\(x^2 - 5x + 6 = (x - 2)(x - 3)\)</div>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\((x - 2)(x - 3) \gt 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step2Roots">Step 2: Find roots.</p>
+                    <div class="math-line">\(x - 2 = 0 \Rightarrow x = 2\)</div>
+                    <div class="math-line">\(x - 3 = 0 \Rightarrow x = 3\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step3Split">Step 3: Split number line.</p>
+                    <div class="math-line">\((-\infty, 2),\quad (2, 3),\quad (3, \infty)\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step4TestEach">Step 4: Test each interval.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example1Interval1">Interval 1: \(x \lt 2\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX0">Choose \(x = 0\).</p>
+                    <div class="math-line">\((0 - 2)(0 - 3) = (-2)(-3) = 6\)</div>
+                    <p data-i18n="quadraticInequality.positiveWorksInterval">Positive. So this interval works.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example1Interval2">Interval 2: \(2 \lt x \lt 3\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX25">Choose \(x = 2.5\).</p>
+                    <div class="math-line">\((2.5 - 2)(2.5 - 3) = (0.5)(-0.5) = -0.25\)</div>
+                    <p data-i18n="quadraticInequality.negativeDoesNotWork">Negative. Does not work.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example1Interval3">Interval 3: \(x \gt 3\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX4">Choose \(x = 4\).</p>
+                    <div class="math-line">\((4 - 2)(4 - 3) = (2)(1) = 2\)</div>
+                    <p data-i18n="quadraticInequality.positiveWorks">Positive. Works.</p>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box" data-i18n="quadraticInequality.example1Answer">\(x \lt 2\text{ or }x \gt 3\)</span></div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.intervalNotation">Interval notation:</p>
+                    <div class="answer-line"><span class="answer-box">\((-\infty, 2) \cup (3, \infty)\)</span></div>
+
+                    <p data-i18n="quadraticInequality.example1Important">Important: because the inequality is \(\gt 0\), not \(\ge 0\), we do not include 2 and 3.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticInequality.example2Title">Quadratic Inequality Example 2</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(x^2 - 4 \le 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step1Factor">Step 1: Factor.</p>
+                    <div class="math-line">\(x^2 - 4 = (x - 2)(x + 2)\)</div>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\((x - 2)(x + 2) \le 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step2Roots">Step 2: Find roots.</p>
+                    <div class="math-line">\(x - 2 = 0 \Rightarrow x = 2\)</div>
+                    <div class="math-line">\(x + 2 = 0 \Rightarrow x = -2\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step3Split">Step 3: Split number line.</p>
+                    <div class="math-line">\((-\infty, -2),\quad (-2, 2),\quad (2, \infty)\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step4TestEach">Step 4: Test each interval.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example2Interval1">Interval 1: \(x \lt -2\)</h3>
+                    <p data-i18n="quadraticInequality.chooseXNegative3">Choose \(x = -3\).</p>
+                    <div class="math-line">\((-3)^2 - 4 = 9 - 4 = 5\)</div>
+                    <p data-i18n="quadraticInequality.positiveNeedLeNotWork">Positive. We need \(\le 0\), so it does not work.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example2Interval2">Interval 2: \(-2 \lt x \lt 2\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX0">Choose \(x = 0\).</p>
+                    <div class="math-line">\(0^2 - 4 = -4\)</div>
+                    <p data-i18n="quadraticInequality.negativeWorks">Negative. This works.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example2Interval3">Interval 3: \(x \gt 2\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX3">Choose \(x = 3\).</p>
+                    <div class="math-line">\(3^2 - 4 = 9 - 4 = 5\)</div>
+                    <p data-i18n="quadraticInequality.positiveDoesNotWork">Positive. Does not work.</p>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step5Endpoints">Step 5: Include endpoints?</p>
+                    <p data-i18n="quadraticInequality.theInequalityIs">The inequality is:</p>
+                    <div class="math-line">\(\le 0\)</div>
+                    <p data-i18n="quadraticInequality.example2IncludeRoots">So yes, include the roots \(-2\) and \(2\), because at those points the expression equals zero.</p>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box">\(-2 \le x \le 2\)</span></div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.intervalNotation">Interval notation:</p>
+                    <div class="answer-line"><span class="answer-box">\([-2, 2]\)</span></div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="quadraticInequality.example3Title">Quadratic Inequality Example 3</h2>
+                    <p data-i18n="shared.solve">Solve:</p>
+                    <div class="math-line">\(2x^2 + 3x - 2 \ge 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step1Factor">Step 1: Factor.</p>
+                    <div class="math-line">\(2x^2 + 3x - 2 = (2x - 1)(x + 2)\)</div>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\((2x - 1)(x + 2) \ge 0\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step2Roots">Step 2: Find roots.</p>
+                    <div class="math-line">\(2x - 1 = 0\)</div>
+                    <div class="math-line">\(2x = 1\)</div>
+                    <div class="math-line">\(x = \dfrac{1}{2}\)</div>
+                    <p data-i18n="quadraticInequality.and">and:</p>
+                    <div class="math-line">\(x + 2 = 0\)</div>
+                    <div class="math-line">\(x = -2\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step3Split">Step 3: Split number line.</p>
+                    <div class="math-line">\((-\infty, -2),\quad \left(-2, \dfrac{1}{2}\right),\quad \left(\dfrac{1}{2}, \infty\right)\)</div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step4TestIntervals">Step 4: Test intervals.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example3Interval1">Interval 1: \(x \lt -2\)</h3>
+                    <p data-i18n="quadraticInequality.chooseXNegative3">Choose \(x = -3\).</p>
+                    <div class="math-line">\((2(-3) - 1)(-3 + 2) = (-7)(-1) = 7\)</div>
+                    <p data-i18n="quadraticInequality.positiveWorks">Positive. Works.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example3Interval2">Interval 2: \(-2 \lt x \lt \dfrac{1}{2}\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX0">Choose \(x = 0\).</p>
+                    <div class="math-line">\((2(0) - 1)(0 + 2) = (-1)(2) = -2\)</div>
+                    <p data-i18n="quadraticInequality.negativeDoesNotWork">Negative. Does not work.</p>
+
+                    <h3 class="interval-title" data-i18n="quadraticInequality.example3Interval3">Interval 3: \(x \gt \dfrac{1}{2}\)</h3>
+                    <p data-i18n="quadraticInequality.chooseX1">Choose \(x = 1\).</p>
+                    <div class="math-line">\((2(1) - 1)(1 + 2) = (1)(3) = 3\)</div>
+                    <p data-i18n="quadraticInequality.positiveWorks">Positive. Works.</p>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.step5Endpoints">Step 5: Include endpoints?</p>
+                    <p data-i18n="quadraticInequality.theInequalityIs">The inequality is:</p>
+                    <div class="math-line">\(\ge 0\)</div>
+                    <p data-i18n="quadraticInequality.example3IncludeRoots">So yes, include the roots.</p>
+
+                    <p class="sheet-label" data-i18n="shared.answer">Answer:</p>
+                    <div class="answer-line"><span class="answer-box" data-i18n="quadraticInequality.example3Answer">\(x \le -2\text{ or }x \ge \dfrac{1}{2}\)</span></div>
+
+                    <p class="sheet-label" data-i18n="quadraticInequality.intervalNotation">Interval notation:</p>
+                    <div class="answer-line"><span class="answer-box">\((-\infty, -2] \cup \left[\dfrac{1}{2}, \infty\right)\)</span></div>
+                </section>
+            </div>
         <div class="sec-divider"><span>Chapter 4</span></div>
         <div class="chapter-block" id="quad-ineq" style="margin-top:1.5rem;">
             <div class="chapter-label qineq">Chapter 4</div>
@@ -476,6 +1495,173 @@
             </div>
         </div>
 
+        </div>
+
+        <div class="topic-panel" id="summary-similarities-panel">
+            <div class="linear-sheet summary-sheet">
+                <section class="sheet-section">
+                    <h2 data-i18n="summary.bigDifferenceTitle">Big difference between equations and inequalities</h2>
+
+                    <h2 data-i18n="summary.equationHeading">Equation</h2>
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 = 0\)</div>
+
+                    <p data-i18n="shared.answer">Answer:</p>
+                    <div class="math-line">\(x = 2,\quad x = 3\)</div>
+                    <p data-i18n="summary.equationExactValues">An equation usually gives exact values.</p>
+
+                    <h2 data-i18n="summary.inequalityHeading">Inequality</h2>
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\(x^2 - 5x + 6 \gt 0\)</div>
+
+                    <p data-i18n="shared.answer">Answer:</p>
+                    <div class="math-line" data-i18n="summary.quadraticInequalityRange">\(x \lt 2\text{ or }x \gt 3\)</div>
+                    <p data-i18n="summary.inequalityRanges">An inequality usually gives ranges of values.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="summary.mainPatternTitle">Linear vs Quadratic: Main Pattern</h2>
+                    <table class="summary-pattern-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="summary.tableType">Type</th>
+                                <th data-i18n="summary.tableForm">Form</th>
+                                <th data-i18n="summary.tableSolutions">Number of solutions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-i18n="summary.linearEquationType">Linear equation</td>
+                                <td class="math-cell">\(ax + b = 0\)</td>
+                                <td data-i18n="summary.linearEquationSolutions">usually one solution</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="summary.quadraticEquationType">Quadratic equation</td>
+                                <td class="math-cell">\(ax^2 + bx + c = 0\)</td>
+                                <td data-i18n="summary.quadraticEquationSolutions">usually two, one, or no real solutions</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="summary.linearInequalityType">Linear inequality</td>
+                                <td class="math-cell">\(ax + b \gt 0\)</td>
+                                <td data-i18n="summary.linearInequalitySolutions">usually one interval</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="summary.quadraticInequalityType">Quadratic inequality</td>
+                                <td class="math-cell">\(ax^2 + bx + c \gt 0\)</td>
+                                <td data-i18n="summary.quadraticInequalitySolutions">usually one or two intervals</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2 data-i18n="summary.tricksTitle">Very important SAT-style tricks</h2>
+
+                    <h2 data-i18n="summary.trick1Title">1. For linear equations, isolate \(x\)</h2>
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\(4x - 9 = 15\)</div>
+                    <p data-i18n="summary.add9">Add 9:</p>
+                    <div class="math-line">\(4x = 24\)</div>
+                    <p data-i18n="summary.divideBy4">Divide by 4:</p>
+                    <div class="math-line">\(x = 6\)</div>
+                    <p data-i18n="summary.fast">Fast.</p>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="summary.trick2Title">2. For quadratic equations, first try factoring</h2>
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\(x^2 + 7x + 12 = 0\)</div>
+
+                    <p data-i18n="summary.ask">Ask:</p>
+                    <div class="sheet-quote" data-i18n="summary.factorQuestion">What two numbers multiply to 12 and add to 7?</div>
+
+                    <p data-i18n="shared.answer">Answer:</p>
+                    <div class="math-line">\(3,\quad 4\)</div>
+
+                    <p data-i18n="quadraticEquation.so">So:</p>
+                    <div class="math-line">\((x + 3)(x + 4) = 0\)</div>
+                    <div class="math-line">\(x = -3,\quad -4\)</div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="summary.trick3Title">3. For quadratic inequalities, use sign chart</h2>
+                    <p data-i18n="shared.example">Example:</p>
+                    <div class="math-line">\((x - 1)(x + 4) \lt 0\)</div>
+
+                    <p data-i18n="summary.roots">Roots:</p>
+                    <div class="math-line">\(x = 1,\quad x = -4\)</div>
+
+                    <p data-i18n="summary.differentSigns">A product of two factors is negative when the signs are different.</p>
+                    <p data-i18n="summary.betweenRoots">That happens between the roots:</p>
+                    <div class="answer-line"><span class="answer-box">\(-4 \lt x \lt 1\)</span></div>
+                </section>
+
+                <section class="sheet-section">
+                    <h2 data-i18n="summary.quickSummaryTitle">Quick summary</h2>
+
+                    <h2 data-i18n="summary.linearEquationType">Linear equation</h2>
+                    <div class="math-line">\(2x + 3 = 11\)</div>
+                    <p data-i18n="summary.solutionLabel">Solution:</p>
+                    <div class="math-line">\(x = 4\)</div>
+
+                    <h2 data-i18n="summary.quadraticEquationType">Quadratic equation</h2>
+                    <div class="math-line">\(x^2 - 5x + 6 = 0\)</div>
+                    <p data-i18n="summary.solutionLabel">Solution:</p>
+                    <div class="math-line">\(x = 2,\quad 3\)</div>
+
+                    <h2 data-i18n="summary.linearInequalityType">Linear inequality</h2>
+                    <div class="math-line">\(2x + 3 \lt 11\)</div>
+                    <p data-i18n="summary.solutionLabel">Solution:</p>
+                    <div class="math-line">\(x \lt 4\)</div>
+
+                    <h2 data-i18n="summary.quadraticInequalityType">Quadratic inequality</h2>
+                    <div class="math-line">\(x^2 - 5x + 6 \gt 0\)</div>
+                    <p data-i18n="summary.solutionLabel">Solution:</p>
+                    <div class="math-line" data-i18n="summary.quadraticInequalityRange">\(x \lt 2\text{ or }x \gt 3\)</div>
+                </section>
+
+                <section class="sheet-section">
+                    <p data-i18n="summary.mentalModelLabel">The main mental model:</p>
+                    <div class="sheet-quote" data-i18n="summary.mentalModelText"><strong>Equations ask: &ldquo;Where is it exactly equal?&rdquo;<br>Inequalities ask: &ldquo;Where is it bigger or smaller?&rdquo;</strong></div>
+                </section>
+            </div>
+        <div class="sec-divider"><span>Chapter 5</span></div>
+        <div class="chapter-block" id="summary-similarities" style="margin-top:1.5rem;">
+            <div class="chapter-label summary">Chapter 5</div>
+            <h2 class="chapter-title">Conclusion &amp; Similarities</h2>
+            <hr class="chapter-rule summary">
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-card-head summary">
+                <div class="lc-num summary">1</div>
+                <div class="lc-title">How These Topics Connect</div>
+            </div>
+            <div class="lesson-card-body">
+                <p>All four topics ask the same first question: <strong>what values of x make the statement true?</strong></p>
+                <div class="rule-grid">
+                    <div class="rule-pill"><span class="rpa">1</span>Equations use <strong>=</strong> and usually give exact solution points.</div>
+                    <div class="rule-pill"><span class="rpa">2</span>Inequalities use <strong>&gt;, &lt;, &ge;, &le;</strong> and usually give intervals.</div>
+                    <div class="rule-pill"><span class="rpa">3</span>Linear forms have x to the first power, so their graph is a straight line.</div>
+                    <div class="rule-pill"><span class="rpa">4</span>Quadratic forms have x<sup>2</sup>, so their graph is a parabola.</div>
+                </div>
+                <div class="case-list" style="margin-top:1rem;">
+                    <div class="case-item">
+                        <div class="case-head ch-green">Linear Equation vs. Linear Inequality</div>
+                        <div class="case-body">Both are solved by isolating x. The inequality has one extra rule: when you multiply or divide by a negative number, the sign flips.</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-blue">Quadratic Equation vs. Quadratic Inequality</div>
+                        <div class="case-body">First find the roots of the related quadratic equation. Then, for inequalities, choose the intervals where the expression has the needed sign.</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-head ch-amber">Big Similarity</div>
+                        <div class="case-body">Each topic depends on balance, inverse operations, and checking the final answer against the original statement.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
     </main><!-- /#topics-detail -->
 
 </main>
@@ -484,6 +1670,1174 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/jquery.sticky.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script>
+    const translations = {
+        en: {
+            "page.documentTitle": "Equations and Inequalities",
+            "page.languageSwitch": "Language",
+            "page.profile": "Profile",
+            "page.breadcrumb": "breadcrumb",
+            "page.homepage": "Homepage",
+            "page.breadcrumbCurrent": "Equations and Inequalities",
+            "page.heroTitle": "Equations and <br>Inequalities",
+            "page.readMore": "Start Lesson",
+            "page.backToTop": "Back to top",
+            "page.heroImageAlt": "Algebraic equations and inequalities",
+            "page.practiceLinear": "Practice Linear Equations",
+            "page.practiceQuadratic": "Practice Quadratic Equations",
+            "page.practiceInequalities": "Practice Inequalities",
+            "page.topicTabs": "Sections on equations and inequalities",
+            "page.resetGraph": "Reset graph",
+            "page.linearGraphAria": "Interactive graph of the line y equals mx plus b",
+            "page.quadraticGraphAria": "Interactive graph of a quadratic function",
+            "page.linearInequalitySign": "Linear inequality sign",
+            "page.linearInequalityGraphAria": "Interactive graph of a linear inequality",
+            "page.quadraticInequalitySign": "Quadratic inequality sign",
+            "page.quadraticInequalityGraphAria": "Interactive graph of a quadratic inequality",
+            "tabs.linearEquation": "Linear Equation",
+            "tabs.linearInequality": "Linear Inequality",
+            "tabs.quadraticEquation": "Quadratic Equation",
+            "tabs.quadraticInequality": "Quadratic Inequality",
+            "tabs.summary": "Summary and Connections",
+            "shared.solve": "Solve:",
+            "shared.example": "Example:",
+            "shared.answer": "Answer:",
+            "shared.check": "Verification:",
+            "shared.leftSide": "Left-hand side:",
+            "shared.rightSide": "Right-hand side:",
+            "shared.correct": "The solution satisfies the original statement.",
+            "shared.false": "The statement is false.",
+            "shared.sign": "sign",
+            "linearEquation.title": "What is a linear equation?",
+            "linearEquation.definition": "A <strong>linear equation in one variable</strong> is an equation in which the highest power of the variable is \\(1\\).",
+            "linearEquation.generalFormLabel": "General form:",
+            "linearEquation.where": "where \\(a \\ne 0\\). Here, \\(a\\) is the coefficient of \\(x\\), and \\(b\\) is the constant term.",
+            "linearEquation.examplesLabel": "Examples:",
+            "linearEquation.graphSentence": "The graph of a linear equation in two variables is a straight line.",
+            "linearEquation.mainRuleTitle": "Principle of equality",
+            "linearEquation.mainRuleText": "An equation remains equivalent if the same operation is applied to both sides.",
+            "linearEquation.youCan": "To isolate the variable, you may:",
+            "linearEquation.ruleAdd": "add or subtract the same expression on both sides",
+            "linearEquation.ruleMultiply": "multiply or divide both sides by the same non-zero number",
+            "linearEquation.ruleCombine": "combine like terms",
+            "linearEquation.ruleMove": "collect variable terms on one side and constant terms on the other side",
+            "linearEquation.moveSignTitle": "Using inverse operations",
+            "linearEquation.moveSignText": "Moving a term across the equality sign is shorthand for applying the inverse operation to both sides.",
+            "linearEquation.moveSignStep1": "Subtract \\(7\\) from both sides. Equivalently, \\(+7\\) becomes \\(-7\\) on the other side.",
+            "linearEquation.moveSignSecondExample": "Another short example:",
+            "linearEquation.example1Title": "Linear Equation: Example 1",
+            "linearEquation.example1Step1": "Step 1: Subtract \\(5\\) from both sides.",
+            "linearEquation.example1Step2": "Step 2: Divide both sides by \\(2\\).",
+            "linearEquation.example2Title": "Linear Equation: Example 2",
+            "linearEquation.example2Step1": "Step 1: Subtract \\(x\\) from both sides.",
+            "linearEquation.example2Step2": "Step 2: Add \\(4\\) to both sides.",
+            "linearEquation.example2Step3": "Step 3: Divide both sides by \\(2\\).",
+            "linearEquation.example3Title": "Linear Equation: Example 3",
+            "linearEquation.example3Step1": "Step 1: Subtract \\(5\\) from both sides.",
+            "linearEquation.example3Step2": "Step 2: Multiply both sides by \\(3\\).",
+            "linearInequality.title": "What is a linear inequality?",
+            "linearInequality.definition": "A <strong>linear inequality in one variable</strong> compares a first-degree expression with another value or expression.",
+            "linearInequality.generalFormsLabel": "Standard forms:",
+            "linearInequality.importantRuleTitle": "Critical inequality rule",
+            "linearInequality.importantRule": "When both sides of an inequality are multiplied or divided by a <strong>negative number</strong>, the direction of the inequality sign must be reversed.",
+            "linearInequality.forExample": "For example:",
+            "linearInequality.divideRule": "Divide both sides by \\(-2\\); since the divisor is negative, reverse \\(\\lt\\) to \\(\\gt\\):",
+            "linearInequality.ruleConclusion": "This rule preserves the truth of the inequality.",
+            "linearInequality.graphHelper": "Change the sign and the coefficients. The shaded region shows all \\(x\\)-values that satisfy the inequality.",
+            "linearInequality.example1Title": "Linear Inequality: Example 1",
+            "linearInequality.example1Step1": "Step 1: Subtract \\(5\\) from both sides.",
+            "linearInequality.example1Step2": "Step 2: Divide both sides by \\(2\\).",
+            "linearInequality.example1Meaning": "The solution set contains every real number less than \\(6\\).",
+            "linearInequality.workingExamples": "Values that satisfy the inequality:",
+            "linearInequality.checkWith5": "Verify with \\(x = 5\\):",
+            "linearInequality.example2Title": "Linear Inequality: Example 2 — Negative Coefficient",
+            "linearInequality.example2Step1": "Step 1: Subtract \\(4\\) from both sides.",
+            "linearInequality.example2Step2": "Step 2: Divide both sides by \\(-3\\).",
+            "linearInequality.flipReminder": "Because we divide by a negative number, the inequality sign reverses:",
+            "linearInequality.checkWithNegative5": "Verify with \\(x = -5\\):",
+            "linearInequality.checkWith0": "Verify with \\(x = 0\\):",
+            "linearInequality.example2Conclusion": "Therefore, the solution set is \\(x \\le -4\\).",
+            "linearInequality.example3Title": "Linear Inequality: Example 3 — Variables on Both Sides",
+            "linearInequality.example3Step1": "Step 1: Subtract \\(2x\\) from both sides.",
+            "linearInequality.example3Step2": "Step 2: Add \\(7\\) to both sides.",
+            "linearInequality.example3Step3": "Step 3: Divide both sides by \\(3\\).",
+            "linearInequality.checkWith4": "Verify with \\(x = 4\\):",
+            "quadraticEquation.title": "What is a quadratic equation?",
+            "quadraticEquation.definition": "A <strong>quadratic equation</strong> is an equation whose highest power of the variable is \\(2\\).",
+            "quadraticEquation.generalFormLabel": "Standard form:",
+            "quadraticEquation.where": "where \\(a \\ne 0\\). Here, \\(a\\), \\(b\\), and \\(c\\) are real coefficients.",
+            "quadraticEquation.examplesLabel": "Examples:",
+            "quadraticEquation.graphSentence": "The graph of the related quadratic function is a parabola.",
+            "quadraticEquation.solutionSentence": "The real solutions are the \\(x\\)-intercepts of the parabola, that is, the values where \\(y = 0\\).",
+            "quadraticEquation.methodsTitle": "Main methods for solving quadratic equations",
+            "quadraticEquation.methodsIntro": "The most common methods are:",
+            "quadraticEquation.methodFactoring": "<strong>Factoring</strong>",
+            "quadraticEquation.methodSquareRoot": "<strong>Square-root method</strong>",
+            "quadraticEquation.methodFormula": "<strong>Quadratic formula</strong>",
+            "quadraticEquation.example1Title": "Quadratic Equation: Example 1 &mdash; Factoring",
+            "quadraticEquation.needNumbers": "Find two numbers whose:",
+            "quadraticEquation.multiplyTo6": "product is \\(6\\)",
+            "quadraticEquation.addToNegative5": "sum is \\(-5\\)",
+            "quadraticEquation.thoseNumbers": "The required numbers are \\(-2\\) and \\(-3\\).",
+            "quadraticEquation.so": "Therefore:",
+            "quadraticEquation.nowSolve": "Now apply the zero-product property:",
+            "quadraticEquation.zeroProduct": "If a product of two factors is zero, then at least one factor must be zero.",
+            "quadraticEquation.or": "or",
+            "quadraticEquation.checkWith2": "Verify with \\(x = 2\\):",
+            "quadraticEquation.checkWith3": "Verify with \\(x = 3\\):",
+            "quadraticEquation.example2Title": "Quadratic Equation: Example 2 &mdash; Square-Root Method",
+            "quadraticEquation.takeSquareRoot": "Take the square root of both sides.",
+            "quadraticEquation.importantRoots": "When solving \\(x^2 = a\\), include both the positive and negative square roots.",
+            "quadraticEquation.whyBoth": "Why are there two solutions?",
+            "quadraticEquation.because": "Because:",
+            "quadraticEquation.and": "and",
+            "quadraticEquation.example3Title": "Quadratic Equation: Example 3 &mdash; Quadratic Formula",
+            "quadraticEquation.here": "For this equation:",
+            "quadraticEquation.useFormula": "Use the quadratic formula:",
+            "quadraticEquation.substitute": "Substitute \\(a\\), \\(b\\), and \\(c\\):",
+            "quadraticEquation.simplifyRoot": "Simplify the discriminant under the square root:",
+            "quadraticEquation.splitAnswers": "Separate the two possible values.",
+            "quadraticEquation.first": "First root:",
+            "quadraticEquation.second": "Second root:",
+            "quadraticInequality.title": "What is a quadratic inequality?",
+            "quadraticInequality.definition": "A <strong>quadratic inequality</strong> compares a quadratic expression with zero or with another expression.",
+            "quadraticInequality.examplesLabel": "Examples:",
+            "quadraticInequality.asksLabel": "A quadratic inequality asks:",
+            "quadraticInequality.askQuestion": "For which values of \\(x\\) is the quadratic expression positive, negative, non-negative, or non-positive?",
+            "quadraticInequality.graphSentence": "The graph of the related quadratic function is a parabola.",
+            "quadraticInequality.graphHelper": "Change the sign and the coefficients. The shaded regions show the solution intervals.",
+            "quadraticInequality.strategyTitle": "Main strategy:",
+            "quadraticInequality.strategyMove": "Move all terms to one side.",
+            "quadraticInequality.strategySetZero": "Solve the related equation by setting the expression equal to zero.",
+            "quadraticInequality.strategySolve": "Find the roots of the quadratic equation.",
+            "quadraticInequality.strategyRoots": "Use the roots as boundary points on the number line.",
+            "quadraticInequality.strategyTest": "Test one value from each interval.",
+            "quadraticInequality.strategyChoose": "Select the intervals where the original inequality is true.",
+            "quadraticInequality.keyIdeaTitle": "Key idea: roots divide the number line",
+            "quadraticInequality.suppose": "Suppose:",
+            "quadraticInequality.rootsAre": "The roots are:",
+            "quadraticInequality.divideIntervals": "These roots divide the number line into three intervals:",
+            "quadraticInequality.testIntervals": "Then test one representative value from each interval.",
+            "quadraticInequality.example1Title": "Quadratic Inequality: Example 1",
+            "quadraticInequality.step1Factor": "Step 1: Factor the quadratic expression.",
+            "quadraticInequality.step2Roots": "Step 2: Find the roots.",
+            "quadraticInequality.step3Split": "Step 3: Divide the number line into intervals.",
+            "quadraticInequality.step4TestEach": "Step 4: Test each interval.",
+            "quadraticInequality.step4TestIntervals": "Step 4: Test the intervals.",
+            "quadraticInequality.example1Interval1": "Interval 1: \\(x \\lt 2\\)",
+            "quadraticInequality.example1Interval2": "Interval 2: \\(2 \\lt x \\lt 3\\)",
+            "quadraticInequality.example1Interval3": "Interval 3: \\(x \\gt 3\\)",
+            "quadraticInequality.chooseX0": "Choose \\(x = 0\\).",
+            "quadraticInequality.chooseX25": "Choose \\(x = 2.5\\).",
+            "quadraticInequality.chooseX4": "Choose \\(x = 4\\).",
+            "quadraticInequality.positiveWorksInterval": "The expression is positive, so this interval satisfies the inequality.",
+            "quadraticInequality.negativeDoesNotWork": "The expression is negative, so this interval does not satisfy the inequality.",
+            "quadraticInequality.positiveWorks": "The expression is positive, so it satisfies the inequality.",
+            "quadraticInequality.example1Answer": "\\(x \\lt 2\\text{ or }x \\gt 3\\)",
+            "quadraticInequality.intervalNotation": "Interval notation:",
+            "quadraticInequality.example1Important": "Because the sign is \\(\\gt 0\\), the endpoints \\(2\\) and \\(3\\) are not included.",
+            "quadraticInequality.example2Title": "Quadratic Inequality: Example 2",
+            "quadraticInequality.example2Interval1": "Interval 1: \\(x \\lt -2\\)",
+            "quadraticInequality.example2Interval2": "Interval 2: \\(-2 \\lt x \\lt 2\\)",
+            "quadraticInequality.example2Interval3": "Interval 3: \\(x \\gt 2\\)",
+            "quadraticInequality.chooseXNegative3": "Choose \\(x = -3\\).",
+            "quadraticInequality.chooseX3": "Choose \\(x = 3\\).",
+            "quadraticInequality.positiveNeedLeNotWork": "The expression is positive. Since we need \\(\\le 0\\), this interval is not part of the solution.",
+            "quadraticInequality.negativeWorks": "The expression is negative, so this interval satisfies the inequality.",
+            "quadraticInequality.positiveDoesNotWork": "The expression is positive, so this interval does not satisfy the inequality.",
+            "quadraticInequality.step5Endpoints": "Step 5: Determine whether to include the endpoints.",
+            "quadraticInequality.theInequalityIs": "The inequality is:",
+            "quadraticInequality.example2IncludeRoots": "Therefore, include the roots \\(-2\\) and \\(2\\), because the expression equals zero at those points.",
+            "quadraticInequality.example3Title": "Quadratic Inequality: Example 3",
+            "quadraticInequality.and": "and:",
+            "quadraticInequality.example3Interval1": "Interval 1: \\(x \\lt -2\\)",
+            "quadraticInequality.example3Interval2": "Interval 2: \\(-2 \\lt x \\lt \\dfrac{1}{2}\\)",
+            "quadraticInequality.example3Interval3": "Interval 3: \\(x \\gt \\dfrac{1}{2}\\)",
+            "quadraticInequality.chooseX1": "Choose \\(x = 1\\).",
+            "quadraticInequality.example3Answer": "\\(x \\le -2\\text{ or }x \\ge \\dfrac{1}{2}\\)",
+            "quadraticInequality.example3IncludeRoots": "Therefore, include the roots.",
+            "summary.bigDifferenceTitle": "Main difference between equations and inequalities",
+            "summary.equationHeading": "Equation",
+            "summary.equationExactValues": "An equation usually gives exact solution values.",
+            "summary.inequalityHeading": "Inequality",
+            "summary.quadraticInequalityRange": "\\(x \\lt 2\\text{ or }x \\gt 3\\)",
+            "summary.inequalityRanges": "An inequality usually gives a solution set written as intervals.",
+            "summary.mainPatternTitle": "Linear vs. quadratic: main pattern",
+            "summary.tableType": "Type",
+            "summary.tableForm": "Form",
+            "summary.tableSolutions": "Solution set",
+            "summary.linearEquationType": "Linear equation",
+            "summary.quadraticEquationType": "Quadratic equation",
+            "summary.linearInequalityType": "Linear inequality",
+            "summary.quadraticInequalityType": "Quadratic inequality",
+            "summary.linearEquationSolutions": "usually one real solution",
+            "summary.quadraticEquationSolutions": "two, one, or no real solutions",
+            "summary.linearInequalitySolutions": "usually one interval or ray",
+            "summary.quadraticInequalitySolutions": "usually one interval, two intervals, or all/no real numbers",
+            "summary.tricksTitle": "Important algebra strategies",
+            "summary.trick1Title": "1. In a linear equation, isolate \\(x\\)",
+            "summary.add9": "Add \\(9\\) to both sides:",
+            "summary.divideBy4": "Divide both sides by \\(4\\):",
+            "summary.fast": "This is a direct application of inverse operations.",
+            "summary.trick2Title": "2. In a quadratic equation, try factoring first",
+            "summary.ask": "Ask:",
+            "summary.factorQuestion": "Which two numbers have product \\(12\\) and sum \\(7\\)?",
+            "summary.trick3Title": "3. In a quadratic inequality, use a sign chart",
+            "summary.roots": "Roots:",
+            "summary.differentSigns": "A product of two factors is negative when the factors have opposite signs.",
+            "summary.betweenRoots": "This occurs between the two roots:",
+            "summary.quickSummaryTitle": "Quick summary",
+            "summary.solutionLabel": "Solution set:",
+            "summary.mentalModelLabel": "Core idea:",
+            "summary.mentalModelText": "<strong>Equations ask: &ldquo;For which values is the statement equal?&rdquo;<br>Inequalities ask: &ldquo;For which values is the statement true as an inequality?&rdquo;</strong>"
+        },
+        uz: {
+            "page.documentTitle": "Tenglamalar va tengsizliklar",
+            "page.languageSwitch": "Til",
+            "page.profile": "Profil",
+            "page.breadcrumb": "sahifa yo‘li",
+            "page.homepage": "Bosh sahifa",
+            "page.breadcrumbCurrent": "Tenglamalar va tengsizliklar",
+            "page.heroTitle": "Tenglamalar va <br>tengsizliklar",
+            "page.readMore": "Darsni boshlash",
+            "page.backToTop": "Yuqoriga qaytish",
+            "page.heroImageAlt": "Algebraik tenglamalar va tengsizliklar",
+            "page.practiceLinear": "Chiziqli tenglamalar bo‘yicha mashq",
+            "page.practiceQuadratic": "Kvadrat tenglamalar bo‘yicha mashq",
+            "page.practiceInequalities": "Tengsizliklar bo‘yicha mashq",
+            "page.topicTabs": "Tenglamalar va tengsizliklar bo‘limlari",
+            "page.resetGraph": "Grafikni qayta tiklash",
+            "page.linearGraphAria": "y = mx + b chiziqli funksiyasining interaktiv grafigi",
+            "page.quadraticGraphAria": "Kvadrat funksiyaning interaktiv grafigi",
+            "page.linearInequalitySign": "Chiziqli tengsizlik belgisi",
+            "page.linearInequalityGraphAria": "Chiziqli tengsizlikning interaktiv grafigi",
+            "page.quadraticInequalitySign": "Kvadrat tengsizlik belgisi",
+            "page.quadraticInequalityGraphAria": "Kvadrat tengsizlikning interaktiv grafigi",
+            "tabs.linearEquation": "Chiziqli tenglama",
+            "tabs.linearInequality": "Chiziqli tengsizlik",
+            "tabs.quadraticEquation": "Kvadrat tenglama",
+            "tabs.quadraticInequality": "Kvadrat tengsizlik",
+            "tabs.summary": "Xulosa va bog‘liqliklar",
+            "shared.solve": "Yeching:",
+            "shared.example": "Misol:",
+            "shared.answer": "Javob:",
+            "shared.check": "Tekshirish:",
+            "shared.leftSide": "Chap tomon:",
+            "shared.rightSide": "O‘ng tomon:",
+            "shared.correct": "Yechim berilgan ifodani qanoatlantiradi.",
+            "shared.false": "Berilgan mulohaza noto‘g‘ri.",
+            "shared.sign": "belgi",
+            "linearEquation.title": "Chiziqli tenglama nima?",
+            "linearEquation.definition": "<strong>Bir noma’lumli chiziqli tenglama</strong> — noma’lumning eng katta darajasi \\(1\\) bo‘lgan tenglama.",
+            "linearEquation.generalFormLabel": "Umumiy ko‘rinishi:",
+            "linearEquation.where": "bu yerda \\(a \\ne 0\\). \\(a\\) — \\(x\\) ning koeffitsiyenti, \\(b\\) esa ozod had.",
+            "linearEquation.examplesLabel": "Misollar:",
+            "linearEquation.graphSentence": "Ikki o‘zgaruvchili chiziqli tenglamaning grafigi to‘g‘ri chiziq bo‘ladi.",
+            "linearEquation.mainRuleTitle": "Tenglik prinsipi",
+            "linearEquation.mainRuleText": "Tenglamaning ikkala tomoniga bir xil amal qo‘llansa, unga teng kuchli tenglama hosil bo‘ladi.",
+            "linearEquation.youCan": "Noma’lumni ajratish uchun quyidagilarni bajarish mumkin:",
+            "linearEquation.ruleAdd": "ikkala tomonga bir xil ifodani qo‘shish yoki ayirish",
+            "linearEquation.ruleMultiply": "ikkala tomonni bir xil nolga teng bo‘lmagan songa ko‘paytirish yoki bo‘lish",
+            "linearEquation.ruleCombine": "o‘xshash hadlarni ixchamlash",
+            "linearEquation.ruleMove": "noma’lumli hadlarni bir tomonga, ozod hadlarni ikkinchi tomonga yig‘ish",
+            "linearEquation.moveSignTitle": "Teskari amallar orqali hadlarni ko‘chirish",
+            "linearEquation.moveSignText": "Hadni tenglikning narigi tomoniga o‘tkazish — aslida ikkala tomonga teskari amalni qo‘llashning qisqa yozilishi.",
+            "linearEquation.moveSignStep1": "Ikkala tomondan \\(7\\) ni ayiramiz. Qisqa yozuvda \\(+7\\) narigi tomonda \\(-7\\) ga aylanadi.",
+            "linearEquation.moveSignSecondExample": "Yana bir qisqa misol:",
+            "linearEquation.example1Title": "Chiziqli tenglama: 1-misol",
+            "linearEquation.example1Step1": "1-qadam: ikkala tomondan \\(5\\) ni ayiramiz.",
+            "linearEquation.example1Step2": "2-qadam: ikkala tomonni \\(2\\) ga bo‘lamiz.",
+            "linearEquation.example2Title": "Chiziqli tenglama: 2-misol",
+            "linearEquation.example2Step1": "1-qadam: ikkala tomondan \\(x\\) ni ayiramiz.",
+            "linearEquation.example2Step2": "2-qadam: ikkala tomonga \\(4\\) ni qo‘shamiz.",
+            "linearEquation.example2Step3": "3-qadam: ikkala tomonni \\(2\\) ga bo‘lamiz.",
+            "linearEquation.example3Title": "Chiziqli tenglama: 3-misol",
+            "linearEquation.example3Step1": "1-qadam: ikkala tomondan \\(5\\) ni ayiramiz.",
+            "linearEquation.example3Step2": "2-qadam: ikkala tomonni \\(3\\) ga ko‘paytiramiz.",
+            "linearInequality.title": "Chiziqli tengsizlik nima?",
+            "linearInequality.definition": "<strong>Bir noma’lumli chiziqli tengsizlik</strong> — birinchi darajali ifodani boshqa qiymat yoki ifoda bilan taqqoslaydigan matematik mulohaza.",
+            "linearInequality.generalFormsLabel": "Standart ko‘rinishlar:",
+            "linearInequality.importantRuleTitle": "Tengsizlikning muhim qoidasi",
+            "linearInequality.importantRule": "Tengsizlikning ikkala tomoni <strong>manfiy songa</strong> ko‘paytirilsa yoki bo‘linsa, tengsizlik belgisi teskari tomonga o‘zgaradi.",
+            "linearInequality.forExample": "Masalan:",
+            "linearInequality.divideRule": "Ikkala tomonni \\(-2\\) ga bo‘lamiz; bo‘luvchi manfiy bo‘lgani uchun \\(\\lt\\) belgisi \\(\\gt\\) ga o‘zgaradi:",
+            "linearInequality.ruleConclusion": "Bu qoida tengsizlikning rostlik qiymatini saqlab qoladi.",
+            "linearInequality.graphHelper": "Belgi va koeffitsiyentlarni o‘zgartiring. Bo‘yalgan soha tengsizlikni qanoatlantiradigan barcha \\(x\\) qiymatlarni ko‘rsatadi.",
+            "linearInequality.example1Title": "Chiziqli tengsizlik: 1-misol",
+            "linearInequality.example1Step1": "1-qadam: ikkala tomondan \\(5\\) ni ayiramiz.",
+            "linearInequality.example1Step2": "2-qadam: ikkala tomonni \\(2\\) ga bo‘lamiz.",
+            "linearInequality.example1Meaning": "Yechimlar to‘plami \\(6\\) dan kichik bo‘lgan barcha haqiqiy sonlardan iborat.",
+            "linearInequality.workingExamples": "Tengsizlikni qanoatlantiradigan qiymatlar:",
+            "linearInequality.checkWith5": "\\(x = 5\\) bilan tekshiramiz:",
+            "linearInequality.example2Title": "Chiziqli tengsizlik: 2-misol — manfiy koeffitsiyent",
+            "linearInequality.example2Step1": "1-qadam: ikkala tomondan \\(4\\) ni ayiramiz.",
+            "linearInequality.example2Step2": "2-qadam: ikkala tomonni \\(-3\\) ga bo‘lamiz.",
+            "linearInequality.flipReminder": "Manfiy songa bo‘layotganimiz uchun tengsizlik belgisi teskari tomonga o‘zgaradi:",
+            "linearInequality.checkWithNegative5": "\\(x = -5\\) bilan tekshiramiz:",
+            "linearInequality.checkWith0": "\\(x = 0\\) bilan tekshiramiz:",
+            "linearInequality.example2Conclusion": "Demak, yechimlar to‘plami \\(x \\le -4\\).",
+            "linearInequality.example3Title": "Chiziqli tengsizlik: 3-misol — noma’lumlar ikkala tomonda",
+            "linearInequality.example3Step1": "1-qadam: ikkala tomondan \\(2x\\) ni ayiramiz.",
+            "linearInequality.example3Step2": "2-qadam: ikkala tomonga \\(7\\) ni qo‘shamiz.",
+            "linearInequality.example3Step3": "3-qadam: ikkala tomonni \\(3\\) ga bo‘lamiz.",
+            "linearInequality.checkWith4": "\\(x = 4\\) bilan tekshiramiz:",
+            "quadraticEquation.title": "Kvadrat tenglama nima?",
+            "quadraticEquation.definition": "<strong>Kvadrat tenglama</strong> — noma’lumning eng katta darajasi \\(2\\) bo‘lgan tenglama.",
+            "quadraticEquation.generalFormLabel": "Standart ko‘rinishi:",
+            "quadraticEquation.where": "bu yerda \\(a \\ne 0\\). \\(a\\), \\(b\\), \\(c\\) — haqiqiy koeffitsiyentlar.",
+            "quadraticEquation.examplesLabel": "Misollar:",
+            "quadraticEquation.graphSentence": "Unga mos kvadrat funksiyaning grafigi parabola bo‘ladi.",
+            "quadraticEquation.solutionSentence": "Haqiqiy yechimlar — parabolaning \\(x\\)-o‘qi bilan kesishish nuqtalari, ya’ni \\(y = 0\\) bo‘ladigan \\(x\\) qiymatlaridir.",
+            "quadraticEquation.methodsTitle": "Kvadrat tenglamalarni yechishning asosiy usullari",
+            "quadraticEquation.methodsIntro": "Eng ko‘p ishlatiladigan usullar:",
+            "quadraticEquation.methodFactoring": "<strong>Ko‘paytuvchilarga ajratish</strong>",
+            "quadraticEquation.methodSquareRoot": "<strong>Kvadrat ildiz olish usuli</strong>",
+            "quadraticEquation.methodFormula": "<strong>Kvadrat tenglama formulasi</strong>",
+            "quadraticEquation.example1Title": "Kvadrat tenglama: 1-misol &mdash; ko‘paytuvchilarga ajratish",
+            "quadraticEquation.needNumbers": "Shunday ikki son topamizki, ularning:",
+            "quadraticEquation.multiplyTo6": "ko‘paytmasi \\(6\\) ga teng bo‘lsin",
+            "quadraticEquation.addToNegative5": "yig‘indisi \\(-5\\) ga teng bo‘lsin",
+            "quadraticEquation.thoseNumbers": "Kerakli sonlar \\(-2\\) va \\(-3\\).",
+            "quadraticEquation.so": "Demak:",
+            "quadraticEquation.nowSolve": "Endi nol ko‘paytma xossasini qo‘llaymiz:",
+            "quadraticEquation.zeroProduct": "Agar ikki ko‘paytuvchining ko‘paytmasi nol bo‘lsa, kamida bitta ko‘paytuvchi nolga teng bo‘ladi.",
+            "quadraticEquation.or": "yoki",
+            "quadraticEquation.checkWith2": "\\(x = 2\\) bilan tekshiramiz:",
+            "quadraticEquation.checkWith3": "\\(x = 3\\) bilan tekshiramiz:",
+            "quadraticEquation.example2Title": "Kvadrat tenglama: 2-misol &mdash; kvadrat ildiz olish usuli",
+            "quadraticEquation.takeSquareRoot": "Ikkala tomondan kvadrat ildiz olamiz.",
+            "quadraticEquation.importantRoots": "\\(x^2 = a\\) tenglamasini yechganda musbat va manfiy ildizlarning ikkalasi ham olinadi.",
+            "quadraticEquation.whyBoth": "Nima uchun ikkita yechim bor?",
+            "quadraticEquation.because": "Chunki:",
+            "quadraticEquation.and": "va",
+            "quadraticEquation.example3Title": "Kvadrat tenglama: 3-misol &mdash; kvadrat tenglama formulasi",
+            "quadraticEquation.here": "Bu tenglama uchun:",
+            "quadraticEquation.useFormula": "Kvadrat tenglama formulasidan foydalanamiz:",
+            "quadraticEquation.substitute": "\\(a\\), \\(b\\), \\(c\\) qiymatlarini formulaga qo‘yamiz:",
+            "quadraticEquation.simplifyRoot": "Ildiz ostidagi diskriminantni soddalashtiramiz:",
+            "quadraticEquation.splitAnswers": "Ikki mumkin bo‘lgan qiymatni alohida hisoblaymiz.",
+            "quadraticEquation.first": "Birinchi ildiz:",
+            "quadraticEquation.second": "Ikkinchi ildiz:",
+            "quadraticInequality.title": "Kvadrat tengsizlik nima?",
+            "quadraticInequality.definition": "<strong>Kvadrat tengsizlik</strong> — kvadrat ifodani nol yoki boshqa ifoda bilan tengsizlik belgisi orqali taqqoslaydigan matematik mulohaza.",
+            "quadraticInequality.examplesLabel": "Misollar:",
+            "quadraticInequality.asksLabel": "Kvadrat tengsizlik quyidagi savolga javob beradi:",
+            "quadraticInequality.askQuestion": "\\(x\\) ning qaysi qiymatlarida kvadrat ifoda musbat, manfiy, nomanfiy yoki nomusbat bo‘ladi?",
+            "quadraticInequality.graphSentence": "Unga mos kvadrat funksiyaning grafigi parabola bo‘ladi.",
+            "quadraticInequality.graphHelper": "Belgi va koeffitsiyentlarni o‘zgartiring. Bo‘yalgan sohalar yechim oraliqlarini ko‘rsatadi.",
+            "quadraticInequality.strategyTitle": "Asosiy strategiya:",
+            "quadraticInequality.strategyMove": "Barcha hadlarni bir tomonga o‘tkazing.",
+            "quadraticInequality.strategySetZero": "Mos tenglamani tuzish uchun ifodani nolga tenglang.",
+            "quadraticInequality.strategySolve": "Kvadrat tenglamaning ildizlarini toping.",
+            "quadraticInequality.strategyRoots": "Ildizlarni sonlar o‘qidagi chegara nuqtalar sifatida belgilang.",
+            "quadraticInequality.strategyTest": "Har bir oraliqdan bittadan sinov qiymatini tekshiring.",
+            "quadraticInequality.strategyChoose": "Asl tengsizlik rost bo‘ladigan oraliqlarni tanlang.",
+            "quadraticInequality.keyIdeaTitle": "Asosiy g‘oya: ildizlar sonlar o‘qini oraliqlarga ajratadi",
+            "quadraticInequality.suppose": "Faraz qilaylik:",
+            "quadraticInequality.rootsAre": "Ildizlar:",
+            "quadraticInequality.divideIntervals": "Bu ildizlar sonlar o‘qini uchta oraliqqa ajratadi:",
+            "quadraticInequality.testIntervals": "So‘ng har bir oraliqdan bitta vakil qiymat tekshiriladi.",
+            "quadraticInequality.example1Title": "Kvadrat tengsizlik: 1-misol",
+            "quadraticInequality.step1Factor": "1-qadam: kvadrat ifodani ko‘paytuvchilarga ajrating.",
+            "quadraticInequality.step2Roots": "2-qadam: ildizlarni toping.",
+            "quadraticInequality.step3Split": "3-qadam: sonlar o‘qini oraliqlarga ajrating.",
+            "quadraticInequality.step4TestEach": "4-qadam: har bir oraliqni tekshiring.",
+            "quadraticInequality.step4TestIntervals": "4-qadam: oraliqlarni tekshiring.",
+            "quadraticInequality.example1Interval1": "1-oraliq: \\(x \\lt 2\\)",
+            "quadraticInequality.example1Interval2": "2-oraliq: \\(2 \\lt x \\lt 3\\)",
+            "quadraticInequality.example1Interval3": "3-oraliq: \\(x \\gt 3\\)",
+            "quadraticInequality.chooseX0": "\\(x = 0\\) ni tanlaymiz.",
+            "quadraticInequality.chooseX25": "\\(x = 2.5\\) ni tanlaymiz.",
+            "quadraticInequality.chooseX4": "\\(x = 4\\) ni tanlaymiz.",
+            "quadraticInequality.positiveWorksInterval": "Ifoda musbat, shuning uchun bu oraliq tengsizlikni qanoatlantiradi.",
+            "quadraticInequality.negativeDoesNotWork": "Ifoda manfiy, shuning uchun bu oraliq tengsizlikni qanoatlantirmaydi.",
+            "quadraticInequality.positiveWorks": "Ifoda musbat, demak tengsizlik bajariladi.",
+            "quadraticInequality.example1Answer": "\\(x \\lt 2\\text{ yoki }x \\gt 3\\)",
+            "quadraticInequality.intervalNotation": "Oraliq ko‘rinishida:",
+            "quadraticInequality.example1Important": "Belgi \\(\\gt 0\\) bo‘lgani uchun \\(2\\) va \\(3\\) chegara nuqtalari yechimga kiritilmaydi.",
+            "quadraticInequality.example2Title": "Kvadrat tengsizlik: 2-misol",
+            "quadraticInequality.example2Interval1": "1-oraliq: \\(x \\lt -2\\)",
+            "quadraticInequality.example2Interval2": "2-oraliq: \\(-2 \\lt x \\lt 2\\)",
+            "quadraticInequality.example2Interval3": "3-oraliq: \\(x \\gt 2\\)",
+            "quadraticInequality.chooseXNegative3": "\\(x = -3\\) ni tanlaymiz.",
+            "quadraticInequality.chooseX3": "\\(x = 3\\) ni tanlaymiz.",
+            "quadraticInequality.positiveNeedLeNotWork": "Ifoda musbat. Bizga \\(\\le 0\\) kerak, shuning uchun bu oraliq yechimga kirmaydi.",
+            "quadraticInequality.negativeWorks": "Ifoda manfiy, shuning uchun bu oraliq tengsizlikni qanoatlantiradi.",
+            "quadraticInequality.positiveDoesNotWork": "Ifoda musbat, shuning uchun bu oraliq tengsizlikni qanoatlantirmaydi.",
+            "quadraticInequality.step5Endpoints": "5-qadam: chegara nuqtalar yechimga kiradimi yoki yo‘qligini aniqlang.",
+            "quadraticInequality.theInequalityIs": "Tengsizlik quyidagicha:",
+            "quadraticInequality.example2IncludeRoots": "Demak, \\(-2\\) va \\(2\\) ildizlari yechimga kiradi, chunki bu nuqtalarda ifoda nolga teng bo‘ladi.",
+            "quadraticInequality.example3Title": "Kvadrat tengsizlik: 3-misol",
+            "quadraticInequality.and": "va:",
+            "quadraticInequality.example3Interval1": "1-oraliq: \\(x \\lt -2\\)",
+            "quadraticInequality.example3Interval2": "2-oraliq: \\(-2 \\lt x \\lt \\dfrac{1}{2}\\)",
+            "quadraticInequality.example3Interval3": "3-oraliq: \\(x \\gt \\dfrac{1}{2}\\)",
+            "quadraticInequality.chooseX1": "\\(x = 1\\) ni tanlaymiz.",
+            "quadraticInequality.example3Answer": "\\(x \\le -2\\text{ yoki }x \\ge \\dfrac{1}{2}\\)",
+            "quadraticInequality.example3IncludeRoots": "Demak, ildizlar yechimga kiritiladi.",
+            "summary.bigDifferenceTitle": "Tenglama va tengsizlik orasidagi asosiy farq",
+            "summary.equationHeading": "Tenglama",
+            "summary.equationExactValues": "Tenglama odatda aniq yechim qiymatlarini beradi.",
+            "summary.inequalityHeading": "Tengsizlik",
+            "summary.quadraticInequalityRange": "\\(x \\lt 2\\text{ yoki }x \\gt 3\\)",
+            "summary.inequalityRanges": "Tengsizlik odatda yechimlar to‘plamini oraliqlar ko‘rinishida beradi.",
+            "summary.mainPatternTitle": "Chiziqli va kvadrat ifodalar: asosiy farq",
+            "summary.tableType": "Tur",
+            "summary.tableForm": "Ko‘rinish",
+            "summary.tableSolutions": "Yechimlar to‘plami",
+            "summary.linearEquationType": "Chiziqli tenglama",
+            "summary.quadraticEquationType": "Kvadrat tenglama",
+            "summary.linearInequalityType": "Chiziqli tengsizlik",
+            "summary.quadraticInequalityType": "Kvadrat tengsizlik",
+            "summary.linearEquationSolutions": "odatda bitta haqiqiy yechim",
+            "summary.quadraticEquationSolutions": "ikkita, bitta yoki haqiqiy yechim mavjud emas",
+            "summary.linearInequalitySolutions": "odatda bitta oraliq yoki nur",
+            "summary.quadraticInequalitySolutions": "odatda bitta oraliq, ikkita oraliq yoki barcha/hech qanday haqiqiy sonlar",
+            "summary.tricksTitle": "Muhim algebraik strategiyalar",
+            "summary.trick1Title": "1. Chiziqli tenglamada \\(x\\) ni ajrating",
+            "summary.add9": "Ikkala tomonga \\(9\\) ni qo‘shamiz:",
+            "summary.divideBy4": "Ikkala tomonni \\(4\\) ga bo‘lamiz:",
+            "summary.fast": "Bu teskari amallarni bevosita qo‘llashdir.",
+            "summary.trick2Title": "2. Kvadrat tenglamada avval ko‘paytuvchilarga ajratishni sinab ko‘ring",
+            "summary.ask": "Savol bering:",
+            "summary.factorQuestion": "Qaysi ikki sonning ko‘paytmasi \\(12\\), yig‘indisi \\(7\\)?",
+            "summary.trick3Title": "3. Kvadrat tengsizlikda ishoralar jadvalidan foydalaning",
+            "summary.roots": "Ildizlar:",
+            "summary.differentSigns": "Ikki ko‘paytuvchining ishoralari qarama-qarshi bo‘lsa, ularning ko‘paytmasi manfiy bo‘ladi.",
+            "summary.betweenRoots": "Bu holat ikki ildiz orasida yuz beradi:",
+            "summary.quickSummaryTitle": "Qisqa xulosa",
+            "summary.solutionLabel": "Yechimlar to‘plami:",
+            "summary.mentalModelLabel": "Asosiy g‘oya:",
+            "summary.mentalModelText": "<strong>Tenglamalar: &ldquo;Qaysi qiymatlarda ifodalar teng?&rdquo; deb so‘raydi.<br>Tengsizliklar: &ldquo;Qaysi qiymatlarda tengsizlik rost?&rdquo; deb so‘raydi.</strong>"
+        }
+    };
+
+    function language(selectedLanguage) {
+        const currentLanguage = translations[selectedLanguage] ? selectedLanguage : "en";
+
+        document.documentElement.lang = currentLanguage;
+        localStorage.setItem("mathAcademyLanguage", currentLanguage);
+
+        if (translations[currentLanguage]["page.documentTitle"]) {
+            document.title = translations[currentLanguage]["page.documentTitle"];
+        }
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+            const key = element.getAttribute("data-i18n");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.innerHTML = translatedText;
+            }
+        });
+
+        document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+            const key = element.getAttribute("data-i18n-title");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.setAttribute("title", translatedText);
+            }
+        });
+
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+            const key = element.getAttribute("data-i18n-aria-label");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.setAttribute("aria-label", translatedText);
+            }
+        });
+
+        document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+            const key = element.getAttribute("data-i18n-alt");
+            const translatedText = translations[currentLanguage][key];
+
+            if (translatedText) {
+                element.setAttribute("alt", translatedText);
+            }
+        });
+
+        document.querySelectorAll("[data-language-button]").forEach((button) => {
+            const isActive = button.getAttribute("data-language-button") === currentLanguage;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        if (window.MathJax && MathJax.typesetPromise) {
+            const mathTargets = [
+                document.getElementById("linear-eq-panel"),
+                document.getElementById("linear-ineq-panel"),
+                document.getElementById("quad-eq-panel"),
+                document.getElementById("quad-ineq-panel"),
+                document.getElementById("summary-similarities-panel"),
+                document.getElementById("equationTopicTabs")
+            ].filter(Boolean);
+
+            if (MathJax.typesetClear) {
+                MathJax.typesetClear(mathTargets);
+            }
+
+            MathJax.typesetPromise(mathTargets).catch(() => {});
+        }
+    }
+
+    (() => {
+        const tabs = document.querySelectorAll('#equationTopicTabs .nav-link');
+        const panels = document.querySelectorAll('.topic-panel');
+
+        function showPanel(panelId) {
+            tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.panelTarget === panelId));
+            panels.forEach((panel) => panel.classList.toggle('is-active', panel.id === panelId));
+            if (panelId === 'linear-eq-panel') {
+                requestAnimationFrame(resizeGraph);
+            }
+            if (panelId === 'linear-ineq-panel') {
+                requestAnimationFrame(resizeLinearInequalityGraph);
+            }
+            if (panelId === 'quad-eq-panel') {
+                requestAnimationFrame(resizeQuadraticGraph);
+            }
+            if (panelId === 'quad-ineq-panel') {
+                requestAnimationFrame(resizeQuadraticInequalityGraph);
+            }
+        }
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => showPanel(tab.dataset.panelTarget));
+        });
+
+        const canvas = document.getElementById('linearGraphCanvas');
+        const slopeSlider = document.getElementById('slopeSlider');
+        const interceptSlider = document.getElementById('interceptSlider');
+        const slopeValue = document.getElementById('slopeValue');
+        const interceptValue = document.getElementById('interceptValue');
+        const resetGraphBtn = document.getElementById('resetGraphBtn');
+        const ctx = canvas.getContext('2d');
+        const quadraticCanvas = document.getElementById('quadraticGraphCanvas');
+        const quadASlider = document.getElementById('quadASlider');
+        const quadBSlider = document.getElementById('quadBSlider');
+        const quadCSlider = document.getElementById('quadCSlider');
+        const quadAValue = document.getElementById('quadAValue');
+        const quadBValue = document.getElementById('quadBValue');
+        const quadCValue = document.getElementById('quadCValue');
+        const resetQuadraticGraphBtn = document.getElementById('resetQuadraticGraphBtn');
+        const quadraticCtx = quadraticCanvas.getContext('2d');
+        const linearInequalityCanvas = document.getElementById('linearInequalityGraphCanvas');
+        const linearIneqMSlider = document.getElementById('linearIneqMSlider');
+        const linearIneqBSlider = document.getElementById('linearIneqBSlider');
+        const linearIneqSignSelect = document.getElementById('linearIneqSignSelect');
+        const linearIneqMValue = document.getElementById('linearIneqMValue');
+        const linearIneqBValue = document.getElementById('linearIneqBValue');
+        const linearIneqSignValue = document.getElementById('linearIneqSignValue');
+        const linearIneqSignDisplay = document.getElementById('linearIneqSignDisplay');
+        const resetLinearInequalityGraphBtn = document.getElementById('resetLinearInequalityGraphBtn');
+        const linearInequalityCtx = linearInequalityCanvas.getContext('2d');
+        const quadraticInequalityCanvas = document.getElementById('quadraticInequalityGraphCanvas');
+        const quadIneqASlider = document.getElementById('quadIneqASlider');
+        const quadIneqBSlider = document.getElementById('quadIneqBSlider');
+        const quadIneqCSlider = document.getElementById('quadIneqCSlider');
+        const quadIneqSignSelect = document.getElementById('quadIneqSignSelect');
+        const quadIneqAValue = document.getElementById('quadIneqAValue');
+        const quadIneqBValue = document.getElementById('quadIneqBValue');
+        const quadIneqCValue = document.getElementById('quadIneqCValue');
+        const quadIneqSignValue = document.getElementById('quadIneqSignValue');
+        const quadraticIneqSignDisplay = document.getElementById('quadraticIneqSignDisplay');
+        const resetQuadraticInequalityGraphBtn = document.getElementById('resetQuadraticInequalityGraphBtn');
+        const quadraticInequalityCtx = quadraticInequalityCanvas.getContext('2d');
+
+        function formatValue(value) {
+            return Number(value).toFixed(1);
+        }
+
+        function setDefaultGraph() {
+            slopeSlider.value = '1';
+            interceptSlider.value = '5';
+            updateGraph();
+        }
+
+        function resizeGraph() {
+            if (!canvas || !canvas.offsetParent) return;
+            const ratio = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = Math.max(1, Math.round(rect.width * ratio));
+            canvas.height = Math.max(1, Math.round(rect.height * ratio));
+            ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            drawGraph(rect.width, rect.height);
+        }
+
+        function updateGraph() {
+            slopeValue.textContent = formatValue(slopeSlider.value);
+            interceptValue.textContent = formatValue(interceptSlider.value);
+            resizeGraph();
+        }
+
+        function drawPill(text, x, y) {
+            ctx.font = '700 11px Arial';
+            const paddingX = 10;
+            const width = ctx.measureText(text).width + paddingX * 2;
+            const height = 18;
+            const left = Math.min(Math.max(x + 9, 6), canvas.clientWidth - width - 6);
+            const top = Math.min(Math.max(y - 9, 6), canvas.clientHeight - height - 6);
+            const radius = 8;
+            ctx.fillStyle = '#1088ff';
+            ctx.beginPath();
+            ctx.moveTo(left + radius, top);
+            ctx.lineTo(left + width - radius, top);
+            ctx.quadraticCurveTo(left + width, top, left + width, top + radius);
+            ctx.lineTo(left + width, top + height - radius);
+            ctx.quadraticCurveTo(left + width, top + height, left + width - radius, top + height);
+            ctx.lineTo(left + radius, top + height);
+            ctx.quadraticCurveTo(left, top + height, left, top + height - radius);
+            ctx.lineTo(left, top + radius);
+            ctx.quadraticCurveTo(left, top, left + radius, top);
+            ctx.fill();
+            ctx.fillStyle = '#fff';
+            ctx.fillText(text, left + paddingX, top + 13);
+        }
+
+        function drawPoint(x, y, label) {
+            ctx.fillStyle = '#fff';
+            ctx.strokeStyle = '#1088ff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            drawPill(label, x, y);
+        }
+
+        function drawGraph(width, height) {
+            const m = Number(slopeSlider.value);
+            const b = Number(interceptSlider.value);
+            const min = -10;
+            const max = 10;
+            const toX = (x) => ((x - min) / (max - min)) * width;
+            const toY = (y) => height - ((y - min) / (max - min)) * height;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#fbfbfb';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.lineWidth = 1;
+            for (let n = min; n <= max; n += 2) {
+                const x = toX(n);
+                const y = toY(n);
+                ctx.strokeStyle = n === 0 ? '#cfd6dd' : '#ededed';
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
+            ctx.fillStyle = '#8f9aaa';
+            ctx.font = '10px Arial';
+            for (let n = min; n <= max; n += 5) {
+                if (n !== 0) {
+                    ctx.fillText(String(n), toX(n) - 5, toY(0) + 16);
+                    ctx.fillText(String(n), toX(0) + 8, toY(n) + 3);
+                }
+            }
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(0, 0, width, height);
+            ctx.clip();
+            ctx.strokeStyle = '#1088ff';
+            ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            ctx.moveTo(toX(min), toY(m * min + b));
+            ctx.lineTo(toX(max), toY(m * max + b));
+            ctx.stroke();
+            ctx.restore();
+
+            if (b >= min && b <= max) {
+                drawPoint(toX(0), toY(b), 'y-intercept');
+            }
+
+            if (Math.abs(m) > 0.001) {
+                const xIntercept = -b / m;
+                if (xIntercept >= min && xIntercept <= max) {
+                    drawPoint(toX(xIntercept), toY(0), 'x-intercept');
+                }
+            }
+        }
+
+        function signSymbol(value) {
+            return {
+                lt: '<',
+                lte: '≤',
+                gt: '>',
+                gte: '≥'
+            }[value] || '<';
+        }
+
+        function signIncludesEndpoint(value) {
+            return value === 'lte' || value === 'gte';
+        }
+
+        function satisfiesInequality(value, sign) {
+            if (sign === 'lt') return value < 0;
+            if (sign === 'lte') return value <= 0;
+            if (sign === 'gt') return value > 0;
+            if (sign === 'gte') return value >= 0;
+            return false;
+        }
+
+        function drawInequalityGrid(context, width, height, xMin, xMax, yMin, yMax, toX, toY, yStep = 5) {
+            context.clearRect(0, 0, width, height);
+            context.fillStyle = '#fbfbfb';
+            context.fillRect(0, 0, width, height);
+
+            context.lineWidth = 1;
+            for (let x = xMin; x <= xMax; x += 2) {
+                context.strokeStyle = x === 0 ? '#cfd6dd' : '#ededed';
+                context.beginPath();
+                context.moveTo(toX(x), 0);
+                context.lineTo(toX(x), height);
+                context.stroke();
+            }
+
+            for (let y = yMin; y <= yMax; y += yStep) {
+                context.strokeStyle = y === 0 ? '#cfd6dd' : '#ededed';
+                context.beginPath();
+                context.moveTo(0, toY(y));
+                context.lineTo(width, toY(y));
+                context.stroke();
+            }
+
+            context.fillStyle = '#8f9aaa';
+            context.font = '10px Arial';
+            const axisY = Math.min(Math.max(toY(0) + 14, 12), height - 4);
+            const axisX = Math.min(Math.max(toX(0) + 8, 8), width - 22);
+            for (let x = xMin; x <= xMax; x += 2) {
+                if (x !== 0) context.fillText(String(x), toX(x) - 6, axisY);
+            }
+            for (let y = yMin; y <= yMax; y += yStep * 2) {
+                if (y !== 0) context.fillText(String(y), axisX, toY(y) + 3);
+            }
+        }
+
+        function shadeSolutionRegion(context, width, height, xMin, xMax, predicate) {
+            context.fillStyle = 'rgba(16, 136, 255, 0.16)';
+            for (let pixel = 0; pixel < width; pixel += 2) {
+                const x = xMin + ((pixel + 1) / width) * (xMax - xMin);
+                if (predicate(x)) {
+                    context.fillRect(pixel, 0, 2, height);
+                }
+            }
+        }
+
+        function drawInequalityPill(context, targetCanvas, text, x, y, side = 'right') {
+            context.font = '700 11px Arial';
+            const paddingX = 10;
+            const width = context.measureText(text).width + paddingX * 2;
+            const height = 20;
+            let left = side === 'left' ? x - width - 10 : x + 10;
+            let top = y - height / 2;
+
+            if (side === 'above') {
+                left = x - width / 2;
+                top = y - height - 8;
+            } else if (side === 'below') {
+                left = x - width / 2;
+                top = y + 8;
+            }
+
+            left = Math.min(Math.max(left, 6), targetCanvas.clientWidth - width - 6);
+            top = Math.min(Math.max(top, 6), targetCanvas.clientHeight - height - 6);
+            context.fillStyle = '#1088ff';
+            roundedRect(context, left, top, width, height, 9);
+            context.fillStyle = '#fff';
+            context.fillText(text, left + paddingX, top + 14);
+        }
+
+        function drawInequalityPoint(context, targetCanvas, x, y, label, filled, side) {
+            context.fillStyle = filled ? '#1088ff' : '#fff';
+            context.strokeStyle = '#1088ff';
+            context.lineWidth = 2;
+            context.beginPath();
+            context.arc(x, y, 4, 0, Math.PI * 2);
+            context.fill();
+            context.stroke();
+            drawInequalityPill(context, targetCanvas, label, x, y, side);
+        }
+
+        function setDefaultLinearInequalityGraph() {
+            linearIneqMSlider.value = '2';
+            linearIneqBSlider.value = '5';
+            linearIneqSignSelect.value = 'lt';
+            updateLinearInequalityGraph();
+        }
+
+        function resizeLinearInequalityGraph() {
+            if (!linearInequalityCanvas || !linearInequalityCanvas.offsetParent) return;
+            const ratio = window.devicePixelRatio || 1;
+            const rect = linearInequalityCanvas.getBoundingClientRect();
+            linearInequalityCanvas.width = Math.max(1, Math.round(rect.width * ratio));
+            linearInequalityCanvas.height = Math.max(1, Math.round(rect.height * ratio));
+            linearInequalityCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            drawLinearInequalityGraph(rect.width, rect.height);
+        }
+
+        function updateLinearInequalityGraph() {
+            const sign = linearIneqSignSelect.value;
+            const symbol = signSymbol(sign);
+            linearIneqMValue.textContent = formatValue(linearIneqMSlider.value);
+            linearIneqBValue.textContent = formatValue(linearIneqBSlider.value);
+            linearIneqSignValue.textContent = symbol;
+            linearIneqSignDisplay.textContent = symbol;
+            resizeLinearInequalityGraph();
+        }
+
+        function drawLinearInequalityGraph(width, height) {
+            const m = Number(linearIneqMSlider.value);
+            const b = Number(linearIneqBSlider.value);
+            const sign = linearIneqSignSelect.value;
+            const xMin = -10;
+            const xMax = 10;
+            const yMin = -10;
+            const yMax = 10;
+            const toX = (x) => ((x - xMin) / (xMax - xMin)) * width;
+            const toY = (y) => height - ((y - yMin) / (yMax - yMin)) * height;
+            const f = (x) => (m * x) + b;
+
+            drawInequalityGrid(linearInequalityCtx, width, height, xMin, xMax, yMin, yMax, toX, toY, 2);
+            shadeSolutionRegion(linearInequalityCtx, width, height, xMin, xMax, (x) => satisfiesInequality(f(x), sign));
+
+            linearInequalityCtx.save();
+            linearInequalityCtx.beginPath();
+            linearInequalityCtx.rect(0, 0, width, height);
+            linearInequalityCtx.clip();
+            linearInequalityCtx.strokeStyle = '#1088ff';
+            linearInequalityCtx.lineWidth = 2.2;
+            linearInequalityCtx.beginPath();
+            linearInequalityCtx.moveTo(toX(xMin), toY(f(xMin)));
+            linearInequalityCtx.lineTo(toX(xMax), toY(f(xMax)));
+            linearInequalityCtx.stroke();
+            linearInequalityCtx.restore();
+
+            if (Math.abs(m) > 0.001) {
+                const root = -b / m;
+                if (root >= xMin && root <= xMax) {
+                    drawInequalityPoint(
+                        linearInequalityCtx,
+                        linearInequalityCanvas,
+                        toX(root),
+                        toY(0),
+                        `x = ${formatRoot(root)}`,
+                        signIncludesEndpoint(sign),
+                        root > 5 ? 'left' : 'right'
+                    );
+                }
+            }
+        }
+
+        function setDefaultQuadraticGraph() {
+            quadASlider.value = '1';
+            quadBSlider.value = '0';
+            quadCSlider.value = '-4';
+            updateQuadraticGraph();
+        }
+
+        function getQuadraticCoefficients() {
+            let a = Number(quadASlider.value);
+            if (Math.abs(a) < 0.1) {
+                a = a < 0 ? -0.1 : 0.1;
+                quadASlider.value = String(a);
+            }
+
+            return {
+                a,
+                b: Number(quadBSlider.value),
+                c: Number(quadCSlider.value)
+            };
+        }
+
+        function resizeQuadraticGraph() {
+            if (!quadraticCanvas || !quadraticCanvas.offsetParent) return;
+            const ratio = window.devicePixelRatio || 1;
+            const rect = quadraticCanvas.getBoundingClientRect();
+            quadraticCanvas.width = Math.max(1, Math.round(rect.width * ratio));
+            quadraticCanvas.height = Math.max(1, Math.round(rect.height * ratio));
+            quadraticCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            drawQuadraticGraph(rect.width, rect.height);
+        }
+
+        function updateQuadraticGraph() {
+            const coefficients = getQuadraticCoefficients();
+            quadAValue.textContent = formatValue(coefficients.a);
+            quadBValue.textContent = formatValue(coefficients.b);
+            quadCValue.textContent = formatValue(coefficients.c);
+            resizeQuadraticGraph();
+        }
+
+        function roundedRect(context, left, top, width, height, radius) {
+            context.beginPath();
+            context.moveTo(left + radius, top);
+            context.lineTo(left + width - radius, top);
+            context.quadraticCurveTo(left + width, top, left + width, top + radius);
+            context.lineTo(left + width, top + height - radius);
+            context.quadraticCurveTo(left + width, top + height, left + width - radius, top + height);
+            context.lineTo(left + radius, top + height);
+            context.quadraticCurveTo(left, top + height, left, top + height - radius);
+            context.lineTo(left, top + radius);
+            context.quadraticCurveTo(left, top, left + radius, top);
+            context.fill();
+        }
+
+        function formatRoot(value) {
+            const root = Number(value).toFixed(2);
+            return root === '-0.00' ? '0.00' : root;
+        }
+
+        function drawQuadraticPill(text, x, y, side = 'right') {
+            quadraticCtx.font = '700 11px Arial';
+            const paddingX = 10;
+            const width = quadraticCtx.measureText(text).width + paddingX * 2;
+            const height = 22;
+            let left = side === 'left' ? x - width - 10 : x + 10;
+            let top = y - height / 2;
+
+            if (side === 'above') {
+                left = x - width / 2;
+                top = y - height - 8;
+            } else if (side === 'below') {
+                left = x - width / 2;
+                top = y + 8;
+            }
+
+            left = Math.min(Math.max(left, 6), quadraticCanvas.clientWidth - width - 6);
+            top = Math.min(Math.max(top, 6), quadraticCanvas.clientHeight - height - 6);
+
+            quadraticCtx.fillStyle = '#1088ff';
+            roundedRect(quadraticCtx, left, top, width, height, 10);
+            quadraticCtx.fillStyle = '#fff';
+            quadraticCtx.fillText(text, left + paddingX, top + 15);
+        }
+
+        function drawQuadraticPoint(x, y, label, side) {
+            quadraticCtx.fillStyle = '#fff';
+            quadraticCtx.strokeStyle = '#1088ff';
+            quadraticCtx.lineWidth = 2;
+            quadraticCtx.beginPath();
+            quadraticCtx.arc(x, y, 4, 0, Math.PI * 2);
+            quadraticCtx.fill();
+            quadraticCtx.stroke();
+            drawQuadraticPill(label, x, y, side);
+        }
+
+        function drawQuadraticGraph(width, height) {
+            const { a, b, c } = getQuadraticCoefficients();
+            const xMin = -10;
+            const xMax = 10;
+            const yMin = -10;
+            const yMax = 35;
+            const toX = (x) => ((x - xMin) / (xMax - xMin)) * width;
+            const toY = (y) => height - ((y - yMin) / (yMax - yMin)) * height;
+            const f = (x) => (a * x * x) + (b * x) + c;
+
+            quadraticCtx.clearRect(0, 0, width, height);
+            quadraticCtx.fillStyle = '#fbfbfb';
+            quadraticCtx.fillRect(0, 0, width, height);
+
+            quadraticCtx.lineWidth = 1;
+            for (let x = xMin; x <= xMax; x += 2) {
+                quadraticCtx.strokeStyle = x === 0 ? '#cfd6dd' : '#ededed';
+                quadraticCtx.beginPath();
+                quadraticCtx.moveTo(toX(x), 0);
+                quadraticCtx.lineTo(toX(x), height);
+                quadraticCtx.stroke();
+            }
+
+            for (let y = yMin; y <= yMax; y += 5) {
+                quadraticCtx.strokeStyle = y === 0 ? '#cfd6dd' : '#ededed';
+                quadraticCtx.beginPath();
+                quadraticCtx.moveTo(0, toY(y));
+                quadraticCtx.lineTo(width, toY(y));
+                quadraticCtx.stroke();
+            }
+
+            quadraticCtx.fillStyle = '#8f9aaa';
+            quadraticCtx.font = '10px Arial';
+            const axisY = Math.min(Math.max(toY(0) + 14, 12), height - 4);
+            const axisX = Math.min(Math.max(toX(0) + 8, 8), width - 22);
+            for (let x = xMin; x <= xMax; x += 2) {
+                if (x !== 0) quadraticCtx.fillText(String(x), toX(x) - 6, axisY);
+            }
+            for (let y = yMin; y <= yMax; y += 10) {
+                if (y !== 0) quadraticCtx.fillText(String(y), axisX, toY(y) + 3);
+            }
+
+            quadraticCtx.save();
+            quadraticCtx.beginPath();
+            quadraticCtx.rect(0, 0, width, height);
+            quadraticCtx.clip();
+            quadraticCtx.strokeStyle = '#1088ff';
+            quadraticCtx.lineWidth = 2.2;
+            quadraticCtx.beginPath();
+            for (let pixel = 0; pixel <= width; pixel += 2) {
+                const x = xMin + (pixel / width) * (xMax - xMin);
+                const y = toY(f(x));
+                if (pixel === 0) {
+                    quadraticCtx.moveTo(pixel, y);
+                } else {
+                    quadraticCtx.lineTo(pixel, y);
+                }
+            }
+            quadraticCtx.stroke();
+            quadraticCtx.restore();
+
+            const discriminant = b * b - 4 * a * c;
+            if (discriminant >= 0) {
+                const rootA = (-b - Math.sqrt(discriminant)) / (2 * a);
+                const rootB = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const roots = Math.abs(rootA - rootB) < 0.001 ? [rootA] : [rootA, rootB];
+                const closeRoots = roots.length === 2 && Math.abs(toX(roots[0]) - toX(roots[1])) < 92;
+
+                roots.forEach((root, index) => {
+                    if (root >= xMin && root <= xMax) {
+                        const side = closeRoots ? (index === 0 ? 'left' : 'right') : 'right';
+                        drawQuadraticPoint(toX(root), toY(0), formatRoot(root), side);
+                    }
+                });
+            }
+        }
+
+        function setDefaultQuadraticInequalityGraph() {
+            quadIneqASlider.value = '1';
+            quadIneqBSlider.value = '-5';
+            quadIneqCSlider.value = '6';
+            quadIneqSignSelect.value = 'gt';
+            updateQuadraticInequalityGraph();
+        }
+
+        function getQuadraticInequalityCoefficients() {
+            let a = Number(quadIneqASlider.value);
+            if (Math.abs(a) < 0.1) {
+                a = a < 0 ? -0.1 : 0.1;
+                quadIneqASlider.value = String(a);
+            }
+
+            return {
+                a,
+                b: Number(quadIneqBSlider.value),
+                c: Number(quadIneqCSlider.value)
+            };
+        }
+
+        function resizeQuadraticInequalityGraph() {
+            if (!quadraticInequalityCanvas || !quadraticInequalityCanvas.offsetParent) return;
+            const ratio = window.devicePixelRatio || 1;
+            const rect = quadraticInequalityCanvas.getBoundingClientRect();
+            quadraticInequalityCanvas.width = Math.max(1, Math.round(rect.width * ratio));
+            quadraticInequalityCanvas.height = Math.max(1, Math.round(rect.height * ratio));
+            quadraticInequalityCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            drawQuadraticInequalityGraph(rect.width, rect.height);
+        }
+
+        function updateQuadraticInequalityGraph() {
+            const coefficients = getQuadraticInequalityCoefficients();
+            const sign = quadIneqSignSelect.value;
+            const symbol = signSymbol(sign);
+            quadIneqAValue.textContent = formatValue(coefficients.a);
+            quadIneqBValue.textContent = formatValue(coefficients.b);
+            quadIneqCValue.textContent = formatValue(coefficients.c);
+            quadIneqSignValue.textContent = symbol;
+            quadraticIneqSignDisplay.textContent = symbol;
+            resizeQuadraticInequalityGraph();
+        }
+
+        function drawQuadraticInequalityGraph(width, height) {
+            const { a, b, c } = getQuadraticInequalityCoefficients();
+            const sign = quadIneqSignSelect.value;
+            const xMin = -10;
+            const xMax = 10;
+            const yMin = -10;
+            const yMax = 35;
+            const toX = (x) => ((x - xMin) / (xMax - xMin)) * width;
+            const toY = (y) => height - ((y - yMin) / (yMax - yMin)) * height;
+            const f = (x) => (a * x * x) + (b * x) + c;
+
+            drawInequalityGrid(quadraticInequalityCtx, width, height, xMin, xMax, yMin, yMax, toX, toY);
+            shadeSolutionRegion(quadraticInequalityCtx, width, height, xMin, xMax, (x) => satisfiesInequality(f(x), sign));
+
+            quadraticInequalityCtx.save();
+            quadraticInequalityCtx.beginPath();
+            quadraticInequalityCtx.rect(0, 0, width, height);
+            quadraticInequalityCtx.clip();
+            quadraticInequalityCtx.strokeStyle = '#1088ff';
+            quadraticInequalityCtx.lineWidth = 2.2;
+            quadraticInequalityCtx.beginPath();
+            for (let pixel = 0; pixel <= width; pixel += 2) {
+                const x = xMin + (pixel / width) * (xMax - xMin);
+                const y = toY(f(x));
+                if (pixel === 0) {
+                    quadraticInequalityCtx.moveTo(pixel, y);
+                } else {
+                    quadraticInequalityCtx.lineTo(pixel, y);
+                }
+            }
+            quadraticInequalityCtx.stroke();
+            quadraticInequalityCtx.restore();
+
+            const discriminant = b * b - 4 * a * c;
+            if (discriminant >= 0) {
+                const rootA = (-b - Math.sqrt(discriminant)) / (2 * a);
+                const rootB = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const roots = Math.abs(rootA - rootB) < 0.001 ? [rootA] : [rootA, rootB];
+                const closeRoots = roots.length === 2 && Math.abs(toX(roots[0]) - toX(roots[1])) < 92;
+
+                roots.forEach((root, index) => {
+                    if (root >= xMin && root <= xMax) {
+                        const side = closeRoots ? (index === 0 ? 'left' : 'right') : 'right';
+                        drawInequalityPoint(
+                            quadraticInequalityCtx,
+                            quadraticInequalityCanvas,
+                            toX(root),
+                            toY(0),
+                            formatRoot(root),
+                            signIncludesEndpoint(sign),
+                            side
+                        );
+                    }
+                });
+            }
+        }
+
+        slopeSlider.addEventListener('input', updateGraph);
+        interceptSlider.addEventListener('input', updateGraph);
+        resetGraphBtn.addEventListener('click', setDefaultGraph);
+        linearIneqMSlider.addEventListener('input', updateLinearInequalityGraph);
+        linearIneqBSlider.addEventListener('input', updateLinearInequalityGraph);
+        linearIneqSignSelect.addEventListener('change', updateLinearInequalityGraph);
+        resetLinearInequalityGraphBtn.addEventListener('click', setDefaultLinearInequalityGraph);
+        quadASlider.addEventListener('input', updateQuadraticGraph);
+        quadBSlider.addEventListener('input', updateQuadraticGraph);
+        quadCSlider.addEventListener('input', updateQuadraticGraph);
+        resetQuadraticGraphBtn.addEventListener('click', setDefaultQuadraticGraph);
+        quadIneqASlider.addEventListener('input', updateQuadraticInequalityGraph);
+        quadIneqBSlider.addEventListener('input', updateQuadraticInequalityGraph);
+        quadIneqCSlider.addEventListener('input', updateQuadraticInequalityGraph);
+        quadIneqSignSelect.addEventListener('change', updateQuadraticInequalityGraph);
+        resetQuadraticInequalityGraphBtn.addEventListener('click', setDefaultQuadraticInequalityGraph);
+        window.addEventListener('resize', () => {
+            resizeGraph();
+            resizeLinearInequalityGraph();
+            resizeQuadraticGraph();
+            resizeQuadraticInequalityGraph();
+        });
+        updateGraph();
+        updateLinearInequalityGraph();
+        updateQuadraticGraph();
+        updateQuadraticInequalityGraph();
+        language(localStorage.getItem("mathAcademyLanguage") || "en");
+    })();
+</script>
 
 </body>
 </html>

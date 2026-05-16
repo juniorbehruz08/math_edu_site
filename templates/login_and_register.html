@@ -88,6 +88,10 @@
         .brand {
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
         }
 
         .brand-mark {
@@ -109,6 +113,35 @@
             font-weight: 600;
             color: var(--cream);
             letter-spacing: 3px;
+        }
+
+        .auth-language-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid rgba(201,168,76,0.45);
+            border-radius: 999px;
+            background: rgba(13,13,13,0.12);
+            flex-shrink: 0;
+        }
+
+        .auth-language-switch__button {
+            border: 0;
+            background: transparent;
+            color: rgba(247,243,236,0.7);
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .auth-language-switch__button.is-active {
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .left-body {
@@ -598,6 +631,10 @@
 
             .brand { margin-bottom: 0; }
 
+            .auth-language-switch {
+                margin-top: 2px;
+            }
+
             .mobile-tabs {
                 display: flex;
                 gap: 0;
@@ -662,7 +699,13 @@
         <div class="brand">
             <div class="brand-mark">
                 <div class="brand-dot"></div>
-                <span class="brand-name">Math Academy</span>
+                <span class="brand-name" data-no-translate>My Math Academy</span>
+            </div>
+            <div class="auth-language-switch" aria-label="Language">
+                <button class="auth-language-switch__button is-active" type="button" data-language-button="en"
+                        onclick="setAuthLanguage('en')">EN</button>
+                <button class="auth-language-switch__button" type="button" data-language-button="uz"
+                        onclick="setAuthLanguage('uz')">UZ</button>
             </div>
         </div>
 
@@ -1065,9 +1108,348 @@
 </div>
 
 <script>
+    const authTextTranslations = {
+        "Login": "Kirish",
+        "Sign In": "Kirish",
+        "Sign Up": "Ro'yxatdan o'tish",
+        "Learn": "O'rganing",
+        "without": "cheklovsiz",
+        "limits.": "imkoniyatlar.",
+        "Your gateway to knowledge, progress and a community of curious minds.": "Bilim, rivojlanish va izlanuvchanlar jamoasiga kirish eshigingiz.",
+        "Don't have an account?": "Akkauntingiz yo'qmi?",
+        "Already have an account?": "Akkauntingiz bormi?",
+        "Create account": "Akkaunt yaratish",
+        "Back to Sign In": "Kirishga qaytish",
+        "Welcome back": "Qaytganingiz bilan",
+        "Username": "Foydalanuvchi nomi",
+        "Password": "Parol",
+        "Sign In →": "Kirish →",
+        "no account yet?": "hali akkauntingiz yo'qmi?",
+        "Sign up": "Ro'yxatdan o'tish",
+        "Join us today": "Bugun qo'shiling",
+        "Create Account": "Akkaunt yaratish",
+        "First Name": "Ism",
+        "Last Name": "Familiya",
+        "Email": "Email",
+        "Country": "Mamlakat",
+        "Select your country": "Mamlakatingizni tanlang",
+        "Password requirements:": "Parol talablari:",
+        "At least 8 characters": "Kamida 8 ta belgi",
+        "Not entirely numeric": "Faqat raqamlardan iborat bo'lmasin",
+        "Not a commonly used password": "Ko'p ishlatiladigan parol bo'lmasin",
+        "Not too similar to username or email": "Foydalanuvchi nomi yoki emailga juda o'xshamasin",
+        "At least one uppercase letter": "Kamida bitta katta harf",
+        "At least one special character": "Kamida bitta maxsus belgi",
+        "Confirm Password": "Parolni tasdiqlash",
+        "Send Code →": "Kodni yuborish →",
+        "already have an account?": "allaqachon akkauntingiz bormi?",
+        "Sign in": "Kirish",
+        "Almost there": "Deyarli tayyor",
+        "Verify Email": "Emailni tasdiqlash",
+        "A 6-digit code was sent to": "6 xonali kod yuborildi:",
+        "Enter the 6-digit code": "6 xonali kodni kiriting",
+        "Didn't receive it?": "Kod kelmadimi?",
+        "Resend": "Qayta yuborish",
+        "Verify →": "Tasdiqlash →",
+        "← Back to Sign Up": "← Ro'yxatdan o'tishga qaytish",
+        "Please fill in all required fields.": "Iltimos, barcha majburiy maydonlarni to'ldiring.",
+        "Sending...": "Yuborilmoqda...",
+        "Something went wrong. Try again.": "Nimadir xato ketdi. Qayta urinib ko'ring.",
+        "Network error. Please try again.": "Tarmoq xatosi. Qayta urinib ko'ring.",
+        "Please enter the full 6-digit code.": "Iltimos, to'liq 6 xonali kodni kiriting.",
+        "Verifying...": "Tekshirilmoqda...",
+        "Success!": "Muvaffaqiyatli!",
+        "Invalid code. Please try again.": "Kod noto'g'ri. Qayta urinib ko'ring.",
+        "Network error.": "Tarmoq xatosi.",
+        "New code sent!": "Yangi kod yuborildi!",
+        "Could not resend. Try again.": "Qayta yuborilmadi. Yana urinib ko'ring.",
+        "Method not allowed": "Bu usulga ruxsat berilmagan",
+        "Invalid or expired code.": "Kod noto'g'ri yoki muddati tugagan.",
+        "Code expired. Request a new one.": "Kod muddati tugagan. Yangi kod so'rang.",
+        "Username already taken.": "Bu foydalanuvchi nomi band.",
+        "● Passwords match": "● Parollar mos",
+        "○ Passwords do not match": "○ Parollar mos emas",
+        "your_username": "foydalanuvchi_nomi",
+        "First": "Ism",
+        "Last": "Familiya",
+        "you@example.com": "siz@example.com"
+    };
+
+    Object.assign(authTextTranslations, {
+        "Afghanistan": "Afg'oniston",
+        "Albania": "Albaniya",
+        "Algeria": "Jazoir",
+        "Andorra": "Andorra",
+        "Angola": "Angola",
+        "Antigua and Barbuda": "Antigua va Barbuda",
+        "Argentina": "Argentina",
+        "Armenia": "Armaniston",
+        "Australia": "Avstraliya",
+        "Austria": "Avstriya",
+        "Azerbaijan": "Ozarbayjon",
+        "Bahamas": "Bagama orollari",
+        "Bahrain": "Bahrayn",
+        "Bangladesh": "Bangladesh",
+        "Barbados": "Barbados",
+        "Belarus": "Belarus",
+        "Belgium": "Belgiya",
+        "Belize": "Beliz",
+        "Benin": "Benin",
+        "Bhutan": "Butan",
+        "Bolivia": "Boliviya",
+        "Bosnia and Herzegovina": "Bosniya va Gersegovina",
+        "Botswana": "Botsvana",
+        "Brazil": "Braziliya",
+        "Brunei": "Bruney",
+        "Bulgaria": "Bolgariya",
+        "Burkina Faso": "Burkina-Faso",
+        "Burundi": "Burundi",
+        "Cabo Verde": "Kabo-Verde",
+        "Cambodia": "Kambodja",
+        "Cameroon": "Kamerun",
+        "Canada": "Kanada",
+        "Central African Republic": "Markaziy Afrika Respublikasi",
+        "Chad": "Chad",
+        "Chile": "Chili",
+        "China": "Xitoy",
+        "Colombia": "Kolumbiya",
+        "Comoros": "Komor orollari",
+        "Congo": "Kongo",
+        "Costa Rica": "Kosta-Rika",
+        "Croatia": "Xorvatiya",
+        "Cuba": "Kuba",
+        "Cyprus": "Kipr",
+        "Czech Republic": "Chexiya",
+        "Denmark": "Daniya",
+        "Djibouti": "Jibuti",
+        "Dominica": "Dominika",
+        "Dominican Republic": "Dominikan Respublikasi",
+        "Ecuador": "Ekvador",
+        "Egypt": "Misr",
+        "El Salvador": "Salvador",
+        "Equatorial Guinea": "Ekvatorial Gvineya",
+        "Eritrea": "Eritreya",
+        "Estonia": "Estoniya",
+        "Eswatini": "Esvatini",
+        "Ethiopia": "Efiopiya",
+        "Fiji": "Fiji",
+        "Finland": "Finlyandiya",
+        "France": "Fransiya",
+        "Gabon": "Gabon",
+        "Gambia": "Gambiya",
+        "Georgia": "Gruziya",
+        "Germany": "Germaniya",
+        "Ghana": "Gana",
+        "Greece": "Gretsiya",
+        "Grenada": "Grenada",
+        "Guatemala": "Gvatemala",
+        "Guinea": "Gvineya",
+        "Guinea-Bissau": "Gvineya-Bisau",
+        "Guyana": "Gayana",
+        "Haiti": "Gaiti",
+        "Honduras": "Gonduras",
+        "Hungary": "Vengriya",
+        "Iceland": "Islandiya",
+        "India": "Hindiston",
+        "Indonesia": "Indoneziya",
+        "Iran": "Eron",
+        "Iraq": "Iroq",
+        "Ireland": "Irlandiya",
+        "Israel": "Isroil",
+        "Italy": "Italiya",
+        "Jamaica": "Yamayka",
+        "Japan": "Yaponiya",
+        "Jordan": "Iordaniya",
+        "Kazakhstan": "Qozog'iston",
+        "Kenya": "Keniya",
+        "Kiribati": "Kiribati",
+        "Kuwait": "Quvayt",
+        "Kyrgyzstan": "Qirg'iziston",
+        "Laos": "Laos",
+        "Latvia": "Latviya",
+        "Lebanon": "Livan",
+        "Lesotho": "Lesoto",
+        "Liberia": "Liberiya",
+        "Libya": "Liviya",
+        "Liechtenstein": "Lixtenshteyn",
+        "Lithuania": "Litva",
+        "Luxembourg": "Lyuksemburg",
+        "Madagascar": "Madagaskar",
+        "Malawi": "Malavi",
+        "Malaysia": "Malayziya",
+        "Maldives": "Maldiv orollari",
+        "Mali": "Mali",
+        "Malta": "Malta",
+        "Marshall Islands": "Marshall orollari",
+        "Mauritania": "Mavritaniya",
+        "Mauritius": "Mavrikiy",
+        "Mexico": "Meksika",
+        "Micronesia": "Mikroneziya",
+        "Moldova": "Moldova",
+        "Monaco": "Monako",
+        "Mongolia": "Mongoliya",
+        "Montenegro": "Chernogoriya",
+        "Morocco": "Marokash",
+        "Mozambique": "Mozambik",
+        "Myanmar": "Myanma",
+        "Namibia": "Namibiya",
+        "Nauru": "Nauru",
+        "Nepal": "Nepal",
+        "Netherlands": "Niderlandiya",
+        "New Zealand": "Yangi Zelandiya",
+        "Nicaragua": "Nikaragua",
+        "Niger": "Niger",
+        "Nigeria": "Nigeriya",
+        "North Korea": "Shimoliy Koreya",
+        "North Macedonia": "Shimoliy Makedoniya",
+        "Norway": "Norvegiya",
+        "Oman": "Ummon",
+        "Pakistan": "Pokiston",
+        "Palau": "Palau",
+        "Palestine": "Falastin",
+        "Panama": "Panama",
+        "Papua New Guinea": "Papua-Yangi Gvineya",
+        "Paraguay": "Paragvay",
+        "Peru": "Peru",
+        "Philippines": "Filippin",
+        "Poland": "Polsha",
+        "Portugal": "Portugaliya",
+        "Qatar": "Qatar",
+        "Romania": "Ruminiya",
+        "Russia": "Rossiya",
+        "Rwanda": "Ruanda",
+        "Saint Kitts and Nevis": "Sent-Kits va Nevis",
+        "Saint Lucia": "Sent-Lyusiya",
+        "Saint Vincent and the Grenadines": "Sent-Vinsent va Grenadinlar",
+        "Samoa": "Samoa",
+        "San Marino": "San-Marino",
+        "Sao Tome and Principe": "San-Tome va Prinsipi",
+        "Saudi Arabia": "Saudiya Arabistoni",
+        "Senegal": "Senegal",
+        "Serbia": "Serbiya",
+        "Seychelles": "Seyshel orollari",
+        "Sierra Leone": "Syerra-Leone",
+        "Singapore": "Singapur",
+        "Slovakia": "Slovakiya",
+        "Slovenia": "Sloveniya",
+        "Solomon Islands": "Solomon orollari",
+        "Somalia": "Somali",
+        "South Africa": "Janubiy Afrika",
+        "South Korea": "Janubiy Koreya",
+        "South Sudan": "Janubiy Sudan",
+        "Spain": "Ispaniya",
+        "Sri Lanka": "Shri-Lanka",
+        "Sudan": "Sudan",
+        "Suriname": "Surinam",
+        "Sweden": "Shvetsiya",
+        "Switzerland": "Shveytsariya",
+        "Syria": "Suriya",
+        "Tajikistan": "Tojikiston",
+        "Tanzania": "Tanzaniya",
+        "Thailand": "Tailand",
+        "Timor-Leste": "Sharqiy Timor",
+        "Togo": "Togo",
+        "Tonga": "Tonga",
+        "Trinidad and Tobago": "Trinidad va Tobago",
+        "Tunisia": "Tunis",
+        "Turkey": "Turkiya",
+        "Turkmenistan": "Turkmaniston",
+        "Tuvalu": "Tuvalu",
+        "Uganda": "Uganda",
+        "Ukraine": "Ukraina",
+        "United Arab Emirates": "Birlashgan Arab Amirliklari",
+        "United Kingdom": "Buyuk Britaniya",
+        "United States": "AQSh",
+        "Uruguay": "Urugvay",
+        "Uzbekistan": "O'zbekiston",
+        "Vanuatu": "Vanuatu",
+        "Vatican City": "Vatikan",
+        "Venezuela": "Venesuela",
+        "Vietnam": "Vyetnam",
+        "Yemen": "Yaman",
+        "Zambia": "Zambiya",
+        "Zimbabwe": "Zimbabve"
+    });
+
+    const reverseAuthTextTranslations = Object.fromEntries(
+        Object.entries(authTextTranslations).map(([english, uzbek]) => [uzbek, english])
+    );
+    let currentAuthLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
+
+    function translateText(englishText) {
+        return currentAuthLanguage === 'uz'
+            ? authTextTranslations[englishText] || englishText
+            : englishText;
+    }
+
+    function translateMessage(message) {
+        if (!message) return '';
+        return currentAuthLanguage === 'uz'
+            ? authTextTranslations[message] || message
+            : reverseAuthTextTranslations[message] || message;
+    }
+
+    function setAuthTextNodeLanguage(node, language) {
+        const text = node.nodeValue;
+        const trimmed = text.trim();
+        if (!trimmed || trimmed === '○' || trimmed === '●') return;
+        const lookupText = trimmed.replace(/\s+/g, ' ');
+
+        const replacement = language === 'uz'
+            ? authTextTranslations[lookupText]
+            : reverseAuthTextTranslations[lookupText];
+
+        if (!replacement) return;
+
+        const leading = text.match(/^\s*/)[0];
+        const trailing = text.match(/\s*$/)[0];
+        node.nodeValue = leading + replacement + trailing;
+    }
+
+    function setAuthLanguage(language) {
+        currentAuthLanguage = language;
+        localStorage.setItem('mathAcademyLanguage', language);
+        document.documentElement.lang = language;
+        document.title = translateText('Login');
+
+        document.querySelectorAll('[data-language-button]').forEach((button) => {
+            button.classList.toggle('is-active', button.dataset.languageButton === language);
+        });
+
+        const switcher = document.querySelector('.auth-language-switch');
+        if (switcher) {
+            switcher.setAttribute('aria-label', language === 'uz' ? 'Til' : 'Language');
+        }
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach((node) => {
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script, style, [data-no-translate]')) return;
+            setAuthTextNodeLanguage(node, language);
+        });
+
+        const placeholders = {
+            'li-username': 'your_username',
+            'ru-username': 'your_username',
+            'ru-fname': 'First',
+            'ru-lname': 'Last',
+            'ru-email': 'you@example.com'
+        };
+        Object.entries(placeholders).forEach(([id, englishText]) => {
+            const element = document.getElementById(id);
+            if (element) element.placeholder = translateText(englishText);
+        });
+    }
+
     let current = 'login';
     let pendingEmail = '';
     let timerInterval = null;
+    setAuthLanguage(currentAuthLanguage);
 
     // ── Panel switching ─────────────────────────────────────────────────────
     function switchPanel(target) {
@@ -1082,19 +1464,19 @@
         const mobileTabs  = document.querySelectorAll('.mobile-tab');
 
         if (target === 'register') {
-            switchBtn.textContent   = 'Back to Sign In';
-            switchLabel.textContent = 'Already have an account?';
+            switchBtn.textContent   = translateText('Back to Sign In');
+            switchLabel.textContent = translateText('Already have an account?');
             mobileTabs[1].classList.add('active-tab');
             mobileTabs[0].classList.remove('active-tab');
         } else if (target === 'login') {
-            switchBtn.textContent   = 'Create account';
-            switchLabel.textContent = "Don't have an account?";
+            switchBtn.textContent   = translateText('Create account');
+            switchLabel.textContent = translateText("Don't have an account?");
             mobileTabs[0].classList.add('active-tab');
             mobileTabs[1].classList.remove('active-tab');
         } else {
             // verify panel — hide desktop switch btn
-            switchBtn.textContent   = 'Create account';
-            switchLabel.textContent = "Don't have an account?";
+            switchBtn.textContent   = translateText('Create account');
+            switchLabel.textContent = translateText("Don't have an account?");
         }
     }
 
@@ -1131,13 +1513,13 @@
         const password   = document.getElementById('ru-pw1').value;
 
         if (!username || !email || !password) {
-            showMsg('registerMsg', 'error', 'Please fill in all required fields.');
+            showMsg('registerMsg', 'error', translateText('Please fill in all required fields.'));
             return;
         }
 
         const btn = document.getElementById('sendCodeBtn');
         btn.classList.add('loading');
-        btn.querySelector('span').textContent = 'Sending…';
+        btn.querySelector('span').textContent = translateText('Sending...');
         hideMsg('registerMsg');
 
         try {
@@ -1159,13 +1541,13 @@
                 startTimer(120); // 2 daqiqa
                 initCodeInputs();
             } else {
-                showMsg('registerMsg', 'error', data.error || 'Something went wrong. Try again.');
+                showMsg('registerMsg', 'error', translateMessage(data.error) || translateText('Something went wrong. Try again.'));
             }
         } catch (err) {
-            showMsg('registerMsg', 'error', 'Network error. Please try again.');
+            showMsg('registerMsg', 'error', translateText('Network error. Please try again.'));
         } finally {
             btn.classList.remove('loading');
-            btn.querySelector('span').textContent = 'Send Code →';
+            btn.querySelector('span').textContent = translateText('Send Code →');
         }
     }
 
@@ -1175,13 +1557,14 @@
         const code   = Array.from(digits).map(d => d.value).join('');
 
         if (code.length !== 6) {
-            showMsg('verifyMsg', 'error', 'Please enter the full 6-digit code.');
+            showMsg('verifyMsg', 'error', translateText('Please enter the full 6-digit code.'));
             return;
         }
 
         const btn = document.getElementById('verifyBtn');
+        const successText = '✓ ' + translateText('Success!');
         btn.classList.add('loading');
-        btn.querySelector('span').textContent = 'Verifying…';
+        btn.querySelector('span').textContent = translateText('Verifying...');
         hideMsg('verifyMsg');
 
         try {
@@ -1197,11 +1580,11 @@
             const data = await res.json();
 
             if (res.ok && data.success) {
-                btn.querySelector('span').textContent = '✓ Success!';
+                btn.querySelector('span').textContent = successText;
                 // redirect
                 window.location.href = data.redirect || '/';
             } else {
-                showMsg('verifyMsg', 'error', data.error || 'Invalid code. Please try again.');
+                showMsg('verifyMsg', 'error', translateMessage(data.error) || translateText('Invalid code. Please try again.'));
                 // shake effect
                 document.getElementById('codeInputWrap').style.animation = 'none';
                 setTimeout(() => {
@@ -1209,11 +1592,11 @@
                 }, 10);
             }
         } catch (err) {
-            showMsg('verifyMsg', 'error', 'Network error. Please try again.');
+            showMsg('verifyMsg', 'error', translateText('Network error. Please try again.'));
         } finally {
             btn.classList.remove('loading');
-            if (btn.querySelector('span').textContent !== '✓ Success!') {
-                btn.querySelector('span').textContent = 'Verify →';
+            if (btn.querySelector('span').textContent !== successText) {
+                btn.querySelector('span').textContent = translateText('Verify →');
             }
         }
     }
@@ -1245,7 +1628,7 @@
             const data = await res.json();
 
             if (res.ok && data.success) {
-                showMsg('verifyMsg', 'success', 'New code sent!');
+                showMsg('verifyMsg', 'success', translateText('New code sent!'));
                 startTimer(120);
                 // clear code inputs
                 document.querySelectorAll('.code-digit').forEach(d => {
@@ -1255,11 +1638,11 @@
                 document.querySelectorAll('.code-digit')[0].focus();
                 updateVerifyBtn();
             } else {
-                showMsg('verifyMsg', 'error', data.error || 'Could not resend. Try again.');
+                showMsg('verifyMsg', 'error', translateMessage(data.error) || translateText('Could not resend. Try again.'));
                 resendBtn.disabled = false;
             }
         } catch (err) {
-            showMsg('verifyMsg', 'error', 'Network error.');
+            showMsg('verifyMsg', 'error', translateText('Network error.'));
             resendBtn.disabled = false;
         }
     }
@@ -1404,10 +1787,10 @@
         }
 
         if (input.value === pw1) {
-            hint.textContent = '● Passwords match';
+            hint.textContent = translateText('● Passwords match');
             hint.className   = 'confirm-hint match';
         } else {
-            hint.textContent = '○ Passwords do not match';
+            hint.textContent = translateText('○ Passwords do not match');
             hint.className   = 'confirm-hint no-match';
         }
 
