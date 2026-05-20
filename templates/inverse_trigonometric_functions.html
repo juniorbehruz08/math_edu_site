@@ -30,7 +30,7 @@
 
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
-    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-topic-listing.css' %}?v=lightnav-20260520" rel="stylesheet">
 
     <style>
         *, *::before, *::after {
@@ -324,7 +324,337 @@
             font-size: 1.1rem;
         }
 
+
+
+        .mini-example-list {
+            display: grid;
+            gap: 10px;
+            margin: 14px 0 0;
+        }
+
+        .mini-example-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 12px;
+            align-items: center;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #fbfbfb;
+            padding: 12px 14px;
+        }
+
+        .mini-example-item strong {
+            font-family: 'Montserrat', sans-serif;
+            color: #111111;
+        }
+
+        .quote-note {
+            border-left: 4px solid #d7d7d7;
+            margin: 12px 0 18px;
+            padding: 10px 14px;
+            color: #222222;
+            background: #fbfbfb;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .status-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 12px 0;
+            color: #222222;
+            line-height: 1.6;
+        }
+
+        .status-icon {
+            display: inline-grid;
+            place-items: center;
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .status-icon.good {
+            background: #42c983;
+        }
+
+        .status-icon.bad {
+            background: #ff5a7a;
+        }
+
+        .graph-maker-card {
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .06);
+            overflow: hidden;
+            margin-top: 18px;
+        }
+
+        .graph-maker-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 22px 0;
+        }
+
+        .graph-maker-title h3 {
+            margin: 0;
+            font-size: 1.22rem;
+        }
+
+        .graph-maker-body {
+            display: grid;
+            grid-template-columns: 350px minmax(0, 1fr);
+            border: 1px solid #e6e6e6;
+            border-radius: 14px;
+            margin: 18px 22px 22px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .graph-controls {
+            padding: 22px 18px;
+            border-right: 1px solid #e6e6e6;
+            background: #ffffff;
+        }
+
+        .graph-formula {
+            margin-bottom: 22px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.32rem;
+            font-style: italic;
+            color: #000000;
+            min-height: 34px;
+        }
+
+        .slider-row {
+            display: grid;
+            grid-template-columns: 24px 50px 1fr;
+            gap: 10px;
+            align-items: center;
+            margin: 13px 0;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        .slider-row output {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .9rem;
+            font-style: normal;
+            color: #111111;
+            text-align: right;
+        }
+
+        .slider-row input[type="range"] {
+            width: 100%;
+            accent-color: #111111;
+        }
+
+        .graph-help {
+            margin: 18px 0 0;
+            color: #222222;
+            line-height: 1.65;
+            font-size: .98rem;
+        }
+
+        .graph-canvas-wrap {
+            position: relative;
+            min-height: 420px;
+            background: #fafafa;
+        }
+
+        #arcsinGraphCanvas,
+        #arccosGraphCanvas,
+        #arctanGraphCanvas,
+        #arccotGraphCanvas {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            display: block;
+        }
+
+        .domain-warning {
+            display: none;
+            margin-top: 12px;
+            border: 1px solid #ffb6c7;
+            background: #fff4f7;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #7a1028;
+            font-size: .93rem;
+            line-height: 1.55;
+        }
+
+        .domain-warning.is-visible {
+            display: block;
+        }
+
+        .graph-no-answer {
+            display: none;
+            margin: 10px 12px 12px;
+            border: 1px solid #ff9aa8;
+            background: #fff1f3;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #b00020;
+            font-size: .95rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.55;
+        }
+
+        .graph-no-answer.is-visible {
+            display: block;
+        }
+
+
+        .value-explorer-layout {
+            grid-template-columns: 340px minmax(0, 1fr);
+        }
+
+        .value-control-group {
+            display: grid;
+            gap: 14px;
+        }
+
+        .value-control-group label {
+            display: grid;
+            gap: 8px;
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+        }
+
+        .value-select {
+            width: 100%;
+            border: 1px solid #d8d8d8;
+            border-radius: 8px;
+            padding: 11px 12px;
+            background: #ffffff;
+            color: #111111;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .98rem;
+            font-weight: 600;
+        }
+
+        .value-slider-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 76px;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .value-slider-row input[type="range"] {
+            width: 100%;
+            accent-color: #111111;
+        }
+
+        .value-slider-row output {
+            border: 1px solid #d8d8d8;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 8px 6px;
+            color: #111111;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .95rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .value-result-box {
+            margin-top: 18px;
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            background: #fbfbfb;
+            padding: 14px 15px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .value-result-line {
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .value-angle-output {
+            min-width: 72px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 7px 10px;
+            color: #111111;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.18rem;
+            font-style: normal;
+            text-align: center;
+        }
+
+        .value-range-scale {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            gap: 4px;
+            margin-top: -4px;
+            color: #555555;
+            font-size: .78rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .value-formula-line {
+            color: #000000;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.22rem;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .value-result-line .value-label {
+            color: #111111;
+            font-family: 'Montserrat', sans-serif;
+            font-size: .93rem;
+            font-style: normal;
+            font-weight: 800;
+        }
+
+        .value-result-line .value-math {
+            color: #000000;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+
+        #valueGraphCanvas {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            display: block;
+        }
+
         @media (max-width: 768px) {
+            .graph-maker-body {
+                grid-template-columns: 1fr;
+            }
+
+            .graph-controls {
+                border-right: 0;
+                border-bottom: 1px solid #e6e6e6;
+            }
+
+            .mini-example-item {
+                grid-template-columns: 1fr;
+            }
+
             .rule-grid {
                 grid-template-columns: 1fr;
             }
@@ -359,16 +689,22 @@
             </a>
 
             <div class="language-switch ms-auto me-3" aria-label="Language" data-i18n-aria-label="page.language">
-                <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="language('en')">EN</button>
-                <button class="language-switch__button" type="button" data-language-button="uz" onclick="language('uz')">UZ</button>
+                <button class="language-switch__button is-active" type="button" data-language-button="en"
+                        onclick="language('en')">EN
+                </button>
+                <button class="language-switch__button" type="button" data-language-button="uz"
+                        onclick="language('uz')">UZ
+                </button>
             </div>
 
             <div class="d-lg-none me-4">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile"
+                   data-i18n-aria-label="page.profile"></a>
             </div>
 
             <div class="d-none d-lg-block">
-                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile" data-i18n-aria-label="page.profile"></a>
+                <a href="{% url 'profile' %}" class="navbar-icon bi-person smoothscroll" aria-label="Profile"
+                   data-i18n-aria-label="page.profile"></a>
             </div>
         </div>
     </nav>
@@ -391,14 +727,17 @@
                         </ol>
                     </nav>
 
-                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Inverse Trigonometric Functions</h2>
+                    <h2 class="text-white" data-i18n="page.hero">Introduction to <br>Inverse Trigonometric Functions
+                    </h2>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4" data-i18n="page.readMore">
+                        <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4"
+                           data-i18n="page.readMore">
                             Read More
                         </a>
 
-                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top" data-i18n-aria-label="page.backTop"></a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll" aria-label="Back to top"
+                           data-i18n-aria-label="page.backTop"></a>
                     </div>
                 </div>
 
@@ -414,7 +753,7 @@
             </div>
 
             <div class="practice-strip">
-                <a style="width:300px" href="{% url 'practice' %}?url=inverse_trigonometric_functions"
+                <a style="width:300px;display:inline-flex;align-items:center;justify-content:center;padding:14px 42px;background:linear-gradient(135deg,#0f4c6e 0%,#1e8a8f 100%);color:#fff;font-weight:700;font-size:1rem;letter-spacing:0.06em;border-radius:999px;border:2px solid rgba(255,255,255,0.2);box-shadow:0 8px 28px rgba(15,76,110,0.45),0 2px 8px rgba(0,0,0,0.15);text-decoration:none;" href="{% url 'practice' %}?url=inverse_trigonometric_functions"
                    class="btn custom-btn custom-border-btn"
                    data-i18n="page.practice">
                     Practice with Inverse Trigonometric Functions
@@ -435,34 +774,45 @@
             </p>
 
             <p data-i18n="lesson.intro.p2">
-                Because ordinary trigonometric functions repeat, inverse trigonometric functions must use restricted output ranges.
+                Because ordinary trigonometric functions repeat, inverse trigonometric functions must use restricted
+                output ranges.
                 Those ranges make each inverse function give one principal answer.
             </p>
 
             <div class="callout" data-i18n="lesson.intro.callout">
-                <strong>Main idea:</strong> Inverse trigonometric functions take a ratio or coordinate value and return an angle.
+                <strong>Main idea:</strong> Inverse trigonometric functions take a ratio or coordinate value and return
+                an angle.
             </div>
 
-            <div class="module-tabs" role="tablist" aria-label="Inverse trigonometry modules" data-i18n-aria-label="tabs.aria">
-                <button class="module-tab is-active" type="button" data-module-button="overview" data-i18n="tabs.overview">Overview</button>
-                <button class="module-tab" type="button" data-module-button="arcsin" data-i18n="tabs.arcsin">arcsin</button>
-                <button class="module-tab" type="button" data-module-button="arccos" data-i18n="tabs.arccos">arccos</button>
-                <button class="module-tab" type="button" data-module-button="arctan" data-i18n="tabs.arctan">arctan</button>
-                <button class="module-tab" type="button" data-module-button="arccot" data-i18n="tabs.arccot">arccot</button>
-                <button class="module-tab" type="button" data-module-button="values" data-i18n="tabs.values">Values</button>
-                <button class="module-tab" type="button" data-module-button="cases" data-i18n="tabs.cases">Composition Cases</button>
-                <button class="module-tab" type="button" data-module-button="negative" data-i18n="tabs.negative">Negative Inputs</button>
-                <button class="module-tab" type="button" data-module-button="summary" data-i18n="tabs.summary">Summary</button>
+            <div class="module-tabs" role="tablist" aria-label="Inverse trigonometry modules"
+                 data-i18n-aria-label="tabs.aria">
+                <button class="module-tab is-active" type="button" data-module-button="overview"
+                        data-i18n="tabs.overview">Overview
+                </button>
+                <button class="module-tab" type="button" data-module-button="arcsin" data-i18n="tabs.arcsin">arcsin
+                </button>
+                <button class="module-tab" type="button" data-module-button="arccos" data-i18n="tabs.arccos">arccos
+                </button>
+                <button class="module-tab" type="button" data-module-button="arctan" data-i18n="tabs.arctan">arctan
+                </button>
+                <button class="module-tab" type="button" data-module-button="arccot" data-i18n="tabs.arccot">arccot
+                </button>
+                <button class="module-tab" type="button" data-module-button="values" data-i18n="tabs.values">Values
+                </button>
+                <button class="module-tab" type="button" data-module-button="summary" data-i18n="tabs.summary">Summary
+                </button>
             </div>
         </article>
 
 
         <article class="module-panel is-active" data-module-panel="overview">
             <div class="lesson-card">
-                <h2><span class="badge-num">1</span><span data-i18n="overview.title">What Inverse Trigonometric Functions Mean</span></h2>
+                <h2><span class="badge-num">1</span><span data-i18n="overview.title">What Inverse Trigonometric Functions Mean</span>
+                </h2>
 
                 <p data-i18n="overview.p1">
-                    A normal trigonometric function starts with an angle and gives a value. An inverse trigonometric function starts with a value and gives an angle.
+                    A normal trigonometric function starts with an angle and gives a value. An inverse trigonometric
+                    function starts with a value and gives an angle.
                 </p>
 
                 <div class="simple-table-wrap">
@@ -500,12 +850,14 @@
                 </div>
 
                 <div class="callout" data-i18n="overview.callout">
-                    <strong>Important:</strong> The answer of an inverse trigonometric function is an angle, not a ratio.
+                    <strong>Important:</strong> The answer of an inverse trigonometric function is an angle, not a
+                    ratio.
                 </div>
             </div>
 
             <div class="lesson-card">
-                <h2><span class="badge-num">2</span><span data-i18n="overview.restrict.title">Why We Restrict the Range</span></h2>
+                <h2><span class="badge-num">2</span><span
+                        data-i18n="overview.restrict.title">Why We Restrict the Range</span></h2>
 
                 <p data-i18n="overview.restrict.p1">
                     Trigonometric functions repeat. For example, many different angles can have the same sine value.
@@ -525,12 +877,14 @@
 
                     <div class="rule-card">
                         <strong>\(\arctan x\)</strong>
-                        <p data-i18n="overview.restrict.arctan">Returns angles between \(-90^\circ\) and \(90^\circ\).</p>
+                        <p data-i18n="overview.restrict.arctan">Returns angles between \(-90^\circ\) and
+                            \(90^\circ\).</p>
                     </div>
 
                     <div class="rule-card">
                         <strong>\(\operatorname{arccot}x\)</strong>
-                        <p data-i18n="overview.restrict.arccot">Usually returns angles from \(0^\circ\) to \(180^\circ\).</p>
+                        <p data-i18n="overview.restrict.arccot">Usually returns angles from \(0^\circ\) to
+                            \(180^\circ\).</p>
                     </div>
                 </div>
             </div>
@@ -539,368 +893,1554 @@
 
         <article class="module-panel" data-module-panel="arcsin">
             <div class="lesson-card">
-                <h2><span class="badge-num">3</span><span data-i18n="arcsin.title">Arcsine: \(\arcsin x\)</span></h2>
+                <h2><span class="badge-num">1</span>First, remember what \(\sin(x)\) means</h2>
 
-                <p data-i18n="arcsin.p1">
-                    The function \(\arcsin x\) returns the principal angle whose sine is \(x\).
-                </p>
+                <p>For a right triangle:</p>
 
                 <div class="math-line">
-                    \(y=\arcsin x \quad \Longleftrightarrow \quad \sin y=x\)
+                    \(\sin(\theta)=\frac{\text{opposite}}{\text{hypotenuse}}\)
                 </div>
 
-                <div class="rule-grid">
-                    <div class="rule-card">
-                        <strong data-i18n="common.domain">Domain</strong>
-                        <div class="math-line">\([-1,1]\)</div>
-                    </div>
+                <p>Example:</p>
 
-                    <div class="rule-card">
-                        <strong data-i18n="common.range">Range</strong>
-                        <div class="math-line">\(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)</div>
-                        <p class="mini-note" data-i18n="common.degrees">In degrees: \([-90^\circ,90^\circ]\).</p>
-                    </div>
+                <div class="math-line">
+                    \(\sin(30^\circ)=\frac12\)
                 </div>
 
-                <div class="callout" data-i18n="arcsin.callout">
-                    <strong>Meaning:</strong> \(\arcsin x\) asks: “Which angle between \(-90^\circ\) and \(90^\circ\) has sine \(x\)?”
+                <p>This means:</p>
+
+                <div class="quote-note">
+                    “The sine of \(30^\circ\) equals \(1/2\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Then what is \(\arcsin(x)\)?</h2>
+
+                <div class="math-line">
+                    \(\arcsin(x)\)
+                </div>
+
+                <p>asks the reverse question:</p>
+
+                <div class="quote-note">
+                    “Which angle has sine equal to \(x\)?”
+                </div>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arcsin\left(\frac12\right)=30^\circ\)
+                </div>
+
+                <p>because</p>
+
+                <div class="math-line">
+                    \(\sin(30^\circ)=\frac12\)
                 </div>
 
                 <hr class="section-rule">
 
-                <h3 data-i18n="common.examples">Examples</h3>
+                <h2><span class="badge-num">3</span>Very important idea: inverse ≠ reciprocal</h2>
 
-                <div class="simple-table-wrap">
-                    <table class="simple-table">
-                        <thead>
-                        <tr>
-                            <th data-i18n="common.expression">Expression</th>
-                            <th data-i18n="common.answer">Answer</th>
-                            <th data-i18n="common.reason">Reason</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(\arcsin(0)\)</td>
-                            <td>\(0\)</td>
-                            <td data-i18n="arcsin.e1">Because \(\sin0=0\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arcsin\left(\frac12\right)\)</td>
-                            <td>\(\frac{\pi}{6}\)</td>
-                            <td data-i18n="arcsin.e2">Because \(\sin\frac{\pi}{6}=\frac12\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arcsin(-1)\)</td>
-                            <td>\(-\frac{\pi}{2}\)</td>
-                            <td data-i18n="arcsin.e3">Because \(\sin\left(-\frac{\pi}{2}\right)=-1\).</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <p>Many students confuse these:</p>
+
+                <div class="math-line">
+                    \(\arcsin(x)\ne\frac{1}{\sin(x)}\)
+                </div>
+
+                <p>The reciprocal of sine is:</p>
+
+                <div class="math-line">
+                    \(\csc(x)\)
+                </div>
+
+                <p>while inverse sine means:</p>
+
+                <div class="math-line">
+                    \(\sin^{-1}(x)=\arcsin(x)\)
+                </div>
+
+                <p>which means:</p>
+
+                <div class="quote-note">
+                    “the angle whose sine is \(x\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Why do we even need arcsin?</h2>
+
+                <p>Sometimes we know the ratio but do not know the angle.</p>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\sin(\theta)=0.8\)
+                </div>
+
+                <p>To find the angle:</p>
+
+                <div class="math-line">
+                    \(\theta=\arcsin(0.8)\)
+                </div>
+
+                <p>Calculator:</p>
+
+                <div class="math-line">
+                    \(\theta\approx53.13^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Important restriction <span
+                        style="font-size:.9em;">(VERY IMPORTANT)</span></h2>
+
+                <p>Sine is <strong>not one-to-one</strong> on all real numbers.</p>
+
+                <p>For example:</p>
+
+                <div class="math-line">
+                    \(\sin(30^\circ)=\sin(150^\circ)=\frac12\)
+                </div>
+
+                <p>So if we simply ask:</p>
+
+                <div class="math-line">
+                    \(\arcsin\left(\frac12\right)\)
+                </div>
+
+                <p>which angle should we choose?</p>
+
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>Option 1</strong><span>\(30^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 2</strong><span>\(150^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 3</strong><span>\(390^\circ\)</span></div>
+                </div>
+
+                <div class="callout">
+                    To avoid chaos, mathematics chooses a special interval.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Principal Value of Arcsin</h2>
+
+                <p>For \(\arcsin(x)\), the output angle is restricted to:</p>
+
+                <div class="math-line">
+                    \([-90^\circ,90^\circ]\)
+                </div>
+
+                <p>or in radians:</p>
+
+                <div class="math-line">
+                    \(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)
+                </div>
+
+                <p>This interval is called the <strong>principal branch</strong>.</p>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arcsin\left(\frac12\right)=30^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(150^\circ\).</p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Domain and Range</h2>
+
+                <h3>Domain</h3>
+
+                <p>The input of arcsin must satisfy:</p>
+
+                <div class="math-line">
+                    \(-1\le x\le1\)
+                </div>
+
+                <p>because sine values can never exceed \(1\) or go below \(-1\).</p>
+
+                <p>So:</p>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arcsin(0.2)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arcsin(-1)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon bad">×</span>
+                    <span>impossible:</span>
+                </div>
+                <div class="math-line">\(\arcsin(2)\)</div>
+
+                <h3>Range</h3>
+
+                <div class="math-line">
+                    \(-\frac{\pi}{2}\le y\le\frac{\pi}{2}\)
+                </div>
+
+                <p>or</p>
+
+                <div class="math-line">
+                    \(-90^\circ\le y\le90^\circ\)
+                </div>
+
+                <hr class="section-rule">
+
+                <h3>Useful symmetry rule</h3>
+
+                <p>Arcsine is an odd function, so a negative input gives a negative output:</p>
+
+                <div class="math-line">
+                    \(\arcsin(-x)=-\arcsin(x)\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\arcsin\left(-\frac12\right)=-\arcsin\left(\frac12\right)=-30^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Graph intuition</h2>
+
+                <p>The graph of:</p>
+
+                <div class="math-line">
+                    \(y=\arcsin(x)\)
+                </div>
+
+                <p>is the reflection of the restricted sine graph across:</p>
+
+                <div class="math-line">
+                    \(y=x\)
+                </div>
+
+                <p>because inverse functions swap:</p>
+
+                <ul>
+                    <li>inputs</li>
+                    <li>outputs</li>
+                </ul>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3>Interactive Arcsin Function Graph</h3>
+                    </div>
+
+                    <p style="padding: 10px 22px 0; margin:0;">
+                        Change the sliders to see how the arcsin graph changes. The graph below shows
+                        \(y=a\arcsin(x-h)+k\). The highlighted curve is only drawn where the input is valid.
+                    </p>
+
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arcsinFormula">\(y=1.0\operatorname{arcsin}(x)\)</div>
+
+                            <label class="slider-row">
+                                <span>\(a\)</span>
+                                <output id="arcsinAValue">1.0</output>
+                                <input id="arcsinA" type="range" min="-2" max="2" step="0.1" value="1">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(h\)</span>
+                                <output id="arcsinHValue">0.0</output>
+                                <input id="arcsinH" type="range" min="-8" max="8" step="0.1" value="0">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(k\)</span>
+                                <output id="arcsinKValue">0.0</output>
+                                <input id="arcsinK" type="range" min="-4" max="4" step="0.1" value="0">
+                            </label>
+
+                            <p class="graph-help">
+                                \(a\) stretches or reflects the graph, \(h\) moves the graph left or right,
+                                and \(k\) moves it up or down.
+                            </p>
+
+                            <div id="arcsinDomainWarning" class="domain-warning">
+                                The graph is only drawn for values that satisfy \(-1\le x-h\le1\).
+                            </div>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="arcsinGraphCanvas" width="680" height="420"
+                                    aria-label="Interactive arcsin graph"></canvas>
+                            <div id="arcsinNoAnswer" class="graph-no-answer">
+                                No real value: \(x-h\notin[-1,1]\), so \(\arcsin(x-h)\) is undefined.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Common mistakes</h2>
+
+                <h3>Mistake 1</h3>
+
+                <div class="math-line">
+                    \(\arcsin(\sin x)=x\)
+                </div>
+
+                <p>This is <strong>not always true</strong>.</p>
+
+                <p>It only works when:</p>
+
+                <div class="math-line">
+                    \(x\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\arcsin(\sin150^\circ)\)
+                </div>
+
+                <p>Since:</p>
+
+                <div class="math-line">
+                    \(\sin150^\circ=\frac12\)
+                </div>
+
+                <p>we get:</p>
+
+                <div class="math-line">
+                    \(\arcsin\left(\frac12\right)=30^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(150^\circ\).</p>
+
+                <hr class="section-rule">
+
+                <h3>Mistake 2</h3>
+
+                <p>Thinking arcsin gives a ratio.</p>
+
+                <p>No:</p>
+
+                <ul>
+                    <li>\(\sin(x)\) takes an angle → gives a ratio</li>
+                    <li>\(\arcsin(x)\) takes a ratio → gives an angle</li>
+                </ul>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">10</span>Real interpretation</h2>
+
+                <p>If:</p>
+
+                <div class="math-line">
+                    \(\sin(\theta)=\frac{\text{height}}{\text{distance}}\)
+                </div>
+
+                <p>then:</p>
+
+                <div class="math-line">
+                    \(\theta=\arcsin\left(\frac{\text{height}}{\text{distance}}\right)\)
                 </div>
             </div>
         </article>
-
-
         <article class="module-panel" data-module-panel="arccos">
             <div class="lesson-card">
-                <h2><span class="badge-num">4</span><span data-i18n="arccos.title">Arccosine: \(\arccos x\)</span></h2>
+                <h2><span class="badge-num">1</span>First, remember what \(\cos(x)\) means</h2>
 
-                <p data-i18n="arccos.p1">
-                    The function \(\arccos x\) returns the principal angle whose cosine is \(x\).
-                </p>
+                <p>For a right triangle:</p>
 
                 <div class="math-line">
-                    \(y=\arccos x \quad \Longleftrightarrow \quad \cos y=x\)
+                    \(\cos(\theta)=\frac{\text{adjacent}}{\text{hypotenuse}}\)
                 </div>
 
-                <div class="rule-grid">
-                    <div class="rule-card">
-                        <strong data-i18n="common.domain">Domain</strong>
-                        <div class="math-line">\([-1,1]\)</div>
-                    </div>
+                <p>Example:</p>
 
-                    <div class="rule-card">
-                        <strong data-i18n="common.range">Range</strong>
-                        <div class="math-line">\([0,\pi]\)</div>
-                        <p class="mini-note" data-i18n="arccos.degrees">In degrees: \([0^\circ,180^\circ]\).</p>
-                    </div>
+                <div class="math-line">
+                    \(\cos(60^\circ)=\frac12\)
                 </div>
 
-                <div class="callout" data-i18n="arccos.callout">
-                    <strong>Meaning:</strong> \(\arccos x\) asks: “Which angle between \(0^\circ\) and \(180^\circ\) has cosine \(x\)?”
+                <p>This means:</p>
+
+                <div class="quote-note">
+                    “The cosine of \(60^\circ\) equals \(1/2\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Then what is \(\arccos(x)\)?</h2>
+
+                <div class="math-line">
+                    \(\arccos(x)\)
+                </div>
+
+                <p>asks the reverse question:</p>
+
+                <div class="quote-note">
+                    “Which angle has cosine equal to \(x\)?”
+                </div>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arccos\left(\frac12\right)=60^\circ\)
+                </div>
+
+                <p>because</p>
+
+                <div class="math-line">
+                    \(\cos(60^\circ)=\frac12\)
                 </div>
 
                 <hr class="section-rule">
 
-                <h3 data-i18n="common.examples">Examples</h3>
+                <h2><span class="badge-num">3</span>Very important idea: inverse ≠ reciprocal</h2>
 
-                <div class="simple-table-wrap">
-                    <table class="simple-table">
-                        <thead>
-                        <tr>
-                            <th data-i18n="common.expression">Expression</th>
-                            <th data-i18n="common.answer">Answer</th>
-                            <th data-i18n="common.reason">Reason</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(\arccos(1)\)</td>
-                            <td>\(0\)</td>
-                            <td data-i18n="arccos.e1">Because \(\cos0=1\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arccos\left(\frac12\right)\)</td>
-                            <td>\(\frac{\pi}{3}\)</td>
-                            <td data-i18n="arccos.e2">Because \(\cos\frac{\pi}{3}=\frac12\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arccos(-1)\)</td>
-                            <td>\(\pi\)</td>
-                            <td data-i18n="arccos.e3">Because \(\cos\pi=-1\).</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <p>Many students confuse these:</p>
+
+                <div class="math-line">
+                    \(\arccos(x)\ne\frac{1}{\cos(x)}\)
+                </div>
+
+                <p>The reciprocal of cosine is:</p>
+
+                <div class="math-line">
+                    \(\sec(x)\)
+                </div>
+
+                <p>while inverse cosine means:</p>
+
+                <div class="math-line">
+                    \(\cos^{-1}(x)=\arccos(x)\)
+                </div>
+
+                <p>which means:</p>
+
+                <div class="quote-note">
+                    “the angle whose cosine is \(x\).”
                 </div>
             </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Why do we even need arccos?</h2>
+
+                <p>Sometimes we know the ratio but do not know the angle.</p>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\cos(\theta)=0.3\)
+                </div>
+
+                <p>To find the angle:</p>
+
+                <div class="math-line">
+                    \(\theta=\arccos(0.3)\)
+                </div>
+
+                <p>Calculator:</p>
+
+                <div class="math-line">
+                    \(\theta\approx72.54^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Important restriction <span
+                        style="font-size:.9em;">(VERY IMPORTANT)</span></h2>
+
+                <p>Cosine is <strong>not one-to-one</strong> on all real numbers.</p>
+
+                <p>For example:</p>
+
+                <div class="math-line">
+                    \(\cos(60^\circ)=\cos(300^\circ)=\frac12\)
+                </div>
+
+                <p>So if we simply ask:</p>
+
+                <div class="math-line">
+                    \(\arccos\left(\frac12\right)\)
+                </div>
+
+                <p>which angle should we choose?</p>
+
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>Option 1</strong><span>\(60^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 2</strong><span>\(300^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 3</strong><span>\(420^\circ\)</span></div>
+                </div>
+
+                <div class="callout">
+                    To avoid ambiguity, mathematics chooses a special interval.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Principal Value of Arccos</h2>
+
+                <p>For \(\arccos(x)\), the output angle is restricted to:</p>
+
+                <div class="math-line">
+                    \([0^\circ,180^\circ]\)
+                </div>
+
+                <p>or in radians:</p>
+
+                <div class="math-line">
+                    \([0,\pi]\)
+                </div>
+
+                <p>This interval is called the <strong>principal branch</strong>.</p>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arccos\left(\frac12\right)=60^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(300^\circ\).</p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Domain and Range</h2>
+
+                <h3>Domain</h3>
+
+                <p>The input of arccos must satisfy:</p>
+
+                <div class="math-line">
+                    \(-1\le x\le1\)
+                </div>
+
+                <p>because cosine values can never exceed \(1\) or go below \(-1\).</p>
+
+                <p>So:</p>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arccos(0.8)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arccos(-1)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon bad">×</span>
+                    <span>impossible:</span>
+                </div>
+                <div class="math-line">\(\arccos(5)\)</div>
+
+                <hr class="section-rule">
+
+                <h3>Range</h3>
+
+                <div class="math-line">
+                    \(0\le y\le\pi\)
+                </div>
+
+                <p>or</p>
+
+                <div class="math-line">
+                    \(0^\circ\le y\le180^\circ\)
+                </div>
+
+                <hr class="section-rule">
+
+                <h3>Useful symmetry rule</h3>
+
+                <p>Unlike arcsin, the negative sign does not come outside directly. For arccos we use:</p>
+
+                <div class="math-line">
+                    \(\arccos(-x)=\pi-\arccos(x)\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\arccos\left(-\frac12\right)=\pi-\arccos\left(\frac12\right)=120^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Graph intuition</h2>
+
+                <p>The graph of:</p>
+
+                <div class="math-line">
+                    \(y=\arccos(x)\)
+                </div>
+
+                <p>is the reflection of the restricted cosine graph across:</p>
+
+                <div class="math-line">
+                    \(y=x\)
+                </div>
+
+                <p>because inverse functions swap:</p>
+
+                <ul>
+                    <li>inputs</li>
+                    <li>outputs</li>
+                </ul>
+
+                <p>Unlike arcsin, the arccos graph is <strong>decreasing</strong>.</p>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3>Interactive Arccos Function Graph</h3>
+                    </div>
+
+                    <p style="padding: 10px 22px 0; margin:0;">
+                        Change the sliders to see how the arccos graph changes. The graph below shows
+                        \(y=a\arccos(x-h)+k\). The highlighted curve is only drawn where the input is valid.
+                    </p>
+
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arccosFormula">\(y=1.0\operatorname{arccos}\left(x\right)\)
+                            </div>
+
+                            <label class="slider-row">
+                                <span>\(a\)</span>
+                                <output id="arccosAValue">1.0</output>
+                                <input id="arccosA" type="range" min="-2" max="2" step="0.1" value="1">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(h\)</span>
+                                <output id="arccosHValue">0.0</output>
+                                <input id="arccosH" type="range" min="-8" max="8" step="0.1" value="0">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(k\)</span>
+                                <output id="arccosKValue">0.0</output>
+                                <input id="arccosK" type="range" min="-4" max="4" step="0.1" value="0">
+                            </label>
+
+                            <p class="graph-help">
+                                \(a\) stretches or reflects the graph, \(h\) moves the graph left or right,
+                                and \(k\) moves it up or down.
+                            </p>
+
+                            <div id="arccosDomainWarning" class="domain-warning">
+                                The graph is only drawn for values that satisfy \(-1\le x-h\le1\).
+                            </div>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="arccosGraphCanvas" width="680" height="420"
+                                    aria-label="Interactive arccos graph"></canvas>
+                            <div id="arccosNoAnswer" class="graph-no-answer">
+                                No real value: \(x-h\notin[-1,1]\), so \(\arccos(x-h)\) is undefined.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Common mistakes</h2>
+
+                <h3>Mistake 1</h3>
+
+                <div class="math-line">
+                    \(\arccos(\cos x)=x\)
+                </div>
+
+                <p>This is <strong>not always true</strong>.</p>
+
+                <p>It only works when:</p>
+
+                <div class="math-line">
+                    \(x\in[0,\pi]\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\arccos(\cos300^\circ)\)
+                </div>
+
+                <p>Since:</p>
+
+                <div class="math-line">
+                    \(\cos300^\circ=\frac12\)
+                </div>
+
+                <p>we get:</p>
+
+                <div class="math-line">
+                    \(\arccos\left(\frac12\right)=60^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(300^\circ\).</p>
+
+                <hr class="section-rule">
+
+                <h3>Mistake 2</h3>
+
+                <p>Thinking arccos gives a ratio.</p>
+
+                <p>No:</p>
+
+                <ul>
+                    <li>\(\cos(x)\) takes an angle → gives a ratio</li>
+                    <li>\(\arccos(x)\) takes a ratio → gives an angle</li>
+                </ul>
+            </div>
         </article>
-
-
         <article class="module-panel" data-module-panel="arctan">
             <div class="lesson-card">
-                <h2><span class="badge-num">5</span><span data-i18n="arctan.title">Arctangent: \(\arctan x\)</span></h2>
+                <h2><span class="badge-num">1</span>First, remember what \(\tan(x)\) means</h2>
 
-                <p data-i18n="arctan.p1">
-                    The function \(\arctan x\) returns the principal angle whose tangent is \(x\).
-                </p>
+                <p>For a right triangle:</p>
 
                 <div class="math-line">
-                    \(y=\arctan x \quad \Longleftrightarrow \quad \tan y=x\)
+                    \(\tan(\theta)=\frac{\text{opposite}}{\text{adjacent}}\)
                 </div>
 
-                <div class="rule-grid">
-                    <div class="rule-card">
-                        <strong data-i18n="common.domain">Domain</strong>
-                        <div class="math-line">\((-\infty,\infty)\)</div>
-                    </div>
+                <p>Example:</p>
 
-                    <div class="rule-card">
-                        <strong data-i18n="common.range">Range</strong>
-                        <div class="math-line">\(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)</div>
-                        <p class="mini-note" data-i18n="arctan.degrees">In degrees: \((-90^\circ,90^\circ)\).</p>
-                    </div>
+                <div class="math-line">
+                    \(\tan(45^\circ)=1\)
                 </div>
 
-                <div class="callout" data-i18n="arctan.callout">
-                    <strong>Meaning:</strong> \(\arctan x\) asks: “Which angle between \(-90^\circ\) and \(90^\circ\), not including the endpoints, has tangent \(x\)?”
-                </div>
+                <p>This means:</p>
 
-                <hr class="section-rule">
-
-                <h3 data-i18n="common.examples">Examples</h3>
-
-                <div class="simple-table-wrap">
-                    <table class="simple-table">
-                        <thead>
-                        <tr>
-                            <th data-i18n="common.expression">Expression</th>
-                            <th data-i18n="common.answer">Answer</th>
-                            <th data-i18n="common.reason">Reason</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(\arctan(0)\)</td>
-                            <td>\(0\)</td>
-                            <td data-i18n="arctan.e1">Because \(\tan0=0\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arctan(1)\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                            <td data-i18n="arctan.e2">Because \(\tan\frac{\pi}{4}=1\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arctan(-\sqrt3)\)</td>
-                            <td>\(-\frac{\pi}{3}\)</td>
-                            <td data-i18n="arctan.e3">Because \(\tan\left(-\frac{\pi}{3}\right)=-\sqrt3\).</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="quote-note">
+                    “The tangent of \(45^\circ\) equals \(1\).”
                 </div>
             </div>
-        </article>
 
-
-        <article class="module-panel" data-module-panel="arccot">
             <div class="lesson-card">
-                <h2><span class="badge-num">6</span><span data-i18n="arccot.title">Arccotangent: \(\operatorname{arccot}x\)</span></h2>
-
-                <p data-i18n="arccot.p1">
-                    The function \(\operatorname{arccot}x\) returns the principal angle whose cotangent is \(x\).
-                    Different textbooks sometimes choose different ranges, but the most common school convention is \((0,\pi)\).
-                </p>
+                <h2><span class="badge-num">2</span>Then what is \(\arctan(x)\)?</h2>
 
                 <div class="math-line">
-                    \(y=\operatorname{arccot}x \quad \Longleftrightarrow \quad \cot y=x\)
+                    \(\arctan(x)\)
                 </div>
 
-                <div class="rule-grid">
-                    <div class="rule-card">
-                        <strong data-i18n="common.domain">Domain</strong>
-                        <div class="math-line">\((-\infty,\infty)\)</div>
-                    </div>
+                <p>asks the reverse question:</p>
 
-                    <div class="rule-card">
-                        <strong data-i18n="common.range">Range</strong>
-                        <div class="math-line">\((0,\pi)\)</div>
-                        <p class="mini-note" data-i18n="arccot.degrees">In degrees: \((0^\circ,180^\circ)\).</p>
-                    </div>
+                <div class="quote-note">
+                    “Which angle has tangent equal to \(x\)?”
                 </div>
 
-                <div class="callout" data-i18n="arccot.callout">
-                    <strong>Meaning:</strong> \(\operatorname{arccot}x\) asks: “Which angle between \(0^\circ\) and \(180^\circ\), not including the endpoints, has cotangent \(x\)?”
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arctan(1)=45^\circ\)
                 </div>
+
+                <p>because</p>
+
+                <div class="math-line">
+                    \(\tan(45^\circ)=1\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span>Very important idea: inverse ≠ reciprocal</h2>
+
+                <p>Many students confuse these:</p>
+
+                <div class="math-line">
+                    \(\arctan(x)\ne\frac{1}{\tan(x)}\)
+                </div>
+
+                <p>The reciprocal of tangent is:</p>
+
+                <div class="math-line">
+                    \(\cot(x)\)
+                </div>
+
+                <p>while inverse tangent means:</p>
+
+                <div class="math-line">
+                    \(\tan^{-1}(x)=\arctan(x)\)
+                </div>
+
+                <p>which means:</p>
+
+                <div class="quote-note">
+                    “the angle whose tangent is \(x\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Why do we even need arctan?</h2>
+
+                <p>Sometimes we know the ratio but do not know the angle.</p>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\tan(\theta)=2\)
+                </div>
+
+                <p>To find the angle:</p>
+
+                <div class="math-line">
+                    \(\theta=\arctan(2)\)
+                </div>
+
+                <p>Calculator:</p>
+
+                <div class="math-line">
+                    \(\theta\approx63.43^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Important restriction <span
+                        style="font-size:.9em;">(VERY IMPORTANT)</span></h2>
+
+                <p>Tangent is not one-to-one on all real numbers.</p>
+
+                <p>For example:</p>
+
+                <div class="math-line">
+                    \(\tan(45^\circ)=\tan(225^\circ)=1\)
+                </div>
+
+                <p>So if we ask:</p>
+
+                <div class="math-line">
+                    \(\arctan(1)\)
+                </div>
+
+                <p>which angle should we choose?</p>
+
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>Option 1</strong><span>\(45^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 2</strong><span>\(225^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 3</strong><span>\(405^\circ\)</span></div>
+                </div>
+
+                <div class="callout">
+                    To avoid ambiguity, mathematics chooses a special interval.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Principal Value of Arctan</h2>
+
+                <p>For \(\arctan(x)\), the output angle is restricted to:</p>
+
+                <div class="math-line">
+                    \((-90^\circ,90^\circ)\)
+                </div>
+
+                <p>or in radians:</p>
+
+                <div class="math-line">
+                    \(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)
+                </div>
+
+                <p>This interval is called the principal branch.</p>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\arctan(1)=45^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(225^\circ\).</p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Domain and Range</h2>
+
+                <h3>Domain</h3>
+
+                <p>The input of arctan can be any real number.</p>
+
+                <div class="math-line">
+                    \(-\infty < x < \infty\)
+                </div>
+
+                <p>So:</p>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arctan(0.5)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arctan(-10)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\arctan(1000)\)</div>
+
+                <p>Unlike arcsin and arccos, there are no restrictions on the input.</p>
 
                 <hr class="section-rule">
 
-                <h3 data-i18n="common.examples">Examples</h3>
+                <h3>Range</h3>
 
-                <div class="simple-table-wrap">
-                    <table class="simple-table">
-                        <thead>
-                        <tr>
-                            <th data-i18n="common.expression">Expression</th>
-                            <th data-i18n="common.answer">Answer</th>
-                            <th data-i18n="common.reason">Reason</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(\operatorname{arccot}(1)\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                            <td data-i18n="arccot.e1">Because \(\cot\frac{\pi}{4}=1\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\operatorname{arccot}(0)\)</td>
-                            <td>\(\frac{\pi}{2}\)</td>
-                            <td data-i18n="arccot.e2">Because \(\cot\frac{\pi}{2}=0\).</td>
-                        </tr>
-                        <tr>
-                            <td>\(\operatorname{arccot}(-1)\)</td>
-                            <td>\(\frac{3\pi}{4}\)</td>
-                            <td data-i18n="arccot.e3">Because \(\cot\frac{3\pi}{4}=-1\).</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="math-line">
+                    \(-\frac{\pi}{2} < y < \frac{\pi}{2}\)
                 </div>
+
+                <p>or</p>
+
+                <div class="math-line">
+                    \(-90^\circ < y < 90^\circ\)
+                </div>
+
+                <p>Notice that:</p>
+
+                <div class="math-line">
+                    \(\pm90^\circ\)
+                </div>
+
+                <p>are <strong>not</strong> included because tangent is undefined there.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Graph intuition</h2>
+
+                <p>The graph of:</p>
+
+                <div class="math-line">
+                    \(y=\arctan(x)\)
+                </div>
+
+                <p>is the reflection of the restricted tangent graph across:</p>
+
+                <div class="math-line">
+                    \(y=x\)
+                </div>
+
+                <p>because inverse functions swap:</p>
+
+                <ul>
+                    <li>inputs</li>
+                    <li>outputs</li>
+                </ul>
+
+                <p>Unlike arcsin and arccos, the arctan graph extends infinitely left and right.</p>
+
+                <p>It also approaches horizontal asymptotes at:</p>
+
+                <div class="math-line">
+                    \(y=\pm\frac{\pi}{2}\)
+                </div>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3>Interactive Arctan Function Graph</h3>
+                    </div>
+
+                    <p style="padding: 10px 22px 0; margin:0;">
+                        Change the sliders to see how the arctan graph changes. The graph below shows
+                        \(y=a\arctan(x-h)+k\). Dashed horizontal lines show the asymptotes.
+                    </p>
+
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arctanFormula">\(y=1.0\operatorname{arctan}\left(x\right)\)
+                            </div>
+
+                            <label class="slider-row">
+                                <span>\(a\)</span>
+                                <output id="arctanAValue">1.0</output>
+                                <input id="arctanA" type="range" min="-2" max="2" step="0.1" value="1">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(h\)</span>
+                                <output id="arctanHValue">0.0</output>
+                                <input id="arctanH" type="range" min="-8" max="8" step="0.1" value="0">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(k\)</span>
+                                <output id="arctanKValue">0.0</output>
+                                <input id="arctanK" type="range" min="-4" max="4" step="0.1" value="0">
+                            </label>
+
+                            <p class="graph-help">
+                                \(a\) stretches or reflects the graph, \(h\) moves the graph left or right,
+                                and \(k\) moves it up or down.
+                            </p>
+
+                            <p class="graph-help">
+                                Horizontal asymptotes: \(y=k\pm a\frac{\pi}{2}\).
+                            </p>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="arctanGraphCanvas" width="680" height="420"
+                                    aria-label="Interactive arctan graph"></canvas>
+                            <div id="arctanNoAnswer" class="graph-no-answer">
+                                No visible real values: the graph is outside the displayed range.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Common mistakes</h2>
+
+                <h3>Mistake 1</h3>
+
+                <div class="math-line">
+                    \(\arctan(\tan x)=x\)
+                </div>
+
+                <p>This is not always true.</p>
+
+                <p>It only works when:</p>
+
+                <div class="math-line">
+                    \(x\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\arctan(\tan225^\circ)\)
+                </div>
+
+                <p>Since:</p>
+
+                <div class="math-line">
+                    \(\tan(225^\circ)=1\)
+                </div>
+
+                <p>we get:</p>
+
+                <div class="math-line">
+                    \(\arctan(1)=45^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(225^\circ\).</p>
+
+                <hr class="section-rule">
+
+                <h3>Mistake 2</h3>
+
+                <p>Thinking arctan gives a ratio.</p>
+
+                <p>No:</p>
+
+                <ul>
+                    <li>\(\tan(x)\) takes an angle → gives a ratio</li>
+                    <li>\(\arctan(x)\) takes a ratio → gives an angle</li>
+                </ul>
+            </div>
+        </article>
+        <article class="module-panel" data-module-panel="arccot">
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span>First, remember what \(\cot(x)\) means</h2>
+
+                <p>For a right triangle:</p>
+
+                <div class="math-line">
+                    \(\cot(\theta)=\frac{\text{adjacent}}{\text{opposite}}\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=1\)
+                </div>
+
+                <p>This means:</p>
+
+                <div class="quote-note">
+                    “The cotangent of \(45^\circ\) equals \(1\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Then what is \(\operatorname{arccot}(x)\)?</h2>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(x)\)
+                </div>
+
+                <p>asks the reverse question:</p>
+
+                <div class="quote-note">
+                    “Which angle has cotangent equal to \(x\)?”
+                </div>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p>because</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=1\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span>Very important idea: inverse ≠ reciprocal</h2>
+
+                <p>Many students confuse these:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(x)\ne\frac{1}{\cot(x)}\)
+                </div>
+
+                <p>The reciprocal of cotangent is:</p>
+
+                <div class="math-line">
+                    \(\tan(x)\)
+                </div>
+
+                <p>while inverse cotangent means:</p>
+
+                <div class="math-line">
+                    \(\cot^{-1}(x)=\operatorname{arccot}(x)\)
+                </div>
+
+                <p>which means:</p>
+
+                <div class="quote-note">
+                    “the angle whose cotangent is \(x\).”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Why do we even need arccot?</h2>
+
+                <p>Sometimes we know the ratio but do not know the angle.</p>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\cot(\theta)=2\)
+                </div>
+
+                <p>To find the angle:</p>
+
+                <div class="math-line">
+                    \(\theta=\operatorname{arccot}(2)\)
+                </div>
+
+                <p>Calculator:</p>
+
+                <div class="math-line">
+                    \(\theta\approx26.57^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Important restriction <span
+                        style="font-size:.9em;">(VERY IMPORTANT)</span></h2>
+
+                <p>Cotangent is not one-to-one on all real numbers.</p>
+
+                <p>For example:</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=\cot(225^\circ)=1\)
+                </div>
+
+                <p>So if we ask:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)\)
+                </div>
+
+                <p>which angle should we choose?</p>
+
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>Option 1</strong><span>\(45^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 2</strong><span>\(225^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>Option 3</strong><span>\(405^\circ\)</span></div>
+                </div>
+
+                <div class="callout">
+                    To avoid ambiguity, mathematics chooses a special interval.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Principal Value of Arccot</h2>
+
+                <p>For \(\operatorname{arccot}(x)\), we use this principal range:</p>
+
+                <div class="math-line">
+                    \((0^\circ,180^\circ)\)
+                </div>
+
+                <p>or in radians:</p>
+
+                <div class="math-line">
+                    \((0,\pi)\)
+                </div>
+
+                <p>This interval is called the principal branch.</p>
+
+                <p>So:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(225^\circ\).</p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Domain and Range</h2>
+
+                <h3>Domain</h3>
+
+                <p>The input of arccot can be any real number.</p>
+
+                <div class="math-line">
+                    \(-\infty < x < \infty\)
+                </div>
+
+                <p>So:</p>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(1)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(0)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>possible:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(-10)\)</div>
+
+                <p>Like arctan, arccot has no restriction on the input.</p>
+
+                <hr class="section-rule">
+
+                <h3>Range</h3>
+
+                <div class="math-line">
+                    \(0 < y < \pi\)
+                </div>
+
+                <p>or</p>
+
+                <div class="math-line">
+                    \(0^\circ < y < 180^\circ\)
+                </div>
+
+                <p>Notice that:</p>
+
+                <div class="math-line">
+                    \(0^\circ\text{ and }180^\circ\)
+                </div>
+
+                <p>are <strong>not</strong> included because cotangent is undefined there.</p>
+
+                <hr class="section-rule">
+
+                <h3>Useful symmetry rule</h3>
+
+                <p>For this principal range, the negative-input rule is:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(-x)=\pi-\operatorname{arccot}(x)\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(-1)=\pi-\operatorname{arccot}(1)=\frac{3\pi}{4}\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Graph intuition</h2>
+
+                <p>The graph of:</p>
+
+                <div class="math-line">
+                    \(y=\operatorname{arccot}(x)\)
+                </div>
+
+                <p>is the reflection of the restricted cotangent graph across:</p>
+
+                <div class="math-line">
+                    \(y=x\)
+                </div>
+
+                <p>because inverse functions swap:</p>
+
+                <ul>
+                    <li>inputs</li>
+                    <li>outputs</li>
+                </ul>
+
+                <p>The arccot graph is decreasing.</p>
+
+                <p>It approaches horizontal asymptotes at:</p>
+
+                <div class="math-line">
+                    \(y=0\quad\text{and}\quad y=\pi\)
+                </div>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3>Interactive Arccot Function Graph</h3>
+                    </div>
+
+                    <p style="padding: 10px 22px 0; margin:0;">
+                        Change the sliders to see how the arccot graph changes. The graph below shows
+                        \(y=a\operatorname{arccot}(x-h)+k\). Dashed horizontal lines show the asymptotes.
+                    </p>
+
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arccotFormula">\(y=1.0\operatorname{arccot}\left(x\right)\)
+                            </div>
+
+                            <label class="slider-row">
+                                <span>\(a\)</span>
+                                <output id="arccotAValue">1.0</output>
+                                <input id="arccotA" type="range" min="-2" max="2" step="0.1" value="1">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(h\)</span>
+                                <output id="arccotHValue">0.0</output>
+                                <input id="arccotH" type="range" min="-8" max="8" step="0.1" value="0">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(k\)</span>
+                                <output id="arccotKValue">0.0</output>
+                                <input id="arccotK" type="range" min="-4" max="4" step="0.1" value="0">
+                            </label>
+
+                            <p class="graph-help">
+                                \(a\) stretches or reflects the graph, \(h\) moves the graph left or right,
+                                and \(k\) moves it up or down.
+                            </p>
+
+                            <p class="graph-help">
+                                Horizontal asymptotes: \(y=k\) and \(y=k+a\pi\).
+                            </p>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="arccotGraphCanvas" width="680" height="420"
+                                    aria-label="Interactive arccot graph"></canvas>
+                            <div id="arccotNoAnswer" class="graph-no-answer">
+                                No visible real values: the graph is outside the displayed range.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Common mistakes</h2>
+
+                <h3>Mistake 1</h3>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(\cot x)=x\)
+                </div>
+
+                <p>This is not always true.</p>
+
+                <p>It only works when:</p>
+
+                <div class="math-line">
+                    \(x\in(0,\pi)\)
+                </div>
+
+                <p>Example:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(\cot225^\circ)\)
+                </div>
+
+                <p>Since:</p>
+
+                <div class="math-line">
+                    \(\cot(225^\circ)=1\)
+                </div>
+
+                <p>we get:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p><strong>NOT</strong> \(225^\circ\).</p>
+
+                <hr class="section-rule">
+
+                <h3>Mistake 2</h3>
+
+                <p>Thinking arccot gives a ratio.</p>
+
+                <p>No:</p>
+
+                <ul>
+                    <li>\(\cot(x)\) takes an angle → gives a ratio</li>
+                    <li>\(\operatorname{arccot}(x)\) takes a ratio → gives an angle</li>
+                </ul>
             </div>
         </article>
 
 
         <article class="module-panel" data-module-panel="values">
             <div class="lesson-card">
-                <h2><span class="badge-num">7</span><span data-i18n="values.title">Important Values</span></h2>
+                <h2><span data-i18n="values.title">Important Values</span></h2>
 
-                <p data-i18n="values.p1">
-                    These values are very common. The outputs are principal angles.
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3 data-i18n="values.explorerTitle">Special-Angle Value Explorer</h3>
+                    </div>
+
+                    <div class="graph-maker-body value-explorer-layout">
+                        <div class="graph-controls">
+                            <div class="value-control-group">
+                                <label>
+                                    <strong data-i18n="values.chooseFunction">Choose function</strong>
+                                    <select id="valueFunctionSelect" class="value-select">
+                                        <option value="sin">\(\sin(\theta)\)</option>
+                                        <option value="cos">\(\cos(\theta)\)</option>
+                                        <option value="tan">\(\tan(\theta)\)</option>
+                                        <option value="cot">\(\cot(\theta)\)</option>
+                                    </select>
+                                </label>
+
+                                <label>
+                                    <strong data-i18n="values.changeAngle">Change input angle in degrees</strong>
+                                    <div class="value-slider-row">
+                                        <input id="valueAngleSelect" type="range" min="-90" max="90" step="1" value="30"
+                                               list="valueAngleTicks">
+                                        <datalist id="valueAngleTicks">
+                                            <option value="-90"></option>
+                                            <option value="-60"></option>
+                                            <option value="-30"></option>
+                                            <option value="0"></option>
+                                            <option value="30"></option>
+                                            <option value="60"></option>
+                                            <option value="90"></option>
+                                        </datalist>
+                                        <output id="valueAngleOutput" class="value-angle-output">30°</output>
+                                        <div class="value-range-scale" id="valueRangeScale" aria-hidden="true">
+                                            <span>-90°</span><span>-60°</span><span>-30°</span><span>0°</span><span>30°</span><span>60°</span><span>90°</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="value-result-box" id="valueResultBox">
+                                <div class="value-result-line value-formula-line" id="valueResultExpression">
+                                    \(\sin(30^\circ)=\frac12\)
+                                </div>
+                                <div class="value-result-line" id="valueResultValue">
+                                    <span class="value-label">Value:</span>
+                                    <span class="value-math">\(\frac12\)</span>
+                                </div>
+                            </div>
+
+                            <p class="graph-help" data-i18n="values.sliderHelp">
+                                Move the slider through the valid angle range for the selected function. Decimal values
+                                update for every whole degree. Exact values appear only for common \(15^\circ\) special
+                                angles.
+                            </p>
+
+                            <p class="graph-help" data-i18n="values.explorerHelp">
+                                This helps you learn the values that are most useful for inverse trigonometric
+                                functions.
+                            </p>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="valueGraphCanvas" width="680" height="420"
+                                    aria-label="Interactive special angle value graph"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span><span data-i18n="values.tableTitle">All Special Values for the Selected Function</span>
+                </h2>
+
+                <p class="mini-note" data-i18n="values.tableNote">
+                    The table below updates when you change the function. It lists all values at \(15^\circ\)-intervals
+                    from \(0^\circ\) to \(360^\circ\).
                 </p>
 
                 <div class="simple-table-wrap">
-                    <table class="simple-table">
+                    <table class="simple-table" id="valueExplorerTable">
                         <thead>
                         <tr>
-                            <th>\(x\)</th>
-                            <th>\(\arcsin x\)</th>
-                            <th>\(\arccos x\)</th>
-                            <th>\(\arctan x\)</th>
-                            <th>\(\operatorname{arccot}x\)</th>
+                            <th data-i18n="values.table.angle">Angle</th>
+                            <th data-i18n="values.table.exact">Exact value</th>
+                            <th data-i18n="values.table.decimal">Decimal value</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(-1\)</td>
-                            <td>\(-\frac{\pi}{2}\)</td>
-                            <td>\(\pi\)</td>
-                            <td>\(-\frac{\pi}{4}\)</td>
-                            <td>\(\frac{3\pi}{4}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(-\frac{\sqrt3}{3}\)</td>
-                            <td data-i18n="values.notBasic">not a basic arcsin value</td>
-                            <td data-i18n="values.notBasic">not a basic arccos value</td>
-                            <td>\(-\frac{\pi}{6}\)</td>
-                            <td>\(\frac{2\pi}{3}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(0\)</td>
-                            <td>\(0\)</td>
-                            <td>\(\frac{\pi}{2}\)</td>
-                            <td>\(0\)</td>
-                            <td>\(\frac{\pi}{2}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(\frac12\)</td>
-                            <td>\(\frac{\pi}{6}\)</td>
-                            <td>\(\frac{\pi}{3}\)</td>
-                            <td data-i18n="values.notBasic">not a basic arctan value</td>
-                            <td data-i18n="values.notBasic">not a basic arccot value</td>
-                        </tr>
-                        <tr>
-                            <td>\(\frac{\sqrt2}{2}\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                            <td data-i18n="values.notBasic">not a basic arctan value</td>
-                            <td data-i18n="values.notBasic">not a basic arccot value</td>
-                        </tr>
-                        <tr>
-                            <td>\(\frac{\sqrt3}{2}\)</td>
-                            <td>\(\frac{\pi}{3}\)</td>
-                            <td>\(\frac{\pi}{6}\)</td>
-                            <td data-i18n="values.notBasic">not a basic arctan value</td>
-                            <td data-i18n="values.notBasic">not a basic arccot value</td>
-                        </tr>
-                        <tr>
-                            <td>\(1\)</td>
-                            <td>\(\frac{\pi}{2}\)</td>
-                            <td>\(0\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                            <td>\(\frac{\pi}{4}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(\sqrt3\)</td>
-                            <td data-i18n="values.outOfDomain">outside domain</td>
-                            <td data-i18n="values.outOfDomain">outside domain</td>
-                            <td>\(\frac{\pi}{3}\)</td>
-                            <td>\(\frac{\pi}{6}\)</td>
-                        </tr>
-                        </tbody>
+                        <tbody id="valueExplorerTableBody"></tbody>
                     </table>
-                </div>
-
-                <div class="callout" data-i18n="values.callout">
-                    <strong>Remember:</strong> \(\arcsin x\) and \(\arccos x\) only accept inputs from \([-1,1]\), but \(\arctan x\) and \(\operatorname{arccot}x\) accept all real inputs.
                 </div>
             </div>
         </article>
 
 
-
-
-
-
         <article class="module-panel" data-module-panel="cases">
             <div class="lesson-card">
-                <h2><span class="badge-num">8</span><span data-i18n="cases.title">Five Common Problem Types in Inverse Trigonometry</span></h2>
+                <h2><span class="badge-num">8</span><span data-i18n="cases.title">Five Common Problem Types in Inverse Trigonometry</span>
+                </h2>
 
                 <p data-i18n="cases.p1">
-                    In inverse trigonometric functions, most mistakes happen because students try to memorize answers without checking
-                    the domain, the principal range, and the order of the functions. This section shows the most common problem types
+                    In inverse trigonometric functions, most mistakes happen because students try to memorize answers
+                    without checking
+                    the domain, the principal range, and the order of the functions. This section shows the most common
+                    problem types
                     and how to solve them step by step.
                 </p>
 
                 <div class="callout" data-i18n="cases.mainCallout">
-                    <strong>Core habit:</strong> Always ask two questions: “Is the input allowed?” and “Is the final angle inside the principal range?”
+                    <strong>Core habit:</strong> Always ask two questions: “Is the input allowed?” and “Is the final
+                    angle inside the principal range?”
                 </div>
 
                 <hr class="section-rule">
@@ -916,10 +2456,18 @@
                 </div>
 
                 <div class="steps">
-                    <div class="step" data-i18n="cases.problem1.s1">First identify the function: \(\arcsin\) means “the angle whose sine is the input.”</div>
-                    <div class="step" data-i18n="cases.problem1.s2">Check the input: \(\frac12\) is allowed because it is between \(-1\) and \(1\).</div>
-                    <div class="step" data-i18n="cases.problem1.s3">Use the principal range of \(\arcsin\): \(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\).</div>
-                    <div class="step" data-i18n="cases.problem1.s4">Find the angle in that range whose sine is \(\frac12\): that angle is \(\frac{\pi}{6}\).</div>
+                    <div class="step" data-i18n="cases.problem1.s1">First identify the function: \(\arcsin\) means “the
+                        angle whose sine is the input.”
+                    </div>
+                    <div class="step" data-i18n="cases.problem1.s2">Check the input: \(\frac12\) is allowed because it
+                        is between \(-1\) and \(1\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem1.s3">Use the principal range of \(\arcsin\):
+                        \(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem1.s4">Find the angle in that range whose sine is
+                        \(\frac12\): that angle is \(\frac{\pi}{6}\).
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem1.answer">
@@ -927,7 +2475,8 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.problem1.nuance">
-                    <strong>Nuance:</strong> \(\arcsin\left(\frac12\right)\) is not asking for every angle with sine \(\frac12\). It asks for the principal angle only.
+                    <strong>Nuance:</strong> \(\arcsin\left(\frac12\right)\) is not asking for every angle with sine
+                    \(\frac12\). It asks for the principal angle only.
                 </div>
 
                 <hr class="section-rule">
@@ -953,7 +2502,8 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.problem2.nuance">
-                    <strong>Nuance:</strong> \(\arcsin x\) and \(\arccos x\) require \(-1\le x\le1\). But \(\arctan x\) and \(\operatorname{arccot}x\) accept all real inputs.
+                    <strong>Nuance:</strong> \(\arcsin x\) and \(\arccos x\) require \(-1\le x\le1\). But \(\arctan x\)
+                    and \(\operatorname{arccot}x\) accept all real inputs.
                 </div>
 
                 <hr class="section-rule">
@@ -961,7 +2511,8 @@
                 <h3 data-i18n="cases.problem3.title">Problem Type 3: Trig Outside Inverse Trig</h3>
 
                 <p data-i18n="cases.problem3.p1">
-                    If the outside trig function matches the inside inverse trig function, the expression usually simplifies directly.
+                    If the outside trig function matches the inside inverse trig function, the expression usually
+                    simplifies directly.
                 </p>
 
                 <div class="math-line">
@@ -972,7 +2523,9 @@
                     <div class="step" data-i18n="cases.problem3.s1">Let \(\theta=\arccos x\).</div>
                     <div class="step" data-i18n="cases.problem3.s2">Then \(\cos\theta=x\).</div>
                     <div class="step" data-i18n="cases.problem3.s3">So \(\cos(\arccos x)=x\).</div>
-                    <div class="step" data-i18n="cases.problem3.s4">But remember the input restriction: \(x\) must be between \(-1\) and \(1\).</div>
+                    <div class="step" data-i18n="cases.problem3.s4">But remember the input restriction: \(x\) must be
+                        between \(-1\) and \(1\).
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem3.answer">
@@ -980,7 +2533,8 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.problem3.nuance">
-                    <strong>Nuance:</strong> This type is usually direct because the outside function cancels the inside inverse function on its valid domain.
+                    <strong>Nuance:</strong> This type is usually direct because the outside function cancels the inside
+                    inverse function on its valid domain.
                 </div>
 
                 <hr class="section-rule">
@@ -988,7 +2542,8 @@
                 <h3 data-i18n="cases.problem4.title">Problem Type 4: Inverse Trig Outside Trig</h3>
 
                 <p data-i18n="cases.problem4.p1">
-                    This is the tricky case you mentioned. \(\arccos(\cos x)\) is not always \(x\), because \(\arccos\) only returns angles from \(0\) to \(\pi\).
+                    This is the tricky case you mentioned. \(\arccos(\cos x)\) is not always \(x\), because \(\arccos\)
+                    only returns angles from \(0\) to \(\pi\).
                 </p>
 
                 <div class="math-line">
@@ -996,10 +2551,16 @@
                 </div>
 
                 <div class="steps">
-                    <div class="step" data-i18n="cases.problem4.s1">First find the cosine value: \(\cos\frac{5\pi}{3}=\frac12\).</div>
+                    <div class="step" data-i18n="cases.problem4.s1">First find the cosine value:
+                        \(\cos\frac{5\pi}{3}=\frac12\).
+                    </div>
                     <div class="step" data-i18n="cases.problem4.s2">Now solve \(\arccos\left(\frac12\right)\).</div>
-                    <div class="step" data-i18n="cases.problem4.s3">The answer must be inside the principal range of \(\arccos\): \([0,\pi]\).</div>
-                    <div class="step" data-i18n="cases.problem4.s4">The angle in \([0,\pi]\) whose cosine is \(\frac12\) is \(\frac{\pi}{3}\).</div>
+                    <div class="step" data-i18n="cases.problem4.s3">The answer must be inside the principal range of
+                        \(\arccos\): \([0,\pi]\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem4.s4">The angle in \([0,\pi]\) whose cosine is \(\frac12\)
+                        is \(\frac{\pi}{3}\).
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem4.answer">
@@ -1042,10 +2603,12 @@
 
                 <hr class="section-rule">
 
-                <h3 data-i18n="cases.problem5.title">Problem Type 5: Simplifying Expressions Like \(\sin(\arccos x)\)</h3>
+                <h3 data-i18n="cases.problem5.title">Problem Type 5: Simplifying Expressions Like \(\sin(\arccos
+                    x)\)</h3>
 
                 <p data-i18n="cases.problem5.p1">
-                    These problems do not cancel directly because the outside function and inside inverse function do not match.
+                    These problems do not cancel directly because the outside function and inside inverse function do
+                    not match.
                     The best method is to draw a right triangle or use \(\sin^2\theta+\cos^2\theta=1\).
                 </p>
 
@@ -1054,10 +2617,15 @@
                 </div>
 
                 <div class="steps">
-                    <div class="step" data-i18n="cases.problem5.s1">Let \(\theta=\arccos x\). Then \(\cos\theta=x\).</div>
-                    <div class="step" data-i18n="cases.problem5.s2">Since \(\arccos x\) returns \(\theta\in[0,\pi]\), the sine of \(\theta\) is never negative.</div>
+                    <div class="step" data-i18n="cases.problem5.s1">Let \(\theta=\arccos x\). Then \(\cos\theta=x\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem5.s2">Since \(\arccos x\) returns \(\theta\in[0,\pi]\),
+                        the sine of \(\theta\) is never negative.
+                    </div>
                     <div class="step" data-i18n="cases.problem5.s3">Use \(\sin^2\theta+\cos^2\theta=1\).</div>
-                    <div class="step" data-i18n="cases.problem5.s4">So \(\sin^2\theta=1-x^2\), and because \(\sin\theta\ge0\), \(\sin\theta=\sqrt{1-x^2}\).</div>
+                    <div class="step" data-i18n="cases.problem5.s4">So \(\sin^2\theta=1-x^2\), and because
+                        \(\sin\theta\ge0\), \(\sin\theta=\sqrt{1-x^2}\).
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem5.answer">
@@ -1065,7 +2633,8 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.problem5.nuance">
-                    <strong>Nuance:</strong> Do not write \(\pm\sqrt{1-x^2}\). Because \(\arccos x\) returns angles from \(0\) to \(\pi\), sine is nonnegative there.
+                    <strong>Nuance:</strong> Do not write \(\pm\sqrt{1-x^2}\). Because \(\arccos x\) returns angles from
+                    \(0\) to \(\pi\), sine is nonnegative there.
                 </div>
 
                 <hr class="section-rule">
@@ -1081,11 +2650,17 @@
                 </div>
 
                 <div class="steps">
-                    <div class="step" data-i18n="cases.problem6.s1">Rewrite the equation: if \(\arcsin(2x-1)=\frac{\pi}{6}\), then \(\sin\frac{\pi}{6}=2x-1\).</div>
-                    <div class="step" data-i18n="cases.problem6.s2">Use the known value: \(\sin\frac{\pi}{6}=\frac12\).</div>
+                    <div class="step" data-i18n="cases.problem6.s1">Rewrite the equation: if
+                        \(\arcsin(2x-1)=\frac{\pi}{6}\), then \(\sin\frac{\pi}{6}=2x-1\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem6.s2">Use the known value:
+                        \(\sin\frac{\pi}{6}=\frac12\).
+                    </div>
                     <div class="step" data-i18n="cases.problem6.s3">So \(2x-1=\frac12\).</div>
                     <div class="step" data-i18n="cases.problem6.s4">Solve: \(2x=\frac32\), so \(x=\frac34\).</div>
-                    <div class="step" data-i18n="cases.problem6.s5">Check the input: \(2x-1=\frac12\), which is inside \([-1,1]\). So the answer is valid.</div>
+                    <div class="step" data-i18n="cases.problem6.s5">Check the input: \(2x-1=\frac12\), which is inside
+                        \([-1,1]\). So the answer is valid.
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem6.answer">
@@ -1093,15 +2668,18 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.problem6.nuance">
-                    <strong>Nuance:</strong> Always check the domain after solving. Algebra can produce answers that make the inverse trig input invalid.
+                    <strong>Nuance:</strong> Always check the domain after solving. Algebra can produce answers that
+                    make the inverse trig input invalid.
                 </div>
 
                 <hr class="section-rule">
 
-                <h3 data-i18n="cases.problem7.title">Problem Type 7: Solving Equations Where the Answer Must Be Principal</h3>
+                <h3 data-i18n="cases.problem7.title">Problem Type 7: Solving Equations Where the Answer Must Be
+                    Principal</h3>
 
                 <p data-i18n="cases.problem7.p1">
-                    Sometimes the expression looks like it should give many angles, but inverse trig gives only the principal angle.
+                    Sometimes the expression looks like it should give many angles, but inverse trig gives only the
+                    principal angle.
                 </p>
 
                 <div class="math-line">
@@ -1109,9 +2687,15 @@
                 </div>
 
                 <div class="steps">
-                    <div class="step" data-i18n="cases.problem7.s1">Check the principal range of \(\arctan x\): \(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\).</div>
-                    <div class="step" data-i18n="cases.problem7.s2">The angle \(\frac{3\pi}{4}\) is outside this range.</div>
-                    <div class="step" data-i18n="cases.problem7.s3">Therefore, no real \(x\) can make \(\arctan x=\frac{3\pi}{4}\).</div>
+                    <div class="step" data-i18n="cases.problem7.s1">Check the principal range of \(\arctan x\):
+                        \(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\).
+                    </div>
+                    <div class="step" data-i18n="cases.problem7.s2">The angle \(\frac{3\pi}{4}\) is outside this
+                        range.
+                    </div>
+                    <div class="step" data-i18n="cases.problem7.s3">Therefore, no real \(x\) can make \(\arctan
+                        x=\frac{3\pi}{4}\).
+                    </div>
                 </div>
 
                 <div class="answer-final" data-i18n="cases.problem7.answer">
@@ -1119,61 +2703,11 @@
                 </div>
 
                 <div class="callout" data-i18n="cases.finalCallout">
-                    <strong>Final memory:</strong> For inverse trig problems, solving is not just calculation. You must check domain, principal range, and whether the composition order changes the answer.
+                    <strong>Final memory:</strong> For inverse trig problems, solving is not just calculation. You must
+                    check domain, principal range, and whether the composition order changes the answer.
                 </div>
             </div>
         </article>
-
-<article class="module-panel" data-module-panel="negative">
-            <div class="lesson-card">
-                <h2><span class="badge-num">9</span><span data-i18n="negative.title">Pulling Out the Negative</span></h2>
-
-                <p data-i18n="negative.p1">
-                    Some inverse trigonometric functions allow the negative sign to come outside directly, while others do not.
-                    This depends on the symmetry of the function and the chosen principal range.
-                </p>
-
-                <div class="simple-table-wrap">
-                    <table class="simple-table">
-                        <thead>
-                        <tr>
-                            <th data-i18n="negative.table.function">Function</th>
-                            <th data-i18n="negative.table.rule">Rule</th>
-                            <th data-i18n="negative.table.example">Example</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>\(\arcsin x\)</td>
-                            <td>\(\arcsin(-x)=-\arcsin x\)</td>
-                            <td>\(\arcsin\left(-\frac12\right)=-\frac{\pi}{6}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arctan x\)</td>
-                            <td>\(\arctan(-x)=-\arctan x\)</td>
-                            <td>\(\arctan(-1)=-\frac{\pi}{4}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(\arccos x\)</td>
-                            <td>\(\arccos(-x)=\pi-\arccos x\)</td>
-                            <td>\(\arccos\left(-\frac12\right)=\frac{2\pi}{3}\)</td>
-                        </tr>
-                        <tr>
-                            <td>\(\operatorname{arccot}x\)</td>
-                            <td>\(\operatorname{arccot}(-x)=\pi-\operatorname{arccot}x\)</td>
-                            <td>\(\operatorname{arccot}(-1)=\frac{3\pi}{4}\)</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="callout" data-i18n="negative.callout">
-                    <strong>Quick memory:</strong> Arcsine and arctangent are odd. Arccosine and arccotangent use \(\pi-\) because their principal outputs are chosen from \(0\) to \(\pi\).
-                </div>
-            </div>
-        </article>
-
-
         <article class="module-panel" data-module-panel="summary">
             <div class="lesson-card">
                 <h2><span class="badge-num">10</span><span data-i18n="summary.title">Final Summary</span></h2>
@@ -1224,12 +2758,14 @@
                 <div class="rule-grid">
                     <div class="rule-card">
                         <strong data-i18n="summary.mistakes.m1.title">Forgetting the principal range</strong>
-                        <p data-i18n="summary.mistakes.m1.text">Inverse trig functions return the principal angle, not every possible angle.</p>
+                        <p data-i18n="summary.mistakes.m1.text">Inverse trig functions return the principal angle, not
+                            every possible angle.</p>
                     </div>
 
                     <div class="rule-card">
                         <strong data-i18n="summary.mistakes.m2.title">Using invalid inputs</strong>
-                        <p data-i18n="summary.mistakes.m2.text">\(\arcsin x\) and \(\arccos x\) do not accept inputs less than \(-1\) or greater than \(1\).</p>
+                        <p data-i18n="summary.mistakes.m2.text">\(\arcsin x\) and \(\arccos x\) do not accept inputs
+                            less than \(-1\) or greater than \(1\).</p>
                     </div>
 
                     <div class="rule-card">
@@ -1239,7 +2775,8 @@
 
                     <div class="rule-card">
                         <strong data-i18n="summary.mistakes.m4.title">Confusing inverse with reciprocal</strong>
-                        <p data-i18n="summary.mistakes.m4.text">\(\arcsin x\) is not the same as \(\frac{1}{\sin x}\).</p>
+                        <p data-i18n="summary.mistakes.m4.text">\(\arcsin x\) is not the same as \(\frac{1}{\sin
+                            x}\).</p>
                     </div>
                 </div>
             </div>
@@ -1255,6 +2792,1940 @@
 <script src="{% static 'js/custom.js' %}"></script>
 
 <script>
+
+
+    const defaultInverseModuleHTML = {};
+
+    function localizeInverseTrigModules(selectedLanguage) {
+        const uzTemplates = {
+            arcsin: String.raw`
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span>Birinchi navbatda, \(\sin(x)\) nimani anglatishini eslaylik</h2>
+
+                <p>To‘g‘ri burchakli uchburchakda:</p>
+                <div class="math-line">\(\sin(\theta)=\frac{\text{qarshi katet}}{\text{gipotenuza}}\)</div>
+
+                <p>Masalan:</p>
+                <div class="math-line">\(\sin(30^\circ)=\frac12\)</div>
+
+                <p>Bu shuni anglatadi:</p>
+                <div class="quote-note">“\(30^\circ\) burchakning sinusi \(1/2\) ga teng.”</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Unda \(\arcsin(x)\) nima?</h2>
+                <div class="math-line">\(\arcsin(x)\)</div>
+                <p>teskari savolni beradi:</p>
+                <div class="quote-note">“Qaysi burchakning sinusi \(x\) ga teng?”</div>
+                <p>Demak:</p>
+                <div class="math-line">\(\arcsin\left(\frac12\right)=30^\circ\)</div>
+                <p>chunki</p>
+                <div class="math-line">\(\sin(30^\circ)=\frac12\)</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span>Juda muhim g‘oya: inverse ≠ reciprocal</h2>
+                <p>Ko‘p o‘quvchilar bularni adashtiradi:</p>
+                <div class="math-line">\(\arcsin(x)\ne\frac{1}{\sin(x)}\)</div>
+                <p>Sinning reciprocal funksiyasi:</p>
+                <div class="math-line">\(\csc(x)\)</div>
+                <p>Inverse sine esa:</p>
+                <div class="math-line">\(\sin^{-1}(x)=\arcsin(x)\)</div>
+                <p>ya’ni:</p>
+                <div class="quote-note">“sinusi \(x\) ga teng bo‘lgan burchak”.</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Nega umuman arcsin kerak?</h2>
+                <p>Ba’zan nisbat ma’lum bo‘ladi, lekin burchak noma’lum bo‘ladi.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\sin(\theta)=0.8\)</div>
+                <p>Burchakni topish uchun:</p>
+                <div class="math-line">\(\theta=\arcsin(0.8)\)</div>
+                <p>Kalkulyatorda:</p>
+                <div class="math-line">\(\theta\approx53.13^\circ\)</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Juda muhim cheklov <span style="font-size:.9em;">(ENG MUHIM)</span></h2>
+                <p>Sine barcha haqiqiy sonlarda <strong>bir qiymatli emas</strong>.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\sin(30^\circ)=\sin(150^\circ)=\frac12\)</div>
+                <p>Agar biz shunchaki</p>
+                <div class="math-line">\(\arcsin\left(\frac12\right)\)</div>
+                <p>deb so‘rasak, qaysi burchakni olish kerak?</p>
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>1-variant</strong><span>\(30^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>2-variant</strong><span>\(150^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>3-variant</strong><span>\(390^\circ\)</span></div>
+                </div>
+                <div class="callout">Noaniqlik bo‘lmasligi uchun matematika maxsus interval tanlaydi.</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Arcsinning asosiy qiymati</h2>
+                <p>\(\arcsin(x)\) uchun chiqish burchagi quyidagi interval bilan cheklanadi:</p>
+                <div class="math-line">\([-90^\circ,90^\circ]\)</div>
+                <p>yoki radianlarda:</p>
+                <div class="math-line">\(\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)</div>
+                <p>Bu interval <strong>asosiy tarmoq</strong> deyiladi.</p>
+                <p>Shuning uchun:</p>
+                <div class="math-line">\(\arcsin\left(\frac12\right)=30^\circ\)</div>
+                <p><strong>150° emas.</strong></p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Aniqlanish sohasi va qiymatlar sohasi</h2>
+                <h3>Aniqlanish sohasi</h3>
+                <p>Arcsinning kirish qiymati quyidagini qanoatlantirishi kerak:</p>
+                <div class="math-line">\(-1\le x\le1\)</div>
+                <p>chunki sine qiymatlari hech qachon \(1\) dan katta yoki \(-1\) dan kichik bo‘lmaydi.</p>
+                <p>Demak:</p>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div>
+                <div class="math-line">\(\arcsin(0.2)\)</div>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div>
+                <div class="math-line">\(\arcsin(-1)\)</div>
+                <div class="status-line"><span class="status-icon bad">×</span><span>mumkin emas:</span></div>
+                <div class="math-line">\(\arcsin(2)\)</div>
+
+                <h3>Qiymatlar sohasi</h3>
+                <div class="math-line">\(-\frac{\pi}{2}\le y\le\frac{\pi}{2}\)</div>
+                <p>yoki</p>
+                <div class="math-line">\(-90^\circ\le y\le90^\circ\)</div>
+
+                <hr class="section-rule">
+                <h3>Foydali simmetriya qoidasi</h3>
+                <p>Arcsin toq funksiya, shuning uchun manfiy kirish manfiy natija beradi:</p>
+                <div class="math-line">\(\arcsin(-x)=-\arcsin(x)\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\arcsin\left(-\frac12\right)=-\arcsin\left(\frac12\right)=-30^\circ\)</div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Grafikni tushunish</h2>
+                <p>\(y=\arcsin(x)\) grafigi</p>
+                <p>cheklangan sine grafigining</p>
+                <div class="math-line">\(y=x\)</div>
+                <p>to‘g‘ri chizig‘iga nisbatan akslantirilgan ko‘rinishidir, chunki inverse funksiyalar:</p>
+                <ul><li>kirishlarni</li><li>chiqishlarga almashtiradi</li></ul>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title"><span class="badge-num">1</span><h3>Interaktiv arcsin grafigi</h3></div>
+                    <p style="padding:10px 22px 0;margin:0;">Slayderlarni o‘zgartirib, arcsin grafigi qanday o‘zgarishini ko‘ring. Quyida \(y=a\arcsin(x-h)+k\) grafigi berilgan. Egri chiziq faqat kirish qiymati to‘g‘ri bo‘lganda chiziladi.</p>
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arcsinFormula">\(y=1.0\operatorname{arcsin}(x)\)</div>
+                            <label class="slider-row"><span>\(a\)</span><output id="arcsinAValue">1.0</output><input id="arcsinA" type="range" min="-2" max="2" step="0.1" value="1"></label>
+                            <label class="slider-row"><span>\(h\)</span><output id="arcsinHValue">0.0</output><input id="arcsinH" type="range" min="-8" max="8" step="0.1" value="0"></label>
+                            <label class="slider-row"><span>\(k\)</span><output id="arcsinKValue">0.0</output><input id="arcsinK" type="range" min="-4" max="4" step="0.1" value="0"></label>
+                            <p class="graph-help">\(a\) grafikni cho‘zadi yoki akslantiradi, \(h\) chapga/o‘ngga siljitadi, \(k\) esa yuqoriga/pastga ko‘chiradi.</p>
+                            <div id="arcsinDomainWarning" class="domain-warning">Grafik faqat \(-1\le x-h\le1\) bo‘lganda chiziladi.</div>
+                        </div>
+                        <div class="graph-canvas-wrap"><canvas id="arcsinGraphCanvas" width="680" height="420" aria-label="Interactive arcsin graph"></canvas><div id="arcsinNoAnswer" class="graph-no-answer">Haqiqiy qiymat yo‘q: \(x-h\notin[-1,1]\), shuning uchun \(\arcsin(x-h)\) aniqlanmagan.</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Keng tarqalgan xatolar</h2>
+                <h3>Xato 1</h3>
+                <div class="math-line">\(\arcsin(\sin x)=x\)</div>
+                <p>Bu <strong>har doim ham to‘g‘ri emas</strong>.</p>
+                <p>Faqat quyidagi holatda ishlaydi:</p>
+                <div class="math-line">\(x\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\arcsin(\sin150^\circ)\)</div>
+                <p>Chunki:</p>
+                <div class="math-line">\(\sin150^\circ=\frac12\)</div>
+                <p>undan:</p>
+                <div class="math-line">\(\arcsin\left(\frac12\right)=30^\circ\)</div>
+                <p><strong>150° emas.</strong></p>
+                <hr class="section-rule">
+                <h3>Xato 2</h3>
+                <p>Arcsin nisbat qaytaradi deb o‘ylash.</p>
+                <p>Yo‘q:</p>
+                <ul><li>\(\sin(x)\) burchakni oladi → nisbatni beradi</li><li>\(\arcsin(x)\) nisbatni oladi → burchakni beradi</li></ul>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">10</span>Haqiqiy ma’nosi</h2>
+                <p>Agar:</p>
+                <div class="math-line">\(\sin(\theta)=\frac{\text{balandlik}}{\text{masofa}}\)</div>
+                <p>bo‘lsa, unda:</p>
+                <div class="math-line">\(\theta=\arcsin\left(\frac{\text{balandlik}}{\text{masofa}}\right)\)</div>
+            </div>`,
+
+            arccos: String.raw`
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span>Birinchi navbatda, \(\cos(x)\) nimani anglatishini eslaylik</h2>
+                <p>To‘g‘ri burchakli uchburchakda:</p>
+                <div class="math-line">\(\cos(\theta)=\frac{\text{yon katet}}{\text{gipotenuza}}\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\cos(60^\circ)=\frac12\)</div>
+                <p>Bu shuni anglatadi:</p>
+                <div class="quote-note">“\(60^\circ\) burchakning cosi \(1/2\) ga teng.”</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Unda \(\arccos(x)\) nima?</h2>
+                <div class="math-line">\(\arccos(x)\)</div>
+                <p>teskari savolni beradi:</p>
+                <div class="quote-note">“Qaysi burchakning cosi \(x\) ga teng?”</div>
+                <p>Demak:</p>
+                <div class="math-line">\(\arccos\left(\frac12\right)=60^\circ\)</div>
+                <p>chunki</p>
+                <div class="math-line">\(\cos(60^\circ)=\frac12\)</div>
+                <hr class="section-rule">
+                <h2><span class="badge-num">3</span>Juda muhim g‘oya: inverse ≠ reciprocal</h2>
+                <p>Ko‘p o‘quvchilar bularni adashtiradi:</p>
+                <div class="math-line">\(\arccos(x)\ne\frac{1}{\cos(x)}\)</div>
+                <p>Cosning reciprocal funksiyasi:</p>
+                <div class="math-line">\(\sec(x)\)</div>
+                <p>Inverse cosine esa:</p>
+                <div class="math-line">\(\cos^{-1}(x)=\arccos(x)\)</div>
+                <p>ya’ni:</p>
+                <div class="quote-note">“cosi \(x\) ga teng bo‘lgan burchak”.</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Nega umuman arccos kerak?</h2>
+                <p>Ba’zan nisbat ma’lum bo‘ladi, lekin burchak noma’lum bo‘ladi.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\cos(\theta)=0.3\)</div>
+                <p>Burchakni topish uchun:</p>
+                <div class="math-line">\(\theta=\arccos(0.3)\)</div>
+                <p>Kalkulyatorda:</p>
+                <div class="math-line">\(\theta\approx72.54^\circ\)</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Juda muhim cheklov <span style="font-size:.9em;">(ENG MUHIM)</span></h2>
+                <p>Cosine barcha haqiqiy sonlarda <strong>bir qiymatli emas</strong>.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\cos(60^\circ)=\cos(300^\circ)=\frac12\)</div>
+                <p>Agar biz shunchaki</p><div class="math-line">\(\arccos\left(\frac12\right)\)</div><p>deb so‘rasak, qaysi burchakni olish kerak?</p>
+                <div class="mini-example-list"><div class="mini-example-item"><strong>1-variant</strong><span>\(60^\circ\)</span></div><div class="mini-example-item"><strong>2-variant</strong><span>\(300^\circ\)</span></div><div class="mini-example-item"><strong>3-variant</strong><span>\(420^\circ\)</span></div></div>
+                <div class="callout">Noaniqlik bo‘lmasligi uchun matematika maxsus interval tanlaydi.</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Arccosning asosiy qiymati</h2>
+                <p>\(\arccos(x)\) uchun chiqish burchagi quyidagi interval bilan cheklanadi:</p>
+                <div class="math-line">\([0^\circ,180^\circ]\)</div>
+                <p>yoki radianlarda:</p>
+                <div class="math-line">\([0,\pi]\)</div>
+                <p>Bu interval <strong>asosiy tarmoq</strong> deyiladi.</p>
+                <p>Shuning uchun:</p>
+                <div class="math-line">\(\arccos\left(\frac12\right)=60^\circ\)</div>
+                <p><strong>300° emas.</strong></p>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Aniqlanish sohasi va qiymatlar sohasi</h2>
+                <h3>Aniqlanish sohasi</h3>
+                <p>Arccosning kirish qiymati quyidagini qanoatlantirishi kerak:</p>
+                <div class="math-line">\(-1\le x\le1\)</div>
+                <p>chunki cosine qiymatlari hech qachon \(1\) dan katta yoki \(-1\) dan kichik bo‘lmaydi.</p>
+                <p>Demak:</p>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div><div class="math-line">\(\arccos(0.8)\)</div>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div><div class="math-line">\(\arccos(-1)\)</div>
+                <div class="status-line"><span class="status-icon bad">×</span><span>mumkin emas:</span></div><div class="math-line">\(\arccos(5)\)</div>
+                <hr class="section-rule">
+                <h3>Qiymatlar sohasi</h3>
+                <div class="math-line">\(0\le y\le\pi\)</div>
+                <p>yoki</p>
+                <div class="math-line">\(0^\circ\le y\le180^\circ\)</div>
+                <hr class="section-rule">
+                <h3>Foydali simmetriya qoidasi</h3>
+                <p>Arcsindan farqli ravishda, manfiy ishora tashqariga to‘g‘ridan-to‘g‘ri chiqmaydi. Arccos uchun:</p>
+                <div class="math-line">\(\arccos(-x)=\pi-\arccos(x)\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\arccos\left(-\frac12\right)=\pi-\arccos\left(\frac12\right)=120^\circ\)</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Grafikni tushunish</h2>
+                <p>\(y=\arccos(x)\) grafigi cheklangan cosine grafigining</p>
+                <div class="math-line">\(y=x\)</div>
+                <p>to‘g‘ri chizig‘iga nisbatan akslantirilgan ko‘rinishidir, chunki inverse funksiyalar:</p>
+                <ul><li>kirishlarni</li><li>chiqishlarga almashtiradi</li></ul>
+                <p>Arcsindan farqli ravishda, arccos grafigi <strong>kamayuvchi</strong>.</p>
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title"><span class="badge-num">1</span><h3>Interaktiv arccos grafigi</h3></div>
+                    <p style="padding:10px 22px 0;margin:0;">Slayderlarni o‘zgartirib, arccos grafigi qanday o‘zgarishini ko‘ring. Quyida \(y=a\arccos(x-h)+k\) grafigi berilgan. Egri chiziq faqat kirish qiymati to‘g‘ri bo‘lganda chiziladi.</p>
+                    <div class="graph-maker-body"><div class="graph-controls"><div class="graph-formula" id="arccosFormula">\(y=1.0\operatorname{arccos}\left(x\right)\)</div><label class="slider-row"><span>\(a\)</span><output id="arccosAValue">1.0</output><input id="arccosA" type="range" min="-2" max="2" step="0.1" value="1"></label><label class="slider-row"><span>\(h\)</span><output id="arccosHValue">0.0</output><input id="arccosH" type="range" min="-8" max="8" step="0.1" value="0"></label><label class="slider-row"><span>\(k\)</span><output id="arccosKValue">0.0</output><input id="arccosK" type="range" min="-4" max="4" step="0.1" value="0"></label><p class="graph-help">\(a\) grafikni cho‘zadi yoki akslantiradi, \(h\) chapga/o‘ngga siljitadi, \(k\) esa yuqoriga/pastga ko‘chiradi.</p><div id="arccosDomainWarning" class="domain-warning">Grafik faqat \(-1\le x-h\le1\) bo‘lganda chiziladi.</div></div><div class="graph-canvas-wrap"><canvas id="arccosGraphCanvas" width="680" height="420" aria-label="Interactive arccos graph"></canvas><div id="arccosNoAnswer" class="graph-no-answer">Haqiqiy qiymat yo‘q: \(x-h\notin[-1,1]\), shuning uchun \(\arccos(x-h)\) aniqlanmagan.</div></div></div>
+                </div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Keng tarqalgan xatolar</h2>
+                <h3>Xato 1</h3>
+                <div class="math-line">\(\arccos(\cos x)=x\)</div>
+                <p>Bu <strong>har doim ham to‘g‘ri emas</strong>.</p>
+                <p>Faqat quyidagi holatda ishlaydi:</p>
+                <div class="math-line">\(x\in[0,\pi]\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\arccos(\cos300^\circ)\)</div>
+                <p>Chunki:</p>
+                <div class="math-line">\(\cos300^\circ=\frac12\)</div>
+                <p>undan:</p>
+                <div class="math-line">\(\arccos\left(\frac12\right)=60^\circ\)</div>
+                <p><strong>300° emas.</strong></p>
+                <hr class="section-rule">
+                <h3>Xato 2</h3>
+                <p>Arccos nisbat qaytaradi deb o‘ylash.</p>
+                <p>Yo‘q:</p>
+                <ul><li>\(\cos(x)\) burchakni oladi → nisbatni beradi</li><li>\(\arccos(x)\) nisbatni oladi → burchakni beradi</li></ul>
+            </div>`,
+
+            arctan: String.raw`
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span>Birinchi navbatda, \(\tan(x)\) nimani anglatishini eslaylik</h2>
+                <p>To‘g‘ri burchakli uchburchakda:</p>
+                <div class="math-line">\(\tan(\theta)=\frac{\text{qarshi katet}}{\text{yon katet}}\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\tan(45^\circ)=1\)</div>
+                <p>Bu shuni anglatadi:</p>
+                <div class="quote-note">“\(45^\circ\) burchakning tangensi \(1\) ga teng.”</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Unda \(\arctan(x)\) nima?</h2>
+                <div class="math-line">\(\arctan(x)\)</div>
+                <p>teskari savolni beradi:</p>
+                <div class="quote-note">“Qaysi burchakning tangensi \(x\) ga teng?”</div>
+                <p>Demak:</p>
+                <div class="math-line">\(\arctan(1)=45^\circ\)</div>
+                <p>chunki</p>
+                <div class="math-line">\(\tan(45^\circ)=1\)</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span>Juda muhim g‘oya: inverse ≠ reciprocal</h2>
+                <p>Ko‘p o‘quvchilar bularni adashtiradi:</p>
+                <div class="math-line">\(\arctan(x)\ne\frac{1}{\tan(x)}\)</div>
+                <p>Tangentning reciprocal funksiyasi:</p>
+                <div class="math-line">\(\cot(x)\)</div>
+                <p>Inverse tangent esa:</p>
+                <div class="math-line">\(\tan^{-1}(x)=\arctan(x)\)</div>
+                <p>ya’ni:</p>
+                <div class="quote-note">“tangensi \(x\) ga teng bo‘lgan burchak”.</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Nega umuman arctan kerak?</h2>
+                <p>Ba’zan nisbat ma’lum bo‘ladi, lekin burchak noma’lum bo‘ladi.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\tan(\theta)=2\)</div>
+                <p>Burchakni topish uchun:</p>
+                <div class="math-line">\(\theta=\arctan(2)\)</div>
+                <p>Kalkulyatorda:</p>
+                <div class="math-line">\(\theta\approx63.43^\circ\)</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Juda muhim cheklov <span style="font-size:.9em;">(ENG MUHIM)</span></h2>
+                <p>Tangent barcha haqiqiy sonlarda bir qiymatli emas.</p>
+                <p>Masalan:</p>
+                <div class="math-line">\(\tan(45^\circ)=\tan(225^\circ)=1\)</div>
+                <p>Agar biz</p>
+                <div class="math-line">\(\arctan(1)\)</div>
+                <p>deb so‘rasak, qaysi burchakni olish kerak?</p>
+                <div class="mini-example-list"><div class="mini-example-item"><strong>1-variant</strong><span>\(45^\circ\)</span></div><div class="mini-example-item"><strong>2-variant</strong><span>\(225^\circ\)</span></div><div class="mini-example-item"><strong>3-variant</strong><span>\(405^\circ\)</span></div></div>
+                <div class="callout">Noaniqlik bo‘lmasligi uchun matematika maxsus interval tanlaydi.</div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Arctanning asosiy qiymati</h2>
+                <p>\(\arctan(x)\) uchun chiqish burchagi quyidagi interval bilan cheklanadi:</p>
+                <div class="math-line">\((-90^\circ,90^\circ)\)</div>
+                <p>yoki radianlarda:</p>
+                <div class="math-line">\(\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)</div>
+                <p>Bu interval asosiy tarmoq deyiladi.</p>
+                <p>Shuning uchun:</p>
+                <div class="math-line">\(\arctan(1)=45^\circ\)</div>
+                <p><strong>225° emas.</strong></p>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Aniqlanish sohasi va qiymatlar sohasi</h2>
+                <h3>Aniqlanish sohasi</h3>
+                <p>Arctanning kirish qiymati istalgan haqiqiy son bo‘lishi mumkin.</p>
+                <div class="math-line">\(-\infty < x < \infty\)</div>
+                <p>Demak:</p>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div><div class="math-line">\(\arctan(0.5)\)</div>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div><div class="math-line">\(\arctan(-10)\)</div>
+                <div class="status-line"><span class="status-icon good">✓</span><span>mumkin:</span></div><div class="math-line">\(\arctan(1000)\)</div>
+                <p>Arcsin va arccosdan farqli ravishda, kirishda hech qanday cheklov yo‘q.</p>
+                <hr class="section-rule">
+                <h3>Qiymatlar sohasi</h3>
+                <div class="math-line">\(-\frac{\pi}{2} < y < \frac{\pi}{2}\)</div>
+                <p>yoki</p>
+                <div class="math-line">\(-90^\circ < y < 90^\circ\)</div>
+                <p>E’tibor bering:</p>
+                <div class="math-line">\(\pm90^\circ\)</div>
+                <p>bu qiymatlar kirmaydi, chunki tangent u yerda aniqlanmagan.</p>
+                <hr class="section-rule">
+                <h3>Foydali manfiy kirish qoidasi</h3>
+                <p>Arctan toq funksiya:</p>
+                <div class="simple-table-wrap"><table class="simple-table"><thead><tr><th>Ifoda</th><th>Qoida</th><th>Misol</th></tr></thead><tbody><tr><td>\(\arctan x\)</td><td>\(\arctan(-x)=-\arctan x\)</td><td>\(\arctan(-1)=-\frac{\pi}{4}\)</td></tr></tbody></table></div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Grafikni tushunish</h2>
+                <p>\(y=\arctan(x)\) grafigi cheklangan tangent grafigining</p><div class="math-line">\(y=x\)</div><p>to‘g‘ri chizig‘iga nisbatan akslantirilgan ko‘rinishidir, chunki inverse funksiyalar:</p><ul><li>kirishlarni</li><li>chiqishlarga almashtiradi</li></ul><p>Arcsin va arccosdan farqli ravishda, arctan grafigi chapga ham, o‘ngga ham cheksiz davom etadi.</p><p>Shuningdek, u quyidagi gorizontal asimptotalarga yaqinlashadi:</p><div class="math-line">\(y=\pm\frac{\pi}{2}\)</div>
+                <div class="graph-maker-card"><div class="graph-maker-title"><span class="badge-num">1</span><h3>Interaktiv arctan grafigi</h3></div><p style="padding:10px 22px 0;margin:0;">Slayderlarni o‘zgartirib, arctan grafigi qanday o‘zgarishini ko‘ring. Quyida \(y=a\arctan(x-h)+k\) grafigi berilgan. Chiziqli uzuk chiziqlar asimptotalarni ko‘rsatadi.</p><div class="graph-maker-body"><div class="graph-controls"><div class="graph-formula" id="arctanFormula">\(y=1.0\operatorname{arctan}\left(x\right)\)</div><label class="slider-row"><span>\(a\)</span><output id="arctanAValue">1.0</output><input id="arctanA" type="range" min="-2" max="2" step="0.1" value="1"></label><label class="slider-row"><span>\(h\)</span><output id="arctanHValue">0.0</output><input id="arctanH" type="range" min="-8" max="8" step="0.1" value="0"></label><label class="slider-row"><span>\(k\)</span><output id="arctanKValue">0.0</output><input id="arctanK" type="range" min="-4" max="4" step="0.1" value="0"></label><p class="graph-help">\(a\) grafikni cho‘zadi yoki akslantiradi, \(h\) chapga/o‘ngga siljitadi, \(k\) esa yuqoriga/pastga ko‘chiradi.</p><p class="graph-help">Gorizontal asimptotalar: \(y=k\pm a\frac{\pi}{2}\).</p></div><div class="graph-canvas-wrap"><canvas id="arctanGraphCanvas" width="680" height="420" aria-label="Interactive arctan graph"></canvas><div id="arctanNoAnswer" class="graph-no-answer">Ko‘rinadigan haqiqiy qiymat yo‘q: grafik ko‘rsatilayotgan oralikdan tashqarida.</div></div></div></div>
+            </div>
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Keng tarqalgan xatolar</h2>
+                <h3>Xato 1</h3>
+                <div class="math-line">\(\arctan(\tan x)=x\)</div>
+                <p>Bu har doim ham to‘g‘ri emas.</p>
+                <p>Faqat quyidagi holatda ishlaydi:</p>
+                <div class="math-line">\(x\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\)</div>
+                <p>Masalan:</p>
+                <div class="math-line">\(\arctan(\tan225^\circ)\)</div>
+                <p>Chunki:</p>
+                <div class="math-line">\(\tan(225^\circ)=1\)</div>
+                <p>undan:</p>
+                <div class="math-line">\(\arctan(1)=45^\circ\)</div>
+                <p><strong>225° emas.</strong></p>
+                <hr class="section-rule">
+                <h3>Xato 2</h3>
+                <p>Arctan nisbat qaytaradi deb o‘ylash.</p>
+                <p>Yo‘q:</p>
+                <ul><li>\(\tan(x)\) burchakni oladi → nisbatni beradi</li><li>\(\arctan(x)\) nisbatni oladi → burchakni beradi</li></ul>
+            </div>`,
+            arccot: String.raw`
+            <div class="lesson-card">
+                <h2><span class="badge-num">1</span>Birinchi navbatda, \(\cot(x)\) nimani anglatishini eslaylik</h2>
+
+                <p>To‘g‘ri burchakli uchburchakda:</p>
+
+                <div class="math-line">
+                    \(\cot(\theta)=\frac{\text{yon katet}}{\text{qarshi katet}}\)
+                </div>
+
+                <p>Masalan:</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=1\)
+                </div>
+
+                <p>Bu shuni anglatadi:</p>
+
+                <div class="quote-note">
+                    “\(45^\circ\) burchakning kotangensi \(1\) ga teng.”
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">2</span>Unda \(\operatorname{arccot}(x)\) nima?</h2>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(x)\)
+                </div>
+
+                <p>teskari savolni beradi:</p>
+
+                <div class="quote-note">
+                    “Qaysi burchakning kotangensi \(x\) ga teng?”
+                </div>
+
+                <p>Demak:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p>chunki</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=1\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">3</span>Juda muhim g‘oya: inverse ≠ reciprocal</h2>
+
+                <p>Ko‘p o‘quvchilar bularni adashtiradi:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(x)\ne\frac{1}{\cot(x)}\)
+                </div>
+
+                <p>Kotangensning reciprocal funksiyasi:</p>
+
+                <div class="math-line">
+                    \(\tan(x)\)
+                </div>
+
+                <p>Inverse cotangent esa:</p>
+
+                <div class="math-line">
+                    \(\cot^{-1}(x)=\operatorname{arccot}(x)\)
+                </div>
+
+                <p>ya’ni:</p>
+
+                <div class="quote-note">
+                    “kotangensi \(x\) ga teng bo‘lgan burchak”.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">4</span>Nega umuman arccot kerak?</h2>
+
+                <p>Ba’zan nisbat ma’lum bo‘ladi, lekin burchak noma’lum bo‘ladi.</p>
+
+                <p>Masalan:</p>
+
+                <div class="math-line">
+                    \(\cot(\theta)=2\)
+                </div>
+
+                <p>Burchakni topish uchun:</p>
+
+                <div class="math-line">
+                    \(\theta=\operatorname{arccot}(2)\)
+                </div>
+
+                <p>Kalkulyatorda:</p>
+
+                <div class="math-line">
+                    \(\theta\approx26.57^\circ\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">5</span>Muhim cheklov <span style="font-size:.9em;">(JUDA MUHIM)</span></h2>
+
+                <p>Cotangent barcha haqiqiy sonlarda bir qiymatli emas.</p>
+
+                <p>Masalan:</p>
+
+                <div class="math-line">
+                    \(\cot(45^\circ)=\cot(225^\circ)=1\)
+                </div>
+
+                <p>Agar biz:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)\)
+                </div>
+
+                <p>deb so‘rasak, qaysi burchakni olish kerak?</p>
+
+                <div class="mini-example-list">
+                    <div class="mini-example-item"><strong>1-variant</strong><span>\(45^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>2-variant</strong><span>\(225^\circ\)</span></div>
+                    <div class="mini-example-item"><strong>3-variant</strong><span>\(405^\circ\)</span></div>
+                </div>
+
+                <div class="callout">
+                    Noaniqlik bo‘lmasligi uchun matematika maxsus interval tanlaydi.
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">6</span>Arccotning asosiy qiymati</h2>
+
+                <p>\(\operatorname{arccot}(x)\) uchun quyidagi asosiy oraliq ishlatiladi:</p>
+
+                <div class="math-line">
+                    \((0^\circ,180^\circ)\)
+                </div>
+
+                <p>yoki radianlarda:</p>
+
+                <div class="math-line">
+                    \((0,\pi)\)
+                </div>
+
+                <p>Bu interval asosiy tarmoq deyiladi.</p>
+
+                <p>Shuning uchun:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p><strong>225° emas.</strong></p>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">7</span>Aniqlanish sohasi va qiymatlar sohasi</h2>
+
+                <h3>Aniqlanish sohasi</h3>
+
+                <p>Arccotning kirish qiymati istalgan haqiqiy son bo‘lishi mumkin.</p>
+
+                <div class="math-line">
+                    \(-\infty < x < \infty\)
+                </div>
+
+                <p>Demak:</p>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>mumkin:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(1)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>mumkin:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(0)\)</div>
+
+                <div class="status-line">
+                    <span class="status-icon good">✓</span>
+                    <span>mumkin:</span>
+                </div>
+                <div class="math-line">\(\operatorname{arccot}(-10)\)</div>
+
+                <p>Arctan kabi, arccot ham kirishda barcha haqiqiy sonlarni qabul qiladi.</p>
+
+                <hr class="section-rule">
+
+                <h3>Qiymatlar sohasi</h3>
+
+                <div class="math-line">
+                    \(0 < y < \pi\)
+                </div>
+
+                <p>yoki</p>
+
+                <div class="math-line">
+                    \(0^\circ < y < 180^\circ\)
+                </div>
+
+                <p>E’tibor bering:</p>
+
+                <div class="math-line">
+                    \(0^\circ\text{ va }180^\circ\)
+                </div>
+
+                <p>bu qiymatlar <strong>kiritilmaydi</strong>, chunki kotangens u nuqtalarda aniqlanmagan.</p>
+
+                <hr class="section-rule">
+
+                <h3>Foydali simmetriya qoidasi</h3>
+
+                <p>Bu asosiy oraliq uchun manfiy kirish qoidasi:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(-x)=\pi-\operatorname{arccot}(x)\)
+                </div>
+
+                <p>Masalan:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(-1)=\pi-\operatorname{arccot}(1)=\frac{3\pi}{4}\)
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">8</span>Grafikni tushunish</h2>
+
+                <p>Quyidagi grafik:</p>
+
+                <div class="math-line">
+                    \(y=\operatorname{arccot}(x)\)
+                </div>
+
+                <p>cheklangan cotangent grafigining</p>
+
+                <div class="math-line">
+                    \(y=x\)
+                </div>
+
+                <p>to‘g‘ri chizig‘iga nisbatan aksidir, chunki inverse funksiyalar:</p>
+
+                <ul>
+                    <li>kirishlarni</li>
+                    <li>chiqishlarga almashtiradi</li>
+                </ul>
+
+                <p>Arccot grafigi kamayuvchi grafikdir.</p>
+
+                <p>U quyidagi gorizontal asimptotalarga yaqinlashadi:</p>
+
+                <div class="math-line">
+                    \(y=0\quad\text{va}\quad y=\pi\)
+                </div>
+
+                <div class="graph-maker-card">
+                    <div class="graph-maker-title">
+                        <span class="badge-num">1</span>
+                        <h3>Interaktiv arccot grafigi</h3>
+                    </div>
+
+                    <p style="padding: 10px 22px 0; margin:0;">
+                        Slayderlarni o‘zgartirib, arccot grafigi qanday o‘zgarishini ko‘ring. Quyidagi grafik
+                        \(y=a\operatorname{arccot}(x-h)+k\) ni ko‘rsatadi. Chiziqli uzuk chiziqlar asimptotalarni ko‘rsatadi.
+                    </p>
+
+                    <div class="graph-maker-body">
+                        <div class="graph-controls">
+                            <div class="graph-formula" id="arccotFormula">\(y=1.0\operatorname{arccot}\left(x\right)\)</div>
+
+                            <label class="slider-row">
+                                <span>\(a\)</span>
+                                <output id="arccotAValue">1.0</output>
+                                <input id="arccotA" type="range" min="-2" max="2" step="0.1" value="1">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(h\)</span>
+                                <output id="arccotHValue">0.0</output>
+                                <input id="arccotH" type="range" min="-8" max="8" step="0.1" value="0">
+                            </label>
+
+                            <label class="slider-row">
+                                <span>\(k\)</span>
+                                <output id="arccotKValue">0.0</output>
+                                <input id="arccotK" type="range" min="-4" max="4" step="0.1" value="0">
+                            </label>
+
+                            <p class="graph-help">
+                                \(a\) grafikni cho‘zadi yoki akslantiradi, \(h\) chapga yoki o‘ngga siljitadi,
+                                \(k\) esa yuqoriga yoki pastga ko‘chiradi.
+                            </p>
+
+                            <p class="graph-help">
+                                Gorizontal asimptotalar: \(y=k\) va \(y=k+a\pi\).
+                            </p>
+                        </div>
+
+                        <div class="graph-canvas-wrap">
+                            <canvas id="arccotGraphCanvas" width="680" height="420" aria-label="Interactive arccot graph"></canvas>
+                            <div id="arccotNoAnswer" class="graph-no-answer">
+                                Ko‘rinadigan haqiqiy qiymat yo‘q: grafik ko‘rsatilayotgan oraliqdan tashqarida.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lesson-card">
+                <h2><span class="badge-num">9</span>Keng tarqalgan xatolar</h2>
+
+                <h3>Xato 1</h3>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(\cot x)=x\)
+                </div>
+
+                <p>Bu har doim ham to‘g‘ri emas.</p>
+
+                <p>Faqat quyidagi holatda ishlaydi:</p>
+
+                <div class="math-line">
+                    \(x\in(0,\pi)\)
+                </div>
+
+                <p>Masalan:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(\cot225^\circ)\)
+                </div>
+
+                <p>Chunki:</p>
+
+                <div class="math-line">
+                    \(\cot(225^\circ)=1\)
+                </div>
+
+                <p>bundan:</p>
+
+                <div class="math-line">
+                    \(\operatorname{arccot}(1)=45^\circ\)
+                </div>
+
+                <p><strong>225° emas.</strong></p>
+
+                <hr class="section-rule">
+
+                <h3>Xato 2</h3>
+
+                <p>Arccot nisbat qaytaradi deb o‘ylash.</p>
+
+                <p>Yo‘q:</p>
+
+                <ul>
+                    <li>\(\cot(x)\) burchakni oladi → nisbatni beradi</li>
+                    <li>\(\operatorname{arccot}(x)\) nisbatni oladi → burchakni beradi</li>
+                </ul>
+            </div>`
+
+        };
+
+        ['arcsin', 'arccos', 'arctan', 'arccot'].forEach(function (moduleName) {
+            const panel = document.querySelector(`[data-module-panel="${moduleName}"]`);
+            if (!panel) return;
+
+            if (selectedLanguage === 'uz') {
+                panel.innerHTML = uzTemplates[moduleName];
+            } else if (defaultInverseModuleHTML[moduleName]) {
+                panel.innerHTML = defaultInverseModuleHTML[moduleName];
+            }
+        });
+    }
+
+    function drawArcsinGraph() {
+        const canvas = document.getElementById('arcsinGraphCanvas');
+        if (!canvas) return;
+
+        const aInput = document.getElementById('arcsinA');
+        const hInput = document.getElementById('arcsinH');
+        const kInput = document.getElementById('arcsinK');
+        const aValue = document.getElementById('arcsinAValue');
+        const hValue = document.getElementById('arcsinHValue');
+        const kValue = document.getElementById('arcsinKValue');
+        const formula = document.getElementById('arcsinFormula');
+        const warning = document.getElementById('arcsinDomainWarning');
+        const noAnswer = document.getElementById('arcsinNoAnswer');
+
+        if (!aInput || !hInput || !kInput) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const xMin = -6;
+        const xMax = 6;
+        const yMin = -5;
+        const yMax = 5;
+        const a = parseFloat(aInput.value);
+        const h = parseFloat(hInput.value);
+        const k = parseFloat(kInput.value);
+
+        aValue.textContent = a.toFixed(1);
+        hValue.textContent = h.toFixed(1);
+        kValue.textContent = k.toFixed(1);
+
+        const hPart = h === 0 ? 'x' : h > 0 ? `x-${h.toFixed(1)}` : `x+${Math.abs(h).toFixed(1)}`;
+        const kPart = k === 0 ? '' : k > 0 ? `+${k.toFixed(1)}` : `${k.toFixed(1)}`;
+        formula.innerHTML = `\\(y=${a.toFixed(1)}\\operatorname{arcsin}\\left(${hPart}\\right)${kPart}\\)`;
+
+        if (window.MathJax && window.MathJax.typesetClear) {
+            window.MathJax.typesetClear([formula]);
+        }
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([formula]);
+        }
+
+        if (warning) {
+            warning.classList.toggle('is-visible', Math.abs(h) > 2.5);
+        }
+        if (noAnswer) {
+            noAnswer.classList.remove('is-visible');
+        }
+
+        function sx(x) {
+            return ((x - xMin) / (xMax - xMin)) * width;
+        }
+
+        function sy(y) {
+            return height - ((y - yMin) / (yMax - yMin)) * height;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let x = Math.ceil(xMin * 5) / 5; x <= xMax; x += 0.2) {
+            const isMajor = Math.abs(Math.round(x) - x) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(sx(x), 0);
+            ctx.lineTo(sx(x), height);
+            ctx.stroke();
+        }
+
+        for (let y = Math.ceil(yMin * 5) / 5; y <= yMax; y += 0.2) {
+            const isMajor = Math.abs(Math.round(y) - y) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(0, sy(y));
+            ctx.lineTo(width, sy(y));
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#222222';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(xMin), sy(0));
+        ctx.lineTo(sx(xMax), sy(0));
+        ctx.moveTo(sx(0), sy(yMin));
+        ctx.lineTo(sx(0), sy(yMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#555555';
+        ctx.font = '12px Open Sans, Arial, sans-serif';
+        for (let x = Math.ceil(xMin); x <= xMax; x++) {
+            if (x === 0) continue;
+            ctx.fillText(String(x), sx(x) - 4, sy(0) + 16);
+        }
+        for (let y = Math.ceil(yMin); y <= yMax; y++) {
+            if (y === 0) continue;
+            ctx.fillText(String(y), sx(0) + 6, sy(y) + 4);
+        }
+
+        const domainLeft = h - 1;
+        const domainRight = h + 1;
+
+        ctx.save();
+        ctx.setLineDash([7, 5]);
+        ctx.strokeStyle = '#777777';
+        ctx.lineWidth = 1.2;
+        [domainLeft, domainRight].forEach(function (x) {
+            if (x >= xMin && x <= xMax) {
+                ctx.beginPath();
+                ctx.moveTo(sx(x), 0);
+                ctx.lineTo(sx(x), height);
+                ctx.stroke();
+            }
+        });
+        ctx.restore();
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let started = false;
+        let hasVisiblePoint = false;
+        const plotLeft = Math.max(xMin, domainLeft);
+        const plotRight = Math.min(xMax, domainRight);
+
+        if (plotLeft > plotRight) {
+            if (noAnswer) {
+                const lang = document.documentElement.lang || 'en';
+                noAnswer.innerHTML = lang === 'uz' ? String.raw`Haqiqiy qiymat yo‘q: \(x-h\notin[-1,1]\), shuning uchun \(\arcsin(x-h)\) aniqlanmagan.` : String.raw`No real value: \(x-h\notin[-1,1]\), so \(\arcsin(x-h)\) is undefined on this visible interval.`;
+                noAnswer.classList.add('is-visible');
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([noAnswer]);
+                }
+            }
+            return;
+        }
+
+        for (let i = 0; i <= 500; i++) {
+            const x = plotLeft + (plotRight - plotLeft) * (i / 500);
+            const inside = x - h;
+            if (inside < -1 || inside > 1) continue;
+            const y = a * Math.asin(inside) + k;
+            if (y >= yMin && y <= yMax) {
+                hasVisiblePoint = true;
+            }
+            const px = sx(x);
+            const py = sy(y);
+            if (!started) {
+                ctx.moveTo(px, py);
+                started = true;
+            } else {
+                ctx.lineTo(px, py);
+            }
+        }
+        ctx.stroke();
+
+        if (!hasVisiblePoint) {
+            if (noAnswer) {
+                const lang = document.documentElement.lang || 'en';
+                noAnswer.innerHTML = lang === 'uz' ? String.raw`Ko‘rinadigan haqiqiy qiymat yo‘q: bu tanlovda \(y=a\arcsin(x-h)+k\) ko‘rsatilayotgan oralikdan tashqarida.` : String.raw`No visible real values: for this choice, \(y=a\arcsin(x-h)+k\) is outside the displayed range.`;
+                noAnswer.classList.add('is-visible');
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([noAnswer]);
+                }
+            }
+        }
+
+        function point(x, y) {
+            if (x < xMin || x > xMax || y < yMin || y > yMax) return;
+            ctx.fillStyle = '#111111';
+            ctx.beginPath();
+            ctx.arc(sx(x), sy(y), 4.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        point(h - 1, k - a * Math.PI / 2);
+        point(h, k);
+        point(h + 1, k + a * Math.PI / 2);
+    }
+
+    function initializeArcsinGraph() {
+        ['arcsinA', 'arcsinH', 'arcsinK'].forEach(function (id) {
+            const slider = document.getElementById(id);
+            if (slider) {
+                slider.addEventListener('input', drawArcsinGraph);
+            }
+        });
+        drawArcsinGraph();
+    }
+
+    function drawArccosGraph() {
+        const canvas = document.getElementById('arccosGraphCanvas');
+        if (!canvas) return;
+
+        const aInput = document.getElementById('arccosA');
+        const hInput = document.getElementById('arccosH');
+        const kInput = document.getElementById('arccosK');
+        const aValue = document.getElementById('arccosAValue');
+        const hValue = document.getElementById('arccosHValue');
+        const kValue = document.getElementById('arccosKValue');
+        const formula = document.getElementById('arccosFormula');
+        const warning = document.getElementById('arccosDomainWarning');
+        const noAnswer = document.getElementById('arccosNoAnswer');
+
+        if (!aInput || !hInput || !kInput) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const xMin = -6;
+        const xMax = 6;
+        const yMin = -5;
+        const yMax = 5;
+        const a = parseFloat(aInput.value);
+        const h = parseFloat(hInput.value);
+        const k = parseFloat(kInput.value);
+
+        aValue.textContent = a.toFixed(1);
+        hValue.textContent = h.toFixed(1);
+        kValue.textContent = k.toFixed(1);
+
+        const hPart = h === 0 ? 'x' : h > 0 ? `x-${h.toFixed(1)}` : `x+${Math.abs(h).toFixed(1)}`;
+        const kPart = k === 0 ? '' : k > 0 ? `+${k.toFixed(1)}` : `${k.toFixed(1)}`;
+        formula.innerHTML = String.raw`\(y=${a.toFixed(1)}\operatorname{arccos}\left(${hPart}\right)${kPart}\)`;
+
+        if (window.MathJax && window.MathJax.typesetClear) {
+            window.MathJax.typesetClear([formula]);
+        }
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([formula]);
+        }
+
+        if (warning) {
+            warning.classList.toggle('is-visible', Math.abs(h) > 2.5);
+        }
+        if (noAnswer) {
+            noAnswer.classList.remove('is-visible');
+        }
+
+        function sx(x) {
+            return ((x - xMin) / (xMax - xMin)) * width;
+        }
+
+        function sy(y) {
+            return height - ((y - yMin) / (yMax - yMin)) * height;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let x = Math.ceil(xMin * 5) / 5; x <= xMax; x += 0.2) {
+            const isMajor = Math.abs(Math.round(x) - x) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(sx(x), 0);
+            ctx.lineTo(sx(x), height);
+            ctx.stroke();
+        }
+
+        for (let y = Math.ceil(yMin * 5) / 5; y <= yMax; y += 0.2) {
+            const isMajor = Math.abs(Math.round(y) - y) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(0, sy(y));
+            ctx.lineTo(width, sy(y));
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#222222';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(xMin), sy(0));
+        ctx.lineTo(sx(xMax), sy(0));
+        ctx.moveTo(sx(0), sy(yMin));
+        ctx.lineTo(sx(0), sy(yMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#555555';
+        ctx.font = '12px Open Sans, Arial, sans-serif';
+        for (let x = Math.ceil(xMin); x <= xMax; x++) {
+            if (x === 0) continue;
+            ctx.fillText(String(x), sx(x) - 4, sy(0) + 16);
+        }
+        for (let y = Math.ceil(yMin); y <= yMax; y++) {
+            if (y === 0) continue;
+            ctx.fillText(String(y), sx(0) + 6, sy(y) + 4);
+        }
+
+        const domainLeft = h - 1;
+        const domainRight = h + 1;
+
+        ctx.save();
+        ctx.setLineDash([7, 5]);
+        ctx.strokeStyle = '#777777';
+        ctx.lineWidth = 1.2;
+        [domainLeft, domainRight].forEach(function (x) {
+            if (x >= xMin && x <= xMax) {
+                ctx.beginPath();
+                ctx.moveTo(sx(x), 0);
+                ctx.lineTo(sx(x), height);
+                ctx.stroke();
+            }
+        });
+        ctx.restore();
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let started = false;
+        let hasVisiblePoint = false;
+        const plotLeft = Math.max(xMin, domainLeft);
+        const plotRight = Math.min(xMax, domainRight);
+
+        if (plotLeft > plotRight) {
+            if (noAnswer) {
+                const lang = document.documentElement.lang || 'en';
+                noAnswer.innerHTML = lang === 'uz' ? String.raw`Haqiqiy qiymat yo‘q: \(x-h\notin[-1,1]\), shuning uchun \(\arccos(x-h)\) aniqlanmagan.` : String.raw`No real value: \(x-h\notin[-1,1]\), so \(\arccos(x-h)\) is undefined on this visible interval.`;
+                noAnswer.classList.add('is-visible');
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([noAnswer]);
+                }
+            }
+            return;
+        }
+
+        for (let i = 0; i <= 500; i++) {
+            const x = plotLeft + (plotRight - plotLeft) * (i / 500);
+            const inside = x - h;
+            if (inside < -1 || inside > 1) continue;
+            const y = a * Math.acos(inside) + k;
+            if (y >= yMin && y <= yMax) {
+                hasVisiblePoint = true;
+            }
+            const px = sx(x);
+            const py = sy(y);
+            if (!started) {
+                ctx.moveTo(px, py);
+                started = true;
+            } else {
+                ctx.lineTo(px, py);
+            }
+        }
+        ctx.stroke();
+
+        if (!hasVisiblePoint) {
+            if (noAnswer) {
+                const lang = document.documentElement.lang || 'en';
+                noAnswer.innerHTML = lang === 'uz' ? String.raw`Ko‘rinadigan haqiqiy qiymat yo‘q: bu tanlovda \(y=a\arccos(x-h)+k\) ko‘rsatilayotgan oralikdan tashqarida.` : String.raw`No visible real values: for this choice, \(y=a\arccos(x-h)+k\) is outside the displayed range.`;
+                noAnswer.classList.add('is-visible');
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([noAnswer]);
+                }
+            }
+        }
+
+        function point(x, y) {
+            if (x < xMin || x > xMax || y < yMin || y > yMax) return;
+            ctx.fillStyle = '#111111';
+            ctx.beginPath();
+            ctx.arc(sx(x), sy(y), 4.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        point(h - 1, k + a * Math.PI);
+        point(h, k + a * Math.PI / 2);
+        point(h + 1, k);
+    }
+
+    function initializeArccosGraph() {
+        ['arccosA', 'arccosH', 'arccosK'].forEach(function (id) {
+            const slider = document.getElementById(id);
+            if (slider) {
+                slider.addEventListener('input', drawArccosGraph);
+            }
+        });
+        drawArccosGraph();
+    }
+
+    function drawArctanGraph() {
+        const canvas = document.getElementById('arctanGraphCanvas');
+        if (!canvas) return;
+
+        const aInput = document.getElementById('arctanA');
+        const hInput = document.getElementById('arctanH');
+        const kInput = document.getElementById('arctanK');
+        const aValue = document.getElementById('arctanAValue');
+        const hValue = document.getElementById('arctanHValue');
+        const kValue = document.getElementById('arctanKValue');
+        const formula = document.getElementById('arctanFormula');
+        const noAnswer = document.getElementById('arctanNoAnswer');
+
+        if (!aInput || !hInput || !kInput) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const xMin = -10;
+        const xMax = 10;
+        const yMin = -5;
+        const yMax = 5;
+        const a = parseFloat(aInput.value);
+        const h = parseFloat(hInput.value);
+        const k = parseFloat(kInput.value);
+
+        aValue.textContent = a.toFixed(1);
+        hValue.textContent = h.toFixed(1);
+        kValue.textContent = k.toFixed(1);
+
+        const hPart = h === 0 ? 'x' : h > 0 ? `x-${h.toFixed(1)}` : `x+${Math.abs(h).toFixed(1)}`;
+        const kPart = k === 0 ? '' : k > 0 ? `+${k.toFixed(1)}` : `${k.toFixed(1)}`;
+        formula.innerHTML = String.raw`\(y=${a.toFixed(1)}\operatorname{arctan}\left(${hPart}\right)${kPart}\)`;
+
+        if (window.MathJax && window.MathJax.typesetClear) {
+            window.MathJax.typesetClear([formula]);
+        }
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([formula]);
+        }
+
+        if (noAnswer) {
+            noAnswer.classList.remove('is-visible');
+        }
+
+        function sx(x) {
+            return ((x - xMin) / (xMax - xMin)) * width;
+        }
+
+        function sy(y) {
+            return height - ((y - yMin) / (yMax - yMin)) * height;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let x = Math.ceil(xMin * 2) / 2; x <= xMax; x += 0.5) {
+            const isMajor = Math.abs(Math.round(x) - x) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(sx(x), 0);
+            ctx.lineTo(sx(x), height);
+            ctx.stroke();
+        }
+
+        for (let y = Math.ceil(yMin * 2) / 2; y <= yMax; y += 0.5) {
+            const isMajor = Math.abs(Math.round(y) - y) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(0, sy(y));
+            ctx.lineTo(width, sy(y));
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#222222';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(xMin), sy(0));
+        ctx.lineTo(sx(xMax), sy(0));
+        ctx.moveTo(sx(0), sy(yMin));
+        ctx.lineTo(sx(0), sy(yMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#555555';
+        ctx.font = '12px Open Sans, Arial, sans-serif';
+        for (let x = Math.ceil(xMin); x <= xMax; x++) {
+            if (x === 0) continue;
+            ctx.fillText(String(x), sx(x) - 6, sy(0) + 16);
+        }
+        for (let y = Math.ceil(yMin); y <= yMax; y++) {
+            if (y === 0) continue;
+            ctx.fillText(String(y), sx(0) + 6, sy(y) + 4);
+        }
+
+        const asym1 = k + a * Math.PI / 2;
+        const asym2 = k - a * Math.PI / 2;
+        ctx.save();
+        ctx.setLineDash([7, 5]);
+        ctx.strokeStyle = '#777777';
+        ctx.lineWidth = 1.2;
+        [asym1, asym2].forEach(function (y) {
+            if (y >= yMin && y <= yMax) {
+                ctx.beginPath();
+                ctx.moveTo(0, sy(y));
+                ctx.lineTo(width, sy(y));
+                ctx.stroke();
+            }
+        });
+        ctx.restore();
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let started = false;
+        let hasVisiblePoint = false;
+
+        for (let i = 0; i <= 1000; i++) {
+            const x = xMin + (xMax - xMin) * (i / 1000);
+            const y = a * Math.atan(x - h) + k;
+            if (y >= yMin && y <= yMax) {
+                hasVisiblePoint = true;
+            }
+            const px = sx(x);
+            const py = sy(y);
+            if (!started) {
+                ctx.moveTo(px, py);
+                started = true;
+            } else {
+                ctx.lineTo(px, py);
+            }
+        }
+        ctx.stroke();
+
+        if (!hasVisiblePoint && noAnswer) {
+            noAnswer.innerHTML = String.raw`No visible real values: for this choice, \(y=a\arctan(x-h)+k\) is outside the displayed range.`;
+            noAnswer.classList.add('is-visible');
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([noAnswer]);
+            }
+        }
+
+        function point(x, y) {
+            if (x < xMin || x > xMax || y < yMin || y > yMax) return;
+            ctx.fillStyle = '#111111';
+            ctx.beginPath();
+            ctx.arc(sx(x), sy(y), 4.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        point(h, k);
+    }
+
+    function initializeArctanGraph() {
+        ['arctanA', 'arctanH', 'arctanK'].forEach(function (id) {
+            const slider = document.getElementById(id);
+            if (slider) {
+                slider.addEventListener('input', drawArctanGraph);
+            }
+        });
+        drawArctanGraph();
+        drawArccotGraph();
+    }
+
+    function drawArccotGraph() {
+        const canvas = document.getElementById('arccotGraphCanvas');
+        if (!canvas) return;
+
+        const aInput = document.getElementById('arccotA');
+        const hInput = document.getElementById('arccotH');
+        const kInput = document.getElementById('arccotK');
+        const aValue = document.getElementById('arccotAValue');
+        const hValue = document.getElementById('arccotHValue');
+        const kValue = document.getElementById('arccotKValue');
+        const formula = document.getElementById('arccotFormula');
+        const noAnswer = document.getElementById('arccotNoAnswer');
+
+        if (!aInput || !hInput || !kInput) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const xMin = -10;
+        const xMax = 10;
+        const yMin = -5;
+        const yMax = 5;
+        const a = parseFloat(aInput.value);
+        const h = parseFloat(hInput.value);
+        const k = parseFloat(kInput.value);
+
+        aValue.textContent = a.toFixed(1);
+        hValue.textContent = h.toFixed(1);
+        kValue.textContent = k.toFixed(1);
+
+        const hPart = h === 0 ? 'x' : h > 0 ? `x-${h.toFixed(1)}` : `x+${Math.abs(h).toFixed(1)}`;
+        const kPart = k === 0 ? '' : k > 0 ? `+${k.toFixed(1)}` : `${k.toFixed(1)}`;
+        formula.innerHTML = String.raw`\(y=${a.toFixed(1)}\operatorname{arccot}\left(${hPart}\right)${kPart}\)`;
+
+        if (window.MathJax && window.MathJax.typesetClear) {
+            window.MathJax.typesetClear([formula]);
+        }
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([formula]);
+        }
+
+        if (noAnswer) {
+            noAnswer.classList.remove('is-visible');
+        }
+
+        function arccotValue(z) {
+            return Math.atan2(1, z);
+        }
+
+        function sx(x) {
+            return ((x - xMin) / (xMax - xMin)) * width;
+        }
+
+        function sy(y) {
+            return height - ((y - yMin) / (yMax - yMin)) * height;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let x = Math.ceil(xMin * 2) / 2; x <= xMax; x += 0.5) {
+            const isMajor = Math.abs(Math.round(x) - x) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(sx(x), 0);
+            ctx.lineTo(sx(x), height);
+            ctx.stroke();
+        }
+
+        for (let y = Math.ceil(yMin * 2) / 2; y <= yMax; y += 0.5) {
+            const isMajor = Math.abs(Math.round(y) - y) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(0, sy(y));
+            ctx.lineTo(width, sy(y));
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#222222';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(xMin), sy(0));
+        ctx.lineTo(sx(xMax), sy(0));
+        ctx.moveTo(sx(0), sy(yMin));
+        ctx.lineTo(sx(0), sy(yMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#555555';
+        ctx.font = '12px Open Sans, Arial, sans-serif';
+        for (let x = Math.ceil(xMin); x <= xMax; x++) {
+            if (x === 0) continue;
+            ctx.fillText(String(x), sx(x) - 6, sy(0) + 16);
+        }
+        for (let y = Math.ceil(yMin); y <= yMax; y++) {
+            if (y === 0) continue;
+            ctx.fillText(String(y), sx(0) + 6, sy(y) + 4);
+        }
+
+        const asym1 = k;
+        const asym2 = k + a * Math.PI;
+        ctx.save();
+        ctx.setLineDash([7, 5]);
+        ctx.strokeStyle = '#777777';
+        ctx.lineWidth = 1.2;
+        [asym1, asym2].forEach(function (y) {
+            if (y >= yMin && y <= yMax) {
+                ctx.beginPath();
+                ctx.moveTo(0, sy(y));
+                ctx.lineTo(width, sy(y));
+                ctx.stroke();
+            }
+        });
+        ctx.restore();
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let started = false;
+        let hasVisiblePoint = false;
+
+        for (let i = 0; i <= 1000; i++) {
+            const x = xMin + (xMax - xMin) * (i / 1000);
+            const y = a * arccotValue(x - h) + k;
+            if (y >= yMin && y <= yMax) {
+                hasVisiblePoint = true;
+            }
+            const px = sx(x);
+            const py = sy(y);
+            if (!started) {
+                ctx.moveTo(px, py);
+                started = true;
+            } else {
+                ctx.lineTo(px, py);
+            }
+        }
+        ctx.stroke();
+
+        if (!hasVisiblePoint && noAnswer) {
+            const lang = document.documentElement.lang || 'en';
+            noAnswer.innerHTML = lang === 'uz'
+                ? String.raw`Ko‘rinadigan haqiqiy qiymat yo‘q: bu tanlovda \(y=a\operatorname{arccot}(x-h)+k\) ko‘rsatilayotgan oraliqdan tashqarida.`
+                : String.raw`No visible real values: for this choice, \(y=a\operatorname{arccot}(x-h)+k\) is outside the displayed range.`;
+            noAnswer.classList.add('is-visible');
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([noAnswer]);
+            }
+        }
+
+        function point(x, y) {
+            if (x < xMin || x > xMax || y < yMin || y > yMax) return;
+            ctx.fillStyle = '#111111';
+            ctx.beginPath();
+            ctx.arc(sx(x), sy(y), 4.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        point(h, k + a * Math.PI / 2);
+    }
+
+    function initializeArccotGraph() {
+        ['arccotA', 'arccotH', 'arccotK'].forEach(function (id) {
+            const slider = document.getElementById(id);
+            if (slider) {
+                slider.addEventListener('input', drawArccotGraph);
+            }
+        });
+        drawArccotGraph();
+    }
+
+
+    const valueFunctionRanges = {
+        sin: {min: -90, max: 90, defaultValue: 30, ticks: [-90, -60, -30, 0, 30, 60, 90]},
+        cos: {min: 0, max: 180, defaultValue: 60, ticks: [0, 30, 60, 90, 120, 150, 180]},
+        tan: {min: -89, max: 89, defaultValue: 30, ticks: [-89, -60, -30, 0, 30, 60, 89]},
+        cot: {min: 1, max: 179, defaultValue: 60, ticks: [1, 30, 60, 90, 120, 150, 179]}
+    };
+
+    const exactValueMap = {
+        sin: {
+            0: '0', 15: '\\frac{\\sqrt6-\\sqrt2}{4}', 30: '\\frac12', 45: '\\frac{\\sqrt2}{2}', 60: '\\frac{\\sqrt3}{2}', 75: '\\frac{\\sqrt6+\\sqrt2}{4}', 90: '1',
+            105: '\\frac{\\sqrt6+\\sqrt2}{4}', 120: '\\frac{\\sqrt3}{2}', 135: '\\frac{\\sqrt2}{2}', 150: '\\frac12', 165: '\\frac{\\sqrt6-\\sqrt2}{4}', 180: '0',
+            195: '-\\frac{\\sqrt6-\\sqrt2}{4}', 210: '-\\frac12', 225: '-\\frac{\\sqrt2}{2}', 240: '-\\frac{\\sqrt3}{2}', 255: '-\\frac{\\sqrt6+\\sqrt2}{4}', 270: '-1',
+            285: '-\\frac{\\sqrt6+\\sqrt2}{4}', 300: '-\\frac{\\sqrt3}{2}', 315: '-\\frac{\\sqrt2}{2}', 330: '-\\frac12', 345: '-\\frac{\\sqrt6-\\sqrt2}{4}', 360: '0'
+        },
+        cos: {
+            0: '1', 15: '\\frac{\\sqrt6+\\sqrt2}{4}', 30: '\\frac{\\sqrt3}{2}', 45: '\\frac{\\sqrt2}{2}', 60: '\\frac12', 75: '\\frac{\\sqrt6-\\sqrt2}{4}', 90: '0',
+            105: '-\\frac{\\sqrt6-\\sqrt2}{4}', 120: '-\\frac12', 135: '-\\frac{\\sqrt2}{2}', 150: '-\\frac{\\sqrt3}{2}', 165: '-\\frac{\\sqrt6+\\sqrt2}{4}', 180: '-1',
+            195: '-\\frac{\\sqrt6+\\sqrt2}{4}', 210: '-\\frac{\\sqrt3}{2}', 225: '-\\frac{\\sqrt2}{2}', 240: '-\\frac12', 255: '-\\frac{\\sqrt6-\\sqrt2}{4}', 270: '0',
+            285: '\\frac{\\sqrt6-\\sqrt2}{4}', 300: '\\frac12', 315: '\\frac{\\sqrt2}{2}', 330: '\\frac{\\sqrt3}{2}', 345: '\\frac{\\sqrt6+\\sqrt2}{4}', 360: '1'
+        },
+        tan: {
+            0: '0', 15: '2-\\sqrt3', 30: '\\frac{\\sqrt3}{3}', 45: '1', 60: '\\sqrt3', 75: '2+\\sqrt3', 90: 'undefined',
+            105: '-\\left(2+\\sqrt3\\right)', 120: '-\\sqrt3', 135: '-1', 150: '-\\frac{\\sqrt3}{3}', 165: '\\sqrt3-2', 180: '0',
+            195: '2-\\sqrt3', 210: '\\frac{\\sqrt3}{3}', 225: '1', 240: '\\sqrt3', 255: '2+\\sqrt3', 270: 'undefined',
+            285: '-\\left(2+\\sqrt3\\right)', 300: '-\\sqrt3', 315: '-1', 330: '-\\frac{\\sqrt3}{3}', 345: '\\sqrt3-2', 360: '0'
+        },
+        cot: {
+            0: 'undefined', 15: '2+\\sqrt3', 30: '\\sqrt3', 45: '1', 60: '\\frac{\\sqrt3}{3}', 75: '2-\\sqrt3', 90: '0',
+            105: '2-\\sqrt3', 120: '-\\frac{\\sqrt3}{3}', 135: '-1', 150: '-\\sqrt3', 165: '-\\left(2+\\sqrt3\\right)', 180: 'undefined',
+            195: '2+\\sqrt3', 210: '\\sqrt3', 225: '1', 240: '\\frac{\\sqrt3}{3}', 255: '2-\\sqrt3', 270: '0',
+            285: '2-\\sqrt3', 300: '-\\frac{\\sqrt3}{3}', 315: '-1', 330: '-\\sqrt3', 345: '-\\left(2+\\sqrt3\\right)', 360: 'undefined'
+        }
+    };
+
+    const valuePlainNames = {
+        sin: 'sin',
+        cos: 'cos',
+        tan: 'tan',
+        cot: 'cot'
+    };
+
+    const valueLatexNames = {
+        sin: '\\sin',
+        cos: '\\cos',
+        tan: '\\tan',
+        cot: '\\cot'
+    };
+
+    const valueExplorerText = {
+        en: {
+            value: 'Value:',
+            exactValue: 'Exact value:',
+            decimalValue: 'Decimal value:',
+            undefined: 'undefined',
+            isUndefined: 'is undefined',
+            notSpecial: 'not one of the \\(15^\\circ\\) special values'
+        },
+        uz: {
+            value: 'Qiymat:',
+            exactValue: 'Aniq qiymat:',
+            decimalValue: 'O‘nli qiymat:',
+            undefined: 'aniqlanmagan',
+            isUndefined: 'aniqlanmagan',
+            notSpecial: '\\(15^\\circ\\) lik maxsus qiymatlardan biri emas'
+        }
+    };
+
+    function getValueExplorerLanguage() {
+        return document.documentElement.lang === 'uz' ? 'uz' : 'en';
+    }
+
+    let valueGraphFrame = null;
+    let valueMathJaxFrame = null;
+
+    function scheduleDrawValueExplorerGraph() {
+        if (valueGraphFrame) cancelAnimationFrame(valueGraphFrame);
+        valueGraphFrame = requestAnimationFrame(function () {
+            valueGraphFrame = null;
+            drawValueExplorerGraph();
+        });
+    }
+
+    function scheduleValueResultTypeset(resultBox) {
+        if (!window.MathJax || !window.MathJax.typesetPromise || !resultBox) return;
+        if (valueMathJaxFrame) cancelAnimationFrame(valueMathJaxFrame);
+        valueMathJaxFrame = requestAnimationFrame(function () {
+            valueMathJaxFrame = null;
+            window.MathJax.typesetPromise([resultBox]);
+        });
+    }
+
+
+    function getFunctionValue(functionName, degree) {
+        const radians = degree * Math.PI / 180;
+
+        if (functionName === 'sin') return Math.sin(radians);
+        if (functionName === 'cos') return Math.cos(radians);
+        if (functionName === 'tan') {
+            const cosine = Math.cos(radians);
+            if (Math.abs(cosine) < 1e-10) return null;
+            return Math.tan(radians);
+        }
+        if (functionName === 'cot') {
+            const sine = Math.sin(radians);
+            if (Math.abs(sine) < 1e-10) return null;
+            return Math.cos(radians) / sine;
+        }
+        return null;
+    }
+
+    function formatDecimalValue(value) {
+        if (value === null || !Number.isFinite(value)) return 'undefined';
+        const rounded = Math.round(value * 10000) / 10000;
+        if (Math.abs(rounded) < 1e-10) return '0.0000';
+        return rounded.toFixed(4);
+    }
+
+    function formatDegreeValue(value) {
+        const rounded = Math.round(Number(value) * 10) / 10;
+        return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+    }
+
+    function getSpecialExactValue(functionName, degree) {
+        const roundedDegree = Math.round(degree);
+        if (Math.abs(degree - roundedDegree) > 1e-9) return null;
+        const normalizedDegree = ((roundedDegree % 360) + 360) % 360;
+        return exactValueMap[functionName][normalizedDegree] || null;
+    }
+
+    function getValueFunctionRange(functionName) {
+        return valueFunctionRanges[functionName] || valueFunctionRanges.sin;
+    }
+
+    function getValueExplorerAngles(functionName) {
+        const range = getValueFunctionRange(functionName);
+        const first = Math.ceil(range.min / 15) * 15;
+        const angles = [];
+        for (let angle = first; angle <= range.max; angle += 15) {
+            if (angle >= range.min && angle <= range.max) angles.push(angle);
+        }
+        return angles;
+    }
+
+    function updateValueSliderRange(functionName, keepCurrent) {
+        const angleInput = document.getElementById('valueAngleSelect');
+        const ticks = document.getElementById('valueAngleTicks');
+        const scale = document.getElementById('valueRangeScale');
+        if (!angleInput) return;
+
+        const range = getValueFunctionRange(functionName);
+        const currentValue = Number(angleInput.value);
+        const nextValue = keepCurrent && Number.isFinite(currentValue)
+            ? Math.min(range.max, Math.max(range.min, Math.round(currentValue)))
+            : range.defaultValue;
+
+        angleInput.min = String(range.min);
+        angleInput.max = String(range.max);
+        angleInput.step = '1';
+        angleInput.value = String(nextValue);
+
+        if (ticks) {
+            ticks.innerHTML = range.ticks.map(function (tick) {
+                return `<option value="${tick}"></option>`;
+            }).join('');
+        }
+
+        if (scale) {
+            scale.innerHTML = range.ticks.map(function (tick) {
+                return `<span>${formatDegreeValue(tick)}°</span>`;
+            }).join('');
+        }
+    }
+
+    function latexToReadableValue(latexValue) {
+        if (latexValue === 'undefined') return 'undefined';
+
+        const readableMap = {
+            '0': '0',
+            '1': '1',
+            '-1': '-1',
+            '\\frac12': '1/2',
+            '-\\frac12': '-1/2',
+            '\\frac{\\sqrt2}{2}': '√2/2',
+            '-\\frac{\\sqrt2}{2}': '-√2/2',
+            '\\frac{\\sqrt3}{2}': '√3/2',
+            '-\\frac{\\sqrt3}{2}': '-√3/2',
+            '\\frac{\\sqrt3}{3}': '√3/3',
+            '-\\frac{\\sqrt3}{3}': '-√3/3',
+            '\\sqrt3': '√3',
+            '-\\sqrt3': '-√3',
+            '2-\\sqrt3': '2 − √3',
+            '\\sqrt3-2': '√3 − 2',
+            '2+\\sqrt3': '2 + √3',
+            '-\\left(2+\\sqrt3\\right)': '−(2 + √3)',
+            '\\frac{\\sqrt6-\\sqrt2}{4}': '(√6 − √2)/4',
+            '-\\frac{\\sqrt6-\\sqrt2}{4}': '−(√6 − √2)/4',
+            '\\frac{\\sqrt6+\\sqrt2}{4}': '(√6 + √2)/4',
+            '-\\frac{\\sqrt6+\\sqrt2}{4}': '−(√6 + √2)/4'
+        };
+
+        return readableMap[latexValue] || latexValue;
+    }
+
+    function updateValueResultBox() {
+    const functionSelect = document.getElementById('valueFunctionSelect');
+    const angleInput = document.getElementById('valueAngleSelect');
+    const angleOutput = document.getElementById('valueAngleOutput');
+    const resultBox = document.getElementById('valueResultBox');
+    const expression = document.getElementById('valueResultExpression');
+    const valueLine = document.getElementById('valueResultValue');
+
+    if (!functionSelect || !angleInput || !expression || !valueLine) return;
+
+    const languageCode = getValueExplorerLanguage();
+    const labels = valueExplorerText[languageCode];
+
+    const functionName = functionSelect.value;
+    const degree = Number(angleInput.value);
+
+    const exact = getSpecialExactValue(functionName, degree);
+    const decimalValue = getFunctionValue(functionName, degree);
+
+    const latexName = valueLatexNames[functionName];
+    const degreeText = formatDegreeValue(degree);
+    const angleText = `${degreeText}°`;
+    const latexAngle = `${degreeText}^{\\circ}`;
+
+    if (angleOutput) {
+        angleOutput.textContent = angleText;
+    }
+
+    if (decimalValue === null || !Number.isFinite(decimalValue)) {
+        expression.innerHTML = `<span class="value-math">\\(${latexName}\\left(${latexAngle}\\right)\\)</span> ${labels.isUndefined}`;
+        valueLine.innerHTML = `<span class="value-label">${labels.value}</span> <span class="value-math">${labels.undefined}</span>`;
+        scheduleValueResultTypeset(resultBox);
+        return;
+    }
+
+    if (exact) {
+        expression.innerHTML = `<span class="value-math">\\(${latexName}\\left(${latexAngle}\\right)=${exact}\\)</span>`;
+        valueLine.innerHTML = `<span class="value-label">${labels.value}</span> <span class="value-math">\\(${exact}\\)</span>`;
+    } else {
+        const decimalText = formatDecimalValue(decimalValue);
+        expression.innerHTML = `<span class="value-math">\\(${latexName}\\left(${latexAngle}\\right)\\approx ${decimalText}\\)</span>`;
+        valueLine.innerHTML = `<span class="value-label">${labels.value}</span> <span class="value-math">\\(${decimalText}\\)</span>`;
+    }
+
+    scheduleValueResultTypeset(resultBox);
+}
+
+    function updateValueExplorerTable() {
+        const functionSelect = document.getElementById('valueFunctionSelect');
+        const tableBody = document.getElementById('valueExplorerTableBody');
+        if (!functionSelect || !tableBody) return;
+
+        const languageCode = getValueExplorerLanguage();
+        const labels = valueExplorerText[languageCode];
+        const functionName = functionSelect.value;
+
+        tableBody.innerHTML = getValueExplorerAngles(functionName).map(function (angle) {
+            const exact = getSpecialExactValue(functionName, angle);
+            const decimalValue = getFunctionValue(functionName, angle);
+            const exactCell = exact === 'undefined' ? labels.undefined : `\\(${exact}\\)`;
+            const decimalCell = decimalValue === null ? labels.undefined : `\\(${formatDecimalValue(decimalValue)}\\)`;
+            return `
+                <tr>
+                    <td>\\(${angle}^\\circ\\)</td>
+                    <td>${exactCell}</td>
+                    <td>${decimalCell}</td>
+                </tr>`;
+        }).join('');
+
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([tableBody]);
+        }
+    }
+
+    function drawValueExplorerGraph() {
+        const canvas = document.getElementById('valueGraphCanvas');
+        const functionSelect = document.getElementById('valueFunctionSelect');
+        const angleInput = document.getElementById('valueAngleSelect');
+        if (!canvas || !functionSelect || !angleInput) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const functionName = functionSelect.value;
+        const selectedAngle = Number(angleInput.value);
+        const selectedAngleLabel = formatDegreeValue(selectedAngle);
+        const xMin = Number(angleInput.min || -90);
+        const xMax = Number(angleInput.max || 90);
+        const isLargeRange = functionName === 'tan' || functionName === 'cot';
+        const yMin = isLargeRange ? -4.25 : -1.25;
+        const yMax = isLargeRange ? 4.25 : 1.25;
+
+        function sx(x) {
+            return ((x - xMin) / (xMax - xMin)) * width;
+        }
+
+        function sy(y) {
+            return height - ((y - yMin) / (yMax - yMin)) * height;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, width, height);
+
+        const xGridStart = Math.ceil(xMin / 15) * 15;
+        for (let x = xGridStart; x <= xMax; x += 15) {
+            const isMajor = x % 30 === 0;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(sx(x), 0);
+            ctx.lineTo(sx(x), height);
+            ctx.stroke();
+        }
+
+        const yStep = isLargeRange ? 1 : 0.25;
+        for (let y = Math.ceil(yMin / yStep) * yStep; y <= yMax; y += yStep) {
+            const isMajor = Math.abs(Math.round(y) - y) < 0.001;
+            ctx.beginPath();
+            ctx.strokeStyle = isMajor ? '#d2d2d2' : '#eeeeee';
+            ctx.lineWidth = isMajor ? 1 : 0.7;
+            ctx.moveTo(0, sy(y));
+            ctx.lineTo(width, sy(y));
+            ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#222222';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(xMin), sy(0));
+        ctx.lineTo(sx(xMax), sy(0));
+        if (xMin <= 0 && xMax >= 0) {
+            ctx.moveTo(sx(0), sy(yMin));
+            ctx.lineTo(sx(0), sy(yMax));
+        }
+        ctx.stroke();
+
+        ctx.fillStyle = '#555555';
+        ctx.font = '12px Open Sans, Arial, sans-serif';
+        const xLabelStart = Math.ceil(xMin / 30) * 30;
+        for (let x = xLabelStart; x <= xMax; x += 30) {
+            ctx.fillText(`${formatDegreeValue(x)}°`, sx(x) - 14, sy(0) + 16);
+        }
+
+        const yLabels = isLargeRange ? [-4, -2, 0, 2, 4] : [-1, -0.5, 0, 0.5, 1];
+        yLabels.forEach(function (y) {
+            const yLabelX = xMin <= 0 && xMax >= 0 ? sx(0) + 6 : sx(xMin) + 6;
+            ctx.fillText(String(y), yLabelX, sy(y) - 4);
+        });
+
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        let started = false;
+        let lastY = null;
+
+        const curveStep = Math.max((xMax - xMin) / 900, 0.1);
+        for (let x = xMin; x <= xMax; x += curveStep) {
+            const y = getFunctionValue(functionName, x);
+            const outside = y === null || !Number.isFinite(y) || y < yMin || y > yMax;
+
+            if (outside || (lastY !== null && Math.abs(y - lastY) > (isLargeRange ? 5 : 1.5))) {
+                if (started) {
+                    ctx.stroke();
+                }
+                started = false;
+                lastY = null;
+                continue;
+            }
+
+            const px = sx(x);
+            const py = sy(y);
+            if (!started) {
+                ctx.beginPath();
+                ctx.moveTo(px, py);
+                started = true;
+            } else {
+                ctx.lineTo(px, py);
+            }
+            lastY = y;
+        }
+        if (started) {
+            ctx.stroke();
+        }
+
+        const selectedValue = getFunctionValue(functionName, selectedAngle);
+        if (selectedValue === null || !Number.isFinite(selectedValue) || selectedValue < yMin || selectedValue > yMax) return;
+
+        const pointX = sx(selectedAngle);
+        const pointY = sy(selectedValue);
+
+        ctx.save();
+        ctx.setLineDash([7, 5]);
+        ctx.strokeStyle = '#777777';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(pointX, sy(0));
+        ctx.lineTo(pointX, pointY);
+        const yGuideStart = xMin <= 0 && xMax >= 0 ? sx(0) : sx(xMin);
+        ctx.moveTo(yGuideStart, pointY);
+        ctx.lineTo(pointX, pointY);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.fillStyle = '#111111';
+        ctx.beginPath();
+        ctx.arc(pointX, pointY, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#111111';
+        ctx.font = 'bold 12px Open Sans, Arial, sans-serif';
+        ctx.fillText(`${selectedAngleLabel}°`, pointX + 6, pointY - 10);
+        ctx.fillText(formatDecimalValue(selectedValue), pointX + 6, pointY + 8);
+    }
+
+    function initializeValueExplorer() {
+        const functionSelect = document.getElementById('valueFunctionSelect');
+        const angleInput = document.getElementById('valueAngleSelect');
+        if (!functionSelect || !angleInput || functionSelect.dataset.initialized === 'true') return;
+
+        functionSelect.value = functionSelect.value || 'sin';
+        angleInput.value = angleInput.value || '30';
+        updateValueSliderRange(functionSelect.value, true);
+
+        functionSelect.addEventListener('change', function () {
+            updateValueSliderRange(functionSelect.value, true);
+            updateValueResultBox();
+            updateValueExplorerTable();
+            scheduleDrawValueExplorerGraph();
+        });
+
+        angleInput.addEventListener('input', function () {
+            updateValueResultBox();
+            scheduleDrawValueExplorerGraph();
+        });
+
+        functionSelect.dataset.initialized = 'true';
+        updateValueResultBox();
+        updateValueExplorerTable();
+        scheduleDrawValueExplorerGraph();
+    }
+
     const translations = {
         en: {
             page: {
@@ -1779,6 +5250,15 @@
         document.documentElement.lang = selectedLanguage;
         localStorage.setItem('mathAcademyLanguage', selectedLanguage);
 
+        localizeInverseTrigModules(selectedLanguage);
+        initializeArcsinGraph();
+        initializeArccosGraph();
+        initializeArctanGraph();
+        initializeArccotGraph();
+        initializeValueExplorer();
+        updateValueResultBox();
+        updateValueExplorerTable();
+
         renderMath();
     }
 
@@ -1792,11 +5272,28 @@
         });
 
         renderMath();
+        drawArcsinGraph();
+        drawArccosGraph();
+        drawArctanGraph();
+        drawValueExplorerGraph();
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        ['arcsin', 'arccos', 'arctan', 'arccot'].forEach(function (moduleName) {
+            const panel = document.querySelector(`[data-module-panel="${moduleName}"]`);
+            if (panel) {
+                defaultInverseModuleHTML[moduleName] = panel.innerHTML;
+            }
+        });
+
+        defaultInverseModuleHTML.arctan = defaultInverseModuleHTML.arctan.replace(
+            '<p>are <strong>not</strong> included because tangent is undefined there.</p>',
+            '<p>are <strong>not</strong> included because tangent is undefined there.</p><hr class="section-rule"><h3>Useful negative-input rule</h3><div class="simple-table-wrap"><table class="simple-table"><thead><tr><th>Expression</th><th>Rule</th><th>Example</th></tr></thead><tbody><tr><td>\(\arctan x\)</td><td>\(\arctan(-x)=-\arctan x\)</td><td>\(\arctan(-1)=-\frac{\pi}{4}\)</td></tr></tbody></table></div>'
+        );
+
         const savedLanguage = localStorage.getItem('mathAcademyLanguage') || 'en';
         language(savedLanguage);
+        initializeValueExplorer();
 
         document.querySelectorAll('[data-module-button]').forEach(function (button) {
             button.addEventListener('click', function () {

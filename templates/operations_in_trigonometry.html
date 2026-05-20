@@ -30,7 +30,7 @@
 
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
 
-    <link href="{% static 'css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-topic-listing.css' %}?v=lightnav-20260520" rel="stylesheet">
 
     <style>
         *, *::before, *::after {
@@ -414,7 +414,7 @@
             </div>
 
             <div class="practice-strip">
-                <a style="width:300px" href="{% url 'practice' %}?url=operations_in_trigonometry"
+                <a style="width:300px;display:inline-flex;align-items:center;justify-content:center;padding:14px 42px;background:linear-gradient(135deg,#0f4c6e 0%,#1e8a8f 100%);color:#fff;font-weight:700;font-size:1rem;letter-spacing:0.06em;border-radius:999px;border:2px solid rgba(255,255,255,0.2);box-shadow:0 8px 28px rgba(15,76,110,0.45),0 2px 8px rgba(0,0,0,0.15);text-decoration:none;" href="{% url 'practice' %}?url=operations_in_trigonometry"
                    class="btn custom-btn custom-border-btn"
                    data-i18n="page.practice">
                     Practice with Trigonometric Formulas
@@ -662,6 +662,14 @@
                             <td>\(\tan(x-y)=\frac{\tan x-\tan y}{1+\tan x\tan y}\)</td>
                             <td data-i18n="addition.tanMinus">Tangent of a difference has a denominator involving \(1+\tan x\tan y\).</td>
                         </tr>
+                        <tr>
+                            <td>\(\cot(x+y)=\frac{\cot x\cot y-1}{\cot x+\cot y}\)</td>
+                            <td data-i18n="addition.cotPlus">Cotangent of a sum can be written using cotangent values of the two angles.</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot(x-y)=\frac{\cot x\cot y+1}{\cot y-\cot x}\)</td>
+                            <td data-i18n="addition.cotMinus">Cotangent of a difference has a numerator with \(+1\) and a denominator \(\cot y-\cot x\).</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -706,6 +714,14 @@
                         <tr>
                             <td>\(\tan(x-y)=\frac{\tan x-\tan y}{1+\tan x\tan y}\)</td>
                             <td>\(\tan15^\circ=\frac{1-\frac{\sqrt3}{3}}{1+1\cdot\frac{\sqrt3}{3}}=2-\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot(x+y)=\frac{\cot x\cot y-1}{\cot x+\cot y}\)</td>
+                            <td>\(\cot75^\circ=\frac{1\cdot\sqrt3-1}{1+\sqrt3}=2-\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot(x-y)=\frac{\cot x\cot y+1}{\cot y-\cot x}\)</td>
+                            <td>\(\cot15^\circ=\frac{1\cdot\sqrt3+1}{\sqrt3-1}=2+\sqrt3\)</td>
                         </tr>
                         </tbody>
                     </table>
@@ -854,6 +870,16 @@
                             <td>\(\tan\frac{x}{2}=\frac{1-\cos x}{\sin x}\)</td>
                             <td data-i18n="half.tanNote2">Useful when \(\sin x\ne0\).</td>
                         </tr>
+                        <tr>
+                            <td>\(\cot\frac{x}{2}\)</td>
+                            <td>\(\cot\frac{x}{2}=\frac{\sin x}{1-\cos x}\)</td>
+                            <td data-i18n="half.cotNote1">Useful when \(1-\cos x\ne0\).</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot\frac{x}{2}\)</td>
+                            <td>\(\cot\frac{x}{2}=\frac{1+\cos x}{\sin x}\)</td>
+                            <td data-i18n="half.cotNote2">Useful when \(\sin x\ne0\).</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -907,6 +933,14 @@
                         <tr>
                             <td>\(\tan\frac{x}{2}=\frac{1-\cos x}{\sin x}\)</td>
                             <td>\(\tan15^\circ=\frac{1-\cos30^\circ}{\sin30^\circ}=\frac{1-\frac{\sqrt3}{2}}{\frac12}=2-\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot\frac{x}{2}=\frac{\sin x}{1-\cos x}\)</td>
+                            <td>\(\cot15^\circ=\frac{\sin30^\circ}{1-\cos30^\circ}=\frac{\frac12}{1-\frac{\sqrt3}{2}}=2+\sqrt3\)</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cot\frac{x}{2}=\frac{1+\cos x}{\sin x}\)</td>
+                            <td>\(\cot15^\circ=\frac{1+\cos30^\circ}{\sin30^\circ}=\frac{1+\frac{\sqrt3}{2}}{\frac12}=2+\sqrt3\)</td>
                         </tr>
                         </tbody>
                     </table>
@@ -1161,7 +1195,7 @@
                         </tr>
                         <tr>
                             <td data-i18n="summary.addition">Angle addition</td>
-                            <td>\(\sin(x\pm y)\), \(\cos(x\pm y)\), \(\tan(x\pm y)\)</td>
+                            <td>\(\sin(x\pm y)\), \(\cos(x\pm y)\), \(\tan(x\pm y)\), \(\cot(x\pm y)\)</td>
                         </tr>
                         <tr>
                             <td data-i18n="summary.double">Double-angle</td>
@@ -1302,6 +1336,8 @@
                 cosMinus: "Cosine of a difference uses cosine-cosine plus sine-sine.",
                 tanPlus: "Tangent of a sum has a denominator involving \\(1-\\tan x\\tan y\\).",
                 tanMinus: "Tangent of a difference has a denominator involving \\(1+\\tan x\\tan y\\).",
+                cotPlus: "Cotangent of a sum can be written using cotangent values of the two angles.",
+                cotMinus: "Cotangent of a difference has a numerator with \\(+1\\) and a denominator \\(\\cot y-\\cot x\\).",
                 callout: "<strong>Memory warning:</strong> Sine keeps the same sign as the angle operation. Cosine changes the sign.",
                 examples: {
                     title: "Examples for Angle Addition and Subtraction"
@@ -1340,6 +1376,8 @@
                 cosNote: "Choose the sign based on the quadrant of \\(\\frac{x}{2}\\).",
                 tanNote1: "Useful when \\(1+\\cos x\\ne0\\).",
                 tanNote2: "Useful when \\(\\sin x\\ne0\\).",
+                cotNote1: "Useful when \\(1-\\cos x\\ne0\\).",
+                cotNote2: "Useful when \\(\\sin x\\ne0\\).",
                 derived: {
                     title: "Where half-angle formulas come from",
                     p1: "From the double-angle identity \\(\\cos(2u)=1-2\\sin^2u\\), solve for \\(\\sin^2u\\). Then let \\(u=\\frac{x}{2}\\).",
@@ -1501,6 +1539,8 @@
                 cosMinus: "Ayirmaning kosinusi kosinus-kosinus plus sinus-sinus ko'rinishida yoziladi.",
                 tanPlus: "Yig'indining tangensi maxrajda \\(1-\\tan x\\tan y\\) bilan keladi.",
                 tanMinus: "Ayirmaning tangensi maxrajda \\(1+\\tan x\\tan y\\) bilan keladi.",
+                cotPlus: "Kotangens yig'indisi ikki burchak kotangenslari orqali yoziladi.",
+                cotMinus: "Kotangens ayirmasida suratda \(+1\), maxrajda esa \(\cot y-\cot x\) keladi.",
                 callout: "<strong>Eslatma:</strong> Sinus burchak amalidagi belgini saqlaydi. Kosinus esa belgini o'zgartiradi.",
                 examples: {
                     title: "Burchak qo'shish va ayirish formulalari uchun misollar"
@@ -1539,6 +1579,8 @@
                 cosNote: "Ishorani \\(\\frac{x}{2}\\) qaysi chorakda yotishiga qarab tanlang.",
                 tanNote1: "\\(1+\\cos x\\ne0\\) bo'lganda qulay.",
                 tanNote2: "\\(\\sin x\\ne0\\) bo'lganda qulay.",
+                cotNote1: "\(1-\cos x\ne0\) bo'lganda qulay.",
+                cotNote2: "\(\sin x\ne0\) bo'lganda qulay.",
                 derived: {
                     title: "Yarim burchak formulalari qayerdan keladi?",
                     p1: "\\(\\cos(2u)=1-2\\sin^2u\\) ikki burchak ayniyatidan \\(\\sin^2u\\) ni toping. Keyin \\(u=\\frac{x}{2}\\) deb oling.",

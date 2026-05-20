@@ -375,13 +375,14 @@ from django.contrib.auth.decorators import login_required
 
 
 def practice(request):
-    from .math_problems_json import math_problems_json
-    url = request.GET.get('url')
+    from .math_problems_json import math_problems_json, math_problems_json_uz
+    url = request.GET.get('url') or 'working_with_signs'
 
-    data = math_problems_json[url]
+    data = math_problems_json.get(url, [])
+    data_uz = math_problems_json_uz.get(url, [])
     print(len(data))
 
-    return render(request, 'practice.html', {'data': data, 'url': url})
+    return render(request, 'practice.html', {'data': data, 'data_uz': data_uz, 'url': url})
 
 
 @login_required  # agar login kerak bo'lsa

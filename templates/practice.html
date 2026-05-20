@@ -1297,6 +1297,40 @@
           max-width: 500px;
         }
 
+        .language-switch {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          z-index: 250;
+          display: inline-flex;
+          gap: 6px;
+          padding: 4px;
+          border: 1px solid var(--border2);
+          border-radius: 999px;
+          background: rgba(17,24,39,.86);
+          backdrop-filter: blur(16px);
+        }
+        .language-switch__button {
+          border: 0;
+          border-radius: 999px;
+          padding: 7px 12px;
+          color: var(--text2);
+          background: transparent;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .language-switch__button.is-active {
+          color: #0a0800;
+          background: var(--gold);
+        }
+        body.is-testing .language-switch {
+          top: 64px;
+          right: 12px;
+          z-index: 90;
+        }
+
         /* ══════════════ TEST SCREEN ════════════════════════════════════════════════ */
         #test { flex-direction: column; }
 
@@ -1605,6 +1639,21 @@
         }
         .retry-btn:hover { border-color: var(--gold); color: var(--gold); }
 
+        .page-back-btn {
+          background: transparent;
+          border: 1px solid var(--border2);
+          color: var(--text2);
+          border-radius: var(--r2);
+          padding: 8px 14px;
+          font-family: 'Outfit', sans-serif;
+          font-size: 13px;
+          cursor: pointer;
+          transition: all .2s;
+          white-space: nowrap;
+        }
+        .page-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .topbar .page-back-btn { flex-shrink: 0; }
+
         .result-btns {
           display: flex; gap: 12px; justify-content: center;
           margin-top: 24px; flex-wrap: wrap; padding: 0 16px;
@@ -1669,6 +1718,28 @@
 
           /* Topbar brand shorter */
           .tb-brand { font-size: 0.95rem; }
+          body.is-testing .topbar {
+            padding-left: 96px;
+          }
+          .topbar .page-back-btn {
+            font-size: 0;
+            padding: 7px 9px;
+          }
+          .topbar .page-back-btn::before {
+            content: "←";
+            font-size: 13px;
+          }
+          body.is-testing .language-switch {
+            top: 26px;
+            left: 22px;
+            right: auto;
+            z-index: 120;
+            padding: 3px;
+          }
+          body.is-testing .language-switch__button {
+            padding: 5px 8px;
+            font-size: 10px;
+          }
         }
 
         @media (max-width: 400px) {
@@ -1681,20 +1752,24 @@
     </style>
 </head>
 <body>
+<div class="language-switch" aria-label="Language">
+    <button class="language-switch__button is-active" type="button" data-language-button="en" onclick="setLanguage('en')">EN</button>
+    <button class="language-switch__button" type="button" data-language-button="uz" onclick="setLanguage('uz')">UZ</button>
+</div>
 
 <!-- ════════════════════════ SPLASH ════════════════════════════════════════ -->
 <div class="screen active" id="splash">
     <div class="splash-emblem">∑</div>
-    <div class="splash-eyebrow">Timed Assessment</div>
-    <h1 class="splash-title">Mathematics<br><span>Examination</span></h1>
-    <p class="splash-sub">Configure your exam below, then begin when ready.</p>
+    <div class="splash-eyebrow" data-i18n="splash.eyebrow">Timed Assessment</div>
+    <h1 class="splash-title" data-i18n-html="splash.title">Mathematics<br><span>Examination</span></h1>
+    <p class="splash-sub" data-i18n="splash.subtitle">Configure your exam below, then begin when ready.</p>
 
     <div class="config-panel">
         <!-- Questions -->
         <div class="config-row">
             <div class="config-meta">
-                <div class="config-label-text">📝 Number of Questions</div>
-                <div class="config-hint">Pool: <em id="poolHint">…</em> questions available</div>
+                <div class="config-label-text" data-i18n="config.questionsLabel">📝 Number of Questions</div>
+                <div class="config-hint"><span data-i18n="config.poolPrefix">Pool:</span> <em id="poolHint">…</em> <span data-i18n="config.poolSuffix">questions available</span></div>
             </div>
             <div class="cfg-stepper-wrap">
                 <button class="cfg-step-btn" onclick="step('cfgQ', -5)">−</button>
@@ -1710,8 +1785,8 @@
         <!-- Minutes -->
         <div class="config-row">
             <div class="config-meta">
-                <div class="config-label-text">⏱ Time Limit (minutes)</div>
-                <div class="config-hint">Between 1 and 180 minutes</div>
+                <div class="config-label-text" data-i18n="config.timeLabel">⏱ Time Limit (minutes)</div>
+                <div class="config-hint" data-i18n="config.timeHint">Between 1 and 180 minutes</div>
             </div>
             <div class="cfg-stepper-wrap">
                 <button class="cfg-step-btn" onclick="step('cfgM', -5)">−</button>
@@ -1728,30 +1803,31 @@
     <div class="summary-badges">
         <div class="badge">
             <div class="b-val" id="bQ">30</div>
-            <div class="b-lbl">Questions</div>
+            <div class="b-lbl" data-i18n="badges.questions">Questions</div>
         </div>
         <div class="badge">
             <div class="b-val" id="bM">45</div>
-            <div class="b-lbl">Minutes</div>
+            <div class="b-lbl" data-i18n="badges.minutes">Minutes</div>
         </div>
         <div class="badge">
             <div class="b-val">4</div>
-            <div class="b-lbl">Choices</div>
+            <div class="b-lbl" data-i18n="badges.choices">Choices</div>
         </div>
     </div>
 
     <div class="splash-btns">
         <a href="javascript:history.back()" style="text-decoration:none;flex:1;max-width:220px;">
-            <button class="start-btn" style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--text2);box-shadow:none;">← Leave</button>
+            <button class="start-btn" style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--text2);box-shadow:none;" data-i18n="buttons.leave">← Leave</button>
         </a>
-        <button class="start-btn" id="startBtn" onclick="startTest()" style="flex:1;max-width:220px;">Begin Examination →</button>
+        <button class="start-btn" id="startBtn" onclick="startTest()" style="flex:1;max-width:220px;" data-i18n="buttons.begin">Begin Examination →</button>
     </div>
 </div>
 
 <!-- ════════════════════════ TEST ═══════════════════════════════════════════ -->
 <div class="screen" id="test">
     <div class="topbar">
-        <div class="tb-brand">∑ Math Exam</div>
+        <button class="page-back-btn" type="button" onclick="history.back()" data-i18n="buttons.back">← Back</button>
+        <div class="tb-brand" data-i18n="test.brand">∑ Math Exam</div>
         <div class="tb-progress">
             <div class="tb-progress-fill" id="tbFill"></div>
         </div>
@@ -1769,21 +1845,21 @@
     <div class="test-body">
         <!-- Desktop sidebar -->
         <div class="nav-sidebar">
-            <div class="nav-label">Questions</div>
+            <div class="nav-label" data-i18n="test.questionsNav">Questions</div>
             <div class="nav-grid" id="navGrid"></div>
             <div class="nav-legend">
                 <div class="nav-legend-item">
                     <div class="nav-legend-dot" style="background:var(--blue);border-radius:4px;"></div>
-                    Answered
+                    <span data-i18n="test.answered">Answered</span>
                 </div>
                 <div class="nav-legend-item">
                     <div class="nav-legend-dot" style="background:var(--gold);border-radius:4px;"></div>
-                    Current
+                    <span data-i18n="test.current">Current</span>
                 </div>
                 <div class="nav-legend-item">
                     <div class="nav-legend-dot"
                          style="background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:4px;"></div>
-                    Unanswered
+                    <span data-i18n="test.unanswered">Unanswered</span>
                 </div>
             </div>
         </div>
@@ -1805,20 +1881,20 @@
 
     <!-- Mobile nav drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
-        <div class="nav-label" style="margin-bottom:12px;">Jump to Question</div>
+        <div class="nav-label" style="margin-bottom:12px;" data-i18n="test.jumpToQuestion">Jump to Question</div>
         <div class="nav-grid" id="navGridMobile"></div>
     </div>
 
     <div class="nav-btns">
         <div class="q-status-bar">
             <span class="q-status-dot answered"></span>
-            <span class="answered-count" id="answeredCount2">0</span> answered &nbsp;·&nbsp;
-            <span id="unansweredCount">—</span> remaining
+            <span class="answered-count" id="answeredCount2">0</span> <span data-i18n="test.answeredLower">answered</span> &nbsp;·&nbsp;
+            <span id="unansweredCount">—</span> <span data-i18n="test.remaining">remaining</span>
         </div>
         <div style="display:flex;gap:8px;align-items:center;">
-            <button class="btn-ghost" id="btnPrev" onclick="goTo(currentQ-1)">← Prev</button>
-            <button class="btn-primary" id="btnNext" onclick="goTo(currentQ+1)">Next →</button>
-            <button class="btn-submit" onclick="openConfirm()">Submit</button>
+            <button class="btn-ghost" id="btnPrev" onclick="goTo(currentQ-1)" data-i18n="buttons.prev">← Prev</button>
+            <button class="btn-primary" id="btnNext" onclick="goTo(currentQ+1)" data-i18n="buttons.next">Next →</button>
+            <button class="btn-submit" onclick="openConfirm()" data-i18n="buttons.submit">Submit</button>
         </div>
     </div>
 </div>
@@ -1832,42 +1908,43 @@
     <div class="stats-row">
         <div class="stat-card s-correct">
             <div class="s-val" id="rCorrect">—</div>
-            <div class="s-lbl">Correct</div>
+            <div class="s-lbl" data-i18n="results.correct">Correct</div>
         </div>
         <div class="stat-card s-wrong">
             <div class="s-val" id="rWrong">—</div>
-            <div class="s-lbl">Wrong</div>
+            <div class="s-lbl" data-i18n="results.wrong">Wrong</div>
         </div>
         <div class="stat-card s-pct">
             <div class="s-val" id="rPct">—</div>
-            <div class="s-lbl">Score %</div>
+            <div class="s-lbl" data-i18n="results.score">Score %</div>
         </div>
         <div class="stat-card s-time">
             <div class="s-val" id="rTime">—</div>
-            <div class="s-lbl">Total Time</div>
+            <div class="s-lbl" data-i18n="results.totalTime">Total Time</div>
         </div>
         <div class="stat-card s-avg">
             <div class="s-val" id="rAvg">—</div>
-            <div class="s-lbl">Avg / Q</div>
+            <div class="s-lbl" data-i18n="results.avg">Avg / Q</div>
         </div>
         <div class="stat-card s-taken">
             <div class="s-val" id="rTaken">—</div>
-            <div class="s-lbl">Taken At</div>
+            <div class="s-lbl" data-i18n="results.takenAt">Taken At</div>
         </div>
     </div>
 
     <div class="post-status" id="postStatus"></div>
 
     <div class="result-btns">
-        <button class="retry-btn" onclick="location.reload()">↺ New Test</button>
+        <button class="retry-btn" type="button" onclick="history.back()" data-i18n="buttons.back">← Back</button>
+        <button class="retry-btn" onclick="location.reload()" data-i18n="buttons.newTest">↺ New Test</button>
         <!-- pk will be injected dynamically after save -->
         <a id="fullReviewBtn" href="#" class="retry-btn" style="border-color:rgba(232,201,109,.3);color:var(--gold);display:none;">
-            📋 Full Review →
+            <span data-i18n="buttons.fullReview">📋 Full Review →</span>
         </a>
     </div>
 
     <div class="review-wrap" style="margin-top: 40px;">
-        <div class="review-label">Question Review</div>
+        <div class="review-label" data-i18n="results.review">Question Review</div>
         <div id="reviewList"></div>
     </div>
 </div>
@@ -1875,18 +1952,259 @@
 <!-- ════════════════════════ CONFIRM MODAL ══════════════════════════════════ -->
 <div class="overlay" id="overlay">
     <div class="modal">
-        <h3>Submit Examination?</h3>
+        <h3 data-i18n="modal.title">Submit Examination?</h3>
         <p id="confirmMsg"></p>
         <div class="modal-btns">
-            <button class="btn-ghost" onclick="closeConfirm()">Cancel</button>
-            <button class="btn-submit" onclick="submitTest()">Submit Now</button>
+            <button class="btn-ghost" onclick="closeConfirm()" data-i18n="buttons.cancel">Cancel</button>
+            <button class="btn-submit" onclick="submitTest()" data-i18n="buttons.submitNow">Submit Now</button>
         </div>
     </div>
 </div>
 
 <!-- ════════════════════════ LOGIC ══════════════════════════════════════════ -->
 <script>
-    const QUESTION_POOL = {{ data|safe }};
+    const QUESTION_POOL_EN = {{ data|safe }};
+    const QUESTION_POOL_UZ = {{ data_uz|default:"[]"|safe }};
+
+    const UI_TEXT = {
+      en: {
+        pageTitle: 'Mathematics Examination',
+        splash: {
+          eyebrow: 'Timed Assessment',
+          title: 'Mathematics<br><span>Examination</span>',
+          subtitle: 'Configure your exam below, then begin when ready.'
+        },
+        config: {
+          questionsLabel: '📝 Number of Questions',
+          poolPrefix: 'Pool:',
+          poolSuffix: 'questions available',
+          timeLabel: '⏱ Time Limit (minutes)',
+          timeHint: 'Between 1 and 180 minutes'
+        },
+        badges: { questions: 'Questions', minutes: 'Minutes', choices: 'Choices' },
+        buttons: {
+          back: '← Back',
+          leave: '← Leave',
+          begin: 'Begin Examination →',
+          prev: '← Prev',
+          next: 'Next →',
+          submit: 'Submit',
+          cancel: 'Cancel',
+          submitNow: 'Submit Now',
+          newTest: '↺ New Test',
+          fullReview: '📋 Full Review →'
+        },
+        test: {
+          brand: '∑ Math Exam',
+          questionsNav: 'Questions',
+          answered: 'Answered',
+          current: 'Current',
+          unanswered: 'Unanswered',
+          jumpToQuestion: 'Jump to Question',
+          answeredLower: 'answered',
+          remaining: 'remaining',
+          questionCounter: 'Question <em>{current}</em> of {total}'
+        },
+        results: {
+          correct: 'Correct',
+          wrong: 'Wrong',
+          score: 'Score %',
+          totalTime: 'Total Time',
+          avg: 'Avg / Q',
+          takenAt: 'Taken At',
+          review: 'Question Review'
+        },
+        modal: {
+          title: 'Submit Examination?',
+          confirmAnswered: 'You have answered {answered} of {total} questions.',
+          confirmUnanswered: ' Unanswered questions will count as incorrect.',
+          confirmSure: ' Are you sure you want to submit?'
+        },
+        errors: {
+          poolTooSmall: '⚠ Pool only has {count} questions — reduce the count.',
+          noQuestions: '⚠ No questions are available for this lesson.',
+          minQuestions: '⚠ Must have at least 1 question.',
+          minMinutes: '⚠ Time limit must be at least 1 minute.'
+        },
+        grades: {
+          Excellent: 'Excellent',
+          Good: 'Good',
+          Satisfactory: 'Satisfactory',
+          'Needs Work': 'Needs Work',
+          Unsatisfactory: 'Unsatisfactory'
+        },
+        review: {
+          notAnswered: 'Not answered',
+          correct: 'Correct',
+          yourAnswer: 'Your answer',
+          yourAnswerCorrect: 'Your answer ✓',
+          correctBadge: '✓ Correct',
+          wrongBadge: '✕ Wrong',
+          explanation: 'Explanation:'
+        },
+        status: {
+          saving: '⏳ Saving results…',
+          saved: '✓ Results saved successfully',
+          failed: '⚠ Could not save: {message}'
+        }
+      },
+      uz: {
+        pageTitle: 'Matematika testi',
+        splash: {
+          eyebrow: 'Vaqtli sinov',
+          title: 'Matematika<br><span>Testi</span>',
+          subtitle: 'Test sozlamalarini tanlang, keyin tayyor bo‘lganda boshlang.'
+        },
+        config: {
+          questionsLabel: '📝 Savollar soni',
+          poolPrefix: 'Baza:',
+          poolSuffix: 'ta savol mavjud',
+          timeLabel: '⏱ Vaqt chegarasi (daqiqa)',
+          timeHint: '1 dan 180 daqiqagacha'
+        },
+        badges: { questions: 'Savollar', minutes: 'Daqiqa', choices: 'Variant' },
+        buttons: {
+          back: '← Orqaga',
+          leave: '← Chiqish',
+          begin: 'Testni boshlash →',
+          prev: '← Oldingi',
+          next: 'Keyingi →',
+          submit: 'Yuborish',
+          cancel: 'Bekor qilish',
+          submitNow: 'Hozir yuborish',
+          newTest: '↺ Yangi test',
+          fullReview: '📋 To‘liq ko‘rib chiqish →'
+        },
+        test: {
+          brand: '∑ Matematika testi',
+          questionsNav: 'Savollar',
+          answered: 'Javob berilgan',
+          current: 'Joriy',
+          unanswered: 'Javobsiz',
+          jumpToQuestion: 'Savolga o‘tish',
+          answeredLower: 'javob berildi',
+          remaining: 'qoldi',
+          questionCounter: '<em>{current}</em>-savol / {total}'
+        },
+        results: {
+          correct: 'To‘g‘ri',
+          wrong: 'Noto‘g‘ri',
+          score: 'Natija %',
+          totalTime: 'Umumiy vaqt',
+          avg: 'O‘rtacha / S',
+          takenAt: 'Topshirilgan vaqt',
+          review: 'Savollar tahlili'
+        },
+        modal: {
+          title: 'Test yuborilsinmi?',
+          confirmAnswered: 'Siz {total} ta savoldan {answered} tasiga javob berdingiz.',
+          confirmUnanswered: ' Javobsiz savollar noto‘g‘ri deb hisoblanadi.',
+          confirmSure: ' Yuborishga ishonchingiz komilmi?'
+        },
+        errors: {
+          poolTooSmall: '⚠ Bazada faqat {count} ta savol bor — savollar sonini kamaytiring.',
+          noQuestions: '⚠ Bu dars uchun savollar mavjud emas.',
+          minQuestions: '⚠ Kamida 1 ta savol bo‘lishi kerak.',
+          minMinutes: '⚠ Vaqt chegarasi kamida 1 daqiqa bo‘lishi kerak.'
+        },
+        grades: {
+          Excellent: 'A’lo',
+          Good: 'Yaxshi',
+          Satisfactory: 'Qoniqarli',
+          'Needs Work': 'Ko‘proq mashq kerak',
+          Unsatisfactory: 'Qoniqarsiz'
+        },
+        review: {
+          notAnswered: 'Javob berilmagan',
+          correct: 'To‘g‘ri',
+          yourAnswer: 'Sizning javobingiz',
+          yourAnswerCorrect: 'Sizning javobingiz ✓',
+          correctBadge: '✓ To‘g‘ri',
+          wrongBadge: '✕ Noto‘g‘ri',
+          explanation: 'Tushuntirish:'
+        },
+        status: {
+          saving: '⏳ Natijalar saqlanmoqda…',
+          saved: '✓ Natijalar muvaffaqiyatli saqlandi',
+          failed: '⚠ Saqlab bo‘lmadi: {message}'
+        }
+      }
+    };
+
+    let currentLanguage = normalizeLanguage(localStorage.getItem('mathAcademyLanguage') || 'en');
+    let QUESTION_POOL = getQuestionPool(currentLanguage);
+
+    function normalizeLanguage(lang) {
+      return lang === 'uz' ? 'uz' : 'en';
+    }
+
+    function fillTemplate(text, values = {}) {
+      return String(text).replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
+    }
+
+    function t(key, values = {}) {
+      const parts = key.split('.');
+      let value = UI_TEXT[currentLanguage];
+      for (const part of parts) value = value?.[part];
+      if (value === undefined) {
+        value = UI_TEXT.en;
+        for (const part of parts) value = value?.[part];
+      }
+      return fillTemplate(value ?? key, values);
+    }
+
+    function getQuestionPool(lang = currentLanguage) {
+      if (lang === 'uz' && Array.isArray(QUESTION_POOL_UZ) && QUESTION_POOL_UZ.length > 0) {
+        return QUESTION_POOL_UZ;
+      }
+      return QUESTION_POOL_EN;
+    }
+
+    function optionFromSource(sourceQuestion, sourceKey) {
+      if (sourceKey === 'answer') return { text: sourceQuestion.answer, correct: true, sourceKey };
+      const wrongIndex = Number(sourceKey.replace('wrong', ''));
+      return { text: sourceQuestion.wrong[wrongIndex], correct: false, sourceKey };
+    }
+
+    function localizeActiveQuestions() {
+      const pool = getQuestionPool(currentLanguage);
+      if (!questions.length || !pool.length) return;
+
+      questions = questions.map((question) => {
+        if (typeof question.sourceIndex !== 'number' || !pool[question.sourceIndex]) return question;
+        const sourceQuestion = pool[question.sourceIndex];
+        return {
+          ...sourceQuestion,
+          sourceIndex: question.sourceIndex,
+          opts: question.opts.map((option) => optionFromSource(sourceQuestion, option.sourceKey || (option.correct ? 'answer' : 'wrong0'))),
+        };
+      });
+    }
+
+    function applyStaticLanguage() {
+      document.documentElement.lang = currentLanguage;
+      document.title = t('pageTitle');
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === currentLanguage);
+      });
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        element.textContent = t(element.dataset.i18n);
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach((element) => {
+        element.innerHTML = t(element.dataset.i18nHtml);
+      });
+      sync();
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = normalizeLanguage(lang);
+      localStorage.setItem('mathAcademyLanguage', currentLanguage);
+      QUESTION_POOL = getQuestionPool(currentLanguage);
+      applyStaticLanguage();
+      localizeActiveQuestions();
+      if (questions.length && document.getElementById('test').classList.contains('active')) renderQuestion(currentQ);
+      if (lastResultsData && document.getElementById('results').classList.contains('active')) showResults(lastResultsData, false);
+    }
 
     document.getElementById('poolHint').textContent = QUESTION_POOL.length;
     document.getElementById('cfgQ').max = QUESTION_POOL.length;
@@ -1904,7 +2222,8 @@
 
     function clampQ() {
       const el = document.getElementById('cfgQ');
-      el.value = Math.min(QUESTION_POOL.length, Math.max(1, parseInt(el.value) || 1));
+      const poolSize = QUESTION_POOL.length;
+      el.value = poolSize > 0 ? Math.min(poolSize, Math.max(1, parseInt(el.value) || 1)) : 0;
       sync();
     }
     function clampM() {
@@ -1914,6 +2233,10 @@
     }
 
     function sync() {
+      QUESTION_POOL = getQuestionPool(currentLanguage);
+      const poolSize = QUESTION_POOL.length;
+      document.getElementById('poolHint').textContent = poolSize;
+      document.getElementById('cfgQ').max = poolSize || 1;
       const q = getQ(), m = getM();
       document.getElementById('bQ').textContent = q;
       document.getElementById('bM').textContent = m;
@@ -1921,14 +2244,17 @@
       const errEl = document.getElementById('cfgErr');
       const btn   = document.getElementById('startBtn');
 
-      if (q > QUESTION_POOL.length) {
-        errEl.textContent = `⚠ Pool only has ${QUESTION_POOL.length} questions — reduce the count.`;
+      if (poolSize < 1) {
+        errEl.textContent = t('errors.noQuestions');
+        btn.disabled = true;
+      } else if (q > poolSize) {
+        errEl.textContent = t('errors.poolTooSmall', { count: poolSize });
         btn.disabled = true;
       } else if (q < 1) {
-        errEl.textContent = '⚠ Must have at least 1 question.';
+        errEl.textContent = t('errors.minQuestions');
         btn.disabled = true;
       } else if (m < 1) {
-        errEl.textContent = '⚠ Time limit must be at least 1 minute.';
+        errEl.textContent = t('errors.minMinutes');
         btn.disabled = true;
       } else {
         errEl.textContent = '';
@@ -1945,6 +2271,7 @@
     let timerSecs   = 0;
     let timerID     = null;
     let startedAt   = null;
+    let lastResultsData = null;
 
     function shuffle(arr) {
       const a = [...arr];
@@ -1956,17 +2283,18 @@
     }
 
     function startTest() {
+      QUESTION_POOL = getQuestionPool(currentLanguage);
       clampQ(); clampM();
       TOTAL      = getQ();
       TIME_LIMIT = getM() * 60;
       timerSecs  = TIME_LIMIT;
 
-      questions = shuffle(QUESTION_POOL).slice(0, TOTAL).map(q => {
+      questions = shuffle(QUESTION_POOL.map((question, sourceIndex) => ({ ...question, sourceIndex }))).slice(0, TOTAL).map(q => {
         const opts = shuffle([
-          { text: q.answer,   correct: true  },
-          { text: q.wrong[0], correct: false },
-          { text: q.wrong[1], correct: false },
-          { text: q.wrong[2], correct: false },
+          { text: q.answer,   correct: true,  sourceKey: 'answer' },
+          { text: q.wrong[0], correct: false, sourceKey: 'wrong0' },
+          { text: q.wrong[1], correct: false, sourceKey: 'wrong1' },
+          { text: q.wrong[2], correct: false, sourceKey: 'wrong2' },
         ]);
         return { ...q, opts };
       });
@@ -2042,7 +2370,7 @@
       currentQ = idx;
       const q  = questions[idx];
 
-      document.getElementById('qCounter').innerHTML = `Question <em>${idx+1}</em> of ${TOTAL}`;
+      document.getElementById('qCounter').innerHTML = t('test.questionCounter', { current: idx + 1, total: TOTAL });
       document.getElementById('qText').innerHTML    = q.question;
       document.getElementById('qDisplay').style.display = 'none';
 
@@ -2076,9 +2404,9 @@
     function openConfirm() {
       const ans = userAnswers.filter(a => a !== -1).length;
       document.getElementById('confirmMsg').textContent =
-        `You have answered ${ans} of ${TOTAL} questions.` +
-        (ans < TOTAL ? ` Unanswered questions will count as incorrect.` : '') +
-        ` Are you sure you want to submit?`;
+        t('modal.confirmAnswered', { answered: ans, total: TOTAL }) +
+        (ans < TOTAL ? t('modal.confirmUnanswered') : '') +
+        t('modal.confirmSure');
       document.getElementById('overlay').classList.add('open');
     }
     function closeConfirm() { document.getElementById('overlay').classList.remove('open'); }
@@ -2128,8 +2456,9 @@
       } catch(e) {}
     }
 
-    function showResults({ correctCount, wrongCount, pct, totalSecs, avgSecs, takenAt }) {
-      saveToSession({ correct: correctCount, wrong: wrongCount, pct, totalSecs, avgSecs, takenAt });
+    function showResults({ correctCount, wrongCount, pct, totalSecs, avgSecs, takenAt }, shouldSaveSession = true) {
+      lastResultsData = { correctCount, wrongCount, pct, totalSecs, avgSecs, takenAt };
+      if (shouldSaveSession) saveToSession({ correct: correctCount, wrong: wrongCount, pct, totalSecs, avgSecs, takenAt });
 
       const [grade, label] =
         pct>=90?['A','Excellent']:pct>=80?['B','Good']:pct>=70?['C','Satisfactory']:pct>=60?['D','Needs Work']:['F','Unsatisfactory'];
@@ -2137,7 +2466,7 @@
       const gradeEl = document.getElementById('gradeDisplay');
       gradeEl.textContent = grade;
       gradeEl.className   = `grade grade-${grade}`;
-      document.getElementById('gradeLabel').textContent = label;
+      document.getElementById('gradeLabel').textContent = t(`grades.${label}`);
       document.getElementById('rCorrect').textContent   = correctCount;
       document.getElementById('rWrong').textContent     = wrongCount;
       document.getElementById('rPct').textContent       = `${pct}%`;
@@ -2155,13 +2484,13 @@
 
         let answersHTML = '';
         if (chosen === -1) {
-          answersHTML = `<div class="rev-ans your-wrong"><span class="ans-tag">Not answered</span><span>—</span></div>
-                         <div class="rev-ans the-correct"><span class="ans-tag">Correct</span><span class="opt-math">${correctOpt.text}</span></div>`;
+          answersHTML = `<div class="rev-ans your-wrong"><span class="ans-tag">${t('review.notAnswered')}</span><span>—</span></div>
+                         <div class="rev-ans the-correct"><span class="ans-tag">${t('review.correct')}</span><span class="opt-math">${correctOpt.text}</span></div>`;
         } else if (isCorrect) {
-          answersHTML = `<div class="rev-ans your-correct"><span class="ans-tag">Your answer ✓</span><span class="opt-math">${correctOpt.text}</span></div>`;
+          answersHTML = `<div class="rev-ans your-correct"><span class="ans-tag">${t('review.yourAnswerCorrect')}</span><span class="opt-math">${correctOpt.text}</span></div>`;
         } else {
-          answersHTML = `<div class="rev-ans your-wrong"><span class="ans-tag">Your answer</span><span class="opt-math">${chosenOpt.text}</span></div>
-                         <div class="rev-ans the-correct"><span class="ans-tag">Correct</span><span class="opt-math">${correctOpt.text}</span></div>`;
+          answersHTML = `<div class="rev-ans your-wrong"><span class="ans-tag">${t('review.yourAnswer')}</span><span class="opt-math">${chosenOpt.text}</span></div>
+                         <div class="rev-ans the-correct"><span class="ans-tag">${t('review.correct')}</span><span class="opt-math">${correctOpt.text}</span></div>`;
         }
 
         const card = document.createElement('div');
@@ -2170,11 +2499,11 @@
         card.innerHTML = `
           <div class="rev-header">
             <span class="rev-num">Q${i+1}</span>
-            <span class="rev-badge ${isCorrect?'correct':'wrong'}">${isCorrect?'✓ Correct':'✗ Wrong'}</span>
+            <span class="rev-badge ${isCorrect?'correct':'wrong'}">${isCorrect?t('review.correctBadge'):t('review.wrongBadge')}</span>
           </div>
           <div class="rev-q">${q.question}</div>
           <div class="rev-answers">${answersHTML}</div>
-          <div class="rev-exp"><strong>Explanation:</strong> ${q.explanation}</div>
+          <div class="rev-exp"><strong>${t('review.explanation')}</strong> ${q.explanation}</div>
         `;
         list.appendChild(card);
       });
@@ -2186,7 +2515,7 @@
     /* ── POST to backend — pk ni response dan olish ── */
     function sendResults({ correctCount, wrongCount, pct, totalSecs, avgSecs, takenAt }) {
       const statusEl = document.getElementById('postStatus');
-      statusEl.textContent = '⏳ Saving results…';
+      statusEl.textContent = t('status.saving');
 
       const questionsDetail = questions.map((q, i) => {
         const ci  = userAnswers[i];
@@ -2223,7 +2552,7 @@
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(data => {
         statusEl.className   = 'post-status ok';
-        statusEl.textContent = '✓ Results saved successfully';
+        statusEl.textContent = t('status.saved');
 
         // ✅ Backend dan kelgan pk bilan Full Review tugmasini ko'rsatish
         if (data.pk) {
@@ -2234,14 +2563,17 @@
       })
       .catch(e => {
         statusEl.className   = 'post-status err';
-        statusEl.textContent = `⚠ Could not save: ${e.message}`;
+        statusEl.textContent = t('status.failed', { message: e.message });
       });
     }
 
     function showScreen(id) {
       document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === id));
+      document.body.classList.toggle('is-testing', id === 'test');
       window.scrollTo(0, 0);
     }
+
+    applyStaticLanguage();
 </script>
 </body>
 </html>
